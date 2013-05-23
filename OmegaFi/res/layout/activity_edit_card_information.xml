@@ -1,0 +1,59 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/darker_gray"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal"
+    tools:context=".EditCardInformation" >
+    <LinearLayout
+        android:layout_margin="6dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal">
+        <com.appsolution.layouts.RowEditInformation
+            android:id="@+id/editNameCard"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:name_information_e="Name"
+            />
+        <com.appsolution.layouts.RowEditInformation
+            android:id="@+id/editNumberCard"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:name_information_e="Credit Card #"
+            />
+        <com.appsolution.layouts.RowEditInformation
+            android:id="@+id/editDateCard"
+            style="@style/SectionOmegaFi"
+            android:layout_width="fill_parent"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:layout_height="wrap_content"
+            secom:name_information_e="Expiration Date"
+            />
+         <com.appsolution.layouts.SectionOmegaFi
+             android:id="@+id/sectionEditAddress"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             secom:show_arrow="false"
+             secom:title_section="Billing Address"
+             secom:put_border_bottom="true"
+             secom:name_information="Billing Anddress"
+             secom:value_information=""
+             />
+        
+        <Button 
+            android:id="@+id/buttonSave"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Save"
+            android:padding="10dp"
+            android:background="@android:color/white"
+            android:textSize="15sp"/>
+        
+    </LinearLayout>
+</ScrollView>

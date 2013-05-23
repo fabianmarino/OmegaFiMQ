@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:id="@+id/layout_root_two_options" >
+    
+    <TextView android:id="@+id/messageInformationDialog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:layout_margin="10dp"
+        android:text="This is the message"
+        android:textSize="18sp"/>
+    <LinearLayout android:id="@+id/linearButtonsOptions"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="1">
+	    <Button android:id="@+id/buttonOption1"
+	        android:layout_weight="0.5"
+	        android:layout_width="fill_parent"
+	       	android:layout_height="55dp"
+	       	android:text="Option 1"
+	       	android:layout_marginRight="2dp"
+	       	android:textSize="15sp"
+	       	android:background="@drawable/boton_style"
+	       	android:padding="2dp"/>
+	    <Button android:id="@+id/buttonOption2"
+	        android:layout_width="fill_parent"
+	       	android:layout_height="55dp"
+	       	android:text="Option 2"
+	       	android:layout_marginRight="2dp"
+	       	android:layout_weight="0.5"
+	       	android:textSize="15sp"
+	       	android:background="@drawable/boton_style"
+	       	android:padding="2dp"/>
+    </LinearLayout>
+</LinearLayout>

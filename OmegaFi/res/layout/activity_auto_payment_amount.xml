@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/LinearContentStyle"
+    tools:context=".PaymentAmountActivity" >
+    
+    <Button android:id="@+id/buttonMenuSpecificPay"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:onClick="changePaymentAmount"
+        android:text="Pay Amount Due"
+        android:background="@drawable/boton_style"/>
+    <LinearLayout android:id="@+id/linearPayAmount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+        <com.appsolution.layouts.RowInformation
+            android:id="@+id/rowNoMaximumAmount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:name_information="No Maximum Amount"
+            secom:put_border_bottom="true"
+            secom:padding_row_info="8dp"
+            secom:icon_drawable="@drawable/icon_ok_1"/>
+        <com.appsolution.layouts.RowInformation
+            android:id="@+id/rowSpecificDayMonth"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:name_information="Maximum Amount"
+            secom:value_information="$0.00"
+            secom:put_border_bottom="true"
+            secom:padding_row_info="8dp"
+            />
+    </LinearLayout>
+        <com.appsolution.layouts.RowEditTextOmegaFi
+            android:id="@+id/textSpecificAmount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            secom:name_information_e="Enter Amount"
+            />
+
+</LinearLayout>

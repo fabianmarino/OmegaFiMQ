@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    style="@style/SectionOmegaFi"
+    android:layout_margin="5dp"
+    android:padding="6dp" >    
+    <TableRow 
+        android:id="@+id/firstRow"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:weightSum="1"
+        >
+        <!-- 
+        <ImageView android:id="@+id/imageAccount"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@android:color/black"
+            android:layout_weight="0.2"
+            />  -->
+        <LinearLayout android:id="@+id/nameUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.75"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp"
+            >
+            <TextView android:id="@+id/textNameUser"
+                android:textSize="23sp"
+                android:textColor="@android:color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jhon Smith"
+                />
+            <TextView android:id="@+id/textNumberUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account #:77737373"
+                android:textSize="20sp"
+                />
+        </LinearLayout>
+        <ImageView
+            	android:layout_gravity="center_vertical"
+        		android:layout_width="15dp"
+                android:src="@drawable/right_arrow_1"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:onClick="viewNoti"
+                />        
+    </TableRow>
+	<TableRow android:id="@+id/secondRow"
+	    android:layout_width="fill_parent"
+	    android:layout_height="0dp"
+	    android:visibility="gone"><!-- Este es el equivalente a hide -->
+	    <TextView android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="La prueba"/>
+	</TableRow>
+</TableLayout>

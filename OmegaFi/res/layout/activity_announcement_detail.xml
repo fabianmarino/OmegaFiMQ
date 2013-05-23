@@ -1,0 +1,36 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/LinearContentStyle"
+    tools:context=".AnnouncementDetailActivity" >
+    <LinearLayout android:id="@+id/linearAnnouncementDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <com.appsolution.layouts.EventNewsContent
+            android:id="@+id/contentAnnouncementDetail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:title_new_event="Subject goes here"
+            secom:date_new_event="04/12/2013"
+            secom:padding_new_event="6dp"
+            secom:description_new_event="Lorem ipsum dolor sit amet, consectetur adipisicing 
+            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim 
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea 
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+        
+        <TextView android:id="@+id/textSourceAnnouncement"
+	        android:background="@android:color/white"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:text="Source: Lorem ipsum dolor sit ameth jhgvhj"
+	        android:padding="8dp"/>
+        
+    </LinearLayout>
+</ScrollView>

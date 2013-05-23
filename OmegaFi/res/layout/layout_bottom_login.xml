@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical" >
+    <Button android:id="@+id/buttonBackToLogin"
+	        android:layout_width="fill_parent"
+	        android:layout_marginTop="40dp"
+	        android:layout_height="wrap_content"
+	        android:text="Back To Login"
+	        android:onClick="backToLogin"
+	        style="@style/ButtonOmegaNormal"/>
+	    <TextView android:id="@+id/textContactUs"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:text="Contact Us: 1-888-691-3021"
+	        android:textSize="15sp" />
+</LinearLayout>

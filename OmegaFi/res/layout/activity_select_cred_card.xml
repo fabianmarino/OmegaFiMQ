@@ -1,0 +1,30 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".SelectCredCardActivity">
+	<LinearLayout
+	    android:id="@+id/contentSelectCard"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="6dp"
+	        android:orientation="vertical">
+	        <com.appsolution.layouts.RowInformation 
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="Mastercard (1730)"
+	            secom:value_information="/"/>
+	        <com.appsolution.layouts.RowInformation 
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="Mastercard (3230)"
+	            secom:value_information="/"/>
+	    </LinearLayout>
+	</LinearLayout>
+</ScrollView>

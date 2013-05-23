@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <com.appsolution.layouts.RowTripleInformation
+        android:id="@+id/titleCycleCharge"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        secom:put_border_bottom="true"
+        secom:padding_row_info="6dp"
+        />   
+    <LinearLayout 
+        android:id="@+id/contentScheduleCycle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+        
+    </LinearLayout>
+</LinearLayout>

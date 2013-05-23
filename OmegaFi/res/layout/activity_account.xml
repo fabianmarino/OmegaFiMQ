@@ -1,0 +1,67 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".AccountActivity" >
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical">
+	    <com.appsolution.layouts.SectionAccountInfo
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"/>
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionAccountSummary"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Account Summary"
+	        secom:show_arrow="false"/>
+	    
+	    <com.appsolution.layouts.RowInformation
+	        android:id="@+id/rowPayNowAccount"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        android:onClick="activityPayNow"
+	        secom:color_font_row_information="@android:color/darker_gray"
+	        secom:name_information="Pay Now"
+	        secom:value_information=""
+	        secom:put_border_bottom="true"
+	        secom:show_arrow_info="true"
+	        secom:padding_row_info="6dp"
+	        />
+	    
+	    <com.appsolution.layouts.RowInformation
+	        android:id="@+id/rowAutoPayAccount"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        android:onClick="activityAutoPay"
+	        secom:color_font_row_information="@android:color/darker_gray"
+	        secom:name_information="AutoPay"
+	        secom:value_information="Active"
+	        secom:put_border_bottom="true"
+	        secom:show_arrow_info="true"
+	        secom:padding_row_info="6dp"
+	        />
+	    
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionAccountDetails"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Account Details"
+	        secom:show_arrow="false"/>
+	    
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionAccountContacts"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Account Contacts"
+	        secom:show_arrow="false"/>
+	</LinearLayout>
+</ScrollView>

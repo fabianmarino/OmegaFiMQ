@@ -1,0 +1,100 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context=".PayNowActivity" >
+	<LinearLayout 
+	    android:id="@+id/contentPayNow"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:padding="6dp">
+	    <LinearLayout 
+	        android:id="@+id/contentCurrentBalance"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/infoCurrentBalance"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:put_border_bottom="true"
+	            secom:name_information="Current Balance"
+	            secom:value_information="$ 335.00"
+	            secom:padding_row_info="8dp"
+	            />
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/infoDueOn"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:padding_row_info="6dp"
+	            secom:put_border_bottom="true"
+	            secom:name_information="Due On"
+	            secom:value_information="MM/DD/YYYY"
+	            />
+	    </LinearLayout>
+	    <LinearLayout 
+	        android:id="@+id/contentEnterAmount"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_marginTop="6dp"
+	        android:layout_marginBottom="6dp">
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/infoEnterAmount"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:padding_row_info="6dp"
+	            secom:put_border_bottom="true"
+	            secom:name_information="Enter Amount"
+	            secom:value_information="$ 335.00"
+	            />
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/infoSelectPaymentDate"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:padding_row_info="6dp"
+	            secom:put_border_bottom="true"
+	            secom:name_information="Select Payment Date"
+	            secom:value_information="MM/DD/YYYY"
+	            />
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/infoSelectPaymentMethod"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:padding_row_info="6dp"
+	            android:onClick="selectPayMethod"
+	            secom:put_border_bottom="true"
+	            secom:name_information="Select Payment Method"
+	            secom:value_information=""
+	            secom:show_arrow_info="true"
+	            />
+	    </LinearLayout>
+	    <com.appsolution.layouts.RowInformation
+	            android:id="@+id/infoSubmitPayment"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="6dp"
+	            secom:padding_row_info="6dp"
+	            android:onClick="onSubmitPayment"
+	            secom:put_border_bottom="true"
+	            secom:name_information="Submit Payment"
+	            secom:value_information=""
+	            secom:show_arrow_info="true"
+	            />
+	    <com.appsolution.layouts.RowInformation
+	            android:id="@+id/infoAddNewPaymentMethod"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:padding_row_info="6dp"
+	            android:layout_marginBottom="6dp"
+	            android:onClick="addNewPaymentMethod"
+	            secom:put_border_bottom="true"
+	            secom:name_information="Add New Payment Method"
+	            secom:value_information=""
+	            secom:show_arrow_info="true"
+	            />
+	</LinearLayout>
+</ScrollView>

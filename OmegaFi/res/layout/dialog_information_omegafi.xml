@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:id="@+id/layout_root_info_dialog" >
+    
+    <TextView android:id="@+id/messageInformationDialog"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:inputType="textMultiLine"
+        android:layout_margin="10dp"
+        android:text="Este es el mensaje que se va a dar en el dialogo"
+        android:textSize="18sp"/>
+    <Button android:id="@+id/buttonOKInformation"
+        android:layout_width="fill_parent"
+       	android:layout_height="wrap_content"
+       	android:text="OK"
+       	android:textSize="20sp"
+       	android:background="@drawable/boton_style"
+       	android:padding="10dp"/>
+</LinearLayout>

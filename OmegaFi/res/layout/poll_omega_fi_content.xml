@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pollSwitcher"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:orientation="vertical" >
+	    <TextView android:id="@+id/titleQuestionPoll"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing?"
+	        android:textColor="@android:color/black"
+	        android:textSize="15sp"/>
+	    <LinearLayout 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        <RadioGroup 
+	            android:id="@+id/contentAnswersPoll"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginLeft="6dp">
+	            
+	        </RadioGroup>
+	    </LinearLayout>
+	    <LinearLayout 
+	        android:id="@+id/contentButtonSubmit"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        >
+	        <Button 
+	            android:id="@+id/buttonSubmitPoll"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:padding="10dp"
+	            android:layout_marginRight="4dp"
+	            android:text="SUBMIT  "
+	            style="@style/ButtonOmega"/>
+	    </LinearLayout>
+	</LinearLayout>
+	
+	<LinearLayout android:id="@+id/pollResultsContent"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+	    <TextView 
+	        android:id="@+id/textThanks"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="@android:color/darker_gray"
+	        android:textSize="15sp"
+	        android:text="Thank you message!"/>
+	    <TextView android:id="@+id/titlePollResult"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textSize="15sp"
+	        android:text="Lorem ipsum dolor sit amet, consecteur?"/>  
+	    <LinearLayout 
+	        android:id="@+id/contentPollResults"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical">
+	        
+	    </LinearLayout>
+	    <Button android:id="@+id/buttonVote"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="VOTE  "
+	        android:visibility="gone"
+	        android:layout_marginTop="6dp"
+	        android:padding="10dp"
+	        style="@style/ButtonOmega"/>
+	</LinearLayout>
+</ViewSwitcher>

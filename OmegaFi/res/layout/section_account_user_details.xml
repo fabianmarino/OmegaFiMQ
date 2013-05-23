@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+    <TableRow 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:padding="5dp">
+        <ImageView android:id="@+id/accountImage"
+            android:layout_width="0dp"
+            android:background="#2562CC"
+            android:layout_height="fill_parent"
+            android:adjustViewBounds="true"
+            android:layout_weight="0.25"
+            android:layout_marginRight="5dp"
+            />
+        <LinearLayout 
+            android:id="@+id/contAccountInfo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+           	android:layout_weight="0.75"
+           	android:orientation="vertical">
+            <TextView android:id="@+id/nameUserAccount"
+                android:layout_width="fill_parent"
+                android:textColor="@android:color/black"
+                android:layout_height="wrap_content"
+                android:text="Winston Smith"/>
+            <TextView android:id="@+id/numberAccount"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Account #: 7476656"/>
+            <TextView android:id="@+id/groupName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Zeta Xi"/>
+            <TextView android:id="@+id/nameFraternity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="Kappa Sigma"/>
+        </LinearLayout>        
+    </TableRow>
+</TableLayout>

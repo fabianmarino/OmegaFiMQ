@@ -1,0 +1,36 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ForgotUserNameActivity" >
+	<LinearLayout android:id="@+id/linearForgotUser"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="6dp"
+	    android:orientation="vertical">
+	    <com.appsolution.layouts.HeaderOmegaFi
+	        android:id="@+id/headerForgotUserName"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="10dp"
+	        secom:text_title_header="Forgot My Username"
+	        secom:text_message_form="Please enter your email address associate with your account."
+	        />
+	    <com.appsolution.layouts.RowEditTextSubmit
+	         android:id="@+id/rowEditSubmitEmail"
+	         android:layout_width="fill_parent"
+	         android:layout_height="wrap_content"
+	         android:layout_marginTop="10dp"
+	         secom:text_placehoder="Username"
+	         secom:text_submit_button="Submit"
+	         />
+	    <TextView android:id="@+id/textEmailSent"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:visibility="gone"
+	        android:text="Your username has been sent to name@mail.com"/>
+	    <include layout="@layout/layout_bottom_login"/>
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,35 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ForgotLoginActivity" >
+	<LinearLayout android:id="@+id/linearForgotLogin"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_margin="6dp"
+	    android:orientation="vertical">
+	    <com.appsolution.layouts.HeaderOmegaFi
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        secom:text_title_header="Forgot Login Info"
+	        android:layout_marginBottom="20dp"
+	        />
+	    <Button android:id="@+id/buttonForgotMyUser"
+	        android:layout_width="fill_parent"
+	        android:layout_marginTop="8dp"
+	        android:layout_height="wrap_content"
+	        android:onClick="activityForgotUser"
+	        android:text="Forgot my username"
+	        style="@style/ButtonOmega"/>
+	    <Button android:id="@+id/buttonForgotMyPassword"
+	        android:layout_width="fill_parent"
+	        android:layout_marginTop="8dp"
+	        android:layout_height="wrap_content"
+	        android:text="Forgot my password"
+	        android:onClick="activityForgotPassword"
+	        style="@style/ButtonOmega"/>
+	    <include layout="@layout/layout_bottom_login" />
+	</LinearLayout>
+</ScrollView>

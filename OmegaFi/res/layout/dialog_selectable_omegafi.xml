@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/layout_root_selectable"
+    android:background="@android:color/white"
+    android:layout_height="match_parent" >
+    <LinearLayout
+        android:id="@+id/contentSelectablesDialog"
+        android:padding="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <TextView android:id="@+id/titleSelectables"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="This is the title"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:background="@drawable/border_bottom"/>
+        <LinearLayout
+            android:id="@+id/contentRowsSelectables"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical">
+            
+        </LinearLayout>
+        <Button 
+            android:id="@+id/buttonActionDialog"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/boton_style"
+            android:textSize="18sp"
+            android:text="Action"/>
+    </LinearLayout>
+</ScrollView>

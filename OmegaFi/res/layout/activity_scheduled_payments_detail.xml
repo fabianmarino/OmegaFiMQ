@@ -1,0 +1,51 @@
+<!-- Si es necesario un scroll view cuando la pantalla esté en modo landscape -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    style="@style/LinearContentStyle"
+    android:layout_height="match_parent"
+    tools:context=".ScheduledPaymentsDetailActivity" >
+	<LinearLayout android:id="@+id/contentScheduledDetails"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionScheduledPaymentDetails"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        secom:title_section="Payment Details"/>
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionScheduledPaymentMethod"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        secom:title_section="Payment Method"/>
+	    <Button android:id="@+id/buttonStateScheduled"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Processing"
+	        android:layout_marginTop="5dp"
+	        style="@style/ButtonOmegaNormal"
+	        />
+	</LinearLayout>
+	<LinearLayout android:id="@+id/contentButtonsScheduled"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:layout_alignParentBottom="true">
+	    <Button android:id="@+id/buttonSaveScheduled"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Save"
+	        android:onClick="saveSchedulePayment"
+	        style="@style/ButtonOmegaNormal"/>
+	    <Button android:id="@+id/buttonDeleteScheduled"
+	        android:layout_marginTop="5dp"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:onClick="deleteSchedulePayment"
+	        android:text="Delete"
+	        style="@style/ButtonOmegaNormal"/>
+	</LinearLayout>
+</RelativeLayout>

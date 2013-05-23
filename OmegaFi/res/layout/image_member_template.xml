@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+   	android:padding="0dp"
+    android:orientation="horizontal" >
+    <ImageView android:id="@+id/image_member_omegafi"
+        android:layout_width="110dp"
+        android:layout_height="100dp"
+        android:layout_marginRight="8dp"
+        android:layout_gravity="center_vertical"
+        android:background="@android:color/black"
+        android:contentDescription="This is the member profile photo"
+        />
+    <LinearLayout android:id="@+id/linearCotentInfoMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout android:id="@+id/linearBasicInfoMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+        <LinearLayout android:id="@+id/linearAditionalInfoMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

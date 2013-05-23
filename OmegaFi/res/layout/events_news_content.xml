@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    android:id="@+id/linearContentNewsEvents"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <com.appsolution.layouts.RowInformation
+        android:id="@+id/titleDateEventNew"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        secom:row_text_size="15sp"
+        secom:put_border_bottom="false">
+    </com.appsolution.layouts.RowInformation>
+    <TextView android:id="@+id/descriptionNewOrEvent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine|textCapCharacters"
+        android:textColor="@android:color/darker_gray"
+        />
+</LinearLayout>

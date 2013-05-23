@@ -1,0 +1,49 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ForgotPwQuestionsActivity" >
+    <LinearLayout android:id="@+id/linearForgotQuestion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:orientation="vertical">
+        <com.appsolution.layouts.HeaderOmegaFi
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:text_title_header="Forgot My Password"
+            secom:text_message_form="Please answer the following question in order to reset your password"/>
+        <LinearLayout android:id="@+id/linearRowQuestions"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+            <com.appsolution.layouts.RowQuestionEditText
+                android:id="@+id/questionMotherName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:text_question_row="What is your mother's maiden name?"/>
+            <com.appsolution.layouts.RowQuestionEditText
+                android:id="@+id/questionSchoolAttend"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:text_question_row="What high school did you attend?"/>
+            <com.appsolution.layouts.RowQuestionEditText
+                android:id="@+id/questionSchoolMascot"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:text_question_row="What was your high school mascot?"/>
+            <Button android:id="@+id/buttonResetPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:onClick="resetPasswordActivity"
+                android:text="Reset Password"
+                style="@style/ButtonOmega"/>
+        </LinearLayout>
+        <include layout="@layout/layout_bottom_login"
+                android:layout_marginTop="8dp"/>
+    </LinearLayout>
+</ScrollView>

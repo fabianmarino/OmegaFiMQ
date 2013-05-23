@@ -1,0 +1,140 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@android:color/darker_gray"
+    android:layout_height="match_parent"
+    tools:context=".AddNewPaymentActivity" >
+
+    <LinearLayout 
+        android:id="@+id/linearAddNewPayment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="6dp">
+        <Button android:id="@+id/labelSelectPaymentMethod"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:onClick="changeTypePayment"
+            android:textSize="19sp"
+            android:text="Select Payment Method"
+            android:background="@drawable/border_bottom"
+            android:gravity="left"
+            android:padding="10dp"/>
+        <LinearLayout android:id="@+id/linearCreditDebitCard"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.appsolution.layouts.RowEditTextOmegaFi
+                android:id="@+id/textNameOnCard"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:name_information_e="Name on Card"
+                secom:text_editable="false"
+                />
+            <com.appsolution.layouts.RowInformation
+                android:id="@+id/selectCardType"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="selectCardType"
+                secom:color_font_row_information="@android:color/darker_gray"
+                secom:name_information="Card Type"
+                secom:value_information=""
+                secom:show_arrow_info="true"
+                secom:put_border_bottom="true"
+                secom:padding_row_info="8dp"
+                />
+            <com.appsolution.layouts.RowEditTextOmegaFi
+                android:id="@+id/textNumberCard"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:name_information_e="Card Number"
+                />
+            <com.appsolution.layouts.RowInformation
+                android:id="@+id/editExpirationDate"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:name_information="Expiration Date"
+                secom:put_border_bottom="true"
+                secom:color_font_row_information="@android:color/darker_gray"
+                secom:padding_row_info="8dp"
+                secom:icon_drawable="@drawable/calendar_1"
+               />
+            <com.appsolution.layouts.RowEditTextOmegaFi
+                android:id="@+id/textZipCode"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:name_information_e="Zip Code"
+                />
+            <com.appsolution.layouts.RowToogleOmegaFi
+                android:id="@+id/rowSaveForFutureUse"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:toogle_on="true"
+                secom:name_information_e="Save for Future Use"
+                />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/linearCheckingAccount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <LinearLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+	            <com.appsolution.layouts.RowEditTextOmegaFi
+	                android:id="@+id/textNameOnAccount"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                secom:name_information_e="Name on Account"
+	                />
+	            <com.appsolution.layouts.RowEditTextOmegaFi
+	                android:id="@+id/textRoutingNumber"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                secom:name_information_e="Routing Number"
+	                />
+	            <com.appsolution.layouts.RowEditTextOmegaFi
+	                android:id="@+id/textAccountNumber"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                secom:name_information_e="Account Number"
+	                />
+	            <com.appsolution.layouts.RowToogleOmegaFi
+	                android:id="@+id/rowSaveForFutureUse2"
+	                android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                secom:toogle_on="true"
+	                secom:name_information_e="Save for Future Use"
+	                />
+            </LinearLayout>
+            <com.appsolution.layouts.SectionOmegaFi
+	            android:id="@+id/sectionAddresAddPayment"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dp"
+	            secom:title_section="Address"
+            />
+        </LinearLayout>
+        <com.appsolution.layouts.ContactInformation
+            android:id="@+id/contactInfoCreditDebitCard"
+            android:layout_width="fill_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"/>
+        
+        <Button
+            android:id="@+id/buttonAddContinue"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Add"
+            android:onClick="addContinueNewPayment"
+            style="@style/ButtonOmegaNormal"
+            />
+    </LinearLayout>
+
+</ScrollView>

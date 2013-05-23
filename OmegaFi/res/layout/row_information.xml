@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/border_bottom"
+    android:padding="6dp"
+    android:id="@+id/rowInformationContent" >
+    	<LinearLayout android:id="@+id/icon_information"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:orientation="horizontal"
+    	    android:layout_alignParentLeft="true">
+    	    <ImageView android:id="@+id/icon_image_information"
+    	        android:layout_width="20dp"
+    	        android:layout_height="wrap_content"
+    	        android:adjustViewBounds="true"
+    	        android:layout_margin="5dp"
+    	        android:scaleType="centerCrop"
+    	        android:visibility="gone"
+    	        android:layout_gravity="center_vertical"
+    	        android:contentDescription="Image information type"/>
+    	    <LinearLayout android:id="@+id/contentNamesInformation"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:orientation="vertical"
+    	        android:layout_gravity="center_vertical">
+			    <TextView android:id="@+id/nameInfo"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Information"
+			        android:textSize="15sp"
+			        android:textColor="@android:color/darker_gray"
+			        />
+			    <TextView android:id="@+id/nameSubInfo"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="Subinformation"
+			        android:textSize="12sp"
+			        android:textColor="@android:color/darker_gray"
+			        android:visibility="gone"
+			        />
+		    </LinearLayout>
+	    </LinearLayout>
+	   	<LinearLayout android:id="@+id/contentValueInfoArrow"
+	   	    android:layout_width="wrap_content"
+	   	    android:layout_height="wrap_content"
+	   	    android:layout_alignParentRight="true"
+	   	    android:layout_centerVertical="true"
+	   	    android:orientation="horizontal"
+		    >
+    	    <LinearLayout android:id="@+id/contentValuesText"
+    	        android:layout_width="wrap_content"
+    	        android:layout_height="wrap_content"
+    	        android:gravity="right"
+    	        android:orientation="vertical">
+			    <TextView android:id="@+id/valueInfo"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textSize="15sp"
+			        android:textColor="@android:color/darker_gray"
+			        />
+			    <TextView android:id="@+id/valueInfo2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:textSize="15sp"
+			        android:visibility="gone"
+			        android:textColor="@android:color/darker_gray"
+			        />
+			    
+		    </LinearLayout>
+		    <ImageView
+	           android:id="@+id/arrowGrayInfo"
+	           android:src="@drawable/right_arrow"
+	           android:layout_width="15dp"
+	           android:layout_marginLeft="5dp"
+	           android:layout_height="wrap_content"
+	           android:adjustViewBounds="true"
+	           android:visibility="gone"
+	           android:layout_gravity="center_vertical"
+	           android:contentDescription="This is the arrow"/>
+	    </LinearLayout>
+</RelativeLayout>

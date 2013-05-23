@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.appsolution.omegafi"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="16" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.MyAppTheme" >
+        <activity
+            android:name="com.appsolution.omegafi.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.HomeActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AccountActivity"
+            android:label="@string/title_activity_account" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.MakePaymentActivity"
+            android:label="@string/title_activity_make_payment" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.SelectCredCardActivity"
+            android:label="@string/title_activity_select_cred_card" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.CardDetailsActivity"
+            android:label="@string/title_activity_card_details" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.SetupAutoPay"
+            android:label="@string/title_activity_setup_auto_pay" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.EditCardInformation"
+            android:label="@string/title_activity_edit_card_information" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AddNewCardActivity"
+            android:label="@string/title_activity_add_new_card" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.PayNowActivity"
+            android:label="@string/title_activity_pay_now" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.HistoryActivity"
+            android:label="@string/title_activity_history" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.OpenRequestActivity"
+            android:label="@string/title_activity_open_request"
+            android:parentActivityName="com.appsolution.omegafi.OmegaFiActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.appsolution.omegafi.OmegaFiActivity" />
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AddNewPaymentActivity"
+            android:label="@string/title_activity_add_new_payment" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AutoPayActivity"
+            android:label="@string/title_activity_auto_pay" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AutoPayEndDateActivity"
+            android:label="@string/title_activity_auto_pay_end_date" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AutoPayPaymentDateActivity"
+            android:label="@string/title_activity_auto_pay_payment_date" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AutoPaymentAmountActivity"
+            android:label="@string/title_activity_payment_amount" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ScheduledPaymentsActivity"
+            android:label="@string/title_activity_scheduled_payments" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ScheduledPaymentsDetailActivity"
+            android:label="@string/title_activity_scheduled_payments_detail" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.StatementsActivity"
+            android:label="@string/title_activity_statements" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ScheduleChargesActivity"
+            android:label="@string/title_activity_schedule_charges" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.OfficerMemberDetailActivity"
+            android:label="@string/title_activity_officer_member_detail" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.NewsOmegaFiActivity"
+            android:label="@string/title_activity_news_omega_fi" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.CalendarActivity"
+            android:label="@string/title_activity_calendar" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AnnouncementsActivity"
+            android:label="@string/title_activity_announcements" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.AnnouncementDetailActivity"
+            android:label="@string/title_activity_announcement_detail" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.TermsActivity"
+            android:label="@string/title_activity_terms" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.PrivacyActivity"
+            android:label="@string/title_activity_privacy" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.MyProfileActivity"
+            android:label="@string/title_activity_my_profile" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ListMembersActivity"
+            android:label="@string/title_activity_list_members" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ForgotLoginActivity"
+            android:label="@string/title_activity_forgot_login" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.OmegaFiLoginActivity"
+            android:label="@string/title_activity_omega_fi_login" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ForgotUserNameActivity"
+            android:label="@string/title_activity_forgot_user_name" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ForgotPasswordActivity"
+            android:label="@string/title_activity_forgot_password" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ForgotPwQuestionsActivity"
+            android:label="@string/title_activity_forgot_pw_questions" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.ResetPasswordActivity"
+            android:label="@string/title_activity_reset_password" >
+        </activity>
+        <activity
+            android:name="com.appsolution.omegafi.SplashOmegaFiActivity"
+            android:label="@string/title_activity_splash_omega_fi" >
+        </activity>
+    </application>
+
+</manifest>

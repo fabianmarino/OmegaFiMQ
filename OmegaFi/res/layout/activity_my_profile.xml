@@ -1,0 +1,76 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/LinearContentStyle"
+    tools:context=".MyProfileActivity" >
+    <LinearLayout android:id="@+id/linearMyProfile"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.appsolution.layouts.ImageMemberTemplate
+            android:id="@+id/headMyProfile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <com.appsolution.layouts.SectionOmegaFi
+            android:id="@+id/sectionPersonalInformation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            secom:title_section="Personal Information"
+            secom:padding_title_left="0dp"
+            secom:put_border_title="false"
+            secom:show_arrow="false"
+            secom:background_color_section="@android:color/transparent"
+            />
+        <com.appsolution.layouts.RowToogleOmegaFi
+            android:id="@+id/switchSharedContact"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            secom:toogle_on="false"
+            secom:text_toogle="Shared Contact Information"
+            android:background="@drawable/border_bottom"
+            android:text="Shared Contact Information"/>
+        <com.appsolution.layouts.SectionOmegaFi
+            android:id="@+id/sectionMyProfilePhone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            secom:padding_title_left="0dp"
+            secom:title_section="Phone Number"
+            secom:put_border_title="false"
+            secom:show_arrow="false"
+            secom:background_color_section="@android:color/transparent"
+            />
+        <com.appsolution.layouts.SectionOmegaFi
+            android:id="@+id/sectionMyProfileEmail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            secom:title_section="Email"
+            secom:put_border_title="false"
+            secom:show_arrow="false"
+            secom:background_color_section="@android:color/transparent"
+            secom:padding_title_left="0dp"
+            />
+        <com.appsolution.layouts.SectionOmegaFi
+            android:id="@+id/sectionMyProfileAddress"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            secom:title_section="Address"
+            secom:put_border_title="false"
+            secom:show_arrow="false"
+            secom:background_color_section="@android:color/transparent"
+            secom:padding_title_left="0dp"
+            />
+        <Button android:id="@+id/buttonMyProfileSave"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Save"
+            style="@style/ButtonOmegaNormal"/>
+    </LinearLayout>
+</ScrollView>

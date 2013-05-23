@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:background="@drawable/border_bottom"
+    android:orientation="vertical" >
+    <RelativeLayout android:id="@+id/relativeTitleSocials"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout android:id="@+id/linearTitlesOfficer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentLeft="true">
+            <TextView android:id="@+id/textTitleNameOfficer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bryan Ferry"
+                android:textSize="20sp"/>
+            <TextView android:id="@+id/textJobOfficer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Treasurer"
+                android:textSize="17sp"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/linearSocialButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true">
+            <ImageView android:id="@+id/imageButtonFacebook"
+                style="@style/button_social"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/face_char"/>
+            <ImageView android:id="@+id/imageButtonTwitter"
+                style="@style/button_social"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/twiiter_char"/>
+            <ImageView android:id="@+id/imageButtonLinkedin"
+                style="@style/button_social"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/linkedin_char"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/contentDetailsOfficer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+        <LinearLayout 
+            android:id="@+id/linearPersonalDataOfficer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:orientation="vertical">
+            <TextView android:id="@+id/textHomeOfficer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home #: 404-555-8768"
+                android:textSize="14sp"/>
+            <TextView android:id="@+id/textEmailOfficer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email: berryjua@example.com"
+                android:textSize="14sp"/>
+            <TextView android:id="@+id/textHAddressOfficer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6546 Crain Ct"
+                android:textSize="14sp"/>
+            
+        </LinearLayout>
+        <LinearLayout 
+            android:id="@+id/linearButtonViewOfficer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+            <Button android:id="@+id/buttonViewOffice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View"
+                android:layout_gravity="center_vertical"
+                style="@style/ButtonOmegaNormal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

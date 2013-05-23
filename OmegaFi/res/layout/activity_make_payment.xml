@@ -1,0 +1,88 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/darker_gray"
+    android:layout_gravity="center_horizontal" >
+	<LinearLayout
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content">
+	    <LinearLayout
+	        android:id="@+id/genericMakePay"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content" 
+	        android:orientation="vertical"
+	        android:layout_margin="6dp">
+	        <com.appsolution.layouts.RowInformation
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            secom:row_text_size="12sp"
+	            secom:color_font_row_information="@android:color/darker_gray"
+	            secom:name_information="Amount"
+	            secom:value_information="$335.00"
+	            secom:put_border_bottom="true"
+	            />
+	        <com.appsolution.layouts.RowInformation
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            secom:row_text_size="12sp"
+	            secom:color_font_row_information="@android:color/darker_gray"
+	            secom:name_information="Due On"
+	            secom:value_information="5/3/2013"
+	            secom:put_border_bottom="true"
+	            />
+	        <com.appsolution.layouts.SectionOmegaFi
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		      	secom:title_section="Select Credit Card"
+		      	secom:colorTitle="@android:color/darker_gray"
+		      	secom:show_arrow="true"
+		      	android:onClick="viewActivityCards"
+		        />
+	    </LinearLayout>
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	      	secom:title_section="PayNow"
+	      	android:onClick="viewPayNow"
+	      	secom:colorTitle="@android:color/darker_gray"
+	      	secom:show_arrow="true"
+	        />
+	    <LinearLayout
+	        android:id="@+id/detailsMakePay"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_margin="5dp">
+	        <com.appsolution.layouts.SectionOmegaFi
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:colorTitle="@android:color/darker_gray"
+	            android:onClick="viewActivityDetailsCards"
+	            secom:title_section="View Card Details"/>
+	        <com.appsolution.layouts.SectionOmegaFi
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:onClick="viewActivityEditCardInfo"
+	            secom:colorTitle="@android:color/darker_gray"
+	            secom:title_section="Edit Card Information"/>
+	        <com.appsolution.layouts.SectionOmegaFi
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:colorTitle="@android:color/darker_gray"
+	            android:onClick="viewAddNewCard"
+	            secom:title_section="Add New Card"/>
+	        <com.appsolution.layouts.SectionOmegaFi
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:onClick="viewActivitySetuAutoPay"
+	            secom:colorTitle="@android:color/darker_gray"
+	            secom:title_section="Set Up Autopay"/>
+	    </LinearLayout>
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="6dp"
+    android:orientation="vertical"
+    android:background="@android:color/darker_gray"
+    tools:context=".AutoPayActivity">
+
+    <Button android:id="@+id/buttonPruebaSelectPaymentMethod"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Payment Method"/>
+    
+    <com.appsolution.layouts.RowInformation 
+        android:id="@+id/rowBeginDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        secom:padding_row_info="8dp"
+        secom:row_text_size="9sp"
+        secom:name_information="Begin Date"
+        secom:value_information="MM/DD/YYYY"
+        secom:put_border_bottom="true"/>
+    
+    <com.appsolution.layouts.RowInformation 
+        android:id="@+id/rowEndDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="autoPayEndDate"
+        secom:padding_row_info="8dp"
+        secom:name_information="End Date"
+        secom:row_text_size="9sp"
+        secom:value_information="None"
+        secom:show_arrow_info="true"
+        secom:put_border_bottom="true"/>
+    <com.appsolution.layouts.RowInformation 
+        android:id="@+id/rowPaymentDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="autoPaymentDate"
+        secom:row_text_size="9sp"
+        secom:padding_row_info="8dp"
+        secom:name_information="Payment Date"
+        secom:value_information="Pay on Due Date"
+        secom:show_arrow_info="true"
+        secom:put_border_bottom="true"/>
+    <com.appsolution.layouts.RowInformation 
+        android:id="@+id/rowPaymentAmount"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="autoPaymentAmount"
+        secom:padding_row_info="8dp"
+        secom:row_text_size="9sp"
+        secom:name_information="Payment Amount"
+        secom:value_information="Payment Amount Due"
+        secom:show_arrow_info="true"
+        secom:put_border_bottom="true"/>
+	<Button android:id="@+id/buttonSaveAutoPay"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="5dp"
+	    android:background="@drawable/boton_style"
+	    android:padding="10dp"
+	    android:text="Save"
+	    android:onClick="activeAutoPay"/>
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <!-- Application theme. -->
+    <style name="LoginFormContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    <style name="EditTextLogin">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@drawable/text_edit_style</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingLeft">5dp</item>
+    </style>
+    <style name="ButtonOmega">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/boton_style</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:drawableRight">@drawable/right_arrow_1</item>
+    </style>
+    <style name="ButtonOmegaNormal">
+        <item name="android:background">@drawable/boton_style</item>
+        <item name="android:textSize">19sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    
+    <style name="LinearContentStyle">
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:padding">8dp</item>
+    </style>
+    
+    <style name="button_social">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:background">@drawable/boton_style</item>
+    </style>
+    
+    <style name="SectionOmegaFi">
+        <item name="android:background">@android:color/white</item>
+    </style>
+    
+	<style name="Theme.OmegaFi.ActionButton" parent="Widget.Sherlock.ActionButton">
+	    <item name="android:padding">5dp</item>
+	    <item name="android:minWidth">5dp</item>
+	    <item name="android:paddingLeft">2dp</item>
+	    <item name="android:paddingRight">2dp</item>
+	</style>
+	
+	<style name="Theme.MyAppTheme" parent="Theme.Sherlock.Light">
+        <item name="actionButtonStyle">@style/Theme.OmegaFi.ActionButton</item>
+        <item name="android:actionButtonStyle">@style/Theme.OmegaFi.ActionButton</item>        
+    </style>
+</resources>

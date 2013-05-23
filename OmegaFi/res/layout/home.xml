@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical">
+    <LinearLayout android:id="@+id/linearScroll"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionAccountUser"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Winston Smith - 745468"
+	        secom:subtitle_section="Alpha Delta Pi - Alpha Eta"
+	        secom:visible_subtitle="true"
+	        secom:colorSubtitle="@android:color/darker_gray"
+	        />
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionChapterDirectory"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Alpha Delta Pi - Alpha Eta"
+	        secom:colorTitle="@android:color/darker_gray"
+	        secom:subtitle_section="Miami University"
+	        secom:visible_subtitle="true"
+	        />
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionEvents" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Calendar"
+	        secom:show_arrow="true"
+	        />
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionPoll" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Poll"
+	        />
+	    <com.appsolution.layouts.SectionOmegaFi
+	        android:id="@+id/sectionNews" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_margin="5dp"
+	        secom:title_section="Alpha Eta News"
+	        secom:show_arrow="true"
+	        />
+	    <LinearLayout android:id="@+id/linearTermsPrivate"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:gravity="center_horizontal">
+	        <TextView android:id="@+id/textTermsUse"
+	            android:layout_width="wrap_content"
+	            android:padding="8dp"
+	            android:layout_height="wrap_content"
+	            android:text="Terms of Use"
+	            android:clickable="true"
+	            android:onClick="activityTermsUse"/>
+	        <View android:layout_height="fill_parent"
+				  android:layout_width="2px"
+				  android:layout_marginBottom="1dp"
+				  android:background="#90909090"/>
+	        <TextView android:id="@+id/textPrivatePolicy"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:padding="8dp"
+	            android:clickable="true"
+	            android:onClick="activityPrivatePolicy"
+	            android:text="Private Policy"/>
+	    </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/linearContentSectionOmegaFi"
+    style="@style/SectionOmegaFi" >
+   <RelativeLayout
+       android:id="@+id/contentTitleSectionOmegaFi"
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:padding="10dp"
+       android:background="@drawable/border_bottom"
+       >
+       <LinearLayout android:id="@+id/contentTSOmegaFi"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_alignParentLeft="true">
+	       <TextView android:id="@+id/titleSection"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:textSize="19sp"
+	           android:textStyle="bold"
+	           android:textColor="@android:color/black"
+	           android:text="@string/default_title_section"
+	         	/>
+	       <TextView android:id="@+id/subtitleSection"
+	           android:layout_width="wrap_content"
+	           android:layout_height="wrap_content"
+	           android:textSize="19sp"
+	           android:textStyle="bold"
+	           android:textColor="@android:color/darker_gray"
+	           android:text="SubTitleSection"
+	           android:visibility="gone"
+	           />
+       </LinearLayout>
+       <ImageView
+           android:id="@+id/arrowGray"
+           android:src="@drawable/right_arrow"
+           android:layout_width="15dp"
+           android:layout_height="wrap_content"
+           android:adjustViewBounds="true"
+           android:layout_alignParentRight="true"
+           android:layout_centerVertical="true"
+           android:contentDescription="This is the arrow"/>
+   </RelativeLayout>
+   <LinearLayout
+       android:id="@+id/contentSectionOmegaFi" 
+       android:layout_width="fill_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       >
+       
+	</LinearLayout>
+</LinearLayout>
