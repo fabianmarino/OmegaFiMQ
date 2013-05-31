@@ -1,6 +1,9 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -17,7 +20,7 @@ public class ListMembersActivity extends OmegaFiActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_members);
 		listMembers=(ListView)findViewById(R.id.listViewMembers);
-		members=new AlphabeticAdapter(this,android.R.layout.simple_list_item_1, null,(String[])getArrayTest().toArray());
+		members=new AlphabeticAdapter(this,android.R.layout.simple_list_item_1, getArrayTest());
 		listMembers.setAdapter(members);
 	}
 	
@@ -28,7 +31,7 @@ public class ListMembersActivity extends OmegaFiActivity {
 		actionBar.setDisplayShowHomeEnabled(false);
 	}
 	
-	private ArrayList<String> getArrayTest(){
+	private List<String> getArrayTest(){
 		ArrayList<String> stringList=new ArrayList<String>();
 		stringList.add("aback");  
         stringList.add("abash");  
@@ -64,7 +67,9 @@ public class ListMembersActivity extends OmegaFiActivity {
         stringList.add("forever");  
         stringList.add("fable");  
         stringList.add("fidelity");
-		return stringList;
+        String[] aux=Arrays.copyOf(stringList.toArray(), stringList.size(), String[].class);
+        Arrays.sort(aux);
+		return (List<String>)Arrays.asList(aux);
 	}
 
 }
