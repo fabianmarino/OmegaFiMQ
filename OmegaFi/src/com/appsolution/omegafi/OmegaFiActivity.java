@@ -3,6 +3,7 @@ package com.appsolution.omegafi;
 import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
+import com.appsolution.logic.Server;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +17,11 @@ public class OmegaFiActivity extends SherlockFragmentActivity {
 	
 	protected com.actionbarsherlock.app.ActionBar actionBar;
 	private ArrayAdapter<String> optionsUser;
-	private OnNavigationListener navigation; 
+	private OnNavigationListener navigation;
+	public Server servicesOmegaFi=new Server();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		actionBar = getSupportActionBar();
 		this.optionsActionBar();

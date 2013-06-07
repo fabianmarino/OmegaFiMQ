@@ -3,11 +3,9 @@
     package="com.appsolution.omegafi"
     android:versionCode="1"
     android:versionName="1.0" >
-
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="16" />
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -171,5 +169,6 @@
             android:label="@string/title_activity_splash_omega_fi" >
         </activity>
     </application>
-
+    <uses-permission
+        android:name="android.permission.INTERNET" />
 </manifest>

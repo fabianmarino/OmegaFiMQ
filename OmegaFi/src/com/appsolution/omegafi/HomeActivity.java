@@ -1,16 +1,20 @@
 package com.appsolution.omegafi;
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 import com.appsolution.layouts.DetailsOfficer;
 import com.appsolution.layouts.PollOmegaFiContent;
 import com.appsolution.layouts.RowAnnouncement;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.logic.Server;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.opengl.Visibility;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -46,11 +50,9 @@ public class HomeActivity extends OmegaFiActivity {
 		setContentView(R.layout.home);
 		sectionAccountUser=(SectionOmegaFi)findViewById(R.id.sectionAccountUser);
 		sectionAccountUser.setOnClickTitleListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				myAccountActivity();
-				
+				myAccountActivity();			
 			}
 		});
 		completeAccountUser();
@@ -93,6 +95,16 @@ public class HomeActivity extends OmegaFiActivity {
 		});
 		
 		this.completeNewsSection();
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				JSONObject object=servicesOmegaFi.makeRequestGet(Server.PROFILE_SERVICE);
+				Log.d("profile", object.toString());
+				return true;
+			}
+		};
+		task.execute();
 	}
 	
 	private void completeAccountUser(){
@@ -162,10 +174,9 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completeEvents(){
-		LinearLayout linear=(LinearLayout)sectionEvents.findViewById(R.id.contentSectionOmegaFi);
-		linear.setPadding(10,10, 10, 10);
+		sectionEvents.setPadding(10,10, 10, 10);
 		paginator=new ViewPager(getApplicationContext());
-		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 150));
+		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 300));
 		adapterPager=new EventsNewsAdapter(getApplicationContext());
 		paginator.setAdapter(adapterPager);
 		
@@ -174,8 +185,8 @@ public class HomeActivity extends OmegaFiActivity {
 		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
 				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
 		titlesIndicator.setViewPager(paginator);
-		linear.addView(paginator);
-		linear.addView(titlesIndicator);
+		sectionEvents.addView(paginator);
+		sectionEvents.addView(titlesIndicator);
 	}
 	
 	private void completePollSection(){
@@ -195,7 +206,7 @@ public class HomeActivity extends OmegaFiActivity {
 		LinearLayout linear=(LinearLayout)sectionNews.findViewById(R.id.contentSectionOmegaFi);
 		linear.setPadding(10,10, 10, 10);
 		paginator=new ViewPager(getApplicationContext());
-		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 150));
+		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 300));
 		adapterPager=new EventsNewsAdapter(getApplicationContext());
 		paginator.setAdapter(adapterPager);
 		

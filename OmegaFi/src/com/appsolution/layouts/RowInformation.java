@@ -38,7 +38,7 @@ public class RowInformation extends RelativeLayout{
 		
 		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RowInformation);
 	    boolean isBorderBottom = a.getBoolean(R.styleable.RowInformation_put_border_bottom,false);
-		   setBorderBottom(isBorderBottom);
+		 setBorderBottom(isBorderBottom);
 	
 	   String nameInfo = a.getString(R.styleable.RowInformation_name_information);
 	   setNameInfo(nameInfo);

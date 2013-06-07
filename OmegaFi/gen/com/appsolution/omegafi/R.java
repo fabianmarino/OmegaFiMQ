@@ -1877,6 +1877,7 @@ containing a value of this type.
         public static final int abs__title=0x7f040020;
         public static final int abs__up=0x7f040010;
         public static final int accountImage=0x7f040132;
+        public static final int action_search=0x7f040147;
         public static final int arrowGray=0x7f04013d;
         public static final int arrowGrayInfo=0x7f040128;
         public static final int barSplash=0x7f0400c1;
@@ -2036,11 +2037,10 @@ containing a value of this type.
         public static final int login_form=0x7f040084;
         public static final int login_status=0x7f040082;
         public static final int login_status_message=0x7f040083;
-        public static final int menu_home=0x7f040144;
-        public static final int menu_logout=0x7f040147;
-        public static final int menu_notifications=0x7f040145;
-        public static final int menu_profile=0x7f040146;
-        public static final int menu_settings=0x7f040143;
+        public static final int menu_home=0x7f040143;
+        public static final int menu_logout=0x7f040146;
+        public static final int menu_notifications=0x7f040144;
+        public static final int menu_profile=0x7f040145;
         public static final int messageForForm=0x7f0400f1;
         public static final int messageInformationDialog=0x7f0400d8;
         public static final int nameFraternity=0x7f040137;
@@ -2269,19 +2269,9 @@ containing a value of this type.
         public static final int view_pager_indicator=0x7f030058;
     }
     public static final class menu {
-        public static final int activity_forgot_login=0x7f0c0000;
-        public static final int activity_forgot_password=0x7f0c0001;
-        public static final int activity_forgot_pw_questions=0x7f0c0002;
-        public static final int activity_forgot_user_name=0x7f0c0003;
-        public static final int activity_list_members=0x7f0c0004;
-        public static final int activity_my_profile=0x7f0c0005;
-        public static final int activity_omega_fi_login=0x7f0c0006;
-        public static final int activity_privacy=0x7f0c0007;
-        public static final int activity_reset_password=0x7f0c0008;
-        public static final int activity_splash_omega_fi=0x7f0c0009;
-        public static final int activity_terms=0x7f0c000a;
-        public static final int menu_action_bar=0x7f0c000b;
-        public static final int popup_menu_select_payment_method=0x7f0c000c;
+        public static final int menu_action_bar=0x7f0c0000;
+        public static final int menu_search=0x7f0c0001;
+        public static final int popup_menu_select_payment_method=0x7f0c0002;
     }
     public static final class string {
         public static final int about=0x7f0a0012;

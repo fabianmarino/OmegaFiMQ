@@ -51,6 +51,7 @@ public class EventNewsContent extends LinearLayout {
 		inflate.inflate(R.layout.events_news_content, this, true);
 		rowTitleDate=(RowInformation)findViewById(R.id.titleDateEventNew);
 		rowTitleDate.setVisibleArrow(false);
+		rowTitleDate.setTextSizeInformation(12f);
 		descriptionNewEvent=(TextView)findViewById(R.id.descriptionNewOrEvent);
 		contentAll=(LinearLayout)findViewById(R.id.linearContentNewsEvents);
 	}
