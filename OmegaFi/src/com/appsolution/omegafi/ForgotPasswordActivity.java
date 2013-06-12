@@ -11,7 +11,7 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 	private RowEditTextSubmit rowSubmitUsername;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forgot_password);
 		rowSubmitUsername=(RowEditTextSubmit)findViewById(R.id.rowSubmitForgotPassword);

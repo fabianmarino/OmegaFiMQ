@@ -14,7 +14,7 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 	private RowEditTextOmegaFi rowEditText;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_auto_payment_amount);
 		linearPayment=(LinearLayout)findViewById(R.id.linearPayAmount);

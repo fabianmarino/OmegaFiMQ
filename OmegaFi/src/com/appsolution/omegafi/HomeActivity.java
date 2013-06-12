@@ -41,11 +41,10 @@ public class HomeActivity extends OmegaFiActivity {
 	private SectionOmegaFi sectionPoll;
 	
 	private PollOmegaFiContent contentPoll;
-	
 	private SectionOmegaFi sectionNews;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
 		sectionAccountUser=(SectionOmegaFi)findViewById(R.id.sectionAccountUser);
@@ -95,16 +94,18 @@ public class HomeActivity extends OmegaFiActivity {
 		});
 		
 		this.completeNewsSection();
-		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-			
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				JSONObject object=servicesOmegaFi.makeRequestGet(Server.PROFILE_SERVICE);
-				Log.d("profile", object.toString());
-				return true;
-			}
-		};
-		task.execute();
+//		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+//			
+//			@Override
+//			protected Boolean doInBackground(Void... params) {
+//				Log.d("Cookies", "Lista a continuacion");
+//				OmegaFiActivity.servicesOmegaFi.logCookies();
+//				JSONObject object=OmegaFiActivity.servicesOmegaFi.makeRequestGet(Server.ACCOUNTS_SERVICE);
+//				Log.d("profile", object.toString());
+//				return true;
+//			}
+//		};
+//		task.execute();
 	}
 	
 	private void completeAccountUser(){

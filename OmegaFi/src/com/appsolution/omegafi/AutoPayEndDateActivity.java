@@ -7,7 +7,7 @@ import android.view.Menu;
 public class AutoPayEndDateActivity extends OmegaFiActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_auto_pay_end_date);
 	}

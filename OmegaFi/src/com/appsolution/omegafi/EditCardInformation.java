@@ -29,7 +29,7 @@ public class EditCardInformation extends OmegaFiActivity {
 	private SectionOmegaFi sectionAddress;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_edit_card_information);
 		rowName=(RowEditInformation)findViewById(R.id.editNameCard);

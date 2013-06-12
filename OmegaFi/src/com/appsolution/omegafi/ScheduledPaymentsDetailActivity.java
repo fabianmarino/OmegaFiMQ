@@ -19,7 +19,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	private SectionOmegaFi sectionMethod;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scheduled_payments_detail);
 		sectionDetails=(SectionOmegaFi)findViewById(R.id.sectionScheduledPaymentDetails);

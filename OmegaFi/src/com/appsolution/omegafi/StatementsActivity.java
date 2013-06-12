@@ -11,7 +11,7 @@ public class StatementsActivity extends OmegaFiActivity {
 	private LinearLayout linearStatements;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statements);
 		linearStatements=(LinearLayout)findViewById(R.id.linearStatements);

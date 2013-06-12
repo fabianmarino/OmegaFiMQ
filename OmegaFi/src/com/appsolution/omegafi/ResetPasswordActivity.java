@@ -15,7 +15,7 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 	private RowQuestionEditText rowConfirmPassword;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_reset_password);
 		header=(HeaderOmegaFi)findViewById(R.id.headerOmegaResetPw);

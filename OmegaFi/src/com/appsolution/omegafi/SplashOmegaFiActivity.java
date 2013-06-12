@@ -6,25 +6,25 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.widget.TextView;
 
 public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 
 	private Handler handlerProgress;
 	private ChargerSplash barSplash;
-	private View barView;
+	private TextView textPercentaje;
+	
 	private android.view.ViewGroup.LayoutParams params1;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_splash_omega_fi);
-		barView=(View)findViewById(R.id.barSplash);
-		params1=barView.getLayoutParams();
+		textPercentaje=(TextView)findViewById(R.id.percentajeLoading);
 		handlerProgress=new Handler(){
 			@Override
 			public void handleMessage(android.os.Message msg) {
-				params1.width=(Integer)msg.obj;
-				barView.setLayoutParams(params1);	
+				textPercentaje.setText(msg.obj+"%");
 			};
 		};
 		barSplash=new ChargerSplash();
@@ -36,10 +36,9 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			
-			for (int i = 0; i < 200; i+=5) {
+			for (int i = 0; i < 100; i+=5) {
 				try {
-					Thread.sleep(80);
+					Thread.sleep(110);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

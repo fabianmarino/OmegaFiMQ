@@ -30,7 +30,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	private Button buttonSend;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_open_request);
 		sectionContactInformation=(SectionOmegaFi)findViewById(R.id.sectionContactInformation);

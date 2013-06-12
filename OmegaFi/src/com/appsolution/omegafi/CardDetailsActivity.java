@@ -15,7 +15,7 @@ public class CardDetailsActivity extends OmegaFiActivity {
 	private SectionOmegaFi sectionCardDetails;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_card_details);
 		sectionCardDetails=(SectionOmegaFi)findViewById(R.id.creditCardDetails);

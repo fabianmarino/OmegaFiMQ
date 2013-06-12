@@ -14,7 +14,7 @@ public class CalendarActivity extends OmegaFiActivity {
 	private LinearLayout linearCalendar;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calendar);
 		linearCalendar=(LinearLayout)findViewById(R.id.linearContentCalendar);

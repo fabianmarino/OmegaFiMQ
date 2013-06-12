@@ -26,7 +26,7 @@ public class ListMembersActivity extends OmegaFiActivity {
 	private AlphabeticAdapter members;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_members);
 		listMembers=(ListView)findViewById(R.id.listViewMembers);

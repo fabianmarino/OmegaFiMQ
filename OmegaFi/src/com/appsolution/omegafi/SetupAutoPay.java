@@ -13,7 +13,7 @@ public class SetupAutoPay extends OmegaFiActivity {
 	private SectionOmegaFi sectionSelectCard;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup_auto_pay);
 		sectionSelectCard=(SectionOmegaFi)findViewById(R.id.selectCreditCardSetup);

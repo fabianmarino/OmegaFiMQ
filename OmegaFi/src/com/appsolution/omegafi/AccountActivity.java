@@ -27,7 +27,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	private Activity activity;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account);
 		activity=this;

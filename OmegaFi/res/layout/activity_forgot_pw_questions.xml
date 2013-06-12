@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    style="@style/BackgroundLoginScreen"
     tools:context=".ForgotPwQuestionsActivity" >
     <LinearLayout android:id="@+id/linearForgotQuestion"
         android:layout_width="fill_parent"
@@ -18,7 +18,7 @@
         <LinearLayout android:id="@+id/linearRowQuestions"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            style="@style/LoginFormContainer"
             android:orientation="vertical">
             <com.appsolution.layouts.RowQuestionEditText
                 android:id="@+id/questionMotherName"

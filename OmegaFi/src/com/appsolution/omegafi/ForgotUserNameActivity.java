@@ -12,7 +12,7 @@ public class ForgotUserNameActivity extends OmegaFiLoginActivity {
 	private HeaderOmegaFi headerOmegaFi;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forgot_user_name);
 		rowEmail=(RowEditTextSubmit)findViewById(R.id.rowEditSubmitEmail);

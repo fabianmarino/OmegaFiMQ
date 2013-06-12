@@ -7,7 +7,7 @@ import android.view.View;
 public class ForgotLoginActivity extends OmegaFiLoginActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forgot_login);
 	}

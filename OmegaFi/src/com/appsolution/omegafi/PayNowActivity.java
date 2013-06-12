@@ -13,7 +13,7 @@ import android.view.View;
 public class PayNowActivity extends OmegaFiActivity {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pay_now);
 	}

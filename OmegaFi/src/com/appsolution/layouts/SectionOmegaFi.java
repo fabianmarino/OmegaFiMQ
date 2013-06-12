@@ -155,7 +155,7 @@ public class SectionOmegaFi extends LinearLayout{
 	
 	@Override
 	public void setPadding(int left, int top, int right, int bottom) {
-		contentAll.setPadding(left, top, right, bottom);
+//		contentAll.setPadding(left, top, right, bottom);
 	}
 
 }

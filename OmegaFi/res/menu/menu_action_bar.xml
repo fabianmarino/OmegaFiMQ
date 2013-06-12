@@ -14,22 +14,8 @@
         android:showAsAction="never"/>  -->
     <item android:id="@+id/menu_home"
         android:title="Home"
-        android:icon="@drawable/home_icon_1"
+        android:icon="@drawable/abs__ic_menu_moreoverflow_holo_dark"
         android:orderInCategory="1"
         android:showAsAction="always"></item>
-    <item android:id="@+id/menu_notifications"
-        android:title="N"
-        android:icon="@drawable/home_icon_1"
-        android:orderInCategory="2"
-        android:showAsAction="always"/>
-    <item android:id="@+id/menu_profile"
-        android:title="P"
-        android:icon="@drawable/user_icon"
-        android:orderInCategory="3"
-        android:showAsAction="always"/>
-    <item android:id="@+id/menu_logout"
-        android:title="L"
-        android:icon="@drawable/home_icon_1"
-        android:orderInCategory="4"
-        android:showAsAction="always"/>
+    
 </menu>

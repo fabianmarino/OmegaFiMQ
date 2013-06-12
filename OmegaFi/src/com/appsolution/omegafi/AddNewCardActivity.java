@@ -17,7 +17,7 @@ public class AddNewCardActivity extends OmegaFiActivity {
 	private RowEditInformation addSaveFuture;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_new_card);
 		addNameCard=(RowEditInformation)findViewById(R.id.rowEditAddNameOnCard);

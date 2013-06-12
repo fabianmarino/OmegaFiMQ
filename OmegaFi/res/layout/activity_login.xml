@@ -36,9 +36,10 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:background="@android:color/white"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal" >
+        android:layout_gravity="center_horizontal"
+        style="@style/BackgroundLoginScreen"
+        android:measureAllChildren="false" >
 
         <LinearLayout
             style="@style/LoginFormContainer"

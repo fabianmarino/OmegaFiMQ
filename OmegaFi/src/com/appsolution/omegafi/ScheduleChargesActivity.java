@@ -11,7 +11,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 	private LinearLayout linearCycles;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule_charges);
 		linearCycles=(LinearLayout)findViewById(R.id.linearCyclesCharges);

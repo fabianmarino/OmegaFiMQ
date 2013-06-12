@@ -20,7 +20,7 @@ public class NewsOmegaFiActivity extends OmegaFiActivity {
 	private OnClickListener listener;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_news_omega_fi);
 		

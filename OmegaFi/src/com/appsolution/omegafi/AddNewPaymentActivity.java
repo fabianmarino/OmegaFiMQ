@@ -33,7 +33,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	private Button buttonAddContinue;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_new_payment);
 		linearCreditDebit=(LinearLayout)findViewById(R.id.linearCreditDebitCard);

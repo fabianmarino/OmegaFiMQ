@@ -12,7 +12,7 @@ public class HistoryActivity extends OmegaFiActivity {
 	private LinearLayout linearContent;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_history);
 		linearContent=(LinearLayout)findViewById(R.id.contentLinearHistory);
