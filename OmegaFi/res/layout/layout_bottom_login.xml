@@ -10,7 +10,7 @@
 	        android:layout_height="wrap_content"
 	        android:text="Back To Login"
 	        android:onClick="backToLogin"
-	        style="@style/ButtonOmegaNormal"/>
+	        style="@style/ButtonOmega"/>
 	    <TextView android:id="@+id/textContactUs"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="20dp"
@@ -7,11 +8,17 @@
     android:background="#80b2cd"
     android:paddingRight="10dp"
     android:orientation="vertical" >
-    <TextView android:layout_width="fill_parent"
+    <com.appsolution.layouts.RowInformation
+        android:id="@+id/menuItemHome"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Hola feos"/>
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Hola feos 2"/>
-
+        secom:row_text_size="20sp"
+        secom:color_font_row_information="@android:color/white"
+        secom:padding_top_row_info="10sp"
+        secom:padding_bottom_row_info="10sp"
+        secom:name_information="Home"
+        secom:show_arrow_info="true"
+        secom:put_border_bottom="true"
+        secom:icon_drawable_info="@drawable/home_icon"
+        />
 </LinearLayout>

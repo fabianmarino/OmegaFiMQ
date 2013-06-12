@@ -13,5 +13,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="textCapCharacters"
+        style="@style/EditTextLogin"
         android:hint=""/>
 </LinearLayout>

@@ -15,8 +15,14 @@
     <style name="LoginFormContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@android:color/white</item>
-        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/white_box_form</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingBottom">35dp</item>
+    </style>
+    <style name="MenuSlidingStyle">
+        
     </style>
     <style name="EditTextLogin">
         <item name="android:layout_width">fill_parent</item>
@@ -24,7 +30,7 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textColor">@android:color/black</item>
         <!-- <item name="android:fontFamily"></item> -->
-        <item name="android:background">@drawable/text_edit_style</item>
+        <item name="android:background">@drawable/white_input</item>
         <item name="android:padding">15dp</item>
     </style>
     <style name="ButtonOmega">
@@ -65,6 +71,7 @@
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">60dp</item>
+        <item name="android:background">@drawable/background_login</item>
     </style>
     
     <style name="BackgroundLoginForm">

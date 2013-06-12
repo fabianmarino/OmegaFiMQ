@@ -9,6 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
+        style="@style/LoginFormContainer"
         android:orientation="vertical">
         <com.appsolution.layouts.HeaderOmegaFi
             android:layout_width="fill_parent"
@@ -18,7 +19,6 @@
         <LinearLayout android:id="@+id/linearRowQuestions"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            style="@style/LoginFormContainer"
             android:orientation="vertical">
             <com.appsolution.layouts.RowQuestionEditText
                 android:id="@+id/questionMotherName"
