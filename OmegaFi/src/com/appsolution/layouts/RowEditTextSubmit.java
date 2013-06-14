@@ -36,8 +36,7 @@ public class RowEditTextSubmit extends RelativeLayout {
 		String textButton= a.getString(R.styleable.RowEditTextSubmit_text_submit_button);
 		setTextButton(textButton);
 		
-		a.recycle();
-		
+		a.recycle();	
 	}
 	
 	private void initialize() {
@@ -51,7 +50,6 @@ public class RowEditTextSubmit extends RelativeLayout {
 		params.width=(int)(display.getWidth()*0.5f);
 		buttonSubmit=(Button)findViewById(R.id.buttonSubmitEdit);
 	}
-	
 	
 	public void setPlaceHolderEdit(String text){
 		textEdit.setHint(text);

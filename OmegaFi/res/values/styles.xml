@@ -78,17 +78,13 @@
         <item name="android:background">@android:color/white</item>
         <item name="android:padding">10dp</item>
     </style>
-    
-    
-	<style name="Theme.OmegaFi.ActionButton" parent="Widget.Sherlock.ActionButton">
-	    <item name="android:padding">5dp</item>
-	    <item name="android:minWidth">5dp</item>
-	    <item name="android:paddingLeft">2dp</item>
-	    <item name="android:paddingRight">2dp</item>
-	</style>
 	
-	<style name="Theme.MyAppTheme" parent="Theme.Sherlock.Light">
-        <item name="actionButtonStyle">@style/Theme.OmegaFi.ActionButton</item>
-        <item name="android:actionButtonStyle">@style/Theme.OmegaFi.ActionButton</item>        
+	<style name="Theme.OmegaFiTheme" parent="Theme.Sherlock.Light">
+	    <item name="actionBarStyle">@style/Widget.MyTheme.ActionBar</item>
+    	<item name="android:actionBarStyle">@style/Widget.MyTheme.ActionBar</item>        
     </style>
+    <style name="Widget.MyTheme.ActionBar" parent="Widget.Sherlock.ActionBar">
+	    <item name="android:background">@android:color/white</item>
+	    <item name="background">@android:color/white</item>
+	</style>
 </resources>

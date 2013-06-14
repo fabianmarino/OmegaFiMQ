@@ -149,10 +149,11 @@ public class RowInformation extends RelativeLayout{
 	
 	public void setBorderBottom(boolean border){
 		if(border){
-			   content.setBackgroundResource(R.drawable.border_bottom);
+			content.setBackgroundColor(Color.TRANSPARENT);
+			content.setBackgroundResource(R.drawable.border_bottom);
 		}
 		else{
-			 	content.setBackgroundResource(R.drawable.abs__ab_stacked_transparent_dark_holo);
+			 	content.setBackgroundColor(Color.TRANSPARENT);
 		}
 	}
 	

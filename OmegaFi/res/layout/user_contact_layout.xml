@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:padding="10dp"
+    android:layout_height="wrap_content" >
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true">
+        <ImageView android:id="@+id/imageUserContact"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/white"/>
+        <LinearLayout android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView android:id="@+id/nameUserProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:textColor="@android:color/white"/>
+            <TextView android:id="@+id/initiateUserProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Initiate"
+                android:textSize="15sp"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+	<ImageView android:layout_width="20dp"
+	    android:layout_height="wrap_content"
+	    android:adjustViewBounds="true"
+	    android:src="@drawable/right_white_arrow"
+	    android:contentDescription="Photo from user"
+	    android:layout_centerVertical="true"
+	    android:layout_alignParentRight="true"
+	    />
+</RelativeLayout>

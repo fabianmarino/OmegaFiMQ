@@ -1,27 +1,33 @@
 package com.appsolution.omegafi;
-import com.actionbarsherlock.app.ActionBar.OnNavigationListener;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import com.actionbarsherlock.view.MenuItem;
+import com.appsolution.layouts.ItemMenuSliding;
+import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Server;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-
+import android.widget.ImageView;
+import android.widget.QuickContactBadge;
 
 public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	protected com.actionbarsherlock.app.ActionBar actionBar;
-	private ArrayAdapter<String> optionsUser;
-	private OnNavigationListener navigation;
 	public static final Server servicesOmegaFi=new Server();
 	protected SlidingMenu slidingMenu;
+	private UserContactLayout userContact;
+	private ItemMenuSliding itemAnnouncements;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -35,15 +41,58 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
         slidingMenu.setShadowDrawable(R.drawable.shadow);
         slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         slidingMenu.setFadeDegree(0.35f);
-//        menu.attachToActivity(this, SlidingMenu.SLIDING_WINDOW);
         actionBar = getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        this.optionsActionBar();
+        userContact=(UserContactLayout)findViewById(R.id.userContactSliding);
+        itemAnnouncements=(ItemMenuSliding)findViewById(R.id.menuItemAnnouncements);
+        this.loadSlidingMenu();   
 	}
+	
+	public static boolean loadImageFromURL(String fileUrl, 
+			QuickContactBadge iv){
+			  try {
+			    URL myFileUrl = new URL (fileUrl);
+			    HttpURLConnection conn =
+			      (HttpURLConnection) myFileUrl.openConnection();
+			    conn.setDoInput(true);
+			    conn.connect();
+			    InputStream is = conn.getInputStream();
+			    iv.setImageBitmap(BitmapFactory.decodeStream(is));
+			    return true;
+			  } catch (MalformedURLException e) {
+			    e.printStackTrace();
+			  } catch (Exception e) {
+			    e.printStackTrace();
+			  }
+			  return false;
+			}
+	
+	public static boolean loadImageFromURL(String fileUrl, 
+			ImageView iv){
+			  try {
+			    URL myFileUrl = new URL (fileUrl);
+			    HttpURLConnection conn =
+			      (HttpURLConnection) myFileUrl.openConnection();
+			    conn.setDoInput(true);
+			    conn.connect();
+			    InputStream is = conn.getInputStream();
+			    iv.setImageBitmap(BitmapFactory.decodeStream(is));
+			    return true;
+			  } catch (MalformedURLException e) {
+			    e.printStackTrace();
+			  } catch (Exception e) {
+			    e.printStackTrace();
+			  }
+			  return false;
+			}
 	
 	protected void optionsActionBar(){
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setDisplayShowTitleEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setIcon(R.drawable.logo_omega);
+        actionBar.setTitle("");
 	}
 	
 	@Override
@@ -55,7 +104,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent nextActivity=null;
 		switch (item.getOrder()) {
 		case 0:
 				onBackPressed();
@@ -71,8 +119,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		default:
 			break;
 		}
-		if(nextActivity!=null)
-			startActivity(nextActivity);
 		return true;
 	}
 	
@@ -90,4 +136,22 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	    }
 	    return false;
 	}
+	
+	private void loadImageSlidingMenu(final String url){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				userContact.chargeImageFromUrl(url);
+				return true;
+			}
+		};
+		task.execute();
+	}
+	
+	private void loadSlidingMenu(){
+		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
+		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
+		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getAnnouncementsCount());
+	}
+	
 }

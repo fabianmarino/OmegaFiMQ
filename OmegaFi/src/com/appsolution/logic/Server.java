@@ -24,6 +24,8 @@ import org.apache.http.protocol.HttpContext;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.omegafi.OmegaFiActivity;
+
 import android.util.Log;
 
 public class Server {
@@ -37,7 +39,7 @@ public class Server {
 	private CookieStore cookieStore;
 //	private cookiest
 	public String evaluador=null;
-	
+	private JSONObject jsonProfile;
 	
 	public Server(){
 		clientRequest=new DefaultHttpClient();
@@ -45,6 +47,55 @@ public class Server {
 		cookieStore=new BasicCookieStore();
 		contextHttp.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 	}
+	
+	public JSONObject getProfileUser(){
+		jsonProfile=this.makeRequestGet(OmegaFiActivity.servicesOmegaFi.PROFILE_SERVICE);
+		return jsonProfile;
+	}
+	
+	public String getURLProfilePhoto(){
+		String url=null;
+		try {
+			if(!jsonProfile.getJSONObject("individual").getJSONObject("profile_picture").isNull("url")){
+				url= jsonProfile.getJSONObject("individual").getJSONObject("profile_picture").getString("url");
+			}  
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return url;
+	}
+	
+	public String getCompleteName(){
+		String name="First Last";
+		try {
+			name= jsonProfile.getJSONObject("individual").getString("first_name")+" "+jsonProfile.getJSONObject("individual").getString("last_name");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return name;
+	}
+	
+	public int getAnnouncementsCount(){
+		int number=0;
+		try {
+			number= jsonProfile.getJSONObject("individual").getInt("announcement_count");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return number;
+	}
+	
+	public JSONObject getAccountsUser(){
+		return this.makeRequestGet(OmegaFiActivity.servicesOmegaFi.ACCOUNTS_SERVICE);
+	}
+	
+	public JSONObject getChaptersUser(){
+		return this.makeRequestGet(OmegaFiActivity.servicesOmegaFi.CHAPTERS_SERVICE);
+	}
+	
 	
 	public JSONObject makeRequestPost(String url,List<NameValuePair> data){
 		JSONObject jsonResponse = null;

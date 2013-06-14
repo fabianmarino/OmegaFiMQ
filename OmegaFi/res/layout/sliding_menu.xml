@@ -8,17 +8,37 @@
     android:background="#80b2cd"
     android:paddingRight="10dp"
     android:orientation="vertical" >
-    <com.appsolution.layouts.RowInformation
+    <com.appsolution.layouts.UserContactLayout
+        android:id="@+id/userContactSliding"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        ></com.appsolution.layouts.UserContactLayout>
+    <View android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white"/>
+    <com.appsolution.layouts.ItemMenuSliding
         android:id="@+id/menuItemHome"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        secom:row_text_size="20sp"
-        secom:color_font_row_information="@android:color/white"
-        secom:padding_top_row_info="10sp"
-        secom:padding_bottom_row_info="10sp"
-        secom:name_information="Home"
-        secom:show_arrow_info="true"
-        secom:put_border_bottom="true"
-        secom:icon_drawable_info="@drawable/home_icon"
-        />
+        secom:text_item_menu="Home"
+        secom:number_notifications="0"
+        secom:image_item_menu="@drawable/menu_item_home" />
+    <View android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white"/>
+    <com.appsolution.layouts.ItemMenuSliding
+        android:id="@+id/menuItemAnnouncements"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        secom:text_item_menu="Announcements"
+        secom:image_item_menu="@drawable/menu_item_announcements" />
+    <View android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/white"/>
+    <com.appsolution.layouts.ItemMenuSliding
+        android:id="@+id/menuItemLogout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        secom:text_item_menu="Logout"
+        secom:image_item_menu="@drawable/menu_item_lock" />
 </LinearLayout>

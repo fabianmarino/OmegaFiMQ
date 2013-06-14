@@ -1,6 +1,8 @@
 package com.appsolution.omegafi;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.appsolution.layouts.DetailsOfficer;
@@ -11,6 +13,8 @@ import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.logic.Server;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.opengl.Visibility;
@@ -43,6 +47,11 @@ public class HomeActivity extends OmegaFiActivity {
 	private PollOmegaFiContent contentPoll;
 	private SectionOmegaFi sectionNews;
 	
+	private Bundle bundleHome;
+	
+	private JSONObject jsonAccounts;
+	private JSONObject jsonChapters;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,9 +75,7 @@ public class HomeActivity extends OmegaFiActivity {
 				startActivity(memberDetail);
 			}
 		});
-//		textNameOfficer=new TextView(this);
-//		textNamePhone=new TextView(this);
-//		textNameEmail=new TextView(this);
+		
 		this.completeChapterDirectory();
 		
 		sectionEvents=(SectionOmegaFi)findViewById(R.id.sectionEvents);
@@ -94,18 +101,25 @@ public class HomeActivity extends OmegaFiActivity {
 		});
 		
 		this.completeNewsSection();
-//		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-//			
-//			@Override
-//			protected Boolean doInBackground(Void... params) {
-//				Log.d("Cookies", "Lista a continuacion");
-//				OmegaFiActivity.servicesOmegaFi.logCookies();
-//				JSONObject object=OmegaFiActivity.servicesOmegaFi.makeRequestGet(Server.ACCOUNTS_SERVICE);
-//				Log.d("profile", object.toString());
-//				return true;
-//			}
-//		};
-//		task.execute();
+		this.getJSONsServicesHome();
+	}
+	
+	private void getJSONsServicesHome(){
+		bundleHome=getIntent().getExtras();
+		String profile=bundleHome.getString("profile");
+		String accounts=bundleHome.getString("accounts");
+		String chapters="";
+		try {
+			jsonAccounts=new JSONObject(accounts);
+			if(chapters!=""){
+				jsonChapters=new JSONObject(chapters);
+			}
+			JSONArray jsonArray=jsonAccounts.getJSONArray("accounts");
+			Log.d("Recibido el json array", jsonArray.toString());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void completeAccountUser(){
@@ -139,9 +153,6 @@ public class HomeActivity extends OmegaFiActivity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-//				textNameOfficer.setText("Office Name "+arg2);
-//				textNamePhone.setText("Phone: 345-765-767"+arg2);
-//				textNameEmail.setText("Email: "+arg2+"@gmail.com");
 				detailsOffice.setVisibility(LinearLayout.VISIBLE);
 			}
 
@@ -220,6 +231,11 @@ public class HomeActivity extends OmegaFiActivity {
 		linear.addView(titlesIndicator);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		this.showConfirmateExit();
+	}
+	
 	public void activityTermsUse(View button){
 		Intent activityTerms=new Intent(this, TermsActivity.class);
 		startActivity(activityTerms);
@@ -228,6 +244,29 @@ public class HomeActivity extends OmegaFiActivity {
 	public void activityPrivatePolicy(View button){
 		Intent activityPrivacy=new Intent(this, PrivacyActivity.class);
 		startActivity(activityPrivacy);
+	}
+	
+	private void showConfirmateExit(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("¿Logout OmegaFi Profile?")
+		        .setTitle("Exit")
+		        .setCancelable(false)
+		        .setNegativeButton("No",
+		                new DialogInterface.OnClickListener() {
+		                    public void onClick(DialogInterface dialog, int id) {
+		                        dialog.cancel();
+		                    }
+		                })
+		        .setPositiveButton("Yes",
+		                new DialogInterface.OnClickListener() {
+		                    public void onClick(DialogInterface dialog, int id) {
+		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
+		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		                		startActivity(backToLogin);
+		                    }
+		                });
+		AlertDialog alert = builder.create();
+		alert.show();
 	}
 	
 }

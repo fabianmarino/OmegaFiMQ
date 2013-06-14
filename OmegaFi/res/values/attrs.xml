@@ -99,4 +99,11 @@
     <declare-styleable name="RowQuestionEditText">
         <attr name="text_question_row" format="string" />
     </declare-styleable>
+    <declare-styleable name="UserContactLayout">
+    </declare-styleable>
+    <declare-styleable name="ItemMenuSliding">
+        <attr name="text_item_menu" format="string" />
+        <attr name="image_item_menu" format="reference" />
+        <attr name="number_notifications" format="integer" />
+    </declare-styleable>
 </resources>

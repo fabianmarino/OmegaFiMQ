@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:layout_height="wrap_content" >
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true">
+        <ImageView android:id="@+id/iconItemMenuSliding"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:adjustViewBounds="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/menu_item_home"
+            android:contentDescription="This is the icon from item menu" />
+        <TextView android:id="@+id/textItemMenuSliding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/white"/>
+        <RelativeLayout android:id="@+id/contentNumberNotifications" 
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:background="@drawable/circle_white"
+            android:visibility="gone">
+            <TextView android:id="@+id/textNumberNotifySliding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:textSize="15sp"
+                android:textColor="@color/blue_marine"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <ImageView android:layout_width="20dp"
+	    android:layout_height="wrap_content"
+	    android:adjustViewBounds="true"
+	    android:src="@drawable/right_white_arrow"
+	    android:contentDescription="Photo from user"
+	    android:layout_centerVertical="true"
+	    android:layout_alignParentRight="true"
+	    />
+</RelativeLayout>
