@@ -10,7 +10,9 @@ import com.appsolution.logic.Server;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
@@ -18,6 +20,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 
@@ -152,6 +155,53 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
 		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
 		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getAnnouncementsCount());
+	}
+	
+	public void goToHome(View item){
+		Intent goToHome=new Intent(this, HomeActivity.class);
+		goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(goToHome);
+	}
+	
+	public void goToAnnouncements(View item){
+		if(this.getClass() != AnnouncementsActivity.class){
+			Intent goToAnnouncements=new Intent(this, AnnouncementsActivity.class);
+			startActivity(goToAnnouncements);
+		}
+	}
+	
+	public void goToLogout(View item){
+		this.showConfirmateExit();
+	}
+	
+	public void goToMyProfile(View item){
+		if(this.getClass()!=MyProfileActivity.class){
+			Intent goToMyProfile=new Intent(this, MyProfileActivity.class);
+			startActivity(goToMyProfile);
+		}
+	}
+	
+	public void showConfirmateExit(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("¿Logout OmegaFi Profile?")
+		        .setTitle("Exit")
+		        .setCancelable(false)
+		        .setNegativeButton("No",
+		                new DialogInterface.OnClickListener() {
+		                    public void onClick(DialogInterface dialog, int id) {
+		                        dialog.cancel();
+		                    }
+		                })
+		        .setPositiveButton("Yes",
+		                new DialogInterface.OnClickListener() {
+		                    public void onClick(DialogInterface dialog, int id) {
+		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
+		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		                		startActivity(backToLogin);
+		                    }
+		                });
+		AlertDialog alert = builder.create();
+		alert.show();
 	}
 	
 }

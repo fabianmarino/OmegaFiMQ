@@ -6,7 +6,7 @@
     android:orientation="vertical" >
     <Button android:id="@+id/buttonBackToLogin"
 	        android:layout_width="fill_parent"
-	        android:layout_marginTop="40dp"
+	        android:layout_marginTop="@dimen/margin_top_bottom"
 	        android:layout_height="wrap_content"
 	        android:text="Back To Login"
 	        android:onClick="backToLogin"

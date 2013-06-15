@@ -1,0 +1,56 @@
+<resources>
+    
+    <dimen name="edit_login">25sp</dimen>
+    <dimen name="text_large">25sp</dimen>
+    <dimen name="text_medium">20sp</dimen>
+    <dimen name="text_x_large">40sp</dimen>
+    <dimen name="text_small_loading">17sp</dimen>
+    <dimen name="text_17sp">20sp</dimen>
+    <dimen name="text_14sp">17sp</dimen>
+    <dimen name="text_10sp">14sp</dimen>
+    <dimen name="text_15sp">20sp</dimen>
+    <dimen name="text_12_notification">18sp</dimen>
+    <dimen name="text_section_title_omegafi">17sp</dimen>
+    
+    <dimen name="text_newevent_title_omegafi">23sp</dimen>
+    <dimen name="text_date_newevent_title_omegafi">15sp</dimen>
+    <dimen name="text_content_newevent_title_omegafi">15sp</dimen>
+    
+    <dimen name="edit_padding">10dp</dimen>
+    <dimen name="button_padding">8dp</dimen>
+    <dimen name="account_header_padding_v">15dp</dimen>
+    <dimen name="account_header_padding_h">20dp</dimen>
+    <dimen name="padding_top_form">20dp</dimen>
+    <dimen name="padding_bottom_form">40dp</dimen>
+    <dimen name="padding_25dp">30dp</dimen>
+    <dimen name="padding_side_button_small">15dp</dimen>
+    <dimen name="padding_3dp">7dp</dimen>
+    <dimen name="padding_5dp">15dp</dimen>
+    <dimen name="padding_10dp">23dp</dimen>
+    
+    <dimen name="margin_top_circle_charging">35dp</dimen>
+    <dimen name="margin_top_header">20dp</dimen>
+    <dimen name="margin_bottom_header">30dp</dimen>
+    <dimen name="margin_top_form">60dp</dimen>
+    <dimen name="margin_top_form">40dp</dimen>
+    <dimen name="margin_sides_content_login">20dp</dimen>
+    <dimen name="margin_right_photo_slide">10dp</dimen>
+    <dimen name="spacing_sections">10dp</dimen>
+    
+    <dimen name="height_header_image">70dp</dimen>
+    <dimen name="large_line_circle">80dp</dimen>
+    <dimen name="photo_size">150dp</dimen>
+    <dimen name="image_size_item_menu">30dp</dimen>
+    <dimen name="sliding_photo_size">100dp</dimen>
+    <dimen name="circle_chargin_size">160dp</dimen>
+    <dimen name="width_image_chapter">170dp</dimen>
+    <dimen name="height_image_chapter">130dp</dimen>
+    <dimen name="size_notification_circle">35dp</dimen>
+    <dimen name="height_new_event_content">200dp</dimen>
+    <dimen name="size_circle_newevents">5dp</dimen>
+    
+    <dimen name="slidingmenu_offset">100dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
+    <integer name="num_cols">1</integer>
+</resources>

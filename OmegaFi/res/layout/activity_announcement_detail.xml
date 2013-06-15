@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/LinearContentStyle"
+    style="@style/BackgroundActivity"
     tools:context=".AnnouncementDetailActivity" >
     <LinearLayout android:id="@+id/linearAnnouncementDetail"
         android:layout_width="fill_parent"

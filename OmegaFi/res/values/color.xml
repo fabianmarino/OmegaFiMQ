@@ -2,4 +2,6 @@
 <resources>
     <color name="blue_marine">#80b2cd</color>
     <color name="blue_marine_dark">#6590a7</color>
+    <color name="red_wine">#a71931</color>
+    <color name="gray_background">#e1dcd8</color>
 </resources>

@@ -15,11 +15,20 @@
     <style name="LoginFormContainer">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/white_box_form</item>
-        <item name="android:paddingTop">16dp</item>
-        <item name="android:paddingLeft">16dp</item>
-        <item name="android:paddingRight">16dp</item>
-        <item name="android:paddingBottom">35dp</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:paddingTop">@dimen/padding_top_form</item>
+        <item name="android:paddingLeft">@dimen/padding_top_form</item>
+        <item name="android:paddingRight">@dimen/padding_top_form</item>
+        <item name="android:paddingBottom">@dimen/padding_bottom_form</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_form</item>
+    </style>
+    
+    <style name="ContentLoginForm">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/margin_sides_content_login</item>
+        <item name="android:layout_marginLeft">@dimen/margin_sides_content_login</item>
+        <item name="android:orientation">vertical</item>
     </style>
     <style name="MenuSlidingStyle">
         
@@ -27,21 +36,40 @@
     <style name="EditTextLogin">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/edit_login</item>
         <item name="android:textColor">@android:color/black</item>
         <!-- <item name="android:fontFamily"></item> -->
         <item name="android:background">@drawable/white_input</item>
-        <item name="android:padding">15dp</item>
+        <item name="android:padding">@dimen/edit_padding</item>
     </style>
     <style name="ButtonOmega">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/boton_style</item>
-        <item name="android:textSize">25sp</item>
+        <item name="android:textSize">@dimen/edit_login</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:padding">8dp</item>
+        <item name="android:padding">6dp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+    <style name="ButtonOmegaSmall">
+        <item name="android:background">@drawable/boton_style</item>
+        <item name="android:textSize">@dimen/text_10sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="ButtonOmegaSmallRed">
+        <item name="android:background">@color/red_wine</item>
+        <item name="android:textSize">@dimen/text_10sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    
     <style name="ButtonOmegaNormal">
         <item name="android:background">@drawable/boton_style</item>
         <item name="android:textSize">19sp</item>
@@ -67,16 +95,21 @@
     </style>
     
     <style name="BackgroundLoginScreen">
-        <item name="android:background">@android:color/black</item>
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:paddingTop">60dp</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+        <item name="android:paddingTop">0dp</item>
         <item name="android:background">@drawable/background_login</item>
     </style>
     
     <style name="BackgroundLoginForm">
         <item name="android:background">@android:color/white</item>
         <item name="android:padding">10dp</item>
+    </style>
+    <style name="BackgroundActivity">
+        <item name="android:background">@color/gray_background</item>
+    </style>
+    <style name="LinearContentAll">
+        <item name="android:padding">@dimen/padding_3dp</item>
     </style>
 	
 	<style name="Theme.OmegaFiTheme" parent="Theme.Sherlock.Light">

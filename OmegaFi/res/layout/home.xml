@@ -4,37 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@android:color/darker_gray"
+    style="@style/BackgroundActivity"
     android:orientation="vertical">
     <LinearLayout android:id="@+id/linearScroll"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/LinearContentAll"
         android:orientation="vertical">
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionAccountUser"
+	    <com.appsolution.layouts.AccountLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
-	        secom:title_section="Winston Smith - 745468"
-	        secom:subtitle_section="Alpha Delta Pi - Alpha Eta"
-	        secom:visible_subtitle="true"
-	        secom:colorSubtitle="@android:color/darker_gray"
-	        />
+	        android:layout_marginBottom="@dimen/padding_5dp"
+	     />
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionChapterDirectory"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
-	        secom:title_section="Alpha Delta Pi - Alpha Eta"
-	        secom:colorTitle="@android:color/darker_gray"
-	        secom:subtitle_section="Miami University"
-	        secom:visible_subtitle="true"
+	        android:layout_marginBottom="@dimen/padding_5dp"
+	        secom:title_section="Member Roster"
 	        />
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionEvents" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
+	        android:layout_marginBottom="@dimen/padding_5dp"
 	        secom:title_section="Calendar"
 	        secom:show_arrow="true"
 	        />
@@ -42,14 +35,14 @@
 	        android:id="@+id/sectionPoll" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
+	        android:layout_marginBottom="@dimen/padding_5dp"
 	        secom:title_section="Poll"
 	        />
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionNews" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
+	        android:layout_marginBottom="@dimen/padding_5dp"
 	        secom:title_section="Alpha Eta News"
 	        secom:show_arrow="true"
 	        />

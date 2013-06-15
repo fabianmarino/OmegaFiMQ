@@ -12,33 +12,37 @@
         android:id="@+id/userContactSliding"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:onClick="goToMyProfile"
         ></com.appsolution.layouts.UserContactLayout>
     <View android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@android:color/white"/>
     <com.appsolution.layouts.ItemMenuSliding
         android:id="@+id/menuItemHome"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:onClick="goToHome"
         secom:text_item_menu="Home"
         secom:number_notifications="0"
         secom:image_item_menu="@drawable/menu_item_home" />
     <View android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@android:color/white"/>
     <com.appsolution.layouts.ItemMenuSliding
         android:id="@+id/menuItemAnnouncements"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:onClick="goToAnnouncements"
         secom:text_item_menu="Announcements"
         secom:image_item_menu="@drawable/menu_item_announcements" />
     <View android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="@android:color/white"/>
     <com.appsolution.layouts.ItemMenuSliding
         android:id="@+id/menuItemLogout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:onClick="goToLogout"
         secom:text_item_menu="Logout"
         secom:image_item_menu="@drawable/menu_item_lock" />
 </LinearLayout>

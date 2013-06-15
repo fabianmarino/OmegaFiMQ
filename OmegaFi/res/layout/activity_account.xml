@@ -3,7 +3,7 @@
     xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@android:color/darker_gray"
+    style="@style/BackgroundActivity"
     tools:context=".AccountActivity" >
 	<LinearLayout
 	    android:layout_width="fill_parent"

@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     style="@style/BackgroundLoginScreen"
     tools:context=".ForgotUserNameActivity" >
+    <LinearLayout style="@style/ContentLoginForm"
+            >
 	<LinearLayout android:id="@+id/linearForgotUser"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
@@ -33,4 +35,6 @@
 	        android:text="Your username has been sent to name@mail.com"/>
 	    <include layout="@layout/layout_bottom_login"/>
 	</LinearLayout>
+	<include layout="@layout/line_jagged"/>
+		</LinearLayout>
 </ScrollView>

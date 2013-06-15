@@ -94,7 +94,8 @@ public class SectionOmegaFi extends LinearLayout{
 		    boolean showArrow = a.getBoolean(R.styleable.SectionOmegaFi_show_arrow,true);
 		    setShowArrow(showArrow);
 		    
-		    float sizeTile = a.getDimensionPixelSize(R.styleable.SectionOmegaFi_sizeTitle, 17);
+		    float sizeTile = a.getDimensionPixelSize(R.styleable.SectionOmegaFi_sizeTitle, contentAll.getResources().getDimensionPixelSize
+		    		(R.dimen.text_section_title_omegafi));
 		    this.setSizeTitle(sizeTile);
 		    
 		    float sizeSubTitle= a.getDimensionPixelSize(R.styleable.SectionOmegaFi_sizeSubtitle, 15);
@@ -153,9 +154,9 @@ public class SectionOmegaFi extends LinearLayout{
 		contentTitle.setOnClickListener(evento);
 	}
 	
-	@Override
-	public void setPadding(int left, int top, int right, int bottom) {
-//		contentAll.setPadding(left, top, right, bottom);
+	
+	public void setPaddingAll(int left, int top, int right, int bottom) {
+		contentAll.setPadding(left, top, right, bottom);
 	}
 
 }

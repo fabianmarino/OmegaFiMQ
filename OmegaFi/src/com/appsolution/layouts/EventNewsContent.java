@@ -14,7 +14,8 @@ import android.widget.TextView;
 public class EventNewsContent extends LinearLayout {
 
 	private LinearLayout contentAll;
-	private RowInformation rowTitleDate;
+	private TextView titleNewEvent;
+	private TextView dateNewEvent;
 	private TextView descriptionNewEvent;
 	
 	public EventNewsContent(Context context) {
@@ -49,19 +50,18 @@ public class EventNewsContent extends LinearLayout {
 	private void initialize(){
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.events_news_content, this, true);
-		rowTitleDate=(RowInformation)findViewById(R.id.titleDateEventNew);
-		rowTitleDate.setVisibleArrow(false);
-		rowTitleDate.setTextSizeInformation(12f);
+		titleNewEvent=(TextView)findViewById(R.id.titleEventNewOmegaFi);
+		dateNewEvent=(TextView)findViewById(R.id.dateEventNewOmegaFi);
 		descriptionNewEvent=(TextView)findViewById(R.id.descriptionNewOrEvent);
 		contentAll=(LinearLayout)findViewById(R.id.linearContentNewsEvents);
 	}
 	
 	public void setTitleNewEvent(String title){
-		rowTitleDate.setNameInfo(title);
+		titleNewEvent.setText(title);
 	}
 	
 	public void setDateEventNew(String details){
-		rowTitleDate.setValueInfo(details);
+		dateNewEvent.setText(details);
 	}
 	
 	public void setDescriptionNewEvent(String description){

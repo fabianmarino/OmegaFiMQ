@@ -1,5 +1,56 @@
 <resources>
-    <dimen name="slidingmenu_offset">100dp</dimen>
+    <!-- Tamanos tipografias -->
+    <dimen name="edit_login">18sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_medium">15sp</dimen>
+    <dimen name="text_x_large">28sp</dimen>
+    <dimen name="text_small_loading">15sp</dimen>
+    <dimen name="text_17sp">17sp</dimen>
+    <dimen name="text_14sp">14sp</dimen>
+    <dimen name="text_10sp">10sp</dimen>
+    <dimen name="text_15sp">15sp</dimen>
+    <dimen name="text_12_notification">12sp</dimen>
+    <dimen name="text_section_title_omegafi">20sp</dimen>
+    
+    <dimen name="text_newevent_title_omegafi">20sp</dimen>
+    <dimen name="text_date_newevent_title_omegafi">10sp</dimen>
+    <dimen name="text_content_newevent_title_omegafi">12sp</dimen>
+    
+    <dimen name="edit_padding">8dp</dimen>
+    <dimen name="button_padding">6dp</dimen>
+    <dimen name="account_header_padding_v">10dp</dimen>
+    <dimen name="account_header_padding_h">6dp</dimen>
+    <dimen name="padding_top_form">13dp</dimen>
+    <dimen name="padding_bottom_form">10dp</dimen>
+    <dimen name="padding_25dp">20dp</dimen>
+    <dimen name="padding_side_button_small">10dp</dimen>
+    <dimen name="padding_3dp">3dp</dimen>
+    <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="padding_10dp">10dp</dimen>
+    
+    
+    <dimen name="margin_top_circle_charging">10dp</dimen>
+    <dimen name="margin_top_header">10dp</dimen>
+    <dimen name="margin_bottom_header">15dp</dimen>
+    <dimen name="margin_top_form">40dp</dimen>
+    <dimen name="margin_top_bottom">20dp</dimen>
+    <dimen name="margin_sides_content_login">6dp</dimen>
+    <dimen name="margin_right_photo_slide">6dp</dimen>
+    <dimen name="spacing_sections">5dp</dimen>
+    
+    <dimen name="height_header_image">50dp</dimen>
+    <dimen name="large_line_circle">50dp</dimen>
+    <dimen name="photo_size">100dp</dimen>
+    <dimen name="image_size_item_menu">25dp</dimen>
+    <dimen name="sliding_photo_size">60dp</dimen>
+    <dimen name="circle_chargin_size">105dp</dimen>
+    <dimen name="width_image_chapter">120dp</dimen>
+    <dimen name="height_image_chapter">80dp</dimen>
+    <dimen name="size_notification_circle">20dp</dimen>
+    <dimen name="height_new_event_content">130dp</dimen>
+    <dimen name="size_circle_newevents">3dp</dimen>
+    
+    <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>
     <dimen name="shadow_width">15dp</dimen>
     <integer name="num_cols">1</integer>

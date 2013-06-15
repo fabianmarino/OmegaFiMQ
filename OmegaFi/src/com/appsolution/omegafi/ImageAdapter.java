@@ -1,7 +1,9 @@
 package com.appsolution.omegafi;
 
+import android.R.dimen;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,7 +60,8 @@ public class ImageAdapter extends BaseAdapter {
 					//iv.setScaleType(ImageView.ScaleType.FIT_XY);
 					iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 					// Set the Width & Height of the individual images
-					iv.setLayoutParams(new Gallery.LayoutParams(200, 150));
+					iv.setLayoutParams(new Gallery.LayoutParams(context.getResources().getDimensionPixelSize(R.dimen.width_image_chapter), 
+							context.getResources().getDimensionPixelSize(R.dimen.height_image_chapter)));
 					
 					TextView textView=new TextView(context);
 					android.widget.LinearLayout.LayoutParams params=new android.widget.LinearLayout.LayoutParams

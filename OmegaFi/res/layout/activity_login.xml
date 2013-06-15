@@ -1,10 +1,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".LoginActivity" >
-
     <!-- Login progress -->
-
     <LinearLayout
         android:id="@+id/login_status"
         android:layout_width="wrap_content"
@@ -40,11 +37,11 @@
         android:layout_gravity="center_horizontal"
         style="@style/BackgroundLoginScreen"
         android:measureAllChildren="false" >
-
+        <LinearLayout style="@style/ContentLoginForm"
+            >
         <LinearLayout
             style="@style/LoginFormContainer"
             android:orientation="vertical" >
-            
             <com.appsolution.layouts.HeaderOmegaFi
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +104,8 @@
                 android:text="@string/login_user"
                 android:onClick="nextHome" />
         </LinearLayout>
-
+        <include layout="@layout/line_jagged"/>
+		</LinearLayout>
     </ScrollView>
 
 </merge>

@@ -26,8 +26,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Gallery;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class HomeActivity extends OmegaFiActivity {
@@ -56,14 +58,6 @@ public class HomeActivity extends OmegaFiActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
-		sectionAccountUser=(SectionOmegaFi)findViewById(R.id.sectionAccountUser);
-		sectionAccountUser.setOnClickTitleListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				myAccountActivity();			
-			}
-		});
-		completeAccountUser();
 		sectionChapterDirectory=(SectionOmegaFi)findViewById(R.id.sectionChapterDirectory);
 		detailsOffice=new DetailsOfficer(this);
 		detailsOffice.setVisibility(LinearLayout.GONE);
@@ -105,7 +99,7 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void getJSONsServicesHome(){
-		bundleHome=getIntent().getExtras();
+		/*bundleHome=getIntent().getExtras();
 		String profile=bundleHome.getString("profile");
 		String accounts=bundleHome.getString("accounts");
 		String chapters="";
@@ -119,20 +113,7 @@ public class HomeActivity extends OmegaFiActivity {
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-	private void completeAccountUser(){
-		RowAnnouncement rowAnnouncement=new RowAnnouncement(this);
-		rowAnnouncement.setButtonPayNowListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent payNow=new Intent(getApplication(), PayNowActivity.class);
-				startActivity(payNow);
-			}
-		});
-		sectionAccountUser.addView(rowAnnouncement);
+		}*/
 	}
 	
 	
@@ -142,7 +123,7 @@ public class HomeActivity extends OmegaFiActivity {
 		sectionOfficers.setTitleSection("Officers");
 		sectionOfficers.setSizeTitle(14f);
 		sectionOfficers.setShowArrow(false);
-		sectionOfficers.setPutBorderBottom(false);
+		sectionOfficers.setPutBorderBottom(true);
 		listPhotos=new Gallery(this);
 		listPhotos.setPadding(10,10, 10, 10);
 		listPhotos.setLayoutParams(new LayoutParams(android.widget.Gallery.LayoutParams.MATCH_PARENT,
@@ -167,33 +148,30 @@ public class HomeActivity extends OmegaFiActivity {
 		linearSection.setPadding(12, 0, 0, 10);
 		linearSection.addView(listPhotos);
 		
-		RowInformation rowMember=new RowInformation(this);
-		rowMember.setNameInfo("Members Roster");
-		rowMember.setValueInfo("");
-		rowMember.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent activityMembers=new Intent(getApplication(), ListMembersActivity.class);
-				startActivity(activityMembers);
-			}
-		});
-		rowMember.setVisibleArrow(true);
+		RowInformation rowChapter=new RowInformation(this);
+		rowChapter.setNameInfo("Alpha Delta Pi - Alpha Delta");
+		rowChapter.setNameSubInfo("Miami University");
+		rowChapter.setColorFontRowInformation(Color.BLACK);
+		rowChapter.setBorderBottom(true);
+		rowChapter.setPaddingRow(10, rowChapter.getPaddingTop(),rowChapter.getPaddingRight(), rowChapter.getPaddingBottom());
 		
+		sectionChapterDirectory.addView(rowChapter);
 		sectionChapterDirectory.addView(sectionOfficers);
 		sectionChapterDirectory.addView(detailsOffice);
-		sectionChapterDirectory.addView(rowMember);
 	}
 	
 	private void completeEvents(){
-		sectionEvents.setPadding(10,10, 10, 10);
+		sectionEvents.setPaddingAll(0, 0, 0, this.getResources().getDimensionPixelSize(R.dimen.padding_5dp));
 		paginator=new ViewPager(getApplicationContext());
-		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 300));
+		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
+				this.getResources().getDimensionPixelSize(R.dimen.height_new_event_content)));
 		adapterPager=new EventsNewsAdapter(getApplicationContext());
 		paginator.setAdapter(adapterPager);
 		
 		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
-		titlesIndicator.setFillColor(Color.GRAY);
+		titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
+		int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
+		titlesIndicator.setRadius(circleSize);
 		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
 				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
 		titlesIndicator.setViewPager(paginator);
@@ -215,20 +193,22 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completeNewsSection(){
-		LinearLayout linear=(LinearLayout)sectionNews.findViewById(R.id.contentSectionOmegaFi);
-		linear.setPadding(10,10, 10, 10);
+		sectionNews.setPaddingAll(0, 0, 0, this.getResources().getDimensionPixelSize(R.dimen.padding_5dp));
 		paginator=new ViewPager(getApplicationContext());
-		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 300));
+		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, this.getResources().getDimensionPixelSize
+				(R.dimen.height_new_event_content)));
 		adapterPager=new EventsNewsAdapter(getApplicationContext());
 		paginator.setAdapter(adapterPager);
 		
 		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
-		titlesIndicator.setFillColor(Color.GRAY);
+		titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
+		int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
+		titlesIndicator.setRadius(circleSize);
 		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
 				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
 		titlesIndicator.setViewPager(paginator);
-		linear.addView(paginator);
-		linear.addView(titlesIndicator);
+		sectionNews.addView(paginator);
+		sectionNews.addView(titlesIndicator);
 	}
 	
 	@Override
@@ -245,28 +225,6 @@ public class HomeActivity extends OmegaFiActivity {
 		Intent activityPrivacy=new Intent(this, PrivacyActivity.class);
 		startActivity(activityPrivacy);
 	}
-	
-	private void showConfirmateExit(){
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("¿Logout OmegaFi Profile?")
-		        .setTitle("Exit")
-		        .setCancelable(false)
-		        .setNegativeButton("No",
-		                new DialogInterface.OnClickListener() {
-		                    public void onClick(DialogInterface dialog, int id) {
-		                        dialog.cancel();
-		                    }
-		                })
-		        .setPositiveButton("Yes",
-		                new DialogInterface.OnClickListener() {
-		                    public void onClick(DialogInterface dialog, int id) {
-		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
-		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		                		startActivity(backToLogin);
-		                    }
-		                });
-		AlertDialog alert = builder.create();
-		alert.show();
-	}
+
 	
 }

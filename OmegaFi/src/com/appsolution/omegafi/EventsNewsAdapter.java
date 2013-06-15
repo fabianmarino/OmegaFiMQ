@@ -69,19 +69,6 @@ public class EventsNewsAdapter extends PagerAdapter {
   
     @Override  
     public Object instantiateItem(View collection, int position) {        
-        /*LinearLayout linearLayout = new LinearLayout(context);  
-        linearLayout.setOrientation(LinearLayout.VERTICAL);  
-          
-        final TextView textView = new TextView(context);  
-        textView.setText("Position: " + position);  
-          
-        final TextView  image = new TextView(context);  
-          image.setText(urls[position]);
-          
-          
-        linearLayout.addView(textView);  
-        linearLayout.addView(image);  
-          */
     	EventNewsContent event=new EventNewsContent(context);
     	event.setTitleNewEvent(listaEventsOrNews.get(position)[0]);
     	event.setDateEventNew("DD / MM / YYYY");

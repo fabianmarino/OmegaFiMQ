@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="20dp"
+    android:paddingLeft="@dimen/padding_5dp"
+    android:paddingRight="@dimen/padding_5dp"
+    android:paddingTop="@dimen/padding_10dp"
+    android:paddingBottom="@dimen/padding_10dp"
     android:layout_height="wrap_content" >
     <LinearLayout android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,22 +12,22 @@
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true">
         <ImageView android:id="@+id/iconItemMenuSliding"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/image_size_item_menu"
+            android:layout_height="@dimen/image_size_item_menu"
             android:adjustViewBounds="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/padding_5dp"
             android:src="@drawable/menu_item_home"
             android:contentDescription="This is the icon from item menu" />
         <TextView android:id="@+id/textItemMenuSliding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_15sp"
             android:textStyle="bold"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="6dp"
             android:textColor="@android:color/white"/>
         <RelativeLayout android:id="@+id/contentNumberNotifications" 
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/size_notification_circle"
+            android:layout_height="@dimen/size_notification_circle"
             android:gravity="center"
             android:background="@drawable/circle_white"
             android:visibility="gone">
@@ -35,11 +35,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:textSize="15sp"
+                android:textSize="@dimen/text_12_notification"
                 android:textColor="@color/blue_marine"/>
         </RelativeLayout>
     </LinearLayout>
-    <ImageView android:layout_width="20dp"
+    <ImageView android:layout_width="15dp"
 	    android:layout_height="wrap_content"
 	    android:adjustViewBounds="true"
 	    android:src="@drawable/right_white_arrow"

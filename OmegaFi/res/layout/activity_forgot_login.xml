@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     style="@style/BackgroundLoginScreen"
     tools:context=".ForgotLoginActivity" >
+    <LinearLayout style="@style/ContentLoginForm">
 	<LinearLayout android:id="@+id/linearForgotLogin"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
@@ -32,4 +33,6 @@
 	        style="@style/ButtonOmega"/>
 	    <include layout="@layout/layout_bottom_login" />
 	</LinearLayout>
+	<include layout="@layout/line_jagged"/>
+</LinearLayout>
 </ScrollView>

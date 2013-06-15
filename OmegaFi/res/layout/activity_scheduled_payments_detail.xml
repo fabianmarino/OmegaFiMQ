@@ -3,7 +3,7 @@
     xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    style="@style/LinearContentStyle"
+    style="@style/BackgroundActivity"
     android:layout_height="match_parent"
     tools:context=".ScheduledPaymentsDetailActivity" >
 	<LinearLayout android:id="@+id/contentScheduledDetails"

@@ -6,12 +6,13 @@
     style="@style/BackgroundLoginScreen"
     android:orientation="vertical"
     tools:context=".SplashOmegaFiActivity" >
+    <LinearLayout style="@style/ContentLoginForm"
+            >
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        style="@style/LoginFormContainer"
-        android:layout_marginBottom="50dp">
+        style="@style/LoginFormContainer">
 	    <com.appsolution.layouts.HeaderOmegaFi
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"/>
@@ -21,9 +22,9 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content">
 	        <QuickContactBadge android:id="@+id/photoProfileSplash"
-	            android:layout_width="100dp"
-	            android:layout_height="100dp"
-	            android:layout_marginRight="10dp"
+	            android:layout_width="@dimen/photo_size"
+	            android:layout_height="@dimen/photo_size"
+	            android:layout_marginRight="6dp"
 	            />
 	        <LinearLayout android:orientation="vertical"
 	            android:layout_width="wrap_content"
@@ -32,23 +33,27 @@
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
 			        android:text="Hello Winston"
-			        android:textSize="30sp"
+			        android:textSize="@dimen/text_large"
 			        />
 			    <TextView android:id="@+id/textWelcomeUser"
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
 			        android:layout_marginTop="5dp"
 			        android:text="Welcome to my OmegaFi"
-			        android:textSize="20sp"
+			        android:textSize="@dimen/text_medium"
 			        android:textColor="@android:color/darker_gray"
 			        />
 		    </LinearLayout>
 	    </LinearLayout>
     </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jagged"></LinearLayout>
+    </LinearLayout>
     <LinearLayout android:id="@+id/contentBarSplash"
-	        android:layout_width="150dp"
-	        android:layout_height="150dp"
-	        android:layout_marginTop="10dp"
+	        android:layout_width="@dimen/circle_chargin_size"
+	        android:layout_height="@dimen/circle_chargin_size"
+	        android:layout_marginTop="@dimen/margin_top_circle_charging"
 	        android:gravity="center"
 	        android:layout_gravity="center_horizontal"
 	        android:orientation="vertical"
@@ -57,11 +62,11 @@
 	       	    android:layout_width="wrap_content"
 	       	    android:layout_height="wrap_content"
 	       	    android:layout_gravity="center_horizontal"
-	       	    android:textSize="40sp"
+	       	    android:textSize="@dimen/text_x_large"
 	       	    android:textColor="@android:color/white"
 	       	    android:text="0%"
 	       	    />
-	       	<View android:layout_width="100dp"
+	       	<View android:layout_width="@dimen/large_line_circle"
 	       	    android:layout_height="3dp"
 	       	    android:background="@android:color/white"/>
 	       	<TextView android:layout_width="wrap_content"
@@ -69,6 +74,6 @@
 	       	    android:layout_gravity="center_horizontal"
 	       	    android:text="Loading"
 	       	    android:textColor="@android:color/white"
-	       	    android:textSize="20sp"/>
+	       	    android:textSize="@dimen/text_small_loading"/>
 		</LinearLayout>
 </LinearLayout>
