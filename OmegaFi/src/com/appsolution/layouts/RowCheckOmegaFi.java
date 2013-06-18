@@ -12,9 +12,13 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 	
 	public RowCheckOmegaFi(Context context,RowCheckGroup group) {
 		super(context);
+		setTextSizeInformation(context.getResources().getDimensionPixelSize(R.dimen.text_10sp));
 		radioOption=new RadioButton(context);
-		radioOption.setLayoutParams(new RelativeLayout.LayoutParams(50, 
-				50));
+		radioOption.setEnabled(false);
+		int size=context.getResources().getDimensionPixelSize(R.dimen.width_arrow_down);
+		RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(size, size);
+		params.setMargins(params.leftMargin, params.topMargin, 10, params.bottomMargin);
+		radioOption.setLayoutParams(params);
 		radioOption.setButtonDrawable(R.drawable.radio_button);
 		this.addViewRight(radioOption);
 		group.addRowCheck(this);

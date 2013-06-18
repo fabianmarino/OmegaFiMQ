@@ -35,11 +35,10 @@
 	        <Button 
 	            android:id="@+id/buttonSubmitPoll"
 	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
+	            android:layout_height="@dimen/height_button_small"
 	            android:padding="10dp"
-	            android:layout_marginRight="4dp"
 	            android:text="SUBMIT  "
-	            style="@style/ButtonOmega"/>
+	            style="@style/ButtonOmegaSmall"/>
 	    </LinearLayout>
 	</LinearLayout>
 	
@@ -47,13 +46,13 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical">
-	    <TextView 
+	    <!-- <TextView 
 	        android:id="@+id/textThanks"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:textColor="@android:color/darker_gray"
 	        android:textSize="15sp"
-	        android:text="Thank you message!"/>
+	        android:text="Thank you message!"/>  -->
 	    <TextView android:id="@+id/titlePollResult"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
@@ -69,10 +68,9 @@
 	    <Button android:id="@+id/buttonVote"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="VOTE  "
+	        android:text="VOTE"
 	        android:visibility="gone"
-	        android:layout_marginTop="6dp"
-	        android:padding="10dp"
-	        style="@style/ButtonOmega"/>
+	        android:layout_marginTop="10dp"
+	        style="@style/ButtonOmegaSmall"/>
 	</LinearLayout>
 </ViewSwitcher>

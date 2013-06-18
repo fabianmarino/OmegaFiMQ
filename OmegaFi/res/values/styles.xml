@@ -51,10 +51,29 @@
         <item name="android:padding">6dp</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
+    <style name="ButtonOmegaMedium">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/boton_style</item>
+        <item name="android:textSize">@dimen/text_14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">6dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="ButtonOmegaWhite">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textSize">@dimen/edit_login</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">@dimen/padding_6dp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
     <style name="ButtonOmegaSmall">
         <item name="android:background">@drawable/boton_style</item>
         <item name="android:textSize">@dimen/text_10sp</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/text_10sp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:paddingTop">0dp</item>
@@ -68,13 +87,6 @@
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="android:textColor">@android:color/white</item>
-    </style>
-    
-    <style name="ButtonOmegaNormal">
-        <item name="android:background">@drawable/boton_style</item>
-        <item name="android:textSize">19sp</item>
-        <item name="android:textColor">@android:color/black</item>
-        <item name="android:padding">10dp</item>
     </style>
     
     <style name="LinearContentStyle">

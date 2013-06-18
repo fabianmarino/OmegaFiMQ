@@ -10,7 +10,7 @@
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
-	    android:padding="6dp">
+	    style="@style/LinearContentAll">
 	    <com.appsolution.layouts.RowEditInformation
 	        android:id="@+id/rowEditAddNameOnCard"
 	        secom:row_text_size_e="13sp" 

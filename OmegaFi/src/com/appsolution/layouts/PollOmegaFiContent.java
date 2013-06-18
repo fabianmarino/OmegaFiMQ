@@ -90,8 +90,31 @@ public class PollOmegaFiContent extends ViewSwitcher{
 		for (int i = 0; i < 4; i++) {
 			PercentageResults percentaje=new PercentageResults(getContext());
 			percentaje.setPercentageAnswer((int) (Math.random () * (100) + 1));
+			percentaje.setBackgroundBar(this.getColorFromResource(i));
 			linearResultsPercentage.addView(percentaje);
 		}
+	}
+	
+	private int getColorFromResource(int number){
+		int resourceColor=super.getResources().getColor(R.color.gray_bar);
+		switch (number) {
+		case 0:
+			resourceColor=super.getResources().getColor(R.color.green_bar);
+			break;
+		case 1:
+			resourceColor=super.getResources().getColor(R.color.orange_bar);
+			break;
+		case 2:
+			resourceColor=super.getResources().getColor(R.color.red_bar);
+			break;
+		case 3:
+			resourceColor=super.getResources().getColor(R.color.blue_bar);
+			break;
+
+		default:
+			break;
+		}
+		return resourceColor;
 	}
 	
 }

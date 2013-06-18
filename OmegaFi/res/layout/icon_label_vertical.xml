@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/padding_5dp"
+    android:orientation="vertical" >
+    <ImageView android:id="@+id/imageIconLabel"
+        android:layout_width="@dimen/width_image_label"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/home_icon_1"
+        android:contentDescription="Image Icon Label"/>
+	<TextView android:id="@+id/labelIconLabel"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:textColor="@android:color/white"
+	    android:text="3214-213-3123"
+	    android:textSize="@dimen/text_label_icon"
+	    android:padding="@dimen/padding_3dp"
+	    />
+</LinearLayout>

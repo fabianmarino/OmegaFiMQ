@@ -1,9 +1,6 @@
 package com.appsolution.layouts;
 
 import com.appsolution.omegafi.R;
-import com.appsolution.omegafi.R.id;
-import com.appsolution.omegafi.R.layout;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;

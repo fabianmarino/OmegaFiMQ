@@ -8,6 +8,7 @@
     <LinearLayout android:id="@+id/linearMyProfile"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/LinearContentAll"
         android:orientation="vertical">
         <com.appsolution.layouts.ImageMemberTemplate
             android:id="@+id/headMyProfile"
@@ -71,6 +72,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Save"
-            style="@style/ButtonOmegaNormal"/>
+            style="@style/ButtonOmega"/>
     </LinearLayout>
 </ScrollView>

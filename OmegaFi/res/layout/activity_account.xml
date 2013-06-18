@@ -8,18 +8,125 @@
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
+	    style="@style/LinearContentAll"
 	    android:orientation="vertical">
-	    <com.appsolution.layouts.SectionAccountInfo
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"/>
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionAccountSummary"
+	    <com.appsolution.layouts.UserContactLayout
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
-	        secom:title_section="Account Summary"
-	        secom:show_arrow="false"/>
-	    
+	        android:layout_marginBottom="@dimen/padding_10dp"
+	        secom:color_font_text="@android:color/black"
+	        secom:third_line_text="Miami University"/>
+	    <TableLayout android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginBottom="@dimen/margin_top_bottom">
+	        <TableRow android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:weightSum="100">
+	       <com.appsolution.layouts.LabelInfoVertical
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="33"/>
+            <View android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@android:color/darker_gray"/>
+            <com.appsolution.layouts.LabelInfoVertical
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:color_font_vertical="@color/red_wine"
+                android:layout_weight="33"/>
+            <View android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@android:color/darker_gray"/>
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="33"
+                android:gravity="center">
+	            <Button android:id="@+id/buttonPayNowAccount"
+	                android:layout_width="wrap_content"
+	                android:layout_height="@dimen/height_button_small"
+	                android:text="PAY NOW"
+	                android:onClick="activityPayNow"
+	                style="@style/ButtonOmegaSmallRed"/>
+            </LinearLayout>
+	        </TableRow>
+	    </TableLayout>
+	    <LinearLayout android:id="@+id/descriptionBalanceDue"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:background="@color/blue_marine"
+	        android:layout_marginBottom="@dimen/padding_5dp"
+	        android:orientation="vertical">
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowBalanceDueOn"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:background="@android:color/white"
+	            secom:name_information="Due On"
+	            secom:row_text_size="@dimen/text_12sp_row_info"
+	            secom:value_information="03/31/2013"
+	            secom:show_arrow_info="false"
+	            secom:padding_top_row_info="@dimen/padding_5dp"
+	            secom:padding_bottom_row_info="@dimen/padding_5dp" 
+	            />
+	        <include layout="@layout/line_jagged"/>
+	        <com.appsolution.layouts.RowInformation
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="BALANCE AS ON"
+	            secom:name_subinformation="05/12/2013"
+	            secom:value_information="$300.00"
+	            secom:text_size_name_information="@dimen/text_6sp"
+	            secom:text_size_name_subinformation="@dimen/text_12sp_row_info"
+	            secom:color_font_row_information="@android:color/white"
+	            />
+	        <View android:layout_width="fill_parent"
+	            android:layout_height="1dp"
+	            android:background="@color/blue_marine_dark"/>
+	        <com.appsolution.layouts.RowInformation
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="Payments"
+	            secom:row_text_size="@dimen/text_10sp"
+	            secom:value_information="$0.00"
+	            secom:color_font_row_information="@android:color/white"
+	            />
+	        <com.appsolution.layouts.RowInformation
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="Credits"
+	            secom:row_text_size="@dimen/text_10sp"
+	            secom:value_information="$0.00"
+	            secom:color_font_row_information="@android:color/white"
+	            />
+	        <com.appsolution.layouts.RowInformation
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="Debits"
+	            secom:row_text_size="@dimen/text_10sp"
+	            secom:value_information="$0.00"
+	            secom:color_font_row_information="@android:color/white"
+	            />
+	        <View android:layout_width="fill_parent"
+	            android:layout_height="1dp"
+	            android:background="@color/blue_marine_dark"/>
+	        <com.appsolution.layouts.RowInformation
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="BALANCE AS ON"
+	            secom:value_information="$300.00"
+	            secom:row_text_size="@dimen/text_11sp"
+	            secom:color_font_row_information="@android:color/white"
+	            />
+	        <Switch 
+	            android:background="@android:color/white"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="AutoPay"
+	            android:padding="@dimen/padding_5dp"
+	            
+	            />
+	    </LinearLayout>
+	    <!-- 
 	    <com.appsolution.layouts.RowInformation
 	        android:id="@+id/rowPayNowAccount"
 	        android:layout_width="fill_parent"
@@ -47,12 +154,12 @@
 	        secom:show_arrow_info="true"
 	        secom:padding_row_info="6dp"
 	        />
-	    
+	     -->
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionAccountDetails"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
+	        android:layout_marginBottom="@dimen/padding_5dp"
 	        secom:title_section="Account Details"
 	        secom:show_arrow="false"/>
 	    
@@ -60,7 +167,7 @@
 	        android:id="@+id/sectionAccountContacts"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
+	        android:layout_marginBottom="@dimen/padding_5dp"
 	        secom:title_section="Account Contacts"
 	        secom:show_arrow="false"/>
 	</LinearLayout>

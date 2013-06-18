@@ -5,7 +5,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.layouts.AccountLayout;
 import com.appsolution.layouts.DetailsOfficer;
+import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.PollOmegaFiContent;
 import com.appsolution.layouts.RowAnnouncement;
 import com.appsolution.layouts.RowInformation;
@@ -13,6 +15,7 @@ import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.logic.Server;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,22 +57,27 @@ public class HomeActivity extends OmegaFiActivity {
 	private JSONObject jsonAccounts;
 	private JSONObject jsonChapters;
 	
+	private LinearLayout linearAccounts;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
+		linearAccounts=(LinearLayout)findViewById(R.id.linearChargeAccounts);
 		sectionChapterDirectory=(SectionOmegaFi)findViewById(R.id.sectionChapterDirectory);
-		detailsOffice=new DetailsOfficer(this);
-		detailsOffice.setVisibility(LinearLayout.GONE);
-		detailsOffice.setClickViewListener(new View.OnClickListener() {
+		sectionChapterDirectory.setOnClickTitleListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent memberDetail=new Intent(getApplication(), OfficerMemberDetailActivity.class);
-				startActivity(memberDetail);
+				Intent memberRosters=new Intent(getApplicationContext(), ListMembersActivity.class);
+				startActivity(memberRosters);
+				
 			}
 		});
+		detailsOffice=new DetailsOfficer(this);
+		detailsOffice.setVisibility(LinearLayout.GONE);
 		
+		this.chargeAccounts();
 		this.completeChapterDirectory();
 		
 		sectionEvents=(SectionOmegaFi)findViewById(R.id.sectionEvents);
@@ -96,6 +104,33 @@ public class HomeActivity extends OmegaFiActivity {
 		
 		this.completeNewsSection();
 		this.getJSONsServicesHome();
+	}
+	
+	private void chargeAccounts(){
+		for (int i = 0; i < 2; i++) {
+			AccountLayout account=new AccountLayout(getApplicationContext());
+			android.widget.LinearLayout.LayoutParams params=new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+					android.widget.LinearLayout.LayoutParams.WRAP_CONTENT);
+			params.setMargins(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.padding_5dp_1));
+			account.setLayoutParams(params);
+			account.setListenerViewAccount(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent viewAccount=new Intent(getApplicationContext(), AccountActivity.class);
+					startActivity(viewAccount);
+				}
+			});
+			account.setListenerPayNow(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent payNow=new Intent(getApplicationContext(), PayNowActivity.class);
+					startActivity(payNow);		
+				}
+			});
+			linearAccounts.addView(account);
+		}
 	}
 	
 	private void getJSONsServicesHome(){
@@ -144,7 +179,6 @@ public class HomeActivity extends OmegaFiActivity {
 			}
 		});
 		LinearLayout linearSection=(LinearLayout)sectionOfficers.findViewById(R.id.contentSectionOmegaFi);
-		linearSection.setBackgroundResource(R.drawable.border_bottom);
 		linearSection.setPadding(12, 0, 0, 10);
 		linearSection.addView(listPhotos);
 		
@@ -153,7 +187,19 @@ public class HomeActivity extends OmegaFiActivity {
 		rowChapter.setNameSubInfo("Miami University");
 		rowChapter.setColorFontRowInformation(Color.BLACK);
 		rowChapter.setBorderBottom(true);
-		rowChapter.setPaddingRow(10, rowChapter.getPaddingTop(),rowChapter.getPaddingRight(), rowChapter.getPaddingBottom());
+		final Activity home=this;
+		rowChapter.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				DialogSelectableOF selectables=new DialogSelectableOF(home);
+				selectables.setTitleDialog(null);
+				selectables.setTextButton(null);
+				selectables.showDialog();
+			}
+		});
+		int padding=this.getResources().getDimensionPixelSize(R.dimen.padding_5dp);
+		rowChapter.setPaddingRow(padding,padding,rowChapter.getPaddingRight(), padding);
 		
 		sectionChapterDirectory.addView(rowChapter);
 		sectionChapterDirectory.addView(sectionOfficers);
@@ -189,6 +235,7 @@ public class HomeActivity extends OmegaFiActivity {
 			aux.add("Lorem ipsum dolor sit amet, consectetur adipisicing");
 		}
 		contentPoll.addAnswersToPoll(aux);
+		sectionPoll.setBackgroundColor(Color.TRANSPARENT);
 		content.addView(contentPoll);
 	}
 	

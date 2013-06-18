@@ -23,7 +23,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 
 	private SectionOmegaFi accountContacts;
 	private SectionOmegaFi accountDetails;
-	private SectionOmegaFi accountSummary;
 	private Activity activity;
 	
 	@Override
@@ -33,7 +32,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		activity=this;
 		accountContacts=(SectionOmegaFi)findViewById(R.id.sectionAccountContacts);
 		accountDetails=(SectionOmegaFi)findViewById(R.id.sectionAccountDetails);
-		accountSummary=(SectionOmegaFi)findViewById(R.id.sectionAccountSummary);
 		this.completeAccountSummary();
 		this.completeAccountContacts();
 		this.completeAccountDetails();
@@ -48,17 +46,14 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	
 	public void completeAccountContacts(){
-		int sizeTitle=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 13, getApplicationContext().getResources().getDisplayMetrics());
-		int sizeSubtitle=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 11, getApplicationContext().getResources().getDisplayMetrics());
 		for (int i = 0; i < 5; i++) {
-			SectionOmegaFi section=new SectionOmegaFi(this);
-			section.setTitleSection("Contact #"+(i+1));
-			section.setSizeTitle(sizeTitle);
-			section.setSizeSubTitle(sizeSubtitle);
-			section.setVisibleSubTitle(true);
-			section.setSubtitleSection("Info description");
-			section.setPutBorderBottom(true);
-			section.setOnClickListener(new View.OnClickListener() {
+			RowInformation row=new RowInformation(activity);
+			row.setNameInfo("Contact #"+i);
+			row.setBorderBottom(true);
+			row.setNameSubInfo("Info description");
+			row.setColorFontRowInformation(Color.BLACK);
+			row.setVisibleArrow(true);
+			row.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
@@ -67,7 +62,9 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 					
 				}
 			});
-			accountContacts.addView(section);
+			int padding=super.getResources().getDimensionPixelSize(R.dimen.padding_6dp);
+			row.setPaddingRow(padding, padding,padding,padding);
+			accountContacts.addView(row);
 		}
 	}
 	
@@ -76,7 +73,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section3.setNameInfo("Sheduled Payments");
 			section3.setColorFontRowInformation(Color.GRAY);
 			section3.setVisibleArrow(true);
-			section3.setTextSizeInformation(14f);
+			
 			section3.setId(104);
 			section3.setOnClickListener(this);
 			accountDetails.addView(section3);
@@ -84,7 +81,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section.setNameInfo("History");
 			section.setColorFontRowInformation(Color.GRAY);
 			section.setVisibleArrow(true);
-			section.setTextSizeInformation(14f);
+			
 			section.setId(101);
 			section.setOnClickListener(this);
 			accountDetails.addView(section);
@@ -92,7 +89,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section1.setNameInfo("Sheduled Charges");
 			section1.setColorFontRowInformation(Color.GRAY);
 			section1.setVisibleArrow(true);
-			section1.setTextSizeInformation(14f);
+			
 			section1.setOnClickListener(this);
 			section1.setId(106);
 			accountDetails.addView(section1);
@@ -100,7 +97,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section2.setNameInfo("Statements");
 			section2.setVisibleArrow(true);
 			section2.setColorFontRowInformation(Color.GRAY);
-			section2.setTextSizeInformation(14f);
+			
 			section2.setId(107);
 			section2.setOnClickListener(this);
 			accountDetails.addView(section2);
@@ -108,35 +105,13 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section4.setNameInfo("Payment Method");
 			section4.setVisibleArrow(true);
 			section4.setColorFontRowInformation(Color.GRAY);
-			section4.setTextSizeInformation(14f);
+			
 			section4.setId(105);
 			section4.setOnClickListener(this);
 			accountDetails.addView(section4);
 	}
 	
 	public void completeAccountSummary(){
-		
-		float size=15f;
-		for (int i = 1; i < 4; i++) {
-			RowInformation row=new RowInformation(this);
-			row.setNameInfo("Information "+i);
-			row.setValueInfo("Value "+i);
-			accountSummary.addView(row);
-		}
-		for (int i = 1; i < 3; i++) {
-			RowInformation row=new RowInformation(this);
-			row.setTextSizeInformation(11f);
-			row.setBorderBottom(false);
-			row.setSubInformation(true);
-			row.setNameInfo("SubInformation "+i);
-			row.setValueInfo("Value "+i);
-			accountSummary.addView(row);
-		}
-		
-		RowInformation currentBalance=new RowInformation(getApplicationContext());
-		currentBalance.setNameInfo("Current Balance");
-		currentBalance.setValueInfo("$ 335.00");
-		accountSummary.addView(currentBalance);
 		
 	}
 	

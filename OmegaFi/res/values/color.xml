@@ -4,4 +4,9 @@
     <color name="blue_marine_dark">#6590a7</color>
     <color name="red_wine">#a71931</color>
     <color name="gray_background">#e1dcd8</color>
+    <color name="green_bar">#79c944</color>
+    <color name="orange_bar">#ff931e</color>
+    <color name="red_bar">#fe1d25</color>
+    <color name="blue_bar">#1ebdff</color>
+    <color name="gray_bar">#1ebdff</color>
 </resources>

@@ -6,23 +6,28 @@
     android:background="@drawable/border_bottom"
     android:gravity="center_vertical"
     android:layout_gravity="center_vertical" >
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 	    <TextView android:id="@+id/nameInfoEdit"
 	        android:layout_width="wrap_content"
-	        android:layout_marginLeft="5dp"
-	        android:layout_marginTop="6dp"
-	        android:layout_marginBottom="6dp"
 	        android:layout_height="wrap_content"
-	        android:textSize="15sp"
-	        android:textColor="@android:color/darker_gray"
-	        android:layout_alignParentLeft="true"
-	        android:layout_centerVertical="true"
+	        android:gravity="center_vertical"
+	        android:layout_gravity="center_vertical"
+	        android:textSize="@dimen/text_15sp"
+	        android:textColor="@android:color/black"
+	       
 	        />
-	    <!--<View android:id="@+id/editInfo"
+	    <TextView android:id="@+id/subnameInfoEdit"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:text="Value"
-	        android:textSize="15sp"
+	        android:gravity="center_vertical"
+	        android:layout_gravity="center_vertical"
+	        android:textSize="@dimen/text_15sp"
 	        android:textColor="@android:color/darker_gray"
-	        android:layout_alignParentRight="true"
-	        android:layout_centerVertical="true"/> -->
+	        android:visibility="gone"
+	        />
+	 </LinearLayout>
 </RelativeLayout>

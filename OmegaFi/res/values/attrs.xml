@@ -35,6 +35,8 @@
       <attr name="padding_right_row_info" format="dimension" />
       <attr name="padding_bottom_row_info" format="dimension" />
       <attr name="icon_drawable_info" format="reference"/>
+      <attr name="text_size_name_information" format="dimension"/>
+      <attr name="text_size_name_subinformation" format="dimension"/>
     </declare-styleable>
     <declare-styleable name="RowEditInformation">
       <attr name="put_border_bottom_e" format="boolean" />
@@ -100,10 +102,18 @@
         <attr name="text_question_row" format="string" />
     </declare-styleable>
     <declare-styleable name="UserContactLayout">
+        <attr name="color_font_text" format="color" />
+        <attr name="third_line_text" format="string" />
     </declare-styleable>
     <declare-styleable name="ItemMenuSliding">
         <attr name="text_item_menu" format="string" />
         <attr name="image_item_menu" format="reference" />
         <attr name="number_notifications" format="integer" />
+    </declare-styleable>
+    <declare-styleable name="LabelInfoVertical">
+        <attr name="color_font_vertical" format="color" />
+        <attr name="text_title_label" format="string" />
+        <attr name="size_title_label" format="dimension" />
+        <attr name="size_value_label" format="dimension" />
     </declare-styleable>
 </resources>

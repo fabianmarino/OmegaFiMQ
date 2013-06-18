@@ -16,6 +16,7 @@ public class RowEditInformation extends RelativeLayout {
 
 	private RelativeLayout content;
 	private TextView textNameInfo;
+	private TextView textSubNameInfo;
 	
 	public RowEditInformation(Context context){
 		super(context);
@@ -54,15 +55,23 @@ public class RowEditInformation extends RelativeLayout {
 		content=(RelativeLayout)findViewById(R.id.rowEditInformation);
 		content.setPadding(content.getPaddingLeft(), content.getPaddingTop(), 10, content.getPaddingBottom());
 		textNameInfo=(TextView)findViewById(R.id.nameInfoEdit);
+		textSubNameInfo=(TextView)findViewById(R.id.subnameInfoEdit);
 	}
 	
 	public void setNameInfo(String name) {
 		textNameInfo.setText(name);
 	}
 	
+	public void setSubnameInfo(String name) {
+		if(name!=null){
+			textSubNameInfo.setText(name);
+			textSubNameInfo.setVisibility(View.VISIBLE);
+		}
+	}
 	
 	public void setTextSizeInformation(float size){
 		textNameInfo.setTextSize(size);
+		textSubNameInfo.setTextSize(size);
 	}
 	
 	

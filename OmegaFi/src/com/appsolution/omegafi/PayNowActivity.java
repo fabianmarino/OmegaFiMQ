@@ -4,11 +4,13 @@ import com.appsolution.layouts.DatePickerFragment;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.DatePicker;
 
 public class PayNowActivity extends OmegaFiActivity {
 
@@ -23,6 +25,20 @@ public class PayNowActivity extends OmegaFiActivity {
 		actionBar.setTitle("Pay Now");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+	}
+	
+	public void selectDatePayment(View view){
+		DatePickerDialog date=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+			
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear,
+					int dayOfMonth) {
+				// TODO Auto-generated method stub
+				
+			}
+		}, 2011, 0, 1);
+		date.getDatePicker().setCalendarViewShown(false);
+		date.show();
 	}
 	
 	public void onBackToHome(View button){

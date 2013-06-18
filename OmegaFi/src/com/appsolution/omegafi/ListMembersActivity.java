@@ -9,6 +9,8 @@ import com.actionbarsherlock.widget.SearchView;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -18,12 +20,16 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
-public class ListMembersActivity extends OmegaFiActivity {
+public class ListMembersActivity extends OmegaFiActivity implements SearchView.OnQueryTextListener{
 
 	private EditText search;
 	private ListView listMembers;
 	private AlphabeticAdapter members;
+	
+	private SearchView mSearchView;
+    private TextView mStatusView;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,17 +38,51 @@ public class ListMembersActivity extends OmegaFiActivity {
 		listMembers=(ListView)findViewById(R.id.listViewMembers);
 		members=new AlphabeticAdapter(this,android.R.layout.simple_list_item_1, getArrayTest());
 		listMembers.setAdapter(members);
+		mStatusView=(TextView)findViewById(R.id.status_text);
 	}
 	
 	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
-	    menu.add(0, 1, 1, "Buscar").setIcon(android.R.drawable.ic_search_category_default).setActionView(R.layout.abs__action_menu_layout).setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-	    return super.onCreateOptionsMenu(menu);
+		super.onCreateOptionsMenu(menu);
+		 
+        com.actionbarsherlock.view.MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.search_view_in_menu, menu);
+        com.actionbarsherlock.view.MenuItem searchItem = menu.findItem(R.id.action_search);
+        mSearchView = (SearchView) searchItem.getActionView();
+        setupSearchView(searchItem);
+	    return true;
 	 }
+	
+	 private void setupSearchView(com.actionbarsherlock.view.MenuItem searchItem) {
+		 
+	        if (isAlwaysExpanded()) {
+	            mSearchView.setIconifiedByDefault(false);
+	        } else {
+	            searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM
+	                    | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+	        }
+	 
+	        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	        if (searchManager != null) {
+	            List<SearchableInfo> searchables = searchManager.getSearchablesInGlobalSearch();
+	 
+	            SearchableInfo info = searchManager.getSearchableInfo(getComponentName());
+//	            for (SearchableInfo inf : searchables) {
+//	                if (inf.getSuggestAuthority() != null
+//	                        && inf.getSuggestAuthority().startsWith("applications")) {
+//	                    info = inf;
+//	                }
+//	            }
+	            mSearchView.setSearchableInfo(info);
+	        }
+	 
+	        mSearchView.setOnQueryTextListener(this);
+	    }
 
 
 
 	@Override
 	    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
+//		super.onOptionsItemSelected(item);
 	        switch (item.getItemId()) {
 	            case 1:
 	                search = (EditText) item.getActionView();
@@ -115,5 +155,24 @@ public class ListMembersActivity extends OmegaFiActivity {
         Arrays.sort(aux);
 		return (List<String>)Arrays.asList(aux);
 	}
+	
+	 public boolean onQueryTextChange(String newText) {
+	        members.getFilter().filter(newText);
+	        return false;
+	    }
+	 
+	    public boolean onQueryTextSubmit(String query) {
+	       
+	        return false;
+	    }
+	 
+	    public boolean onClose() {
+	        mStatusView.setText("Closed!");
+	        return false;
+	    }
+	 
+	    protected boolean isAlwaysExpanded() {
+	        return false;
+	    }
 
 }

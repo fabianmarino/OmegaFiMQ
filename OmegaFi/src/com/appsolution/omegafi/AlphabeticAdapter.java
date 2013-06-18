@@ -6,7 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import com.appsolution.layouts.DetailsOfficer;
+import com.appsolution.layouts.UserContactLayout;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -87,15 +91,20 @@ public class AlphabeticAdapter extends ArrayAdapter<String> implements
 	                header.setVisibility(View.GONE);  
 	            }  
 	        }  
-	        TextView textView = (TextView) view.findViewById(R.id.textNameMember);
-	        textView.setOnClickListener(new View.OnClickListener() {
+	        UserContactLayout userMember = (UserContactLayout) view.findViewById(R.id.userMemberLayout);
+	        userMember.chargeImageTest();
+	        userMember.setBackgroundColor(Color.WHITE);
+	        userMember.setFontColor(Color.BLACK);
+	        userMember.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
-				public void onClick(View v) {
-					getFilter().filter("F");					
+				public void onClick(View member) {
+					Intent memberDetail=new Intent(activity, OfficerMemberDetailActivity.class);
+					activity.startActivity(memberDetail);
 				}
 			});
-	        textView.setText(label);
+			
+	       userMember.setNameUserProfile(label);
 	        return view;
 	    }
 }

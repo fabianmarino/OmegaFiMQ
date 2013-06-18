@@ -8,18 +8,22 @@
         android:layout_height="wrap_content"
         android:text="Lorem ipsum dolor sit amet, consectetur?"
      />
-    <LinearLayout 
-        android:id="@+id/contentPercentageBar"
-        android:layout_width="fill_parent"
+    <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:layout_marginBottom="10dp"       
-        >
-        <View android:id="@+id/percentageBarResult"
-            android:layout_width="200dp"
-            android:layout_height="20dp"
-            android:background="@android:color/darker_gray"/>
-        <TextView android:id="@+id/numberPercentageResult"
+        android:orientation="horizontal">
+	    <LinearLayout 
+	        android:id="@+id/contentPercentageBar"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_marginBottom="10dp"       
+	        >
+	        <View android:id="@+id/percentageBarResult"
+	            android:layout_width="200dp"
+	            android:layout_height="20dp"
+	            android:background="@android:color/darker_gray"/>
+	    </LinearLayout>
+	    <TextView android:id="@+id/numberPercentageResult"
             android:layout_width="wrap_content"
             android:layout_marginLeft="9dp"
             android:layout_height="wrap_content"

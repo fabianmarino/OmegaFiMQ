@@ -4,6 +4,7 @@ import com.appsolution.omegafi.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -49,6 +50,8 @@ public class PercentageResults extends LinearLayout{
 		display = wm.getDefaultDisplay();
 		
 		contenPercentageBar=(LinearLayout)findViewById(R.id.contentPercentageBar);
+		int widthMax=display.getWidth()-(int)(display.getWidth()*0.25);
+		contenPercentageBar.getLayoutParams().width=widthMax;
 		textQuestionResult=(TextView)findViewById(R.id.textQuestionResult);
 		percentageAnswer=(TextView)findViewById(R.id.numberPercentageResult);
 		barPercentage=(View)findViewById(R.id.percentageBarResult);
@@ -63,6 +66,10 @@ public class PercentageResults extends LinearLayout{
 		percentageAnswer.setText(percentage+" %");
 		int widthMax=display.getWidth()-(int)(display.getWidth()*0.25);
 		barPercentage.getLayoutParams().width=(int)(widthMax*floatPercent);
+	}
+	
+	public void setBackgroundBar(int color){
+		barPercentage.setBackgroundColor(color);
 	}
 
 }

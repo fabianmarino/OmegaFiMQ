@@ -6,11 +6,11 @@
     <LinearLayout  
 	    android:id="@+id/section"  
 	    android:layout_width="fill_parent"  
-	    android:layout_height="wrap_content"  
-	/> 
-    <TextView android:id="@+id/textNameMember"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"  
+	/>
+    <com.appsolution.layouts.UserContactLayout
+        android:id="@+id/userMemberLayout"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="20sp"/>
+        android:layout_height="wrap_content" />
 </LinearLayout>

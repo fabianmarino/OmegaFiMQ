@@ -10,6 +10,7 @@
     <Button android:id="@+id/buttonPruebaSelectPaymentMethod"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/LinearContentAll"
         android:text="Select Payment Method"/>
     
     <com.appsolution.layouts.RowInformation 

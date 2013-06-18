@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 
 public class DetailsOfficer extends LinearLayout {
 
-	private Button buttonView;
 	
 	public DetailsOfficer(Context context){
 		super(context);
@@ -26,11 +25,7 @@ public class DetailsOfficer extends LinearLayout {
 	private void initializate(){
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.details_officer, this, true);
-		buttonView=(Button)findViewById(R.id.buttonViewOffice);
 	}
 	
-	public void setClickViewListener(OnClickListener listener){
-		buttonView.setOnClickListener(listener);
-	}
 
 }

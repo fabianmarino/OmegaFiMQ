@@ -34,7 +34,7 @@
                 android:textSize="@dimen/text_14sp"/>
         </LinearLayout>
         <Button android:id="@+id/buttonViewAccount"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height_button_small"
             android:layout_width="wrap_content"
             android:text="VIEW ACCOUNT"
             android:gravity="center_vertical"
@@ -47,57 +47,24 @@
         <TableRow android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:weightSum="1">
-            <LinearLayout android:layout_width="fill_parent"
+            <com.appsolution.layouts.LabelInfoVertical
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_weight="0.33"
-                >
-                <TextView android:id="@+id/numberAccountUserLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ACCOUNT #"
-                    android:textSize="10sp"/>
-                <TextView android:id="@+id/numberAccountUserInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="65467547"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent"
+                android:layout_weight="0.33"/>
+            <View android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@android:color/darker_gray"/>
+            <com.appsolution.layouts.LabelInfoVertical
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_weight="0.33"
-                >
-                <TextView android:id="@+id/numberAccountUserLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ACCOUNT #"
-                    android:textSize="10sp"/>
-                <TextView android:id="@+id/numberAccountUserInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="65467547"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-            <LinearLayout android:layout_width="fill_parent"
+                android:layout_weight="0.33"/>
+            <View android:layout_width="1dp"
+                android:layout_height="fill_parent"
+                android:background="@android:color/darker_gray"/>
+            <com.appsolution.layouts.LabelInfoVertical
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
-                android:layout_weight="0.33"
-                >
-                <TextView android:id="@+id/numberAccountUserLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ACCOUNT #"
-                    android:textSize="10sp"/>
-                <TextView android:id="@+id/numberAccountUserInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="65467547"
-                    android:textSize="15sp"/>
-            </LinearLayout>
+                android:layout_weight="0.33"/>
         </TableRow>
     </TableLayout>
     <View android:layout_width="fill_parent"
@@ -116,7 +83,7 @@
             android:text="Due On: 03/31/2013"/>
         <Button android:id="@+id/buttonPayNowAccount"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/height_button_small"
             android:text="PAY NOW"
             android:layout_alignParentRight="true"
             style="@style/ButtonOmegaSmallRed"

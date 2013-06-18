@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,9 +46,9 @@ public class DialogSelectableOF {
 	}
 	
 	private void completeTestOptionsSelectables(){
-		optionsSelectables.add("Winston Smith - Mastercard (4571)");
-		optionsSelectables.add("Wanda Smith - Mastercard (1234)");
-		optionsSelectables.add("Winston Smith - Checking (0215)");
+		optionsSelectables.add("Winston Smith,Mastercard (4571)");
+		optionsSelectables.add("Wanda Smith,Mastercard (1234)");
+		optionsSelectables.add("Winston Smith,Checking (0215)");
 	}
 	
 	private void completeOptionsSelectable(){
@@ -58,13 +59,20 @@ public class DialogSelectableOF {
 			int padding=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, 
 					activity.getApplicationContext().getResources().getDisplayMetrics());
 			rowChecked.setPaddingRow(padding,padding,0,padding);
-			rowChecked.setNameInfo(option);
+			String[] values=option.split(",");
+			rowChecked.setNameInfo(values[0]);
+			rowChecked.setSubnameInfo(values[1]);
 			linearSelectables.addView(rowChecked);
 		}
 	}
 	
 	public void setTitleDialog(String message){
-		textTitle.setText(message);
+		if(message==null){
+			textTitle.setVisibility(View.GONE);	
+		}
+		else{
+			textTitle.setText(message);
+		}
 	}
 	
 	public void setTextButton(String text){

@@ -8,6 +8,7 @@
         android:id="@+id/linearNewsOmegaFi"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        style="@style/LinearContentAll"
         android:orientation="vertical">
         
     </LinearLayout>

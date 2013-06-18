@@ -8,7 +8,7 @@
     <LinearLayout android:id="@+id/linearPrivacyPolicy"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="6dp"
+        style="@style/LinearContentAll"
         android:background="@android:color/white"
         android:orientation="vertical">
 	    <TextView

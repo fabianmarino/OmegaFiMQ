@@ -8,7 +8,7 @@
 	<LinearLayout android:id="@+id/linearContentOpenRequest"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:padding="6dp"
+	    style="@style/LinearContentAll"
 	    android:orientation="vertical">
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionContactInformation"

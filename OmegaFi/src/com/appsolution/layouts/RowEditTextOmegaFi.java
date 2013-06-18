@@ -32,8 +32,9 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 	
 	public void initializeComponets(){
 		textEdit=new EditText(super.getContext());
-		textEdit.setGravity(Gravity.RIGHT);
-		textEdit.setLayoutParams(new LayoutParams(200,LayoutParams.WRAP_CONTENT));
+		textEdit.setGravity(Gravity.LEFT);
+		textEdit.setBackgroundResource(R.drawable.white_input);
+		textEdit.setLayoutParams(new LayoutParams(super.getResources().getDimensionPixelSize(R.dimen.width_row_edit_text),LayoutParams.WRAP_CONTENT));
 		this.addViewRight(textEdit);
 	}
 	

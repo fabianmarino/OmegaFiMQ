@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
+    android:id="@+id/contentUserContact"
     android:padding="6dp"
     android:layout_height="wrap_content" >
     <LinearLayout android:layout_width="wrap_content"
@@ -28,6 +29,13 @@
                 android:text="Initiate"
                 android:textSize="@dimen/text_14sp"
                 android:textColor="@android:color/white"/>
+            <TextView android:id="@+id/initiateUniversity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Initiate"
+                android:textSize="@dimen/text_14sp"
+                android:textColor="@android:color/white"
+                android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
 	<ImageView android:layout_width="20dp"

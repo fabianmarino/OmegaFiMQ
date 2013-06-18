@@ -49,7 +49,7 @@ public class RowInformation extends RelativeLayout{
 	   String valueInfo = a.getString(R.styleable.RowInformation_value_information);
 	   setValueInfo(valueInfo);
 	   
-	   float textSize = a.getDimensionPixelSize(R.styleable.RowInformation_row_text_size, 15);
+	   float textSize = a.getDimensionPixelSize(R.styleable.RowInformation_row_text_size, super.getResources().getDimensionPixelSize(R.dimen.text_10sp));
 	   setTextSizeInformation(textSize);
 	   
 	   int colorFont = a.getColor(R.styleable.RowInformation_color_font_row_information, Color.BLACK);
@@ -66,7 +66,7 @@ public class RowInformation extends RelativeLayout{
 	   boolean showArrow=a.getBoolean(R.styleable.RowInformation_show_arrow_info, false);
 	   setVisibleArrow(showArrow);
 	   
-	   int image=a.getResourceId(R.styleable.RowInformation_icon_drawable, R.drawable.right_arrow_1);
+	   int image=a.getResourceId(R.styleable.RowInformation_icon_drawable, -1);
 	   setImageIcon(image);
 	   
 	   int imageInfo = a.getResourceId(R.styleable.RowInformation_icon_drawable_info, -1);
@@ -74,6 +74,12 @@ public class RowInformation extends RelativeLayout{
 	   
 	   String textValue2=a.getString(R.styleable.RowInformation_value_information_2);
 	   setValueInfo2(textValue2);
+	   
+	   int sizeName=a.getDimensionPixelSize(R.styleable.RowInformation_text_size_name_information, (int)textSize);
+	   setTextSizeNameInfo(sizeName);
+	   
+	   int sizeSubname=a.getDimensionPixelSize(R.styleable.RowInformation_text_size_name_subinformation, (int)textSize);
+	   setTextSizeSubNameInfo(sizeSubname);
 	   
 	    a.recycle();
 	   
@@ -94,8 +100,10 @@ public class RowInformation extends RelativeLayout{
 	}
 	
 	public void setImageIcon(int drawable){
-		arrowImage.setVisibility(VISIBLE);
-		arrowImage.setImageResource(drawable);
+		if(drawable!=-1){
+			arrowImage.setVisibility(VISIBLE);
+			arrowImage.setImageResource(drawable);
+		}
 	}
 	
 	public void setNameInfo(String name) {
@@ -159,6 +167,7 @@ public class RowInformation extends RelativeLayout{
 	
 	public void setColorFontRowInformation(int color){
 		textNameInfo.setTextColor(color);
+		textNameSubInfo.setTextColor(color);
 		textValueInfo.setTextColor(color);
 	}
 	
@@ -182,5 +191,13 @@ public class RowInformation extends RelativeLayout{
 			textValueInfo2.setVisibility(VISIBLE);
 			textValueInfo2.setText(text);
 		}
+	}
+	
+	public void setTextSizeNameInfo(int size){
+		textNameInfo.setTextSize(size);
+	}
+	
+	public void setTextSizeSubNameInfo(int size){
+		textNameSubInfo.setTextSize(size);
 	}
 }

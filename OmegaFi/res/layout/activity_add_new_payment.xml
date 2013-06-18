@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="6dp">
+        style="@style/LinearContentAll">
         <Button android:id="@+id/labelSelectPaymentMethod"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
             android:layout_marginTop="10dp"
             android:text="Add"
             android:onClick="addContinueNewPayment"
-            style="@style/ButtonOmegaNormal"
+            style="@style/ButtonOmega"
             />
     </LinearLayout>
 

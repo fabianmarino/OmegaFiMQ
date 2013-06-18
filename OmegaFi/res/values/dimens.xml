@@ -8,9 +8,16 @@
     <dimen name="text_17sp">17sp</dimen>
     <dimen name="text_14sp">14sp</dimen>
     <dimen name="text_10sp">10sp</dimen>
+    <dimen name="text_11sp">11sp</dimen>
     <dimen name="text_15sp">15sp</dimen>
     <dimen name="text_12_notification">12sp</dimen>
-    <dimen name="text_section_title_omegafi">20sp</dimen>
+    <dimen name="text_section_title_omegafi">13sp</dimen>
+    <dimen name="text_name_officer">18sp</dimen>
+    <dimen name="text_sub_name_officer">15sp</dimen>
+    <dimen name="text_label_icon">10sp</dimen>
+    <dimen name="text_6sp">6sp</dimen>
+    <dimen name="text_8sp">8sp</dimen>
+    <dimen name="text_12sp_row_info">12sp</dimen>
     
     <dimen name="text_newevent_title_omegafi">20sp</dimen>
     <dimen name="text_date_newevent_title_omegafi">10sp</dimen>
@@ -26,7 +33,10 @@
     <dimen name="padding_side_button_small">10dp</dimen>
     <dimen name="padding_3dp">3dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="padding_6dp">6dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="padding_5dp_1">5dp</dimen>
     
     
     <dimen name="margin_top_circle_charging">10dp</dimen>
@@ -47,11 +57,15 @@
     <dimen name="width_image_chapter">120dp</dimen>
     <dimen name="height_image_chapter">80dp</dimen>
     <dimen name="size_notification_circle">20dp</dimen>
-    <dimen name="height_new_event_content">130dp</dimen>
+    <dimen name="height_new_event_content">170dp</dimen>
     <dimen name="size_circle_newevents">3dp</dimen>
+    <dimen name="width_image_label">50dp</dimen>
+    <dimen name="width_arrow_down">20dp</dimen>
+    <dimen name="height_button_small">35dp</dimen>
+    <dimen name="width_row_edit_text">150dp</dimen>
     
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>
-    <dimen name="shadow_width">15dp</dimen>
+    <dimen name="shadow_width">0dp</dimen>
     <integer name="num_cols">1</integer>
 </resources>

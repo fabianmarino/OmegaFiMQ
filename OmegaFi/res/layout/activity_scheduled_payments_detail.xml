@@ -9,6 +9,7 @@
 	<LinearLayout android:id="@+id/contentScheduledDetails"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
+	    style="@style/LinearContentAll"
 	    android:orientation="vertical">
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionScheduledPaymentDetails"
@@ -26,7 +27,7 @@
 	        android:layout_height="wrap_content"
 	        android:text="Processing"
 	        android:layout_marginTop="5dp"
-	        style="@style/ButtonOmegaNormal"
+	        style="@style/ButtonOmega"
 	        />
 	</LinearLayout>
 	<LinearLayout android:id="@+id/contentButtonsScheduled"
@@ -39,13 +40,13 @@
 	        android:layout_height="wrap_content"
 	        android:text="Save"
 	        android:onClick="saveSchedulePayment"
-	        style="@style/ButtonOmegaNormal"/>
+	        style="@style/ButtonOmega"/>
 	    <Button android:id="@+id/buttonDeleteScheduled"
 	        android:layout_marginTop="5dp"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:onClick="deleteSchedulePayment"
 	        android:text="Delete"
-	        style="@style/ButtonOmegaNormal"/>
+	        style="@style/ButtonOmega"/>
 	</LinearLayout>
 </RelativeLayout>
