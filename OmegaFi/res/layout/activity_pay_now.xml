@@ -49,10 +49,7 @@
 	            android:layout_height="wrap_content"
 	            secom:name_information_e="Enter Amount"
 	            secom:text_edit="$335.00"
-	            secom:padding_top_row_edit="@dimen/padding_6dp"
-	            secom:padding_bottom_row_edit="@dimen/padding_6dp"
-	            secom:padding_right_row_edit="@dimen/padding_3dp"
-	            secom:padding_left_row_edit="@dimen/padding_3dp"/>
+	            />
 	        <com.appsolution.layouts.RowEditTextOmegaFi 
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
@@ -60,10 +57,7 @@
 	            secom:name_information_e="Select Payment Date"
 	            secom:text_edit="03/31/2013"
 	            secom:text_editable="false"
-	            secom:padding_top_row_edit="@dimen/padding_6dp"
-	            secom:padding_bottom_row_edit="@dimen/padding_6dp"
-	            secom:padding_right_row_edit="@dimen/padding_3dp"
-	            secom:padding_left_row_edit="@dimen/padding_3dp"/>
+	            />
 	        <com.appsolution.layouts.RowInformation 
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"

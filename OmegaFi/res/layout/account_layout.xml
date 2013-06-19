@@ -18,6 +18,7 @@
         <LinearLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
+            
             android:orientation="vertical"
             android:layout_alignParentLeft="true">
             <TextView android:id="@+id/nameUserAccount"
@@ -39,6 +40,7 @@
             android:text="VIEW ACCOUNT"
             android:gravity="center_vertical"
             android:layout_alignParentRight="true"
+            
             style="@style/ButtonOmegaSmall"/>
     </RelativeLayout>
     <TableLayout android:layout_width="fill_parent"
@@ -77,6 +79,7 @@
         <TextView android:id="@+id/dueOnAccountUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:textSize="15sp"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
@@ -85,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_button_small"
             android:text="PAY NOW"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             style="@style/ButtonOmegaSmallRed"
             />

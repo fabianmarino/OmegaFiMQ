@@ -12,18 +12,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         style="@style/LinearContentAll">
-        <Button android:id="@+id/labelSelectPaymentMethod"
-            android:layout_width="fill_parent"
+        <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:onClick="changeTypePayment"
-            android:textSize="19sp"
-            android:text="Select Payment Method"
-            android:background="@drawable/border_bottom"
-            android:gravity="left"
-            android:padding="10dp"/>
+            android:background="@drawable/white_input"
+            android:layout_marginBottom="@dimen/padding_10dp">
+	        <Spinner
+	            android:id="@+id/spinnerCreditECheck" 
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            />
+        </LinearLayout>
         <LinearLayout android:id="@+id/linearCreditDebitCard"
             android:layout_width="fill_parent"
-            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
@@ -39,12 +39,14 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="selectCardType"
-                secom:color_font_row_information="@android:color/darker_gray"
                 secom:name_information="Card Type"
                 secom:value_information=""
                 secom:show_arrow_info="true"
+                secom:padding_top_row_info="@dimen/padding_12dp"
+                secom:padding_bottom_row_info="@dimen/padding_12dp"
+                secom:padding_left_row_info="@dimen/padding_6dp"
+                secom:padding_right_row_info="@dimen/padding_6dp"
                 secom:put_border_bottom="true"
-                secom:padding_row_info="8dp"
                 />
             <com.appsolution.layouts.RowEditTextOmegaFi
                 android:id="@+id/textNumberCard"
@@ -58,8 +60,10 @@
                 android:layout_height="wrap_content"
                 secom:name_information="Expiration Date"
                 secom:put_border_bottom="true"
-                secom:color_font_row_information="@android:color/darker_gray"
-                secom:padding_row_info="8dp"
+                secom:padding_top_row_info="@dimen/padding_12dp"
+                secom:padding_bottom_row_info="@dimen/padding_12dp"
+                secom:padding_left_row_info="@dimen/padding_6dp"
+                secom:padding_right_row_info="@dimen/padding_6dp"
                 secom:icon_drawable="@drawable/calendar_1"
                />
             <com.appsolution.layouts.RowEditTextOmegaFi
@@ -73,13 +77,13 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 secom:toogle_on="true"
-                secom:name_information_e="Save for Future Use"
+                secom:text_toogle="Save for Future Use"
                 />
         </LinearLayout>
         <LinearLayout android:id="@+id/linearCheckingAccount"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/padding_10dp"
             android:orientation="vertical"
             android:visibility="gone">
             <LinearLayout 
@@ -109,14 +113,14 @@
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
 	                secom:toogle_on="true"
-	                secom:name_information_e="Save for Future Use"
+	                secom:text_toogle="Save for Future Use"
 	                />
             </LinearLayout>
             <com.appsolution.layouts.SectionOmegaFi
 	            android:id="@+id/sectionAddresAddPayment"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
-	            android:layout_marginTop="10dp"
+	            android:layout_marginTop="@dimen/padding_10dp"
 	            secom:title_section="Address"
             />
         </LinearLayout>

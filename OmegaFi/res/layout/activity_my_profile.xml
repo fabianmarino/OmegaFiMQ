@@ -10,63 +10,302 @@
         android:layout_height="wrap_content"
         style="@style/LinearContentAll"
         android:orientation="vertical">
-        <com.appsolution.layouts.ImageMemberTemplate
-            android:id="@+id/headMyProfile"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-        <com.appsolution.layouts.SectionOmegaFi
-            android:id="@+id/sectionPersonalInformation"
+        <com.appsolution.layouts.UserContactLayout 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            secom:title_section="Personal Information"
-            secom:padding_title_left="0dp"
-            secom:put_border_title="false"
-            secom:show_arrow="false"
-            secom:background_color_section="@android:color/transparent"
-            />
-        <com.appsolution.layouts.RowToogleOmegaFi
-            android:id="@+id/switchSharedContact"
-            android:layout_width="fill_parent"
+            secom:arrow_visible="false"
+            secom:width_image_user="@dimen/sliding_photo_size_90dp"/>
+		<include layout="@layout/line_jagged_inv"
+		    android:layout_marginTop="@dimen/padding_10dp"/>
+        <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            secom:toogle_on="false"
-            secom:text_toogle="Shared Contact Information"
-            android:background="@drawable/border_bottom"
-            android:text="Shared Contact Information"/>
-        <com.appsolution.layouts.SectionOmegaFi
-            android:id="@+id/sectionMyProfilePhone"
-            android:layout_width="fill_parent"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+            <com.appsolution.layouts.RowInformation
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:name_information="Public Profile Info"
+                secom:text_size_name_information="@dimen/text_17sp"
+                secom:padding_row_info="@dimen/padding_8dp"
+                secom:put_border_bottom="false" />
+            <TableLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_table_row"
+                >
+                <TableRow android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+                    <com.appsolution.layouts.IconLabelVertical
+                        android:id="@+id/phoneIconMyProfile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:onClick="phoneClick"
+                        secom:src_icon_label_vertical="@drawable/icon_phone_white"
+                        secom:text_label_vertical="Phone Number"
+                         />
+                    <com.appsolution.layouts.IconLabelVertical
+                        android:id="@+id/emailIconMyProfile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:onClick="emailClick"
+                        secom:src_icon_label_vertical="@drawable/icon_email_white"
+                        secom:text_label_vertical="Email"
+                         />
+                    <com.appsolution.layouts.IconLabelVertical
+                        android:id="@+id/addressIconMyProfile"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:onClick="addressClick"
+                        secom:src_icon_label_vertical="@drawable/icon_phone_white"
+                        secom:text_label_vertical="Address"
+                         />
+                </TableRow>
+            </TableLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/linearPhoneNumber" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp"
+                    android:orientation="vertical">
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Main Number"
+                        style="@style/EditTextLogin"
+                        />
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_marginTop="@dimen/padding_6dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Secondary Number"
+                        style="@style/EditTextLogin"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearEmailProfile" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <!-- <com.appsolution.layouts.RowEditTextOmegaFi
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        secom:name_information_e="MAIN"
+                        secom:background_input_text="@android:drawable/edit_text"
+                        secom:background_row_edit_info="@drawable/white_input" /> -->
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Main Email"
+                        style="@style/EditTextLogin"
+                        />
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_marginTop="@dimen/padding_6dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Secondary Email"
+                        style="@style/EditTextLogin"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearAddressProfile" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:name_top_info="Home Address"
+	                        secom:hint_text_top_info="Line 1"
+	                        secom:width_fill_parent="true" />
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:hint_text_top_info="Line 2"
+	                        secom:width_fill_parent="true" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:name_top_info="School Address"
+	                        secom:hint_text_top_info="Line 1"
+	                        secom:width_fill_parent="true" />
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:hint_text_top_info="Line 2"
+	                        secom:width_fill_parent="true" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+                <com.appsolution.layouts.RowToogleOmegaFi
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    secom:text_toogle="Share Contact info"
+                    secom:put_border_bottom_e="false"
+                    android:layout_marginBottom="@dimen/padding_10dp" />
+                <!-- 
+                <TableLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
+                <TableRow android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/padding_6dp"
+                        android:paddingBottom="@dimen/padding_6dp"
+                        android:gravity="center"
+                        android:layout_weight="33">
+                        <ImageView android:layout_width="@dimen/width_image_label"
+                            android:layout_height="@dimen/width_image_label"
+                            android:background="@android:color/darker_gray"/>
+                    </LinearLayout>
+                    <View android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@android:color/darker_gray"/>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/padding_6dp"
+                        android:paddingBottom="@dimen/padding_6dp"
+                        android:gravity="center"
+                        android:layout_weight="33">
+                        <ImageView android:layout_width="@dimen/width_image_label"
+                            android:layout_height="@dimen/width_image_label"
+                            android:background="@android:color/darker_gray"/>
+                    </LinearLayout>
+                    <View android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@android:color/darker_gray"/>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/padding_6dp"
+                        android:paddingBottom="@dimen/padding_6dp"
+                        android:gravity="center"
+                        android:layout_weight="33">
+                        <ImageView android:layout_width="@dimen/width_image_label"
+                            android:layout_height="@dimen/width_image_label"
+                            android:background="@android:color/darker_gray"/>
+                    </LinearLayout>
+                </TableRow>
+            </TableLayout> -->
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            secom:padding_title_left="0dp"
-            secom:title_section="Phone Number"
-            secom:put_border_title="false"
-            secom:show_arrow="false"
-            secom:background_color_section="@android:color/transparent"
-            />
-        <com.appsolution.layouts.SectionOmegaFi
-            android:id="@+id/sectionMyProfileEmail"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            secom:title_section="Email"
-            secom:put_border_title="false"
-            secom:show_arrow="false"
-            secom:background_color_section="@android:color/transparent"
-            secom:padding_title_left="0dp"
-            />
-        <com.appsolution.layouts.SectionOmegaFi
-            android:id="@+id/sectionMyProfileAddress"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            secom:title_section="Address"
-            secom:put_border_title="false"
-            secom:show_arrow="false"
-            secom:background_color_section="@android:color/transparent"
-            secom:padding_title_left="0dp"
-            />
+            android:background="@android:color/white"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:orientation="vertical">
+            <com.appsolution.layouts.RowInformation
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                secom:name_information="Personal Info"
+                secom:text_size_name_information="@dimen/text_17sp"
+                secom:padding_row_info="@dimen/padding_8dp"
+                secom:put_border_bottom="true" />
+            <TableLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            <TableRow android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_5dp"
+                android:weightSum="1">
+                <Spinner
+                    android:id="@+id/spinnerPrefixProfile" 
+                    android:layout_width="100dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.2"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/white_input_spinner"
+                    />
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="First Name"
+                    style="@style/EditTextLoginNormal"/>
+            </TableRow>
+            </TableLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_5dp">
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Middle Name"
+                    style="@style/EditTextLoginNormal"/>
+            </LinearLayout>
+            <TableLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            <TableRow android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_5dp"
+                android:weightSum="1">
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:text="Last Name"
+                    style="@style/EditTextLoginNormal"/>
+                <Spinner
+                    android:id="@+id/spinnerSufixProfile" 
+                    android:layout_width="100dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="0.2"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/white_input_spinner"
+                    />
+            </TableRow>
+            </TableLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_5dp">
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Impersonal First Name"
+                    style="@style/EditTextLoginNormal"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_5dp">
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Travel Visa Number"
+                    style="@style/EditTextLoginNormal"/>
+            </LinearLayout>
+            <TableLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+            <TableRow android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_5dp"
+                android:weightSum="1">
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="College Entry Date"
+                    android:editable="false"
+                    android:layout_marginRight="2dp"
+                    android:layout_weight="0.5"
+                    style="@style/EditTextLoginNormal"/>
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Graduation Year"
+                    android:layout_marginLeft="2dp"
+                    android:editable="false"
+                    android:layout_weight="0.5"
+                    style="@style/EditTextLoginNormal"/>
+            </TableRow>
+            </TableLayout>
+        </LinearLayout>
         <Button android:id="@+id/buttonMyProfileSave"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

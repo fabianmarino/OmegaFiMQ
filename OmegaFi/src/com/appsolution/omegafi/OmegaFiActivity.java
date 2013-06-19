@@ -10,6 +10,7 @@ import com.appsolution.logic.Server;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -152,21 +153,33 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	private void loadSlidingMenu(){
-//		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
-//		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
-//		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getAnnouncementsCount());
+		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
+		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
+		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getAnnouncementsCount());
 	}
 	
 	public void goToHome(View item){
-		Intent goToHome=new Intent(this, HomeActivity.class);
-		goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(goToHome);
+		if(this.getClass() != HomeActivity.class){
+			Intent goToHome=new Intent(this, HomeActivity.class);
+			goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			startActivity(goToHome);
+		}
+		else{
+			slidingMenu.showContent(true);
+		}
 	}
 	
 	public void goToAnnouncements(View item){
 		if(this.getClass() != AnnouncementsActivity.class){
 			Intent goToAnnouncements=new Intent(this, AnnouncementsActivity.class);
 			startActivity(goToAnnouncements);
+		}
+		else if(this.getClass() != AnnouncementDetailActivity.class){
+			slidingMenu.showContent(true);
+			onBackPressed();
+		}
+		else{
+			slidingMenu.showContent(true);
 		}
 	}
 	
@@ -178,6 +191,9 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		if(this.getClass()!=MyProfileActivity.class){
 			Intent goToMyProfile=new Intent(this, MyProfileActivity.class);
 			startActivity(goToMyProfile);
+		}
+		else{
+			slidingMenu.showContent(true);
 		}
 	}
 	
@@ -200,6 +216,19 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		                		startActivity(backToLogin);
 		                    }
 		                });
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+	
+	public static void showAlertMessage(String msg, Activity activity){
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+		builder.setMessage(msg)
+		       .setCancelable(false)
+		       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		                //do things
+		           }
+		       });
 		AlertDialog alert = builder.create();
 		alert.show();
 	}

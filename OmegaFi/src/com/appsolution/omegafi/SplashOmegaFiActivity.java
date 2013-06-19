@@ -80,7 +80,7 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 			handlerProgress.sendMessage(msg);
 //			for (int i = 0; i < 100; i+=5) {
 //				try {
-//					Thread.sleep(110);
+//					Thread.sleep(150);
 //				} catch (InterruptedException e) {
 //					// TODO Auto-generated catch block
 //					e.printStackTrace();

@@ -178,6 +178,7 @@ public class HomeActivity extends OmegaFiActivity {
 				
 			}
 		});
+		
 		LinearLayout linearSection=(LinearLayout)sectionOfficers.findViewById(R.id.contentSectionOmegaFi);
 		linearSection.setPadding(12, 0, 0, 10);
 		linearSection.addView(listPhotos);
@@ -227,7 +228,8 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	private void completePollSection(){
 		LinearLayout content=(LinearLayout)sectionPoll.findViewById(R.id.contentSectionOmegaFi);
-		content.setPadding(8,8, 8, 8);
+		int padding=this.getResources().getDimensionPixelSize(R.dimen.padding_6dp);
+		content.setPadding(padding,padding,padding,padding);
 		contentPoll=new PollOmegaFiContent(this);
 		contentPoll.setTitleQuestion("Lorem ipsum dolor sit amet, consectetur adipisicing?");
 		ArrayList<String> aux=new ArrayList<String>();
@@ -235,7 +237,6 @@ public class HomeActivity extends OmegaFiActivity {
 			aux.add("Lorem ipsum dolor sit amet, consectetur adipisicing");
 		}
 		contentPoll.addAnswersToPoll(aux);
-		sectionPoll.setBackgroundColor(Color.TRANSPARENT);
 		content.addView(contentPoll);
 	}
 	

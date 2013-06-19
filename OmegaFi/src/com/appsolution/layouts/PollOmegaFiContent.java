@@ -77,7 +77,7 @@ public class PollOmegaFiContent extends ViewSwitcher{
 			RadioButton newAnswer=new RadioButton(getContext());
 			newAnswer.setTextColor(Color.GRAY);
 			newAnswer.setText(answer);
-			newAnswer.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
+			newAnswer.setTextSize(getContext().getResources().getDimensionPixelSize(R.dimen.text_11sp));
 			groupAnswers.addView(newAnswer);
 		}
 	}

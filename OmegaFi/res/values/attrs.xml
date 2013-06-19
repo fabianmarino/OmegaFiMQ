@@ -49,10 +49,13 @@
       <attr name="padding_top_row_edit" format="dimension" />
       <attr name="padding_right_row_edit" format="dimension" />
       <attr name="padding_bottom_row_edit" format="dimension" />
+      <attr name="background_row_edit_info" format="reference" />
     </declare-styleable>
     <declare-styleable name="RowEditTextOmegaFi">
         <attr name="text_editable" format="boolean" />
         <attr name="text_edit" format="string" />
+        <attr name="text_edit_2" format="string" />
+        <attr name="background_input_text" format="reference" />
     </declare-styleable>
     <declare-styleable name="RowToogleOmegaFi">
         <attr name="toogle_on" format="boolean" />
@@ -75,6 +78,10 @@
     </declare-styleable>
     <declare-styleable name="ViewNameTopInfo">
         <attr name="name_top_info" format="string" />
+        <attr name="width_fill_parent" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="RowEditNameTopInfo">
+        <attr name="hint_text_top_info" format="string" />
     </declare-styleable>
     <declare-styleable name="CycleCharge">
         <attr name="title_line" format="string" />
@@ -104,6 +111,8 @@
     <declare-styleable name="UserContactLayout">
         <attr name="color_font_text" format="color" />
         <attr name="third_line_text" format="string" />
+        <attr name="width_image_user" format="dimension" />
+        <attr name="arrow_visible" format="boolean" />
     </declare-styleable>
     <declare-styleable name="ItemMenuSliding">
         <attr name="text_item_menu" format="string" />
@@ -115,5 +124,10 @@
         <attr name="text_title_label" format="string" />
         <attr name="size_title_label" format="dimension" />
         <attr name="size_value_label" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="IconLabelVertical">
+        <attr name="src_icon_label_vertical" format="reference" />
+        <attr name="text_label_vertical" format="string" />
+        <attr name="font_color_label_vertical" format="color" />
     </declare-styleable>
 </resources>

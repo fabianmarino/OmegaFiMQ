@@ -38,7 +38,9 @@
                 android:visibility="gone"/>
         </LinearLayout>
     </LinearLayout>
-	<ImageView android:layout_width="20dp"
+	<ImageView
+	    android:id="@+id/arrow_right_user" 
+	    android:layout_width="20dp"
 	    android:layout_height="wrap_content"
 	    android:adjustViewBounds="true"
 	    android:src="@drawable/right_white_arrow"

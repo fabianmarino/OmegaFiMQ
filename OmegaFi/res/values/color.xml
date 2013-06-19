@@ -9,4 +9,5 @@
     <color name="red_bar">#fe1d25</color>
     <color name="blue_bar">#1ebdff</color>
     <color name="gray_bar">#1ebdff</color>
+    <color name="gray_table_row">#999999</color>
 </resources>

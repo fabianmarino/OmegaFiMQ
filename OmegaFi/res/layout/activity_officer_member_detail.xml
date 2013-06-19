@@ -9,42 +9,196 @@
 	    android:id="@+id/linearOfficerMemberDetail"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    style="@style/LinearContentAll"
 	    android:orientation="vertical">
-	    <com.appsolution.layouts.ImageMemberTemplate
-	        android:id="@+id/imageMemberHeader"
-	       	android:layout_width="fill_parent"
-	       	android:layout_height="wrap_content"
-	        />
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionOMContact"
-	        android:layout_width="fill_parent"
-	        android:layout_marginTop="5dp"
+	    <LinearLayout android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        secom:put_border_title="false"
-	        secom:show_arrow="false"
-	        secom:title_section="Contact"
-	        secom:background_color_section="@android:color/transparent"
-	        secom:padding_title_left="0dp"/>
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionOMEmail"
-	        android:layout_width="fill_parent"
-	        android:layout_marginTop="5dp"
-	        android:layout_height="wrap_content"
-	        secom:put_border_title="false"
-	        secom:show_arrow="false"
-	        secom:title_section="Email"
-	        secom:padding_title_left="0dp"
-	        secom:background_color_section="@android:color/transparent"/>
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionOMAddress"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginTop="5dp"
-	        secom:put_border_title="false"
-	        secom:show_arrow="false"
-	        secom:padding_title_left="0dp"
-	        secom:title_section="Address"
-	        secom:background_color_section="@android:color/transparent"/>
+	        android:gravity="center_horizontal"
+	        android:paddingTop="@dimen/padding_12dp"
+	        android:orientation="vertical">
+	        <ImageView android:layout_width="@dimen/sliding_photo_size_130dp"
+	            android:layout_height="@dimen/sliding_photo_size_130dp"
+	            android:src="@drawable/photo_1"/>
+	        <com.appsolution.layouts.LabelInfoVertical
+	             android:layout_width="wrap_content"
+	             android:layout_height="wrap_content"
+	             secom:text_title_label="Initiate"
+	             secom:size_title_label="@dimen/text_15sp"
+	             secom:size_value_label="@dimen/text_12sp_row_info"/>
+	    </LinearLayout>
+	    <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingTop="@dimen/padding_10dp"
+            android:orientation="vertical">
+            <TableLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_table_row"
+                >
+                <TableRow android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+                    <com.appsolution.layouts.IconLabelVertical
+                        android:id="@+id/phoneIconMember"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:onClick="phoneClick"
+                        secom:src_icon_label_vertical="@drawable/icon_phone_white"
+                        secom:text_label_vertical="Phone Number"
+                         />
+                    <com.appsolution.layouts.IconLabelVertical
+                        android:id="@+id/emailIconMember"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:onClick="emailClick"
+                        secom:src_icon_label_vertical="@drawable/icon_email_white"
+                        secom:text_label_vertical="Email"
+                         />
+                    <com.appsolution.layouts.IconLabelVertical
+                        android:id="@+id/addressIconMember"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="33"
+                        android:onClick="addressClick"
+                        secom:src_icon_label_vertical="@drawable/icon_phone_white"
+                        secom:text_label_vertical="Address"
+                         />
+                </TableRow>
+            </TableLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/linearPhoneNumber" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp"
+                    android:orientation="vertical">
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Main Number"
+                        style="@style/EditTextLogin"
+                        />
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_marginTop="@dimen/padding_6dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Secondary Number"
+                        style="@style/EditTextLogin"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearEmailProfile" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <!-- <com.appsolution.layouts.RowEditTextOmegaFi
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        secom:name_information_e="MAIN"
+                        secom:background_input_text="@android:drawable/edit_text"
+                        secom:background_row_edit_info="@drawable/white_input" /> -->
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Main Email"
+                        style="@style/EditTextLogin"
+                        />
+                    <EditText android:layout_width="fill_parent"
+                        android:layout_marginTop="@dimen/padding_6dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Secondary Email"
+                        style="@style/EditTextLogin"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearAddressProfile" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:name_top_info="Home Address"
+	                        secom:hint_text_top_info="Line 1"
+	                        secom:width_fill_parent="true" />
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:hint_text_top_info="Line 2"
+	                        secom:width_fill_parent="true" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:name_top_info="School Address"
+	                        secom:hint_text_top_info="Line 1"
+	                        secom:width_fill_parent="true" />
+	                    <com.appsolution.layouts.RowEditNameTopInfo
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:hint_text_top_info="Line 2"
+	                        secom:width_fill_parent="true" />
+                    </LinearLayout>
+                </LinearLayout>
+                <View android:layout_width="fill_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/> 
+                <TableLayout android:layout_width="fill_parent"
+	                android:layout_height="wrap_content"
+	                android:background="@android:color/white">
+                <TableRow android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="100">
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/padding_6dp"
+                        android:paddingBottom="@dimen/padding_6dp"
+                        android:gravity="center"
+                        android:layout_weight="33">
+                        <ImageView android:layout_width="@dimen/width_image_label"
+                            android:layout_height="@dimen/width_image_label"
+                            android:background="@android:color/darker_gray"/>
+                    </LinearLayout>
+                    <View android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@android:color/darker_gray"/>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/padding_6dp"
+                        android:paddingBottom="@dimen/padding_6dp"
+                        android:gravity="center"
+                        android:layout_weight="33">
+                        <ImageView android:layout_width="@dimen/width_image_label"
+                            android:layout_height="@dimen/width_image_label"
+                            android:background="@android:color/darker_gray"/>
+                    </LinearLayout>
+                    <View android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@android:color/darker_gray"/>
+                    <LinearLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/padding_6dp"
+                        android:paddingBottom="@dimen/padding_6dp"
+                        android:gravity="center"
+                        android:layout_weight="33">
+                        <ImageView android:layout_width="@dimen/width_image_label"
+                            android:layout_height="@dimen/width_image_label"
+                            android:background="@android:color/darker_gray"/>
+                    </LinearLayout>
+                </TableRow>
+            	</TableLayout>
+            </LinearLayout>
+        </LinearLayout>
 	</LinearLayout>
 </ScrollView>

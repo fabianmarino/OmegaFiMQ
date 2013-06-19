@@ -20,6 +20,7 @@ public class UserContactLayout extends RelativeLayout {
 	private TextView textSubtitleProfile;
 	private TextView textThirdLineProfile;
 	private ImageView imageProfile;
+	private ImageView imageArrow;
 	private RelativeLayout contentAll;
 	
 	public UserContactLayout(Context context){
@@ -37,6 +38,14 @@ public class UserContactLayout extends RelativeLayout {
 		
 		String third=a.getString(R.styleable.UserContactLayout_third_line_text);
 		setThirdLine(third);
+		
+		int width=a.getDimensionPixelSize(R.styleable.UserContactLayout_width_image_user, 
+				context.getResources().getDimensionPixelSize(R.dimen.sliding_photo_size));
+		setWidthImagContact(width);
+		
+		boolean visible=a.getBoolean(R.styleable.UserContactLayout_arrow_visible, true);
+		setArrowVisible(visible);
+		
 		a.recycle();
 	}
 	
@@ -48,6 +57,8 @@ public class UserContactLayout extends RelativeLayout {
 		textThirdLineProfile=(TextView)findViewById(R.id.initiateUniversity);
 		
 		imageProfile=(ImageView)findViewById(R.id.imageUserContact);
+		imageArrow=(ImageView)findViewById(R.id.arrow_right_user);
+		
 		contentAll=(RelativeLayout)findViewById(R.id.contentUserContact);
 	}
 	
@@ -92,6 +103,7 @@ public class UserContactLayout extends RelativeLayout {
 	
 	public void setWidthImagContact(int width){
 		imageProfile.getLayoutParams().width=width;
+		imageProfile.getLayoutParams().height=width;
 	}
 	
 	public void setBackgroundColor(int color){
@@ -102,6 +114,19 @@ public class UserContactLayout extends RelativeLayout {
 			textNameUser.setTextColor(color);
 			textSubtitleProfile.setTextColor(color);
 			textThirdLineProfile.setTextColor(color);
+	}
+	
+	public void setSizePhotoImage(int width){
+		imageProfile.setLayoutParams(new LayoutParams(width, width));
+	}
+	
+	public void setArrowVisible(boolean visible){
+		if(visible){
+			imageArrow.setVisibility(VISIBLE);
+		}
+		else{
+			imageArrow.setVisibility(GONE);
+		}
 	}
 	
 }

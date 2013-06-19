@@ -1,5 +1,5 @@
 <!-- Si es necesario un scroll view cuando la pantalla esté en modo landscape -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,33 +20,34 @@
 	        android:id="@+id/sectionScheduledPaymentMethod"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="5dp"
+	        android:layout_marginTop="@dimen/padding_5dp_1"
 	        secom:title_section="Payment Method"/>
 	    <Button android:id="@+id/buttonStateScheduled"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:text="Processing"
-	        android:layout_marginTop="5dp"
+	        android:layout_marginTop="@dimen/padding_5dp_1"
 	        style="@style/ButtonOmega"
 	        />
+	    <LinearLayout android:id="@+id/contentButtonsScheduled"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="@dimen/margin_top_circle_charging"
+		    android:orientation="vertical"
+		    >
+		    <Button android:id="@+id/buttonSaveScheduled"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Save"
+		        android:onClick="saveSchedulePayment"
+		        style="@style/ButtonOmega"/>
+		    <Button android:id="@+id/buttonDeleteScheduled"
+		        android:layout_marginTop="@dimen/padding_5dp_1"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:onClick="deleteSchedulePayment"
+		        android:text="Delete"
+		        style="@style/ButtonOmega"/>
+		</LinearLayout>
 	</LinearLayout>
-	<LinearLayout android:id="@+id/contentButtonsScheduled"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:layout_alignParentBottom="true">
-	    <Button android:id="@+id/buttonSaveScheduled"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:text="Save"
-	        android:onClick="saveSchedulePayment"
-	        style="@style/ButtonOmega"/>
-	    <Button android:id="@+id/buttonDeleteScheduled"
-	        android:layout_marginTop="5dp"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:onClick="deleteSchedulePayment"
-	        android:text="Delete"
-	        style="@style/ButtonOmega"/>
-	</LinearLayout>
-</RelativeLayout>
+</ScrollView>

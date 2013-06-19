@@ -32,8 +32,13 @@ public class RowToogleOmegaFi extends RowEditInformation {
 	}
 	
 	private void initialize(){
+		this.setPaddingRow(10, 5, 5, 5);
 		toogleButton=new ToggleButton(super.getContext());
-		toogleButton.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		toogleButton.setTextOn("");
+		toogleButton.setTextOff("");
+		int width=getContext().getResources().getDimensionPixelSize(R.dimen.width_95dp);
+		toogleButton.setLayoutParams(new LayoutParams(width, width/3));
+		toogleButton.setBackgroundResource(R.drawable.toogle_omegafi);
 		this.addViewRight(toogleButton);
 	}
 	

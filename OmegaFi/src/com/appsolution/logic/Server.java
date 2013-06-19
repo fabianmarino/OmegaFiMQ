@@ -15,10 +15,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.json.JSONException;
@@ -34,10 +37,14 @@ public class Server {
 	public static final String ACCOUNTS_SERVICE="https://qa-services.omegafi.com/myomegafi/api/v1/accounts";
 	public static final String CHAPTERS_SERVICE="https://qa-services.omegafi.com/myomegafi/api/v1/chapters";
 	public static final String PROFILE_SERVICE="https://qa-services.omegafi.com/myomegafi/api/v1/user/profile";
+	public static final String TERMS_SERVICE="https://qa-services.omegafi.com/myomegafi/api/v1/terms";
+	public static final String PRIVACY_SERVICE="https://qa-services.omegafi.com/myomegafi/api/v1/privacy";
+	
+	public static int TIME_OUT=10000;
 	private HttpClient clientRequest;
 	private HttpContext contextHttp;
 	private CookieStore cookieStore;
-//	private cookiest
+	
 	public String evaluador=null;
 	private JSONObject jsonProfile;
 	
@@ -100,6 +107,8 @@ public class Server {
 	public JSONObject makeRequestPost(String url,List<NameValuePair> data){
 		JSONObject jsonResponse = null;
 		HttpPost post=new HttpPost(url);
+		HttpConnectionParams.setConnectionTimeout(post.getParams(), TIME_OUT);
+		HttpConnectionParams.setSoTimeout(post.getParams(), TIME_OUT);
 		try {
 			post.setEntity(new UrlEncodedFormEntity(data));
 			HttpResponse response=clientRequest.execute(post,contextHttp);
@@ -137,6 +146,32 @@ public class Server {
 		return jsonResponse;
 	}
 	
+	public String getPrivacyOmegaFi(){
+		return this.makeRequestGetHtml(Server.PRIVACY_SERVICE);
+	}
+	
+	public String getTermsOmegaFi(){
+		return this.makeRequestGetHtml(Server.TERMS_SERVICE);
+	}
+	
+	public String makeRequestGetHtml(String url){
+		HttpGet get=new HttpGet(url);
+		String builder="";
+		get.addHeader("Content-Type", "text/plain");
+		get.addHeader("Accept", "*/*");
+		try {
+			HttpResponse response=clientRequest.execute(get,contextHttp);
+			builder=this.fromResponseToString(response);
+		} catch (ClientProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return builder;
+	}
+	
 	private JSONObject fromResponseToJSON(HttpResponse response){
 		Log.d("Status", response.getStatusLine().toString());
 		BufferedReader rd;
@@ -163,6 +198,27 @@ public class Server {
 			e.printStackTrace();
 		}
 		return jsonResponse;
+	}
+	
+	private String fromResponseToString(HttpResponse response){
+		Log.d("Status", response.getStatusLine().toString());
+		BufferedReader rd;
+		StringBuilder todo=new StringBuilder();
+		try {
+			rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+	        String line = "";
+	        while ((line = rd.readLine()) != null) {
+	        	todo.append(line);
+	        }
+	        rd.close();
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return todo.toString();
 	}
 	
 	public void setEvaluador(String eval){

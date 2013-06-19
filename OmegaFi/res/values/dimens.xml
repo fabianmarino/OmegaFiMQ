@@ -11,7 +11,7 @@
     <dimen name="text_11sp">11sp</dimen>
     <dimen name="text_15sp">15sp</dimen>
     <dimen name="text_12_notification">12sp</dimen>
-    <dimen name="text_section_title_omegafi">13sp</dimen>
+    <dimen name="text_section_title_omegafi">14sp</dimen>
     <dimen name="text_name_officer">18sp</dimen>
     <dimen name="text_sub_name_officer">15sp</dimen>
     <dimen name="text_label_icon">10sp</dimen>
@@ -36,6 +36,7 @@
     <dimen name="padding_6dp">6dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="padding_12dp">12dp</dimen>
     <dimen name="padding_5dp_1">5dp</dimen>
     
     
@@ -53,16 +54,19 @@
     <dimen name="photo_size">100dp</dimen>
     <dimen name="image_size_item_menu">25dp</dimen>
     <dimen name="sliding_photo_size">60dp</dimen>
+    <dimen name="sliding_photo_size_90dp">90dp</dimen>
+    <dimen name="sliding_photo_size_130dp">130dp</dimen>
     <dimen name="circle_chargin_size">105dp</dimen>
     <dimen name="width_image_chapter">120dp</dimen>
     <dimen name="height_image_chapter">80dp</dimen>
     <dimen name="size_notification_circle">20dp</dimen>
     <dimen name="height_new_event_content">170dp</dimen>
     <dimen name="size_circle_newevents">3dp</dimen>
-    <dimen name="width_image_label">50dp</dimen>
+    <dimen name="width_image_label">70dp</dimen>
     <dimen name="width_arrow_down">20dp</dimen>
     <dimen name="height_button_small">35dp</dimen>
     <dimen name="width_row_edit_text">150dp</dimen>
+    <dimen name="width_95dp">80dp</dimen>
     
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>

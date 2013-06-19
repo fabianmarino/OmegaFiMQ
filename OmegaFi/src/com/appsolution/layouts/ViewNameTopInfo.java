@@ -31,6 +31,9 @@ public class ViewNameTopInfo extends LinearLayout {
 		String nameInfo=a.getString(R.styleable.ViewNameTopInfo_name_top_info);
 		setNameInfoTop(nameInfo);
 		
+		boolean fill=a.getBoolean(R.styleable.ViewNameTopInfo_width_fill_parent, false);
+		setWidthFillParent(fill);
+		
 		a.recycle();
 	}
 	
@@ -43,7 +46,13 @@ public class ViewNameTopInfo extends LinearLayout {
 	}
 	
 	public void setNameInfoTop(String name){
-		nameTopInfo.setText(name);
+		if(name!=null){
+			nameTopInfo.setVisibility(View.VISIBLE);
+			nameTopInfo.setText(name);
+		}
+		else{
+			nameTopInfo.setVisibility(View.GONE);
+		}
 	}
 	
 	@Override

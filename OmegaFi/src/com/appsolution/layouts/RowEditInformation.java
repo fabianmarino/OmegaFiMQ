@@ -35,8 +35,11 @@ public class RowEditInformation extends RelativeLayout {
 		   String nameInfo = a.getString(R.styleable.RowEditInformation_name_information_e);
 		   setNameInfo(nameInfo);
 		   
-		   float textSize = a.getDimension(R.styleable.RowEditInformation_row_text_size_e, 15f);
+		   float textSize = a.getDimension(R.styleable.RowEditInformation_row_text_size_e,  super.getResources().getDimensionPixelSize(R.dimen.text_10sp));
 		   setTextSizeInformation(textSize);
+		   
+		   int resource=(int)a.getResourceId(R.styleable.RowEditInformation_background_row_edit_info, -1);
+		   setBackgroundResource(resource);	   
 		   
 		   int padding=(int)a.getDimension(R.styleable.RowEditInformation_padding_row_edit, content.getPaddingLeft());
 		   setPaddingRow(padding, padding, padding, padding);
@@ -94,6 +97,12 @@ public class RowEditInformation extends RelativeLayout {
 		params.addRule(RelativeLayout.CENTER_VERTICAL);
 		view.setLayoutParams(params);	
 		content.addView(view);
+	}
+	
+	public void setBackgroundResource(int resource){
+		if(resource!=-1){
+			content.setBackgroundResource(resource);
+		}
 	}
 
 

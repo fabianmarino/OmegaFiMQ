@@ -9,7 +9,7 @@
     <TextView android:id="@+id/name_info_top"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="12dp"
+        android:textSize="@dimen/text_8sp"
         android:text="Top Name Info"
         />
     <LinearLayout android:id="@+id/linearContentAddView"

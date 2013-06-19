@@ -1,19 +1,13 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/BackgroundActivity"
-    tools:context=".PrivacyActivity" >
-
-    <LinearLayout android:id="@+id/linearPrivacyPolicy"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/LinearContentAll"
-        android:background="@android:color/white"
-        android:orientation="vertical">
-	    <TextView
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/privacy_policy" />
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+    	xmlns:tools="http://schemas.android.com/tools"
+	    android:id="@+id/linearTermsUse"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    style="@style/LinearContentAll"
+	    android:orientation="vertical"> 
+	    <WebView
+	        android:id="@+id/webViewPrivacy" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"/>
 	</LinearLayout>
-</ScrollView>

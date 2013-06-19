@@ -13,7 +13,8 @@
 	        android:layout_height="wrap_content"
 	        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing?"
 	        android:textColor="@android:color/black"
-	        android:textSize="15sp"/>
+	        android:background="@android:color/white"
+	        android:textSize="@dimen/text_15sp"/>
 	    <LinearLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
@@ -57,6 +58,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:textSize="15sp"
+	        android:background="@android:color/white"
 	        android:text="Lorem ipsum dolor sit amet, consecteur?"/>  
 	    <LinearLayout 
 	        android:id="@+id/contentPollResults"

@@ -19,7 +19,6 @@
         android:layout_width="fill_parent"
        	android:layout_height="wrap_content"
        	android:text="OK"
-       	android:textSize="20sp"
-       	android:background="@drawable/boton_style"
-       	android:padding="10dp"/>
+       	style="@style/ButtonOmega"
+       	/>
 </LinearLayout>
