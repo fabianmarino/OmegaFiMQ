@@ -10,9 +10,12 @@
         android:layout_height="wrap_content"
         style="@style/LinearContentAll"
         android:orientation="vertical">
-        <com.appsolution.layouts.UserContactLayout 
+        <com.appsolution.layouts.UserContactLayout
+            android:id="@+id/userContactMyProfile" 
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            secom:text_bottom_imagen="Edit"
+            secom:color_font_text="@android:color/black"
             secom:arrow_visible="false"
             secom:width_image_user="@dimen/sliding_photo_size_90dp"/>
 		<include layout="@layout/line_jagged_inv"
@@ -25,45 +28,43 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 secom:name_information="Public Profile Info"
-                secom:text_size_name_information="@dimen/text_17sp"
+                secom:text_size_name_information="@dimen/text_15sp"
                 secom:padding_row_info="@dimen/padding_8dp"
                 secom:put_border_bottom="false" />
-            <TableLayout android:layout_width="fill_parent"
+            <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/gray_table_row"
+                android:orientation="horizontal"
+                android:weightSum="3"
                 >
-                <TableRow android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="100">
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/phoneIconMyProfile"
-                        android:layout_width="fill_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="33"
+                        android:layout_weight="1"
                         android:onClick="phoneClick"
                         secom:src_icon_label_vertical="@drawable/icon_phone_white"
                         secom:text_label_vertical="Phone Number"
                          />
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/emailIconMyProfile"
-                        android:layout_width="fill_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="33"
+                        android:layout_weight="1"
                         android:onClick="emailClick"
                         secom:src_icon_label_vertical="@drawable/icon_email_white"
                         secom:text_label_vertical="Email"
                          />
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/addressIconMyProfile"
-                        android:layout_width="fill_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="33"
+                        android:layout_weight="1"
                         android:onClick="addressClick"
-                        secom:src_icon_label_vertical="@drawable/icon_phone_white"
+                        secom:src_icon_label_vertical="@drawable/icon_address_white"
                         secom:text_label_vertical="Address"
                          />
-                </TableRow>
-            </TableLayout>
+            </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -93,12 +94,6 @@
                     android:padding="@dimen/padding_10dp"
                     android:visibility="gone"
                     android:orientation="vertical">
-                    <!-- <com.appsolution.layouts.RowEditTextOmegaFi
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        secom:name_information_e="MAIN"
-                        secom:background_input_text="@android:drawable/edit_text"
-                        secom:background_row_edit_info="@drawable/white_input" /> -->
                     <EditText android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="Main Email"
@@ -214,7 +209,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 secom:name_information="Personal Info"
-                secom:text_size_name_information="@dimen/text_17sp"
+                secom:text_size_name_information="@dimen/text_15sp"
                 secom:padding_row_info="@dimen/padding_8dp"
                 secom:put_border_bottom="true" />
             <TableLayout android:layout_width="fill_parent"
@@ -311,6 +306,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="Save"
+            android:onClick="onSaveMyProfile"
             style="@style/ButtonOmega"/>
     </LinearLayout>
 </ScrollView>

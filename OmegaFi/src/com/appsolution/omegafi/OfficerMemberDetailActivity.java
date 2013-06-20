@@ -26,9 +26,9 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		emailIcon=(IconLabelVertical)findViewById(R.id.emailIconMember);
 		addresseIcon=(IconLabelVertical)findViewById(R.id.addressIconMember);
 		
-		linearPhone=(LinearLayout)findViewById(R.id.linearPhoneNumber);
-		linearEmail=(LinearLayout)findViewById(R.id.linearEmailProfile);
-		linearAddress=(LinearLayout)findViewById(R.id.linearAddressProfile);
+		linearPhone=(LinearLayout)findViewById(R.id.linearPhoneNumberO);
+		linearEmail=(LinearLayout)findViewById(R.id.linearEmailProfileO);
+		linearAddress=(LinearLayout)findViewById(R.id.linearAddressProfileO);
 	}
 	
 	@Override

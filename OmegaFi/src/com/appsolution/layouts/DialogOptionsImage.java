@@ -16,6 +16,9 @@ public class DialogOptionsImage {
 	private Activity activity;
 	private LayoutInflater layoutInflater;
 	
+	private Button buttonLibrary;
+	private Button buttonCamera;
+	
 	private Button buttonCancel;
 	
 	public DialogOptionsImage(Activity activity){
@@ -25,6 +28,9 @@ public class DialogOptionsImage {
 				(ViewGroup)this.activity.findViewById(R.id.layout_root_image));
 		builderDialog = new AlertDialog.Builder(activity);
 		builderDialog.setView(layout);
+		
+		buttonLibrary=(Button)layout.findViewById(R.id.buttonChooseFromLibrary);
+		buttonCamera=(Button)layout.findViewById(R.id.buttonTakePhoto);
 		
 		buttonCancel=(Button)layout.findViewById(R.id.buttonCancelImage);
 		buttonCancel.setOnClickListener(new OnClickListener() {
@@ -45,6 +51,14 @@ public class DialogOptionsImage {
 	
 	public void dismissDialog(){
 		alertDialog.dismiss();
+	}
+	
+	public void setOnClickLibrary(OnClickListener listener){
+		buttonLibrary.setOnClickListener(listener);
+	}
+	
+	public void setOnClickCamera(OnClickListener listener){
+		buttonCamera.setOnClickListener(listener);
 	}
 	
 }

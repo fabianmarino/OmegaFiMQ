@@ -3,23 +3,34 @@ package com.appsolution.omegafi;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogOptionsImage;
 import com.appsolution.layouts.IconLabelVertical;
 import com.appsolution.layouts.ImageMemberTemplate;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.layouts.UserContactLayout;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 public class MyProfileActivity extends OmegaFiActivity {
+	
+	private UserContactLayout userHeader;
 	
 	private IconLabelVertical phoneIcon;
 	private IconLabelVertical emailIcon;
@@ -30,13 +41,17 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private LinearLayout linearAddress;
 	
 	private Spinner spinnerPrefix;
-
+	
+	private static final int RESULT_LOAD_IMAGE=1;
+	private static final int CAMERA_REQUEST = 1888; 
 	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_my_profile);
+		
+		userHeader=(UserContactLayout)findViewById(R.id.userContactMyProfile);
 		
 		phoneIcon=(IconLabelVertical)findViewById(R.id.phoneIconMyProfile);
 		phoneIcon.setBackgroundColor(this.getResources().getColor(R.color.blue_marine));
@@ -78,7 +93,35 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	private void completeImageProfile(){
-		
+		final Activity activity=this;
+		userHeader.setOnClickPhoto(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				final DialogOptionsImage imageOptions=new DialogOptionsImage(activity);
+				imageOptions.setOnClickCamera(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						 imageOptions.dismissDialog();
+						Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
+		                startActivityForResult(cameraIntent, CAMERA_REQUEST); 
+					}
+				});
+				imageOptions.setOnClickLibrary(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						 imageOptions.dismissDialog();
+						Intent i = new Intent(
+		                        Intent.ACTION_PICK,
+		                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		                startActivityForResult(i, RESULT_LOAD_IMAGE);
+					}
+				});
+				imageOptions.showDialog();
+			}
+		});
 	}
 	
 	private void completePersonalInformation(){
@@ -194,6 +237,40 @@ public class MyProfileActivity extends OmegaFiActivity {
 		addresseIcon.setBackgroundColor(Color.TRANSPARENT);
 	}
 	
+	public void onSaveMyProfile(View button){
+		final DialogInformationOF info=new DialogInformationOF(this);
+		info.setMessageDialog("Your profile changes have been successfully");
+		info.setButtonListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				info.dismissDialog();
+			}
+		});
+		
+		info.showDialog();
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		 if (requestCode ==RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+	         Uri selectedImage = data.getData();
+	         String[] filePathColumn = { MediaStore.Images.Media.DATA };
+	 
+	         Cursor cursor = getContentResolver().query(selectedImage,
+	                 filePathColumn, null, null, null);
+	         cursor.moveToFirst();
+	         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+	         String picturePath = cursor.getString(columnIndex);
+	         cursor.close();
+	         userHeader.getImageUser().setImageBitmap(BitmapFactory.decodeFile(picturePath));
+		 }
+		 if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
+	            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
+	            userHeader.getImageUser().setImageBitmap(photo);
+	        }  
+	}
 	
 	
 

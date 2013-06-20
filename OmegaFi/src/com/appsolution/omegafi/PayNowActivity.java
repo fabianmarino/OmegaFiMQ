@@ -1,6 +1,7 @@
 package com.appsolution.omegafi;
 
 import com.appsolution.layouts.DatePickerFragment;
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
 
@@ -14,6 +15,8 @@ import android.widget.DatePicker;
 
 public class PayNowActivity extends OmegaFiActivity {
 
+	private int enteroTest=0;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -63,26 +66,61 @@ public class PayNowActivity extends OmegaFiActivity {
 	}
 	
 	public void onSubmitPayment(View view){
-		final DialogTwoOptionsOF options=new DialogTwoOptionsOF(this);
-		options.setMessageDialog("You have not added a payment method");
-		options.setOption1("OK");
-		options.setOption2("Add New Payment Method");
-		options.setListenerOption1(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				options.dismissDialog();
+		if(enteroTest==0){
+			final DialogTwoOptionsOF options=new DialogTwoOptionsOF(this);
+			options.setMessageDialog("You have not added a payment method");
+			options.setOption1("OK");
+			options.setOption2("Add New Payment Method");
+			options.setListenerOption2(new View.OnClickListener() {
 				
-			}
-		});
-		options.showDialog();
+				@Override
+				public void onClick(View arg0) {
+					options.dismissDialog();
+					addNewPaymentMethod(null);
+				}
+			});
+			options.setListenerOption1(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					options.dismissDialog();
+					
+				}
+			});
+			options.showDialog();
+		}
+		else{
+			final DialogTwoOptionsOF info=new DialogTwoOptionsOF(this);
+			info.setMessageDialog("I am autorizing to Omega Fi to electronically debit my account for my payment. " +
+					"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore " +
+					"et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut " +
+					"aliquip ex ea commodo consequat.");
+			info.setOption1("YES");
+			info.setOption2("NO");
+			info.setListenerOption1(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					info.dismissDialog();
+					
+				}
+			});
+			info.setListenerOption2(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					info.dismissDialog();
+					
+				}
+			});
+			info.showDialog();
+		}
 	}
 	
 	public void addNewPaymentMethod(View view){
-//		android.support.v4.app.DialogFragment newFragment = new DatePickerFragment();
-//		   newFragment.show(getSupportFragmentManager(), "datePicker");
 		Intent activityAddNewPayment=new Intent(this, AddNewPaymentActivity.class);
 		startActivity(activityAddNewPayment);
+		enteroTest=1;
 	}
 
 }

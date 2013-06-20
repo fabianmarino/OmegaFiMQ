@@ -8,6 +8,9 @@ import org.json.JSONObject;
 import com.appsolution.layouts.AccountLayout;
 import com.appsolution.layouts.DetailsOfficer;
 import com.appsolution.layouts.DialogSelectableOF;
+import com.appsolution.layouts.EventsNewsAdapter;
+import com.appsolution.layouts.ImageAdapter;
+import com.appsolution.layouts.PollAdapter;
 import com.appsolution.layouts.PollOmegaFiContent;
 import com.appsolution.layouts.RowAnnouncement;
 import com.appsolution.layouts.RowInformation;
@@ -20,12 +23,14 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.opengl.Visibility;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
@@ -200,7 +205,7 @@ public class HomeActivity extends OmegaFiActivity {
 			}
 		});
 		int padding=this.getResources().getDimensionPixelSize(R.dimen.padding_5dp);
-		rowChapter.setPaddingRow(padding,padding,rowChapter.getPaddingRight(), padding);
+		rowChapter.setPaddingRow(padding,5,rowChapter.getPaddingRight(), 5);
 		
 		sectionChapterDirectory.addView(rowChapter);
 		sectionChapterDirectory.addView(sectionOfficers);
@@ -217,6 +222,7 @@ public class HomeActivity extends OmegaFiActivity {
 		
 		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
 		titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
+		titlesIndicator.setStrokeColor(this.getResources().getColor(R.color.gray_background));
 		int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
 		titlesIndicator.setRadius(circleSize);
 		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
@@ -228,16 +234,32 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	private void completePollSection(){
 		LinearLayout content=(LinearLayout)sectionPoll.findViewById(R.id.contentSectionOmegaFi);
-		int padding=this.getResources().getDimensionPixelSize(R.dimen.padding_6dp);
-		content.setPadding(padding,padding,padding,padding);
-		contentPoll=new PollOmegaFiContent(this);
-		contentPoll.setTitleQuestion("Lorem ipsum dolor sit amet, consectetur adipisicing?");
-		ArrayList<String> aux=new ArrayList<String>();
-		for (int i = 0; i < 4; i++) {
-			aux.add("Lorem ipsum dolor sit amet, consectetur adipisicing");
-		}
-		contentPoll.addAnswersToPoll(aux);
-		content.addView(contentPoll);
+		paginator=new ViewPager(getApplicationContext());
+		paginator.setAdapter(new PollAdapter(getApplicationContext()));
+		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
+				this.getResources().getDimensionPixelSize(R.dimen.height_poll_content)));
+		
+		LinearLayout linTitles=new LinearLayout(getApplicationContext());
+		linTitles.setGravity(Gravity.CENTER_VERTICAL);
+		linTitles.setBackgroundColor(Color.WHITE);
+		linTitles.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
+				50));
+		linTitles.setOrientation(LinearLayout.VERTICAL);
+		
+		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
+		titlesIndicator.setBackgroundColor(Color.WHITE);
+		titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
+		titlesIndicator.setStrokeColor(this.getResources().getColor(R.color.gray_background));
+		int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
+		titlesIndicator.setRadius(circleSize);
+		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
+				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
+		titlesIndicator.setViewPager(paginator);
+	
+		content.setBackgroundColor(getResources().getColor(R.color.gray_background));
+		content.addView(paginator);
+		linTitles.addView(titlesIndicator);
+		content.addView(linTitles);
 	}
 	
 	private void completeNewsSection(){
@@ -250,6 +272,7 @@ public class HomeActivity extends OmegaFiActivity {
 		
 		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
 		titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
+		titlesIndicator.setStrokeColor(this.getResources().getColor(R.color.gray_background));
 		int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
 		titlesIndicator.setRadius(circleSize);
 		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
@@ -272,6 +295,17 @@ public class HomeActivity extends OmegaFiActivity {
 	public void activityPrivatePolicy(View button){
 		Intent activityPrivacy=new Intent(this, PrivacyActivity.class);
 		startActivity(activityPrivacy);
+	}
+	
+	public void seeMoreMemberRooster(View button){
+		Intent roosterDetail=new Intent(this, OfficerMemberDetailActivity.class);
+		startActivity(roosterDetail);
+	}
+	
+	public void callToMember(View button){
+		Intent intentCall=new Intent(Intent.ACTION_CALL);
+		intentCall.setData(Uri.parse("tel:*123"));
+		startActivity(intentCall);
 	}
 
 	

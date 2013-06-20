@@ -1,27 +1,23 @@
-package com.appsolution.omegafi;
+package com.appsolution.layouts;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
-import com.appsolution.layouts.EventNewsContent;
 
 import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
-public class EventsNewsAdapter extends PagerAdapter {
+public class PollAdapter extends PagerAdapter {
 
 	private ArrayList<String[]> listaEventsOrNews;  
     private Context context;  
       
       
-    public EventsNewsAdapter(Context context) {  
+    public PollAdapter(Context context) {  
         super();    
         this.context = context;
         listaEventsOrNews=new ArrayList<String[]>();
@@ -53,7 +49,7 @@ public class EventsNewsAdapter extends PagerAdapter {
   
     @Override  
     public void destroyItem(View collection, int position, Object view) {  
-        ((ViewPager) collection).removeView((LinearLayout) view);  
+        ((ViewPager) collection).removeView((ViewSwitcher) view);  
     }  
   
     @Override  
@@ -69,18 +65,20 @@ public class EventsNewsAdapter extends PagerAdapter {
   
     @Override  
     public Object instantiateItem(View collection, int position) {        
-    	EventNewsContent event=new EventNewsContent(context);
-    	event.setTitleNewEvent(listaEventsOrNews.get(position)[0]);
-    	event.setDateEventNew("DD / MM / YYYY");
-    	event.setDescriptionNewEvent(listaEventsOrNews.get(position)[2]);
-    	
-        ((ViewPager) collection).addView(event,0);  
-        return event;  
+    	PollOmegaFiContent poll=new PollOmegaFiContent(context);
+    	poll.setTitleQuestion("Lorem ipsum dolor sit amet, consectetur adipisicing?");
+		ArrayList<String> aux=new ArrayList<String>();
+		for (int i = 0; i < 4; i++) {
+			aux.add("Lorem ipsum dolor sit amet, consectetur adipisicing");
+		}
+		poll.addAnswersToPoll(aux);
+        ((ViewPager) collection).addView(poll,0);  
+        return poll;  
     }  
   
     @Override  
     public boolean isViewFromObject(View view, Object object) {  
-         return view==((LinearLayout)object);  
+         return view==((ViewSwitcher)object);  
     }  
   
     @Override  

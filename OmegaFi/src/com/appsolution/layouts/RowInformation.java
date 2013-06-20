@@ -39,6 +39,9 @@ public class RowInformation extends RelativeLayout{
 		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RowInformation);
 	    boolean isBorderBottom = a.getBoolean(R.styleable.RowInformation_put_border_bottom,false);
 		 setBorderBottom(isBorderBottom);
+		 
+		 int src=a.getResourceId(R.styleable.RowInformation_background_row_info, -1);
+		 setBackgroundRowInfo(src);
 	
 	   String nameInfo = a.getString(R.styleable.RowInformation_name_information);
 	   setNameInfo(nameInfo);
@@ -162,6 +165,12 @@ public class RowInformation extends RelativeLayout{
 		}
 		else{
 			 	content.setBackgroundColor(Color.TRANSPARENT);
+		}
+	}
+	
+	public void setBackgroundRowInfo(int src){
+		if(src!=-1){
+			content.setBackgroundResource(src);
 		}
 	}
 	

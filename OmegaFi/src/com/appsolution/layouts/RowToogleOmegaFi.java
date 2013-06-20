@@ -4,6 +4,7 @@ import com.appsolution.omegafi.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ToggleButton;
@@ -32,14 +33,18 @@ public class RowToogleOmegaFi extends RowEditInformation {
 	}
 	
 	private void initialize(){
+		this.setBackgroundResource(0);
+		this.setBackgroundColor(Color.WHITE);
 		this.setPaddingRow(10, 5, 5, 5);
 		toogleButton=new ToggleButton(super.getContext());
+		toogleButton.setText("");
 		toogleButton.setTextOn("");
 		toogleButton.setTextOff("");
 		int width=getContext().getResources().getDimensionPixelSize(R.dimen.width_95dp);
 		toogleButton.setLayoutParams(new LayoutParams(width, width/3));
 		toogleButton.setBackgroundResource(R.drawable.toogle_omegafi);
 		this.addViewRight(toogleButton);
+	
 	}
 	
 	public void setActivateOn(boolean on){

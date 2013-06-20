@@ -38,6 +38,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginBottom="@dimen/padding_5dp"
+	        secom:show_arrow="false"
 	        secom:title_section="Poll"
 	        />
 	    <com.appsolution.layouts.SectionOmegaFi

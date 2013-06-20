@@ -37,6 +37,7 @@
       <attr name="icon_drawable_info" format="reference"/>
       <attr name="text_size_name_information" format="dimension"/>
       <attr name="text_size_name_subinformation" format="dimension"/>
+      <attr name="background_row_info" format="reference"/>
     </declare-styleable>
     <declare-styleable name="RowEditInformation">
       <attr name="put_border_bottom_e" format="boolean" />
@@ -113,6 +114,7 @@
         <attr name="third_line_text" format="string" />
         <attr name="width_image_user" format="dimension" />
         <attr name="arrow_visible" format="boolean" />
+        <attr name="text_bottom_imagen" format="string" />
     </declare-styleable>
     <declare-styleable name="ItemMenuSliding">
         <attr name="text_item_menu" format="string" />

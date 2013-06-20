@@ -45,7 +45,7 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 			};
 		};
 		bundleLogin=getIntent().getExtras();
-		textUserName.setText("Hello, "+bundleLogin.getString("NameUser"));
+//		textUserName.setText("Hello, "+bundleLogin.getString("NameUser"));
 		barSplash=new ChargerSplash();
 		barSplash.execute();
 	}
@@ -55,40 +55,40 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			jsonProfile=OmegaFiActivity.servicesOmegaFi.getProfileUser();
-			Message msg=new Message();
-			msg.obj=10;
-			handlerProgress.sendMessage(msg);
-			try {
-				if(!jsonProfile.getJSONObject("individual").getJSONObject("profile_picture").isNull("url")){
-					OmegaFiActivity.loadImageFromURL(jsonProfile.getJSONObject("individual").getJSONObject("profile_picture").getString("url"), imageContact);
-				}
-				msg=new Message();
-				msg.obj=20;
-				handlerProgress.sendMessage(msg);
-			} catch (JSONException e1) {
-				System.err.println("No se puede obtener el profile");
-			}
-			
-			jsonAccounts=OmegaFiActivity.servicesOmegaFi.getAccountsUser();
-			msg=new Message();
-			msg.obj=50;
-			handlerProgress.sendMessage(msg);
-			jsonChapters=OmegaFiActivity.servicesOmegaFi.getChaptersUser();
-			msg=new Message();
-			msg.obj=99;
-			handlerProgress.sendMessage(msg);
-//			for (int i = 0; i < 100; i+=5) {
-//				try {
-//					Thread.sleep(150);
-//				} catch (InterruptedException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
+//			jsonProfile=OmegaFiActivity.servicesOmegaFi.getProfileUser();
+//			Message msg=new Message();
+//			msg.obj=10;
+//			handlerProgress.sendMessage(msg);
+//			try {
+//				if(!jsonProfile.getJSONObject("individual").getJSONObject("profile_picture").isNull("url")){
+//					OmegaFiActivity.loadImageFromURL(jsonProfile.getJSONObject("individual").getJSONObject("profile_picture").getString("url"), imageContact);
 //				}
-//				Message msg=new Message();
-//				msg.obj=i;
+//				msg=new Message();
+//				msg.obj=20;
 //				handlerProgress.sendMessage(msg);
+//			} catch (JSONException e1) {
+//				System.err.println("No se puede obtener el profile");
 //			}
+//			
+//			jsonAccounts=OmegaFiActivity.servicesOmegaFi.getAccountsUser();
+//			msg=new Message();
+//			msg.obj=50;
+//			handlerProgress.sendMessage(msg);
+//			jsonChapters=OmegaFiActivity.servicesOmegaFi.getChaptersUser();
+//			msg=new Message();
+//			msg.obj=99;
+//			handlerProgress.sendMessage(msg);
+			for (int i = 0; i < 100; i+=5) {
+				try {
+					Thread.sleep(150);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				Message msg=new Message();
+				msg.obj=i;
+				handlerProgress.sendMessage(msg);
+			}
 			return true;
 		}
 		
@@ -105,14 +105,14 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
-			homeActivity.putExtra("profile", jsonProfile.toString());
-			homeActivity.putExtra("accounts", jsonAccounts.toString());
-			if(jsonChapters!=null){
-				homeActivity.putExtra("chapters", jsonChapters.toString());
-			}
-			else{
-				homeActivity.putExtra("chapters", "");
-			}
+//			homeActivity.putExtra("profile", jsonProfile.toString());
+//			homeActivity.putExtra("accounts", jsonAccounts.toString());
+//			if(jsonChapters!=null){
+//				homeActivity.putExtra("chapters", jsonChapters.toString());
+//			}
+//			else{
+//				homeActivity.putExtra("chapters", "");
+//			}
 			startActivity(homeActivity);
 		}
 	}

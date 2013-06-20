@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/blue_marine"
     android:orientation="vertical" >
-    <ImageView android:layout_width="30dp"
-        android:layout_height="25dp"
-        android:background="@android:color/white"
+    <ImageView android:layout_width="@dimen/width_20dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/down_arrow"
         android:layout_gravity="center_horizontal"/>
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -30,29 +31,35 @@
     <View android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="@color/blue_marine_dark"/>
-    <TableLayout android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-        <TableRow android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="100">
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
             <com.appsolution.layouts.IconLabelVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40" />
+                android:layout_weight="2"
+                android:onClick="callToMember"
+                secom:src_icon_label_vertical="@drawable/icon_phone_white"
+                secom:text_label_vertical="732-212-8160"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@color/blue_marine_dark"/>
             <com.appsolution.layouts.IconLabelVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40" />
+                android:layout_weight="2"
+                secom:src_icon_label_vertical="@drawable/icon_email_white"
+                secom:text_label_vertical="example@anything.com" />
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@color/blue_marine_dark"/>
             <com.appsolution.layouts.IconLabelVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="10" />
-        </TableRow>
-    </TableLayout>
+                android:layout_weight="1"
+                android:onClick="seeMoreMemberRooster"
+                secom:src_icon_label_vertical="@drawable/icon_more_white"
+                secom:text_label_vertical="More" />
+    </LinearLayout>
 </LinearLayout>

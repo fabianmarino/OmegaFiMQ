@@ -27,9 +27,7 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	private EditText search;
 	private ListView listMembers;
 	private AlphabeticAdapter members;
-	
 	private SearchView mSearchView;
-    private TextView mStatusView;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,7 +36,6 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 		listMembers=(ListView)findViewById(R.id.listViewMembers);
 		members=new AlphabeticAdapter(this,android.R.layout.simple_list_item_1, getArrayTest());
 		listMembers.setAdapter(members);
-		mStatusView=(TextView)findViewById(R.id.status_text);
 	}
 	
 	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
@@ -57,14 +54,13 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	        if (isAlwaysExpanded()) {
 	            mSearchView.setIconifiedByDefault(false);
 	        } else {
-	            searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM
-	                    | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+	            searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 	        }
-	 
+	        
 	        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 	        if (searchManager != null) {
 	            List<SearchableInfo> searchables = searchManager.getSearchablesInGlobalSearch();
-	 
+	            
 	            SearchableInfo info = searchManager.getSearchableInfo(getComponentName());
 //	            for (SearchableInfo inf : searchables) {
 //	                if (inf.getSuggestAuthority() != null
@@ -77,36 +73,6 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	 
 	        mSearchView.setOnQueryTextListener(this);
 	    }
-
-
-
-	@Override
-	    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
-//		super.onOptionsItemSelected(item);
-	        switch (item.getItemId()) {
-	            case 1:
-	                search = (EditText) item.getActionView();
-	                search.addTextChangedListener(filterTextWatcher);
-	                search.requestFocus();
-	                InputMethodManager imm = (InputMethodManager) getSystemService(Context
-	                		.INPUT_METHOD_SERVICE);
-	                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-	        }   
-	        return true;
-	    }       
-
-	private TextWatcher filterTextWatcher = new TextWatcher() {
-	    public void afterTextChanged(Editable s) {
-	    }
-
-	    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-	    }
-
-	    public void onTextChanged(CharSequence s, int start, int before, int count) {
-	        // your search logic here
-	    }
-
-	};	
 	
 	@Override
 	protected void optionsActionBar() {
@@ -162,12 +128,10 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	    }
 	 
 	    public boolean onQueryTextSubmit(String query) {
-	       
 	        return false;
 	    }
 	 
 	    public boolean onClose() {
-	        mStatusView.setText("Closed!");
 	        return false;
 	    }
 	 

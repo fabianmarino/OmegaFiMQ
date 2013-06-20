@@ -14,32 +14,34 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginBottom="@dimen/padding_10dp"
+	        secom:width_image_user="@dimen/width_95dp"
 	        secom:color_font_text="@android:color/black"
-	        secom:third_line_text="Miami University"/>
+	        secom:third_line_text="Miami University"
+	        secom:arrow_visible="false"/>
 	    <TableLayout android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginBottom="@dimen/margin_top_bottom">
 	        <TableRow android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
-	            android:weightSum="100">
+	            android:weightSum="3">
 	       <com.appsolution.layouts.LabelInfoVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="33"/>
+                android:layout_weight="1"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
             <com.appsolution.layouts.LabelInfoVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 secom:color_font_vertical="@color/red_wine"
-                android:layout_weight="33"/>
+                android:layout_weight="1"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
-            <LinearLayout android:layout_width="fill_parent"
+            <LinearLayout android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="33"
+                android:layout_weight="1"
                 android:gravity="center">
 	            <Button android:id="@+id/buttonPayNowAccount"
 	                android:layout_width="wrap_content"
@@ -117,14 +119,12 @@
 	            secom:row_text_size="@dimen/text_11sp"
 	            secom:color_font_row_information="@android:color/white"
 	            />
-	        <Switch 
-	            android:background="@android:color/white"
+	        <com.appsolution.layouts.RowToogleOmegaFi
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
-	            android:text="AutoPay"
-	            android:padding="@dimen/padding_5dp"
-	            
-	            />
+	           	android:background="@android:color/white"
+	            secom:text_toogle="AutoPay"
+	             />
 	    </LinearLayout>
 	    <!-- 
 	    <com.appsolution.layouts.RowInformation

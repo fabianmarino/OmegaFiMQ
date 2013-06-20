@@ -40,9 +40,9 @@ public class MainActivity extends OmegaFiLoginActivity {
 	}
 	
 	public void nextHome(View boton){
-//		Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
-//		startActivity(splashView);
-		if(this.validateDataLogin()){
+		Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
+		startActivity(splashView);
+		/*if(this.validateDataLogin()){
 			if(this.isOnline()){
 			final Activity activity=this;
 			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
@@ -89,7 +89,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 			else{
 				OmegaFiActivity.showAlertMessage("You must be connected to use the app", this);
 			}
-		}
+		}*/
 	}
 	
 	public void activityForgotLogin(View textview){

@@ -1,4 +1,7 @@
-package com.appsolution.omegafi;
+package com.appsolution.layouts;
+
+import com.appsolution.omegafi.R;
+import com.appsolution.omegafi.R.drawable;
 
 import android.R.dimen;
 import android.content.Context;
@@ -17,10 +20,10 @@ import android.widget.TextView;
 public class ImageAdapter extends BaseAdapter {
 
 	private Context context;
-	private int[] listImages ={ R.drawable.hombre, R.drawable.mujer,
-		       R.drawable.hombre1, R.drawable.mujer1,
-		       R.drawable.hombre2, R.drawable.mujer2,
-		       R.drawable.hombre3, R.drawable.mujer3 };
+	private int[] listImages ={ R.drawable.photo_2, R.drawable.photo_3,
+		       R.drawable.photo_member, 
+		       R.drawable.photo_2, R.drawable.photo_3,
+		       R.drawable.photo_member};
 	
 	public ImageAdapter(Context context){
 		this.context=context;
@@ -58,7 +61,7 @@ public class ImageAdapter extends BaseAdapter {
 					//iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 					//iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
 					//iv.setScaleType(ImageView.ScaleType.FIT_XY);
-					iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+					iv.setAdjustViewBounds(true);
 					// Set the Width & Height of the individual images
 					iv.setLayoutParams(new Gallery.LayoutParams(context.getResources().getDimensionPixelSize(R.dimen.width_image_chapter), 
 							context.getResources().getDimensionPixelSize(R.dimen.height_image_chapter)));

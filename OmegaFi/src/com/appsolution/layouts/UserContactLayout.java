@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,10 @@ public class UserContactLayout extends RelativeLayout {
 	private TextView textNameUser;
 	private TextView textSubtitleProfile;
 	private TextView textThirdLineProfile;
+	
+	private LinearLayout contentImage;
+	private TextView textImageBottom;
+	
 	private ImageView imageProfile;
 	private ImageView imageArrow;
 	private RelativeLayout contentAll;
@@ -46,6 +51,9 @@ public class UserContactLayout extends RelativeLayout {
 		boolean visible=a.getBoolean(R.styleable.UserContactLayout_arrow_visible, true);
 		setArrowVisible(visible);
 		
+		String textBottom=a.getString(R.styleable.UserContactLayout_text_bottom_imagen);
+		setTextBottomImage(textBottom);
+		
 		a.recycle();
 	}
 	
@@ -55,6 +63,9 @@ public class UserContactLayout extends RelativeLayout {
 		textNameUser=(TextView)findViewById(R.id.nameUserProfile);
 		textSubtitleProfile=(TextView)findViewById(R.id.initiateUserProfile);
 		textThirdLineProfile=(TextView)findViewById(R.id.initiateUniversity);
+		
+		contentImage=(LinearLayout)findViewById(R.id.contentImageUser);
+		textImageBottom=(TextView)findViewById(R.id.textBottomImage);
 		
 		imageProfile=(ImageView)findViewById(R.id.imageUserContact);
 		imageArrow=(ImageView)findViewById(R.id.arrow_right_user);
@@ -127,6 +138,21 @@ public class UserContactLayout extends RelativeLayout {
 		else{
 			imageArrow.setVisibility(GONE);
 		}
+	}
+	
+	public void setTextBottomImage(String text){
+		if(text!=null){
+			textImageBottom.setText(text);
+			textImageBottom.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	public void setOnClickPhoto(OnClickListener listener){
+		contentImage.setOnClickListener(listener);
+	}
+	
+	public ImageView getImageUser(){
+		return imageProfile;
 	}
 	
 }

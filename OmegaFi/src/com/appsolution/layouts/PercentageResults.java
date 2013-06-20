@@ -53,6 +53,7 @@ public class PercentageResults extends LinearLayout{
 		int widthMax=display.getWidth()-(int)(display.getWidth()*0.25);
 		contenPercentageBar.getLayoutParams().width=widthMax;
 		textQuestionResult=(TextView)findViewById(R.id.textQuestionResult);
+		textQuestionResult.setTextColor(Color.BLACK);
 		percentageAnswer=(TextView)findViewById(R.id.numberPercentageResult);
 		barPercentage=(View)findViewById(R.id.percentageBarResult);
 	}

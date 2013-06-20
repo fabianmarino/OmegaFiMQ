@@ -22,6 +22,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 
@@ -49,7 +50,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
         this.optionsActionBar();
         userContact=(UserContactLayout)findViewById(R.id.userContactSliding);
         itemAnnouncements=(ItemMenuSliding)findViewById(R.id.menuItemAnnouncements);
-        this.loadSlidingMenu();   
+//        this.loadSlidingMenu();
 	}
 	
 	public static boolean loadImageFromURL(String fileUrl, 

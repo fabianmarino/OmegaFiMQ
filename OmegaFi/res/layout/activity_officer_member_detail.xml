@@ -14,6 +14,7 @@
 	        android:layout_height="wrap_content"
 	        android:gravity="center_horizontal"
 	        android:paddingTop="@dimen/padding_12dp"
+	        android:background="@drawable/background_rooster"
 	        android:orientation="vertical">
 	        <ImageView android:layout_width="@dimen/sliding_photo_size_130dp"
 	            android:layout_height="@dimen/sliding_photo_size_130dp"
@@ -27,8 +28,8 @@
 	    </LinearLayout>
 	    <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:paddingTop="@dimen/padding_10dp"
+            android:background="@color/gray_background"
+            android:padding="@dimen/padding_10dp"
             android:orientation="vertical">
             <TableLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -36,32 +37,38 @@
                 >
                 <TableRow android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="100">
+                    android:weightSum="3">
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/phoneIconMember"
-                        android:layout_width="fill_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="33"
+                        android:layout_weight="1"
                         android:onClick="phoneClick"
                         secom:src_icon_label_vertical="@drawable/icon_phone_white"
                         secom:text_label_vertical="Phone Number"
                          />
+                    <View android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@android:color/darker_gray"/>
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/emailIconMember"
-                        android:layout_width="fill_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="33"
+                        android:layout_weight="1"
                         android:onClick="emailClick"
                         secom:src_icon_label_vertical="@drawable/icon_email_white"
                         secom:text_label_vertical="Email"
                          />
+                    <View android:layout_width="1dp"
+                        android:layout_height="fill_parent"
+                        android:background="@android:color/darker_gray"/>
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/addressIconMember"
-                        android:layout_width="fill_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="33"
+                        android:layout_weight="1"
                         android:onClick="addressClick"
-                        secom:src_icon_label_vertical="@drawable/icon_phone_white"
+                        secom:src_icon_label_vertical="@drawable/icon_address_white"
                         secom:text_label_vertical="Address"
                          />
                 </TableRow>
@@ -71,50 +78,52 @@
                 android:background="@android:color/white"
                 android:orientation="vertical">
                 <LinearLayout
-                    android:id="@+id/linearPhoneNumber" 
+                    android:id="@+id/linearPhoneNumberO" 
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_10dp"
                     android:orientation="vertical">
-                    <EditText android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Main Number"
-                        style="@style/EditTextLogin"
-                        />
-                    <EditText android:layout_width="fill_parent"
-                        android:layout_marginTop="@dimen/padding_6dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Secondary Number"
-                        style="@style/EditTextLogin"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/linearEmailProfile" 
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/padding_10dp"
-                    android:visibility="gone"
-                    android:orientation="vertical">
-                    <!-- <com.appsolution.layouts.RowEditTextOmegaFi
+                    <com.appsolution.layouts.RowInformation
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        secom:name_information_e="MAIN"
-                        secom:background_input_text="@android:drawable/edit_text"
-                        secom:background_row_edit_info="@drawable/white_input" /> -->
-                    <EditText android:layout_width="fill_parent"
+                        secom:text_size_name_information="@dimen/text_8sp"
+                        secom:background_row_info="@drawable/white_input"
+                        secom:name_information="MAIN"
+                        secom:value_information="231-312-3123" />
+                    <com.appsolution.layouts.RowInformation
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Main Email"
-                        style="@style/EditTextLogin"
-                        />
-                    <EditText android:layout_width="fill_parent"
                         android:layout_marginTop="@dimen/padding_6dp"
-                        android:layout_height="wrap_content"
-                        android:hint="Secondary Email"
-                        style="@style/EditTextLogin"
-                        />
+                        secom:text_size_name_information="@dimen/text_8sp"
+                        secom:background_row_info="@drawable/white_input"
+                        secom:name_information="SECUNDARY"
+                        secom:value_information="231-312-3123" />
                 </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/linearAddressProfile" 
+                    android:id="@+id/linearEmailProfileO" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_10dp"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <com.appsolution.layouts.RowInformation
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        secom:text_size_name_information="@dimen/text_8sp"
+                        secom:background_row_info="@drawable/white_input"
+                        secom:name_information="MAIN"
+                        secom:value_information="jhkjg@example.com" />
+                    <com.appsolution.layouts.RowInformation
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_6dp"
+                        secom:text_size_name_information="@dimen/text_8sp"
+                        secom:background_row_info="@drawable/white_input"
+                        secom:name_information="SECUNDARY"
+                        secom:value_information="jhkjg@example.com" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linearAddressProfileO" 
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_10dp"
@@ -123,32 +132,23 @@
                     <LinearLayout android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-	                    <com.appsolution.layouts.RowEditNameTopInfo
-	                        android:layout_width="fill_parent"
-	                        android:layout_height="wrap_content"
-	                        secom:name_top_info="Home Address"
-	                        secom:hint_text_top_info="Line 1"
-	                        secom:width_fill_parent="true" />
-	                    <com.appsolution.layouts.RowEditNameTopInfo
-	                        android:layout_width="fill_parent"
-	                        android:layout_height="wrap_content"
-	                        secom:hint_text_top_info="Line 2"
-	                        secom:width_fill_parent="true" />
-                    </LinearLayout>
-                    <LinearLayout android:layout_width="fill_parent"
+	                    <com.appsolution.layouts.RowInformation
+                        android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-	                    <com.appsolution.layouts.RowEditNameTopInfo
-	                        android:layout_width="fill_parent"
-	                        android:layout_height="wrap_content"
-	                        secom:name_top_info="School Address"
-	                        secom:hint_text_top_info="Line 1"
-	                        secom:width_fill_parent="true" />
-	                    <com.appsolution.layouts.RowEditNameTopInfo
-	                        android:layout_width="fill_parent"
-	                        android:layout_height="wrap_content"
-	                        secom:hint_text_top_info="Line 2"
-	                        secom:width_fill_parent="true" />
+                        secom:text_size_name_information="@dimen/text_8sp"
+                        secom:background_row_info="@drawable/white_input"
+                        secom:name_information="MAIN"
+                        secom:value_information="6544 Cambell Rd"
+                        secom:value_information_2="Troy, NY 12180" />
+                    <com.appsolution.layouts.RowInformation
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/padding_6dp"
+                        secom:text_size_name_information="@dimen/text_8sp"
+                        secom:background_row_info="@drawable/white_input"
+                        secom:name_information="SECUNDARY"
+                        secom:value_information="3213 Burdett Ave"
+                        secom:value_information_2="Troy, NY 12180" />
                     </LinearLayout>
                 </LinearLayout>
                 <View android:layout_width="fill_parent"
@@ -159,42 +159,48 @@
 	                android:background="@android:color/white">
                 <TableRow android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:weightSum="100">
-                    <LinearLayout android:layout_width="fill_parent"
+                    android:weightSum="3">
+                    <LinearLayout android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_6dp"
-                        android:paddingBottom="@dimen/padding_6dp"
+                        android:paddingTop="@dimen/padding_10dp"
+                        android:paddingBottom="@dimen/padding_10dp"
                         android:gravity="center"
-                        android:layout_weight="33">
+                        android:layout_weight="1">
                         <ImageView android:layout_width="@dimen/width_image_label"
                             android:layout_height="@dimen/width_image_label"
-                            android:background="@android:color/darker_gray"/>
+                            android:adjustViewBounds="true"
+                            android:minWidth="@dimen/width_image_label"
+                            android:src="@drawable/icon_face"/>
                     </LinearLayout>
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="@android:color/darker_gray"/>
-                    <LinearLayout android:layout_width="fill_parent"
+                    <LinearLayout android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_6dp"
-                        android:paddingBottom="@dimen/padding_6dp"
+                        android:paddingTop="@dimen/padding_10dp"
+                        android:paddingBottom="@dimen/padding_10dp"
                         android:gravity="center"
-                        android:layout_weight="33">
+                        android:layout_weight="1">
                         <ImageView android:layout_width="@dimen/width_image_label"
                             android:layout_height="@dimen/width_image_label"
-                            android:background="@android:color/darker_gray"/>
+                            android:adjustViewBounds="true"
+                            android:minWidth="@dimen/width_image_label"
+                            android:src="@drawable/icon_linked"/>
                     </LinearLayout>
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
                         android:background="@android:color/darker_gray"/>
-                    <LinearLayout android:layout_width="fill_parent"
+                    <LinearLayout android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_6dp"
-                        android:paddingBottom="@dimen/padding_6dp"
+                        android:paddingTop="@dimen/padding_10dp"
+                        android:paddingBottom="@dimen/padding_10dp"
                         android:gravity="center"
-                        android:layout_weight="33">
+                        android:layout_weight="1">
                         <ImageView android:layout_width="@dimen/width_image_label"
                             android:layout_height="@dimen/width_image_label"
-                            android:background="@android:color/darker_gray"/>
+                            android:adjustViewBounds="true"
+                            android:minWidth="@dimen/width_image_label"
+                            android:src="@drawable/icon_twitter"/>
                     </LinearLayout>
                 </TableRow>
             	</TableLayout>
