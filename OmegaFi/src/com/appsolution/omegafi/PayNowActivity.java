@@ -4,23 +4,28 @@ import com.appsolution.layouts.DatePickerFragment;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
+import com.appsolution.layouts.RowEditTextOmegaFi;
+import com.appsolution.layouts.RowInformation;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
 public class PayNowActivity extends OmegaFiActivity {
 
 	private int enteroTest=0;
+	private RowInformation rowDate;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pay_now);
+		rowDate=(RowInformation)findViewById(R.id.rowSelectDatePay);
 	}
 
 	@Override
@@ -31,15 +36,15 @@ public class PayNowActivity extends OmegaFiActivity {
 	}
 	
 	public void selectDatePayment(View view){
+		int[] dayMonthYear=rowDate.getDayMonthYear();
 		DatePickerDialog date=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 			
 			@Override
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
 					int dayOfMonth) {
-				// TODO Auto-generated method stub
-				
+				rowDate.setValueInfo(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);	
 			}
-		}, 2011, 0, 1);
+		}, dayMonthYear[2], dayMonthYear[1]-1, dayMonthYear[0]);
 		date.getDatePicker().setCalendarViewShown(false);
 		date.show();
 	}
@@ -51,7 +56,7 @@ public class PayNowActivity extends OmegaFiActivity {
 		finish();
 	}
 	
-	public void selectPayMethod(View view){
+	public void selectPayMethod(View view){;
 		final DialogSelectableOF selectable=new DialogSelectableOF(this);
 		selectable.setTitleDialog("Select Payment Method");
 		selectable.setTextButton("Save");

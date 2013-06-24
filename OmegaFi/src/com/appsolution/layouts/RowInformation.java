@@ -1,11 +1,14 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -37,8 +40,6 @@ public class RowInformation extends RelativeLayout{
 		this.initialize();
 		
 		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.RowInformation);
-	    boolean isBorderBottom = a.getBoolean(R.styleable.RowInformation_put_border_bottom,false);
-		 setBorderBottom(isBorderBottom);
 		 
 		 int src=a.getResourceId(R.styleable.RowInformation_background_row_info, -1);
 		 setBackgroundRowInfo(src);
@@ -52,19 +53,11 @@ public class RowInformation extends RelativeLayout{
 	   String valueInfo = a.getString(R.styleable.RowInformation_value_information);
 	   setValueInfo(valueInfo);
 	   
-	   float textSize = a.getDimensionPixelSize(R.styleable.RowInformation_row_text_size, super.getResources().getDimensionPixelSize(R.dimen.text_10sp));
+	   float textSize = a.getDimensionPixelSize(R.styleable.RowInformation_row_text_size, super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 	   setTextSizeInformation(textSize);
 	   
 	   int colorFont = a.getColor(R.styleable.RowInformation_color_font_row_information, Color.BLACK);
 	   setColorFontRowInformation(colorFont);
-	   
-	   int padding=(int)a.getDimension(R.styleable.RowInformation_padding_row_info, content.getPaddingLeft());
-	   setPaddingRow(padding, padding, padding, padding);
-	   int paddingLeft=(int)a.getDimension(R.styleable.RowInformation_padding_left_row_info, content.getPaddingLeft());
-	   int paddingTop=(int)a.getDimension(R.styleable.RowInformation_padding_top_row_info, content.getPaddingTop());
-	   int paddingRight=(int)a.getDimension(R.styleable.RowInformation_padding_right_row_info, content.getPaddingRight());
-	   int paddingBottom=(int)a.getDimension(R.styleable.RowInformation_padding_bottom_row_info, content.getPaddingBottom());
-	   setPaddingRow(paddingLeft, paddingTop, paddingRight, paddingBottom);
 	   
 	   boolean showArrow=a.getBoolean(R.styleable.RowInformation_show_arrow_info, false);
 	   setVisibleArrow(showArrow);
@@ -84,6 +77,21 @@ public class RowInformation extends RelativeLayout{
 	   int sizeSubname=a.getDimensionPixelSize(R.styleable.RowInformation_text_size_name_subinformation, (int)textSize);
 	   setTextSizeSubNameInfo(sizeSubname);
 	   
+	   int resource=a.getResourceId(R.styleable.RowInformation_background_value_info, -1);
+	   setBackgroundValueInfo(resource);
+	   
+	   boolean isBorderBottom = a.getBoolean(R.styleable.RowInformation_put_border_bottom,false);
+	   setBorderBottom(isBorderBottom);
+		 
+		 int padding=(int)a.getDimension(R.styleable.RowInformation_padding_row_info, 
+				 getResources().getDimensionPixelSize(R.dimen.padding_6dp));
+		setPaddingRow(padding, padding, padding, padding);
+		int paddingLeft=(int)a.getDimension(R.styleable.RowInformation_padding_left_row_info, content.getPaddingLeft());
+		int paddingTop=(int)a.getDimension(R.styleable.RowInformation_padding_top_row_info, content.getPaddingTop());
+		int paddingRight=(int)a.getDimension(R.styleable.RowInformation_padding_right_row_info, content.getPaddingRight());
+		int paddingBottom=(int)a.getDimension(R.styleable.RowInformation_padding_bottom_row_info, content.getPaddingBottom());
+		setPaddingRow(paddingLeft, paddingTop, paddingRight, paddingBottom);
+	   
 	    a.recycle();
 	   
 	}
@@ -95,8 +103,10 @@ public class RowInformation extends RelativeLayout{
 		content=(RelativeLayout)findViewById(R.id.rowInformationContent);
 		linearNamesInformation=(LinearLayout)findViewById(R.id.contentNamesInformation);
 		textNameInfo=(TextView)findViewById(R.id.nameInfo);
+		textNameInfo.setTextColor(Color.BLACK);
 		textNameSubInfo=(TextView)findViewById(R.id.nameSubInfo);
 		textValueInfo=(TextView)findViewById(R.id.valueInfo);
+		textValueInfo.setTextColor(Color.BLACK);
 		textValueInfo2=(TextView)findViewById(R.id.valueInfo2);
 		arrowImage=(ImageView)findViewById(R.id.arrowGrayInfo);
 		imageInfo=(ImageView)findViewById(R.id.icon_image_information);
@@ -134,8 +144,8 @@ public class RowInformation extends RelativeLayout{
 	}
 	
 	public void setTextSizeInformation(float size){
-		textNameInfo.setTextSize(size);
-		textValueInfo.setTextSize(size);
+		textNameInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
+		textValueInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	public void setSubInformation(boolean isSub){
@@ -203,10 +213,25 @@ public class RowInformation extends RelativeLayout{
 	}
 	
 	public void setTextSizeNameInfo(int size){
-		textNameInfo.setTextSize(size);
+		textNameInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	public void setTextSizeSubNameInfo(int size){
-		textNameSubInfo.setTextSize(size);
+		textNameSubInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
+	}
+	
+	public void setBackgroundValueInfo(int resource){
+		if(resource!=-1){
+			textValueInfo.getLayoutParams().width=OmegaFiActivity.getWidthPercentageDisplay(getContext(), 0.4f);
+			textValueInfo.setBackgroundResource(resource);
+			textValueInfo.setGravity(Gravity.CENTER_VERTICAL);
+			textValueInfo.setPadding(5, 5, 5, 5);
+		}
+	}
+	
+	public int[] getDayMonthYear(){
+		String[] splits=textValueInfo.getText().toString().split("/");
+		int[] numbers={Integer.parseInt(splits[0]),Integer.parseInt(splits[1]),Integer.parseInt(splits[2])};
+		return numbers;
 	}
 }

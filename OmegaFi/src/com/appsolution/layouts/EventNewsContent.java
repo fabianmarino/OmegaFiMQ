@@ -7,7 +7,10 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.Html;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,8 +54,11 @@ public class EventNewsContent extends LinearLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.events_news_content, this, true);
 		titleNewEvent=(TextView)findViewById(R.id.titleEventNewOmegaFi);
+		titleNewEvent.setClickable(true);
 		dateNewEvent=(TextView)findViewById(R.id.dateEventNewOmegaFi);
+		dateNewEvent.setClickable(true);
 		descriptionNewEvent=(TextView)findViewById(R.id.descriptionNewOrEvent);
+		descriptionNewEvent.setClickable(true);
 		contentAll=(LinearLayout)findViewById(R.id.linearContentNewsEvents);
 	}
 	
@@ -79,6 +85,14 @@ public class EventNewsContent extends LinearLayout {
 	
 	public void setPadding(int padding){
 		  contentAll.setPadding(padding, padding, padding, padding);
+	}
+	
+	@Override
+	public void setOnClickListener(OnClickListener l) {
+		descriptionNewEvent.setOnClickListener(l);
+		titleNewEvent.setOnClickListener(l);
+		dateNewEvent.setOnClickListener(l);
+		super.setOnClickListener(l);
 	}
 
 }

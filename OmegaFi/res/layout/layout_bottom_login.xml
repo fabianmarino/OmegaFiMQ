@@ -16,5 +16,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="5dp"
 	        android:text="Contact Us: 1-888-691-3021"
-	        android:textSize="15sp" />
+	        android:textSize="15sp"
+	        android:clickable="true"
+	        android:onClick="showContactusButton" />
 </LinearLayout>

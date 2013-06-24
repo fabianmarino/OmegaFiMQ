@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="input_type_normal">1</integer>
+    <integer name="input_type_phone">2</integer>
+    <integer name="input_type_number">3</integer>
+    <integer name="input_type_number_decimal">4</integer>
+    <integer name="input_type_email">5</integer>
+    <integer name="input_type_password">6</integer>
+</resources>

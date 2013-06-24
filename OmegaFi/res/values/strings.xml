@@ -47,6 +47,8 @@
     <string name="title_activity_forgot_password">ForgotPasswordActivity</string>
     <string name="title_activity_forgot_pw_questions">ForgotPwQuestionsActivity</string>
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
-    <string name="title_activity_splash_omega_fi">SplashOmegaFiActivity</string>
+    <string name="title_activity_splash_omega_fi">SplashOmegaFiActivity</string> 
+    <string name="title_activity_make_payment">MakePaymentActivity</string>
+    <string name="header_forgot_password">Please enter your username below to reset your password</string>
 
 </resources>

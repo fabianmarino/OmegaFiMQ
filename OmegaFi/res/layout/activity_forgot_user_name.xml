@@ -25,8 +25,9 @@
 	         android:layout_width="fill_parent"
 	         android:layout_height="wrap_content"
 	         android:layout_marginTop="10dp"
-	         secom:text_placehoder="Username"
+	         secom:text_placehoder="Email Address"
 	         secom:text_submit_button="Submit"
+	         secom:input_type_submit="@integer/input_type_email"
 	         />
 	    <TextView android:id="@+id/textEmailSent"
 	        android:layout_width="fill_parent"

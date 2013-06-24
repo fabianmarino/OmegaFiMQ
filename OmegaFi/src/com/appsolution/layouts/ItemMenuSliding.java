@@ -25,8 +25,8 @@ public class ItemMenuSliding extends RelativeLayout {
 	public ItemMenuSliding(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.initialize();
-		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ItemMenuSliding);
 		
+		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.ItemMenuSliding);
 		String item=a.getString(R.styleable.ItemMenuSliding_text_item_menu);
 		setTextItemMenu(item);
 		int drawable=a.getResourceId(R.styleable.ItemMenuSliding_image_item_menu, R.drawable.white_circle);

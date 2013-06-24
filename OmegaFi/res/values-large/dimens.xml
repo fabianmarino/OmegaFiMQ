@@ -9,7 +9,7 @@
     <dimen name="text_14sp">17sp</dimen>
     <dimen name="text_10sp">14sp</dimen>
     <dimen name="text_11sp">12sp</dimen>
-    <dimen name="text_15sp">20sp</dimen>
+    <dimen name="text_15sp">17sp</dimen>
     <dimen name="text_12_notification">18sp</dimen>
     <dimen name="text_section_title_omegafi">16sp</dimen>
     <dimen name="text_name_officer">20sp</dimen>
@@ -22,6 +22,8 @@
     <dimen name="text_newevent_title_omegafi">23sp</dimen>
     <dimen name="text_date_newevent_title_omegafi">15sp</dimen>
     <dimen name="text_content_newevent_title_omegafi">15sp</dimen>
+    <dimen name="text_question_poll">15sp</dimen>
+    <dimen name="text_answer_poll">12sp</dimen>
     
     <dimen name="edit_padding">10dp</dimen>
     <dimen name="button_padding">8dp</dimen>
@@ -38,6 +40,7 @@
     <dimen name="padding_10dp">23dp</dimen>
     <dimen name="padding_12dp">18dp</dimen>
     <dimen name="padding_5dp_1">9dp</dimen>
+    <dimen name="padding_6dp_buttom_omega">10dp</dimen>
     
     <dimen name="margin_top_circle_charging">35dp</dimen>
     <dimen name="margin_top_header">20dp</dimen>
@@ -62,12 +65,12 @@
     <dimen name="height_new_event_content">200dp</dimen>
     <dimen name="size_circle_newevents">5dp</dimen>
     <dimen name="width_image_label">50dp</dimen>
-    <dimen name="width_arrow_down">30dp</dimen>
+    <dimen name="width_arrow_down">40dp</dimen>
     <dimen name="height_button_small">47dp</dimen>
     <dimen name="width_row_edit_text">150dp</dimen>
     <dimen name="width_95dp">120dp</dimen>
     <dimen name="width_25dp">20dp</dimen>
-    <dimen name="height_poll_content">320dp</dimen>
+    <dimen name="height_poll_content">340dp</dimen>
     
     <dimen name="slidingmenu_offset">100dp</dimen>
     <dimen name="list_padding">10dp</dimen>

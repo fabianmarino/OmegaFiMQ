@@ -57,11 +57,11 @@ public class SectionOmegaFi extends LinearLayout{
 	}
 	
 	public void setSizeTitle(float size){
-		textTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP,size);
+		textTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	public void setSizeSubTitle(float size){
-		textSubTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP,size);
+		textSubTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	public void setColorTitle(int color){

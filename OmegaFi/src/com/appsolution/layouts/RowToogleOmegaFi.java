@@ -35,7 +35,7 @@ public class RowToogleOmegaFi extends RowEditInformation {
 	private void initialize(){
 		this.setBackgroundResource(0);
 		this.setBackgroundColor(Color.WHITE);
-		this.setPaddingRow(10, 5, 5, 5);
+		this.setPaddingRow(10, 10, 10, 10);
 		toogleButton=new ToggleButton(super.getContext());
 		toogleButton.setText("");
 		toogleButton.setTextOn("");

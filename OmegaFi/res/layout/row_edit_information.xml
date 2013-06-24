@@ -18,7 +18,7 @@
 	        android:layout_gravity="center_vertical"
 	        android:textSize="@dimen/text_15sp"
 	        android:textColor="@android:color/black"
-	       
+	       	android:inputType="textMultiLine"
 	        />
 	    <TextView android:id="@+id/subnameInfoEdit"
 	        android:layout_width="wrap_content"
@@ -28,6 +28,6 @@
 	        android:textSize="@dimen/text_15sp"
 	        android:textColor="@android:color/darker_gray"
 	        android:visibility="gone"
-	        />
+	        android:inputType="textMultiLine" />
 	 </LinearLayout>
 </RelativeLayout>

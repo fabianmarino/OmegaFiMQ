@@ -1,12 +1,18 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -36,7 +42,19 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		   
 		   int resource=a.getResourceId(R.styleable.RowEditTextOmegaFi_background_input_text, R.drawable.white_input);
 		   setBackgroundInputs(resource);
-		    
+		   
+		   int type=a.getInteger(R.styleable.RowEditTextOmegaFi_type_input_row_info_1, 1);
+		   RowEditTextOmegaFi.setTypeInputTextFromAttrs(type, textEdit); 
+		   
+		   int type2=a.getInteger(R.styleable.RowEditTextOmegaFi_type_input_row_info_2, 1);
+		   RowEditTextOmegaFi.setTypeInputTextFromAttrs(type, textEdit2);
+		   
+		   float widthPercentaje=a.getFloat(R.styleable.RowEditTextOmegaFi_width_edit_percentaje, 0.5f);
+		   setWidthEditPercentaje(widthPercentaje);
+		   
+		   String hint=a.getString(R.styleable.RowEditTextOmegaFi_hint_edit_text);
+		   textEdit.setHint(hint);
+		   
 		    a.recycle();
 	}
 	
@@ -46,13 +64,17 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
 		linear.setOrientation(LinearLayout.VERTICAL);
 		linear.setGravity(Gravity.LEFT);
+		int widthEdit=OmegaFiActivity.getWidthPercentageDisplay(getContext(), 0.5f);
 		textEdit=new EditText(super.getContext());
+		textEdit.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 		textOriginal=textEdit.getBackground();
 		textEdit.setBackgroundResource(R.drawable.white_input);
-		textEdit.setLayoutParams(new LayoutParams(super.getResources().getDimensionPixelSize(R.dimen.width_row_edit_text),LayoutParams.WRAP_CONTENT));
+		textEdit.setLayoutParams(new LayoutParams(widthEdit,
+				LayoutParams.WRAP_CONTENT));
 		textEdit2=new EditText(super.getContext());
 		textEdit2.setBackgroundResource(R.drawable.white_input);
-		textEdit2.setLayoutParams(new LayoutParams(super.getResources().getDimensionPixelSize(R.dimen.width_row_edit_text),LayoutParams.WRAP_CONTENT));
+		textEdit2.setLayoutParams(new LayoutParams(widthEdit,
+				LayoutParams.WRAP_CONTENT));
 		textEdit2.setVisibility(LinearLayout.GONE);
 		linear.addView(textEdit);
 		linear.addView(textEdit2);
@@ -62,7 +84,9 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 	}
 	
 	public void setEditable(boolean editable){
-		textEdit.setEnabled(editable);
+		if(!editable){
+			textEdit.setKeyListener(null);
+		}
 	}
 	
 	public void setTextEdit(String text){
@@ -81,6 +105,51 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 			textEdit.setBackgroundDrawable(textOriginal);
 			textEdit2.setBackgroundDrawable(textOriginal);
 		}
+	}
+	
+	public void setTypeInputEditText(int type){
+		textEdit.setInputType(type);
+	}
+	
+	public void setTypeInputEditText2(int type){
+		textEdit2.setInputType(type);
+	}
+	
+	public static void setTypeInputTextFromAttrs(int type, EditText edit){
+		switch (type) {
+		case 2:
+			edit.setInputType(InputType.TYPE_CLASS_PHONE);
+			break;
+		case 3:
+			edit.setInputType(InputType.TYPE_CLASS_NUMBER);
+			break;
+		case 4:
+			edit.setInputType(2);
+			break;
+		case 5:
+			edit.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+			break;
+		case 6:
+			edit.setInputType(129);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	@Override
+	public void setOnClickListener(OnClickListener l) {
+		if(textEdit!=null){
+			textEdit.setOnClickListener(l);
+			textEdit2.setOnClickListener(l);
+		}
+		super.setOnClickListener(l);
+	}
+	
+	public void setWidthEditPercentaje(float percentaje){
+		int widthEdit=OmegaFiActivity.getWidthPercentageDisplay(getContext(), percentaje);
+		textEdit.getLayoutParams().width=widthEdit;
+		textEdit2.getLayoutParams().width=widthEdit;
 	}
 	
 }

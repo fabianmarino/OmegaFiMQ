@@ -7,7 +7,9 @@ import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -16,12 +18,15 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class OpenRequestActivity extends OmegaFiActivity {
 
 	private SectionOmegaFi sectionContactInformation;
-	private RowEditTextOmegaFi rowEditEmail;
+	private LinearLayout linearTextEdit;
+	private TextView textPleaseEnter;
+	private EditText editEmailAddres;
 	private RowToogleOmegaFi rowToogle;
 	
 	private SectionOmegaFi sectionRequestContact;
@@ -48,13 +53,35 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	}
 	
 	private void completeSectionContactInformation(){
-		rowEditEmail=new RowEditTextOmegaFi(this);
-		rowEditEmail.setNameInfo("Your Email");
-		sectionContactInformation.addView(rowEditEmail);
+		
+		linearTextEdit=new LinearLayout(getApplicationContext());
+		linearTextEdit.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		linearTextEdit.setOrientation(LinearLayout.VERTICAL);
+		linearTextEdit.setBackgroundResource(R.drawable.border_bottom);
+		linearTextEdit.setPadding(10, 10, 10, 10);
+		
+		textPleaseEnter=new TextView(getApplicationContext());
+		textPleaseEnter.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		textPleaseEnter.setText("Please enter the email address associated to your account");
+		textPleaseEnter.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+		textPleaseEnter.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_15sp));
+		textPleaseEnter.setPadding(0, 0, 0, 10);
+		textPleaseEnter.setSingleLine(false);
+		textPleaseEnter.setTextColor(Color.BLACK);
+		
+		editEmailAddres=new EditText(getApplicationContext());
+		editEmailAddres.setTextColor(Color.BLACK);
+		editEmailAddres.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		editEmailAddres.setBackgroundResource(R.drawable.white_input);
+		editEmailAddres.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 		
 		rowToogle=new RowToogleOmegaFi(this);
 		rowToogle.setNameInfo("Previous issue?");
 		
+		linearTextEdit.addView(textPleaseEnter);
+		linearTextEdit.addView(editEmailAddres);
+		
+		sectionContactInformation.addView(linearTextEdit);
 		sectionContactInformation.addView(rowToogle);
 	}
 	

@@ -57,7 +57,10 @@
         <item name="android:background">@drawable/boton_style</item>
         <item name="android:textSize">@dimen/edit_login</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:padding">@dimen/padding_6dp</item>
+        <item name="android:paddingTop">@dimen/padding_6dp_buttom_omega</item>
+        <item name="android:paddingBottom">@dimen/padding_6dp_buttom_omega</item>
+        <item name="android:paddingRight">@dimen/padding_6dp_buttom_omega</item>
+        <item name="android:paddingLeft">@dimen/padding_6dp_buttom_omega</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
     <style name="ButtonOmegaMedium">

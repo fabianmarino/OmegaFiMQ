@@ -7,9 +7,15 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class DetailsOfficer extends LinearLayout {
 
+	private TextView titleOfficer;
+	private TextView subTitleOfficer;
+	private IconLabelVertical iconPhone;
+	private IconLabelVertical iconEmail;
+	
 	
 	public DetailsOfficer(Context context){
 		super(context);
@@ -25,6 +31,27 @@ public class DetailsOfficer extends LinearLayout {
 	private void initializate(){
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.details_officer, this, true);
+		
+		titleOfficer=(TextView)findViewById(R.id.nameOfficerMemberRoster);
+		subTitleOfficer=(TextView)findViewById(R.id.subTitleOfficerMemberRoster);
+		iconPhone=(IconLabelVertical)findViewById(R.id.iconPhoneRooster);
+		iconEmail=(IconLabelVertical)findViewById(R.id.iconEmailRooster);
+	}
+	
+	public void setNameRooster(String name){
+		titleOfficer.setText(name);
+	}
+	
+	public void setPositionRooster(String text){
+		subTitleOfficer.setText(text);
+	}
+	
+	public void setPhoneRooster(String phone){
+		iconPhone.setTextLabel(phone);
+	}
+	
+	public void setEmailRooster(String email){
+		iconEmail.setTextLabel(email);
 	}
 	
 

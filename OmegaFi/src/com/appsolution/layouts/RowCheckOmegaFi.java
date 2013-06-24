@@ -3,6 +3,8 @@ package com.appsolution.layouts;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
@@ -10,9 +12,10 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 
 	private RadioButton radioOption;
 	
+	
 	public RowCheckOmegaFi(Context context,RowCheckGroup group) {
 		super(context);
-		setTextSizeInformation(context.getResources().getDimensionPixelSize(R.dimen.text_10sp));
+		setTextSizeInformation(context.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 		radioOption=new RadioButton(context);
 		radioOption.setEnabled(false);
 		int size=context.getResources().getDimensionPixelSize(R.dimen.width_arrow_down);
@@ -22,6 +25,7 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 		radioOption.setButtonDrawable(R.drawable.radio_button);
 		this.addViewRight(radioOption);
 		group.addRowCheck(this);
+		Log.d("Check", getTextNameInfo().getText().toString());
 	}
 	
 	public void setChecked(boolean checked){
@@ -31,5 +35,6 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 	public boolean isChecked(){
 		return radioOption.isChecked();
 	}
-
+	
+	
 }

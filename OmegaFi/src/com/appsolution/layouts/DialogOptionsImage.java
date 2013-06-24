@@ -37,8 +37,7 @@ public class DialogOptionsImage {
 			
 			@Override
 			public void onClick(View v) {
-				dismissDialog();
-				
+				dismissDialog();			
 			}
 		});
 		

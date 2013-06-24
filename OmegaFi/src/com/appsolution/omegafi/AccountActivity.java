@@ -5,6 +5,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.appsolution.layouts.DialogContactAccount;
+import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionAccountUser;
 import com.appsolution.layouts.SectionOmegaFi;
@@ -32,7 +33,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		activity=this;
 		accountContacts=(SectionOmegaFi)findViewById(R.id.sectionAccountContacts);
 		accountDetails=(SectionOmegaFi)findViewById(R.id.sectionAccountDetails);
-		this.completeAccountSummary();
 		this.completeAccountContacts();
 		this.completeAccountDetails();
 	}
@@ -105,14 +105,23 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section4.setNameInfo("Payment Method");
 			section4.setVisibleArrow(true);
 			section4.setColorFontRowInformation(Color.GRAY);
-			
 			section4.setId(105);
 			section4.setOnClickListener(this);
 			accountDetails.addView(section4);
 	}
 	
-	public void completeAccountSummary(){
-		
+	public void selectPayMethod(View view){
+		final DialogSelectableOF selectable=new DialogSelectableOF(this);
+		selectable.setTitleDialog("Select Payment Method");
+		selectable.setTextButton("Save");
+		selectable.setButtonListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				selectable.dismissDialog();
+			}
+		});
+		selectable.showDialog();
 	}
 	
 	public void activityPayNow(View button){
@@ -123,6 +132,11 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	public void activityAutoPay(View button){
 		Intent activityAuto=new Intent(this, AutoPayActivity.class);
 		startActivity(activityAuto);
+	}
+	
+	public void goToMyProfile(View user){
+		Intent activityProfile=new Intent(this, MyProfileActivity.class);
+		startActivity(activityProfile);
 	}
 
 	@Override
@@ -142,7 +156,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			startActivity(viewScheduledPayments);
 			break;
 		case 105:
-			
+			this.selectPayMethod(null);
 			break;
 		case 106:
 			Intent viewScheduleCharges=new Intent(this, ScheduleChargesActivity.class);

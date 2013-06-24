@@ -161,7 +161,7 @@ public class HomeActivity extends OmegaFiActivity {
 		SectionOmegaFi sectionOfficers=new SectionOmegaFi(this);
 		sectionOfficers.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		sectionOfficers.setTitleSection("Officers");
-		sectionOfficers.setSizeTitle(14f);
+		sectionOfficers.setSizeTitle(getResources().getDimensionPixelSize(R.dimen.text_14sp));
 		sectionOfficers.setShowArrow(false);
 		sectionOfficers.setPutBorderBottom(true);
 		listPhotos=new Gallery(this);
@@ -173,14 +173,17 @@ public class HomeActivity extends OmegaFiActivity {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				detailsOffice.setVisibility(LinearLayout.VISIBLE);
+					int position, long arg3) {
+				detailsOffice.setVisibility(View.VISIBLE);
+				detailsOffice.setNameRooster("Bryan Farnswortheimer "+(position+1));
+				detailsOffice.setPositionRooster("Team Leader "+(position));
+				detailsOffice.setPhoneRooster("654654"+(position+4));
+				detailsOffice.setEmailRooster("bryan_3"+position+"@example.com");
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				// TODO Auto-generated method stub
-				
+				detailsOffice.setVisibility(View.GONE);
 			}
 		});
 		
@@ -201,6 +204,7 @@ public class HomeActivity extends OmegaFiActivity {
 				DialogSelectableOF selectables=new DialogSelectableOF(home);
 				selectables.setTitleDialog(null);
 				selectables.setTextButton(null);
+				selectables.setCloseOnSelectedItem(true);
 				selectables.showDialog();
 			}
 		});
@@ -217,7 +221,7 @@ public class HomeActivity extends OmegaFiActivity {
 		paginator=new ViewPager(getApplicationContext());
 		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
 				this.getResources().getDimensionPixelSize(R.dimen.height_new_event_content)));
-		adapterPager=new EventsNewsAdapter(getApplicationContext());
+		adapterPager=new EventsNewsAdapter(this);
 		paginator.setAdapter(adapterPager);
 		
 		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
@@ -233,32 +237,38 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completePollSection(){
+		
 		LinearLayout content=(LinearLayout)sectionPoll.findViewById(R.id.contentSectionOmegaFi);
 		paginator=new ViewPager(getApplicationContext());
 		paginator.setAdapter(new PollAdapter(getApplicationContext()));
 		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
-				this.getResources().getDimensionPixelSize(R.dimen.height_poll_content)));
+				getResources().getDimensionPixelSize(R.dimen.height_poll_content)));
 		
 		LinearLayout linTitles=new LinearLayout(getApplicationContext());
 		linTitles.setGravity(Gravity.CENTER_VERTICAL);
-		linTitles.setBackgroundColor(Color.WHITE);
 		linTitles.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
-				50));
+				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
 		linTitles.setOrientation(LinearLayout.VERTICAL);
 		
 		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
+		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
+				40));
+		titlesIndicator.setPadding(0, 8, 0, 0);
 		titlesIndicator.setBackgroundColor(Color.WHITE);
 		titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
 		titlesIndicator.setStrokeColor(this.getResources().getColor(R.color.gray_background));
 		int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
 		titlesIndicator.setRadius(circleSize);
-		titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
-				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
 		titlesIndicator.setViewPager(paginator);
+		
+		View jagged=new View(getApplicationContext());
+		jagged.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, getResources().getDimensionPixelSize(R.dimen.padding_10dp)));
+		jagged.setBackgroundResource(R.drawable.jagged_inv);
+		linTitles.addView(jagged);
+		linTitles.addView(titlesIndicator);
 	
 		content.setBackgroundColor(getResources().getColor(R.color.gray_background));
 		content.addView(paginator);
-		linTitles.addView(titlesIndicator);
 		content.addView(linTitles);
 	}
 	
@@ -267,7 +277,7 @@ public class HomeActivity extends OmegaFiActivity {
 		paginator=new ViewPager(getApplicationContext());
 		paginator.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, this.getResources().getDimensionPixelSize
 				(R.dimen.height_new_event_content)));
-		adapterPager=new EventsNewsAdapter(getApplicationContext());
+		adapterPager=new EventsNewsAdapter(this);
 		paginator.setAdapter(adapterPager);
 		
 		CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);

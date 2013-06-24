@@ -1,7 +1,5 @@
 package com.appsolution.layouts;
-
 import com.appsolution.omegafi.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -24,6 +22,9 @@ public class RowEditNameTopInfo extends ViewNameTopInfo {
 		String hint=a.getString(R.styleable.RowEditNameTopInfo_hint_text_top_info);
 		setHintText(hint);
 		
+		int type=a.getInteger(R.styleable.RowEditNameTopInfo_type_input_top_info, 1);
+		RowEditTextOmegaFi.setTypeInputTextFromAttrs(type, textInfo);
+		
 		a.recycle();
 	}
 	
@@ -36,6 +37,10 @@ public class RowEditNameTopInfo extends ViewNameTopInfo {
 	
 	public void setHintText(String text){
 		textInfo.setHint(text);
+	}
+	
+	public void setTypeInputEditText(int type){
+		textInfo.setInputType(type);
 	}
 
 }

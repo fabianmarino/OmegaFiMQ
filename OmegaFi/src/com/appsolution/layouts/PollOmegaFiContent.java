@@ -73,13 +73,24 @@ public class PollOmegaFiContent extends ViewSwitcher{
 	}
 	
 	public void addAnswersToPoll(ArrayList<String> answers){
-		for(String answer:answers){
-			RadioButton newAnswer=new RadioButton(getContext());
-			newAnswer.setTextColor(Color.GRAY);
-			newAnswer.setText(answer);
-			newAnswer.setTextSize(getContext().getResources().getDimensionPixelSize(R.dimen.text_11sp));
-			groupAnswers.addView(newAnswer);
+//		for(String answer:answers){
+//			RadioButton newAnswer=new RadioButton(getContext());
+//			newAnswer.setTextColor(Color.GRAY);
+//			newAnswer.setText(answer);
+//			newAnswer.setTextSize(TypedValue.COMPLEX_UNIT_PX,
+//					getContext().getResources().getDimensionPixelSize(R.dimen.text_answer_poll));
+//			groupAnswers.addView(newAnswer);
+//		}
+		
+		RowCheckGroup group=new RowCheckGroup();
+		for (int i = 0; i < 4; i++) {
+			RowCheckOmegaFi check=new RowCheckOmegaFi(getContext(), group);
+			check.setTextSizeInformation(getResources().getDimensionPixelSize(R.dimen.text_12_notification));
+			check.setNameInfo("Answer "+(i+1));
+			check.setBackgroundColor(Color.TRANSPARENT);
+			groupAnswers.addView(check);
 		}
+		
 	}
 	
 	public void setTitleQuestion(String title){

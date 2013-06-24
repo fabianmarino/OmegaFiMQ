@@ -6,6 +6,7 @@ import com.appsolution.omegafi.R.drawable;
 import android.R.dimen;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -24,6 +25,7 @@ public class ImageAdapter extends BaseAdapter {
 		       R.drawable.photo_member, 
 		       R.drawable.photo_2, R.drawable.photo_3,
 		       R.drawable.photo_member};
+	
 	
 	public ImageAdapter(Context context){
 		this.context=context;
@@ -44,25 +46,17 @@ public class ImageAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		// TODO Auto-generated method stub
-		return position;
+		return listImages[position];
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		// Get a View to display image data
+	public View getView(final int position, View convertView, ViewGroup parent) {
 					LinearLayout linear=new LinearLayout(context);
 					linear.setGravity(Gravity.CENTER_HORIZONTAL);
 					linear.setOrientation(LinearLayout.VERTICAL);
 					ImageView iv = new ImageView(this.context);
 					iv.setImageResource(this.listImages[position]);
-					// Image should be scaled somehow
-					//iv.setScaleType(ImageView.ScaleType.CENTER);
-					//iv.setScaleType(ImageView.ScaleType.CENTER_CROP);			
-					//iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-					//iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
-					//iv.setScaleType(ImageView.ScaleType.FIT_XY);
 					iv.setAdjustViewBounds(true);
-					// Set the Width & Height of the individual images
 					iv.setLayoutParams(new Gallery.LayoutParams(context.getResources().getDimensionPixelSize(R.dimen.width_image_chapter), 
 							context.getResources().getDimensionPixelSize(R.dimen.height_image_chapter)));
 					

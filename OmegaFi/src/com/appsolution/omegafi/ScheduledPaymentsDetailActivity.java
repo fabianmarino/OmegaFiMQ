@@ -8,15 +8,21 @@ import com.appsolution.layouts.SectionOmegaFi;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.support.v4.app.FragmentActivity;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.View;
+import android.widget.DatePicker;
 
 public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 
 	private SectionOmegaFi sectionDetails;
 	private SectionOmegaFi sectionMethod;
+	
+	
+	private RowEditTextOmegaFi rowEditAmount;
+	private RowInformation rowPaymentDate;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,20 +43,41 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	}
 	
 	private void completePaymentDetails(){
-		RowEditTextOmegaFi rowEdit1=new RowEditTextOmegaFi(this);
-		rowEdit1.setNameInfo("Amount");
-		rowEdit1.setEditable(false);
-		rowEdit1.setTextEdit("$335.00");
-		rowEdit1.setBorderBottom(true);
+		rowEditAmount=new RowEditTextOmegaFi(this);
+		rowEditAmount.setNameInfo("Amount");
+		rowEditAmount.setTextEdit("$335.00");
+		rowEditAmount.setWidthEditPercentaje(0.4f);
+		rowEditAmount.setBorderBottom(true);
 		 
+		
+		rowPaymentDate=new RowInformation(this);
+		rowPaymentDate.setNameInfo("Payment Date");
+		rowPaymentDate.setValueInfo("4/5/2013");
+		rowPaymentDate.setBackgroundValueInfo(R.drawable.spinner_large);
+		rowPaymentDate.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				showDatePayment();		
+			}
+		});
+		
+		sectionDetails.addView(rowEditAmount);
+		sectionDetails.addView(rowPaymentDate);
+	}
 	
-		RowEditTextOmegaFi rowEdit2=new RowEditTextOmegaFi(this);
-		rowEdit2.setNameInfo("Payment Date");
-		rowEdit2.setTextEdit("04/15/2013");
-		rowEdit2.setEditable(false);
-		rowEdit2.setBorderBottom(true);
-		sectionDetails.addView(rowEdit1);
-		sectionDetails.addView(rowEdit2);
+	private void showDatePayment(){
+		int[] dayMonthYear=rowPaymentDate.getDayMonthYear();
+		DatePickerDialog date=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+			
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear,
+					int dayOfMonth) {
+				rowPaymentDate.setValueInfo(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);	
+			}
+		}, dayMonthYear[2], dayMonthYear[1]-1, dayMonthYear[0]);
+		date.getDatePicker().setCalendarViewShown(false);
+		date.show();
 	}
 	
 	private void completePaymentMethod(){

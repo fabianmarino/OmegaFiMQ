@@ -5,23 +5,20 @@
     style="@style/BackgroundActivity"
     android:layout_height="match_parent"
     tools:context=".AddNewPaymentActivity" >
-
     <LinearLayout 
         android:id="@+id/linearAddNewPayment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         style="@style/LinearContentAll">
-        <LinearLayout android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/white_input"
-            android:layout_marginBottom="@dimen/padding_10dp">
-	        <Spinner
-	            android:id="@+id/spinnerCreditECheck" 
-	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
-	            />
-        </LinearLayout>
+	    <Spinner
+	        android:id="@+id/spinnerCreditECheck" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="@dimen/padding_6dp"
+	        android:background="@drawable/spinner_large"
+	        android:layout_marginBottom="@dimen/padding_6dp"
+	    />
         <LinearLayout android:id="@+id/linearCreditDebitCard"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -31,8 +28,8 @@
                 android:id="@+id/textNameOnCard"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                secom:type_input_row_info_1="@integer/input_type_normal"
                 secom:name_information_e="Name on Card"
-                secom:text_editable="false"
                 />
             <com.appsolution.layouts.RowInformation
                 android:id="@+id/selectCardType"
@@ -52,24 +49,34 @@
                 android:id="@+id/textNumberCard"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                secom:type_input_row_info_1="@integer/input_type_number"
                 secom:name_information_e="Card Number"
                 />
-            <com.appsolution.layouts.RowInformation
-                android:id="@+id/editExpirationDate"
+            <!-- <com.appsolution.layouts.RowEditTextOmegaFi
+                android:id="@+id/textExpirationDate"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                secom:name_information="Expiration Date"
-                secom:put_border_bottom="true"
-                secom:padding_top_row_info="@dimen/padding_12dp"
-                secom:padding_bottom_row_info="@dimen/padding_12dp"
-                secom:padding_left_row_info="@dimen/padding_6dp"
-                secom:padding_right_row_info="@dimen/padding_6dp"
-                secom:icon_drawable="@drawable/calendar_1"
-               />
+                android:onClick="showExpirationDate"
+                secom:name_information_e="Expiration Date"
+                secom:text_editable="false"
+                />  -->
+            <com.appsolution.layouts.RowInformation
+                 android:id="@+id/rowSelectExpirationDate"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:onClick="selectDatePayment"
+                 android:background="@android:color/white"
+                 secom:name_information="Expiration date"
+                 secom:value_information="12/03/2013"
+                 secom:background_value_info="@drawable/white_input_spinner"
+                 secom:put_border_bottom="true"
+                 />
+            
             <com.appsolution.layouts.RowEditTextOmegaFi
                 android:id="@+id/textZipCode"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                secom:type_input_row_info_1="@integer/input_type_number"
                 secom:name_information_e="Zip Code"
                 />
             <com.appsolution.layouts.RowToogleOmegaFi
@@ -94,18 +101,21 @@
 	                android:id="@+id/textNameOnAccount"
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
+	                secom:type_input_row_info_1="@integer/input_type_normal"
 	                secom:name_information_e="Name on Account"
 	                />
 	            <com.appsolution.layouts.RowEditTextOmegaFi
 	                android:id="@+id/textRoutingNumber"
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
+	                secom:type_input_row_info_1="@integer/input_type_number"
 	                secom:name_information_e="Routing Number"
 	                />
 	            <com.appsolution.layouts.RowEditTextOmegaFi
 	                android:id="@+id/textAccountNumber"
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
+	                secom:type_input_row_info_1="@integer/input_type_number"
 	                secom:name_information_e="Account Number"
 	                />
 	            <com.appsolution.layouts.RowToogleOmegaFi

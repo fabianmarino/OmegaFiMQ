@@ -5,9 +5,10 @@
     android:layout_height="wrap_content"
     android:background="@color/blue_marine"
     android:orientation="vertical" >
-    <ImageView android:layout_width="@dimen/width_20dp"
+    <ImageView android:layout_width="@dimen/width_arrow_down"
         android:layout_height="wrap_content"
         android:src="@drawable/down_arrow"
+        android:adjustViewBounds="true"
         android:layout_gravity="center_horizontal"/>
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
         android:weightSum="5"
         android:orientation="horizontal">
             <com.appsolution.layouts.IconLabelVertical
+                android:id="@+id/iconPhoneRooster"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -46,6 +48,7 @@
                 android:layout_height="fill_parent"
                 android:background="@color/blue_marine_dark"/>
             <com.appsolution.layouts.IconLabelVertical
+                android:id="@+id/iconEmailRooster"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"

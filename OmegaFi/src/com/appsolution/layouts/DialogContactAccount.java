@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class DialogContactAccount {
 	private Activity activity;
 	private LayoutInflater layoutInflater;
 	
+	private TextView textNameContact;
 	private TextView textCancel;
 	private TextView textEmailOpenRequest;
 	
@@ -32,6 +34,7 @@ public class DialogContactAccount {
 		builderDialog = new AlertDialog.Builder(activity);
 		builderDialog.setView(layout);	
 		alertDialog = builderDialog.create();
+		textNameContact=(TextView)layout.findViewById(R.id.titleNameContact);
 		textEmailOpenRequest=(TextView)layout.findViewById(R.id.emailOpenRequestContact);
 		
 		if(!isReguarAccount){
@@ -60,6 +63,18 @@ public class DialogContactAccount {
 	
 	public void showDialog(){
 		alertDialog.show();
+	}
+	
+	public void setNameContact(String name){
+		textNameContact.setText(name);
+	}
+	
+	public void setOnOpenRequest(OnClickListener listener){
+		textEmailOpenRequest.setOnClickListener(listener);
+	}
+	
+	public void dimissDialog(){
+		alertDialog.dismiss();
 	}
 	
 }

@@ -10,9 +10,10 @@ import android.view.LayoutInflater;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-public class RowEditTextSubmit extends RelativeLayout {
+public class RowEditTextSubmit extends LinearLayout {
 	
 	private EditText textEdit;
 	private Button buttonSubmit;
@@ -36,6 +37,9 @@ public class RowEditTextSubmit extends RelativeLayout {
 		String textButton= a.getString(R.styleable.RowEditTextSubmit_text_submit_button);
 		setTextButton(textButton);
 		
+		int input=a.getInteger(R.styleable.RowEditTextSubmit_input_type_submit, 1);
+		RowEditTextOmegaFi.setTypeInputTextFromAttrs(input, textEdit);
+		
 		a.recycle();	
 	}
 	
@@ -46,8 +50,6 @@ public class RowEditTextSubmit extends RelativeLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.row_text_edit_submit, this, true);
 		textEdit=(EditText)findViewById(R.id.editText_submit);
-		android.view.ViewGroup.LayoutParams params=textEdit.getLayoutParams();
-		params.width=(int)(display.getWidth()*0.5f);
 		buttonSubmit=(Button)findViewById(R.id.buttonSubmitEdit);
 	}
 	
@@ -61,6 +63,10 @@ public class RowEditTextSubmit extends RelativeLayout {
 	
 	public void onSubmit(OnClickListener listener){
 		buttonSubmit.setOnClickListener(listener);
+	}
+	
+	public void setInputTypeEditSubmit(int type){
+		textEdit.setInputType(type);
 	}
 
 }

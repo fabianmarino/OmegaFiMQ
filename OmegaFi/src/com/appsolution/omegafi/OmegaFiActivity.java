@@ -21,7 +21,10 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
@@ -37,6 +40,11 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.showSlidingMenu();
+		this.optionsActionBar();
+	}
+	
+	public void showSlidingMenu(){
 		setBehindContentView(R.layout.sliding_menu);
 		setSlidingActionBarEnabled(false);
 		slidingMenu = getSlidingMenu();
@@ -47,10 +55,9 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
         slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         slidingMenu.setFadeDegree(0.35f);
         actionBar = getSupportActionBar();
-        this.optionsActionBar();
         userContact=(UserContactLayout)findViewById(R.id.userContactSliding);
         itemAnnouncements=(ItemMenuSliding)findViewById(R.id.menuItemAnnouncements);
-//        this.loadSlidingMenu();
+        this.loadSlidingMenu();
 	}
 	
 	public static boolean loadImageFromURL(String fileUrl, 
@@ -154,9 +161,9 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	private void loadSlidingMenu(){
-		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
-		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
-		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getAnnouncementsCount());
+//		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
+//		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
+		itemAnnouncements.setNumberNotifications(2);
 	}
 	
 	public void goToHome(View item){
@@ -232,6 +239,12 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		       });
 		AlertDialog alert = builder.create();
 		alert.show();
+	}
+	
+	public static int getWidthPercentageDisplay(Context context,float percentaje){
+		WindowManager wm=(WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+		Display display=wm.getDefaultDisplay();
+		return (int)(display.getWidth()*percentaje);
 	}
 	
 }

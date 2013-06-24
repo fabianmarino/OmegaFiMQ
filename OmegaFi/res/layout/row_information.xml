@@ -32,7 +32,7 @@
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
 			        android:text="Information"
-			        android:textSize="@dimen/text_15sp"
+			        android:textSize="@dimen/text_12_notification"
 			        android:textColor="@android:color/darker_gray"
 			        />
 			    <TextView android:id="@+id/nameSubInfo"

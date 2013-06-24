@@ -21,8 +21,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -41,6 +44,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private LinearLayout linearAddress;
 	
 	private Spinner spinnerPrefix;
+	private EditText editTravelVisa;
 	
 	private static final int RESULT_LOAD_IMAGE=1;
 	private static final int CAMERA_REQUEST = 1888; 
@@ -63,6 +67,8 @@ public class MyProfileActivity extends OmegaFiActivity {
 		linearAddress=(LinearLayout)findViewById(R.id.linearAddressProfile);
 		
 		spinnerPrefix=(Spinner)findViewById(R.id.spinnerPrefixProfile);
+		editTravelVisa=(EditText)findViewById(R.id.travelVisaNumber);
+		Log.d("Travel", editTravelVisa.getInputType()+" numberdecimal");
 		
 		final Activity activity=this;
 		

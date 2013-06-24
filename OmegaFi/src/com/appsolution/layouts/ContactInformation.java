@@ -1,6 +1,7 @@
 package com.appsolution.layouts;
 
 import android.content.Context;
+import android.text.InputType;
 import android.util.AttributeSet;
 
 public class ContactInformation extends SectionOmegaFi{
@@ -23,9 +24,11 @@ public class ContactInformation extends SectionOmegaFi{
 	private void initializeComponents(){
 		rowEditEmail=new RowEditTextOmegaFi(getContext());
 		rowEditEmail.setNameInfo("Email");
+		rowEditEmail.setTypeInputEditText(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
 		
 		rowEditPhone=new RowEditTextOmegaFi(getContext());
 		rowEditPhone.setNameInfo("Phone");
+		rowEditPhone.setTypeInputEditText(InputType.TYPE_CLASS_PHONE);
 		
 		this.addView(rowEditEmail);
 		this.addView(rowEditPhone);

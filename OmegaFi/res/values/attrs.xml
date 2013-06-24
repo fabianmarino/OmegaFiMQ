@@ -38,6 +38,7 @@
       <attr name="text_size_name_information" format="dimension"/>
       <attr name="text_size_name_subinformation" format="dimension"/>
       <attr name="background_row_info" format="reference"/>
+      <attr name="background_value_info" format="reference"/>
     </declare-styleable>
     <declare-styleable name="RowEditInformation">
       <attr name="put_border_bottom_e" format="boolean" />
@@ -57,6 +58,10 @@
         <attr name="text_edit" format="string" />
         <attr name="text_edit_2" format="string" />
         <attr name="background_input_text" format="reference" />
+        <attr name="type_input_row_info_1" format="integer" />
+        <attr name="type_input_row_info_2" format="integer" />
+        <attr name="width_edit_percentaje" format="float" />
+        <attr name="hint_edit_text" format="string" />
     </declare-styleable>
     <declare-styleable name="RowToogleOmegaFi">
         <attr name="toogle_on" format="boolean" />
@@ -83,6 +88,7 @@
     </declare-styleable>
     <declare-styleable name="RowEditNameTopInfo">
         <attr name="hint_text_top_info" format="string" />
+        <attr name="type_input_top_info" format="integer" />
     </declare-styleable>
     <declare-styleable name="CycleCharge">
         <attr name="title_line" format="string" />
@@ -105,9 +111,11 @@
     <declare-styleable name="RowEditTextSubmit">
         <attr name="text_placehoder" format="string" />
         <attr name="text_submit_button" format="string" />
+        <attr name="input_type_submit" format="integer" />
     </declare-styleable>
     <declare-styleable name="RowQuestionEditText">
         <attr name="text_question_row" format="string" />
+        <attr name="input_type_question" format="integer" />
     </declare-styleable>
     <declare-styleable name="UserContactLayout">
         <attr name="color_font_text" format="color" />

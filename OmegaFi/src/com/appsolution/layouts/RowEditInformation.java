@@ -6,7 +6,10 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -21,6 +24,23 @@ public class RowEditInformation extends RelativeLayout {
 	public RowEditInformation(Context context){
 		super(context);
 		this.initialize();
+		 setTextSizeInformation(super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
+		 textNameInfo.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Log.d("Por fin", "Eso mijito");
+				
+			}
+		});
+		 textSubNameInfo.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Log.d("Por fin", "Eso mijito");
+					
+				}
+			});
 	}
 	
 	public RowEditInformation(Context context, AttributeSet attrs) {
@@ -35,7 +55,8 @@ public class RowEditInformation extends RelativeLayout {
 		   String nameInfo = a.getString(R.styleable.RowEditInformation_name_information_e);
 		   setNameInfo(nameInfo);
 		   
-		   float textSize = a.getDimension(R.styleable.RowEditInformation_row_text_size_e,  super.getResources().getDimensionPixelSize(R.dimen.text_10sp));
+		   float textSize = a.getDimension(R.styleable.RowEditInformation_row_text_size_e,  
+				   super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 		   setTextSizeInformation(textSize);
 		   
 		   int resource=(int)a.getResourceId(R.styleable.RowEditInformation_background_row_edit_info, -1);
@@ -50,6 +71,22 @@ public class RowEditInformation extends RelativeLayout {
 		   setPaddingRow(paddingLeft, paddingTop, paddingRight, paddingBottom);
 		   
 		    a.recycle();
+		    textNameInfo.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Log.d("Por fin", "Eso mijito");
+					
+				}
+			});
+			 textSubNameInfo.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Log.d("Por fin", "Eso mijito");
+						
+					}
+				});
 	}
 	
 	private void initialize(){
@@ -58,8 +95,25 @@ public class RowEditInformation extends RelativeLayout {
 		content=(RelativeLayout)findViewById(R.id.rowEditInformation);
 		content.setPadding(content.getPaddingLeft(), content.getPaddingTop(), 10, content.getPaddingBottom());
 		textNameInfo=(TextView)findViewById(R.id.nameInfoEdit);
+		textNameInfo.setClickable(true);
+		textNameInfo.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Log.d("Text Name info", ":p");
+				
+			}
+		});
 		textSubNameInfo=(TextView)findViewById(R.id.subnameInfoEdit);
-	}
+		textSubNameInfo.setClickable(true);
+		textSubNameInfo.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Log.d("Text Name info", ":p");
+			}
+		});
+		}
 	
 	public void setNameInfo(String name) {
 		textNameInfo.setText(name);
@@ -73,8 +127,8 @@ public class RowEditInformation extends RelativeLayout {
 	}
 	
 	public void setTextSizeInformation(float size){
-		textNameInfo.setTextSize(size);
-		textSubNameInfo.setTextSize(size);
+		textNameInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
+		textSubNameInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	
@@ -104,6 +158,28 @@ public class RowEditInformation extends RelativeLayout {
 			content.setBackgroundResource(resource);
 		}
 	}
+	
+	public void setBackgroundColor(int color){
+		content.setBackgroundResource(0);
+		content.setBackgroundColor(color);
+	}
 
+	public TextView getTextNameInfo() {
+		return textNameInfo;
+	}
+
+	public TextView getTextSubNameInfo() {
+		return textSubNameInfo;
+	}
+	
+	@Override
+	public void setOnClickListener(OnClickListener l) {
+		if(textNameInfo!=null){
+			textNameInfo.setOnClickListener(l);
+			textSubNameInfo.setOnClickListener(l);
+		}
+		super.setOnClickListener(l);
+	}
+	
 
 }

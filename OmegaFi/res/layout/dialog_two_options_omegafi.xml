@@ -24,7 +24,7 @@
 	    <Button android:id="@+id/buttonOption1"
 	        android:layout_weight="0.5"
 	        android:layout_width="fill_parent"
-	       	android:layout_height="wrap_content"
+	       	android:layout_height="fill_parent"
 	       	android:text="Option 1"
 	       	android:layout_marginRight="2dp"
 	       	style="@style/ButtonOmega"/>

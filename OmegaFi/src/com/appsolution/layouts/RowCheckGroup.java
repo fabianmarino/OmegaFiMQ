@@ -7,17 +7,23 @@ import android.view.View;
 public class RowCheckGroup {
 	
 	private ArrayList< RowCheckOmegaFi> listRowsChecked=new ArrayList<RowCheckOmegaFi>();
+	private DialogSelectableOF contentSelectable;
 	
 	public void addRowCheck(final RowCheckOmegaFi row){
-		
-		row.setOnClickListener(new View.OnClickListener() {
+		View.OnClickListener listener=new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				unCheckedAll();
-				row.setChecked(true);	
+				row.setChecked(true);
+				if(contentSelectable!=null){
+					contentSelectable.dismissDialog();
+				}
 			}
-		});
+		};
+		row.setOnClickListener(listener);
+		row.getTextNameInfo().setOnClickListener(listener);
+		row.getTextSubNameInfo().setOnClickListener(listener);
 		listRowsChecked.add(row);
 	}
 	
@@ -26,5 +32,15 @@ public class RowCheckGroup {
 			chek.setChecked(false);
 		}
 	}
+
+	public DialogSelectableOF getContentSelectable() {
+		return contentSelectable;
+	}
+
+	public void setContentSelectable(DialogSelectableOF contentSelectable) {
+		this.contentSelectable = contentSelectable;
+	}
+	
+	
 	
 }

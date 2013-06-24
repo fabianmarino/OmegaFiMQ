@@ -15,14 +15,16 @@
 	        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing?"
 	        android:textColor="@android:color/black"
 	        android:background="@android:color/white"
-	        android:textSize="@dimen/text_12sp_row_info"/>/>
+	        android:inputType="textMultiLine"
+	        android:textSize="@dimen/text_question_poll"/>
 	    <View android:layout_width="fill_parent"
 	            android:layout_height="@dimen/padding_10dp"
 	            android:background="@drawable/jagged"/>
 	    <LinearLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:orientation="vertical">
+	        android:orientation="vertical"
+	        android:padding="@dimen/padding_5dp">
 	        <RadioGroup 
 	            android:id="@+id/contentAnswersPoll"
 	            android:layout_width="fill_parent"
@@ -41,8 +43,9 @@
 	            android:id="@+id/buttonSubmitPoll"
 	            android:layout_width="wrap_content"
 	            android:layout_height="@dimen/height_button_small"
-	            android:padding="10dp"
-	            android:text="SUBMIT  "
+	            android:text="SUBMIT"
+	            android:layout_marginLeft="@dimen/padding_6dp"
+	            android:layout_marginTop="@dimen/padding_3dp"
 	            style="@style/ButtonOmegaSmall"/>
 	    </LinearLayout>
 	</LinearLayout>
@@ -58,7 +61,8 @@
 	        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing?"
 	        android:textColor="@android:color/black"
 	        android:background="@android:color/white"
-	        android:textSize="@dimen/text_12sp_row_info"/>
+	        android:inputType="textMultiLine"
+	        android:textSize="@dimen/text_question_poll"/>
 	    <View android:layout_width="fill_parent"
 	            android:layout_height="@dimen/padding_10dp"
 	            android:background="@drawable/jagged"/>  
@@ -66,6 +70,7 @@
 	        android:id="@+id/contentPollResults"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:padding="@dimen/padding_5dp"
 	        android:orientation="vertical">
 	    </LinearLayout>
 	    <Button android:id="@+id/buttonVote"

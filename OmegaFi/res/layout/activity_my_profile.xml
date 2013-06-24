@@ -78,12 +78,14 @@
                     <EditText android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="Main Number"
+                        android:inputType="phone"
                         style="@style/EditTextLogin"
                         />
                     <EditText android:layout_width="fill_parent"
                         android:layout_marginTop="@dimen/padding_6dp"
                         android:layout_height="wrap_content"
                         android:hint="Secondary Number"
+                        android:inputType="phone"
                         style="@style/EditTextLogin"
                         />
                 </LinearLayout>
@@ -97,12 +99,14 @@
                     <EditText android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:hint="Main Email"
+                        android:inputType="textEmailAddress"
                         style="@style/EditTextLogin"
                         />
                     <EditText android:layout_width="fill_parent"
                         android:layout_marginTop="@dimen/padding_6dp"
                         android:layout_height="wrap_content"
                         android:hint="Secondary Email"
+                        android:inputType="textEmailAddress"
                         style="@style/EditTextLogin"
                         />
                 </LinearLayout>
@@ -153,51 +157,6 @@
                     secom:text_toogle="Share Contact info"
                     secom:put_border_bottom_e="false"
                     android:layout_marginBottom="@dimen/padding_10dp" />
-                <!-- 
-                <TableLayout android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white">
-                <TableRow android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="100">
-                    <LinearLayout android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_6dp"
-                        android:paddingBottom="@dimen/padding_6dp"
-                        android:gravity="center"
-                        android:layout_weight="33">
-                        <ImageView android:layout_width="@dimen/width_image_label"
-                            android:layout_height="@dimen/width_image_label"
-                            android:background="@android:color/darker_gray"/>
-                    </LinearLayout>
-                    <View android:layout_width="1dp"
-                        android:layout_height="fill_parent"
-                        android:background="@android:color/darker_gray"/>
-                    <LinearLayout android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_6dp"
-                        android:paddingBottom="@dimen/padding_6dp"
-                        android:gravity="center"
-                        android:layout_weight="33">
-                        <ImageView android:layout_width="@dimen/width_image_label"
-                            android:layout_height="@dimen/width_image_label"
-                            android:background="@android:color/darker_gray"/>
-                    </LinearLayout>
-                    <View android:layout_width="1dp"
-                        android:layout_height="fill_parent"
-                        android:background="@android:color/darker_gray"/>
-                    <LinearLayout android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/padding_6dp"
-                        android:paddingBottom="@dimen/padding_6dp"
-                        android:gravity="center"
-                        android:layout_weight="33">
-                        <ImageView android:layout_width="@dimen/width_image_label"
-                            android:layout_height="@dimen/width_image_label"
-                            android:background="@android:color/darker_gray"/>
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout> -->
             </LinearLayout>
         </LinearLayout>
         <LinearLayout android:layout_width="fill_parent"
@@ -273,9 +232,12 @@
             <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_5dp">
-                <EditText android:layout_width="fill_parent"
+                <EditText
+                    android:id="@+id/travelVisaNumber" 
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Travel Visa Number"
+                    android:inputType="number"
                     style="@style/EditTextLoginNormal"/>
             </LinearLayout>
             <TableLayout android:layout_width="fill_parent"

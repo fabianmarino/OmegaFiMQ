@@ -5,7 +5,10 @@ import java.util.Calendar;
 import java.util.List;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -17,10 +20,10 @@ import android.widget.TextView;
 public class EventsNewsAdapter extends PagerAdapter {
 
 	private ArrayList<String[]> listaEventsOrNews;  
-    private Context context;  
+    private Activity context;  
       
       
-    public EventsNewsAdapter(Context context) {  
+    public EventsNewsAdapter(Activity context) {  
         super();    
         this.context = context;
         listaEventsOrNews=new ArrayList<String[]>();
@@ -72,7 +75,14 @@ public class EventsNewsAdapter extends PagerAdapter {
     	event.setTitleNewEvent(listaEventsOrNews.get(position)[0]);
     	event.setDateEventNew("DD / MM / YYYY");
     	event.setDescriptionNewEvent(listaEventsOrNews.get(position)[2]);
-    	
+    	event.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("http://omegafi.com"));
+				context.startActivity(i);
+			}
+		});
         ((ViewPager) collection).addView(event,0);  
         return event;  
     }  

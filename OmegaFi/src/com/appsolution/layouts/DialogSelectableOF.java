@@ -28,6 +28,7 @@ public class DialogSelectableOF {
 	private Button buttonAction;
 	
 	private ArrayList<String> optionsSelectables=new ArrayList<String>();
+	RowCheckGroup group;
 	
 	public DialogSelectableOF(Activity activity){
 		this.activity=activity;
@@ -52,7 +53,7 @@ public class DialogSelectableOF {
 	}
 	
 	private void completeOptionsSelectable(){
-		RowCheckGroup group=new RowCheckGroup();
+		group=new RowCheckGroup();
 		for (String option:optionsSelectables) {
 			RowCheckOmegaFi rowChecked=new RowCheckOmegaFi(activity,group);
 			rowChecked.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
@@ -94,6 +95,15 @@ public class DialogSelectableOF {
 	
 	public void setButtonListener(View.OnClickListener event){
 		buttonAction.setOnClickListener(event);
+	}
+	
+	public void setCloseOnSelectedItem(boolean closed){
+		if(closed){
+			group.setContentSelectable(this);
+		}
+		else{
+			group.setContentSelectable(null);
+		}
 	}
 	
 }

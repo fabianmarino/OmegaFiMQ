@@ -5,6 +5,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import com.appsolution.layouts.DialogContactAccount;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -38,6 +40,19 @@ public class OmegaFiLoginActivity extends Activity {
 	        return true;
 	    }
 	    return false;
+	}
+	
+	public void showContactusButton(View button){
+		final DialogContactAccount diag=new DialogContactAccount(this,false);
+		diag.setNameContact("Omega Fi");
+		diag.setOnOpenRequest(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				diag.dimissDialog();	
+			}
+		});
+		diag.showDialog();
 	}
 
 }

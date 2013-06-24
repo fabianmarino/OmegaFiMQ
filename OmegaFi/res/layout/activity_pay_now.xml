@@ -45,17 +45,21 @@
 	        <com.appsolution.layouts.RowEditTextOmegaFi 
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
+	            secom:width_edit_percentaje="0.4"
 	            secom:name_information_e="Enter Amount"
-	            secom:text_edit="$335.00"
+	            secom:hint_edit_text="$335.00"
+	            secom:type_input_row_info_1="@integer/input_type_number_decimal"
 	            />
-	        <com.appsolution.layouts.RowEditTextOmegaFi 
-	            android:layout_width="fill_parent"
-	            android:layout_height="wrap_content"
-	            android:onClick="selectDatePayment"
-	            secom:name_information_e="Select Payment Date"
-	            secom:text_edit="03/31/2013"
-	            secom:text_editable="false"
-	            />
+             <com.appsolution.layouts.RowInformation
+                 android:id="@+id/rowSelectDatePay"
+                 android:layout_width="fill_parent"
+                 android:layout_height="wrap_content"
+                 android:onClick="selectDatePayment"
+                 secom:put_border_bottom="true"
+                 secom:name_information="Select Payment Date"
+                 secom:value_information="12/03/2013"
+                 secom:background_value_info="@drawable/white_input_spinner"
+                 />
 	        <com.appsolution.layouts.RowInformation 
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
