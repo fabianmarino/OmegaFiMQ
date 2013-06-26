@@ -36,6 +36,19 @@ public class ImageAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return listImages.length;
 	}
+	
+	public void changeListImages(){
+		if(listImages[0]==R.drawable.photo_3){
+			listImages[0]=R.drawable.photo_2;
+			listImages[1]=R.drawable.photo_3;
+			listImages[3]=R.drawable.photo_member;
+		}
+		else{
+			listImages[0]=R.drawable.photo_3;
+			listImages[1]=R.drawable.photo_member;
+			listImages[3]=R.drawable.photo_1;
+		}
+	}
 
 	@Override
 	public Object getItem(int position) {
@@ -51,25 +64,10 @@ public class ImageAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-					LinearLayout linear=new LinearLayout(context);
-					linear.setGravity(Gravity.CENTER_HORIZONTAL);
-					linear.setOrientation(LinearLayout.VERTICAL);
-					ImageView iv = new ImageView(this.context);
-					iv.setImageResource(this.listImages[position]);
-					iv.setAdjustViewBounds(true);
-					iv.setLayoutParams(new Gallery.LayoutParams(context.getResources().getDimensionPixelSize(R.dimen.width_image_chapter), 
-							context.getResources().getDimensionPixelSize(R.dimen.height_image_chapter)));
-					
-					TextView textView=new TextView(context);
-					android.widget.LinearLayout.LayoutParams params=new android.widget.LinearLayout.LayoutParams
-							(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,android.widget.LinearLayout.LayoutParams.WRAP_CONTENT);
-					params.gravity=Gravity.CENTER_HORIZONTAL;
-					textView.setGravity(Gravity.CENTER_HORIZONTAL);
-					textView.setText("Title name");
-					
-					linear.addView(iv);
-					linear.addView(textView);
-					return linear;
+		ImageRoosterName rooster=new ImageRoosterName(context);
+		rooster.setImageResource(this.listImages[position]);
+		rooster.setNameRooster("Name Rooster");
+		return rooster;
 	}
 
 }

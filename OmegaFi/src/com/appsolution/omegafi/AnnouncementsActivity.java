@@ -1,5 +1,6 @@
 package com.appsolution.omegafi;
 
+import com.appsolution.layouts.ContentAnnouncement;
 import com.appsolution.layouts.EventNewsContent;
 
 import android.content.Intent;
@@ -39,15 +40,16 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 	
 	private void completeAnnouncements(){
 		int padding=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
-		for (int i = 0; i < 13; i++) {
-			EventNewsContent announcement=new EventNewsContent(this);
-			announcement.setOnClickListener(listener);
-			announcement.setTitleNewEvent("Subjects goes here");
-			announcement.setBorderBottom(true);
-			announcement.setPadding(padding);
-			announcement.setDateEventNew("04/12/2013");
-			announcement.setDescriptionNewEvent("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod " +
+		for (int i = 0; i < 13; i++){
+			ContentAnnouncement announcement=new ContentAnnouncement(getApplicationContext());
+			if(i<3){
+				announcement.setBackgroundNewAnnoncement();
+			}
+			announcement.setTitleAnnouncement("Subjects goes here");
+			announcement.setDateAnnouncement("04/12/2013");
+			announcement.setDescriptionAnnouncement("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod " +
 					"tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.");
+			announcement.setOnClickListener(listener);
 			linearAnnouncements.addView(announcement);
 		}
 	}

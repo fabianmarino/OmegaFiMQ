@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyOmegaFi</title>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="pwikR4Ytzxa0wOoG6yEATfPXs3ZA6ePzl9eGmkRGNVw=" name="csrf-token" />
+</head>
+<body>
+
+<style>
+/* This overrides any external stylesheet */
+body { 
+  font-size: 80%;
+}
+
+ol {
+  padding-left: 20px;
+}
+
+.oula li {
+	list-style-type:inherit;
+}
+</style>
+
+<ol class="oula">	
+	<li>
+		<b>IMPORTANT - READ CAREFULLY.</b>  This User Service and License Agreement ("Agreement") is a legal agreement between you and Omega Financial, Inc., d/b/a OmegaFi ("OmegaFi") for the OmegaFi Services (defined below). BY ACCESSING AND USING THE OMEGAFI SERVICES, YOU ACCEPT AND AGREE TO BE BOUND BY THE TERMS AND PROVISION OF THIS AGREEMENT. In addition, when using particular OmegaFi owned or operated services, you and OmegaFi shall be subject to any posted guidelines or rules applicable to such services, which may be posted and modified from time to time. All such guidelines or rules are hereby incorporated by reference into this Agreement.  OmegaFi may also offer other services that are governed by different terms.
+	</li>
+	
+	<li>
+		<b>Changes to this Agreement.</b>  OmegaFi reserves the right, at its sole discretion, to change, modify, add or remove portions of this Agreement, at any time. It is your responsibility to check this Agreement periodically for changes. You can review the most current version of the Agreement at any time at: <a href="https://www.omegafi.com/agreements/omegafi_user_service_and_license_agreement.pdf" target="agreements">User Service and License Agreement</a>.  Your continued use of OmegaFi Services following the posting of any changes will mean that you accept and agree to the changes. 
+	</li>
+
+	<li>
+		<b>Description of OmegaFi Services.</b>  OmegaFi provides users with access to a rich collection of efficiency enabling resources, including without limitation various Vault, Embark and Compass services, communications tools, financial management tools, membership management tools, fundraising tools, personalized content, computer software, printed materials, online documentation, branded programming and customer service support which may be accessed through any various medium or device now known or hereafter developed (the "OmegaFi Services").
+		<ol type="a">
+			<li>You understand and agree that the OmegaFi Services may include
+				<ol type="i">
+					<li>certain communications from the organizations to which you belong or are affiliated including your fraternity/sorority chapter, alumni/ae organizations and your inter/national headquarters, such as service announcements, advertisements and news and that these communications are considered part of the OmegaFi services and you will not be able to opt out of receiving them.</li>
+					<li>certain communications from OmegaFi, such as service announcements and administrative messages and that these communications are considered part of the OmegaFi Services and you will not be able to opt out of receiving them. </li>
+					<li>advertisements, and these advertisements are necessary for OmegaFi to provide the OmegaFi Services.</li>
+				</ol>
+			</li>
+			<li>Unless explicitly stated otherwise, any new features that augment or enhance the current OmegaFi Services, including the release of new OmegaFi products, shall be subject to this Agreement.  You understand and agree that the OmegaFi Services are provided "AS-IS" and that OmegaFi assumes no responsibility for the timeliness, deletion, mis-delivery or failure to store any user communications or personalization settings.</li>
+			<li>You are responsible for obtaining access to the OmegaFi Services, and that access may involve third-party fees (such as Internet service provider or airtime charges). You are responsible for those fees, including those fees associated with the display or delivery of advertisements. In addition, you must provide and are responsible for all equipment necessary to access the OmegaFi Services.</li>
+		</ol>	
+	</li>
+
+	<li><b>Your Registration Obligations.</b>  In consideration of your use of the OmegaFi Services, you represent that you are of legal age to form a binding contract and are not a person barred from receiving the OmegaFi Services under the laws of the United States or other applicable jurisdiction. You also agree to: (a) provide true, accurate, current and complete information about yourself as prompted by the OmegaFi Service's registration form (the "Registration Data") and (b) maintain and promptly update the Registration Data to keep it true, accurate, current and complete. If you provide any information that is untrue, inaccurate, not current or incomplete, or OmegaFi has reasonable grounds to suspect that such information is untrue, inaccurate, not current or incomplete, OmegaFi has the right to suspend or terminate your account and refuse any and all current or future use of the OmegaFi Services (or any portion thereof). 
+	</li>
+
+	<li>
+		<b>Privacy.</b>  OmegaFi's Privacy Policy applies to use of the OmegaFi Services, and its terms are made a part of this Agreement by this reference. To view OmegaFi's Privacy Policy, visit <a href="https://www.omegafi.com/apps/home/site/privacy-policy" target="agreements">https://www.omegafi.com/apps/home/site/privacy-policy</a>.
+	</li>
+	
+	<li>
+		<b>MyOmegaFi, Password and Security Measures.</b>  Certain OmegaFi Services may require you to open an account (including setting up an OmegaFi username and password). You are entirely responsible for maintaining the confidentiality of the information you hold for your account, including your password, and for any and all activity that occurs under your account as a result of your failing to keep this information secure and confidential. You agree to notify OmegaFi immediately of any unauthorized use of your account or password, or any other breach of security. You may be held liable for losses incurred by OmegaFi or any other user due to someone else using your OmegaFi user name, password or account as a result of your failing to keep your account information secure and confidential.  You may not use anyone else's OmegaFi user name, password or account at any time without the express permission and consent of the holder of that OmegaFi user name, password or account. OmegaFi cannot and will not be liable for any loss or damage arising from your failure to comply with these obligations.
+	</li>	
+	
+	<li>
+		<b>Content Submitted.</b>  You understand that all information, data, text, software, music, sound, photographs, graphics, video, messages, tags, or other materials ("Content"), whether publicly posted or privately transmitted, are the sole responsibility of the person from whom such Content originated. This means that you, and not OmegaFi, are entirely responsible for all Content that you upload, post, email, transmit or otherwise make available via the OmegaFi Services. OmegaFi does not control the Content posted via the OmegaFi Services and, as such, does not guarantee the accuracy, integrity or quality of such Content. You understand that by using the OmegaFi Services, you may be exposed to Content that is offensive, indecent or objectionable. Under no circumstances will OmegaFi be liable in any way for any Content, including, but not limited to, any errors or omissions in any Content, or any loss or damage of any kind incurred as a result of the use of any Content posted, emailed, transmitted or otherwise made available via the OmegaFi Services.
+	</li>
+	
+	<li>
+		<b>Conduct Violations.</b>  You agree to not use the OmegaFi Services to:
+			<ol type="a">
+				<li>upload, post, email, transmit or otherwise make available any Content that is unlawful, harmful, threatening, abusive, harassing, tortious, defamatory, vulgar, obscene, libelous, invasive of another's privacy, hateful, or racially, ethnically or otherwise objectionable;</li>
+				<li>harm minors in any way;</li>
+				<li>impersonate any person or entity or falsely state or otherwise misrepresent your affiliation with a person or entity;</li>
+				<li>forge headers or otherwise manipulate identifiers in order to disguise the origin of any Content transmitted through the OmegaFi Service;</li>
+				<li>upload, post, email, transmit or otherwise make available any Content that you do not have a right to make available under any law or under contractual or fiduciary relationships (such as inside information, proprietary and confidential information learned or disclosed as part of employment relationships or under nondisclosure agreements);</li>
+				<li>upload, post, email, transmit or otherwise make available any Content that infringes any patent, trademark, trade secret, copyright or other proprietary rights ("Rights") of any party;</li>
+				<li>upload, post, email, transmit or otherwise make available any unsolicited or unauthorized advertising, promotional materials, "junk mail," "spam," "chain letters," "pyramid schemes," or any other form of solicitation, except in those areas that are designated for such purpose;</li>
+				<li>upload, post, email, transmit or otherwise make available any material that contains software viruses or any other computer code, files or programs designed to interrupt, destroy or limit the functionality of any computer software or hardware or telecommunications equipment;</li>
+				<li>interfere with or disrupt the OmegaFi Services or servers or networks connected to the OmegaFi Services, or disobey any requirements, procedures, policies or regulations of networks connected to the OmegaFi Services;</li>
+				<li>intentionally or unintentionally violate any applicable local, state, national or international law, including, but not limited to, regulations promulgated by the U.S. Securities and Exchange Commission, any rules of any national or other securities exchange, including, without limitation, the New York Stock Exchange, the American Stock Exchange or the NASDAQ, and any regulations having the force of law;</li>
+				<li>provide material support or resources (or to conceal or disguise the nature, location, source, or ownership of material support or resources) to any organization(s) designated by the United States government as a foreign terrorist organization;</li>
+				<li>"stalk" or otherwise harass another; or</li>
+				<li>collect or store personal data about other users in connection with the prohibited conduct and activities set forth in paragraphs a through m above.</li>
+			</ol>
+	</li>
+	
+	<li>
+		<b>Pre-Screening Content.</b>  You acknowledge that OmegaFi may or may not pre-screen Content, but that OmegaFi and its designees shall have the right (but not the obligation) in their sole discretion to pre-screen, refuse, or remove any Content that is available via the OmegaFi Services. Without limiting the foregoing, OmegaFi and its designees shall have the right to remove any Content that violates this Agreement or is otherwise objectionable. You agree that you must evaluate, and bear all risks associated with, the use of any Content, including any reliance on the accuracy, completeness, or usefulness of such Content. 
+	</li>
+
+	<li>
+		<b>Content Access and Disclosure.</b>  You acknowledge, consent and agree that OmegaFi may access, preserve and disclose your account information and Content if required to do so by law or in a good faith belief that such access preservation or disclosure is reasonably necessary to: (i) comply with legal process; (ii) enforce this Agreement; (iii) respond to claims that any Content violates the rights of third parties; (iv) respond to your requests for customer service; or (v) protect the rights, property or personal safety of OmegaFi, its users and the public.
+	</li>
+	
+	<li>
+		<b>Interstate Data Transmissions.</b>  When you register with OmegaFi, you acknowledge that in using the OmegaFi Services to send electronic communications (including but not limited to email, text messages and other Internet activities), you will cause communications to be sent through OmegaFi's computer networks, portions of which are located in Georgia and other locations in the United States of America and portions of which may be located abroad. As a result, and also as a result of OmegaFi's network architecture and business practices and the nature of electronic communications, even communications that seem to be intrastate in nature can result in the transmission of interstate communications regardless of where you are physically located at the time of transmission. Accordingly, by agreeing to this Agreement, you acknowledge that use of the service results in interstate data transmissions.
+	</li>
+	
+	<li>
+		<b>Export Restrictions.</b>  Recognizing the global nature of the Internet, you agree to comply with all local rules regarding online conduct and acceptable Content.  Use of the OmegaFi Services and transfer, posting and uploading of software, technology, and other Content via the OmegaFi Services may be subject to the export and import laws of the United States and other countries. You agree to comply with all applicable export and import laws and regulations.  You agree not to export or re-export any Content via the OmegaFi Services to any country, person or entity subject to U.S. export restrictions. You specifically agree not to export or re-export (a) to any country to which the U.S. has embargoed or restricted the export of goods or services, or to any national of any such country, wherever located, who intends to transmit or transport Content back to such country; (b) to any person or entity who you know or have reason to know will utilize Content in the design, development or production of military, nuclear, missile, chemical or biological weaponry end uses in violation of U.S. export laws; or (c) to any person or entity who has been prohibited from participating in U.S. export transactions by any federal agency of the U.S. government.
+	</li>
+	
+	<li>
+		<b>Your Submissions.</b>  OmegaFi does not claim ownership of Content you submit or make available on the OmegaFi Services. However, with respect to Content you submit or make available for inclusion on publicly accessible areas of the OmegaFi Services, you grant OmegaFi the following worldwide, royalty-free, non-exclusive, perpetual, irrevocable and fully sublicensable license to use, distribute, reproduce, modify, adapt, publish, translate, publicly perform and publicly display such Content (in whole or in part) and to incorporate such Content into other works in any format or medium now known or later developed for any purpose whatsoever, commercial or otherwise, without compensation to you or any other person who submitted the Content.  "Publicly accessible" areas of the OmegaFi Services are those areas of the OmegaFi network of properties that are intended by OmegaFi to be available to the general public. By way of example, publicly accessible areas of the OmegaFi Services would include Vault Websites and portions of myOmegaFi and Compass that are open to both members and visitors.  
+	</li>
+	
+	<li>
+		<b>Your Contributions to OmegaFi.</b>  By submitting ideas, suggestions, documents, and/or proposals ("Contributions") to OmegaFi through its suggestion or feedback web pages, you acknowledge and agree that: (a) your Contributions do not contain confidential or proprietary information; (b) OmegaFi is not under any obligation of confidentiality, express or implied, with respect to the Contributions; (c) OmegaFi shall be entitled to use or disclose (or choose not to use or disclose) such Contributions for any purpose, in any way, in any media worldwide; (d) OmegaFi may have something similar to the Contributions already under consideration or in development; (e) your Contributions automatically become the property of OmegaFi without any obligation of OmegaFi to you; and (f) you are not entitled to any compensation or reimbursement of any kind from OmegaFi under any circumstances.
+	</li>
+	
+	<li>
+		<b>Intellectual Property Rights.</b>  You agree that OmegaFi owns all text, code, scripts, graphics, images, photographs, animations, video, audio, music, text and other work created and used by OmegaFi to fulfill this Agreement ("Copyrightable Material").  Copyright laws and international treaty provisions protect material provided by OmegaFi to fulfill this Agreement.  You are permitted to use Copyrightable Material so long as such Copyrightable Material is used exclusively for the purposes set forth in this Agreement.  You may not sell, lease, license or permit any third party to use Copyrightable Material nor may you use Copyrightable Material for any purpose unrelated to the terms of this Agreement.  This section shall survive the termination of this Agreement.
+	</li>
+	
+	<li>
+		<b>Indemnity.</b> You agree to indemnify and hold OmegaFi and its subsidiaries, affiliates, officers, agents, employees, partners and licensors harmless from any claim or demand, including reasonable attorneys' fees, made by any third party due to or arising out of (a) Content you submit, post, transmit, modify or otherwise make available through the OmegaFi Services, (b) your use of the OmegaFi Services, (c) your connection to the OmegaFi Services, (d) your violation of this Agreement, or (e) your violation of any rights of another.
+	</li>
+	
+	<li>
+		<b>No Commercial Reuse of OmegaFi Services.</b>  You agree not to reproduce, duplicate, copy, sell, trade, resell or exploit for any commercial purposes, any portion or use of, or access to, the OmegaFi Services (including Content, advertisements, Software and your OmegaFi username).
+	</li>
+	
+	<li>
+		<b>Your Activity and Limits.</b>  You acknowledge that OmegaFi may establish general practices and limits concerning use of the OmegaFi Services, including without limitation the maximum number of days that uploaded Content will be retained by the OmegaFi Services, the maximum disk space that will be allotted on OmegaFi's servers on your behalf, and the maximum number of times (and the maximum duration for which) you may access the OmegaFi Services in a given period of time. You agree that OmegaFi has no responsibility or liability for the deletion or failure to store any Content maintained or transmitted by the OmegaFi Services. You acknowledge that OmegaFi reserves the right to log off accounts that are inactive for an extended period of time. You further acknowledge that OmegaFi reserves the right to modify these general practices and limits from time to time.
+	</li>
+	
+	<li>
+		<b>Modifications to OmegaFi Services.</b>  OmegaFi reserves the right at any time and from time to time to modify or discontinue, temporarily or permanently, the OmegaFi Services (or any part thereof) with or without notice. You agree that OmegaFi shall not be liable to you or to any third party for any modification, suspension or discontinuance of the OmegaFi Services (or any part thereof).
+	</li>
+	
+	
+	<li>
+		<b>Termination.</b>
+		<ol type="a">
+			<li>You may terminate your OmegaFi account  and access to the OmegaFi Services by submitting a termination request to OmegaFi.</li>
+			<li>You agree that OmegaFi may, without prior notice, immediately terminate, limit your access to or suspend your OmegaFi account and access to the OmegaFi Services. Cause for such termination, limitation of access or suspension shall include, but not be limited to, (a) breaches or violations of this Agreement or other incorporated agreements or guidelines, (b)requests by law enforcement or other government agencies, (c) discontinuance or material modification to the OmegaFi Services (or any part thereof), (d) unexpected technical or security issues or problems, (e) extended periods of inactivity, (f) engagement by you in fraudulent or illegal activities, (g) nonpayment of any fees owed in connection with the OmegaFi Services by you, and/or (h) nonpayment of any fees owed in connection with the OmegaFi Services by any OmegaFi client of which you are a member where the client has asked OmegaFi to grant access to the OmegaFi Services to you.  Further, you agree that all terminations, limitations of access and suspensions for cause shall be made in OmegaFi's sole discretion, and OmegaFi shall not be liable to you or any third party for any termination of your account or access to the OmegaFi Services.  Termination of your OmegaFi account includes any or all of the following: (a) removing access to all or part of the offerings within the OmegaFi Services, (b) deleting your password and all related information, files and content associated with or inside your account (or any part thereof), and (c) barring of further use of all or part of the OmegaFi Services. </li>
+			<li>Upon termination, you agree to destroy all copies of the OmegaFi Services, Software and all component parts you may have in your possession.</li>
+		</ol>
+	</li>
+
+	<li>
+		<b>Dealings with Third Parties.</b>  Your correspondence or business dealings with, or participation in promotions of, advertisers, your fraternity/sorority, related fraternal organizations, your inter/national headquarters or other third parties found on or through the OmegaFi Services, including payment and delivery of related goods or services, and any other terms, conditions, warranties or representations associated with such dealings, are solely between you and such third party. You agree that OmegaFi shall not be responsible or liable for any loss or damage of any sort incurred as the result of any such dealings or as the result of the presence of such third parties on the OmegaFi Services.
+	</li>
+	
+	<li>
+		<b>Links to Other Sites.</b>  The OmegaFi Services may contain links to other independent third-party Web sites ("Linked Sites"). These Linked Sites are provided solely as a convenience to you. Such Linked Sites are not under OmegaFi's control, and OmegaFi is not responsible for and does not endorse the content of such Linked Sites, including any information or materials contained on such Linked Sites. You further acknowledge and agree that OmegaFi shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such Content, goods or services available on or through any Linked Site.  If you decide to access Linked Sites, you do so at your own risk.
+	</li>
+	
+	
+	<li>
+		<b>OmegaFi's Proprietary Rights.</b>  You acknowledge and agree:
+		<ol type="a">
+			<li>that the OmegaFi Services and any necessary software used in connection with the OmegaFi Services ("Software") contain proprietary and confidential information that is protected by applicable intellectual property and other laws. </li>
+			<li>that Content contained in advertisements or information presented to you through the OmegaFi Services or by advertisers is protected by copyrights, trademarks, service marks, patents or other proprietary rights and laws. </li>
+			<li>except as expressly permitted by applicable law or as authorized by OmegaFi or the applicable licensor (such as an advertiser), you will not modify, rent, lease, loan, sell, distribute, transmit, broadcast, publicly perform or create derivative works based on the OmegaFi Services, such Content or the Software, in whole or in part. </li>
+			<li>not (and not to allow any third party) to copy, modify, create a derivative work from, reverse engineer, reverse assemble or otherwise attempt to discover any source code, sell, assign, sublicense, grant a security interest in or otherwise transfer any right in the Software.</li>
+			<li>not to modify the Software in any manner or form, nor to use modified versions of the Software, including (without limitation) for the purpose of obtaining unauthorized access to the OmegaFi Services.</li>
+			<li>not to access the OmegaFi Services by any means other than through the interface that is provided by OmegaFi for use in accessing the OmegaFi Services.</li>
+		</ol>	
+	</li>
+	
+	<li>
+		<b>License Grant.</b>  Provided that you comply with all of the terms and conditions of this Agreement, OmegaFi grants you a personal, limited, revocable, non-transferable, non-exclusive and royalty-free right and license to use the object code of its Software on a single computer for the purposes of utilizing the OmegaFi Services you are authorized to use.	
+	</li>
+	
+	<li>
+		<b>Disclaimer of Warranties.</b> YOU EXPRESSLY UNDERSTAND AND AGREE THAT:
+		<ol type="a">
+			<li>YOUR USE OF THE OMEGAFI SERVICES AND SOFTWARE ARE AT YOUR SOLE RISK. THE OMEGAFI SERVICES AND SOFTWARE ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS. OMEGAFI AND ITS SUBSIDIARIES, AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, PARTNERS AND LICENSORS EXPRESSLY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.</li>
+			<li>OMEGAFI AND ITS SUBSIDIARIES, AFFILIATES, OFFICERS, EMPLOYEES, AGENTS, PARTNERS AND LICENSORS MAKE NO WARRANTY THAT (i) THE OMEGAFI SERVICES OR SOFTWARE WILL MEET YOUR REQUIREMENTS; (ii) THE OMEGAFI SERVICES OR SOFTWARE WILL BE UNINTERRUPTED, TIMELY, SECURE OR ERROR-FREE; (iii) THE RESULTS THAT MAY BE OBTAINED FROM THE USE OF THE OMEGAFI SERVICES OR SOFTWARE WILL BE ACCURATE OR RELIABLE; (iv) THE QUALITY OF ANY PRODUCTS, SERVICES, INFORMATION OR OTHER MATERIAL PURCHASED OR OBTAINED BY YOU THROUGH THE OMEGAFI SERVICES OR SOFTWARE WILL MEET YOUR EXPECTATIONS; AND (v) ANY ERRORS IN THE SOFTWARE WILL BE CORRECTED.</li>
+			<li>ANY MATERIAL DOWNLOADED OR OTHERWISE OBTAINED THROUGH THE USE OF THE OMEGAFI SERVICES OR SOFTWARE IS ACCESSED AT YOUR OWN DISCRETION AND RISK, AND YOU WILL BE SOLELY RESPONSIBLE FOR AND HEREBY WAIVE ANY AND ALL CLAIMS AND CAUSES OF ACTION WITH RESPECT TO ANY DAMAGE TO YOUR COMPUTER SYSTEM, INTERNET ACCESS, DOWNLOAD OR DISPLAY DEVICE, OR LOSS OF DATA THAT RESULTS FROM THE DOWNLOAD OF ANY SUCH MATERIAL.</li>
+			<li>NO ADVICE OR INFORMATION, WHETHER ORAL OR WRITTEN, OBTAINED BY YOU FROM OMEGAFI OR THROUGH OR FROM THE OMEGAFI SERVICES OR SOFTWARE SHALL CREATE ANY WARRANTY NOT EXPRESSLY STATED IN THE AGREEMENT.</li>
+			<li>THERE IS NO WARRANTY OR CONDITION OF TITLE, QUIET ENJOYMENT, QUIET POSSESSION, CORRESPONDENCE TO DESCRIPTION OR NON-INFRINGEMENT, WITH REGARD TO THE SOFTWARE AND RELATED MATERIALS. THE ENTIRE RISK ARISING OUT OF USE OR PERFORMANCE OF THE SOFTWARE AND RELATED MATERIALS, OR OF THE SUPPORT SERVICES IF ANY, REMAINS WITH YOU.</li>
+		</ol>
+	</li>
+	
+	<li>
+		<b>Limitation of Liability.</b>  Except where prohibited by law, in no event will OmegaFi be liable to you for any indirect, consequential, exemplary, incidental or punitive damages, (including but not limited to damages for lost profits, loss of confidential or other information, for business interruption, for personal injury, for loss of privacy, for failure to meet any duty including of good faith or of reasonable care, for negligence and for any other pecuniary or other loss whatsoever) even if OmegaFi has been advised of the possibility of such damages.  OmegaFi's maximum liability arising out of our connection with any OmegaFi Service or your use of the Content, regardless of the cause of action (whether in contract, tort, breach of warranty of otherwise) will not exceed $100.00.
+	</li>
+	
+	<li>
+		<b>Beneficiaries.</b>  You agree that, except as otherwise expressly provided in this Agreement, there shall be no third-party beneficiaries to this agreement.
+	</li>
+	
+	<li>
+		<b>Notices.</b>  OmegaFi may provide you with notices, including those regarding changes to this Agreement, including by but not limited to email, regular mail, SMS, MMS, text message, postings on the OmegaFi Services, or other reasonable means now known or hereafter developed. 
+	</li>
+	
+	<li>
+		<b>No Right of Survivorship and Non-Transferability.</b> You agree that your OmegaFi account is non-transferable and any rights to your OmegaFi account or contents within your account terminate upon your death. 
+	</li>
+	
+	<li>
+		<b>Copyright &amp; Trademarks.</b>
+		<ol type="a">
+			<li>The OmegaFi name is a registered U.S. Federal service mark of Omega Financial, Inc.  Other intellectual property, namely the OmegaFi logo/brandmark, "run, raise, connect." tagline, ribbon and repeating seal, Vault, Embark and Compass product line names and respective sub-product names and taglines (So your chapter can do more. / Taking fundraising further. / Membership in motion.) that may appear on the OmegaFi Services are also similarly protected.  You agree that all of OmegaFi's trademarks, trade names, service marks and other OmegaFi logos and brand features, and product and service names are trademarks and the property of OmegaFi (the "OmegaFi Marks"). Without OmegaFi's prior permission, you agree not to display or use in any manner the OmegaFi Marks.</li>
+			<li>The name of your fraternity/sorority and your college/university, its logo, symbols, Greek letters, crest, certain photographs and other images may be trademarks, trade names, service marks and the property of your fraternity/sorority or your college/university (the "Outside Marks").  You agree that you have and will take all steps and obtain any necessary approvals so that you and OmegaFi may use Outside Marks for the purposes of fulfilling the terms of this Agreement.</li>
+		</ol>
+	</li>
+	
+	<li>
+		<b>Governing Law.</b>  You agree that all matters relating to your access to or use of the OmegaFi Services, including all disputes, will be governed by the laws of the United States of America and by the laws of the State of Georgia.
+	</li>
+	
+	<li>
+		<b>Severability.</b>  The covenants set forth in this Agreement are and shall be construed as separate and independent covenants, and this Agreement is intended to be performed in accordance with, and only to the extent permitted by, all applicable laws, ordinances, rules and regulations.  If any provision of this Agreement, or the application thereof to any person or circumstance, shall for any reason or to any extent be held void, voidable, or otherwise unenforceable by any court, the remainder of this Agreement shall not be affected, but shall be enforced to the greatest extent permitted by law. 
+	</li>
+	
+	<li>
+		<b>Successors.</b>  This Agreement is binding upon and shall inure to the benefit of OmegaFi and its successors and your successors.
+	</li>
+	
+	<li>
+		<b>Waiver.</b>  OmegaFi's failure to insist on or enforce strict performance of this Agreement shall not be construed as a waiver by OmegaFi of any provision or any right it has to enforce this Agreement, nor shall any course of conduct between OmegaFi and you or any other party be deemed to modify any provision of this Agreement.
+
+	</li>
+	
+	<li>
+		<b>Independent Relationship.</b>  Both parties are and shall be independent contractors with respect to the terms and operation of this Agreement.  Nothing contained herein and no act done pursuant to this Agreement is intended to or shall be construed to create a partnership, joint venture, employment, principal-agent or similar relationship between OmegaFi and you.  Except as otherwise stated in or authorized by this Agreement, in no event shall either party have the right or power (whether express or implied) to make any representation or warranty (express or implied) on behalf of the other party or otherwise to bind the other party in any way whatsoever.
+	</li>
+	
+	<li>
+		<b>Headings.</b>  The headings contained in this Agreement are for convenience only and shall in no manner be construed as part of this Agreement.  
+	</li>
+	
+	<li>
+		<b>Complete Agreement.</b>  This Agreement constitute the entire agreement between you and OmegaFi with regard to your use of the OmegaFi Services, and any and all other written or oral agreements or understandings previously existing between you and OmegaFi with respect to such use are hereby superseded and cancelled.  You also may be subject to additional terms and conditions that may apply when you use or purchase certain other OmegaFi services, affiliate services, third-party content or third-party software.
+	</li>
+	
+	<li>
+		<b>More Information and Violations.</b>  To learn more about this Agreement or the OmegaFi Services or to report any violations of this Agreement, contact OmegaFi at 800.276.6342 or info@omegafi.com.
+	</li>	
+</ol>
+
+
+</body>
+</html>

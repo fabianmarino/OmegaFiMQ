@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -34,7 +35,9 @@ public class SectionOmegaFi extends LinearLayout{
 		contentAll=(LinearLayout)findViewById(R.id.linearContentSectionOmegaFi);
 		linearContent=(LinearLayout)findViewById(R.id.contentSectionOmegaFi);
 		textTitle = (TextView)findViewById(R.id.titleSection);
+		textTitle.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		textSubTitle=(TextView)findViewById(R.id.subtitleSection);
+		textSubTitle.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		imageArrow = (ImageView)findViewById(R.id.arrowGray);
 		contentTitle=(RelativeLayout)findViewById(R.id.contentTitleSectionOmegaFi);
 	}
@@ -113,7 +116,7 @@ public class SectionOmegaFi extends LinearLayout{
 		    boolean visibleSubTitle=a.getBoolean(R.styleable.SectionOmegaFi_visible_subtitle, false);
 		    this.setVisibleSubTitle(visibleSubTitle);
 		    
-		    int colorback = a.getColor(R.styleable.SectionOmegaFi_background_color_section, Color.WHITE);
+		    int colorback = a.getColor(R.styleable.SectionOmegaFi_background_color_section, -1);
 		    this.setBackgroundColorLinear(colorback);
 		    
 		    int leftTitle=a.getDimensionPixelSize(R.styleable.SectionOmegaFi_padding_title_left, contentTitle.getPaddingLeft());
@@ -143,7 +146,12 @@ public class SectionOmegaFi extends LinearLayout{
 	}
 	
 	public void setBackgroundColorLinear(int color){
-		contentAll.setBackgroundColor(color);
+		if(color==-1){
+			contentAll.setBackgroundColor(getResources().getColor(R.color.gray_shadow_section));
+		}
+		else{
+			contentAll.setBackgroundColor(color);
+		}
 	}
 	
 	public void setPaddingLeft(int left){

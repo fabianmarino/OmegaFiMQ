@@ -45,6 +45,7 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.cycle_charge, this, true);
 		rowTriple=(RowTripleInformation)findViewById(R.id.titleCycleCharge);
+		rowTriple.setImageIcon(R.drawable.right_down);
 		rowTriple.setOnClickListener(this);
 		linearCharges=(LinearLayout)findViewById(R.id.contentScheduleCycle);
 	}
@@ -89,9 +90,11 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 		if(linearCharges.getVisibility()==LinearLayout.GONE){
 			this.completeCycleCharges();
 			linearCharges.setVisibility(VISIBLE);
+			rowTriple.setImageIcon(R.drawable.right_up);
 		}
 		else{
 			linearCharges.setVisibility(GONE);
+			rowTriple.setImageIcon(R.drawable.right_down);
 		}
 	}
 

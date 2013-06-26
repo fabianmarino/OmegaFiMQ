@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:padding="0dp"
@@ -25,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Billy Bob Smithheimer"
-                android:textSize="@dimen/text_17sp"
+                android:textSize="@dimen/text_19sp"
                 android:textColor="@android:color/white"/>
             <TextView android:id="@+id/nameChaptersFraternity"
                 android:layout_width="wrap_content"
@@ -37,10 +38,10 @@
         <Button android:id="@+id/buttonViewAccount"
             android:layout_height="@dimen/height_button_small"
             android:layout_width="wrap_content"
-            android:text="VIEW ACCOUNT"
-            android:gravity="center_vertical"
+            android:text="VIEW&#10;ACCOUNT"
+            android:gravity="center"
             android:layout_alignParentRight="true"
-            
+            android:layout_centerVertical="true"
             style="@style/ButtonOmegaSmall"/>
     </RelativeLayout>
     <TableLayout android:layout_width="fill_parent"
@@ -50,23 +51,31 @@
             android:layout_height="wrap_content"
             android:weightSum="1">
             <com.appsolution.layouts.LabelInfoVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.33"/>
+                android:layout_weight="0.33"
+                secom:text_title_label="account #"
+                secom:text_value_label="543654"
+                />
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
             <com.appsolution.layouts.LabelInfoVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.33"/>
+                android:layout_weight="0.33"
+                secom:text_title_label="balance due"
+                secom:text_value_label="$300.00"
+                secom:color_font_vertical="@color/red_wine"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
             <com.appsolution.layouts.LabelInfoVertical
-                android:layout_width="fill_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.33"/>
+                android:layout_weight="0.33"
+                secom:text_title_label="current balance"
+                secom:text_value_label="$300.00"/>
         </TableRow>
     </TableLayout>
     <View android:layout_width="fill_parent"
@@ -81,6 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:textSize="15sp"
+            android:textColor="@android:color/black"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
             android:text="Due On: 03/31/2013"/>

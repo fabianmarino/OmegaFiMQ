@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -54,11 +55,14 @@ public class EventNewsContent extends LinearLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.events_news_content, this, true);
 		titleNewEvent=(TextView)findViewById(R.id.titleEventNewOmegaFi);
+		titleNewEvent.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		titleNewEvent.setClickable(true);
 		dateNewEvent=(TextView)findViewById(R.id.dateEventNewOmegaFi);
+		dateNewEvent.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
 		dateNewEvent.setClickable(true);
 		descriptionNewEvent=(TextView)findViewById(R.id.descriptionNewOrEvent);
 		descriptionNewEvent.setClickable(true);
+		descriptionNewEvent.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
 		contentAll=(LinearLayout)findViewById(R.id.linearContentNewsEvents);
 	}
 	

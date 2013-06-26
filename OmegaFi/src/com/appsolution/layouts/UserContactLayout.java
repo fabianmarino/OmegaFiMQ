@@ -61,9 +61,11 @@ public class UserContactLayout extends RelativeLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.user_contact_layout, this, true);
 		textNameUser=(TextView)findViewById(R.id.nameUserProfile);
+		textNameUser.setTypeface(OmegaFiActivity.getFont(getContext(), 2));
 		textSubtitleProfile=(TextView)findViewById(R.id.initiateUserProfile);
+		textSubtitleProfile.setTypeface(OmegaFiActivity.getFont(getContext(), 0));
 		textThirdLineProfile=(TextView)findViewById(R.id.initiateUniversity);
-		
+		textThirdLineProfile.setTypeface(OmegaFiActivity.getFont(getContext(), 0));
 		contentImage=(LinearLayout)findViewById(R.id.contentImageUser);
 		textImageBottom=(TextView)findViewById(R.id.textBottomImage);
 		
@@ -153,6 +155,10 @@ public class UserContactLayout extends RelativeLayout {
 	
 	public ImageView getImageUser(){
 		return imageProfile;
+	}
+	
+	public void setBlackArrow(){
+		imageArrow.setImageResource(R.drawable.right_arrow_1);
 	}
 	
 }

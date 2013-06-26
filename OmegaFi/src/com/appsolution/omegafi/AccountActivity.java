@@ -52,6 +52,8 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			row.setBorderBottom(true);
 			row.setNameSubInfo("Info description");
 			row.setColorFontRowInformation(Color.BLACK);
+			row.setTypeFaceNameSubInfo(OmegaFiActivity.getFont(activity, 0));
+			row.setColorNameSubInfo(Color.GRAY);
 			row.setVisibleArrow(true);
 			row.setOnClickListener(new View.OnClickListener() {
 				
@@ -112,8 +114,10 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	public void selectPayMethod(View view){
 		final DialogSelectableOF selectable=new DialogSelectableOF(this);
+		selectable.setOptionsSelectables(selectable.getOptionsTest());
 		selectable.setTitleDialog("Select Payment Method");
 		selectable.setTextButton("Save");
+		selectable.setCloseOnSelectedItem(false);
 		selectable.setButtonListener(new View.OnClickListener() {
 			
 			@Override

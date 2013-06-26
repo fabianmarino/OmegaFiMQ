@@ -73,7 +73,7 @@ public class EventsNewsAdapter extends PagerAdapter {
     public Object instantiateItem(View collection, int position) {        
     	EventNewsContent event=new EventNewsContent(context);
     	event.setTitleNewEvent(listaEventsOrNews.get(position)[0]);
-    	event.setDateEventNew("DD / MM / YYYY");
+    	event.setDateEventNew("September 29, 2013");
     	event.setDescriptionNewEvent(listaEventsOrNews.get(position)[2]);
     	event.setOnClickListener(new View.OnClickListener() {
 			

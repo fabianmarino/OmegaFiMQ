@@ -8,12 +8,13 @@
 	<LinearLayout
 	    android:layout_width="fill_parent"
 	    android:layout_height="fill_parent"
+	    android:gravity="center_vertical"
 	    style="@style/LinearContentAll"
 	    android:orientation="vertical">
 	    <com.appsolution.layouts.UserContactLayout
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/padding_10dp"
+	        android:layout_marginBottom="@dimen/margin_10dp_poll"
 	        android:onClick="goToMyProfile"
 	        secom:width_image_user="@dimen/width_95dp"
 	        secom:color_font_text="@android:color/black"
@@ -28,7 +29,9 @@
 	       <com.appsolution.layouts.LabelInfoVertical
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                secom:text_title_label="account #"
+                secom:text_value_label="745468"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
@@ -36,10 +39,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 secom:color_font_vertical="@color/red_wine"
+                secom:text_title_label="balance due"
+                secom:text_value_label="$300.00"
                 android:layout_weight="1"/>
-            <View android:layout_width="1dp"
-                android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray"/>
             <LinearLayout android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,7 +59,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:background="@color/blue_marine"
-	        android:layout_marginBottom="@dimen/padding_5dp"
+	        android:layout_marginBottom="@dimen/padding_10dp"
 	        android:orientation="vertical">
 	        <com.appsolution.layouts.RowInformation
 	            android:id="@+id/rowBalanceDueOn"
@@ -127,40 +129,11 @@
 	            secom:text_toogle="AutoPay"
 	             />
 	    </LinearLayout>
-	    <!-- 
-	    <com.appsolution.layouts.RowInformation
-	        android:id="@+id/rowPayNowAccount"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
-	        android:onClick="activityPayNow"
-	        secom:color_font_row_information="@android:color/darker_gray"
-	        secom:name_information="Pay Now"
-	        secom:value_information=""
-	        secom:put_border_bottom="true"
-	        secom:show_arrow_info="true"
-	        secom:padding_row_info="6dp"
-	        />
-	    
-	    <com.appsolution.layouts.RowInformation
-	        android:id="@+id/rowAutoPayAccount"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_margin="5dp"
-	        android:onClick="activityAutoPay"
-	        secom:color_font_row_information="@android:color/darker_gray"
-	        secom:name_information="AutoPay"
-	        secom:value_information="Active"
-	        secom:put_border_bottom="true"
-	        secom:show_arrow_info="true"
-	        secom:padding_row_info="6dp"
-	        />
-	     -->
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionAccountDetails"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/padding_5dp"
+	        android:layout_marginBottom="@dimen/margin_10dp_poll"
 	        secom:title_section="Account Details"
 	        secom:show_arrow="false"/>
 	    
@@ -168,7 +141,7 @@
 	        android:id="@+id/sectionAccountContacts"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/padding_5dp"
+	        android:layout_marginBottom="@dimen/margin_10dp_poll"
 	        secom:title_section="Account Contacts"
 	        secom:show_arrow="false"/>
 	</LinearLayout>

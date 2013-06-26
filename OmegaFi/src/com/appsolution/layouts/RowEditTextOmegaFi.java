@@ -5,10 +5,12 @@ import com.appsolution.omegafi.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -67,6 +69,8 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		int widthEdit=OmegaFiActivity.getWidthPercentageDisplay(getContext(), 0.5f);
 		textEdit=new EditText(super.getContext());
 		textEdit.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+		textEdit.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
+		textEdit.setTextSize(TypedValue.COMPLEX_UNIT_PX,super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 		textOriginal=textEdit.getBackground();
 		textEdit.setBackgroundResource(R.drawable.white_input);
 		textEdit.setLayoutParams(new LayoutParams(widthEdit,
@@ -76,6 +80,8 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		textEdit2.setLayoutParams(new LayoutParams(widthEdit,
 				LayoutParams.WRAP_CONTENT));
 		textEdit2.setVisibility(LinearLayout.GONE);
+		textEdit2.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
+		textEdit2.setTextSize(TypedValue.COMPLEX_UNIT_PX,super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 		linear.addView(textEdit);
 		linear.addView(textEdit2);
 		this.addViewRight(linear);
@@ -105,6 +111,11 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 			textEdit.setBackgroundDrawable(textOriginal);
 			textEdit2.setBackgroundDrawable(textOriginal);
 		}
+	}
+	
+	public void setBackgroundInputsRes(int resource){
+		textEdit.setBackgroundResource(resource);
+		textEdit2.setBackgroundResource(resource);
 	}
 	
 	public void setTypeInputEditText(int type){
@@ -150,6 +161,16 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		int widthEdit=OmegaFiActivity.getWidthPercentageDisplay(getContext(), percentaje);
 		textEdit.getLayoutParams().width=widthEdit;
 		textEdit2.getLayoutParams().width=widthEdit;
+	}
+	
+	public void setGravityEditText(int gravity){
+		textEdit.setGravity(gravity);
+		textEdit2.setGravity(gravity);
+	}
+	
+	public void setTextSizeEdit(int size){
+		textEdit.setTextSize(size);
+		textEdit2.setTextSize(size);
 	}
 	
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    android:id="@+id/linearContentAnnouncements"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_white"
+    android:padding="@dimen/padding_5dp"
+    android:orientation="vertical" >
+    
+    <com.appsolution.layouts.RowInformation
+        android:id="@+id/titleNameDateAnnouncement"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        secom:put_border_bottom="false"
+        secom:name_information="Subjects goes here"
+        secom:value_information="04/12/2013"
+        secom:padding_left_row_info="0dp" />
+    <TextView android:id="@+id/descriptionAnnouncement"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_3dp"
+        android:textColor="@android:color/black"
+        android:inputType="textMultiLine"
+        android:textSize="@dimen/text_content_newevent_title_omegafi"
+        />
+    <TextView android:id="@+id/textSourceAnnouncement" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="@dimen/text_content_newevent_title_omegafi"
+        android:text="Source: Lorem Ipsum Dolor"/>
+</LinearLayout>

@@ -64,7 +64,7 @@ public class PercentageResults extends LinearLayout{
 	
 	public void setPercentageAnswer(int percentage){
 		float floatPercent=(float)percentage/(float)100;
-		percentageAnswer.setText(percentage+" %");
+		percentageAnswer.setText(percentage+"%");
 		int widthMax=display.getWidth()-(int)(display.getWidth()*0.25);
 		barPercentage.getLayoutParams().width=(int)(widthMax*floatPercent);
 	}

@@ -22,14 +22,14 @@
 	        android:id="@+id/sectionChapterDirectory"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/padding_5dp"
+	       	android:layout_marginBottom="@dimen/margin_10dp_poll"
 	        secom:title_section="Member Roster"
 	        />
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionEvents" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/padding_5dp"
+	        android:layout_marginBottom="@dimen/margin_10dp_poll"
 	        secom:title_section="Calendar"
 	        secom:show_arrow="true"
 	        />
@@ -37,7 +37,8 @@
 	        android:id="@+id/sectionPoll" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/padding_5dp"
+	       	android:layout_marginBottom="@dimen/margin_10dp_poll"
+	       	secom:background_color_section="@android:color/transparent"
 	        secom:show_arrow="false"
 	        secom:title_section="Poll"
 	        />
@@ -45,7 +46,7 @@
 	        android:id="@+id/sectionNews" 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/padding_5dp"
+	        android:layout_marginBottom="@dimen/margin_10dp_poll"
 	        secom:title_section="Alpha Eta News"
 	        secom:show_arrow="true"
 	        />
@@ -56,7 +57,7 @@
 	        android:gravity="center_horizontal">
 	        <TextView android:id="@+id/textTermsUse"
 	            android:layout_width="wrap_content"
-	            android:padding="8dp"
+	            android:padding="@dimen/padding_8dp"
 	            android:layout_height="wrap_content"
 	            android:text="Terms of Use"
 	            android:clickable="true"
@@ -68,7 +69,7 @@
 	        <TextView android:id="@+id/textPrivatePolicy"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:padding="8dp"
+	            android:padding="@dimen/padding_8dp"
 	            android:clickable="true"
 	            android:onClick="activityPrivatePolicy"
 	            android:text="Private Policy"/>

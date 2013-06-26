@@ -133,7 +133,7 @@
         <item name="android:background">@color/gray_background</item>
     </style>
     <style name="LinearContentAll">
-        <item name="android:padding">@dimen/padding_3dp</item>
+        <item name="android:padding">@dimen/padding_8dp</item>
     </style>
 	
 	<style name="Theme.OmegaFiTheme" parent="Theme.Sherlock.Light">

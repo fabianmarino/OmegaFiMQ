@@ -10,4 +10,8 @@
     <color name="blue_bar">#1ebdff</color>
     <color name="gray_bar">#1ebdff</color>
     <color name="gray_table_row">#999999</color>
+    <color name="gray_font_welcome">#575757</color>
+    <color name="gray_line_divisor">#e0e0e0</color>
+    <color name="gray_shadow_section">#c5c3c1</color>
+    <color name="gray_shadow_section_light">#ede9e9</color>
 </resources>

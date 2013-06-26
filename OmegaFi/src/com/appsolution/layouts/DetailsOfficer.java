@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -33,7 +34,9 @@ public class DetailsOfficer extends LinearLayout {
 		inflate.inflate(R.layout.details_officer, this, true);
 		
 		titleOfficer=(TextView)findViewById(R.id.nameOfficerMemberRoster);
+		titleOfficer.setTypeface(OmegaFiActivity.getFont(getContext(), 2));
 		subTitleOfficer=(TextView)findViewById(R.id.subTitleOfficerMemberRoster);
+		subTitleOfficer.setTypeface(OmegaFiActivity.getFont(getContext(), 0));
 		iconPhone=(IconLabelVertical)findViewById(R.id.iconPhoneRooster);
 		iconEmail=(IconLabelVertical)findViewById(R.id.iconEmailRooster);
 	}

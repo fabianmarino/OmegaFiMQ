@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +24,7 @@ public class DialogContactAccount {
 	private TextView textNameContact;
 	private TextView textCancel;
 	private TextView textEmailOpenRequest;
+	private TextView callNumberContact;
 	
 	private boolean isReguarAccount;
 	
@@ -36,6 +38,15 @@ public class DialogContactAccount {
 		alertDialog = builderDialog.create();
 		textNameContact=(TextView)layout.findViewById(R.id.titleNameContact);
 		textEmailOpenRequest=(TextView)layout.findViewById(R.id.emailOpenRequestContact);
+		callNumberContact=(TextView)layout.findViewById(R.id.callNumberContact);
+		callNumberContact.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {	
+				callToMember();
+				dimissDialog();
+			}
+		});
 		
 		if(!isReguarAccount){
 			textEmailOpenRequest.setText("Open Request");
@@ -75,6 +86,12 @@ public class DialogContactAccount {
 	
 	public void dimissDialog(){
 		alertDialog.dismiss();
+	}
+	
+	private void callToMember(){
+		Intent intentCall=new Intent(Intent.ACTION_CALL);
+		intentCall.setData(Uri.parse("tel:*123"));
+		activity.startActivity(intentCall);
 	}
 	
 }

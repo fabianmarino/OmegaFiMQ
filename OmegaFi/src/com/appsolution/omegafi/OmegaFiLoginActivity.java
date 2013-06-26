@@ -49,7 +49,9 @@ public class OmegaFiLoginActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				diag.dimissDialog();	
+				diag.dimissDialog();
+				Intent openRequest=new Intent(getApplicationContext(), OpenRequestActivity.class);
+				startActivity(openRequest);
 			}
 		});
 		diag.showDialog();

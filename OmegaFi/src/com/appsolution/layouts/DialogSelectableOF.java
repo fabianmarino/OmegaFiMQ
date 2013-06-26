@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.omegafi.R;
 
 public class DialogSelectableOF {
@@ -41,25 +42,36 @@ public class DialogSelectableOF {
 		linearSelectables=(LinearLayout)layout.findViewById(R.id.contentRowsSelectables);
 		textTitle=(TextView)layout.findViewById(R.id.titleSelectables);
 		buttonAction=(Button)layout.findViewById(R.id.buttonActionDialog);
-		this.completeTestOptionsSelectables();
-		this.completeOptionsSelectable();
+		group=new RowCheckGroup();
+		group.setContentSelectable(this);
 		alertDialog = builderDialog.create();
 	}
 	
-	private void completeTestOptionsSelectables(){
-		optionsSelectables.add("Winston Smith,Mastercard (4571)");
-		optionsSelectables.add("Wanda Smith,Mastercard (1234)");
-		optionsSelectables.add("Winston Smith,Checking (0215)");
+	public ArrayList<String> getOptionsTest(){
+		ArrayList<String> list=new ArrayList<String>();
+		list.add("Winston Smith,Mastercard (4571)");
+		list.add("Wanda Smith,Mastercard (1234)");
+		list.add("Winston Smith,Checking (0215)");
+		return list;
+	}
+	
+	public void setOptionsSelectables(ArrayList<String> array){
+		optionsSelectables.clear();
+		optionsSelectables=(ArrayList<String>)array.clone();
+		this.completeOptionsSelectable();
 	}
 	
 	private void completeOptionsSelectable(){
-		group=new RowCheckGroup();
 		for (String option:optionsSelectables) {
 			RowCheckOmegaFi rowChecked=new RowCheckOmegaFi(activity,group);
-			rowChecked.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+			rowChecked.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+					LinearLayout.LayoutParams.WRAP_CONTENT));
 			int padding=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, 
 					activity.getApplicationContext().getResources().getDisplayMetrics());
 			rowChecked.setPaddingRow(padding,padding,0,padding);
+			if(option==optionsSelectables.get(optionsSelectables.size()-1)){
+				rowChecked.setBorderBottom(false);
+			}
 			String[] values=option.split(",");
 			rowChecked.setNameInfo(values[0]);
 			rowChecked.setSubnameInfo(values[1]);
@@ -105,5 +117,67 @@ public class DialogSelectableOF {
 			group.setContentSelectable(null);
 		}
 	}
+
+	public void setOnCheckedListener(OnRowCheckListener listener) {
+		group.setOnCheckedListener(listener);
+	}
+
+	public void addRowCheck(RowCheckOmegaFi row) {
+		group.addRowCheck(row);
+	}
+
+	public boolean equals(Object o) {
+		return group.equals(o);
+	}
+
+	public DialogSelectableOF getContentSelectable() {
+		return group.getContentSelectable();
+	}
+
+	public void setContentSelectable(DialogSelectableOF contentSelectable) {
+		group.setContentSelectable(contentSelectable);
+	}
+
+	public int getIndexSelected() {
+		return group.getIndexSelected();
+	}
+
+	public void setIndexSelected(int indexSelected) {
+		group.setIndexSelected(indexSelected);
+	}
+
+	public String getItemSelected() {
+		return group.getItemSelected();
+	}
+
+	public int hashCode() {
+		return group.hashCode();
+	}
+
+	public void setItemSelected(String itemSelected) {
+		group.setSelectedItem(itemSelected);
+	}
+
+	public String toString() {
+		return group.toString();
+	}
+
+	public RowCheckOmegaFi getRowSelected() {
+		return group.getRowSelected();
+	}
+
+	public void setSelectedIndex(int index) {
+		group.setSelectedIndex(index);
+	}
+
+	public void setSelectedItem(String item) {
+		group.setSelectedItem(item);
+	}
+
+	public void doChecksWithOutFade() {
+		group.doChecksWithOutFade();
+	}
+	
+	
 	
 }

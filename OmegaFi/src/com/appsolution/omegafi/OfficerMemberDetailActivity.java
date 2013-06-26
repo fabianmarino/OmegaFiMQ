@@ -1,5 +1,6 @@
 package com.appsolution.omegafi;
 import com.appsolution.layouts.IconLabelVertical;
+import com.appsolution.layouts.LabelInfoVertical;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.widget.LinearLayout;
 
 public class OfficerMemberDetailActivity extends OmegaFiActivity {
 
+	
+	private LabelInfoVertical infoMemberInitiate;
 	private IconLabelVertical phoneIcon;
 	private IconLabelVertical emailIcon;
 	private IconLabelVertical addresseIcon;
@@ -20,6 +23,9 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_officer_member_detail);
+		
+		infoMemberInitiate=(LabelInfoVertical)findViewById(R.id.labelInfoMemberInitiate);
+		infoMemberInitiate.setTypeFaceValueInfo(OmegaFiActivity.getFont(getApplicationContext(), 0));
 		
 		phoneIcon=(IconLabelVertical)findViewById(R.id.phoneIconMember);
 		phoneIcon.setBackgroundColor(this.getResources().getColor(R.color.blue_marine));

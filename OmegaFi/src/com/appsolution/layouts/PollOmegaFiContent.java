@@ -2,6 +2,7 @@ package com.appsolution.layouts;
 
 import java.util.ArrayList;
 
+import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -22,8 +23,7 @@ public class PollOmegaFiContent extends ViewSwitcher{
 
 	private TextView titleQuestion;
 	private RadioGroup groupAnswers;
-	private Button buttonSubmit;
-	private Button buttonVote;
+//	private Button buttonSubmit;
 	private ViewSwitcher viewSwitcher;
 	private LinearLayout linearResultsPercentage;
 	
@@ -52,7 +52,7 @@ public class PollOmegaFiContent extends ViewSwitcher{
 		
 		linearResultsPercentage=(LinearLayout)findViewById(R.id.contentPollResults);
 		this.addAnswersResultToPoll();
-		buttonSubmit=(Button)findViewById(R.id.buttonSubmitPoll);
+		/*buttonSubmit=(Button)findViewById(R.id.buttonSubmitPoll);
 		buttonSubmit.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -60,35 +60,41 @@ public class PollOmegaFiContent extends ViewSwitcher{
 				viewSwitcher.showNext();		
 			}
 		});
-		
-		buttonVote=(Button)findViewById(R.id.buttonVote);
-		buttonVote.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				viewSwitcher.showNext();
-			}
-		});
+		*/
 		
 	}
 	
 	public void addAnswersToPoll(ArrayList<String> answers){
-//		for(String answer:answers){
-//			RadioButton newAnswer=new RadioButton(getContext());
-//			newAnswer.setTextColor(Color.GRAY);
-//			newAnswer.setText(answer);
-//			newAnswer.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-//					getContext().getResources().getDimensionPixelSize(R.dimen.text_answer_poll));
-//			groupAnswers.addView(newAnswer);
-//		}
-		
 		RowCheckGroup group=new RowCheckGroup();
-		for (int i = 0; i < 4; i++) {
+		group.setOnCheckedListener(new OnRowCheckListener() {
+			
+			@Override
+			public void actionBeforeChecked() {
+				viewSwitcher.showNext();
+			}
+			
+			@Override
+			public void actionAfterChecked() {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		int lenght=4;
+		for (int i = 0; i < lenght; i++) {
 			RowCheckOmegaFi check=new RowCheckOmegaFi(getContext(), group);
 			check.setTextSizeInformation(getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 			check.setNameInfo("Answer "+(i+1));
 			check.setBackgroundColor(Color.TRANSPARENT);
+			check.setBorderBottom(true);
+			int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
+			check.setPaddingRow(0, padding, 0, padding);
+			View line=new View(getContext());
+			line.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, 1));
+			line.setBackgroundColor(this.getResources().getColor(R.color.gray_font_welcome));
 			groupAnswers.addView(check);
+			if(i<(lenght-1)){
+				groupAnswers.addView(line);
+			}
 		}
 		
 	}

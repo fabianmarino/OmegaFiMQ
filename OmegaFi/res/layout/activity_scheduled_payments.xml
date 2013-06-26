@@ -14,7 +14,7 @@
 	    <com.appsolution.layouts.RowInformation
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        secom:padding_row_info="@dimen/padding_8dp"
+	        android:onClick="seeScheduleDetailsProcessing"
 	        secom:name_information="4/15/2013 - Processing"
 	        secom:value_information="$335.00"
 	        secom:show_arrow_info="true"
@@ -25,7 +25,6 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="5dp"
 	        android:onClick="seeScheduleDetails"
-	        secom:padding_row_info="@dimen/padding_8dp"
 	        secom:name_information="4/15/2013 - Pending"
 	        secom:value_information="$335.00"
 	        secom:show_arrow_info="true"

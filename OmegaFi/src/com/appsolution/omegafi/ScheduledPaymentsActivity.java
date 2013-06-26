@@ -21,6 +21,13 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 	
 	public void seeScheduleDetails(View button){
 		Intent scheduledDetails=new Intent(this, ScheduledPaymentsDetailActivity.class);
+		scheduledDetails.putExtra("editable", true);
+		startActivity(scheduledDetails);
+	}
+	
+	public void seeScheduleDetailsProcessing(View button){
+		Intent scheduledDetails=new Intent(this, ScheduledPaymentsDetailActivity.class);
+		scheduledDetails.putExtra("editable", false);
 		startActivity(scheduledDetails);
 	}
 

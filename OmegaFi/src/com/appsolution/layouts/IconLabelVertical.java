@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -44,6 +45,7 @@ public class IconLabelVertical extends LinearLayout {
 		inflate.inflate(R.layout.icon_label_vertical, this, true);
 		imageIcon=(ImageView)findViewById(R.id.imageIconLabel);
 		textLabel=(TextView)findViewById(R.id.labelIconLabel);
+		textLabel.setTypeface(OmegaFiActivity.getFont(getContext(), 0));
 	}
 	
 	public void setIconResourceLabel(int src){

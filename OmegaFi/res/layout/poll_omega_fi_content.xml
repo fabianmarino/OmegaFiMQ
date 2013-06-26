@@ -39,14 +39,14 @@
 	        android:layout_height="wrap_content"
 	        android:orientation="horizontal"
 	        >
-	        <Button 
+	        <!--  <Button 
 	            android:id="@+id/buttonSubmitPoll"
 	            android:layout_width="wrap_content"
 	            android:layout_height="@dimen/height_button_small"
 	            android:text="SUBMIT"
 	            android:layout_marginLeft="@dimen/padding_6dp"
 	            android:layout_marginTop="@dimen/padding_3dp"
-	            style="@style/ButtonOmegaSmall"/>
+	            style="@style/ButtonOmegaSmall"/>  -->
 	    </LinearLayout>
 	</LinearLayout>
 	
@@ -70,15 +70,9 @@
 	        android:id="@+id/contentPollResults"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
 	        android:padding="@dimen/padding_5dp"
 	        android:orientation="vertical">
 	    </LinearLayout>
-	    <Button android:id="@+id/buttonVote"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="VOTE"
-	        android:visibility="gone"
-	        android:layout_marginTop="10dp"
-	        style="@style/ButtonOmegaSmall"/>
 	</LinearLayout>
 </ViewSwitcher>

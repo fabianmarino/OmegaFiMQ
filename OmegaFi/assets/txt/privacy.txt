@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MyOmegaFi</title>
+        <meta content="authenticity_token" name="csrf-param" />
+        <meta content="pwikR4Ytzxa0wOoG6yEATfPXs3ZA6ePzl9eGmkRGNVw=" name="csrf-token" />
+    </head>
+    <body>
+        <h3 class="pagetitle">OmegaFi's Privacy Policy</h3>
+        <p>
+	At OmegaFi your privacy and the security of your data is a top priority. We pride ourselves on our ability to be your chapter's partner for
+	financial success. In order to be this partner, we help fraternities and sororities	manage their membership and alumni/ae data, and we collect and process payments 
+	and contributions from those members and alumni/ae for Greek organizations. This Privacy and Data Security Policy describes the privacy policies applicable to OmegaFi's business operations and websites.
+</p>
+        <h3>Data Collection</h3>
+        <p>One of OmegaFi's primary services is to collect, maintain and manage individually
+	identifiable information about chapters, their undergraduate members and new
+	members and their alumni/ae. As a result, we maintain contact information,
+	addresses, phone numbers, email addresses, social security numbers, giving and
+	payment information and other personally identifiable information about individuals.
+	We obtain this information from your chapter, alumni/ae organizations associated
+	with your chapter and your Inter/National Headquarters. We also obtain this
+	information from transactions you initiate and information you provide to us.</p>
+        <p>From time to time, we also compile online transaction and registration information
+	for internal analyses and internal marketing purposes.</p>
+        <h3>Information Sharing</h3>
+        <p>OmegaFi never sells or provides any data or personally identifiable information except
+	as authorized by our customers or their members.</p>
+In order to serve your needs, we may share information with:
+
+        <ul>
+            <li>Credit card processors and financial institutions when necessary to
+		process payments made by you and to comply with applicable law;</li>
+        </li>
+	Lawyers and collection agents only when instructed and authorized by
+	our customers to fulfill the terms of our agreement with our customers;
+	
+    </li>
+    <li>The U.S. Post Office and printing and mail house specialists in order to
+		communicate with you;</li>
+    <li>Your Inter/National Headquarters in an effort, to keep you, your chapter
+		and its members and alumni/ae informed about the national
+		fraternity/sorority.</li>
+</ul>
+<p>In order to enhance and strengthen the alumni relations program for our customers,
+	name, address, phone number and email information about their alumni/ae is
+	published on the Internet as a component of a customer's website.</p>
+<p>When necessary or appropriate, we may disclose information in response to a court
+	order or subpoena or when otherwise legally required.</p>
+<p>To protect your confidential information, we only work with companies and financial
+	institutions that agree to maintain strong confidentiality protections and limit the use
+	of the information we provide. We do not permit these companies to sell to other
+	third parties the information we provide to them.</p>
+<h3>Confidentiality and Security Safeguards</h3>
+<p>OmegaFi takes physical, electronic and procedural safeguards to protect against
+	anticipated and unanticipated hazards to the information that is stored about our
+	customers, chapters, chapter members and their alumni/ae. Data is electronically
+	backed-up every night. Back- up tapes are stored in secure locations off-site each
+	week.</p>
+<p>We protect customer data and accounts by asking you for information that only you
+	should know when you contact us. We follow these procedures in our financial
+	centers, on the phone and via the Internet.</p>
+<p>We train our employees to protect customer information. OmegaFi employees who
+	have access to confidential information must treat it confidentially and may not
+	disclose it to unauthorized parties. Employees who violate OmegaFi's privacy policy are
+	subject to a range of disciplinary actions.</p>
+<h3>Web Site Data Collection</h3>
+<p>A visitor to the OmegaFi website who does not log- in, is not asked to reveal any
+	individually identifiable information. We collect some non-personally identifiable
+	information about visitors through standard weblogs, including IP address, what
+	browser is being used and the domain name from which a visitor entered our site.
+	Some data may be traced to an individual, but we do not normally seek to identify
+	individuals unless we believe that someone is using our site improperly.</p>
+<h3 style="line-height:1em;">Member Access Plus
+    <sup>TM</sup> and Chapter Desktop
+    <sup>TM</sup>
+</h3>
+<p>Some existing customers and chapter members come to our website with IDs and
+	passwords already assigned. Others who register at our website provide standard
+	contact information such as name, mailing and email address, chapter name,
+	college/university name and telephone numbers. We may also obtain credit card
+	number information from those who pay online.</p>
+<p>When you sign in to the OmegaFi system, your ID and password are sent over the
+	Internet from your computer to ours using Secure Socket Layer (SSL) technology.
+	SSL encrypts your personal information before it leaves your computer, ensuring
+	that no one else can read it.</p>
+<h3>Cookies</h3>
+<p>We use an Internet device called a cookie to store login or other information on your
+	computer. A cookie is a small file that a website transfers to your computer's hard
+	drive. We use cookies to simplify your access and to make our website work for you.
+	For some services, we offer users the choice of having an ID or password stored in a
+	cookie so that you do not have to reenter it when you return to the site. We do not
+	store credit card numbers in cookies. No other site can read a cookie, and we cannot
+	read a cookie that another website wrote to your computer. Most Internet browsers
+	are set to accept cookies. To fully use our website, you must enable your Internet
+	browser to accept cookies. If you choose not to accept cookies, some websites may
+	not display properly or you may not be able to access certain information.</p>
+<h3>Privacy of Children</h3>
+<p>The OmegaFi website and services provided by OmegaFi are not directed to children
+	under the age of 13. We operate our website in compliance with the Children's
+	Online Privacy Protection Act and do not permit registration by, and will not
+	knowingly collect or use personally identifiable information from, anyone under 13
+	years of age.</p>
+<h3>Updates to this Privacy Policy</h3>
+<p>To keep up with the rapidly evolving Internet environment and changing legal
+	requirements, OmegaFi will from time to time review and revise this Privacy Policy.
+	When any change is made to this policy, we will revise the effective date at the
+	beginning of this policy. Individuals and chapters are encouraged to check back often
+	to learn about any changes to this policy.</p>
+<h3>For More Information</h3>
+For more information regarding this Privacy Policy, please contact
+<br/>
+Fred Maglione
+<br/>
+President
+<br/>
+OmegaFi
+<br/>
+1300 Sixth Avenue, Suite 6
+<br/>
+Columbus, GA 31901
+<br/>
+(800) 276-6342
+<br/>
+fmaglione@omegafi.com 
+<BR/>
+<BR/>undefined</body>undefined</html>

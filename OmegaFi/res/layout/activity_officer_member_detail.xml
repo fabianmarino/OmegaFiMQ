@@ -16,13 +16,20 @@
 	        android:paddingTop="@dimen/padding_12dp"
 	        android:background="@drawable/background_rooster"
 	        android:orientation="vertical">
-	        <ImageView android:layout_width="@dimen/sliding_photo_size_130dp"
-	            android:layout_height="@dimen/sliding_photo_size_130dp"
-	            android:src="@drawable/photo_1"/>
+	        <LinearLayout android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:background="@android:color/white"
+	            android:padding="@dimen/padding_8dp">
+		        <ImageView android:layout_width="@dimen/sliding_photo_size_130dp"
+		            android:layout_height="@dimen/sliding_photo_size_130dp"
+		            android:src="@drawable/photo_1"/>
+	        </LinearLayout>
 	        <com.appsolution.layouts.LabelInfoVertical
+	            android:id="@+id/labelInfoMemberInitiate"
 	             android:layout_width="wrap_content"
 	             android:layout_height="wrap_content"
 	             secom:text_title_label="Initiate"
+	             secom:text_value_label="05/25/2010"
 	             secom:size_title_label="@dimen/text_15sp"
 	             secom:size_value_label="@dimen/text_12sp_row_info"/>
 	    </LinearLayout>
@@ -30,6 +37,7 @@
             android:layout_height="wrap_content"
             android:background="@color/gray_background"
             android:padding="@dimen/padding_10dp"
+            android:layout_marginTop="@dimen/padding_5dp"
             android:orientation="vertical">
             <TableLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -73,6 +81,41 @@
                          />
                 </TableRow>
             </TableLayout>
+            <LinearLayout 
+                	android:layout_width="fill_parent"
+                    android:layout_height="7dp"
+                    android:layout_marginTop="-7dp"
+                    android:padding="0dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+                    <LinearLayout android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="0.33">
+                        <ImageView android:layout_width="@dimen/width_15dp_icon_spinner"
+                            android:layout_height="7dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/up_arrow"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="0.33">
+                        <ImageView android:layout_width="@dimen/width_15dp_icon_spinner"
+                            android:layout_height="7dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/up_arrow"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="0.33">
+                        <ImageView android:layout_width="@dimen/width_15dp_icon_spinner"
+                            android:layout_height="7dp"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/up_arrow"/>
+                    </LinearLayout>
+                </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
@@ -205,6 +248,7 @@
                 </TableRow>
             	</TableLayout>
             </LinearLayout>
+            <include layout="@layout/line_jagged"/>
         </LinearLayout>
 	</LinearLayout>
 </ScrollView>

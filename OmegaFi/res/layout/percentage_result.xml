@@ -22,13 +22,14 @@
 	        >
 	        <View android:id="@+id/percentageBarResult"
 	            android:layout_width="200dp"
-	            android:layout_height="20dp"
+	            android:layout_height="@dimen/height_bar_poll"
 	            android:background="@android:color/darker_gray"/>
 	    </LinearLayout>
 	    <TextView android:id="@+id/numberPercentageResult"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="9dp"
+            android:layout_marginLeft="@dimen/padding_3dp"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
             android:text="37%"/>
     </LinearLayout>
 

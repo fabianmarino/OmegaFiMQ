@@ -26,7 +26,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 	}
 	
 	private void completeCyclesCharges(){
-		for (int i = 0; i < 17; i++) {
+		for (int i = 1; i < 10; i++) {
 			CycleCharge cycle=new CycleCharge(this);
 			LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 			params.setMargins(0, 0, 0, 10);

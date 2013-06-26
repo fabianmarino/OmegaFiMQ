@@ -3,9 +3,10 @@
     <dimen name="edit_login">18sp</dimen>
     <dimen name="text_large">20sp</dimen>
     <dimen name="text_medium">15sp</dimen>
-    <dimen name="text_x_large">28sp</dimen>
+    <dimen name="text_x_large">36sp</dimen>
     <dimen name="text_small_loading">15sp</dimen>
     <dimen name="text_17sp">17sp</dimen>
+    <dimen name="text_19sp">19sp</dimen>
     <dimen name="text_14sp">14sp</dimen>
     <dimen name="text_10sp">10sp</dimen>
     <dimen name="text_11sp">11sp</dimen>
@@ -16,11 +17,13 @@
     <dimen name="text_sub_name_officer">15sp</dimen>
     <dimen name="text_label_icon">10sp</dimen>
     <dimen name="text_6sp">6sp</dimen>
+    <dimen name="text_5sp">5sp</dimen>
+    <dimen name="text_4sp">4sp</dimen>
     <dimen name="text_8sp">8sp</dimen>
     <dimen name="text_12sp_row_info">12sp</dimen>
     
     <dimen name="text_newevent_title_omegafi">20sp</dimen>
-    <dimen name="text_date_newevent_title_omegafi">10sp</dimen>
+    <dimen name="text_date_newevent_title_omegafi">12sp</dimen>
     <dimen name="text_content_newevent_title_omegafi">13sp</dimen>
     <dimen name="text_question_poll">14sp</dimen>
     <dimen name="text_answer_poll">13sp</dimen>
@@ -38,6 +41,7 @@
     <dimen name="padding_6dp">6dp</dimen>
     <dimen name="padding_8dp">8dp</dimen>
     <dimen name="padding_10dp">10dp</dimen>
+    <dimen name="padding_10dp_header_section">10dp</dimen>
     <dimen name="padding_12dp">12dp</dimen>
     <dimen name="padding_5dp_1">5dp</dimen>
     <dimen name="padding_6dp_buttom_omega">6dp</dimen>
@@ -46,24 +50,25 @@
     <dimen name="margin_top_circle_charging">10dp</dimen>
     <dimen name="margin_top_header">10dp</dimen>
     <dimen name="margin_bottom_header">15dp</dimen>
-    <dimen name="margin_top_form">40dp</dimen>
+    <dimen name="margin_top_form">80dp</dimen>
     <dimen name="margin_top_bottom">20dp</dimen>
     <dimen name="margin_sides_content_login">6dp</dimen>
     <dimen name="margin_right_photo_slide">6dp</dimen>
     <dimen name="spacing_sections">5dp</dimen>
+    <dimen name="margin_10dp_poll">10dp</dimen>
     
     <dimen name="height_header_image">50dp</dimen>
-    <dimen name="large_line_circle">50dp</dimen>
-    <dimen name="photo_size">100dp</dimen>
+    <dimen name="large_line_circle">70dp</dimen>
+    <dimen name="photo_size">70dp</dimen>
     <dimen name="image_size_item_menu">25dp</dimen>
     <dimen name="sliding_photo_size">60dp</dimen>
     <dimen name="sliding_photo_size_90dp">90dp</dimen>
-    <dimen name="sliding_photo_size_130dp">130dp</dimen>
-    <dimen name="circle_chargin_size">105dp</dimen>
-    <dimen name="width_image_chapter">120dp</dimen>
+    <dimen name="sliding_photo_size_130dp">100dp</dimen>
+    <dimen name="circle_chargin_size">120dp</dimen>
+    <dimen name="width_image_chapter">100dp</dimen>
     <dimen name="height_image_chapter">80dp</dimen>
     <dimen name="size_notification_circle">20dp</dimen>
-    <dimen name="height_new_event_content">170dp</dimen>
+    <dimen name="height_new_event_content">155dp</dimen>
     <dimen name="size_circle_newevents">3dp</dimen>
     <dimen name="width_image_label">30dp</dimen>
     <dimen name="width_arrow_down">20dp</dimen>
@@ -71,7 +76,12 @@
     <dimen name="width_row_edit_text">150dp</dimen>
     <dimen name="width_95dp">80dp</dimen>
     <dimen name="width_20dp">20dp</dimen>
-    <dimen name="height_poll_content">270dp</dimen>
+    <dimen name="height_poll_content">240dp</dimen>
+    <dimen name="width_15dp_icon_spinner">10dp</dimen>
+    <dimen name="height_shadow_2dp">2dp</dimen>
+    <dimen name="height_shadow_margin">-3dp</dimen>
+    <dimen name="height_bar_poll">20dp</dimen>
+    <dimen name="height_edit_submit">40dp</dimen>
     
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>

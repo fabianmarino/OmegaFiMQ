@@ -49,7 +49,8 @@ public class TermsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				html=OmegaFiActivity.servicesOmegaFi.getTermsOmegaFi();
+//				html=OmegaFiActivity.servicesOmegaFi.getTermsOmegaFi();
+				html=OmegaFiActivity.getStringFile(getApplicationContext(), "txt/terms.txt");
 				return true;
 			}
 			

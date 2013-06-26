@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -25,22 +26,6 @@ public class RowEditInformation extends RelativeLayout {
 		super(context);
 		this.initialize();
 		 setTextSizeInformation(super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
-		 textNameInfo.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Log.d("Por fin", "Eso mijito");
-				
-			}
-		});
-		 textSubNameInfo.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					Log.d("Por fin", "Eso mijito");
-					
-				}
-			});
 	}
 	
 	public RowEditInformation(Context context, AttributeSet attrs) {
@@ -71,22 +56,6 @@ public class RowEditInformation extends RelativeLayout {
 		   setPaddingRow(paddingLeft, paddingTop, paddingRight, paddingBottom);
 		   
 		    a.recycle();
-		    textNameInfo.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					Log.d("Por fin", "Eso mijito");
-					
-				}
-			});
-			 textSubNameInfo.setOnClickListener(new OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						Log.d("Por fin", "Eso mijito");
-						
-					}
-				});
 	}
 	
 	private void initialize(){
@@ -96,23 +65,9 @@ public class RowEditInformation extends RelativeLayout {
 		content.setPadding(content.getPaddingLeft(), content.getPaddingTop(), 10, content.getPaddingBottom());
 		textNameInfo=(TextView)findViewById(R.id.nameInfoEdit);
 		textNameInfo.setClickable(true);
-		textNameInfo.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				Log.d("Text Name info", ":p");
-				
-			}
-		});
+		textNameInfo.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		textSubNameInfo=(TextView)findViewById(R.id.subnameInfoEdit);
 		textSubNameInfo.setClickable(true);
-		textSubNameInfo.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				Log.d("Text Name info", ":p");
-			}
-		});
 		}
 	
 	public void setNameInfo(String name) {
@@ -181,5 +136,16 @@ public class RowEditInformation extends RelativeLayout {
 		super.setOnClickListener(l);
 	}
 	
+	public void setTextColor(int color){
+		textNameInfo.setTextColor(color);
+	}
+	
+	public String getNameInfo(){
+		return textNameInfo.getText().toString();
+	}
+	
+	public String getNameSubInfo(){
+		return textSubNameInfo.getText().toString();
+	}
 
 }

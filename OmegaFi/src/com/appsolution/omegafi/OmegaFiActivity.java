@@ -1,5 +1,8 @@
 package com.appsolution.omegafi;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,6 +19,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -31,6 +35,11 @@ import android.widget.QuickContactBadge;
 
 public class OmegaFiActivity extends SlidingFragmentActivity {
 	
+	public static final int THIN_FONT_OMEGAFI=0;
+	public static final int CONDENSED_FONT_OMEGAFI=1;
+	public static final int BOLD_FONT_OMEGAFI=2;
+	
+	
 	protected com.actionbarsherlock.app.ActionBar actionBar;
 	public static final Server servicesOmegaFi=new Server();
 	protected SlidingMenu slidingMenu;
@@ -41,6 +50,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.showSlidingMenu();
+		 actionBar = getSupportActionBar();
 		this.optionsActionBar();
 	}
 	
@@ -54,7 +64,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
         slidingMenu.setShadowDrawable(R.drawable.shadow);
         slidingMenu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         slidingMenu.setFadeDegree(0.35f);
-        actionBar = getSupportActionBar();
+        slidingMenu.setActivated(false);
         userContact=(UserContactLayout)findViewById(R.id.userContactSliding);
         itemAnnouncements=(ItemMenuSliding)findViewById(R.id.menuItemAnnouncements);
         this.loadSlidingMenu();
@@ -245,6 +255,42 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		WindowManager wm=(WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
 		Display display=wm.getDefaultDisplay();
 		return (int)(display.getWidth()*percentaje);
+	}
+	
+	public static Typeface getFont(Context context,int tipe){
+		Typeface font=Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Medium.ttf");
+		switch (tipe) {
+		case 0:
+			font=Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Light.ttf");
+			break;
+		case 2:
+			font=Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Bold.ttf");
+			break;
+		case 3:
+			font=Typeface.createFromAsset(context.getAssets(), "fonts/Roboto-Regular.ttf");
+		default:
+			break;
+		}
+		return font;
+	}
+	
+	public static String getStringFile(Context context, String ruta){
+		StringBuilder cons=new StringBuilder();
+		String linea=null;
+		try {
+		     InputStream in = context.getAssets().open(ruta);
+		     if (in != null) {
+		      InputStreamReader input = new InputStreamReader(in);
+		      BufferedReader buffreader = new BufferedReader(input);
+		      while ((linea = buffreader.readLine()) != null) {
+		       cons.append(linea.toString());
+		      }
+		      in.close();
+		     }
+		    } catch (IOException e) {
+		     e.printStackTrace();
+		    }
+		return cons.toString();
 	}
 	
 }

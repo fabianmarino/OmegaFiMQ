@@ -47,7 +47,8 @@ public class PrivacyActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				html=OmegaFiActivity.servicesOmegaFi.getPrivacyOmegaFi();
+//				html=OmegaFiActivity.servicesOmegaFi.getPrivacyOmegaFi();
+				html=OmegaFiActivity.getStringFile(PrivacyActivity.this, "txt/privacy.txt");
 				return true;
 			}
 			

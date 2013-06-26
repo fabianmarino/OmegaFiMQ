@@ -132,6 +132,7 @@
     <declare-styleable name="LabelInfoVertical">
         <attr name="color_font_vertical" format="color" />
         <attr name="text_title_label" format="string" />
+        <attr name="text_value_label" format="string" />
         <attr name="size_title_label" format="dimension" />
         <attr name="size_value_label" format="dimension" />
     </declare-styleable>
@@ -139,5 +140,11 @@
         <attr name="src_icon_label_vertical" format="reference" />
         <attr name="text_label_vertical" format="string" />
         <attr name="font_color_label_vertical" format="color" />
+    </declare-styleable>
+    <declare-styleable name="ContentAnnouncement">
+        <attr name="title_announcement" format="string" />
+        <attr name="date_announcement" format="string" />
+        <attr name="description_announcement" format="string" />
+        <attr name="source_announcement_visible" format="boolean" />
     </declare-styleable>
 </resources>

@@ -20,7 +20,8 @@
         <LinearLayout android:id="@+id/linearRowQuestions"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/padding_8dp">
             <com.appsolution.layouts.RowQuestionEditText
                 android:id="@+id/questionMotherName"
                 android:layout_width="fill_parent"

@@ -40,7 +40,6 @@ public class OpenRequestActivity extends OmegaFiActivity {
 		setContentView(R.layout.activity_open_request);
 		sectionContactInformation=(SectionOmegaFi)findViewById(R.id.sectionContactInformation);
 		this.completeSectionContactInformation();
-		
 		sectionRequestContact=(SectionOmegaFi)findViewById(R.id.sectionContactRequest);
 		this.completeSectionRequestContact();
 	}

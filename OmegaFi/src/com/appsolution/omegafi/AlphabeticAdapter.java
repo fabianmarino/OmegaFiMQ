@@ -63,12 +63,12 @@ public class AlphabeticAdapter extends ArrayAdapter<String> implements
 	    }   
 	    
 	    private void setSection(LinearLayout header, String label) {  
-	        TextView text = new TextView(activity);  
-	        header.setBackgroundColor(0xffaabbcc);  
-	        text.setTextColor(Color.WHITE);  
+	        TextView text = new TextView(activity);    
+	        text.setTextColor(Color.BLACK);  
 	        text.setText(label.substring(0, 1).toUpperCase());  
-	        text.setTextSize(20);  
-	        text.setPadding(5, 0, 0, 0);  
+	        text.setTextSize(20);
+	        text.setTypeface(OmegaFiActivity.getFont(activity, 2));
+	        text.setPadding(0, 10, 0, 0);  
 	        text.setGravity(Gravity.CENTER_VERTICAL);  
 	        header.addView(text);  
 	    }
@@ -95,6 +95,7 @@ public class AlphabeticAdapter extends ArrayAdapter<String> implements
 	        userMember.chargeImageTest();
 	        userMember.setBackgroundColor(Color.WHITE);
 	        userMember.setFontColor(Color.BLACK);
+	        userMember.setBlackArrow();
 	        userMember.setOnClickListener(new View.OnClickListener() {
 				
 				@Override

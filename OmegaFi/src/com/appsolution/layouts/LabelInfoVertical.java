@@ -5,6 +5,7 @@ import com.appsolution.omegafi.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -30,6 +31,9 @@ public class LabelInfoVertical extends LinearLayout {
 			
 			String textTitle=a.getString(R.styleable.LabelInfoVertical_text_title_label);
 			setTitleLabel(textTitle);
+			
+			String textValue=a.getString(R.styleable.LabelInfoVertical_text_value_label);
+			setValueLabel(textValue);
 			
 			int sizeName=a.getDimensionPixelSize(R.styleable.LabelInfoVertical_size_title_label,
 					super.getResources().getDimensionPixelSize(R.dimen.text_8sp));
@@ -73,6 +77,14 @@ public class LabelInfoVertical extends LinearLayout {
 	
 	public void setSizeValueLabel(int size){
 		textContentInfo.setTextSize(TypedValue.COMPLEX_UNIT_SP,size);
+	}
+	
+	public void setValueLabel(String value){
+		textContentInfo.setText(value);
+	}
+	
+	public void setTypeFaceValueInfo(Typeface type){
+		textContentInfo.setTypeface(type);
 	}
 
 }

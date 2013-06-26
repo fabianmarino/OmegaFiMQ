@@ -41,7 +41,8 @@
             >
         <LinearLayout
             style="@style/LoginFormContainer"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:gravity="left" >
             <com.appsolution.layouts.HeaderOmegaFi
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -80,6 +81,8 @@
 			        android:text="@string/save_username"
 			        android:textColor="@android:color/black"
 			        android:textSize="@dimen/text_12_notification"
+			        android:layout_marginLeft="-8dp"
+			        android:paddingLeft="26dp"
 			        android:layout_centerVertical="true" />
 
 			    <TextView

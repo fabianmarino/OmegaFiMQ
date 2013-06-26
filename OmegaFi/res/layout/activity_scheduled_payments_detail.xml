@@ -20,19 +20,19 @@
 	        android:id="@+id/sectionScheduledPaymentMethod"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginTop="@dimen/padding_5dp_1"
+	        android:layout_marginTop="@dimen/margin_10dp_poll"
 	        secom:title_section="Payment Method"/>
 	    <Button android:id="@+id/buttonStateScheduled"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="Processing"
-	        android:layout_marginTop="@dimen/padding_5dp_1"
+	        android:text="@string/pending_state"
+	        android:layout_marginTop="@dimen/margin_10dp_poll"
 	        style="@style/ButtonOmega"
 	        />
 	    <LinearLayout android:id="@+id/contentButtonsScheduled"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_marginTop="@dimen/margin_top_circle_charging"
+		    android:layout_marginTop="@dimen/margin_10dp_poll"
 		    android:orientation="vertical"
 		    >
 		    <Button android:id="@+id/buttonSaveScheduled"
@@ -42,7 +42,7 @@
 		        android:onClick="saveSchedulePayment"
 		        style="@style/ButtonOmega"/>
 		    <Button android:id="@+id/buttonDeleteScheduled"
-		        android:layout_marginTop="@dimen/padding_5dp_1"
+		        android:layout_marginTop="@dimen/padding_6dp"
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
 		        android:onClick="deleteSchedulePayment"
