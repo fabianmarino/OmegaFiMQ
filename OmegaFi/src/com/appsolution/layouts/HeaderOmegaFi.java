@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -38,7 +39,9 @@ public class HeaderOmegaFi extends LinearLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.header_omage_fi, this, true);
 		titleMessageHeader=(TextView)findViewById(R.id.titleMessageHeader);
+		titleMessageHeader.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
 		messageForForm=(TextView)findViewById(R.id.messageForForm);
+		messageForForm.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
 	}
 	
 	public void setTextMessageHeader(String msg){

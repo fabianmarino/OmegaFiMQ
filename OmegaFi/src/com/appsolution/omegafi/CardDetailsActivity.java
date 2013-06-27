@@ -24,9 +24,11 @@ public class CardDetailsActivity extends OmegaFiActivity {
 	
 	
 	protected void optionsActionBar() {
-		actionBar.setTitle("View Card Details");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("CARD DETAILS");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeCardDetails(){

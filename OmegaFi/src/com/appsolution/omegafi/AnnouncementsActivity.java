@@ -33,9 +33,11 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Announcements");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("ANNOUNCEMENTS");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeAnnouncements(){

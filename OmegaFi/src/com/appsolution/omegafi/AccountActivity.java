@@ -6,7 +6,9 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.appsolution.layouts.DialogContactAccount;
 import com.appsolution.layouts.DialogSelectableOF;
+import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowInformation;
+import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionAccountUser;
 import com.appsolution.layouts.SectionOmegaFi;
 
@@ -25,6 +27,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	private SectionOmegaFi accountContacts;
 	private SectionOmegaFi accountDetails;
 	private Activity activity;
+	private RowToogleOmegaFi toogleAutoPay; 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,15 +36,19 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		activity=this;
 		accountContacts=(SectionOmegaFi)findViewById(R.id.sectionAccountContacts);
 		accountDetails=(SectionOmegaFi)findViewById(R.id.sectionAccountDetails);
+		toogleAutoPay=(RowToogleOmegaFi)findViewById(R.id.toogleAutoPay);
+		toogleAutoPay.backgroundActiveForm();
 		this.completeAccountContacts();
 		this.completeAccountDetails();
 	}
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("My Account");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("ACCOUNT INFORMATION");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	
@@ -88,7 +95,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section.setOnClickListener(this);
 			accountDetails.addView(section);
 			RowInformation section1=new RowInformation(getApplicationContext());
-			section1.setNameInfo("Sheduled Charges");
+			section1.setNameInfo("Sheduled of Charges");
 			section1.setColorFontRowInformation(Color.GRAY);
 			section1.setVisibleArrow(true);
 			
@@ -104,7 +111,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section2.setOnClickListener(this);
 			accountDetails.addView(section2);
 			RowInformation section4=new RowInformation(getApplicationContext());
-			section4.setNameInfo("Payment Method");
+			section4.setNameInfo("Payment Methods");
 			section4.setVisibleArrow(true);
 			section4.setColorFontRowInformation(Color.GRAY);
 			section4.setId(105);

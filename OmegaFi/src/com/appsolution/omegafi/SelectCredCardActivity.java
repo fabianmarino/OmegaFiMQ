@@ -14,9 +14,11 @@ public class SelectCredCardActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Select Credit Card");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("SELECT CREDIT CARD");
+		actionBar.setCustomView(actionBarCustom);
 	}
 
 }

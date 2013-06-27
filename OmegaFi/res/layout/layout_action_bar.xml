@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/linearArrowBack" 
+        android:layout_width="20dp"
+        android:paddingLeft="5dp"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_height="fill_parent">
+	    <ImageView android:id="@+id/arrowBackActionBar"
+	        android:layout_width="10dp"
+	        android:layout_height="wrap_content"
+	        android:adjustViewBounds="true"
+	        android:layout_alignParentLeft="true"
+	        android:src="@drawable/back_arrow"/>
+    </LinearLayout>
+    <TextView android:id="@+id/titleActionBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="TITLE ACTION"
+        android:textColor="@color/gray_font_row_info"
+        android:textSize="@dimen/text_15sp"
+        android:clickable="false"
+        android:paddingLeft="40dp"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import com.actionbarsherlock.view.MenuItem;
 import com.appsolution.layouts.ItemMenuSliding;
+import com.appsolution.layouts.LayoutActionBar;
 import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Server;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -32,6 +33,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
+import android.widget.RelativeLayout;
 
 public class OmegaFiActivity extends SlidingFragmentActivity {
 	
@@ -39,18 +41,28 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public static final int CONDENSED_FONT_OMEGAFI=1;
 	public static final int BOLD_FONT_OMEGAFI=2;
 	
-	
 	protected com.actionbarsherlock.app.ActionBar actionBar;
 	public static final Server servicesOmegaFi=new Server();
 	protected SlidingMenu slidingMenu;
 	private UserContactLayout userContact;
 	private ItemMenuSliding itemAnnouncements;
+	protected LayoutActionBar actionBarCustom;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.showSlidingMenu();
 		 actionBar = getSupportActionBar();
+		 actionBarCustom=new LayoutActionBar(getApplicationContext());
+		 actionBarCustom.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+				 RelativeLayout.LayoutParams.WRAP_CONTENT));
+		 actionBarCustom.setArrowClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				onBackPressed();
+			}
+		});
 		this.optionsActionBar();
 	}
 	
@@ -291,6 +303,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		     e.printStackTrace();
 		    }
 		return cons.toString();
+	}
+	
+	public void backActivity(View arrow){
+		this.onBackPressed();
 	}
 	
 }

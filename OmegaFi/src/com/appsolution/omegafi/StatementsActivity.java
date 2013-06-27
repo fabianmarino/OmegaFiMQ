@@ -31,9 +31,11 @@ public class StatementsActivity extends OmegaFiActivity {
 
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Statements");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("STATEMENTS");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeStatements(){

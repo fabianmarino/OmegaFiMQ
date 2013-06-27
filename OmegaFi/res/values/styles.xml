@@ -75,7 +75,7 @@
     <style name="ButtonOmegaWhite">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@android:color/white</item>
+        <item name="android:background">@drawable/boton_style_white</item>
         <item name="android:textSize">@dimen/edit_login</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:padding">@dimen/padding_6dp</item>

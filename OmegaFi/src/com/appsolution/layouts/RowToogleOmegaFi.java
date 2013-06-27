@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.ViewGroup;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ToggleButton;
 
@@ -37,6 +39,8 @@ public class RowToogleOmegaFi extends RowEditInformation {
 		this.setBackgroundColor(Color.WHITE);
 		this.setPaddingRow(10, 10, 10, 10);
 		toogleButton=new ToggleButton(super.getContext());
+		toogleButton.setTextColor(Color.WHITE);
+		toogleButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.text_10sp));
 		toogleButton.setText("");
 		toogleButton.setTextOn("");
 		toogleButton.setTextOff("");
@@ -57,6 +61,20 @@ public class RowToogleOmegaFi extends RowEditInformation {
 	
 	public void setOnChangeListenerToogle(OnCheckedChangeListener listener){
 		toogleButton.setOnCheckedChangeListener(listener);
+	}
+	
+	public void backgroundActiveForm(){
+		ViewGroup.LayoutParams params=toogleButton.getLayoutParams();
+//		int width=TypedValue.applyDimension(unit, value, metrics)
+		params.width=getResources().getDimensionPixelSize(R.dimen.width_120dp);
+		params.height=getResources().getDimensionPixelSize(R.dimen.width_50dp);
+		toogleButton.setLayoutParams(params);
+		toogleButton.setBackgroundResource(R.drawable.toogle_omegafi_alt);
+		toogleButton.setPadding(5, 5, 5, 5);
+		toogleButton.setText("ACTIVATE");
+		toogleButton.setTextOn("DEACTIVATE");
+		toogleButton.setTextOff("ACTIVATE");
+		
 	}
 
 }

@@ -30,9 +30,11 @@ public class AddNewCardActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Add New Card");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("ADD NEW CARD");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeRowEditInfo(){

@@ -22,7 +22,7 @@
 	        secom:arrow_visible="false"/>
 	    <TableLayout android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/margin_top_bottom">
+	        android:layout_marginBottom="@dimen/padding_6dp">
 	        <TableRow android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:weightSum="3">
@@ -49,16 +49,28 @@
 	            <Button android:id="@+id/buttonPayNowAccount"
 	                android:layout_width="wrap_content"
 	                android:layout_height="@dimen/height_button_small"
+	                android:layout_gravity="center_vertical"
 	                android:text="PAY NOW"
 	                android:onClick="activityPayNow"
 	                style="@style/ButtonOmegaSmallRed"/>
             </LinearLayout>
 	        </TableRow>
 	    </TableLayout>
+	    <LinearLayout android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal">
+	        <ImageView android:layout_width="@dimen/width_arrow_up"
+	            android:layout_height="wrap_content"
+	            android:adjustViewBounds="true"
+	            android:src="@drawable/arrow_up_without_shadow"/>
+	    </LinearLayout>
 	    <LinearLayout android:id="@+id/descriptionBalanceDue"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:background="@color/blue_marine"
+	        android:paddingLeft="1dp"
+	        android:paddingRight="1dp"
+	        android:paddingBottom="1dp"
+	        android:background="@drawable/background_trans_blue_border"
 	        android:layout_marginBottom="@dimen/padding_10dp"
 	        android:orientation="vertical">
 	        <com.appsolution.layouts.RowInformation
@@ -66,32 +78,33 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:background="@android:color/white"
+	            android:paddingTop="@dimen/padding_6dp"
 	            secom:name_information="Due On"
-	            secom:row_text_size="@dimen/text_12sp_row_info"
 	            secom:value_information="31/03/2013"
 	            secom:show_arrow_info="false"
-	            secom:padding_top_row_info="@dimen/padding_5dp"
 	            secom:padding_bottom_row_info="@dimen/padding_5dp" 
 	            />
 	        <include layout="@layout/line_jagged"/>
 	        <com.appsolution.layouts.RowInformation
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
-	            secom:name_information="BALANCE AS ON"
+	            secom:name_information="balance as of"
 	            secom:name_subinformation="05/12/2013"
 	            secom:value_information="$300.00"
-	            secom:text_size_name_information="@dimen/text_6sp"
-	            secom:text_size_name_subinformation="@dimen/text_12sp_row_info"
+	            secom:text_size_name_information="@dimen/text_8sp"
+	            secom:text_size_name_subinformation="@dimen/text_14sp"
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <View android:layout_width="fill_parent"
 	            android:layout_height="1dp"
+	            android:layout_marginLeft="@dimen/padding_6dp"
+	            android:layout_marginRight="@dimen/padding_6dp"
 	            android:background="@color/blue_marine_dark"/>
 	        <com.appsolution.layouts.RowInformation
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="Payments"
-	            secom:row_text_size="@dimen/text_10sp"
+	            secom:row_text_size="@dimen/text_11sp"
 	            secom:value_information="$0.00"
 	            secom:color_font_row_information="@android:color/white"
 	            />
@@ -99,7 +112,7 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="Credits"
-	            secom:row_text_size="@dimen/text_10sp"
+	            secom:row_text_size="@dimen/text_11sp"
 	            secom:value_information="$0.00"
 	            secom:color_font_row_information="@android:color/white"
 	            />
@@ -107,25 +120,30 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="Debits"
-	            secom:row_text_size="@dimen/text_10sp"
+	            secom:row_text_size="@dimen/text_11sp"
 	            secom:value_information="$0.00"
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <View android:layout_width="fill_parent"
 	            android:layout_height="1dp"
+	            android:layout_marginLeft="@dimen/padding_6dp"
+	            android:layout_marginRight="@dimen/padding_6dp"
 	            android:background="@color/blue_marine_dark"/>
 	        <com.appsolution.layouts.RowInformation
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
-	            secom:name_information="BALANCE AS ON"
+	            android:layout_marginBottom="@dimen/padding_6dp"
+	            secom:name_information="Current Balance"
 	            secom:value_information="$300.00"
-	            secom:row_text_size="@dimen/text_11sp"
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <com.appsolution.layouts.RowToogleOmegaFi
+	            android:id="@+id/toogleAutoPay"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
+	            android:paddingTop="@dimen/padding_6dp"
 	           	android:background="@android:color/white"
+	           	android:paddingBottom="@dimen/padding_6dp"
 	            secom:text_toogle="AutoPay"
 	             />
 	    </LinearLayout>

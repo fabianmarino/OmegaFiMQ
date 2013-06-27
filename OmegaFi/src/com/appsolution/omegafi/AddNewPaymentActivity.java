@@ -136,9 +136,11 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Add New Payment");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("ADD NEW PAYMENT");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	public void changeTypePayment(View view){
@@ -217,9 +219,9 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			@Override
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
 					int dayOfMonth) {
-				rowExpirationDate.setValueInfo(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);	
+				rowExpirationDate.setValueInfo((monthOfYear+1)+"/"+dayOfMonth+"/"+year);	
 			}
-		}, dayMonthYear[2], dayMonthYear[1]-1, dayMonthYear[0]);
+		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
 		date.getDatePicker().setCalendarViewShown(false);
 		date.show();
 	}

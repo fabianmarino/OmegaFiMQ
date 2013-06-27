@@ -79,8 +79,13 @@
     <dimen name="width_15dp_icon_spinner">22dp</dimen>
     <dimen name="height_shadow_2dp">3dp</dimen>
     <dimen name="height_shadow_margin">-4dp</dimen>
-    <dimen name="height_bar_poll">26dp</dimen>
+    <dimen name="height_bar_poll">22dp</dimen>
     <dimen name="height_edit_submit">58dp</dimen>
+    <dimen name="width_arrow_up">20dp</dimen>
+    <dimen name="height_arrow_up">10dp</dimen>
+    <dimen name="height_arrow_up_negative">-10dp</dimen>
+    <dimen name="width_120dp">130dp</dimen>
+    <dimen name="width_50dp">40dp</dimen>
     
     <dimen name="slidingmenu_offset">100dp</dimen>
     <dimen name="list_padding">10dp</dimen>

@@ -76,9 +76,11 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Members Roster");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("MEMBER ROSTER");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private List<String> getArrayTest(){

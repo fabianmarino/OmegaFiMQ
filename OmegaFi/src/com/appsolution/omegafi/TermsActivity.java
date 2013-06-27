@@ -26,9 +26,11 @@ public class TermsActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Terms of Use");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("TERMS OF USE");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void loadTerms(){

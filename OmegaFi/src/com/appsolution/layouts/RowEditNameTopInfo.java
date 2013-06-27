@@ -1,8 +1,10 @@
 package com.appsolution.layouts;
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.widget.EditText;
 
 public class RowEditNameTopInfo extends ViewNameTopInfo {
@@ -31,6 +33,7 @@ public class RowEditNameTopInfo extends ViewNameTopInfo {
 	private void initialize(){
 		textInfo=new EditText(super.getContext());
 		textInfo.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		textInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,getResources().getDimensionPixelSize(R.dimen.text_14sp));
 		textInfo.setBackgroundResource(R.drawable.white_input);
 		this.addView(textInfo);
 	}

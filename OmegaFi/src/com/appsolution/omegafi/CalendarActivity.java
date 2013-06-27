@@ -26,9 +26,11 @@ public class CalendarActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Calendar");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("CALENDAR");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeLinearCalendar(){

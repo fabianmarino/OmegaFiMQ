@@ -54,7 +54,6 @@ public class RowEditInformation extends RelativeLayout {
 		   int paddingRight=(int)a.getDimension(R.styleable.RowEditInformation_padding_right_row_edit, content.getPaddingRight());
 		   int paddingBottom=(int)a.getDimension(R.styleable.RowEditInformation_padding_bottom_row_edit, content.getPaddingBottom());
 		   setPaddingRow(paddingLeft, paddingTop, paddingRight, paddingBottom);
-		   
 		    a.recycle();
 	}
 	
@@ -65,8 +64,10 @@ public class RowEditInformation extends RelativeLayout {
 		content.setPadding(content.getPaddingLeft(), content.getPaddingTop(), 10, content.getPaddingBottom());
 		textNameInfo=(TextView)findViewById(R.id.nameInfoEdit);
 		textNameInfo.setClickable(true);
+		textNameInfo.setTextColor(getResources().getColor(R.color.gray_font_row_info));
 		textNameInfo.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		textSubNameInfo=(TextView)findViewById(R.id.subnameInfoEdit);
+		textSubNameInfo.setTextColor(getResources().getColor(R.color.gray_font_row_info));
 		textSubNameInfo.setClickable(true);
 		}
 	

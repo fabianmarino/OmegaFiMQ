@@ -20,9 +20,11 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Schedule of Charges");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("SCHEDULED OF CHARGES");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeCyclesCharges(){

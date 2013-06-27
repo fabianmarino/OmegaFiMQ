@@ -14,9 +14,11 @@ public class AutoPayPaymentDateActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Payment Date");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("PAYMENT DATE");
+		actionBar.setCustomView(actionBarCustom);
 	}
 
 	

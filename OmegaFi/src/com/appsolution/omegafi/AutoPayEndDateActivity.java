@@ -14,9 +14,11 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("End Date");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("END DATE");
+		actionBar.setCustomView(actionBarCustom);
 	}
 
 	

@@ -51,10 +51,11 @@ public class RowInformation extends RelativeLayout{
 	   String valueInfo = a.getString(R.styleable.RowInformation_value_information);
 	   setValueInfo(valueInfo);
 	   
-	   float textSize = a.getDimensionPixelSize(R.styleable.RowInformation_row_text_size, super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
+	   float textSize = a.getDimensionPixelSize(R.styleable.RowInformation_row_text_size, super.getResources().getDimensionPixelSize(R.dimen.text_14sp));
 	   setTextSizeInformation(textSize);
 	   
-	   int colorFont = a.getColor(R.styleable.RowInformation_color_font_row_information, Color.BLACK);
+	   int colorFont = a.getColor(R.styleable.RowInformation_color_font_row_information, 
+			   getResources().getColor(R.color.gray_font_row_info));
 	   setColorFontRowInformation(colorFont);
 	   
 	   boolean showArrow=a.getBoolean(R.styleable.RowInformation_show_arrow_info, false);
@@ -103,13 +104,11 @@ public class RowInformation extends RelativeLayout{
 		content=(RelativeLayout)findViewById(R.id.rowInformationContent);
 		linearNamesInformation=(LinearLayout)findViewById(R.id.contentNamesInformation);
 		textNameInfo=(TextView)findViewById(R.id.nameInfo);
-		textNameInfo.setTextColor(Color.BLACK);
 		textNameInfo.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		textNameSubInfo=(TextView)findViewById(R.id.nameSubInfo);
 		textNameSubInfo.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		textValueInfo=(TextView)findViewById(R.id.valueInfo);
 		textValueInfo.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
-		textValueInfo.setTextColor(Color.BLACK);
 		textValueInfo2=(TextView)findViewById(R.id.valueInfo2);
 		textValueInfo2.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		arrowImage=(ImageView)findViewById(R.id.arrowGrayInfo);
@@ -150,6 +149,7 @@ public class RowInformation extends RelativeLayout{
 	public void setTextSizeInformation(float size){
 		textNameInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 		textValueInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
+		textValueInfo2.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	public void setSubInformation(boolean isSub){
@@ -192,6 +192,7 @@ public class RowInformation extends RelativeLayout{
 		textNameInfo.setTextColor(color);
 		textNameSubInfo.setTextColor(color);
 		textValueInfo.setTextColor(color);
+		textValueInfo2.setTextColor(color);
 	}
 	
 	public void setImageIconInfo(int drawable){
@@ -228,7 +229,8 @@ public class RowInformation extends RelativeLayout{
 		if(resource!=-1){
 			textValueInfo.getLayoutParams().width=OmegaFiActivity.getWidthPercentageDisplay(getContext(), 0.4f);
 			textValueInfo.setBackgroundResource(resource);
-			textValueInfo.setGravity(Gravity.CENTER_VERTICAL);
+			textValueInfo.setTextColor(Color.GRAY);
+			textValueInfo.setGravity(Gravity.CENTER);
 			textValueInfo.setPadding(5, 5, 5, 5);
 		}
 	}

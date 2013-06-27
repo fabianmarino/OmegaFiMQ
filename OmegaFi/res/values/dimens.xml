@@ -76,12 +76,17 @@
     <dimen name="width_row_edit_text">150dp</dimen>
     <dimen name="width_95dp">80dp</dimen>
     <dimen name="width_20dp">20dp</dimen>
-    <dimen name="height_poll_content">240dp</dimen>
+    <dimen name="height_poll_content">260dp</dimen>
     <dimen name="width_15dp_icon_spinner">10dp</dimen>
     <dimen name="height_shadow_2dp">2dp</dimen>
     <dimen name="height_shadow_margin">-3dp</dimen>
     <dimen name="height_bar_poll">20dp</dimen>
     <dimen name="height_edit_submit">40dp</dimen>
+    <dimen name="width_arrow_up">16dp</dimen>
+    <dimen name="height_arrow_up">8dp</dimen>
+    <dimen name="height_arrow_up_negative">-8dp</dimen>
+    <dimen name="width_120dp">100dp</dimen>
+    <dimen name="width_50dp">35dp</dimen>
     
     <dimen name="slidingmenu_offset">60dp</dimen>
     <dimen name="list_padding">10dp</dimen>

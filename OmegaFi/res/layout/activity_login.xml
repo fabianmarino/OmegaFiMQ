@@ -66,37 +66,6 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                  />
-            
-			<RelativeLayout
-			    android:id="@+id/check_forgot"
-			    android:layout_width="fill_parent"
-			    android:layout_height="wrap_content"
-			   	>
-
-			    <CheckBox
-			        android:id="@+id/check_save"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:layout_alignParentLeft="true"
-			        android:text="@string/save_username"
-			        android:textColor="@android:color/black"
-			        android:textSize="@dimen/text_12_notification"
-			        android:layout_marginLeft="-8dp"
-			        android:paddingLeft="26dp"
-			        android:layout_centerVertical="true" />
-
-			    <TextView
-			        android:id="@+id/text_forgot"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:layout_alignParentRight="true"
-			        android:clickable="true"
-			        android:onClick="activityForgotLogin"
-			        android:text="@string/forgot_user"
-			        android:textColor="@android:color/black"
-			        android:textSize="@dimen/text_12_notification"
-			        android:layout_centerVertical="true" />
-			</RelativeLayout>
 
             <Button
                 android:id="@+id/sign_in_button"
@@ -107,7 +76,59 @@
                 android:text="@string/login_user"
                 android:onClick="nextHome" />
         </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/gray_toogle_off"
+            android:orientation="vertical">
         <include layout="@layout/line_jagged"/>
+        <LinearLayout
+			 android:id="@+id/check_forgot"
+			 android:layout_width="fill_parent"
+			 android:layout_height="wrap_content"
+			 android:orientation="horizontal"
+			 android:weightSum="2"
+			 >
+			<LinearLayout android:layout_width="0dp"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:paddingTop="@dimen/padding_12dp"
+			 	android:paddingBottom="@dimen/padding_10dp"
+			    android:gravity="center_horizontal"
+			    android:layout_weight="1">
+			    <CheckBox
+			        android:id="@+id/check_save"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentLeft="true"
+			        android:text="@string/save_username"
+			        android:textColor="@android:color/white"
+			        android:textSize="@dimen/text_12_notification"
+			        android:layout_centerVertical="true" />
+			</LinearLayout>
+			<View android:layout_width="1dp"
+			    android:layout_height="fill_parent"
+			    android:background="@color/gray_font_row_info"/>
+			<LinearLayout android:layout_width="0dp"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:paddingTop="@dimen/padding_12dp"
+			 	android:paddingBottom="@dimen/padding_10dp"
+			    android:gravity="center_horizontal"
+			    android:layout_weight="1">
+			    <TextView
+			        android:id="@+id/text_forgot"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentRight="true"
+			        android:clickable="true"
+			        android:textColor="@android:color/white"
+			        android:onClick="activityForgotLogin"
+			        android:text="@string/forgot_user"
+			        android:textSize="@dimen/text_12_notification"
+			        android:layout_centerVertical="true" />
+			</LinearLayout>
+		</LinearLayout>
+		</LinearLayout>
 		</LinearLayout>
     </ScrollView>
 

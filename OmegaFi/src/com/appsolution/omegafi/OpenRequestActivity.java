@@ -46,9 +46,11 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Open Request");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("OPEN REQUEST");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeSectionContactInformation(){

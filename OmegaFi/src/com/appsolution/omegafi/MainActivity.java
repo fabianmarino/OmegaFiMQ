@@ -18,7 +18,10 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends OmegaFiLoginActivity {
@@ -27,6 +30,8 @@ public class MainActivity extends OmegaFiLoginActivity {
 	private EditText textPassword;
 	private ProgressDialog progress;
 	private Activity thisActivity;
+	private CheckBox saveUsername;
+	private TextView textForgot;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,8 +39,14 @@ public class MainActivity extends OmegaFiLoginActivity {
 		setContentView(R.layout.activity_login);
 		textUser = (EditText)findViewById(R.id.email);
 		textUser.setText( "parent001");
+		textUser.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		textPassword = (EditText)findViewById(R.id.password);
 		textPassword.setText("1234##");
+		saveUsername=(CheckBox)findViewById(R.id.check_save);
+		saveUsername.setButtonDrawable(R.drawable.radio_button);
+		saveUsername.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
+		textForgot=(TextView)findViewById(R.id.text_forgot);
+		textForgot.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		thisActivity=this;
 	}
 	

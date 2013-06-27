@@ -23,9 +23,11 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Payment Amount");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("AUTO PAYMENT");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	public void changePaymentAmount(View button){

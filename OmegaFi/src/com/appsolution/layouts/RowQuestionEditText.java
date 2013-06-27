@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -41,7 +42,9 @@ public class RowQuestionEditText extends LinearLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.row_question_edit_text, this, true);
 		questionRow=(TextView)findViewById(R.id.textQuestionRow);
+		questionRow.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
 		textResult=(EditText)findViewById(R.id.editTextAnswer);
+		textResult.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
 	}
 	
 	public void setQuestionRow(String question){

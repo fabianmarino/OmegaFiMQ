@@ -3,9 +3,8 @@
     xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="0dp"
-    android:layout_margin="0dp"
-    android:background="@android:color/white"
+    android:padding="1dp"
+    android:background="@drawable/background_trans_white_border"
     android:orientation="vertical" >
     <RelativeLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"

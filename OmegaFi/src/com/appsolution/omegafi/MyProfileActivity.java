@@ -38,6 +38,9 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private IconLabelVertical phoneIcon;
 	private IconLabelVertical emailIcon;
 	private IconLabelVertical addresseIcon;
+	private ImageView arrowLeft;
+	private ImageView arrowCenter;
+	private ImageView arrowRight;
 	
 	private LinearLayout linearPhone;
 	private LinearLayout linearEmail;
@@ -66,6 +69,10 @@ public class MyProfileActivity extends OmegaFiActivity {
 		linearEmail=(LinearLayout)findViewById(R.id.linearEmailProfile);
 		linearAddress=(LinearLayout)findViewById(R.id.linearAddressProfile);
 		
+		arrowLeft=(ImageView)findViewById(R.id.arrow_left_off_prof);
+		arrowCenter=(ImageView)findViewById(R.id.arrow_center_off_prof);
+		arrowRight=(ImageView)findViewById(R.id.arrow_right_off_prof);
+		
 		spinnerPrefix=(Spinner)findViewById(R.id.spinnerPrefixProfile);
 		editTravelVisa=(EditText)findViewById(R.id.travelVisaNumber);
 		Log.d("Travel", editTravelVisa.getInputType()+" numberdecimal");
@@ -93,9 +100,11 @@ public class MyProfileActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("My profile");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("MY PROFILE");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeImageProfile(){
@@ -219,6 +228,9 @@ public class MyProfileActivity extends OmegaFiActivity {
 		linearPhone.setVisibility(LinearLayout.VISIBLE);
 		linearEmail.setVisibility(LinearLayout.GONE);
 		linearAddress.setVisibility(LinearLayout.GONE);
+		arrowLeft.setVisibility(View.VISIBLE);
+		arrowCenter.setVisibility(View.INVISIBLE);
+		arrowRight.setVisibility(View.INVISIBLE);
 	}
 	
 	public void emailClick(View view){
@@ -227,6 +239,9 @@ public class MyProfileActivity extends OmegaFiActivity {
 		linearPhone.setVisibility(LinearLayout.GONE);
 		linearEmail.setVisibility(LinearLayout.VISIBLE);
 		linearAddress.setVisibility(LinearLayout.GONE);
+		arrowLeft.setVisibility(View.INVISIBLE);
+		arrowCenter.setVisibility(View.VISIBLE);
+		arrowRight.setVisibility(View.INVISIBLE);
 	}
 	
 	public void addressClick(View view){
@@ -235,6 +250,9 @@ public class MyProfileActivity extends OmegaFiActivity {
 		linearPhone.setVisibility(LinearLayout.GONE);
 		linearEmail.setVisibility(LinearLayout.GONE);
 		linearAddress.setVisibility(LinearLayout.VISIBLE);
+		arrowLeft.setVisibility(View.INVISIBLE);
+		arrowCenter.setVisibility(View.INVISIBLE);
+		arrowRight.setVisibility(View.VISIBLE);
 	}
 	
 	private void setUnClickAll(){

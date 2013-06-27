@@ -40,9 +40,11 @@ public class NewsOmegaFiActivity extends OmegaFiActivity {
 
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Alpha Eta News");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("ALPHA ETA NEWS");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	private void completeNews(){

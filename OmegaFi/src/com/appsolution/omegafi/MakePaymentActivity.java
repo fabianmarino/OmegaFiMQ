@@ -16,9 +16,11 @@ public class MakePaymentActivity extends OmegaFiActivity {
 	
 	@Override
 	protected void optionsActionBar() {
-		actionBar.setTitle("Make Payment");
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
+		actionBar.setDisplayShowCustomEnabled(true);
+		actionBarCustom.setTitle("MAKE PAYMENT");
+		actionBar.setCustomView(actionBarCustom);
 	}
 	
 	public void viewActivityCards(View layout){
