@@ -53,54 +53,54 @@ public class MainActivity extends OmegaFiLoginActivity {
 	public void nextHome(View boton){
 		Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
 		startActivity(splashView);
-		/*if(this.validateDataLogin()){
-			if(this.isOnline()){
-			final Activity activity=this;
-			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-				JSONObject response=null;
-				@Override
-				protected void onPreExecute() {
-					progress=new ProgressDialog(activity);
-					progress.setTitle("Accesing...");
-					progress.setMessage("Wait please");
-					progress.setCancelable(false);
-					progress.setIndeterminate(true);
-					progress.show();
-				}
-				@Override
-				protected Boolean doInBackground(Void... params) {
-					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-			        nameValuePairs.add(new BasicNameValuePair("UserName",textUser.getText().toString()));
-			        nameValuePairs.add(new BasicNameValuePair("Password", textPassword.getText().toString()));
-			        nameValuePairs.add(new BasicNameValuePair("pipe", "mobile"));
-					response=OmegaFiActivity.servicesOmegaFi.makeRequestPost(Server.LOGIN_SERVICE, nameValuePairs);
-					return true;
-				}
-				@Override
-				protected void onPostExecute(Boolean result) {
-					progress.dismiss();
-					if(response==null){
-						OmegaFiActivity.showAlertMessage("Invalid user or password", thisActivity);
-					}
-					else{
-						Log.d("Response", response.toString());
-						Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
-						try {
-							splashView.putExtra("NameUser", response.getString("FirstName"));
-						} catch (JSONException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						startActivity(splashView);
-					}
-				}
-			};
-			task.execute();
-			}
-			else{
-				OmegaFiActivity.showAlertMessage("You must be connected to use the app", this);
-			}
-		}*/
+//		if(this.validateDataLogin()){
+//			if(true){
+//			final Activity activity=this;
+//			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+//				JSONObject response=null;
+//				@Override
+//				protected void onPreExecute() {
+//					progress=new ProgressDialog(activity);
+//					progress.setTitle("Accesing...");
+//					progress.setMessage("Wait please");
+//					progress.setCancelable(false);
+//					progress.setIndeterminate(true);
+//					progress.show();
+//				}
+//				@Override
+//				protected Boolean doInBackground(Void... params) {
+//					List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//			        nameValuePairs.add(new BasicNameValuePair("UserName",textUser.getText().toString()));
+//			        nameValuePairs.add(new BasicNameValuePair("Password", textPassword.getText().toString()));
+//			        nameValuePairs.add(new BasicNameValuePair("pipe", "mobile"));
+//					response=OmegaFiActivity.servicesOmegaFi.makeRequestPost(Server.LOGIN_SERVICE, nameValuePairs);
+//					return true;
+//				}
+//				@Override
+//				protected void onPostExecute(Boolean result) {
+//					progress.dismiss();
+//					if(response==null){
+//						OmegaFiActivity.showAlertMessage("Invalid user or password", thisActivity);
+//					}
+//					else{
+//						Log.d("Response", response.toString());
+//						Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
+//						try {
+//							splashView.putExtra("NameUser", response.getString("FirstName"));
+//						} catch (JSONException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//						startActivity(splashView);
+//					}
+//				}
+//			};
+//			task.execute();
+//			}
+//			else{
+//				OmegaFiActivity.showAlertMessage("You must be connected to use the app", this);
+//			}
+//		}
 	}
 	
 	public void activityForgotLogin(View textview){

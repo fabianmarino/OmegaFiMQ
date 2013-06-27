@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -22,7 +23,7 @@ import android.widget.ViewSwitcher;
 public class PollOmegaFiContent extends ViewSwitcher{
 
 	private TextView titleQuestion;
-	private RadioGroup groupAnswers;
+	private LinearLayout groupAnswers;
 //	private Button buttonSubmit;
 	private ViewSwitcher viewSwitcher;
 	private LinearLayout linearResultsPercentage;
@@ -48,7 +49,7 @@ public class PollOmegaFiContent extends ViewSwitcher{
 		inflate.inflate(R.layout.poll_omega_fi_content, this, true);
 		viewSwitcher=(ViewSwitcher)findViewById(R.id.pollSwitcher);
 		titleQuestion=(TextView)findViewById(R.id.titleQuestionPoll);
-		groupAnswers=(RadioGroup)findViewById(R.id.contentAnswersPoll);
+		groupAnswers=(LinearLayout)findViewById(R.id.contentAnswersPoll);
 		
 		linearResultsPercentage=(LinearLayout)findViewById(R.id.contentPollResults);
 		this.addAnswersResultToPoll();
@@ -89,8 +90,10 @@ public class PollOmegaFiContent extends ViewSwitcher{
 			int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
 			check.setPaddingRow(0, padding, 0, padding);
 			View line=new View(getContext());
-			line.setLayoutParams(new LayoutParams(android.view.ViewGroup.LayoutParams.MATCH_PARENT, 1));
 			line.setBackgroundColor(this.getResources().getColor(R.color.gray_font_welcome));
+			LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1);
+			params.rightMargin=getResources().getDimensionPixelSize(R.dimen.margin_5dp_line_poll);
+			line.setLayoutParams(params);
 			groupAnswers.addView(check);
 			if(i<(lenght-1)){
 				groupAnswers.addView(line);

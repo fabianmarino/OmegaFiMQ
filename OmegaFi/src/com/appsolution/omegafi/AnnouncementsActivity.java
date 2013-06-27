@@ -44,7 +44,7 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 		int padding=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getResources().getDisplayMetrics());
 		for (int i = 0; i < 13; i++){
 			ContentAnnouncement announcement=new ContentAnnouncement(getApplicationContext());
-			if(i<3){
+			if(i<2){
 				announcement.setBackgroundNewAnnoncement();
 			}
 			announcement.setTitleAnnouncement("Subjects goes here");

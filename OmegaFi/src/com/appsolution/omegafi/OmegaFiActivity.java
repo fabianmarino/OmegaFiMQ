@@ -185,6 +185,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	private void loadSlidingMenu(){
 //		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
 //		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
+//		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getAnnouncementsCount());
 		itemAnnouncements.setNumberNotifications(2);
 	}
 	

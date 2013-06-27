@@ -230,8 +230,8 @@ public class RowInformation extends RelativeLayout{
 			textValueInfo.getLayoutParams().width=OmegaFiActivity.getWidthPercentageDisplay(getContext(), 0.4f);
 			textValueInfo.setBackgroundResource(resource);
 			textValueInfo.setTextColor(Color.GRAY);
-			textValueInfo.setGravity(Gravity.CENTER);
-			textValueInfo.setPadding(5, 5, 5, 5);
+			textValueInfo.setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);
+			textValueInfo.setPadding(getResources().getDimensionPixelSize(R.dimen.padding_10dp), 5, 5, 5);
 		}
 	}
 	

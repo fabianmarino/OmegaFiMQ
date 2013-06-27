@@ -84,6 +84,12 @@ public class SectionOmegaFi extends LinearLayout{
 		}
 	}
 	
+	public void setBackgroundResourceTitle(int src){
+		int padding=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getContext().getResources().getDisplayMetrics());
+		contentTitle.setBackgroundResource(src);
+		contentTitle.setPadding(padding,padding,padding,padding);
+	}
+	
 	public SectionOmegaFi(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.inicializar();

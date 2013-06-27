@@ -33,6 +33,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
@@ -50,6 +51,7 @@ public class HomeActivity extends OmegaFiActivity {
 	private ImageAdapter listGallery;
 	private DetailsOfficer detailsOffice;
 	
+	private boolean isAnySelected=false;
 	private Gallery listPhotos;
 	private SectionOmegaFi sectionEvents;
 	private ViewPager paginator;
@@ -118,7 +120,6 @@ public class HomeActivity extends OmegaFiActivity {
 		textPrivacy.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 0));
 		
 		this.completeNewsSection();
-		this.getJSONsServicesHome();
 	}
 	
 	private void chargeAccounts(){
@@ -148,24 +149,6 @@ public class HomeActivity extends OmegaFiActivity {
 		}
 	}
 	
-	private void getJSONsServicesHome(){
-		/*bundleHome=getIntent().getExtras();
-		String profile=bundleHome.getString("profile");
-		String accounts=bundleHome.getString("accounts");
-		String chapters="";
-		try {
-			jsonAccounts=new JSONObject(accounts);
-			if(chapters!=""){
-				jsonChapters=new JSONObject(chapters);
-			}
-			JSONArray jsonArray=jsonAccounts.getJSONArray("accounts");
-			Log.d("Recibido el json array", jsonArray.toString());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-	}
-	
 	
 	private void completeChapterDirectory(){
 		SectionOmegaFi sectionOfficers=new SectionOmegaFi(this);
@@ -182,24 +165,51 @@ public class HomeActivity extends OmegaFiActivity {
 				android.widget.Gallery.LayoutParams.WRAP_CONTENT));
 		listGallery=new ImageAdapter(this);
 		listPhotos.setAdapter(listGallery);
-		listPhotos.setSelection(-1);
+		listPhotos.setSelection(1);
+		
 		listPhotos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View actual,
 					int position, long arg3) {
 				ImageRoosterName rooster=(ImageRoosterName)actual;
-				rooster.setSelected(true);
-				detailsOffice.setVisibility(View.VISIBLE);
-				detailsOffice.setNameRooster("Bryan Farnswortheimer "+(position+1));
-				detailsOffice.setPositionRooster("Team Leader "+(position));
-				detailsOffice.setPhoneRooster("654654"+(position+4));
-				detailsOffice.setEmailRooster("bryan_3"+position+"@example.com");
+				rooster.setSelectedImageRooster(false);
+				if(!isAnySelected){
+					detailsOffice.setVisibility(View.GONE);
+					changeStateIsAnythingSelected();
+				}
+				else{
+					rooster.setSelectedImageRooster(true);
+					detailsOffice.setVisibility(View.VISIBLE);
+					detailsOffice.setNameRooster("Bryan Farnswortheimer "+(position+1));
+					detailsOffice.setPositionRooster("Team Leader "+(position));
+					detailsOffice.setPhoneRooster("654654"+(position+4));
+					detailsOffice.setEmailRooster("bryan_3"+position+"@example.com");
+				}	
 			}
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				Log.d("No esta seleccionado ninguno", "No seleccionado");
+				
+			}
+		});
+		listPhotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View actual, int position,
+					long arg3) {
+				Log.d("click", position+","+listPhotos.getSelectedItemPosition());
+				ImageRoosterName rooster=(ImageRoosterName)actual;
+				if(listPhotos.getSelectedItemPosition()==position){
+					if(detailsOffice.getVisibility()==View.GONE){
+						detailsOffice.setVisibility(View.VISIBLE);
+						rooster.setSelectedImageRooster(true);
+					}
+					else{
+						detailsOffice.setVisibility(View.GONE);
+						rooster.setSelectedImageRooster(false);
+					}
+				}
 			}
 		});
 		
@@ -251,6 +261,16 @@ public class HomeActivity extends OmegaFiActivity {
 		sectionChapterDirectory.addView(detailsOffice);
 	}
 	
+
+	private void changeStateIsAnythingSelected(){
+		if(isAnySelected){
+			isAnySelected=false;
+		}
+		else{
+			isAnySelected=true;
+		}
+	}
+	
 	private void completeEvents(){
 		sectionEvents.setPaddingAll(0, 0, 0, 0);
 		paginator=new ViewPager(getApplicationContext());
@@ -272,6 +292,7 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completePollSection(){
+		sectionPoll.setBackgroundResourceTitle(R.drawable.background_trans_white_border);
 		LinearLayout content=(LinearLayout)sectionPoll.findViewById(R.id.contentSectionOmegaFi);
 		paginator=new ViewPager(getApplicationContext());
 		paginator.setAdapter(new PollAdapter(getApplicationContext()));
@@ -279,6 +300,8 @@ public class HomeActivity extends OmegaFiActivity {
 				getResources().getDimensionPixelSize(R.dimen.height_poll_content)));
 		
 		LinearLayout linTitles=new LinearLayout(getApplicationContext());
+		linTitles.setBackgroundResource(R.drawable.background_trans_border_1);
+		linTitles.setPadding(2, 0, 2, 2);
 		linTitles.setGravity(Gravity.CENTER_VERTICAL);
 		linTitles.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
 				android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));

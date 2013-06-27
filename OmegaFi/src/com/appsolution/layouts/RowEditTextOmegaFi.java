@@ -8,6 +8,7 @@ import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
+import android.text.method.DigitsKeyListener;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.TypedValue;
@@ -135,7 +136,7 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 			edit.setInputType(InputType.TYPE_CLASS_NUMBER);
 			break;
 		case 4:
-			edit.setInputType(2);
+			edit.setKeyListener(DigitsKeyListener.getInstance(true, true));
 			break;
 		case 5:
 			edit.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);

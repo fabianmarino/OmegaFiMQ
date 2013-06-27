@@ -139,6 +139,7 @@ public class RowEditInformation extends RelativeLayout {
 	
 	public void setTextColor(int color){
 		textNameInfo.setTextColor(color);
+		textSubNameInfo.setTextColor(color);
 	}
 	
 	public String getNameInfo(){
@@ -147,6 +148,9 @@ public class RowEditInformation extends RelativeLayout {
 	
 	public String getNameSubInfo(){
 		return textSubNameInfo.getText().toString();
+	}
+	public int getPaddingRight(){
+		return content.getPaddingRight();
 	}
 
 }

@@ -10,6 +10,7 @@ import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -71,7 +72,7 @@ public class ImageRoosterName extends LinearLayout {
 		photoRooster.setImageURI(uri);
 	}
 	
-	public void setSelected(boolean selected){
+	public void setSelectedImageRooster(boolean selected){
 		if(selected){
 			photoRooster.setBackgroundColor(this.getResources().getColor(R.color.blue_marine));
 			nameRooster.setVisibility(View.INVISIBLE);
@@ -82,8 +83,12 @@ public class ImageRoosterName extends LinearLayout {
 		}
 	}
 	
+	@Override
+	public void setSelected(boolean selected) {
+		super.setSelected(selected);
+		if(!selected){
+			this.setSelectedImageRooster(false);
+		}
+	}
 	
-	
-	
-
 }

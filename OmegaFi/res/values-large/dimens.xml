@@ -45,6 +45,7 @@
     <dimen name="padding_12dp">18dp</dimen>
     <dimen name="padding_5dp_1">9dp</dimen>
     <dimen name="padding_6dp_buttom_omega">10dp</dimen>
+    <dimen name="padding_10dp_static">5dp</dimen>
     
     
     <dimen name="margin_top_circle_charging">35dp</dimen>
@@ -54,6 +55,7 @@
     <dimen name="margin_sides_content_login">20dp</dimen>
     <dimen name="margin_right_photo_slide">10dp</dimen>
     <dimen name="margin_10dp_poll">15dp</dimen>
+    <dimen name="margin_5dp_line_poll">20dp</dimen>
     
     <dimen name="spacing_sections">10dp</dimen>
     <dimen name="height_header_image">70dp</dimen>

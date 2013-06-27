@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.omegafi.R;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 
@@ -106,7 +107,6 @@ public class RowCheckGroup {
 	
 	public void setSelectedItem(String item){
 		for (RowCheckOmegaFi check:listRowsChecked) {
-			Log.d("Set selected item", check.getItemRow()+"  "+item);
 			if(check.getItemRow().equals(item)){
 				setSelectedIndex(listRowsChecked.indexOf(check));
 			}
@@ -116,6 +116,9 @@ public class RowCheckGroup {
 	public void doChecksWithOutFade(){
 		for (RowCheckOmegaFi check:listRowsChecked) {
 			check.setButtonDrawable(R.drawable.radio_button_1);
+			check.setTextSizeInformation(check.getTextNameInfo().getTextSize());
+			check.getTextSubNameInfo().setTypeface(check.getTextNameInfo().getTypeface());
+			check.setTextColor(Color.BLACK);
 		}
 	}
 	

@@ -15,7 +15,7 @@
     <color name="gray_shadow_section">#c5c3c1</color>
     <color name="gray_shadow_section_light">#ede9e9</color>
     <color name="gray_description_contact">#E6E6E6</color>
-    <color name="gray_font_row_info">#727272</color>
+    <color name="gray_font_row_info">#444444</color>
     <color name="gray_toogle_off">#999999</color>
     <color name="gray_toogle_on">#a71931</color>
 </resources>

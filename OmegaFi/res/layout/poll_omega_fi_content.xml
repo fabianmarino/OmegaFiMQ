@@ -8,30 +8,39 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
 	    android:orientation="vertical" >
-	    <TextView android:id="@+id/titleQuestionPoll"
-	        android:layout_width="fill_parent"
+	    <LinearLayout android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:padding="@dimen/padding_5dp"
-	        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing?"
-	        android:textColor="@android:color/black"
-	        android:background="@android:color/white"
-	        android:inputType="textMultiLine"
-	        android:textSize="@dimen/text_question_poll"/>
-	    <View android:layout_width="fill_parent"
-	            android:layout_height="@dimen/padding_10dp"
-	            android:background="@drawable/jagged"/>
+	        android:paddingLeft="2px"
+	        android:paddingRight="2px"
+	        android:background="@drawable/background_trans_white_border_sides"
+	        android:orientation="vertical">
+		    <TextView android:id="@+id/titleQuestionPoll"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="@dimen/padding_5dp"
+		        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing?"
+		        android:textColor="@android:color/black"
+		        android:background="@android:color/white"
+		        android:inputType="textMultiLine"
+		        android:textSize="@dimen/text_question_poll"/>
+		    
+		    <View android:layout_width="fill_parent"
+		            android:layout_height="@dimen/padding_10dp"
+		            android:background="@drawable/jagged"/>
+	    </LinearLayout>
 	    <LinearLayout 
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical"
 	        android:padding="@dimen/padding_5dp">
-	        <RadioGroup 
+	        <LinearLayout 
 	            android:id="@+id/contentAnswersPoll"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
+	            android:orientation="vertical"
 	            android:layout_marginLeft="6dp">
 	            
-	        </RadioGroup>
+	        </LinearLayout>
 	    </LinearLayout>
 	    <LinearLayout 
 	        android:id="@+id/contentButtonSubmit"

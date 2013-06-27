@@ -10,6 +10,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 public class ImageAdapter extends BaseAdapter {
 
 	private Context context;
+	
 	private int[] listImages ={ R.drawable.photo_2, R.drawable.photo_3,
 		       R.drawable.photo_member, 
 		       R.drawable.photo_2, R.drawable.photo_3,

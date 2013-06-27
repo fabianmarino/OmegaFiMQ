@@ -72,7 +72,7 @@
 	            android:padding="@dimen/padding_8dp"
 	            android:clickable="true"
 	            android:onClick="activityPrivatePolicy"
-	            android:text="Private Policy"/>
+	            android:text="Privacy Policy"/>
 	    </LinearLayout>
     </LinearLayout>
 </ScrollView>

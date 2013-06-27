@@ -1,7 +1,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".LoginActivity" >
-    <!-- Login progress -->
+    
     <LinearLayout
         android:id="@+id/login_status"
         android:layout_width="wrap_content"
@@ -66,7 +66,6 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                  />
-
             <Button
                 android:id="@+id/sign_in_button"
                 style="@style/ButtonOmega"
@@ -78,7 +77,7 @@
         </LinearLayout>
         <LinearLayout android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray_toogle_off"
+            android:background="@drawable/background_trans_gray_border"
             android:orientation="vertical">
         <include layout="@layout/line_jagged"/>
         <LinearLayout
@@ -93,17 +92,17 @@
 			    android:orientation="vertical"
 			    android:paddingTop="@dimen/padding_12dp"
 			 	android:paddingBottom="@dimen/padding_10dp"
-			    android:gravity="center_horizontal"
+			    android:gravity="center"
 			    android:layout_weight="1">
 			    <CheckBox
 			        android:id="@+id/check_save"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:layout_alignParentLeft="true"
 			        android:text="@string/save_username"
+			        android:layout_marginTop="-3dp"
 			        android:textColor="@android:color/white"
 			        android:textSize="@dimen/text_12_notification"
-			        android:layout_centerVertical="true" />
+			         />
 			</LinearLayout>
 			<View android:layout_width="1dp"
 			    android:layout_height="fill_parent"
@@ -113,19 +112,19 @@
 			    android:orientation="vertical"
 			    android:paddingTop="@dimen/padding_12dp"
 			 	android:paddingBottom="@dimen/padding_10dp"
-			    android:gravity="center_horizontal"
+			    android:gravity="center"
 			    android:layout_weight="1">
 			    <TextView
 			        android:id="@+id/text_forgot"
 			        android:layout_width="wrap_content"
 			        android:layout_height="wrap_content"
-			        android:layout_alignParentRight="true"
-			        android:clickable="true"
+			   		android:clickable="true"
 			        android:textColor="@android:color/white"
 			        android:onClick="activityForgotLogin"
 			        android:text="@string/forgot_user"
 			        android:textSize="@dimen/text_12_notification"
-			        android:layout_centerVertical="true" />
+			        android:layout_marginTop="5dp"
+			    />
 			</LinearLayout>
 		</LinearLayout>
 		</LinearLayout>

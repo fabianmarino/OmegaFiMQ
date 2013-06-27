@@ -15,12 +15,14 @@
 	        android:id="@+id/sectionScheduledPaymentDetails"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        secom:title_section="Payment Details"/>
+	        secom:title_section="Payment Details"
+	        secom:show_arrow="false"/>
 	    <com.appsolution.layouts.SectionOmegaFi
 	        android:id="@+id/sectionScheduledPaymentMethod"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="@dimen/margin_10dp_poll"
+	        secom:show_arrow="false"
 	        secom:title_section="Payment Method"/>
 	    <Button android:id="@+id/buttonStateScheduled"
 	        android:layout_width="fill_parent"

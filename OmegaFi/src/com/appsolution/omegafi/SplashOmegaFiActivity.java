@@ -118,14 +118,6 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
-//			homeActivity.putExtra("profile", jsonProfile.toString());
-//			homeActivity.putExtra("accounts", jsonAccounts.toString());
-//			if(jsonChapters!=null){
-//				homeActivity.putExtra("chapters", jsonChapters.toString());
-//			}
-//			else{
-//				homeActivity.putExtra("chapters", "");
-//			}
 			startActivity(homeActivity);
 		}
 	}

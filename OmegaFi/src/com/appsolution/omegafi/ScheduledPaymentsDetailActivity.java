@@ -179,6 +179,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			rowPaymentDate.setGravityValueInfo(Gravity.RIGHT);
 			rowPaymentDate.setOnClickListener(null);
 			rowPaymentMethod.setOnClickListener(null);
+			rowPaymentMethod.setVisibleArrow(false);
 			buttonState.setText(getResources().getString(R.string.procesing_state));
 			buttonSave.setVisibility(View.GONE);
 			buttonDelete.setVisibility(View.GONE);

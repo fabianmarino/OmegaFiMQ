@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -15,13 +13,11 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.json.JSONException;
@@ -44,7 +40,6 @@ public class Server {
 	private HttpClient clientRequest;
 	private HttpContext contextHttp;
 	private CookieStore cookieStore;
-	
 	public String evaluador=null;
 	private JSONObject jsonProfile;
 	
@@ -174,6 +169,7 @@ public class Server {
 	
 	private JSONObject fromResponseToJSON(HttpResponse response){
 		Log.d("Status", response.getStatusLine().toString());
+		Log.d("Status code", response.getStatusLine().getStatusCode()+"");
 		BufferedReader rd;
 		StringBuilder todo;
 		JSONObject jsonResponse = null;
