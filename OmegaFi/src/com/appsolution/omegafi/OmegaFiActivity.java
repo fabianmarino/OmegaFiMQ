@@ -7,6 +7,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import com.actionbarsherlock.view.MenuItem;
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.ItemMenuSliding;
 import com.appsolution.layouts.LayoutActionBar;
 import com.appsolution.layouts.UserContactLayout;
@@ -16,21 +17,20 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
@@ -47,6 +47,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	private UserContactLayout userContact;
 	private ItemMenuSliding itemAnnouncements;
 	protected LayoutActionBar actionBarCustom;
+	private ProgressDialog progressDiag;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,12 +83,56 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
         this.loadSlidingMenu();
 	}
 	
+	public static boolean showErrorConection(Activity activity,int httpCode,String error404){
+		if(error404==null){
+			error404="The web service has  not found: 404 error";
+		}
+		final DialogInformationOF dia=new DialogInformationOF(activity);
+		if(!OmegaFiLoginActivity.isOnline(activity)){
+			dia.setMessageDialog("You must be connected to Internet");
+		}
+		else{
+			switch (httpCode) {
+			case 106:
+				dia.setMessageDialog("Lost Conection");
+				break;
+			case 137:
+				dia.setMessageDialog("Conection error");
+				break;
+			case 401:
+				dia.setMessageDialog("Incorrect Username or Password");
+				break;
+			case 404:
+				dia.setMessageDialog(error404);
+				break;
+			case 502:
+				dia.setMessageDialog("Web service is temporarily unavailable");
+				break;
+			default:
+				dia.setMessageDialog("An error occurred: "+httpCode+" error.");
+				break;
+			}
+		}
+		dia.setButtonListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dia.dismissDialog();
+				
+			}
+		});
+		dia.showDialog();
+		return true;
+	}
+	
 	public static boolean loadImageFromURL(String fileUrl, 
 			QuickContactBadge iv){
 			  try {
 			    URL myFileUrl = new URL (fileUrl);
 			    HttpURLConnection conn =
 			      (HttpURLConnection) myFileUrl.openConnection();
+			    conn.setConnectTimeout(5000);
+				conn.setReadTimeout(5000);
 			    conn.setDoInput(true);
 			    conn.connect();
 			    InputStream is = conn.getInputStream();
@@ -99,23 +144,51 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			    e.printStackTrace();
 			  }
 			  return false;
-			}
+	}
+	
+	public static Bitmap loadImageFromURL(String fileUrl ){
+		Bitmap bitmap=null;
+		if(fileUrl!=null){
+			  try {
+				    URL myFileUrl = new URL(fileUrl);
+				    HttpURLConnection conn =
+				      (HttpURLConnection) myFileUrl.openConnection();
+				    conn.setConnectTimeout(5000);
+					conn.setReadTimeout(5000);
+				    conn.setDoInput(true);
+				    conn.connect();
+				    InputStream is = conn.getInputStream();
+				    bitmap=BitmapFactory.decodeStream(is);
+			  } catch (MalformedURLException e) {
+				    e.printStackTrace();
+				    bitmap=null;
+			  } catch (Exception e) {
+				    e.printStackTrace();
+				    bitmap=null;
+			  }
+	}
+			  return bitmap;
+	}
 	
 	public static boolean loadImageFromURL(String fileUrl, 
 			ImageView iv){
-			  try {
-			    URL myFileUrl = new URL (fileUrl);
-			    HttpURLConnection conn =
-			      (HttpURLConnection) myFileUrl.openConnection();
-			    conn.setDoInput(true);
-			    conn.connect();
-			    InputStream is = conn.getInputStream();
-			    iv.setImageBitmap(BitmapFactory.decodeStream(is));
-			    return true;
-			  } catch (MalformedURLException e) {
-			    e.printStackTrace();
-			  } catch (Exception e) {
-			    e.printStackTrace();
+		if(fileUrl!=null){
+				  try {
+				    URL myFileUrl = new URL (fileUrl);
+				    HttpURLConnection conn =
+				      (HttpURLConnection) myFileUrl.openConnection();
+				   conn.setConnectTimeout(5000);
+				   conn.setReadTimeout(5000);
+				   conn.setDoInput(true);
+				    conn.connect();
+				    InputStream is = conn.getInputStream();
+				    iv.setImageBitmap(BitmapFactory.decodeStream(is));
+				    return true;
+				  } catch (MalformedURLException e) {
+//				    e.printStackTrace();
+				  } catch (Exception e) {
+//				    e.printStackTrace();
+				  }
 			  }
 			  return false;
 			}
@@ -183,16 +256,16 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	private void loadSlidingMenu(){
-//		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getURLProfilePhoto());
-//		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getCompleteName());
-//		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getAnnouncementsCount());
-		itemAnnouncements.setNumberNotifications(2);
+		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getUrlPhotoProfile());
+		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getCompleteName());
+		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getAnnouncementsCount());
 	}
 	
 	public void goToHome(View item){
 		if(this.getClass() != HomeActivity.class){
 			Intent goToHome=new Intent(this, HomeActivity.class);
 			goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			finish();
 			startActivity(goToHome);
 		}
 		else{
@@ -244,6 +317,8 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		                    public void onClick(DialogInterface dialog, int id) {
 		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
 		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		                		finish();
+		                		OmegaFiActivity.servicesOmegaFi.getHome().clearHomeServices();
 		                		startActivity(backToLogin);
 		                    }
 		                });
@@ -308,6 +383,26 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void backActivity(View arrow){
 		this.onBackPressed();
+	}
+	
+	protected void startProgressDialog(String title, String msg){
+		progressDiag=new ProgressDialog(this);
+		progressDiag.setTitle(title);
+		progressDiag.setMessage(msg);
+		progressDiag.setCancelable(false);
+		progressDiag.setIndeterminate(true);
+		progressDiag.show();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		this.finishAffinity();
+	}
+	
+	protected void stopProgressDialog(){
+		progressDiag.dismiss();
+		progressDiag=null;
 	}
 	
 }

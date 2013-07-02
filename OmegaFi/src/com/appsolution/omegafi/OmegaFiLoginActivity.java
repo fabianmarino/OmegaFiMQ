@@ -8,8 +8,10 @@ import java.net.URL;
 import com.appsolution.layouts.DialogContactAccount;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,6 +21,10 @@ import android.widget.QuickContactBadge;
 
 public class OmegaFiLoginActivity extends Activity {
 
+	private ProgressDialog progressDiag;
+	private final static String OMEGAFI_PREFERENCES="OmegaFiPref";
+	private final static String OMEGAFI_PREF_USERNAME="username";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,9 +38,9 @@ public class OmegaFiLoginActivity extends Activity {
 		startActivity(backToLogin);
 	}
 	
-	public boolean isOnline() {
+	public static boolean isOnline(Context context) {
 	    ConnectivityManager cm = 
-	         (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	         (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
 	    if (netInfo != null && netInfo.isConnected()) {
 	        return true;
@@ -55,6 +61,31 @@ public class OmegaFiLoginActivity extends Activity {
 			}
 		});
 		diag.showDialog();
+	}
+	
+	protected void startProgressDialog(String title, String msg){
+		progressDiag=new ProgressDialog(this);
+		progressDiag.setTitle(title);
+		progressDiag.setMessage(msg);
+		progressDiag.setCancelable(false);
+		progressDiag.setIndeterminate(true);
+		progressDiag.show();
+	}
+	
+	protected void stopProgressDialog(){
+		progressDiag.dismiss();
+		progressDiag=null;
+	}
+	
+	protected String getSaveUsername(){
+		 return this.getSharedPreferences(OMEGAFI_PREFERENCES, 0).getString(OMEGAFI_PREF_USERNAME, "parent001");
+	}
+	
+	protected void saveUsername(String username){
+		SharedPreferences prefs=this.getSharedPreferences(OMEGAFI_PREFERENCES, MODE_PRIVATE);
+		SharedPreferences.Editor editor=prefs.edit();
+		editor.putString(OMEGAFI_PREF_USERNAME, username);
+		editor.commit();
 	}
 
 }

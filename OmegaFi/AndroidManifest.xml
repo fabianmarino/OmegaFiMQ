@@ -23,7 +23,9 @@
         <activity
             android:name="com.appsolution.omegafi.HomeActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize"
+             >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.AccountActivity"
@@ -213,7 +215,8 @@
         <activity
             android:name="com.appsolution.omegafi.SplashOmegaFiActivity"
             android:label="@string/title_activity_splash_omega_fi"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
     </application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

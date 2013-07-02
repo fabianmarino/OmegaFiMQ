@@ -21,6 +21,7 @@ public class ImageRoosterName extends LinearLayout {
 
 	private ImageView photoRooster;
 	private TextView nameRooster;
+	private TextView typeRooster;
 	
 	public ImageRoosterName(Context context) {
 		super(context);
@@ -38,10 +39,16 @@ public class ImageRoosterName extends LinearLayout {
 		photoRooster=(ImageView)findViewById(R.id.imageRoosterGalery);
 		nameRooster=(TextView)findViewById(R.id.nameRoosterGalery);
 		nameRooster.setTypeface(OmegaFiActivity.getFont(getContext(), 0));
+		typeRooster=(TextView)findViewById(R.id.typeRoosterGalery);
+		typeRooster.setTypeface(OmegaFiActivity.getFont(getContext(), 0));
 	}
 	
 	public void setNameRooster(String name){
 		nameRooster.setText(name);
+	}
+	
+	public void setTypeRooster(String type){
+		typeRooster.setText(type);
 	}
 
 	public void setImageBitmap(Bitmap bm) {
@@ -76,13 +83,19 @@ public class ImageRoosterName extends LinearLayout {
 		if(selected){
 			photoRooster.setBackgroundColor(this.getResources().getColor(R.color.blue_marine));
 			nameRooster.setVisibility(View.INVISIBLE);
+			typeRooster.setVisibility(View.INVISIBLE);
 		}
 		else{
 			photoRooster.setBackgroundColor(Color.WHITE);
 			nameRooster.setVisibility(View.VISIBLE);
+			typeRooster.setVisibility(View.VISIBLE);
 		}
 	}
 	
+	public ImageView getPhotoRooster() {
+		return photoRooster;
+	}
+
 	@Override
 	public void setSelected(boolean selected) {
 		super.setSelected(selected);

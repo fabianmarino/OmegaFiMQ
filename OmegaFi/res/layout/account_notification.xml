@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    	xmlns:android="http://schemas.android.com/apk/res/android"
+    	android:id="@+id/contentNotification"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/padding_10dp"
+        android:background="@color/gray_font_row_info"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/textNotificationAccount"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            android:text="Your balance is overdue"
+            android:textSize="@dimen/text_15sp"/>
+</LinearLayout>
+

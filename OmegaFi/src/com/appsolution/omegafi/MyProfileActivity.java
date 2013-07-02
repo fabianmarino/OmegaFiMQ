@@ -6,10 +6,8 @@ import java.util.List;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogOptionsImage;
 import com.appsolution.layouts.IconLabelVertical;
-import com.appsolution.layouts.ImageMemberTemplate;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowInformation;
-import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
 
 import android.net.Uri;
@@ -21,7 +19,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,7 +26,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class MyProfileActivity extends OmegaFiActivity {
 	
@@ -295,7 +291,4 @@ public class MyProfileActivity extends OmegaFiActivity {
 	            userHeader.getImageUser().setImageBitmap(photo);
 	        }  
 	}
-	
-	
-
 }

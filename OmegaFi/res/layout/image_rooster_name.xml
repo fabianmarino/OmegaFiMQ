@@ -10,6 +10,8 @@
         android:layout_width="@dimen/width_image_chapter"
         android:layout_height="@dimen/width_image_chapter"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/photo_member"
         android:background="@android:color/white"
         android:padding="@dimen/padding_5dp"
         android:contentDescription="Member Rooster Photo"/>
@@ -19,5 +21,10 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Title Name"/>
-
+    <TextView
+        android:id="@+id/typeRoosterGalery" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Type Name"/>
 </LinearLayout>

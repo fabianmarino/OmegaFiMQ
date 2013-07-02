@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.Html;
+import android.text.Spannable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -76,6 +77,10 @@ public class EventNewsContent extends LinearLayout {
 	
 	public void setDescriptionNewEvent(String description){
 		descriptionNewEvent.setText(description);
+	}
+	
+	public void setDescriptionHtmlNewEvent(String description){
+		descriptionNewEvent.setText(Html.fromHtml(description));
 	}
 	
 	public void setBorderBottom(boolean put){

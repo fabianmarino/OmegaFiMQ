@@ -18,7 +18,6 @@
         <LinearLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            
             android:orientation="vertical"
             android:layout_alignParentLeft="true">
             <TextView android:id="@+id/nameUserAccount"
@@ -50,6 +49,7 @@
             android:layout_height="wrap_content"
             android:weightSum="1">
             <com.appsolution.layouts.LabelInfoVertical
+                android:id="@+id/labelInfoAccount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
@@ -60,6 +60,7 @@
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
             <com.appsolution.layouts.LabelInfoVertical
+                android:id="@+id/labelInfoBalanceDue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
@@ -70,6 +71,7 @@
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
             <com.appsolution.layouts.LabelInfoVertical
+                android:id="@+id/labelInfoCurrent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
@@ -102,4 +104,10 @@
             style="@style/ButtonOmegaSmallRed"
             />
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linearNotifications"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+     </LinearLayout>
 </LinearLayout>

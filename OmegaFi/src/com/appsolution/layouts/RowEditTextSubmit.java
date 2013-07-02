@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -67,6 +68,39 @@ public class RowEditTextSubmit extends LinearLayout {
 	
 	public void setInputTypeEditSubmit(int type){
 		textEdit.setInputType(type);
+	}
+	
+	public void setTextRowEditSubmit(String text){
+		textEdit.setText(text);
+	}
+	
+	public String getTextEditSubmit(){
+		return textEdit.getText().toString();
+	}
+	
+	public void closeKeyBoard(){
+		InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+			imm.hideSoftInputFromWindow(textEdit.getWindowToken(), 0);
+	}
+	
+	public void setErrorEditText(String error){
+		textEdit.setError(error);
+	}
+	
+	public final static boolean isValidEmail(CharSequence target) {
+	    if (target == null) {
+	        return false;
+	    } else {
+	        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+	    }
+	}
+	
+	public boolean isValidEmail(){
+		return RowEditTextSubmit.isValidEmail(textEdit.getText().toString());
+	}
+	
+	public boolean isEmpty(){
+		return textEdit.getText().toString().isEmpty();
 	}
 
 }

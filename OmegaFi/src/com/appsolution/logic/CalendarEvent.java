@@ -1,0 +1,95 @@
+package com.appsolution.logic;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import nl.matshofman.saxrssreader.RssItem;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.util.Log;
+
+public class CalendarEvent {
+
+	private int id;
+	private String title;
+	private String description;
+	private String beginDate;
+	
+	public CalendarEvent(JSONObject json) {
+		try {
+		if(json!=null){
+			id=json.getInt("event_id");
+			title=json.getString("event_title");
+			if(json.isNull("event_description")){
+				description="";
+			}
+			else{
+				description=json.getString("event_description");
+			}
+			beginDate=json.getString("event_begin_date");
+		}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public CalendarEvent(RssItem item) {
+		if(item!=null){
+			id=-1;
+			title=item.getTitle();
+			description=item.getDescription();
+			beginDate="";
+		}
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getBeginDate() {
+		return beginDate;
+	}
+	
+	public static String getFormatDate(int type,String fecha,String format){
+		String fechaAux=fecha;
+		SimpleDateFormat dateFormat=new SimpleDateFormat(format);
+		SimpleDateFormat stringFormat=null;
+		Date dateFecha=null;
+		try {
+			dateFecha=dateFormat.parse(fecha);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		switch (type) {
+		case 0:
+			stringFormat=new SimpleDateFormat("MMMM dd,yyyy");
+			fechaAux=stringFormat.format(dateFecha);
+			break;
+		case 1:
+			stringFormat=new SimpleDateFormat("dd/MM/yyyy");
+			fechaAux=stringFormat.format(dateFecha);
+			break;
+		case 3:
+			stringFormat=new SimpleDateFormat("MM/dd/yyyy");
+			fechaAux=stringFormat.format(dateFecha);
+			break;
+		default:
+			break;
+		}
+		return fechaAux;
+	}
+
+}

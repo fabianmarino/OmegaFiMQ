@@ -55,5 +55,11 @@ public class IconLabelVertical extends LinearLayout {
 	public void setTextLabel(String text){
 		textLabel.setText(text);
 	}
+	
+	public String getTextLabel(){
+		return textLabel.getText().toString();
+	}
+	
+	
 
 }

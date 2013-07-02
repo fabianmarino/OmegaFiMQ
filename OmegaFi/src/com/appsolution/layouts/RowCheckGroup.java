@@ -45,13 +45,15 @@ public class RowCheckGroup {
 			
 			@Override
 			public void onClick(View v) {
-				RowCheckGroup.this.listener.actionBeforeChecked();
-				unCheckedAll();
-				row.setChecked(true);
-				indexSelected=listRowsChecked.indexOf(row);
-				itemSelected=row.getItemRow();
-				rowSelected=row;
-				RowCheckGroup.this.listener.actionAfterChecked();
+				if(indexSelected==listRowsChecked.indexOf(row)){
+					RowCheckGroup.this.listener.actionBeforeChecked();
+					unCheckedAll();
+					row.setChecked(true);
+					indexSelected=listRowsChecked.indexOf(row);
+					itemSelected=row.getItemRow();
+					rowSelected=row;
+					RowCheckGroup.this.listener.actionAfterChecked();
+				}
 				if(contentSelectable!=null){
 					contentSelectable.dismissDialog();
 				}

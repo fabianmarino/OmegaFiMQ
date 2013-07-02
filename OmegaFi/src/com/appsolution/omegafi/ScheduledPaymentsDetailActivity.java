@@ -8,12 +8,8 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.support.v4.app.FragmentActivity;
-import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;

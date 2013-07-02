@@ -145,6 +145,7 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 			edit.setInputType(129);
 			break;
 		default:
+			edit.setInputType(InputType.TYPE_CLASS_TEXT);
 			break;
 		}
 	}
