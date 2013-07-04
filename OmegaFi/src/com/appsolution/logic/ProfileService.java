@@ -37,7 +37,7 @@ public class ProfileService extends ServerContext{
 	}
 	
 	public String getCompleteName(){
-		String name="First Last";
+		String name="Charles Smith";
 		try {
 			if(profile!=null){
 				name=profile.getJSONObject("individual").getString("first_name")+" "+
@@ -51,7 +51,7 @@ public class ProfileService extends ServerContext{
 	}
 	
 	public int getAnnouncementsCount(){
-		int number=0;
+		int number=2;
 		try {
 			if(profile!=null){
 				number= profile.getJSONObject("individual").getInt("announcement_count");

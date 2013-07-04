@@ -31,8 +31,8 @@ public class ImageAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return listOfficers.size();
+//		return listOfficers.size();
+		return listImages.length;
 	}
 
 	@Override
@@ -50,20 +50,35 @@ public class ImageAdapter extends BaseAdapter {
 		ImageRoosterName rooster=new ImageRoosterName(context);
 		rooster.setNameRooster(listOfficers.get(position).getShortName());
 		rooster.setTypeRooster(listOfficers.get(position).getOfficeType());
-		if(listOfficers.get(position).getHostPhoto()!=null){
-			if(listOfficers.get(position).getHostPhoto().equals("OmegaFi")){
-				rooster.setHostOmegaFi(true);
-			}
-			else{
-				rooster.setHostOmegaFi(false);
-			}
-			rooster.chargePhotoOfficer(listOfficers.get(position).getUrlPhoto());
-		}
+		rooster.setImageResource(listImages[position]);
+//		if(listOfficers.get(position).getHostPhoto()!=null){
+//			if(listOfficers.get(position).getHostPhoto().equals("OmegaFi")){
+//				rooster.setHostOmegaFi(true);
+//			}
+//			else{
+//				rooster.setHostOmegaFi(false);
+//			}
+//			rooster.chargePhotoOfficer(listOfficers.get(position).getUrlPhoto());
+//		}
 		return rooster;
 	}
 	
 	public Officer getOfficer(int position){
 		return listOfficers.get(position);
+	}
+	
+	public void changeOrderImages(){
+		if(listImages[0]==R.drawable.photo_2){
+			listImages[0]=R.drawable.photo_member;
+			listImages[2]=R.drawable.photo_1;
+			listImages[1]=R.drawable.photo_3;
+		}
+		else{
+			listImages[0]=R.drawable.photo_2;
+			listImages[3]=R.drawable.photo_1;
+			listImages[5]=R.drawable.photo_member;
+			listImages[1]=R.drawable.photo_3;
+		}
 	}
 
 }

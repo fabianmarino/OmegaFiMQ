@@ -1,0 +1,134 @@
+[
+        {
+            "account": {
+                "member_id": 551277,
+                "first_name": "Ben",
+                "last_name": "Smith",
+                "member_status": "Initiate",
+                "member_status_id": 2,
+                "current_balance": "0.0",
+                "member_account_delinquecy_status": "Current",
+                "adjusted_balance": "0.0",
+                "credits_since_last_statement": "0.0",
+                "payments_since_last_statement": "0.0",
+                "activity_since_last_statement": "0.0",
+                "auto_pay": "Inactive",
+                "ebilling_status": null,
+                "previous_balance": "0.0",
+                "organization": {
+                    "name": "Phi Delta Theta",
+                    "designation": "Ohio Alpha",
+                    "university": "Miami University",
+                    "organization_id": 7684,
+                    "contact_on_statement_name": "Brian Oatway",
+                    "contact_on_statement_title": "Treasurer",
+                    "contact_on_statement_email": "oatwaybt@muohio.edu",
+                    "contact_on_statement_phone_number": "856-625-0854"
+                },
+                "profile_picture": null,
+                "latest_statement": {
+                    "statement_id": 11274606,
+                    "current_balance": "0.0",
+                    "due_on": "2013-05-05 00:00:00 -0400",
+                    "closing_date": "2013-04-16 00:00:00 -0400",
+                    "cycle_on": "2013-04-16 00:00:00 -0400"
+                },
+                "delinquent_status": {
+                    "type": "success",
+                    "text": "Thank you for keeping your account current."
+                },
+                "account_notifications": [
+                    {
+                        "account_notification": {
+                            "notification": "Your credit card ending in *****X has expired. Please review the information and update your account."
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "account": {
+                "member_id": 568633,
+                "first_name": "Jerry",
+                "last_name": "Smith",
+                "member_status": "Initiate",
+                "member_status_id": 2,
+                "current_balance": "0.0",
+                "member_account_delinquecy_status": "Current",
+                "adjusted_balance": "0.0",
+                "credits_since_last_statement": "0.0",
+                "payments_since_last_statement": "-10.0",
+                "activity_since_last_statement": "0.0",
+                "auto_pay": "Inactive",
+                "ebilling_status": null,
+                "previous_balance": "10.0",
+                "organization": {
+                    "name": "Delta Upsilon",
+                    "designation": "Miami University",
+                    "university": "Miami University",
+                    "organization_id": 7159,
+                    "contact_on_statement_name": "Sheffield Turner",
+                    "contact_on_statement_title": "Vice President of Finance",
+                    "contact_on_statement_email": "turners6@muohio.edu",
+                    "contact_on_statement_phone_number": "440-313-8111"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/108342"
+                },
+                "latest_statement": {
+                    "statement_id": 11380800,
+                    "current_balance": "10.0",
+                    "due_on": "2013-06-01 00:00:00 -0400",
+                    "closing_date": "2013-05-14 00:00:00 -0400",
+                    "cycle_on": "2013-05-14 00:00:00 -0400"
+                },
+                "delinquent_status": {
+                    "type": "success",
+                    "text": "Thank you for keeping your account current."
+                },
+                "account_notifications": []
+            }
+        },
+        {
+            "account": {
+                "member_id": 594181,
+                "first_name": "Jack",
+                "last_name": "Smith",
+                "member_status": "Initiate",
+                "member_status_id": 2,
+                "current_balance": "-18.0",
+                "member_account_delinquecy_status": "Current",
+                "adjusted_balance": "-18.0",
+                "credits_since_last_statement": "0.0",
+                "payments_since_last_statement": "0.0",
+                "activity_since_last_statement": "0.0",
+                "auto_pay": "Inactive",
+                "ebilling_status": 0,
+                "previous_balance": "-18.0",
+                "organization": {
+                    "name": "Sigma Nu",
+                    "designation": "Epsilon Nu",
+                    "university": "Miami University",
+                    "organization_id": 3268,
+                    "contact_on_statement_name": "Patrick Crosby",
+                    "contact_on_statement_title": "Treasurer",
+                    "contact_on_statement_email": "crosbypd@muohio.edu",
+                    "contact_on_statement_phone_number": "978-807-8242"
+                },
+                "profile_picture": null,
+                "latest_statement": {
+                    "statement_id": 11512310,
+                    "current_balance": "-18.0",
+                    "due_on": "2013-07-02 00:00:00 -0400",
+                    "closing_date": "2013-06-12 00:00:00 -0400",
+                    "cycle_on": "2013-06-12 00:00:00 -0400"
+                },
+                "delinquent_status": {
+                    "type": "success",
+                    "text": "Thank you for keeping your account current."
+                },
+                "account_notifications": []
+            }
+        }
+    ]

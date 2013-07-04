@@ -18,6 +18,13 @@ public class CalendarEvent {
 	private String description;
 	private String beginDate;
 	
+	public CalendarEvent(){
+		id=0;
+		title="Title Calendar Event";
+		beginDate="04/03/2014";
+		description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ";
+	}
+	
 	public CalendarEvent(JSONObject json) {
 		try {
 		if(json!=null){

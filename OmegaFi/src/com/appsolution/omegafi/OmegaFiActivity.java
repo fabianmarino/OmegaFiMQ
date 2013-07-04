@@ -28,6 +28,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -312,7 +313,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void showConfirmateExit(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("¿Logout OmegaFi Profile?")
+		builder.setMessage("Logout of myOmegaFi?")
 		        .setTitle("Exit")
 		        .setCancelable(false)
 		        .setNegativeButton("No",
@@ -411,6 +412,16 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	protected void stopProgressDialog(){
 		progressDiag.dismiss();
 		progressDiag=null;
+	}
+	
+	public static double getSizeInInchesScreen(Context context){
+		DisplayMetrics dm = new DisplayMetrics();
+		WindowManager wm=(WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
+	    wm.getDefaultDisplay().getMetrics(dm);
+	    double x = Math.pow(dm.widthPixels/dm.xdpi,2);
+	    double y = Math.pow(dm.heightPixels/dm.ydpi,2);
+	    double screenInches = Math.sqrt(x+y);
+	    return screenInches;
 	}
 	
 }

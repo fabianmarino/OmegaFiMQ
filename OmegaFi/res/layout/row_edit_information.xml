@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:orientation="vertical">
 	    <TextView android:id="@+id/nameInfoEdit"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:gravity="center_vertical"
 	        android:layout_gravity="center_vertical"
@@ -21,7 +21,7 @@
 	       	android:inputType="textMultiLine"
 	        />
 	    <TextView android:id="@+id/subnameInfoEdit"
-	        android:layout_width="wrap_content"
+	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:gravity="center_vertical"
 	        android:layout_gravity="center_vertical"
@@ -29,5 +29,6 @@
 	        android:textColor="@color/gray_font_row_info"
 	        android:visibility="gone"
 	        android:inputType="textMultiLine" />
+	    
 	 </LinearLayout>
 </RelativeLayout>

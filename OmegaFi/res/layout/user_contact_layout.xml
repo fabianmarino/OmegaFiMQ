@@ -19,7 +19,7 @@
 	            android:layout_width="@dimen/sliding_photo_size"
 	            android:layout_height="@dimen/sliding_photo_size"
 	            android:scaleType="centerCrop"
-	            android:src="@drawable/photo_member"
+	            android:src="@drawable/photo_1"
 	             />
 	        <TextView
 	            android:id="@+id/textBottomImage" 

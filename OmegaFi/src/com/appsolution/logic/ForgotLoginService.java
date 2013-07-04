@@ -96,7 +96,7 @@ public class ForgotLoginService extends ServerContext{
 	}
 	
 	public String getFirstName(){
-		String username=null;
+		String username="Charles";
 		try {
 			if(jsonLoginService!=null){
 				username= this.jsonLoginService.getString("FirstName");

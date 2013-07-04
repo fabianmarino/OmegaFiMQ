@@ -21,6 +21,7 @@ public class RowEditInformation extends RelativeLayout {
 	private RelativeLayout content;
 	private TextView textNameInfo;
 	private TextView textSubNameInfo;
+	private TextView textThirdLine;
 	
 	public RowEditInformation(Context context){
 		super(context);
@@ -147,7 +148,13 @@ public class RowEditInformation extends RelativeLayout {
 	}
 	
 	public String getNameSubInfo(){
-		return textSubNameInfo.getText().toString();
+		if(textSubNameInfo.getText().toString().contains("\n")){
+			return textSubNameInfo.getText().toString().replace("\n", "");
+		}
+		else{
+			return textSubNameInfo.getText().toString();
+		}
+		
 	}
 	public int getPaddingRight(){
 		return content.getPaddingRight();

@@ -15,6 +15,7 @@ import com.appsolution.layouts.PollAdapter;
 import com.appsolution.layouts.PollOmegaFiContent;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.logic.CalendarEvent;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.app.Activity;
@@ -115,7 +116,13 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void chargeAccounts(){
-		JSONArray array=OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().getAccountsArray();
+		JSONArray array=null;
+		try {
+			array = new JSONArray(OmegaFiActivity.getStringFile(getApplicationContext(), "txt/accounts.json"));//OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().getAccountsArray();
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(array!=null){
 			for (int i = 0; i < array.length(); i++) {
 				AccountLayout account=new AccountLayout(getApplicationContext());
@@ -152,8 +159,8 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	
 	private void completeChapterDirectory(){
-		if(!OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().isEmpty()){
-//		if(false){
+//		if(!OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().isEmpty()){
+		if(true){
 			SectionOmegaFi sectionOfficers=new SectionOmegaFi(this);
 			sectionOfficers.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			sectionOfficers.setTitleSection("Officers");
@@ -167,6 +174,7 @@ public class HomeActivity extends OmegaFiActivity {
 			listPhotos.setLayoutParams(new LayoutParams(android.widget.Gallery.LayoutParams.MATCH_PARENT,
 					android.widget.Gallery.LayoutParams.WRAP_CONTENT));
 			listGallery=new ImageAdapter(this);
+			OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().chargeOfficers(getApplicationContext());
 			listGallery.setListOfficers(OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().getListOfficers());
 			listPhotos.setAdapter(listGallery);
 			listPhotos.setSelection(1);
@@ -222,8 +230,9 @@ public class HomeActivity extends OmegaFiActivity {
 			LinearLayout linearSection=(LinearLayout)sectionOfficers.findViewById(R.id.contentSectionOmegaFi);
 			linearSection.setPadding(12, 0, 0, 10);
 			linearSection.addView(listPhotos);
-			final ArrayList<String> chapters=OmegaFiActivity.servicesOmegaFi.getHome().getChapters().getChapterNames();
-			chapters.add("Sigma Pi - Beta Nu,Oregon State Univetsity");
+			final ArrayList<String> chapters=new ArrayList<String>();//.servicesOmegaFi.getHome().getChapters().getChapterNames();
+			chapters.add("Sigma Pi - Beta Nu,Oregon State University");
+			chapters.add("Alpha Delta Pi - Alpha Eta, Miami University");
 			String[] nameSubName=chapters.get(0).split(",");
 			final RowInformation rowChapter=new RowInformation(this);
 			rowChapter.setNameInfo(nameSubName[0]);
@@ -250,6 +259,7 @@ public class HomeActivity extends OmegaFiActivity {
 							@Override
 							public void actionAfterChecked() {
 //								changeListImages(selectables.getIndexSelected());
+								changeListImages();
 								rowChapter.setNameInfo(selectables.getRowSelected().getNameInfo());
 								rowChapter.setNameSubInfo(selectables.getRowSelected().getNameSubInfo());
 							}
@@ -309,8 +319,8 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completeEvents(){
-		if(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents().size()==0){
-//		if(true){
+//		if(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents().size()==0){
+		if(false){
 			sectionEvents.setVisibility(View.GONE);
 		}
 		else{
@@ -319,7 +329,8 @@ public class HomeActivity extends OmegaFiActivity {
 			paginator1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
 					this.getResources().getDimensionPixelSize(R.dimen.height_new_event_content)));
 			adapterPager1=new EventsNewsAdapter(this);
-			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents());
+//			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents());
+			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(getTestCalendarEvent());
 			paginator1.setAdapter(adapterPager1);
 			CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
 			titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
@@ -378,9 +389,9 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completeNewsSection(){
-		String title=OmegaFiActivity.servicesOmegaFi.getForgotLogin().getTitleFeed();
-		if(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().isEmpty()){
-//		if(true){
+		String title="Alpha - Kappa News";//OmegaFiActivity.servicesOmegaFi.getForgotLogin().getTitleFeed();
+//		if(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().isEmpty()){
+		if(false){
 			sectionNews.setVisibility(View.GONE);
 		}
 		else{
@@ -391,7 +402,8 @@ public class HomeActivity extends OmegaFiActivity {
 					(R.dimen.height_new_event_content)));
 			adapterPager3=new EventsNewsAdapter(this);
 			((EventsNewsAdapter)adapterPager3).setHTML(true);
-			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().getNews());
+//			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().getNews());
+			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(getTestCalendarEvent());
 			paginator3.setAdapter(adapterPager3);
 			
 			CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
@@ -431,6 +443,20 @@ public class HomeActivity extends OmegaFiActivity {
 		Intent intentCall=new Intent(Intent.ACTION_CALL);
 		intentCall.setData(Uri.parse("tel:"+detailsOffice.getPhoneCall().replace("-", "")));
 		startActivity(intentCall);
+	}
+	
+	public ArrayList<CalendarEvent> getTestCalendarEvent(){
+		ArrayList<CalendarEvent> array=new ArrayList<CalendarEvent>();
+		for (int i = 0; i < 6; i++) {
+			array.add(new CalendarEvent());
+		}
+		return array;
+	}
+	
+	public void changeListImages(){
+		listGallery.changeOrderImages();
+		listPhotos.setAdapter(listGallery);
+		listPhotos.setSelection(1);
 	}
 
 	

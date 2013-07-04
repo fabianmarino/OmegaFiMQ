@@ -1,0 +1,379 @@
+[
+    {
+        "calendar_event": {
+            "event_id": 69197,
+            "event_begin_date": "2013/07/03 00:00:00 -0400",
+            "event_end_date": "2013/07/03 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77096,
+            "event_begin_date": "2013/07/04 00:00:00 -0400",
+            "event_end_date": "2013/07/04 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Office Closed  Independence Day",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69151,
+            "event_begin_date": "2013/07/07 00:00:00 -0400",
+            "event_end_date": "2013/07/07 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "ZBT EXEC Meeting",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": null
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69198,
+            "event_begin_date": "2013/07/10 00:00:00 -0400",
+            "event_end_date": "2013/07/10 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69209,
+            "event_begin_date": "2013/07/12 00:00:00 -0400",
+            "event_end_date": "2013/07/12 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Brotherhood/Recruitment Summer Trip",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Workshop/Retreat"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69210,
+            "event_begin_date": "2013/07/13 00:00:00 -0400",
+            "event_end_date": "2013/07/13 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Brotherhood/Recruitment Summer Trip",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Workshop/Retreat"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69211,
+            "event_begin_date": "2013/07/14 00:00:00 -0400",
+            "event_end_date": "2013/07/14 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Brotherhood/Recruitment Summer Trip",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Workshop/Retreat"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69199,
+            "event_begin_date": "2013/07/17 00:00:00 -0400",
+            "event_end_date": "2013/07/17 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69152,
+            "event_begin_date": "2013/07/21 00:00:00 -0400",
+            "event_end_date": "2013/07/21 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "ZBT EXEC Meeting",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": null
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69200,
+            "event_begin_date": "2013/07/24 00:00:00 -0400",
+            "event_end_date": "2013/07/24 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 74906,
+            "event_begin_date": "2013/07/26 00:00:00 -0400",
+            "event_end_date": "2013/07/28 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "International Leadership School",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Meeting"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69201,
+            "event_begin_date": "2013/07/31 00:00:00 -0400",
+            "event_end_date": "2013/07/31 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69202,
+            "event_begin_date": "2013/08/07 00:00:00 -0400",
+            "event_end_date": "2013/08/07 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 71495,
+            "event_begin_date": "2013/08/09 00:00:00 -0400",
+            "event_end_date": "2013/08/09 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Pickwick",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Workshop/Retreat"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 71496,
+            "event_begin_date": "2013/08/10 00:00:00 -0400",
+            "event_end_date": "2013/08/10 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Pickwick",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Workshop/Retreat"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 71497,
+            "event_begin_date": "2013/08/11 00:00:00 -0400",
+            "event_end_date": "2013/08/11 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Pickwick",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Workshop/Retreat"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69203,
+            "event_begin_date": "2013/08/14 00:00:00 -0400",
+            "event_end_date": "2013/08/14 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69204,
+            "event_begin_date": "2013/08/21 00:00:00 -0400",
+            "event_end_date": "2013/08/21 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69217,
+            "event_begin_date": "2013/08/25 00:00:00 -0400",
+            "event_end_date": "2013/08/25 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "First Chapter Meeting",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Chapter Meeting"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69218,
+            "event_begin_date": "2013/08/26 00:00:00 -0400",
+            "event_end_date": "2013/08/26 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "First Day of classes",
+            "event_description": null,
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": null
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77097,
+            "event_begin_date": "2013/09/02 00:00:00 -0400",
+            "event_end_date": "2013/09/02 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Office Closed  Labor Day",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77098,
+            "event_begin_date": "2013/09/05 00:00:00 -0400",
+            "event_end_date": "2013/09/05 00:00:00 -0400",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Office Closed  Rosh Hashanah",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77099,
+            "event_begin_date": "2013/11/27 00:00:00 -0500",
+            "event_end_date": "2013/11/27 00:00:00 -0500",
+            "event_begin_time": "1900/01/01 12:00:00 -0500",
+            "event_end_time": "1900/01/01 17:00:00 -0500",
+            "event_title": "Office Closed",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77100,
+            "event_begin_date": "2013/11/28 00:00:00 -0500",
+            "event_end_date": "2013/11/28 00:00:00 -0500",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Office Closed",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77101,
+            "event_begin_date": "2013/12/24 00:00:00 -0500",
+            "event_end_date": "2013/12/24 00:00:00 -0500",
+            "event_begin_time": "1900/01/01 12:00:00 -0500",
+            "event_end_time": "1900/01/01 17:00:00 -0500",
+            "event_title": "Office Closed",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77102,
+            "event_begin_date": "2013/12/25 00:00:00 -0500",
+            "event_end_date": "2013/12/25 00:00:00 -0500",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Office Closed",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77103,
+            "event_begin_date": "2013/12/29 00:00:00 -0500",
+            "event_end_date": "2013/12/29 00:00:00 -0500",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Founders Day",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77104,
+            "event_begin_date": "2013/12/31 00:00:00 -0500",
+            "event_end_date": "2013/12/31 00:00:00 -0500",
+            "event_begin_time": "1900/01/01 12:00:00 -0500",
+            "event_end_time": "1900/01/01 17:00:00 -0500",
+            "event_title": "Office Closed",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 77105,
+            "event_begin_date": "2014/01/01 00:00:00 -0500",
+            "event_end_date": "2014/01/01 00:00:00 -0500",
+            "event_begin_time": null,
+            "event_end_time": null,
+            "event_title": "Office Closed",
+            "event_description": null,
+            "event_source": "Zeta Beta Tau",
+            "event_type": "National Event"
+        }
+    }
+]

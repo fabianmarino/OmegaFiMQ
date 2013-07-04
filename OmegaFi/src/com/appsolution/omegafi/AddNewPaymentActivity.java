@@ -15,6 +15,7 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowSpinnerNameTopInfo;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.layouts.SpinnerNameTopInfo;
 import com.appsolution.logic.CalendarEvent;
 
 import android.app.DatePickerDialog;
@@ -53,7 +54,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	
 	private LinearLayout linearCityStateZIP;
 	private RowEditNameTopInfo rowCity;
-	private RowSpinnerNameTopInfo rowSpinner;
+	private SpinnerNameTopInfo rowSpinner;
 	private RowEditNameTopInfo rowZIP;
 	
 	
@@ -126,7 +127,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		LayoutParams paramCity=new LayoutParams(0, LayoutParams.WRAP_CONTENT, 5);
 		rowCity.setLayoutParams(paramCity);
 		
-		rowSpinner=new RowSpinnerNameTopInfo(getApplicationContext());
+		rowSpinner=new SpinnerNameTopInfo(this);
 		rowSpinner.setNameInfoTop("State");
 		rowSpinner.setListSpinner(getArrayStates());
 		LayoutParams paramsState=new LayoutParams(0, LayoutParams.FILL_PARENT,2);

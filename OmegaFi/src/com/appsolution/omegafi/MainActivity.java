@@ -59,43 +59,43 @@ public class MainActivity extends OmegaFiLoginActivity {
 	}
 	
 	public void nextHome(View boton){
-//		Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
-//		startActivity(splashView);
-//		finish();
-		if(this.validateDataLogin()){
-			final Activity activity=this;
-			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-				int status=-1;
-				@Override
-				protected void onPreExecute() {
-					startProgressDialog("Accessing", "Please wait...");
-					if(saveUsername.isChecked()){
-						saveUsername(textUser.getText().toString());
-					}
-					else{
-						saveUsername("");
-					}
-				}
-				@Override
-				protected Boolean doInBackground(Void... params) {
-					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().loginUser(textUser.getText().toString(), textPassword.getText().toString())[0];
-					return true;
-				}
-				@Override
-				protected void onPostExecute(Boolean result) {
-					stopProgressDialog();
-					if(status==200){
-						Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
-						startActivity(splashView);
-						finish();
-					}
-					else{
-						OmegaFiActivity.showErrorConection(thisActivity, status, "Web service not found.");
-					}
-				}
-			};
-			task.execute();
-			}
+		Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
+		startActivity(splashView);
+		finish();
+//		if(this.validateDataLogin()){
+//			final Activity activity=this;
+//			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+//				int status=-1;
+//				@Override
+//				protected void onPreExecute() {
+//					startProgressDialog("Accessing", "Please wait...");
+//					if(saveUsername.isChecked()){
+//						saveUsername(textUser.getText().toString());
+//					}
+//					else{
+//						saveUsername("");
+//					}
+//				}
+//				@Override
+//				protected Boolean doInBackground(Void... params) {
+//					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().loginUser(textUser.getText().toString(), textPassword.getText().toString())[0];
+//					return true;
+//				}
+//				@Override
+//				protected void onPostExecute(Boolean result) {
+//					stopProgressDialog();
+//					if(status==200){
+//						Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
+//						startActivity(splashView);
+//						finish();
+//					}
+//					else{
+//						OmegaFiActivity.showErrorConection(thisActivity, status, "Web service not found.");
+//					}
+//				}
+//			};
+//			task.execute();
+//			}
 		}
 	
 	public void activityForgotLogin(View textview){

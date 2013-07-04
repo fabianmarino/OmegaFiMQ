@@ -133,6 +133,7 @@ public class RowInformation extends RelativeLayout{
 		}
 	}
 	
+	
 	public void setValueInfo(String value){
 		textValueInfo.setText(value);
 	}

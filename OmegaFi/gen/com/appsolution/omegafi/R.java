@@ -2442,7 +2442,7 @@ containing a value of this type.
         public static final int abs__title=0x7f040025;
         public static final int abs__up=0x7f040010;
         public static final int accountImage=0x7f040151;
-        public static final int action_search=0x7f04016f;
+        public static final int action_search=0x7f040173;
         public static final int addNewPaymentMethod=0x7f0400c0;
         public static final int addressIconMember=0x7f0400b2;
         public static final int addressIconMyProfile=0x7f0400a2;
@@ -2455,7 +2455,7 @@ containing a value of this type.
         public static final int arrow_left_off_prof=0x7f0400a3;
         public static final int arrow_right_off=0x7f0400b5;
         public static final int arrow_right_off_prof=0x7f0400a5;
-        public static final int arrow_right_user=0x7f040169;
+        public static final int arrow_right_user=0x7f04016d;
         public static final int bottom=0x7f040003;
         public static final int buttonActionDialog=0x7f0400f9;
         public static final int buttonAddContinue=0x7f040063;
@@ -2488,7 +2488,7 @@ containing a value of this type.
         public static final int cancelDialogContact=0x7f0400f0;
         public static final int check_forgot=0x7f040099;
         public static final int check_save=0x7f04009a;
-        public static final int checking_account=0x7f040172;
+        public static final int checking_account=0x7f040176;
         public static final int contAccountInfo=0x7f040152;
         public static final int contactInfoCreditDebitCard=0x7f040062;
         public static final int contentAddNewCard=0x7f04004c;
@@ -2497,7 +2497,7 @@ containing a value of this type.
         public static final int contentBarSplash=0x7f0400d9;
         public static final int contentButtonSubmit=0x7f04012d;
         public static final int contentButtonsScheduled=0x7f0400d1;
-        public static final int contentImageUser=0x7f040163;
+        public static final int contentImageUser=0x7f040167;
         public static final int contentInfoVertical=0x7f04011e;
         public static final int contentLinearHistory=0x7f04008f;
         public static final int contentNamesInformation=0x7f040140;
@@ -2515,11 +2515,11 @@ containing a value of this type.
         public static final int contentSetupAuto=0x7f0400d4;
         public static final int contentTSOmegaFi=0x7f040158;
         public static final int contentTitleSectionOmegaFi=0x7f040157;
-        public static final int contentUserContact=0x7f040162;
+        public static final int contentUserContact=0x7f040166;
         public static final int contentValueInfoArrow=0x7f040143;
         public static final int contentValuesText=0x7f040144;
         public static final int creditCardDetails=0x7f040079;
-        public static final int credit_debit_card=0x7f040171;
+        public static final int credit_debit_card=0x7f040175;
         public static final int dateEventNewOmegaFi=0x7f040100;
         public static final int descriptionAnnouncement=0x7f0400e1;
         public static final int descriptionBalanceDue=0x7f040047;
@@ -2543,7 +2543,7 @@ containing a value of this type.
         public static final int fullscreen=0x7f040018;
         public static final int genericMakePay=0x7f04009c;
         public static final int groupName=0x7f040154;
-        public static final int group_popup_menu=0x7f040170;
+        public static final int group_popup_menu=0x7f040174;
         public static final int headerForgotUserName=0x7f04008c;
         public static final int headerOmegaResetPw=0x7f0400c4;
         public static final int homeAsUp=0x7f04000b;
@@ -2557,10 +2557,10 @@ containing a value of this type.
         public static final int imageIconLabel=0x7f040110;
         public static final int imageMessageAnnouncement=0x7f040132;
         public static final int imageRoosterGalery=0x7f040116;
-        public static final int imageUserContact=0x7f040164;
+        public static final int imageUserContact=0x7f040168;
         public static final int image_member_omegafi=0x7f040112;
-        public static final int initiateUniversity=0x7f040168;
-        public static final int initiateUserProfile=0x7f040167;
+        public static final int initiateUniversity=0x7f04016c;
+        public static final int initiateUserProfile=0x7f04016b;
         public static final int labelIconLabel=0x7f040111;
         public static final int labelInfoAccount=0x7f04003f;
         public static final int labelInfoBalanceDue=0x7f040040;
@@ -2584,7 +2584,8 @@ containing a value of this type.
         public static final int linearButtonsOptions=0x7f0400fb;
         public static final int linearChargeAccounts=0x7f040106;
         public static final int linearCheckingAccount=0x7f04005c;
-        public static final int linearContentAddView=0x7f04016c;
+        public static final int linearContentAddView=0x7f040170;
+        public static final int linearContentAddViewSpinner=0x7f040164;
         public static final int linearContentAnnouncements=0x7f040067;
         public static final int linearContentCalendar=0x7f040077;
         public static final int linearContentEventsDay=0x7f0400df;
@@ -2619,7 +2620,8 @@ containing a value of this type.
         public static final int linearTermsPrivate=0x7f04010b;
         public static final int linearTermsUse=0x7f0400c1;
         public static final int linearTextsAnnouncement=0x7f040133;
-        public static final int linearViewNameTopInfo=0x7f04016a;
+        public static final int linearViewNameTopInfo=0x7f04016e;
+        public static final int linearViewNameTopInfoSpinner=0x7f040162;
         public static final int listMode=0x7f040007;
         public static final int listViewMembers=0x7f040091;
         public static final int login=0x7f040097;
@@ -2630,7 +2632,7 @@ containing a value of this type.
         public static final int menuItemAnnouncements=0x7f04015f;
         public static final int menuItemHome=0x7f04015e;
         public static final int menuItemLogout=0x7f040160;
-        public static final int menu_home=0x7f04016e;
+        public static final int menu_home=0x7f040172;
         public static final int messageForForm=0x7f040104;
         public static final int messageInformationDialog=0x7f0400ea;
         public static final int nameChaptersFraternity=0x7f04003d;
@@ -2643,14 +2645,15 @@ containing a value of this type.
         public static final int nameSubInfo=0x7f040142;
         public static final int nameUser=0x7f04014d;
         public static final int nameUserAccount=0x7f04003c;
-        public static final int nameUserProfile=0x7f040166;
-        public static final int name_info_top=0x7f04016b;
+        public static final int nameUserProfile=0x7f04016a;
+        public static final int name_info_top=0x7f04016f;
+        public static final int name_info_top_spinner=0x7f040163;
         public static final int none=0x7f040000;
         public static final int normal=0x7f040006;
         public static final int noteChooseSpecific=0x7f040070;
         public static final int numberAccount=0x7f040153;
         public static final int numberPercentageResult=0x7f040129;
-        public static final int pager_indicator_container=0x7f04016d;
+        public static final int pager_indicator_container=0x7f040171;
         public static final int password=0x7f040096;
         public static final int percentageBarResult=0x7f040128;
         public static final int percentajeLoading=0x7f0400da;
@@ -2718,12 +2721,13 @@ containing a value of this type.
         public static final int spinnerCreditECheck=0x7f040054;
         public static final int spinnerPrefixProfile=0x7f0400a9;
         public static final int spinnerSufixProfile=0x7f0400aa;
+        public static final int spinner_top_info=0x7f040165;
         public static final int subTitleOfficerMemberRoster=0x7f0400e6;
         public static final int subnameInfoEdit=0x7f04013a;
         public static final int subtitleSection=0x7f04015a;
         public static final int tabMode=0x7f040008;
         public static final int textAccountNumber=0x7f04005f;
-        public static final int textBottomImage=0x7f040165;
+        public static final int textBottomImage=0x7f040169;
         public static final int textContactUs=0x7f040123;
         public static final int textEmailSent=0x7f04008e;
         public static final int textHelloUser=0x7f0400d7;
@@ -2887,11 +2891,12 @@ containing a value of this type.
         public static final int sherlock_spinner_item=0x7f03005e;
         public static final int sliding_menu=0x7f03005f;
         public static final int slidingmenumain=0x7f030060;
-        public static final int spinner_omegafi=0x7f030061;
-        public static final int spinner_omegafi_small=0x7f030062;
-        public static final int user_contact_layout=0x7f030063;
-        public static final int view_name_top_info=0x7f030064;
-        public static final int view_pager_indicator=0x7f030065;
+        public static final int spinner_name_top_info=0x7f030061;
+        public static final int spinner_omegafi=0x7f030062;
+        public static final int spinner_omegafi_small=0x7f030063;
+        public static final int user_contact_layout=0x7f030064;
+        public static final int view_name_top_info=0x7f030065;
+        public static final int view_pager_indicator=0x7f030066;
     }
     public static final class menu {
         public static final int menu_action_bar=0x7f0c0000;

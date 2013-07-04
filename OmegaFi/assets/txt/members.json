@@ -1,0 +1,2672 @@
+[
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2248658,
+                "first_name": "Brett",
+                "middle_name": "L",
+                "last_name": "Barnett",
+                "maiden_name": null,
+                "informal_first_name": "Brett",
+                "parents_name": "Bobby & Terri Barnett",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "duckhunters4ever@yahoo.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-753-2107",
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2271426,
+                "first_name": "Laitin",
+                "middle_name": "W",
+                "last_name": "Beecham",
+                "maiden_name": null,
+                "informal_first_name": "Laitin",
+                "parents_name": "Steve & Kim Beecham",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "Facebook",
+                    "url": "https://graph.facebook.com/1129940894/picture?type=large"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "lwbecham@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "bigbeech67@gmail.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "BigBeech67@Gmail.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "Kim@Sparco.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-835-4722",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-828-4603",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2446287,
+                "first_name": "Niles",
+                "middle_name": "MacKenzie",
+                "last_name": "Beers",
+                "maiden_name": null,
+                "informal_first_name": "Niles",
+                "parents_name": "Kimberly Beers",
+                "initiation_date": null,
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/256895"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "nmbeers07@yahoo.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "nmbeers07@yahoo.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "kbarnett.beers@gmail.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "000-000-0000",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-483-9500",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2254328,
+                "first_name": "Logan",
+                "middle_name": "R",
+                "last_name": "Belz",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Bonnie & Marc Belz",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2014,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2010/09/04 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "logan.blez91@gmail.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "Bonnie60b@aol.com",
+                            "primary": true,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-404-0453",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-756-1364",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-268-8370",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2445838,
+                "first_name": "Matthew",
+                "middle_name": "John",
+                "last_name": "Cain",
+                "maiden_name": null,
+                "informal_first_name": "Matt",
+                "parents_name": "Jeannie Cain, John Cain",
+                "initiation_date": "2013/04/14 00:00:00 -0400",
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2012/08/01 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/257331"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "mcain3@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "mcain3@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "cainj@rcschools.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "615-548-4166",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "615-948-5218",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2369672,
+                "first_name": "Dominic",
+                "middle_name": "Benso",
+                "last_name": "Carbognani",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Tricia Bartholomew",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/01 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "carbo8@yahoo.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "dcrbgnni@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "trcbartholomew@yahoo.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-850-9558",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-825-6371",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2221212,
+                "first_name": "Max",
+                "middle_name": "Wai Butt",
+                "last_name": "Chang",
+                "maiden_name": null,
+                "informal_first_name": "Max",
+                "parents_name": "Yeow & Lisa Chang",
+                "initiation_date": "2012/03/31 00:00:00 -0400",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/01 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/255735"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "mwchang@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "ychangl@comcast.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-759-1903",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "731-676-4742",
+                            "type": "School"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-216-7808",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2316672,
+                "first_name": "Thomas",
+                "middle_name": "E",
+                "last_name": "Charlton",
+                "maiden_name": null,
+                "informal_first_name": "Thomas",
+                "parents_name": "Melvin Charlton Jr & Lisa Ealy",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "tchrlton@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "tc112392@hotmail.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "tc112392@hotmail.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "mmcgene@aol.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-757-0166",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-201-9145",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2347090,
+                "first_name": "Rafi",
+                "middle_name": null,
+                "last_name": "Chowdhury",
+                "maiden_name": null,
+                "informal_first_name": "RAFI",
+                "parents_name": "HARUN CHOWDHURY AND NARGIS SULTANA",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2014,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "Facebook",
+                    "url": "https://graph.facebook.com/548055226/picture?type=large"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "rafi1406@yahoo.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "nschwdhr@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "harun1012@bellsouth.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-372-8383",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-674-4629",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2267269,
+                "first_name": "Morgan",
+                "middle_name": "M",
+                "last_name": "Daugherty",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Robert & Tammy Daugherty",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "mdgherty@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "dirishfan54@aol.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "dirishfan54@aol.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "tweena564@aol.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-837-7220",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-828-9161",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2347067,
+                "first_name": "Kenny",
+                "middle_name": "Bach",
+                "last_name": "Diep",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Hung Diep, Kim-Anh Van",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "Facebook",
+                    "url": "https://graph.facebook.com/100003816666909/picture?type=large"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "kdiep@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "diep_kenny@yahoo.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "hungdi9@yahoo.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-818-5605",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-337-1017",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2354846,
+                "first_name": "Ryker",
+                "middle_name": "Todd",
+                "last_name": "Eley",
+                "maiden_name": null,
+                "informal_first_name": "Ryker",
+                "parents_name": "Tani Eley",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2012/08/27 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "rteley@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "eleys@q.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "480-661-8005",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "480-310-6006",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2257154,
+                "first_name": "Hamid",
+                "middle_name": null,
+                "last_name": "Farzam",
+                "maiden_name": null,
+                "informal_first_name": "Hamid",
+                "parents_name": "Mohammed & Carolyn Farzam",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "hfarzam@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "hamidarzam99@aol.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-438-2926",
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2281974,
+                "first_name": "Nicolas",
+                "middle_name": "T",
+                "last_name": "Foster",
+                "maiden_name": null,
+                "informal_first_name": "Nicolas",
+                "parents_name": "Pat & David Foster",
+                "initiation_date": "2011/03/15 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2014,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "nfoster1@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-387-8973",
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": null,
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2368832,
+                "first_name": "James",
+                "middle_name": "Scott",
+                "last_name": "Greer",
+                "maiden_name": null,
+                "informal_first_name": "James",
+                "parents_name": "Melanie Santana",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2012/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/161644"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "j88greer@gmail.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "jsgreer@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "maaureli69@bellsouth.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "jsgreer@memphis.edu",
+                            "primary": false,
+                            "type": "TextSMS"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-800-6380",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-503-3369",
+                            "type": "Mobile"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-452-1473",
+                            "type": "School"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2323139,
+                "first_name": "Terrell",
+                "middle_name": "C",
+                "last_name": "Harmon",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Sierra Dawson",
+                "initiation_date": "2012/03/31 00:00:00 -0400",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/21 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "tharmon3@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "tc103192@yahoo.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "Tc103192@yahoo.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-759-1903",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "731-413-3371",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "731-413-3371",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2398407,
+                "first_name": "Trey",
+                "middle_name": "David",
+                "last_name": "Higgins",
+                "maiden_name": null,
+                "informal_first_name": "Chops",
+                "parents_name": "Belinda and Mike Benson",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2012/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "vo@omegafi.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "vo1@omegafi.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "vo2@omegafi.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "122-333-2222",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "000-111-2222",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2354820,
+                "first_name": "Jonathon",
+                "middle_name": "Jacob",
+                "last_name": "Holden",
+                "maiden_name": null,
+                "informal_first_name": "Jacob",
+                "parents_name": "Robin and Cody Holden",
+                "initiation_date": "2012/09/08 00:00:00 -0400",
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2012/08/27 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "jjholden@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "jacobholden23@gmail.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "robinholden@att.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "robinholden@att.net",
+                            "primary": false,
+                            "type": "TextSMS"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-853-0304",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-651-6462",
+                            "type": "Mobile"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "School"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2292412,
+                "first_name": "Tevin",
+                "middle_name": "K",
+                "last_name": "Howell",
+                "maiden_name": null,
+                "informal_first_name": "Tevin",
+                "parents_name": "Keisha Moffitt",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "tevinhowell@gmail.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "tkhowell@memphis.edu",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "tkhowell@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-406-7442",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-591-7401",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2225778,
+                "first_name": "Evan",
+                "middle_name": "N",
+                "last_name": "Kelly",
+                "maiden_name": null,
+                "informal_first_name": "Evan",
+                "parents_name": "Gail Driver",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/257812"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "ekelly1@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "9016057246@mms.att.net",
+                            "primary": false,
+                            "type": "TextSMS"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-605-7246",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-605-7246",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2361030,
+                "first_name": "Hunter",
+                "middle_name": "Trent",
+                "last_name": "Key",
+                "maiden_name": null,
+                "informal_first_name": "Hunter",
+                "parents_name": "Michelle Nemeth",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "hunterkey94@aol.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "htkey@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "germantownmom@bellsouth.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-753-6692",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-288-9356",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2293141,
+                "first_name": "Ricky",
+                "middle_name": "E.",
+                "last_name": "Kirby",
+                "maiden_name": null,
+                "informal_first_name": "Ricky",
+                "parents_name": "Greg & Gina Moore",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/28 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "rekirby@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "rkirby@powercontrolresources.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "7316764742@vtext.com",
+                            "primary": false,
+                            "type": "TextSMS"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "grmoore1@bellsouth.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "731-676-4742",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "731-676-4742",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2445841,
+                "first_name": "Justin",
+                "middle_name": "Cole",
+                "last_name": "Lambert",
+                "maiden_name": null,
+                "informal_first_name": "Justin",
+                "parents_name": "Susan Lambert",
+                "initiation_date": null,
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/257775"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "jlmbert2@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "jlmbert2@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "kristi.lambert@comcast.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-753-9795",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-486-2404",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2445839,
+                "first_name": "Chris",
+                "middle_name": null,
+                "last_name": "Lenegar",
+                "maiden_name": null,
+                "informal_first_name": "Chris",
+                "parents_name": null,
+                "initiation_date": "2013/04/14 00:00:00 -0400",
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "chrislenegar@yahoo.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-275-7887",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2221459,
+                "first_name": "Adam",
+                "middle_name": "S",
+                "last_name": "Medford",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Mr & Mrs Medford",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2013,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2009/08/28 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "Facebook",
+                    "url": "https://graph.facebook.com/1267933692/picture?type=large"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "medford1@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "dcok819@hotmail.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-236-8657",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-236-8657",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2323802,
+                "first_name": "Taylor",
+                "middle_name": "A",
+                "last_name": "Pullen",
+                "maiden_name": null,
+                "informal_first_name": "Taylor",
+                "parents_name": "Drenda & Tom Pullen",
+                "initiation_date": "2010/09/26 00:00:00 -0400",
+                "initiation_year": 2010,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2014,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "tapullen@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "gotmilk622@yahoo.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "921-486-5640",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-853-5553",
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2347079,
+                "first_name": "Jonathan",
+                "middle_name": "Kyle",
+                "last_name": "Roberts",
+                "maiden_name": null,
+                "informal_first_name": "Jonathan",
+                "parents_name": "Randy Roberts And Debbie Roberts",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/162959"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "jrberts9@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "jrobertstn@gmail.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "rroberts8@comcast.net",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-754-6012",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-832-1336",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2445849,
+                "first_name": "Cole",
+                "middle_name": "Parr",
+                "last_name": "Roe",
+                "maiden_name": null,
+                "informal_first_name": "Cole",
+                "parents_name": "Randy Roe And Phyllis Roe",
+                "initiation_date": "2013/04/27 00:00:00 -0400",
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2012/08/27 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "coleroe@hotmail.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "croe@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "uspo1957@hotmail.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-619-1422",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-496-1709",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2307900,
+                "first_name": "Alejandro",
+                "middle_name": "R",
+                "last_name": "Salinas",
+                "maiden_name": null,
+                "informal_first_name": "Alejandro",
+                "parents_name": "Jacqueline Salinas",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2013,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/01/09 00:00:00 -0500",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "asalinas@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-386-3595",
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2361007,
+                "first_name": "John",
+                "middle_name": "Joseph",
+                "last_name": "Schuetz",
+                "maiden_name": null,
+                "informal_first_name": "Johnny",
+                "parents_name": "Schuetz",
+                "initiation_date": "2012/09/22 00:00:00 -0400",
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "jjschetz@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "jjschetz@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "john.schuetz@stjude.org",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-274-9028",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-692-4913",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2313215,
+                "first_name": "Michael",
+                "middle_name": "Q",
+                "last_name": "Simonetti",
+                "maiden_name": null,
+                "informal_first_name": "Michael",
+                "parents_name": "John & Carolyn Simonetti",
+                "initiation_date": "2010/09/26 00:00:00 -0400",
+                "initiation_year": 2010,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2014,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-828-0947",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-853-9382",
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2209280,
+                "first_name": "Erick",
+                "middle_name": "N",
+                "last_name": "Smith",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Walt Smith",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2013,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2008/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "ensmith1@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "irunon_dos@yahoo.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-570-0882",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-573-5594",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2361047,
+                "first_name": "Nathan",
+                "middle_name": "Thomas",
+                "last_name": "Smith",
+                "maiden_name": null,
+                "informal_first_name": null,
+                "parents_name": "Shanna and Walter Smith",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/25 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "ntsmith2@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "nts1titans@aol.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "nts1titans@aol.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-361-0034",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-361-0034",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2333224,
+                "first_name": "Brian",
+                "middle_name": "D",
+                "last_name": "Srite",
+                "maiden_name": null,
+                "informal_first_name": "Brian",
+                "parents_name": "Jim & Susan Srite",
+                "initiation_date": "2011/03/15 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2014,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "bdsrite@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "briansrite@aol.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "423-243-7910",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "423-875-4692",
+                            "type": "Home"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2445842,
+                "first_name": "Dillon",
+                "middle_name": "Cole",
+                "last_name": "Stojanovic",
+                "maiden_name": null,
+                "informal_first_name": "Dillon",
+                "parents_name": "Robert Stojanovic And Kathy Stojanovic",
+                "initiation_date": null,
+                "initiation_year": null,
+                "initiated_chapter_party_id": null,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2016,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/29 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "New Member",
+                    "member_status_id": 1,
+                    "national_status_name": "New Initiate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "dstjnvic@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "dillon.stojanovic@yahoo.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "kathy.stojanovic@yahoo.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-334-7766",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-734-5268",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2275724,
+                "first_name": "Dylan",
+                "middle_name": "R",
+                "last_name": "Turner",
+                "maiden_name": null,
+                "informal_first_name": "Dylan",
+                "parents_name": "Glenn & Stacey Turner",
+                "initiation_date": "2011/10/12 00:00:00 -0400",
+                "initiation_year": 2011,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "1900/01/01 00:00:00 -0500",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": null,
+                "emails": [
+                    {
+                        "email": {
+                            "address": "forbess2@yahoo.com",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "dylanturner92@aol.com",
+                            "primary": false,
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "staceyturner08@yahoo.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "forbess2@yahoo.com",
+                            "primary": false,
+                            "type": "Parent"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-652-5522",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-692-0741",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2220938,
+                "first_name": "Benjamin",
+                "middle_name": "E",
+                "last_name": "Wayer",
+                "maiden_name": null,
+                "informal_first_name": "Benjamin",
+                "parents_name": "Mark & Pat Wayer",
+                "initiation_date": "2012/04/22 00:00:00 -0400",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2344319,
+                "associated_chapter_id": 2894,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": "2011/08/21 00:00:00 -0400",
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/226360"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "bwayer1@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "wayer_dogg_93@hotmail.com",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-678-2000",
+                            "type": "Work"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "618-201-7706",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "618-201-7706",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    },
+    {
+        "member": {
+            "individual": {
+                "prefix": "Mr.",
+                "suffix": null,
+                "gender": "M",
+                "party_id": 2377942,
+                "first_name": "Blake",
+                "middle_name": "Edward",
+                "last_name": "Webb",
+                "maiden_name": null,
+                "informal_first_name": "Blake",
+                "parents_name": "Steve Webb",
+                "initiation_date": "2012/12/12 00:00:00 -0500",
+                "initiation_year": 2012,
+                "initiated_chapter_party_id": 2894,
+                "associated_chapter_id": 2344319,
+                "graduation_year": 2015,
+                "publish_profile": true,
+                "travel_visa_number": null,
+                "date_of_college_entry": null,
+                "member_status": {
+                    "status_name": "Initiate",
+                    "member_status_id": 2,
+                    "national_status_name": "Undergraduate"
+                },
+                "profile_picture": {
+                    "source": "OmegaFi",
+                    "url": "/myomegafi/api/v1/images/163529"
+                },
+                "emails": [
+                    {
+                        "email": {
+                            "address": "bewebb@memphis.edu",
+                            "primary": true,
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "email": {
+                            "address": "bewebb@memphis.edu",
+                            "primary": false,
+                            "type": "Other"
+                        }
+                    }
+                ],
+                "phone_numbers": [
+                    {
+                        "phone_number": {
+                            "primary": false,
+                            "number": "901-461-3818",
+                            "type": "Home"
+                        }
+                    },
+                    {
+                        "phone_number": {
+                            "primary": true,
+                            "number": "901-409-5229",
+                            "type": "Mobile"
+                        }
+                    }
+                ],
+                "social_profiles": []
+            }
+        }
+    }
+]

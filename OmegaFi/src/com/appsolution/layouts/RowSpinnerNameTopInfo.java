@@ -5,9 +5,7 @@ import java.util.List;
 
 import com.appsolution.omegafi.R;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -27,8 +25,8 @@ public class RowSpinnerNameTopInfo extends ViewNameTopInfo {
 	}
 	
 	private void initialize() {
-		spinner=new Spinner(getContext());
-		spinner.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		spinner=new Spinner(getContext().getApplicationContext());
+		spinner.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 		spinner.setBackgroundResource(R.drawable.white_input_small);
 		this.addView(spinner);
 	}

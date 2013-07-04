@@ -1,0 +1,33 @@
+{
+    "individual": {
+        "prefix": null,
+        "suffix": null,
+        "gender": null,
+        "associated_chapter_id": null,
+        "party_id": 2091190,
+        "first_name": "Gail",
+        "middle_name": null,
+        "last_name": "Smith",
+        "maiden_name": null,
+        "informal_first_name": "Gail",
+        "parents_name": null,
+        "graduation_year": null,
+        "pending_change": null,
+        "initiation_date": null,
+        "initiation_year": null,
+        "initiated_chapter_party_id": null,
+        "publish_profile": true,
+        "travel_visa_number": null,
+        "date_of_college_entry": null,
+        "announcement_count": 0,
+        "member_status": {
+            "status_name": "Other",
+            "member_status_id": 6,
+            "national_status_name": "None"
+        },
+        "profile_picture": {
+            "source": "Facebook",
+            "url": "https://graph.facebook.com/1047904363/picture?type=large"
+        }
+    }
+}

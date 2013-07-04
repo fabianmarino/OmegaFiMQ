@@ -238,7 +238,7 @@
                 android:weightSum="1">
                 <Spinner
                     android:id="@+id/spinnerPrefixProfile" 
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="fill_parent"
                     android:layout_weight="0.2"
                     android:layout_gravity="center_vertical"

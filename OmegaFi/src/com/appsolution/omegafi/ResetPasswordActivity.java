@@ -51,34 +51,34 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 	}
 	
 	private void sendChangePassword(){
-		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-			int status=0;
-			
-			@Override
-			protected void onPreExecute() {
-				startProgressDialog("Changing password", getResources().getString(R.string.please_wait));
-			}
-			
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
-						rowConfirmPassword.getTextQuestionEdit())[0];
-				return true;
-			}
-			
-			@Override
-			protected void onPostExecute(Boolean result) {
-				stopProgressDialog();
-				if(status==200){
+//		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+//			int status=0;
+//			
+//			@Override
+//			protected void onPreExecute() {
+//				startProgressDialog("Changing password", getResources().getString(R.string.please_wait));
+//			}
+//			
+//			@Override
+//			protected Boolean doInBackground(Void... params) {
+//				status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
+//						rowConfirmPassword.getTextQuestionEdit())[0];
+//				return true;
+//			}
+//			
+//			@Override
+//			protected void onPostExecute(Boolean result) {
+//				stopProgressDialog();
+//				if(status==200){
 					linearQuestions.setVisibility(LinearLayout.GONE);
 					header.setMessageForForm(getResources().getString(R.string.changed_password_sucessfully));
-				}
-				else{
-					OmegaFiActivity.showErrorConection(ResetPasswordActivity.this, status, null);
-				}
-			}
-		};
-		task.execute();
+//				}
+//				else{
+//					OmegaFiActivity.showErrorConection(ResetPasswordActivity.this, status, null);
+//				}
+//			}
+//		};
+//		task.execute();
 	}
 
 }

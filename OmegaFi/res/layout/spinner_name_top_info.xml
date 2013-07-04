@@ -3,9 +3,9 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:padding="@dimen/padding_6dp"
-    android:id="@+id/linearViewNameTopInfo"
+    android:id="@+id/linearViewNameTopInfoSpinner"
     android:orientation="vertical" >
-    <TextView android:id="@+id/name_info_top"
+    <TextView android:id="@+id/name_info_top_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
@@ -13,9 +13,16 @@
         android:text="Top Name Info"
         android:layout_marginBottom="@dimen/padding_3dp"
         />
-    <LinearLayout android:id="@+id/linearContentAddView"
+    <LinearLayout android:id="@+id/linearContentAddViewSpinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <Spinner
+	        android:id="@+id/spinner_top_info" 
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent"
+	        android:layout_gravity="center_vertical"
+	        android:background="@drawable/white_input_spinner"
+	        />
 	</LinearLayout>
 </LinearLayout>

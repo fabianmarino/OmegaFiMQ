@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.appsolution.interfaces.OnRowCheckListener;
+import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 public class DialogSelectableOF {
@@ -61,6 +62,16 @@ public class DialogSelectableOF {
 		this.completeOptionsSelectable();
 	}
 	
+	public static String replaceDividePhrase(String text){
+		String nueva=text;
+		if(text.contains("-")){
+			String[] partes=text.split("-");
+			nueva=partes[0]+"- \n"+partes[1];
+			Log.d("contiene caracter", nueva);
+		}
+		return nueva;
+	}
+	
 	private void completeOptionsSelectable(){
 		for (String option:optionsSelectables) {
 			RowCheckOmegaFi rowChecked=new RowCheckOmegaFi(activity,group);
@@ -75,7 +86,20 @@ public class DialogSelectableOF {
 			if(option.contains(",")){
 				String[] values=option.split(",");
 				rowChecked.setNameInfo(values[0]);
-				rowChecked.setSubnameInfo(values[1]);
+				Log.d("inches", OmegaFiActivity.getSizeInInchesScreen(activity)+"");
+				if(OmegaFiActivity.getSizeInInchesScreen(activity)>5){
+					rowChecked.setSubnameInfo(values[1]);
+				}
+				else{
+					
+					if(values[1].length()>36){
+						rowChecked.setSubnameInfo(replaceDividePhrase(values[1]));
+					}
+					else{
+						rowChecked.setSubnameInfo(values[1]);
+					}
+				}
+				
 			}
 			else{
 				rowChecked.setNameInfo(option);
