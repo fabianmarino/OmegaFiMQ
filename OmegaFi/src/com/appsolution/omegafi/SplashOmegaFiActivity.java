@@ -127,6 +127,9 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		
 		@Override
 		protected void onPostExecute(Boolean result) {
+//			Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
+//			finish();
+//			startActivity(homeActivity);
 			if(status!=200){
 				final DialogInformationOF of=new DialogInformationOF(SplashOmegaFiActivity.this);
 				of.setMessageDialog("Web service is temporarily unavailable");
@@ -157,5 +160,4 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		finish();
 	}
 	
-
 }

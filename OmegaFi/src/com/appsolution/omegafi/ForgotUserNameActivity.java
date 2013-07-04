@@ -37,7 +37,7 @@ public class ForgotUserNameActivity extends OmegaFiLoginActivity {
 				@Override
 				protected void onPreExecute() {
 					rowEmail.closeKeyBoard();
-					startProgressDialog("Sending Email", "Wait Please");
+					startProgressDialog("Sending Email", getResources().getString(R.string.please_wait));
 				}
 				@Override
 				protected Boolean doInBackground(Void... params) {

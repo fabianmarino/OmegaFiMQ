@@ -4,6 +4,7 @@ import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.HeaderOmegaFi;
 import com.appsolution.layouts.RowQuestionEditText;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -27,14 +28,14 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 	
 	public void resetPassword(View button){
 		if(rowNewPassword.getTextQuestionEdit().isEmpty()){
-			rowNewPassword.setError("This field is empty");
+			rowNewPassword.setError(getResources().getString(R.string.field_not_empty));
 		}
 		else if(rowConfirmPassword.getTextQuestionEdit().isEmpty()){
-			rowConfirmPassword.setError("This field is empty");
+			rowConfirmPassword.setError(getResources().getString(R.string.field_not_empty));
 		}
 		else if(!rowConfirmPassword.getTextQuestionEdit().equals(rowNewPassword.getTextQuestionEdit())){
 			final DialogInformationOF dialog=new DialogInformationOF(this);
-			dialog.setMessageDialog("The fields to be equals");
+			dialog.setMessageDialog("Your passwords do not match.");
 			dialog.setButtonListener(new View.OnClickListener() {
 				
 				@Override
@@ -45,9 +46,39 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 			dialog.showDialog();
 		}
 		else{
-			linearQuestions.setVisibility(LinearLayout.GONE);
-			header.setMessageForForm("Your password has been reset successfully. \nPlease return to the home screen to login.");
+			this.sendChangePassword();
 		}
+	}
+	
+	private void sendChangePassword(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			int status=0;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Changing password", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
+						rowConfirmPassword.getTextQuestionEdit())[0];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				if(status==200){
+					linearQuestions.setVisibility(LinearLayout.GONE);
+					header.setMessageForForm(getResources().getString(R.string.changed_password_sucessfully));
+				}
+				else{
+					OmegaFiActivity.showErrorConection(ResetPasswordActivity.this, status, null);
+				}
+			}
+		};
+		task.execute();
 	}
 
 }

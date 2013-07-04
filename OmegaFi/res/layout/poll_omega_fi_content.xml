@@ -32,13 +32,17 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical"
-	        android:padding="@dimen/padding_5dp">
+	        android:paddingTop="@dimen/padding_5dp"
+	        android:paddingBottom="@dimen/padding_5dp"
+	        android:paddingLeft="@dimen/padding_12dp"
+	        android:paddingRight="0dp" >
 	        <LinearLayout 
 	            android:id="@+id/contentAnswersPoll"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:orientation="vertical"
-	            android:layout_marginLeft="6dp">
+	            android:layout_marginLeft="8dp"
+	            >
 	            
 	        </LinearLayout>
 	    </LinearLayout>

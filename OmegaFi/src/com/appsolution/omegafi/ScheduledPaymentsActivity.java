@@ -17,7 +17,7 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(true);
-		actionBarCustom.setTitle("SCHEDULED PAYMENTS");
+		actionBarCustom.setTitle(getResources().getString(R.string.scheduled_payments).toUpperCase());
 		actionBar.setCustomView(actionBarCustom);
 	}
 	

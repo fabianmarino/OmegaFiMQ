@@ -8,9 +8,4 @@ public class ServerContext {
 		this.server=server;
 	}
 	
-	public void clearContext(){
-		//TODO code for clear variables
-	}
-	
-	
 }

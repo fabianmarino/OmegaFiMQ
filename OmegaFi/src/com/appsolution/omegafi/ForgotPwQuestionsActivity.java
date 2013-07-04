@@ -46,48 +46,70 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 	}
 	
 	public void resetPasswordActivity(View button){
-		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
-
-			int status=-1;
-			
-			@Override
-			protected void onPreExecute() {
-				startProgressDialog("Validating answers", "...");
-			}
-			
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().sendQuestionResetPassword
-						(question1.getTextQuestionEdit(), question2.getTextQuestionEdit(), question3.getTextQuestionEdit())[0];
-				return true;
-			}
-			
-			@Override
-			protected void onPostExecute(Boolean result) {
-				stopProgressDialog();
-				if(status==200){
-					Intent activityResetPassword=new Intent(ForgotPwQuestionsActivity.this, ResetPasswordActivity.class);
-					startActivity(activityResetPassword);
+		if(this.validateAnswers()){
+			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+	
+				int status=-1;
+				
+				@Override
+				protected void onPreExecute() {
+					startProgressDialog("Validating answers", getResources().getString(R.string.please_wait));
 				}
-				else if(status==422){
-					final DialogInformationOF dia=new DialogInformationOF(ForgotPwQuestionsActivity.this);
-					dia.setMessageDialog("Security answers do not match");
-					dia.setButtonListener(new View.OnClickListener() {
-						
-						@Override
-						public void onClick(View v) {
-							dia.dismissDialog();		
-						}
-					});
-					dia.showDialog();
+				
+				@Override
+				protected Boolean doInBackground(Void... params) {
+					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().sendQuestionResetPassword
+							(question1.getTextQuestionEdit(), question2.getTextQuestionEdit(), question3.getTextQuestionEdit())[0];
+					return true;
 				}
-				else{
-					OmegaFiActivity.showErrorConection(ForgotPwQuestionsActivity.this, status, null);
-				}
-				}
-			
-		};
-		task.execute();
+				
+				@Override
+				protected void onPostExecute(Boolean result) {
+					stopProgressDialog();
+					if(status==200){
+						Intent activityResetPassword=new Intent(ForgotPwQuestionsActivity.this, ResetPasswordActivity.class);
+						startActivity(activityResetPassword);
+					}
+					else if(status==422){
+						final DialogInformationOF dia=new DialogInformationOF(ForgotPwQuestionsActivity.this);
+						dia.setMessageDialog("Security answers do not match");
+						dia.setButtonListener(new View.OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								dia.dismissDialog();		
+							}
+						});
+						dia.showDialog();
+					}
+					else{
+						OmegaFiActivity.showErrorConection(ForgotPwQuestionsActivity.this, status, null);
+					}
+					}
+				
+			};
+			task.execute();
+		}
+	}
+	
+	private boolean validateAnswers(){
+		boolean validate=true;
+		question1.setError(null);
+		question2.setError(null);
+		question3.setError(null);
+		if(question1.getTextQuestionEdit().isEmpty()){
+			question1.setError(getResources().getString(R.string.field_not_empty));
+			validate=false;
+		}
+		else if(question2.getTextQuestionEdit().isEmpty()){
+			question2.setError(getResources().getString(R.string.field_not_empty));
+			validate=false;
+		}
+		else if(question3.getTextQuestionEdit().isEmpty()){
+			question3.setError(getResources().getString(R.string.field_not_empty));
+			validate=false;
+		}
+		return validate;
 	}
 	
 }

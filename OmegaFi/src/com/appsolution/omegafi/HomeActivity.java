@@ -67,6 +67,8 @@ public class HomeActivity extends OmegaFiActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
 		linearAccounts=(LinearLayout)findViewById(R.id.linearChargeAccounts);
+//		Intent intent=new Intent(this, AccountActivity.class);
+//		startActivity(intent);
 		sectionChapterDirectory=(SectionOmegaFi)findViewById(R.id.sectionChapterDirectory);
 		sectionChapterDirectory.setOnClickTitleListener(new View.OnClickListener() {
 			
@@ -151,6 +153,7 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	private void completeChapterDirectory(){
 		if(!OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().isEmpty()){
+//		if(false){
 			SectionOmegaFi sectionOfficers=new SectionOmegaFi(this);
 			sectionOfficers.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			sectionOfficers.setTitleSection("Officers");
@@ -165,7 +168,6 @@ public class HomeActivity extends OmegaFiActivity {
 					android.widget.Gallery.LayoutParams.WRAP_CONTENT));
 			listGallery=new ImageAdapter(this);
 			listGallery.setListOfficers(OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().getListOfficers());
-			listGallery.chargeImagesRooster();
 			listPhotos.setAdapter(listGallery);
 			listPhotos.setSelection(1);
 			listPhotos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -175,7 +177,6 @@ public class HomeActivity extends OmegaFiActivity {
 						int position, long arg3) {
 					ImageRoosterName rooster=(ImageRoosterName)actual;
 					rooster.setSelectedImageRooster(false);
-					listGallery.getOfficer(position).setImagePhoto(rooster.getPhotoRooster());
 					if(!isAnySelected){
 						detailsOffice.setVisibility(View.GONE);
 						changeStateIsAnythingSelected();
@@ -222,6 +223,7 @@ public class HomeActivity extends OmegaFiActivity {
 			linearSection.setPadding(12, 0, 0, 10);
 			linearSection.addView(listPhotos);
 			final ArrayList<String> chapters=OmegaFiActivity.servicesOmegaFi.getHome().getChapters().getChapterNames();
+			chapters.add("Sigma Pi - Beta Nu,Oregon State Univetsity");
 			String[] nameSubName=chapters.get(0).split(",");
 			final RowInformation rowChapter=new RowInformation(this);
 			rowChapter.setNameInfo(nameSubName[0]);
@@ -230,7 +232,7 @@ public class HomeActivity extends OmegaFiActivity {
 			rowChapter.setImageIcon(R.drawable.icon_spinner);
 			rowChapter.setBorderBottom(true);
 			final Activity home=this;
-			if(chapters.size()>2){
+			if(chapters.size()>1){
 				rowChapter.setOnClickListener(new View.OnClickListener() {
 					
 					@Override
@@ -247,7 +249,7 @@ public class HomeActivity extends OmegaFiActivity {
 							
 							@Override
 							public void actionAfterChecked() {
-								changeListImages(selectables.getIndexSelected());
+//								changeListImages(selectables.getIndexSelected());
 								rowChapter.setNameInfo(selectables.getRowSelected().getNameInfo());
 								rowChapter.setNameSubInfo(selectables.getRowSelected().getNameSubInfo());
 							}
@@ -288,7 +290,6 @@ public class HomeActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				listGallery.setListOfficers(OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().getListOfficers());
-				listGallery.chargeImagesRooster();
 				listPhotos.setAdapter(listGallery);
 				listPhotos.setSelection(1);
 				stopProgressDialog();
@@ -308,8 +309,8 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completeEvents(){
-		Log.d("count", OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents().size()+"");
 		if(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents().size()==0){
+//		if(true){
 			sectionEvents.setVisibility(View.GONE);
 		}
 		else{
@@ -334,7 +335,7 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completePollSection(){
-		if(true){
+		if(false){
 			sectionPoll.setVisibility(View.GONE);
 		}
 		else{
@@ -379,6 +380,7 @@ public class HomeActivity extends OmegaFiActivity {
 	private void completeNewsSection(){
 		String title=OmegaFiActivity.servicesOmegaFi.getForgotLogin().getTitleFeed();
 		if(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().isEmpty()){
+//		if(true){
 			sectionNews.setVisibility(View.GONE);
 		}
 		else{

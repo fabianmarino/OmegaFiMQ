@@ -16,7 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             secom:text_title_header="Forgot My Password"
-            secom:text_message_form="Please answer the following question in order to reset your password"/>
+            secom:text_message_form="@string/header_questions_forgot_password"/>
         <LinearLayout android:id="@+id/linearRowQuestions"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

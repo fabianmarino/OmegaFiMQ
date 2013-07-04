@@ -59,6 +59,9 @@ public class MainActivity extends OmegaFiLoginActivity {
 	}
 	
 	public void nextHome(View boton){
+//		Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
+//		startActivity(splashView);
+//		finish();
 		if(this.validateDataLogin()){
 			final Activity activity=this;
 			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {

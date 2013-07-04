@@ -50,7 +50,7 @@
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
 			        android:layout_marginTop="5dp"
-			        android:text="Welcome to my OmegaFi"
+			        android:text="@string/welcome_to_myomegafi"
 			        android:textSize="@dimen/text_medium"
 			        android:textColor="@color/gray_font_welcome"
 			        />

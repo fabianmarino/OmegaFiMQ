@@ -14,10 +14,11 @@ public class ForgotLoginService extends ServerContext{
 	private JSONObject jsonQuestionResetPassword;
 	private JSONObject jsonTokenChangePassword;
 	private JSONObject jsonLoginService;
+	private JSONObject jsonChangePassword;
 	
 	public ForgotLoginService(Server server){
 		super(server);
-		jsonQuestionResetPassword=null;
+		this.clearForgotLoginService();
 	}
 
 	public JSONObject getJsonQuestionResetPassword() {
@@ -76,10 +77,30 @@ public class ForgotLoginService extends ServerContext{
         return response;
 	}
 	
+	public Object[] changePassword(String newPassword, String confirmPassword){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("password",newPassword));
+        nameValuePairs.add(new BasicNameValuePair("confirmpassword", confirmPassword));
+        try {
+        	if(jsonTokenChangePassword!=null){
+        		nameValuePairs.add(new BasicNameValuePair("token", jsonTokenChangePassword.getString("token")));
+        		nameValuePairs.add(new BasicNameValuePair("userid", jsonTokenChangePassword.getString("userid")));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        Object[] response=server.makeRequestPost(Server.CHANGE_PASSWORD_SERVICE, nameValuePairs);
+        jsonChangePassword=(JSONObject)response[1];
+        return response;
+	}
+	
 	public String getFirstName(){
 		String username=null;
 		try {
-			username= this.jsonLoginService.getString("FirstName");
+			if(jsonLoginService!=null){
+				username= this.jsonLoginService.getString("FirstName");
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -107,5 +128,12 @@ public class ForgotLoginService extends ServerContext{
 			e.printStackTrace();
 		}
 		return url;
+	}
+	
+	public void clearForgotLoginService(){
+		jsonQuestionResetPassword=null;
+		jsonLoginService=null;
+		jsonChangePassword=null;
+		jsonChangePassword=null;
 	}
 }

@@ -34,8 +34,6 @@ public class ImageAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return listOfficers.size();
 	}
-	
-	
 
 	@Override
 	public Object getItem(int position) {
@@ -46,19 +44,21 @@ public class ImageAdapter extends BaseAdapter {
 	public long getItemId(int position) {
 		return position;
 	}
-	
-	public void chargeImagesRooster(){
-		for (int i = 0; i < getCount(); i++) {
-			listOfficers.get(i).chargePhoto();
-		}
-	}
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		ImageRoosterName rooster=new ImageRoosterName(context);
-		listOfficers.get(position).setImagePhoto(rooster.getPhotoRooster());
 		rooster.setNameRooster(listOfficers.get(position).getShortName());
 		rooster.setTypeRooster(listOfficers.get(position).getOfficeType());
+		if(listOfficers.get(position).getHostPhoto()!=null){
+			if(listOfficers.get(position).getHostPhoto().equals("OmegaFi")){
+				rooster.setHostOmegaFi(true);
+			}
+			else{
+				rooster.setHostOmegaFi(false);
+			}
+			rooster.chargePhotoOfficer(listOfficers.get(position).getUrlPhoto());
+		}
 		return rooster;
 	}
 	

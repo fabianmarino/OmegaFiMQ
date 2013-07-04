@@ -30,7 +30,7 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 	
 	private void sendUserName(){
 		if(rowSubmitUsername.isEmpty()){
-			rowSubmitUsername.setErrorEditText("Field Empty");
+			rowSubmitUsername.setErrorEditText(getResources().getString(R.string.field_not_empty));
 		}
 		else{
 			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
@@ -41,7 +41,7 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 				@Override
 				protected void onPreExecute() {
 					rowSubmitUsername.closeKeyBoard();
-					startProgressDialog("Validating username", "Wait Please");
+					startProgressDialog("Validating username", getResources().getString(R.string.please_wait));
 				}
 				
 				@Override

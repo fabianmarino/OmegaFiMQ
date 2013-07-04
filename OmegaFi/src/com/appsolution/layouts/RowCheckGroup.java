@@ -45,7 +45,6 @@ public class RowCheckGroup {
 			
 			@Override
 			public void onClick(View v) {
-				if(indexSelected==listRowsChecked.indexOf(row)){
 					RowCheckGroup.this.listener.actionBeforeChecked();
 					unCheckedAll();
 					row.setChecked(true);
@@ -53,7 +52,6 @@ public class RowCheckGroup {
 					itemSelected=row.getItemRow();
 					rowSelected=row;
 					RowCheckGroup.this.listener.actionAfterChecked();
-				}
 				if(contentSelectable!=null){
 					contentSelectable.dismissDialog();
 				}

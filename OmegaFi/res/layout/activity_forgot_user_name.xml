@@ -18,7 +18,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginBottom="10dp"
 	        secom:text_title_header="Forgot My Username"
-	        secom:text_message_form="Please enter your email address associate with your account."
+	        secom:text_message_form="@string/header_forgot_username"
 	        />
 	    <com.appsolution.layouts.RowEditTextSubmit
 	         android:id="@+id/rowEditSubmitEmail"

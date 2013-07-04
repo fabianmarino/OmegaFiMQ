@@ -63,6 +63,7 @@ public class PayNowActivity extends OmegaFiActivity {
 		selectable.setOptionsSelectables(selectable.getOptionsTest());
 		selectable.setTitleDialog("Select Payment Method");
 		selectable.setTextButton("Save");
+		selectable.setCloseOnSelectedItem(false);
 		selectable.setButtonListener(new View.OnClickListener() {
 			
 			@Override

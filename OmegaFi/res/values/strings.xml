@@ -49,7 +49,14 @@
     <string name="title_activity_reset_password">ResetPasswordActivity</string>
     <string name="title_activity_splash_omega_fi">SplashOmegaFiActivity</string> 
     <string name="title_activity_make_payment">MakePaymentActivity</string>
-    <string name="header_forgot_password">Please enter your username below to reset your password</string>
+    <string name="header_forgot_password">Please enter your username below to reset your password.</string>
+    <string name="header_forgot_username">Please enter your email address associated with your account.</string>
 	<string name="procesing_state">Processing</string>
 	<string name="pending_state">Pending</string>
+	<string name="scheduled_payments">Scheduled Payments</string>
+	<string name="welcome_to_myomegafi">Welcome to myOmegaFi</string>
+	<string name="header_questions_forgot_password">Please answer the following questions in order to reset your password.</string>
+	<string name="please_wait">Please wait...</string>
+	<string name="changed_password_sucessfully">Your password has been reset successfully.\nPlease return to the home screen to login.</string>
+	<string name="field_not_empty">This field can not be empty!</string>
 </resources>

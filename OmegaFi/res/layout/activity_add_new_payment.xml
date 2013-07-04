@@ -52,14 +52,6 @@
                 secom:type_input_row_info_1="@integer/input_type_number"
                 secom:name_information_e="Card Number"
                 />
-            <!-- <com.appsolution.layouts.RowEditTextOmegaFi
-                android:id="@+id/textExpirationDate"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:onClick="showExpirationDate"
-                secom:name_information_e="Expiration Date"
-                secom:text_editable="false"
-                />  -->
             <com.appsolution.layouts.RowInformation
                  android:id="@+id/rowSelectExpirationDate"
                  android:layout_width="fill_parent"
@@ -67,7 +59,7 @@
                  android:onClick="selectDatePayment"
                  android:background="@android:color/white"
                  secom:name_information="Expiration date"
-                 secom:value_information="12/03/2013"
+                 secom:value_information="03/2013"
                  secom:background_value_info="@drawable/white_input_spinner"
                  secom:put_border_bottom="true"
                  />

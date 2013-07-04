@@ -2398,7 +2398,8 @@ containing a value of this type.
         public static final int white_box_rec=0x7f0200da;
         public static final int white_circle=0x7f0200db;
         public static final int white_input=0x7f0200dc;
-        public static final int white_input_spinner=0x7f0200dd;
+        public static final int white_input_small=0x7f0200dd;
+        public static final int white_input_spinner=0x7f0200de;
     }
     public static final class id {
         public static final int abs__action_bar=0x7f04002a;
@@ -2887,9 +2888,10 @@ containing a value of this type.
         public static final int sliding_menu=0x7f03005f;
         public static final int slidingmenumain=0x7f030060;
         public static final int spinner_omegafi=0x7f030061;
-        public static final int user_contact_layout=0x7f030062;
-        public static final int view_name_top_info=0x7f030063;
-        public static final int view_pager_indicator=0x7f030064;
+        public static final int spinner_omegafi_small=0x7f030062;
+        public static final int user_contact_layout=0x7f030063;
+        public static final int view_name_top_info=0x7f030064;
+        public static final int view_pager_indicator=0x7f030065;
     }
     public static final class menu {
         public static final int menu_action_bar=0x7f0c0000;
@@ -2938,32 +2940,38 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abs__shareactionprovider_share_with_application=0x7f0a0007;
-        public static final int action_sign_in_register=0x7f0a0041;
-        public static final int action_sign_in_short=0x7f0a0042;
+        public static final int action_sign_in_register=0x7f0a0048;
+        public static final int action_sign_in_short=0x7f0a0049;
         public static final int app_name=0x7f0a000d;
+        public static final int changed_password_sucessfully=0x7f0a0044;
         public static final int default_title_section=0x7f0a0014;
-        public static final int error_field_required=0x7f0a0048;
-        public static final int error_incorrect_password=0x7f0a0047;
-        public static final int error_invalid_email=0x7f0a0045;
-        public static final int error_invalid_password=0x7f0a0046;
+        public static final int error_field_required=0x7f0a004f;
+        public static final int error_incorrect_password=0x7f0a004e;
+        public static final int error_invalid_email=0x7f0a004c;
+        public static final int error_invalid_password=0x7f0a004d;
+        public static final int field_not_empty=0x7f0a0045;
         public static final int forgot_user=0x7f0a000e;
         public static final int header_forgot_password=0x7f0a003c;
+        public static final int header_forgot_username=0x7f0a003d;
+        public static final int header_questions_forgot_password=0x7f0a0042;
         public static final int hello_world=0x7f0a0015;
-        public static final int login_progress_signing_in=0x7f0a0044;
-        public static final int login_user=0x7f0a004a;
+        public static final int login_progress_signing_in=0x7f0a004b;
+        public static final int login_user=0x7f0a0051;
         public static final int logout=0x7f0a0013;
-        public static final int menu_forgot_password=0x7f0a0043;
+        public static final int menu_forgot_password=0x7f0a004a;
         public static final int menu_settings=0x7f0a0016;
         public static final int my_profile=0x7f0a0011;
         public static final int omega_img=0x7f0a0010;
-        public static final int pending_state=0x7f0a003e;
+        public static final int pending_state=0x7f0a003f;
+        public static final int please_wait=0x7f0a0043;
         public static final int privacy_policy=0x7f0a0032;
-        public static final int procesing_state=0x7f0a003d;
+        public static final int procesing_state=0x7f0a003e;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f0a003f;
-        public static final int prompt_password=0x7f0a0040;
+        public static final int prompt_email=0x7f0a0046;
+        public static final int prompt_password=0x7f0a0047;
         public static final int save_username=0x7f0a000f;
+        public static final int scheduled_payments=0x7f0a0040;
         public static final int terms_use=0x7f0a0030;
         public static final int title_activity_account=0x7f0a0017;
         public static final int title_activity_add_new_card=0x7f0a001d;
@@ -3000,7 +3008,8 @@ containing a value of this type.
         public static final int title_activity_splash_omega_fi=0x7f0a003b;
         public static final int title_activity_statements=0x7f0a0028;
         public static final int title_activity_terms=0x7f0a002f;
-        public static final int username=0x7f0a0049;
+        public static final int username=0x7f0a0050;
+        public static final int welcome_to_myomegafi=0x7f0a0041;
     }
     public static final class style {
         /** 

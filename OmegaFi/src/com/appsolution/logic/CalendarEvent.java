@@ -77,6 +77,7 @@ public class CalendarEvent {
 		case 0:
 			stringFormat=new SimpleDateFormat("MMMM dd,yyyy");
 			fechaAux=stringFormat.format(dateFecha);
+			fechaAux = fechaAux.substring(0, 1).toUpperCase() + fechaAux.substring(1, fechaAux.length());
 			break;
 		case 1:
 			stringFormat=new SimpleDateFormat("dd/MM/yyyy");
@@ -85,6 +86,11 @@ public class CalendarEvent {
 		case 3:
 			stringFormat=new SimpleDateFormat("MM/dd/yyyy");
 			fechaAux=stringFormat.format(dateFecha);
+			break;
+		case 4:
+			stringFormat=new SimpleDateFormat("MMMM yyyy");
+			fechaAux=stringFormat.format(dateFecha);
+			fechaAux = fechaAux.substring(0, 1).toUpperCase() + fechaAux.substring(1, fechaAux.length());
 			break;
 		default:
 			break;

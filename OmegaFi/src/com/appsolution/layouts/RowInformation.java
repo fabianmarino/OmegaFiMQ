@@ -241,6 +241,12 @@ public class RowInformation extends RelativeLayout{
 		return numbers;
 	}
 	
+	public int[] getMonthYear(){
+		String[] splits=textValueInfo.getText().toString().split("/");
+		int[] numbers={Integer.parseInt(splits[0]),Integer.parseInt(splits[1])};
+		return numbers;
+	}
+	
 	public void setTypeFaceNameSubInfo(Typeface type){
 		textNameSubInfo.setTypeface(type);
 	}

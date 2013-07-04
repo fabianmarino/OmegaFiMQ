@@ -93,17 +93,26 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		}
 		else{
 			switch (httpCode) {
+			case 0:
+				dia.setMessageDialog("Could not get any response");
+				break;
 			case 106:
 				dia.setMessageDialog("Lost Conection");
 				break;
 			case 137:
-				dia.setMessageDialog("Conection error");
+				dia.setMessageDialog("Name resolution failed");
 				break;
 			case 401:
 				dia.setMessageDialog("Incorrect Username or Password");
 				break;
 			case 404:
 				dia.setMessageDialog(error404);
+				break;
+			case 422:
+				dia.setMessageDialog("Passwords do not match.");
+				break;
+			case 500:
+				dia.setMessageDialog("Internal server error.");
 				break;
 			case 502:
 				dia.setMessageDialog("Web service is temporarily unavailable");
@@ -153,8 +162,8 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 				    URL myFileUrl = new URL(fileUrl);
 				    HttpURLConnection conn =
 				      (HttpURLConnection) myFileUrl.openConnection();
-				    conn.setConnectTimeout(5000);
-					conn.setReadTimeout(5000);
+				    conn.setConnectTimeout(Server.TIME_OUT);
+					conn.setReadTimeout(Server.TIME_OUT);
 				    conn.setDoInput(true);
 				    conn.connect();
 				    InputStream is = conn.getInputStream();
@@ -397,7 +406,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();
-		this.finishAffinity();
 	}
 	
 	protected void stopProgressDialog(){

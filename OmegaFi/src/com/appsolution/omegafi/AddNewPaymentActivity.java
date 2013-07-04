@@ -1,5 +1,6 @@
 package com.appsolution.omegafi;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -14,10 +15,13 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowSpinnerNameTopInfo;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.logic.CalendarEvent;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -54,7 +58,12 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	
 	
 	private Button buttonAddContinue;
-	private CustomDatePickerDialog mDialog;
+	private DatePickerDialog mDialog;
+	
+	static final int DATE_DIALOG_ID = 1;
+    private int mYear = 2013;
+    private int mMonth = 5;
+    private int mDay = 30;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -77,8 +86,11 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		});
 		sectionAddress=(SectionOmegaFi)findViewById(R.id.sectionAddresAddPayment);
 		buttonAddContinue=(Button)findViewById(R.id.buttonAddContinue);
-		
 		this.completeFields();
+
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
 	}
 	
 	private void completeFields(){
@@ -116,7 +128,8 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		
 		rowSpinner=new RowSpinnerNameTopInfo(getApplicationContext());
 		rowSpinner.setNameInfoTop("State");
-		LayoutParams paramsState=new LayoutParams(0, LayoutParams.WRAP_CONTENT,2);
+		rowSpinner.setListSpinner(getArrayStates());
+		LayoutParams paramsState=new LayoutParams(0, LayoutParams.FILL_PARENT,2);
 		rowSpinner.setLayoutParams(paramsState);
 		
 		rowZIP=new RowEditNameTopInfo(getApplicationContext());
@@ -143,22 +156,24 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		actionBar.setCustomView(actionBarCustom);
 	}
 	
-	public void changeTypePayment(View view){
-		if(linearCreditDebit.getVisibility()==LinearLayout.VISIBLE){
-			linearCreditDebit.setVisibility(LinearLayout.GONE);
-			linearChekingAccount.setVisibility(LinearLayout.VISIBLE);
-		}
-		else{
-			linearChekingAccount.setVisibility(LinearLayout.GONE);
-			linearCreditDebit.setVisibility(LinearLayout.VISIBLE);
-		}
-
-	}
-	
 	public void selectCardType(View view){
-		DialogSelectableOF selectable=new DialogSelectableOF(this);
+		ArrayList<String> list=new ArrayList<String>();
+		list.add("Visa");
+		list.add("Mastercard");
+		list.add("Discover");
+		list.add("American Express");
+		final DialogSelectableOF selectable=new DialogSelectableOF(this);
 		selectable.setTitleDialog("Select Card Type");
-		selectable.setTextButton(null);
+		selectable.setOptionsSelectables(list);
+		selectable.setTextButton("Save");
+		selectable.setCloseOnSelectedItem(false);
+		selectable.setButtonListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				selectable.dismissDialog();
+			}
+		});
 		selectable.showDialog();
 	}
 	
@@ -189,6 +204,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
+				Log.d("Cambia spinner", position+"");
 				switch (position) {
 				case 0:
 					linearChekingAccount.setVisibility(LinearLayout.GONE);
@@ -213,32 +229,149 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	}
 	
 	public void showExpirationDate(View view){
-		int[] dayMonthYear=rowExpirationDate.getDayMonthYear();
-		DatePickerDialog date=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-			
-			@Override
-			public void onDateSet(DatePicker view, int year, int monthOfYear,
-					int dayOfMonth) {
-				rowExpirationDate.setValueInfo((monthOfYear+1)+"/"+dayOfMonth+"/"+year);	
-			}
-		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
-		date.getDatePicker().setCalendarViewShown(false);
-		date.show();
+		int[] monthYear=rowExpirationDate.getMonthYear();
+		mDay=0;
+		mMonth=monthYear[0];
+		mYear=monthYear[1];
+		showDialog(DATE_DIALOG_ID);
+		mDialog.setTitle(CalendarEvent.getFormatDate(4, (mMonth)+"/"+mYear, "MM/yyyy"));
 	}
 	
-	private DatePicker findDatePicker(ViewGroup group) {
-        if (group != null) {
-            for (int i = 0, j = group.getChildCount(); i < j; i++) {
-                View child = group.getChildAt(i);
-                if (child instanceof DatePicker) {
-                    return (DatePicker) child;
-                } else if (child instanceof ViewGroup) {
-                    DatePicker result = findDatePicker((ViewGroup) child);
-                    if (result != null)
-                        return result;
-                }
-            }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	DatePickerDialog.OnDateSetListener mDateSetListner = new DatePickerDialog.OnDateSetListener() {
+		
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear,
+                int dayOfMonth) {
+
+            mYear = year;
+            mMonth = monthOfYear;
+            mDay = dayOfMonth;
+            updateDate();
+        }
+    };
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        switch (id) {
+        case DATE_DIALOG_ID:
+            mDialog = this.customDatePicker();
+            return mDialog;
         }
         return null;
-    } 
+    }
+
+    @SuppressWarnings("deprecation")
+    protected void updateDate() {
+        int localMonth = (mMonth + 1);
+        String monthString = localMonth < 10 ? "0" + localMonth : Integer
+                .toString(localMonth);
+        String localYear = Integer.toString(mYear);
+        rowExpirationDate.setValueInfo(monthString+"/"+localYear);
+    }
+
+    private DatePickerDialog customDatePicker() {
+        DatePickerDialog dpd = new DatePickerDialog(this, mDateSetListner,
+                mYear, mMonth, mDay);
+        try {
+            Field[] datePickerDialogFields = dpd.getClass().getDeclaredFields();
+            for (Field datePickerDialogField : datePickerDialogFields) {
+                if (datePickerDialogField.getName().equals("mDatePicker")) {
+                    datePickerDialogField.setAccessible(true);
+                    DatePicker datePicker = (DatePicker) datePickerDialogField
+                            .get(dpd);
+                    datePicker.setCalendarViewShown(false);
+                    datePicker.init(mYear, mMonth, mDay, new DatePicker.OnDateChangedListener() {
+						@Override
+						public void onDateChanged(DatePicker view, int year, int monthOfYear,
+								int dayOfMonth) {
+							mDialog.setTitle(CalendarEvent.getFormatDate(4, (monthOfYear+1)+"/"+year, "MM/yyyy"));							
+						}
+					});
+                    Field datePickerFields[] = datePickerDialogField.getType()
+                            .getDeclaredFields();
+                    for (Field datePickerField : datePickerFields) {
+                        if ("mDayPicker".equals(datePickerField.getName())
+                                || "mDaySpinner".equals(datePickerField
+                                        .getName())) {
+                            datePickerField.setAccessible(true);
+                            Object dayPicker = new Object();
+                            dayPicker = datePickerField.get(datePicker);
+                            ((View) dayPicker).setVisibility(View.GONE);
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {
+        }
+        return dpd;
+    }
+    
+    public ArrayList<String> getArrayStates(){
+    	ArrayList<String> list=new ArrayList<String>();
+    	list.add("AL");
+    	list.add("AK");
+    	list.add("AZ");
+    	list.add("AR");
+    	list.add("CA");
+    	list.add("CO");
+    	list.add("CT");
+    	list.add("DE");
+    	list.add("DC");
+    	list.add("FL");
+    	list.add("GA");
+    	list.add("HI");
+    	list.add("ID");
+    	list.add("IL");
+    	list.add("IN");
+    	list.add("IA");
+    	list.add("KS");
+    	list.add("KY");
+    	list.add("LA");
+    	list.add("ME");
+    	list.add("MD");
+    	list.add("MA");
+    	list.add("MI");
+    	
+    	list.add("MN");
+    	list.add("MS");
+    	list.add("MO");
+    	list.add("MT");
+    	list.add("NE");
+    	list.add("NV");
+    	list.add("NH");
+    	list.add("NJ");
+    	list.add("NM");
+    	list.add("NY");
+    	list.add("NC");
+    	list.add("ND");
+    	list.add("OH");
+    	list.add("OK");
+    	list.add("OR");
+    	list.add("PA");
+    	list.add("RI");
+    	list.add("SC");
+    	list.add("SD");
+    	list.add("TN");
+    	list.add("TX");
+    	list.add("UT");
+    	list.add("VT");
+    	list.add("VA");
+    	
+    	list.add("WA");
+    	list.add("WV");
+    	list.add("WI");
+    	list.add("WY");
+  return list;	
+    }
+	
 }

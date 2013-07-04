@@ -79,7 +79,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	public void completeAccountDetails(){
 			RowInformation section3=new RowInformation(getApplicationContext());
-			section3.setNameInfo("Sheduled Payments");
+			section3.setNameInfo(getResources().getString(R.string.scheduled_payments));
 			section3.setColorFontRowInformation(Color.GRAY);
 			section3.setVisibleArrow(true);
 			

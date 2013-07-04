@@ -46,6 +46,7 @@ public class Server {
 	public static final String FORGOT_PASSWORD=HOST+"/myomegafi/api/v1/forgottenpasswords/validateusername";
 	public static final String FORGOT_VALIDATE_QUESTIONS=HOST+"/myomegafi/api/v1/forgottenpasswords/validatesecurityquestions";
 	public static final String CALENDAR_SERVICE=HOST+"/myomegafi/api/v1/calendar";
+	public static final String CHANGE_PASSWORD_SERVICE=HOST+"/myomegafi/api/v1/forgottenpasswords/changepassword";
 	public static int TIME_OUT=20000;
 	private HttpClient clientRequest;
 	private HttpContext contextHttp;
@@ -66,7 +67,7 @@ public class Server {
 	
 	public Object[]  makeRequestPost(String url,List<NameValuePair> data){
 		Object[] statusContent=new Object[2];
-		statusContent[0]=137;
+		statusContent[0]=0;
 		JSONObject jsonResponse = null;
 		HttpPost post=new HttpPost(url);
 		HttpConnectionParams.setConnectionTimeout(post.getParams(), TIME_OUT);
@@ -75,6 +76,7 @@ public class Server {
 			post.setEntity(new UrlEncodedFormEntity(data));
 			HttpResponse response=clientRequest.execute(post,contextHttp);
 			statusContent[0]=response.getStatusLine().getStatusCode();
+			Log.d("Status", statusContent[0]+" respuesta");
 			logCookies();
 			jsonResponse=this.fromResponseToJSON(response);
 		} catch (UnsupportedEncodingException e) {
@@ -93,7 +95,7 @@ public class Server {
 	
 	public Object[] makeRequestGet(String url){
 		Object[] responseObject=new Object[2];
-		responseObject[0]=137;
+		responseObject[0]=0;
 		JSONObject jsonResponse=null;
 		HttpGet get=new HttpGet(url);
 		get.addHeader("Content-Type", "text/plain");
@@ -113,7 +115,7 @@ public class Server {
 	
 	public Object[] makeRequestGetJSONArray(String url){
 		Object[] responseObject=new Object[2];
-		responseObject[0]=137;
+		responseObject[0]=0;
 		JSONArray jsonResponse=null;
 		HttpGet get=new HttpGet(url);
 		get.addHeader("Content-Type", "text/plain");
@@ -272,9 +274,10 @@ public class Server {
 	        if (statusCode == 200) {
 	            HttpEntity entity = response.getEntity();
 	            byte[] bytes = EntityUtils.toByteArray(entity);
-	 
+	            BitmapFactory.Options opt = new BitmapFactory.Options();
+	            opt.inPurgeable = true;
 	            bitmap = BitmapFactory.decodeByteArray(bytes, 0,
-	                    bytes.length);
+	                    bytes.length,opt);
 	        } else {
 	            throw new IOException("Download failed, HTTP response code "
 	                    + statusCode + " - " + statusLine.getReasonPhrase());

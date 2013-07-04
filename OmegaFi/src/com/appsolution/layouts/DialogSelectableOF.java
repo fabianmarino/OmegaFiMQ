@@ -72,9 +72,14 @@ public class DialogSelectableOF {
 			if(option==optionsSelectables.get(optionsSelectables.size()-1)){
 				rowChecked.setBorderBottom(false);
 			}
-			String[] values=option.split(",");
-			rowChecked.setNameInfo(values[0]);
-			rowChecked.setSubnameInfo(values[1]);
+			if(option.contains(",")){
+				String[] values=option.split(",");
+				rowChecked.setNameInfo(values[0]);
+				rowChecked.setSubnameInfo(values[1]);
+			}
+			else{
+				rowChecked.setNameInfo(option);
+			}
 			linearSelectables.addView(rowChecked);
 		}
 	}

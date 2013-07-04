@@ -24,8 +24,6 @@ public class Officer {
 	private String email;
 	private String hostPhoto;
 	private String urlPhoto;
-	private Bitmap bitMap;
-	private ImageView imagePhoto;
 	AsyncTask<Void, Integer, Boolean> task;
 	
 	
@@ -45,6 +43,7 @@ public class Officer {
 			if(phones!=null){
 				telephone=phones.getJSONObject(0).getJSONObject("phone_number").getString("number");
 			}
+			hostPhoto=null;
 			if(!individual.isNull("profile_picture")){
 				hostPhoto=individual.getJSONObject("profile_picture").getString("source");
 				if(hostPhoto.equals("OmegaFi")){
@@ -70,60 +69,7 @@ public class Officer {
 		}
 	}
 	
-	public void chargePhotoFromUrl(){
-		if(task==null){
-				task=new AsyncTask<Void, Integer, Boolean>(){
-					Bitmap bitAux=null;
-					@Override
-					protected Boolean doInBackground(Void... params) {
-						try {
-							if(hostPhoto!=null){
-								if(hostPhoto.equals("OmegaFi")){
-									bitAux=OmegaFiActivity.servicesOmegaFi.downloadBitmap(urlPhoto);
-								}
-								else{
-									bitAux=OmegaFiActivity.loadImageFromURL(urlPhoto);
-								}
-							}
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						return true;
-					}
-					
-					@Override
-					protected void onPostExecute(Boolean result) {
-						bitMap=bitAux;
-						Log.d("Bitmap", getCompleteName());
-						if(bitMap!=null&&imagePhoto!=null){
-							Log.d("En photo", getCompleteName());
-							imagePhoto.setImageBitmap(bitMap);
-							imagePhoto.refreshDrawableState();
-						}
-					}
-					
-				};
-				task.execute();
-			}
-		}
 	
-	public void chargePhoto(){
-		if(bitMap!=null&&imagePhoto!=null){
-			imagePhoto.setImageBitmap(bitMap);
-		}
-		else{
-			this.chargePhotoFromUrl();
-		}
-	}
-	
-	public void chargePhotoFromBitmap(){
-		if(bitMap!=null&&imagePhoto!=null){
-			imagePhoto.setImageBitmap(bitMap);
-		}
-		
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -137,16 +83,8 @@ public class Officer {
 		return email;
 	}
 
-	public Bitmap getBitMap() {
-		return bitMap;
-	}
-
 	public String getOfficeType() {
 		return officeType;
-	}
-
-	public String getUrl() {
-		return urlPhoto;
 	}
 
 	public String getFirstname() {
@@ -173,16 +111,15 @@ public class Officer {
 		}
 		return shortName;
 	}
-
-	public void setImagePhoto(ImageView imagePhoto) {
-		this.imagePhoto = imagePhoto;
-		if(bitMap!=null){
-			this.imagePhoto.setImageBitmap(bitMap);
-		}
-	}
 	
 	public String getPhoneNormal(){
 		return telephone.replace("-", "");
 	}
+
+	public String getHostPhoto() {
+		return hostPhoto;
+	}
+	
+	
 	
 }
