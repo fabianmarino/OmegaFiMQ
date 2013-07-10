@@ -21,6 +21,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
@@ -276,7 +277,14 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			Intent goToHome=new Intent(this, HomeActivity.class);
 			goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			finish();
+			try {
+				finalize();
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			startActivity(goToHome);
+			
 		}
 		else{
 			slidingMenu.showContent(true);
@@ -328,6 +336,12 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
 		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		                		finish();
+		                		try {
+									finalize();
+								} catch (Throwable e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 		                		OmegaFiActivity.servicesOmegaFi.getHome().clearHomeServices();
 		                		startActivity(backToLogin);
 		                    }
@@ -422,6 +436,13 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	    double y = Math.pow(dm.heightPixels/dm.ydpi,2);
 	    double screenInches = Math.sqrt(x+y);
 	    return screenInches;
+	}
+	
+	protected void refreshActivity(){
+		int orientation=getRequestedOrientation();
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		setRequestedOrientation (orientation);
 	}
 	
 }

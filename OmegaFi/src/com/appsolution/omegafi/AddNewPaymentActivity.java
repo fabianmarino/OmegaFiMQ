@@ -127,7 +127,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		LayoutParams paramCity=new LayoutParams(0, LayoutParams.WRAP_CONTENT, 5);
 		rowCity.setLayoutParams(paramCity);
 		
-		rowSpinner=new SpinnerNameTopInfo(this);
+		rowSpinner=new SpinnerNameTopInfo(getApplicationContext());
 		rowSpinner.setNameInfoTop("State");
 		rowSpinner.setListSpinner(getArrayStates());
 		LayoutParams paramsState=new LayoutParams(0, LayoutParams.FILL_PARENT,2);
@@ -168,10 +168,12 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		selectable.setOptionsSelectables(list);
 		selectable.setTextButton("Save");
 		selectable.setCloseOnSelectedItem(false);
+		selectable.setSelectedItem(rowSelectCardType.getValueInfo());
 		selectable.setButtonListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				rowSelectCardType.setValueInfo(selectable.getItemSelected());
 				selectable.dismissDialog();
 			}
 		});

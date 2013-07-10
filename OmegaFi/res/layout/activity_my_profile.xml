@@ -240,13 +240,13 @@
                     android:id="@+id/spinnerPrefixProfile" 
                     android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/white_input_spinner"
                     />
-                <EditText android:layout_width="fill_parent"
+                <EditText android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.7"
                     android:text="First Name"
                     style="@style/EditTextLoginNormal"/>
             </TableRow>
@@ -276,7 +276,7 @@
                     android:layout_height="fill_parent"
                     android:layout_weight="0.2"
                     android:layout_gravity="center_vertical"
-                    android:background="@drawable/white_input_spinner"
+                    android:background="@drawable/white_input"
                     />
             </TableRow>
             </TableLayout>
@@ -285,7 +285,15 @@
                 android:padding="@dimen/padding_5dp">
                 <EditText android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Impersonal First Name"
+                    android:text="Informal First Name"
+                    style="@style/EditTextLoginNormal"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_5dp">
+                <EditText android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Parent's Name"
                     style="@style/EditTextLoginNormal"/>
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
@@ -305,20 +313,22 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_5dp"
                 android:weightSum="1">
-                <EditText android:layout_width="fill_parent"
+            	<EditText
+            	    android:id="@+id/editCollegeEntry" 
+            	    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="College Entry Date"
                     android:editable="false"
+                    android:onClick="showCalendarEntryDate"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.5"
-                    style="@style/EditTextLoginNormal"/>
-                <EditText android:layout_width="fill_parent"
+                    style="@style/EditTextLoginNotEditable"/>
+                <Spinner android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Graduation Year"
                     android:layout_marginLeft="2dp"
-                    android:editable="false"
                     android:layout_weight="0.5"
-                    style="@style/EditTextLoginNormal"/>
+                    style="@style/EditTextLoginNotEditable"/>
             </TableRow>
             </TableLayout>
         </LinearLayout>

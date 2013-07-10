@@ -92,6 +92,11 @@ public class RowCheckGroup {
 	public String getItemSelected() {
 		return itemSelected;
 	}
+	
+	public String getItemSelectedSubInfo(){
+		Log.d("RowSelected", rowSelected.getNameSubInfo());
+		return rowSelected.getNameSubInfo();
+	}
 
 	public RowCheckOmegaFi getRowSelected() {
 		return rowSelected;
@@ -107,7 +112,8 @@ public class RowCheckGroup {
 	
 	public void setSelectedItem(String item){
 		for (RowCheckOmegaFi check:listRowsChecked) {
-			if(check.getItemRow().equals(item)){
+			String checkString=check.getItemRow();
+			if(equalsStrings(checkString, item)){
 				setSelectedIndex(listRowsChecked.indexOf(check));
 			}
 		}
@@ -120,6 +126,14 @@ public class RowCheckGroup {
 			check.getTextSubNameInfo().setTypeface(check.getTextNameInfo().getTypeface());
 			check.setTextColor(Color.BLACK);
 		}
+	}
+	
+	public static boolean equalsStrings(String cad1, String cad2){
+		String aux1=cad1.replace("\n", "");
+		aux1=aux1.replace(" ", "");
+		String aux2=cad2.replace("\n", "");
+		aux2=aux2.replace(" ", "");
+		return aux1.equals(aux2);
 	}
 	
 }

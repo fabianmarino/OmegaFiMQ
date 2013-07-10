@@ -20,12 +20,14 @@ public class PayNowActivity extends OmegaFiActivity {
 
 	private int enteroTest=0;
 	private RowInformation rowDate;
+	private RowInformation rowPaymentMethod;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pay_now);
 		rowDate=(RowInformation)findViewById(R.id.rowSelectDatePay);
+		rowPaymentMethod=(RowInformation)findViewById(R.id.selectPaymentMethod);
 	}
 
 	@Override
@@ -68,6 +70,8 @@ public class PayNowActivity extends OmegaFiActivity {
 			
 			@Override
 			public void onClick(View v) {
+				Log.d("set value", selectable.getItemSelectedSubInfo());
+				rowPaymentMethod.setValueInfo(selectable.getItemSelectedSubInfo());
 				selectable.dismissDialog();
 			}
 		});

@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.logic.Server;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
@@ -97,17 +98,8 @@ public class UserContactLayout extends RelativeLayout {
 		OmegaFiActivity.loadImageFromURL(url, imageProfile);
 	}
 	
-	public void chargeImageFromUrlAsync(final String url){
-		AsyncTask<Void, Integer, Boolean> async=new AsyncTask<Void, Integer, Boolean>() {
-
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				OmegaFiActivity.loadImageFromURL(url, imageProfile);
-				return true;
-			}
-
-		
-		};
+	public void chargeImageFromUrlAsync(String source, String url){
+		Server.chargeBitmapInImageView(source, url, imageProfile);
 	}
 	
 	public void chargeImageTest(){
@@ -160,5 +152,7 @@ public class UserContactLayout extends RelativeLayout {
 	public void setBlackArrow(){
 		imageArrow.setImageResource(R.drawable.right_arrow_1);
 	}
+	
+	
 	
 }

@@ -14,7 +14,8 @@
         <activity
             android:name="com.appsolution.omegafi.MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -30,53 +31,57 @@
         <activity
             android:name="com.appsolution.omegafi.AccountActivity"
             android:label="@string/title_activity_account"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.MakePaymentActivity"
             android:label="@string/title_activity_make_payment"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.SelectCredCardActivity"
             android:label="@string/title_activity_select_cred_card"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.CardDetailsActivity"
             android:label="@string/title_activity_card_details"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.SetupAutoPay"
             android:label="@string/title_activity_setup_auto_pay"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.EditCardInformation"
             android:label="@string/title_activity_edit_card_information"
-            android:windowSoftInputMode="stateHidden" >
-        </activity>
-        <activity
-            android:name="com.appsolution.omegafi.AddNewCardActivity"
-            android:label="@string/title_activity_add_new_card"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.PayNowActivity"
             android:label="@string/title_activity_pay_now"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.HistoryActivity"
             android:label="@string/title_activity_history"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.OpenRequestActivity"
             android:label="@string/title_activity_open_request"
             android:parentActivityName="com.appsolution.omegafi.OmegaFiActivity"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.appsolution.omegafi.OmegaFiActivity"
@@ -86,7 +91,8 @@
             android:name="com.appsolution.omegafi.OpenRequestLoginActivity"
             android:label="@string/title_activity_open_request"
             android:parentActivityName="com.appsolution.omegafi.OmegaFiActivity"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.appsolution.omegafi.OmegaFiActivity"
@@ -95,122 +101,146 @@
         <activity
             android:name="com.appsolution.omegafi.AddNewPaymentActivity"
             android:label="@string/title_activity_add_new_payment"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.AutoPayActivity"
             android:label="@string/title_activity_auto_pay"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.AutoPayEndDateActivity"
             android:label="@string/title_activity_auto_pay_end_date"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.AutoPayPaymentDateActivity"
             android:label="@string/title_activity_auto_pay_payment_date"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.AutoPaymentAmountActivity"
             android:label="@string/title_activity_payment_amount"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ScheduledPaymentsActivity"
             android:label="@string/title_activity_scheduled_payments"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ScheduledPaymentsDetailActivity"
             android:label="@string/title_activity_scheduled_payments_detail"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.StatementsActivity"
             android:label="@string/title_activity_statements"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ScheduleChargesActivity"
             android:label="@string/title_activity_schedule_charges"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.OfficerMemberDetailActivity"
             android:label="@string/title_activity_officer_member_detail"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.NewsOmegaFiActivity"
             android:label="@string/title_activity_news_omega_fi"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.CalendarActivity"
             android:label="@string/title_activity_calendar"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.AnnouncementsActivity"
             android:label="@string/title_activity_announcements"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.AnnouncementDetailActivity"
             android:label="@string/title_activity_announcement_detail"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.TermsActivity"
             android:label="@string/title_activity_terms"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.PrivacyActivity"
             android:label="@string/title_activity_privacy"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.MyProfileActivity"
             android:label="@string/title_activity_my_profile"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ListMembersActivity"
             android:label="@string/title_activity_list_members"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ForgotLoginActivity"
             android:label="@string/title_activity_forgot_login"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.OmegaFiLoginActivity"
             android:label="@string/title_activity_omega_fi_login"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ForgotUserNameActivity"
             android:label="@string/title_activity_forgot_user_name"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ForgotPwQuestionsActivity"
             android:label="@string/title_activity_forgot_pw_questions"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.ResetPasswordActivity"
             android:label="@string/title_activity_reset_password"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
         </activity>
         <activity
             android:name="com.appsolution.omegafi.SplashOmegaFiActivity"

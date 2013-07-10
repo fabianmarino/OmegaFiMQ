@@ -95,6 +95,12 @@ public class AccountLayout extends LinearLayout{
 			e.printStackTrace();
 		}
 	}
+
+	public int getIdAccount() {
+		return idAccount;
+	}
+	
+	
 	
 
 

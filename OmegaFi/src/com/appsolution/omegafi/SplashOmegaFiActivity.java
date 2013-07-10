@@ -67,51 +67,51 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		
 		@Override
 		protected Boolean doInBackground(Void... params) {
-//			status=(Integer)OmegaFiActivity.servicesOmegaFi.getHome().getProfile().chargeProfileData()[0];
-//			if(status==200){
-//				Message msg=new Message();
-//				msg.obj=10;
-//				handlerProgress.sendMessage(msg);
-//				OmegaFiActivity.loadImageFromURL(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getUrlPhotoProfile(), imageContact);
-//				msg=new Message();
-//				msg.obj=20;
-//				handlerProgress.sendMessage(msg);
-//				OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().chargeAccounts();
-//				msg=new Message();
-//				msg.obj=50;
-//				handlerProgress.sendMessage(msg);
-//				OmegaFiActivity.servicesOmegaFi.getHome().getChapters().chargeChapters();
-//				Log.d("first chapter", OmegaFiActivity.servicesOmegaFi.getHome().getChapters().getIdChapter(0)+"");
-//				OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().chargeOfficers(
-//						OmegaFiActivity.servicesOmegaFi.getHome().getChapters().getIdChapter(0));			
-//				msg=new Message();
-//				msg.obj=50;
-//				handlerProgress.sendMessage(msg);
-//				OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().chargeEvents();
-//				msg=new Message();
-//				msg.obj=60;
-//				handlerProgress.sendMessage(msg);
-//				Log.d("url", OmegaFiActivity.servicesOmegaFi.getForgotLogin().getUrlFeed());
-//				OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().chargeNewsFeed(OmegaFiActivity.servicesOmegaFi.getForgotLogin().getUrlFeed());
-//				msg=new Message();
-//				msg.obj=60;
-//				handlerProgress.sendMessage(msg);
-//				
-//				msg=new Message();
-//				msg.obj=99;
-//				handlerProgress.sendMessage(msg);
-//			}
-			for (int i = 0; i < 100; i+=5) {
-				try {
-					Thread.sleep(150);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			status=(Integer)OmegaFiActivity.servicesOmegaFi.getHome().getProfile().chargeProfileData()[0];
+			if(status==200){
 				Message msg=new Message();
-				msg.obj=i;
+				msg.obj=10;
+				handlerProgress.sendMessage(msg);
+				OmegaFiActivity.loadImageFromURL(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getUrlPhotoProfile(), imageContact);
+				msg=new Message();
+				msg.obj=20;
+				handlerProgress.sendMessage(msg);
+				OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().chargeAccounts();
+				msg=new Message();
+				msg.obj=50;
+				handlerProgress.sendMessage(msg);
+				OmegaFiActivity.servicesOmegaFi.getHome().getChapters().chargeChapters();
+				Log.d("first chapter", OmegaFiActivity.servicesOmegaFi.getHome().getChapters().getIdChapter(0)+"");
+				OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().chargeOfficers(
+						OmegaFiActivity.servicesOmegaFi.getHome().getChapters().getIdChapter(0));			
+				msg=new Message();
+				msg.obj=50;
+				handlerProgress.sendMessage(msg);
+				OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().chargeEvents();
+				msg=new Message();
+				msg.obj=60;
+				handlerProgress.sendMessage(msg);
+				Log.d("url", OmegaFiActivity.servicesOmegaFi.getForgotLogin().getUrlFeed());
+				OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().chargeNewsFeed(OmegaFiActivity.servicesOmegaFi.getForgotLogin().getUrlFeed());
+				msg=new Message();
+				msg.obj=60;
+				handlerProgress.sendMessage(msg);
+				
+				msg=new Message();
+				msg.obj=99;
 				handlerProgress.sendMessage(msg);
 			}
+//			for (int i = 0; i < 100; i+=5) {
+//				try {
+//					Thread.sleep(150);
+//				} catch (InterruptedException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				Message msg=new Message();
+//				msg.obj=i;
+//				handlerProgress.sendMessage(msg);
+//			}
 			return true;
 		}
 		
@@ -127,29 +127,29 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		
 		@Override
 		protected void onPostExecute(Boolean result) {
-			Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
-			finish();
-			startActivity(homeActivity);
-//			if(status!=200){
-//				final DialogInformationOF of=new DialogInformationOF(SplashOmegaFiActivity.this);
-//				of.setMessageDialog("Web service is temporarily unavailable");
-//				of.setButtonListener(new View.OnClickListener() {
-//					
-//					@Override
-//					public void onClick(View v) {
-//						of.dismissDialog();
-//						finish();
-//						backToLogin();
-//					}
-//					
-//				});
-//				of.showDialog();
-//			}
-//			else{
-//				Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
-//				finish();
-//				startActivity(homeActivity);
-//			}
+//			Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
+//			finish();
+//			startActivity(homeActivity);
+			if(status!=200){
+				final DialogInformationOF of=new DialogInformationOF(SplashOmegaFiActivity.this);
+				of.setMessageDialog("Web service is temporarily unavailable");
+				of.setButtonListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						of.dismissDialog();
+						finish();
+						backToLogin();
+					}
+					
+				});
+				of.showDialog();
+			}
+			else{
+				Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
+				finish();
+				startActivity(homeActivity);
+			}
 		}
 	}
 	
@@ -159,5 +159,6 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		startActivity(backToLogin);
 		finish();
 	}
+	
 	
 }

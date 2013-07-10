@@ -9,8 +9,6 @@ import org.xml.sax.SAXException;
 
 import android.util.Log;
 
-import com.appsolution.layouts.EventsNewsAdapter;
-
 import nl.matshofman.saxrssreader.RssFeed;
 import nl.matshofman.saxrssreader.RssItem;
 import nl.matshofman.saxrssreader.RssReader;

@@ -7,12 +7,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.Html;
+import android.text.Layout;
 import android.text.Spannable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ public class EventNewsContent extends LinearLayout {
 	private TextView titleNewEvent;
 	private TextView dateNewEvent;
 	private TextView descriptionNewEvent;
+	private int linesTitle=0;
+	private int descriptionLines=0;
 	
 	public EventNewsContent(Context context) {
 		super(context);
@@ -61,6 +65,7 @@ public class EventNewsContent extends LinearLayout {
 		dateNewEvent=(TextView)findViewById(R.id.dateEventNewOmegaFi);
 		dateNewEvent.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
 		dateNewEvent.setClickable(true);
+		dateNewEvent.setVisibility(View.GONE);
 		descriptionNewEvent=(TextView)findViewById(R.id.descriptionNewOrEvent);
 		descriptionNewEvent.setClickable(true);
 		descriptionNewEvent.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
@@ -72,15 +77,23 @@ public class EventNewsContent extends LinearLayout {
 	}
 	
 	public void setDateEventNew(String details){
-		dateNewEvent.setText(details);
+		if(details!=null){
+			if(!details.isEmpty()){
+				dateNewEvent.setText(details);
+				dateNewEvent.setVisibility(View.VISIBLE);
+				}
+		}
 	}
 	
 	public void setDescriptionNewEvent(String description){
+		Log.d("description", description);
 		descriptionNewEvent.setText(description);
+		this.truncateNewOrEvent();
 	}
 	
 	public void setDescriptionHtmlNewEvent(String description){
 		descriptionNewEvent.setText(Html.fromHtml(description));
+		this.truncateNewOrEvent();
 	}
 	
 	public void setBorderBottom(boolean put){
@@ -102,6 +115,56 @@ public class EventNewsContent extends LinearLayout {
 		titleNewEvent.setOnClickListener(l);
 		dateNewEvent.setOnClickListener(l);
 		super.setOnClickListener(l);
+	}
+	
+	private void truncateNewOrEvent(){
+		Log.d("longitud", descriptionNewEvent.getText().toString());
+		if(descriptionNewEvent.getText().toString().length()>10){
+			ViewTreeObserver vto = this.titleNewEvent.getViewTreeObserver();
+	        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+	
+	            public void onGlobalLayout() {
+	                ViewTreeObserver obs = titleNewEvent.getViewTreeObserver();
+	                obs.removeGlobalOnLayoutListener(this);
+	                linesTitle=titleNewEvent.getLineCount();
+	                ViewTreeObserver vto2 = descriptionNewEvent.getViewTreeObserver();
+	                vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+	
+	                    public void onGlobalLayout() {
+	                        ViewTreeObserver obs = descriptionNewEvent.getViewTreeObserver();
+	                        obs.removeGlobalOnLayoutListener(this);
+	                        int linesDescription=4-(linesTitle-1);
+	                        if(linesTitle==2&&dateNewEvent.getVisibility()==View.VISIBLE){
+	                        	linesDescription--;
+	                        }
+	                		if(dateNewEvent.getVisibility()==View.GONE&&linesTitle==1){
+	                			linesDescription++;
+	                		}
+	                        descriptionLines=descriptionNewEvent.getLineCount();
+	                        Layout layout = descriptionNewEvent.getLayout();
+	                        String text = descriptionNewEvent.getText().toString();
+	                        int start=0;
+	                        int end;
+	                        StringBuilder textDescription=new StringBuilder();
+	                        for (int i=0; i<descriptionNewEvent.getLineCount()&&i<linesDescription; i++) {
+	                            end = layout.getLineEnd(i);
+	                            textDescription.append(text.substring(start,end));
+	                            start = end;
+	                        }
+	                    	if(textDescription.charAt(textDescription.length()-1)==' '){
+	                        	textDescription.replace(textDescription.length()-1, textDescription.length(), "...");
+	                        }
+	                        else{
+	                        	textDescription.append("...");
+	                        }
+                        
+	                        descriptionNewEvent.setText(Html.fromHtml(textDescription.toString()));
+	                    }
+	                });
+	
+	            }
+	        });
+		}
 	}
 
 }

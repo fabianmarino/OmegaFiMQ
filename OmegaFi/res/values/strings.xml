@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">OmegaFi</string>
+    <string name="app_name">Services OmegaFi</string>
     <string name="forgot_user">Forgot Login Info</string>
     <string name="save_username">Save Username</string>
     <string name="omega_img">Image Omega Fi</string>
@@ -54,6 +54,7 @@
 	<string name="procesing_state">Processing</string>
 	<string name="pending_state">Pending</string>
 	<string name="scheduled_payments">Scheduled Payments</string>
+	<string name="scheduled_of_charges">Scheduled of Charges</string>
 	<string name="welcome_to_myomegafi">Welcome to myOmegaFi</string>
 	<string name="header_questions_forgot_password">Please answer the following questions in order to reset your password.</string>
 	<string name="please_wait">Please wait...</string>

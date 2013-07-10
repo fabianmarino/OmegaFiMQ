@@ -15,6 +15,7 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -76,31 +77,35 @@ public class EventsNewsAdapter extends PagerAdapter {
     }  
   
     @Override  
-    public Object instantiateItem(View collection, int position) {        
+    public Object instantiateItem(View collection, int position) {
+    	final CalendarEvent newEvent=listaEventsOrNews.get(position);
     	EventNewsContent event=new EventNewsContent(context);
-    	event.setTitleNewEvent(listaEventsOrNews.get(position).getTitle());
-    	if(listaEventsOrNews.get(position).getBeginDate().length()>=10){
-    		event.setDateEventNew(CalendarEvent.getFormatDate(0, listaEventsOrNews.get(position).getBeginDate().substring(0, 10),"yyyy/MM/dd"));
+    	event.setTitleNewEvent(newEvent.getTitle());
+    	if(newEvent.getBeginDate().length()>=10){
+    		event.setDateEventNew(CalendarEvent.getFormatDate(0, newEvent.getBeginDate().substring(0, 10),"yyyy/MM/dd"));
     	}
     	else{
     		event.setDateEventNew("");
     	}
-    	if(listaEventsOrNews.get(position).getDescription()!=null){
+    	Log.d("description adapter", newEvent.getDescription());
+    	if(newEvent.getDescription()!=null){
     		if(isHTML){
-    			event.setDescriptionHtmlNewEvent(listaEventsOrNews.get(position).getDescription());
+    			event.setDescriptionHtmlNewEvent(newEvent.getDescription());
     		}
     		else{
-    			event.setDescriptionNewEvent(listaEventsOrNews.get(position).getDescription());
+    			event.setDescriptionNewEvent(newEvent.getDescription());
     		}
     	}
-    	event.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("http://omegafi.com"));
-				context.startActivity(i);
-			}
-		});
+    	if(newEvent.getLinkUrl()!=null){
+	    	event.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse(newEvent.getLinkUrl()));
+					context.startActivity(i);
+				}
+			});
+    	}
         ((ViewPager) collection).addView(event);  
         return event;  
     }  

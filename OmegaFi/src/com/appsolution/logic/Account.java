@@ -1,9 +1,242 @@
 package com.appsolution.logic;
 
+import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Account {
 
-	public Account() {
-		// TODO Auto-generated constructor stub
+	private int id;
+	private String firstName;
+	private String lastName;
+	private String memberStatus;
+	private boolean autoPay=false;
+	private String nameOrg;
+	private String designationOrg;
+	private String university;
+	private String currentBalance;
+	private String dueOn;
+	private String adjustedBalance;
+	
+	private String creditsLast;
+	private String paymentsLast;
+	private String activityLast;
+	private ArrayList<String> listNotifications;
+	
+	private String sourcePhoto;
+	private String urlPhotoAccount;
+	
+	
+	public Account(JSONObject jsonAccount) {
+		try {
+			id=jsonAccount.getInt("member_id");
+			firstName=jsonAccount.getString("first_name");
+			lastName=jsonAccount.getString("last_name");
+			memberStatus=jsonAccount.getString("member_status");
+			String autoPayAux=jsonAccount.getString("auto_pay");
+			if(!autoPayAux.equalsIgnoreCase("inactive")){
+				autoPay=true;
+			}
+			JSONObject objectOrg=jsonAccount.getJSONObject("organization");
+			nameOrg=objectOrg.getString("name");
+			designationOrg=objectOrg.getString("designation");
+			university=objectOrg.getString("university");
+			
+			currentBalance=jsonAccount.getString("current_balance");
+			JSONObject  lastestStatement=jsonAccount.getJSONObject("latest_statement");
+			dueOn=lastestStatement.getString("due_on");
+			adjustedBalance=jsonAccount.getString("adjusted_balance");
+			
+			creditsLast=jsonAccount.getString("credits_since_last_statement");
+			paymentsLast=jsonAccount.getString("payments_since_last_statement");
+			activityLast=jsonAccount.getString("activity_since_last_statement");
+			
+			JSONArray arrayNotifications=jsonAccount.getJSONArray("account_notifications");
+			
+			for (int i = 0; i < arrayNotifications.length(); i++) {
+				listNotifications=new ArrayList<String>();
+				JSONObject objectNotification=arrayNotifications.getJSONObject(i).getJSONObject("account_notification");
+				listNotifications.add(objectNotification.getString("notification"));
+			}
+			
+			if(!jsonAccount.isNull("profile_picture")){
+				JSONObject profilePhoto=jsonAccount.getJSONObject("profile_picture");
+				sourcePhoto=profilePhoto.getString("source");
+				urlPhotoAccount=profilePhoto.getString("url");
+			}	
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+
+	public String getLastName() {
+		return lastName;
+	}
+
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public String getMemberStatus() {
+		return memberStatus;
+	}
+
+
+	public void setMemberStatus(String memberStatus) {
+		this.memberStatus = memberStatus;
+	}
+
+
+	public boolean isAutoPay() {
+		return autoPay;
+	}
+
+
+	public void setAutoPay(boolean autoPay) {
+		this.autoPay = autoPay;
+	}
+
+
+	public String getNameOrg() {
+		return nameOrg;
+	}
+
+
+	public void setNameOrg(String nameOrg) {
+		this.nameOrg = nameOrg;
+	}
+
+
+	public String getDesignationOrg() {
+		return designationOrg;
+	}
+
+
+	public void setDesignationOrg(String designationOrg) {
+		this.designationOrg = designationOrg;
+	}
+
+
+	public String getUniversity() {
+		return university;
+	}
+
+
+	public void setUniversity(String university) {
+		this.university = university;
+	}
+
+
+	public String getCurrentBalance() {
+		return currentBalance;
+	}
+
+
+	public void setCurrentBalance(String currentBalance) {
+		this.currentBalance = currentBalance;
+	}
+
+
+	public String getDueOn() {
+		if(dueOn.length()>=10){
+			return CalendarEvent.getFormatDate(1, dueOn.substring(0, 10), "yyyy-MM-dd");
+		}
+		else{
+			return null;
+		}
+	}
+
+
+	public void setDueOn(String dueOn) {
+		this.dueOn = dueOn;
+	}
+
+
+	public String getAdjustedBalance() {
+		return adjustedBalance;
+	}
+
+
+	public void setAdjustedBalance(String adjustedBalance) {
+		this.adjustedBalance = adjustedBalance;
+	}
+
+
+	public String getCreditsLast() {
+		return creditsLast;
+	}
+
+
+	public void setCreditsLast(String creditsLast) {
+		this.creditsLast = creditsLast;
+	}
+
+
+	public String getPaymentsLast() {
+		return paymentsLast;
+	}
+
+
+	public void setPaymentsLast(String paymentsLast) {
+		this.paymentsLast = paymentsLast;
+	}
+
+
+	public String getActivityLast() {
+		return activityLast;
+	}
+
+
+	public void setActivityLast(String activityLast) {
+		this.activityLast = activityLast;
+	}
+
+
+	public ArrayList<String> getListNotifications() {
+		return listNotifications;
+	}
+
+
+	public String getSourcePhoto() {
+		return sourcePhoto;
+	}
+
+
+	public String getUrlPhotoAccount() {
+		return urlPhotoAccount;
+	}
+	
+	public String getCompleteName(){
+		return firstName+" "+lastName;
+	}
+	
+	public String getNameOrgDesignationOrg(){
+		return nameOrg+" - "+designationOrg;
+	}
 }

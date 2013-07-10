@@ -64,7 +64,8 @@
                  secom:value_information="03/12/2013"
                  secom:background_value_info="@drawable/white_input_spinner"
                  />
-	        <com.appsolution.layouts.RowInformation 
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/selectPaymentMethod" 
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:onClick="selectPayMethod"

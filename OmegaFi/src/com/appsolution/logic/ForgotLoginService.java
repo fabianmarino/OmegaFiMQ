@@ -109,9 +109,11 @@ public class ForgotLoginService extends ServerContext{
 	}
 	
 	public String getTitleFeed(){
-		String title="";
+		String title="Title News";
 		try {
-			title= this.jsonLoginService.getString("RSSTitle");
+			if(this.jsonLoginService!=null){
+				title= this.jsonLoginService.getString("RSSTitle");
+			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

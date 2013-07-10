@@ -1,21 +1,28 @@
 package com.appsolution.omegafi;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.appsolution.layouts.DialogContactAccount;
 import com.appsolution.layouts.DialogSelectableOF;
+import com.appsolution.layouts.LabelInfoVertical;
 import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionAccountUser;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.layouts.UserContactLayout;
+import com.appsolution.logic.Account;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -24,22 +31,45 @@ import android.view.View.OnClickListener;
 
 public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 
+	
+	private UserContactLayout userContact;
 	private SectionOmegaFi accountContacts;
 	private SectionOmegaFi accountDetails;
 	private Activity activity;
-	private RowToogleOmegaFi toogleAutoPay; 
+	private RowToogleOmegaFi toogleAutoPay;
+	private Bundle accountId;
+	private Account actualAccount;
+	private LabelInfoVertical infoNumberAccount;
+	private LabelInfoVertical infoBalanceDue;
+	
+	private RowInformation rowDueOn;
+	private RowInformation rowPayments;
+	private RowInformation rowCredits;
+	private RowInformation rowDebits;
+	private RowInformation rowCurrentBalance;
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account);
 		activity=this;
+		userContact=(UserContactLayout)findViewById(R.id.userContactAccount);
 		accountContacts=(SectionOmegaFi)findViewById(R.id.sectionAccountContacts);
 		accountDetails=(SectionOmegaFi)findViewById(R.id.sectionAccountDetails);
 		toogleAutoPay=(RowToogleOmegaFi)findViewById(R.id.toogleAutoPay);
 		toogleAutoPay.backgroundActiveForm();
+		infoNumberAccount=(LabelInfoVertical)findViewById(R.id.accountNumberInfo);
+		infoBalanceDue=(LabelInfoVertical)findViewById(R.id.balanceDueInfo);
+		rowDueOn=(RowInformation)findViewById(R.id.rowBalanceDueOn);
+		rowPayments=(RowInformation)findViewById(R.id.rowPaymentsAccount);
+		rowCredits=(RowInformation)findViewById(R.id.rowCreditsAccount);
+		rowDebits=(RowInformation)findViewById(R.id.rowDebitsAccount);
+		rowCurrentBalance=(RowInformation)findViewById(R.id.rowCurrentBalance);
 		this.completeAccountContacts();
 		this.completeAccountDetails();
+		accountId=getIntent().getExtras();
+		this.chargeAccountSelected(accountId.getInt("id"));
 	}
 	
 	@Override
@@ -50,7 +80,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		actionBarCustom.setTitle("ACCOUNT INFORMATION");
 		actionBar.setCustomView(actionBarCustom);
 	}
-	
 	
 	public void completeAccountContacts(){
 		for (int i = 0; i < 5; i++) {
@@ -91,11 +120,12 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section.setColorFontRowInformation(Color.GRAY);
 			section.setVisibleArrow(true);
 			
+			
 			section.setId(101);
 			section.setOnClickListener(this);
 			accountDetails.addView(section);
 			RowInformation section1=new RowInformation(getApplicationContext());
-			section1.setNameInfo("Sheduled of Charges");
+			section1.setNameInfo(getResources().getString(R.string.scheduled_of_charges));
 			section1.setColorFontRowInformation(Color.GRAY);
 			section1.setVisibleArrow(true);
 			
@@ -140,11 +170,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		startActivity(viewPayNow);
 	}
 	
-	public void activityAutoPay(View button){
-		Intent activityAuto=new Intent(this, AutoPayActivity.class);
-		startActivity(activityAuto);
-	}
-	
 	public void goToMyProfile(View user){
 		Intent activityProfile=new Intent(this, MyProfileActivity.class);
 		startActivity(activityProfile);
@@ -160,6 +185,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			break;
 		case 101:
 			Intent viewHistory=new Intent(this, HistoryActivity.class);
+			viewHistory.putExtra("id", actualAccount.getId());
 			startActivity(viewHistory);
 			break;
 		case 104:
@@ -175,11 +201,58 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			break;
 		case 107:
 			Intent viewStatements=new Intent(this, StatementsActivity.class);
+			viewStatements.putExtra("id", actualAccount.getId());
 			startActivity(viewStatements);
 			break;
 		default:
 			break;
 		}
 		
+	}
+	
+	private void chargeAccountSelected(final int id){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			int status=0;
+			JSONObject jsonAccount=null;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Charging Account", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Object[] objectAux=OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().getAccountSelected(id);
+				status=(Integer)objectAux[0];
+				jsonAccount=(JSONObject)objectAux[1];
+				if(jsonAccount!=null){
+					try {
+						actualAccount=new Account(jsonAccount.getJSONObject("account"));
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}	
+				}
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				userContact.chargeImageFromUrlAsync(actualAccount.getSourcePhoto(), actualAccount.getUrlPhotoAccount());
+				userContact.setNameUserProfile(actualAccount.getCompleteName());
+				userContact.setSubTitleProfile(actualAccount.getNameOrgDesignationOrg());
+				userContact.setThirdLine(actualAccount.getUniversity());
+				infoNumberAccount.setValueLabel(actualAccount.getId()+"");
+				infoBalanceDue.setValueLabel("$ "+actualAccount.getAdjustedBalance());
+				rowDueOn.setValueInfo(actualAccount.getDueOn());
+				rowPayments.setValueInfo("$ "+actualAccount.getPaymentsLast());
+				rowCredits.setValueInfo("$ "+actualAccount.getCreditsLast());
+				rowDebits.setValueInfo("$ "+actualAccount.getActivityLast());
+				rowCurrentBalance.setValueInfo("$ "+actualAccount.getCurrentBalance());
+				toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
+			}
+		};
+		
+		task.execute();
 	}
 }

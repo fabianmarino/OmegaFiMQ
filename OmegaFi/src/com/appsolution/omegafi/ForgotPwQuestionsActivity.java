@@ -31,67 +31,67 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 	}
 	
 	private void completeFormQuestions(){
-//		try {
-//			JSONArray array=jsonQuestions.getJSONArray("securityquestions");
-//			JSONObject aux1=array.getJSONObject(0);
-//			question1.setQuestionRow(aux1.getString("securityquestion"));
-			question1.setQuestionRow("What is your Mother's maiden name?");
-//			JSONObject aux2=array.getJSONObject(1);
-//			question2.setQuestionRow(aux2.getString("securityquestion"));
-			question2.setQuestionRow("In what city were you born? ");
-//			JSONObject aux3=array.getJSONObject(2);
-//			question3.setQuestionRow(aux3.getString("securityquestion"));
-			question3.setQuestionRow("What was your first pet's name?");
-//		} catch (JSONException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			JSONArray array=jsonQuestions.getJSONArray("securityquestions");
+			JSONObject aux1=array.getJSONObject(0);
+			question1.setQuestionRow(aux1.getString("securityquestion"));
+//			question1.setQuestionRow("What is your Mother's maiden name?");
+			JSONObject aux2=array.getJSONObject(1);
+			question2.setQuestionRow(aux2.getString("securityquestion"));
+//			question2.setQuestionRow("In what city were you born? ");
+			JSONObject aux3=array.getJSONObject(2);
+			question3.setQuestionRow(aux3.getString("securityquestion"));
+//			question3.setQuestionRow("What was your first pet's name?");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void resetPasswordActivity(View button){
 		if(this.validateAnswers()){
-//			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
-//	
-//				int status=-1;
-//				
-//				@Override
-//				protected void onPreExecute() {
-//					startProgressDialog("Validating answers", getResources().getString(R.string.please_wait));
-//				}
-//				
-//				@Override
-//				protected Boolean doInBackground(Void... params) {
-//					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().sendQuestionResetPassword
-//							(question1.getTextQuestionEdit(), question2.getTextQuestionEdit(), question3.getTextQuestionEdit())[0];
-//					return true;
-//				}
-//				
-//				@Override
-//				protected void onPostExecute(Boolean result) {
-//					stopProgressDialog();
-//					if(status==200){
+			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+	
+				int status=-1;
+				
+				@Override
+				protected void onPreExecute() {
+					startProgressDialog("Validating answers", getResources().getString(R.string.please_wait));
+				}
+				
+				@Override
+				protected Boolean doInBackground(Void... params) {
+					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().sendQuestionResetPassword
+							(question1.getTextQuestionEdit(), question2.getTextQuestionEdit(), question3.getTextQuestionEdit())[0];
+					return true;
+				}
+				
+				@Override
+				protected void onPostExecute(Boolean result) {
+					stopProgressDialog();
+					if(status==200){
 						Intent activityResetPassword=new Intent(ForgotPwQuestionsActivity.this, ResetPasswordActivity.class);
 						startActivity(activityResetPassword);
-//					}
-//					else if(status==422){
-//						final DialogInformationOF dia=new DialogInformationOF(ForgotPwQuestionsActivity.this);
-//						dia.setMessageDialog("Security answers do not match");
-//						dia.setButtonListener(new View.OnClickListener() {
-//							
-//							@Override
-//							public void onClick(View v) {
-//								dia.dismissDialog();		
-//							}
-//						});
-//						dia.showDialog();
-//					}
-//					else{
-//						OmegaFiActivity.showErrorConection(ForgotPwQuestionsActivity.this, status, null);
-//					}
-//					}
-//				
-//			};
-//			task.execute();
+					}
+					else if(status==422){
+						final DialogInformationOF dia=new DialogInformationOF(ForgotPwQuestionsActivity.this);
+						dia.setMessageDialog("Security answers do not match");
+						dia.setButtonListener(new View.OnClickListener() {
+							
+							@Override
+							public void onClick(View v) {
+								dia.dismissDialog();		
+							}
+						});
+						dia.showDialog();
+					}
+					else{
+						OmegaFiActivity.showErrorConection(ForgotPwQuestionsActivity.this, status, null);
+					}
+					}
+				
+			};
+			task.execute();
 		}
 	}
 	

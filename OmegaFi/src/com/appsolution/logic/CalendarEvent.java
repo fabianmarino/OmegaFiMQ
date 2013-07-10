@@ -17,12 +17,14 @@ public class CalendarEvent {
 	private String title;
 	private String description;
 	private String beginDate;
+	private String linkUrl=null;
 	
 	public CalendarEvent(){
 		id=0;
 		title="Title Calendar Event";
 		beginDate="04/03/2014";
 		description="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ";
+		linkUrl=null;
 	}
 	
 	public CalendarEvent(JSONObject json) {
@@ -50,6 +52,7 @@ public class CalendarEvent {
 			title=item.getTitle();
 			description=item.getDescription();
 			beginDate="";
+			linkUrl=item.getLink();
 		}
 	}
 
@@ -104,5 +107,15 @@ public class CalendarEvent {
 		}
 		return fechaAux;
 	}
+
+	public String getLinkUrl() {
+		return linkUrl;
+	}
+
+	public void setLinkUrl(String linkUrl) {
+		this.linkUrl = linkUrl;
+	}
+	
+	
 
 }

@@ -23,13 +23,10 @@ public class SpinnerNameTopInfo extends LinearLayout {
 	private LinearLayout contentAll;
 	private LinearLayout contentView;
 	private Spinner spinner;
-	private Activity parent;
 	
-	public SpinnerNameTopInfo(Activity context){
+	public SpinnerNameTopInfo(Context context){
 		super(context);
-		parent=context;
 		this.initialize();
-		
 	}
 	
 	public SpinnerNameTopInfo(Context context, AttributeSet attrs) {
@@ -47,7 +44,7 @@ public class SpinnerNameTopInfo extends LinearLayout {
 	}
 	
 	private void initialize(){
-		LayoutInflater inflate= (LayoutInflater)parent.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.spinner_name_top_info, this, true);
 		contentAll=(LinearLayout)findViewById(R.id.linearViewNameTopInfoSpinner);
 		nameTopInfo=(TextView)findViewById(R.id.name_info_top_spinner);

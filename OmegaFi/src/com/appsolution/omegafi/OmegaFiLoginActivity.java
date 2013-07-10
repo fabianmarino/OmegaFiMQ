@@ -79,7 +79,7 @@ public class OmegaFiLoginActivity extends Activity {
 	}
 	
 	protected String getSaveUsername(){
-		 return this.getSharedPreferences(OMEGAFI_PREFERENCES, 0).getString(OMEGAFI_PREF_USERNAME, "parent001");
+		 return this.getSharedPreferences(OMEGAFI_PREFERENCES, 0).getString(OMEGAFI_PREF_USERNAME, "");
 	}
 	
 	protected void saveUsername(String username){

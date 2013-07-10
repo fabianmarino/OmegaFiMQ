@@ -19,7 +19,7 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forgot_password);
 		rowSubmitUsername=(RowEditTextSubmit)findViewById(R.id.rowSubmitForgotPassword);
-		rowSubmitUsername.setTextRowEditSubmit("parent001");
+//		rowSubmitUsername.setTextRowEditSubmit("parent001");
 		rowSubmitUsername.onSubmit(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -33,38 +33,38 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 			rowSubmitUsername.setErrorEditText(getResources().getString(R.string.field_not_empty));
 		}
 		else{
-//			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
-//	
-//				Object[] response=null;
-//				int status=-1;
-//				
-//				@Override
-//				protected void onPreExecute() {
-//					rowSubmitUsername.closeKeyBoard();
-//					startProgressDialog("Validating username", getResources().getString(R.string.please_wait));
-//				}
-//				
-//				@Override
-//				protected Boolean doInBackground(Void... params) {
-//					response=OmegaFiActivity.servicesOmegaFi.getForgotLogin().forgotPassword(rowSubmitUsername.getTextEditSubmit());
-//					status=(Integer)response[0];
-//					return true;
-//				}
-//				
-//				@Override
-//				protected void onPostExecute(Boolean result) {
-//					stopProgressDialog();
-//					if(status==200){
+			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+	
+				Object[] response=null;
+				int status=-1;
+				
+				@Override
+				protected void onPreExecute() {
+					rowSubmitUsername.closeKeyBoard();
+					startProgressDialog("Validating username", getResources().getString(R.string.please_wait));
+				}
+				
+				@Override
+				protected Boolean doInBackground(Void... params) {
+					response=OmegaFiActivity.servicesOmegaFi.getForgotLogin().forgotPassword(rowSubmitUsername.getTextEditSubmit());
+					status=(Integer)response[0];
+					return true;
+				}
+				
+				@Override
+				protected void onPostExecute(Boolean result) {
+					stopProgressDialog();
+					if(status==200){
 						Intent activityPwQuestion=new Intent(getApplication(), ForgotPwQuestionsActivity.class);
 						startActivity(activityPwQuestion);
-//					}
-//					else{
-//						OmegaFiActivity.showErrorConection(ForgotPasswordActivity.this, status, "Your username has not found");
-//					}
-//				}
-//				
-//			};
-//			task.execute();
+					}
+					else{
+						OmegaFiActivity.showErrorConection(ForgotPasswordActivity.this, status, "Your username has not found");
+					}
+				}
+				
+			};
+			task.execute();
 		}
 	}
 

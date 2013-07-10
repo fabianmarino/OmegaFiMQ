@@ -148,13 +148,7 @@ public class RowEditInformation extends RelativeLayout {
 	}
 	
 	public String getNameSubInfo(){
-		if(textSubNameInfo.getText().toString().contains("\n")){
 			return textSubNameInfo.getText().toString().replace("\n", "");
-		}
-		else{
-			return textSubNameInfo.getText().toString();
-		}
-		
 	}
 	public int getPaddingRight(){
 		return content.getPaddingRight();

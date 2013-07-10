@@ -37,7 +37,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends OmegaFiActivity {
 	
-	private SectionOmegaFi sectionAccountUser;
+	
 	
 	private SectionOmegaFi sectionChapterDirectory;
 	private ImageAdapter listGallery;
@@ -117,15 +117,16 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	private void chargeAccounts(){
 		JSONArray array=null;
-		try {
-			array = new JSONArray(OmegaFiActivity.getStringFile(getApplicationContext(), "txt/accounts.json"));//OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().getAccountsArray();
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		array=OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().getAccountsArray();
+//		try {
+//			array = new JSONArray(OmegaFiActivity.getStringFile(getApplicationContext(), "txt/accounts.json"));
+//		} catch (JSONException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		if(array!=null){
 			for (int i = 0; i < array.length(); i++) {
-				AccountLayout account=new AccountLayout(getApplicationContext());
+				final AccountLayout account=new AccountLayout(getApplicationContext());
 				android.widget.LinearLayout.LayoutParams params=new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
 						android.widget.LinearLayout.LayoutParams.WRAP_CONTENT);
 				params.setMargins(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.padding_8dp));
@@ -141,6 +142,7 @@ public class HomeActivity extends OmegaFiActivity {
 					@Override
 					public void onClick(View v) {
 						Intent viewAccount=new Intent(getApplicationContext(), AccountActivity.class);
+						viewAccount.putExtra("id", account.getIdAccount());
 						startActivity(viewAccount);
 					}
 				});
@@ -159,8 +161,8 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	
 	private void completeChapterDirectory(){
-//		if(!OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().isEmpty()){
-		if(true){
+		if(!OmegaFiActivity.servicesOmegaFi.getHome().getOfficers().isEmpty()){
+//		if(true){
 			SectionOmegaFi sectionOfficers=new SectionOmegaFi(this);
 			sectionOfficers.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			sectionOfficers.setTitleSection("Officers");
@@ -230,9 +232,10 @@ public class HomeActivity extends OmegaFiActivity {
 			LinearLayout linearSection=(LinearLayout)sectionOfficers.findViewById(R.id.contentSectionOmegaFi);
 			linearSection.setPadding(12, 0, 0, 10);
 			linearSection.addView(listPhotos);
-			final ArrayList<String> chapters=new ArrayList<String>();//.servicesOmegaFi.getHome().getChapters().getChapterNames();
+//			final ArrayList<String> chapters=new ArrayList<String>();
+			final ArrayList<String> chapters=OmegaFiActivity.servicesOmegaFi.getHome().getChapters().getChapterNames();
 			chapters.add("Sigma Pi - Beta Nu,Oregon State University");
-			chapters.add("Alpha Delta Pi - Alpha Eta, Miami University");
+//			chapters.add("Alpha Delta Pi - Alpha Eta, Miami University");
 			String[] nameSubName=chapters.get(0).split(",");
 			final RowInformation rowChapter=new RowInformation(this);
 			rowChapter.setNameInfo(nameSubName[0]);
@@ -259,7 +262,7 @@ public class HomeActivity extends OmegaFiActivity {
 							@Override
 							public void actionAfterChecked() {
 //								changeListImages(selectables.getIndexSelected());
-								changeListImages();
+//								changeListImages();
 								rowChapter.setNameInfo(selectables.getRowSelected().getNameInfo());
 								rowChapter.setNameSubInfo(selectables.getRowSelected().getNameSubInfo());
 							}
@@ -319,8 +322,8 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completeEvents(){
-//		if(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents().size()==0){
-		if(false){
+		if(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents().size()==0){
+//		if(false){
 			sectionEvents.setVisibility(View.GONE);
 		}
 		else{
@@ -329,8 +332,8 @@ public class HomeActivity extends OmegaFiActivity {
 			paginator1.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
 					this.getResources().getDimensionPixelSize(R.dimen.height_new_event_content)));
 			adapterPager1=new EventsNewsAdapter(this);
-//			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents());
-			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(getTestCalendarEvent());
+			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getCalendar().getListEvents());
+//			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(getTestCalendarEvent());
 			paginator1.setAdapter(adapterPager1);
 			CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
 			titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
@@ -389,9 +392,10 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completeNewsSection(){
-		String title="Alpha - Kappa News";//OmegaFiActivity.servicesOmegaFi.getForgotLogin().getTitleFeed();
-//		if(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().isEmpty()){
-		if(false){
+//		String title="Alpha - Kappa News";
+		String title=OmegaFiActivity.servicesOmegaFi.getForgotLogin().getTitleFeed();
+		if(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().isEmpty()){
+//		if(false){
 			sectionNews.setVisibility(View.GONE);
 		}
 		else{
@@ -402,8 +406,8 @@ public class HomeActivity extends OmegaFiActivity {
 					(R.dimen.height_new_event_content)));
 			adapterPager3=new EventsNewsAdapter(this);
 			((EventsNewsAdapter)adapterPager3).setHTML(true);
-//			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().getNews());
-			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(getTestCalendarEvent());
+			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(OmegaFiActivity.servicesOmegaFi.getHome().getFeeds().getNews());
+//			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(getTestCalendarEvent());
 			paginator3.setAdapter(adapterPager3);
 			
 			CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
@@ -459,5 +463,24 @@ public class HomeActivity extends OmegaFiActivity {
 		listPhotos.setSelection(1);
 	}
 
-	
+	@Override
+	protected void finalize() throws Throwable {
+		sectionChapterDirectory=null;
+		listGallery=null;
+		detailsOffice=null;
+		listPhotos=null;
+		sectionEvents=null;
+		paginator1=null;
+		paginator2=null;
+		paginator3=null;
+		adapterPager1=null;
+		adapterPager2=null;
+		adapterPager3=null;
+		sectionPoll=null;
+		contentPoll=null;
+		linearAccounts=null;
+		textPrivacy=null;
+		textTerms=null;
+		super.finalize();
+	}
 }

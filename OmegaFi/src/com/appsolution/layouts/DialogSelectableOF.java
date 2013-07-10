@@ -90,8 +90,7 @@ public class DialogSelectableOF {
 				if(OmegaFiActivity.getSizeInInchesScreen(activity)>5){
 					rowChecked.setSubnameInfo(values[1]);
 				}
-				else{
-					
+				else{			
 					if(values[1].length()>36){
 						rowChecked.setSubnameInfo(replaceDividePhrase(values[1]));
 					}
@@ -206,6 +205,12 @@ public class DialogSelectableOF {
 	public void doChecksWithOutFade() {
 		group.doChecksWithOutFade();
 	}
+
+	public String getItemSelectedSubInfo() {
+		return group.getItemSelectedSubInfo();
+	}
+	
+	
 	
 	
 	

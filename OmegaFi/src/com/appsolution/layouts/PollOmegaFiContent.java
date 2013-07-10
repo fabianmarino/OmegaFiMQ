@@ -10,6 +10,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,22 +83,30 @@ public class PollOmegaFiContent extends ViewSwitcher{
 		});
 		int lenght=4;
 		for (int i = 0; i < lenght; i++) {
+			LinearLayout lineCheck=new LinearLayout(getContext());
+			lineCheck.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
+					android.widget.LinearLayout.LayoutParams.WRAP_CONTENT));
+			lineCheck.setGravity(Gravity.CENTER_HORIZONTAL);
+			lineCheck.setOrientation(LinearLayout.VERTICAL);
+			int padding10=getResources().getDimensionPixelSize(R.dimen.padding_8dp);
+			lineCheck.setPadding(padding10, 0, padding10, 0);
 			RowCheckOmegaFi check=new RowCheckOmegaFi(getContext(), group);
 			check.setTextSizeInformation(getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 			check.setNameInfo("Answer "+(i+1));
 			check.setBackgroundColor(Color.TRANSPARENT);
-			check.setBorderBottom(true);
 			int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
 			check.setPaddingRow(0, padding, 0, padding);
+			check.setMarginRightCheckBox(0);
 			View line=new View(getContext());
 			line.setBackgroundColor(this.getResources().getColor(R.color.gray_font_welcome));
 			LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1);
-			params.rightMargin=getResources().getDimensionPixelSize(R.dimen.margin_5dp_line_poll);
+			params.rightMargin=0;
 			line.setLayoutParams(params);
-			groupAnswers.addView(check);
+			lineCheck.addView(check);
 			if(i<(lenght-1)){
-				groupAnswers.addView(line);
+				lineCheck.addView(line);
 			}
+			groupAnswers.addView(lineCheck);
 		}
 		
 	}

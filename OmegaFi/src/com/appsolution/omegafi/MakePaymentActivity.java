@@ -43,11 +43,6 @@ public class MakePaymentActivity extends OmegaFiActivity {
 		startActivity(viewEdit);
 	}
 	
-	public void viewAddNewCard(View button){
-		Intent viewAdd=new Intent(this,AddNewCardActivity.class);
-		startActivity(viewAdd);
-	}
-	
 	public void viewPayNow(View button){
 		Intent viewPay=new Intent(this,PayNowActivity.class);
 		startActivity(viewPay);

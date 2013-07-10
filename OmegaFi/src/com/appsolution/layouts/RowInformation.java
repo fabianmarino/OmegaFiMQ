@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -136,6 +137,8 @@ public class RowInformation extends RelativeLayout{
 	
 	public void setValueInfo(String value){
 		textValueInfo.setText(value);
+		textValueInfo.setVisibility(View.VISIBLE);
+		textNameInfo.refreshDrawableState();
 	}
 	
 	public void setVisibleArrow(boolean visible){
@@ -254,6 +257,10 @@ public class RowInformation extends RelativeLayout{
 	
 	public void setColorNameSubInfo(int color){
 		textNameSubInfo.setTextColor(color);
+	}
+	
+	public String getValueInfo(){
+		return textValueInfo.getText().toString();
 	}
 	
 	public String getNameAndSubNameInfo(){

@@ -1,22 +1,36 @@
 package com.appsolution.omegafi;
 
-import com.appsolution.layouts.RowInformation;
+import java.util.ArrayList;
 
+import com.appsolution.layouts.RowInformation;
+import com.appsolution.logic.HistoryItem;
+import com.appsolution.omegafi.R.drawable;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.drm.DrmStore.Action;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 public class HistoryActivity extends OmegaFiActivity {
 
+	private ScrollView scroll;
 	private LinearLayout linearContent;
+	private int id;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_history);
+		scroll=(ScrollView)findViewById(R.id.scrollHistory);
 		linearContent=(LinearLayout)findViewById(R.id.contentLinearHistory);
-		this.completeHistory();
+		id=getIntent().getExtras().getInt("id");
+		chargeHistory();
 	}
 	
 	@Override
@@ -28,15 +42,50 @@ public class HistoryActivity extends OmegaFiActivity {
 		actionBar.setCustomView(actionBarCustom);
 	}
 	
-	private void completeHistory(){
-		for (int i = 0; i < 20; i++) {
+	private void completeHistory(ArrayList<HistoryItem> list){
+		for (HistoryItem item:list) {
+			Log.d("esta entrando", "Hasta aqui");
 			RowInformation row=new RowInformation(this);
-			row.setNameInfo("Transaction Description");
-			row.setNameSubInfo("MM/DD/YYYY");
-			row.setValueInfo("$135.00");
+			row.setNameInfo(item.getDescription());
+			row.setNameSubInfo(item.getDateTransaction());
+			row.setValueInfo("$ "+item.getTransactionAmount());
+			row.postInvalidate();
 			linearContent.addView(row);
 		}
 		
+	}
+	
+	private void chargeHistory(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+
+			int status=0;
+			ArrayList<HistoryItem> list;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Charging history", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Object[] listItems=OmegaFiActivity.servicesOmegaFi.getHome().getListHistory(id);
+				status=(Integer)listItems[0];
+				ArrayList<HistoryItem> arrayList = (ArrayList<HistoryItem>)listItems[1];
+				list=arrayList;
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				completeHistory(list);
+				linearContent.postInvalidate();
+				scroll.postInvalidate();
+				refreshActivity();
+			}
+		};
+		
+		task.execute();
 	}
 
 }

@@ -1,8 +1,10 @@
 package com.appsolution.logic;
 
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -29,9 +31,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.omegafi.OmegaFiActivity;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.os.storage.StorageManager;
 import android.util.Log;
+import android.widget.ImageView;
 
 public class Server {
 
@@ -47,6 +54,7 @@ public class Server {
 	public static final String FORGOT_VALIDATE_QUESTIONS=HOST+"/myomegafi/api/v1/forgottenpasswords/validatesecurityquestions";
 	public static final String CALENDAR_SERVICE=HOST+"/myomegafi/api/v1/calendar";
 	public static final String CHANGE_PASSWORD_SERVICE=HOST+"/myomegafi/api/v1/forgottenpasswords/changepassword";
+	
 	public static int TIME_OUT=20000;
 	private HttpClient clientRequest;
 	private HttpContext contextHttp;
@@ -63,6 +71,7 @@ public class Server {
 		contextHttp.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 		home=new HomeServices(this);
 		forgotLogin=new ForgotLoginService(this);
+		logCookies();
 	}
 	
 	public Object[]  makeRequestPost(String url,List<NameValuePair> data){
@@ -241,6 +250,7 @@ public class Server {
 	
 	public void logCookies(){
 		List<Cookie> cookies = cookieStore.getCookies();
+		Log.d("Cookies", cookies.size()+"");
         for (int i = 0; i < cookies.size(); i++) {
             Log.d("Cookies", "Local cookie: " + cookies.get(i));
         }
@@ -259,7 +269,19 @@ public class Server {
 	}
 	
 	public static String getUrlOfficers(int id){
-		return "https://qa-services.omegafi.com/myomegafi/api/v1/chapters/"+id+"/officers";
+		return Server.CHAPTERS_SERVICE+"/"+id+"/officers";
+	}
+	
+	public static String getUrlHistory(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/history";
+	}
+	
+	public static String getUrlStatements(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/statements";
+	}
+	
+	public static String getUrlStatementsView(int idAccount,int idStatement){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/statements/"+idStatement+"?statement_type=Regular";
 	}
 	
 	public Bitmap downloadBitmap(String url) throws IOException {
@@ -285,5 +307,60 @@ public class Server {
         }
 		return bitmap;
     }
+	
+	public String downloadFile(String url, String nameFile) throws IOException {
+		String pathFile=null;
+		if(url!=null){
+			Log.d("download bitmap", url);
+	        HttpUriRequest request = new HttpGet(url.toString());
+	        HttpClient httpClient = new DefaultHttpClient();
+	        HttpResponse response = httpClient.execute(request,contextHttp);
+	        StatusLine statusLine = response.getStatusLine();
+	        int statusCode = statusLine.getStatusCode();
+	        if (statusCode == 200) {
+	        	pathFile="/sdcard/"+nameFile;
+	        	OutputStream output = new FileOutputStream(pathFile);
+	            HttpEntity entity = response.getEntity();
+	            byte[] bytes = EntityUtils.toByteArray(entity);
+	            output.write(bytes);
+	        } else {
+	            throw new IOException("Download failed, HTTP response code "
+	                    + statusCode + " - " + statusLine.getReasonPhrase());
+	        }
+        }
+		return pathFile;
+    }
+	
+	public static void chargeBitmapInImageView(final String source,final String url, final ImageView image){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			Bitmap imagePhoto=null;
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				if(source!=null){
+					if(source.equalsIgnoreCase("omegafi")){
+						try {
+							imagePhoto=OmegaFiActivity.servicesOmegaFi.downloadBitmap(Server.HOST+url);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					else{
+						imagePhoto=OmegaFiActivity.loadImageFromURL(url);
+					}
+				}
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				if(imagePhoto!=null){
+					image.setImageBitmap(imagePhoto);
+				}
+			}
+		};
+		task.execute();
+	}
+	
+	
 	
 }

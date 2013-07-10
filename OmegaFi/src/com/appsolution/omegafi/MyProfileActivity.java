@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,6 +46,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 	
 	private Spinner spinnerPrefix;
 	private EditText editTravelVisa;
+	private EditText editCollegeEntry;
 	
 	private static final int RESULT_LOAD_IMAGE=1;
 	private static final int CAMERA_REQUEST = 1888; 
@@ -71,6 +74,8 @@ public class MyProfileActivity extends OmegaFiActivity {
 		
 		spinnerPrefix=(Spinner)findViewById(R.id.spinnerPrefixProfile);
 		editTravelVisa=(EditText)findViewById(R.id.travelVisaNumber);
+		editCollegeEntry=(EditText)findViewById(R.id.editCollegeEntry);
+		
 		Log.d("Travel", editTravelVisa.getInputType()+" numberdecimal");
 		
 		final Activity activity=this;
@@ -291,4 +296,28 @@ public class MyProfileActivity extends OmegaFiActivity {
 	            userHeader.getImageUser().setImageBitmap(photo);
 	        }  
 	}
+	
+	private int[] getDayMonthYearEntryCollege(){
+		int[] date=new int[3];
+		date[0]=3;
+		date[1]=6;
+		date[2]=2013;
+		return date;
+	}
+	
+	public void showCalendarEntryDate(View button){
+		int[] dayMonthYear=this.getDayMonthYearEntryCollege();
+		
+		DatePickerDialog date=new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+			
+			@Override
+			public void onDateSet(DatePicker view, int year, int monthOfYear,
+					int dayOfMonth) {
+				editCollegeEntry.setText((monthOfYear+1)+"/"+dayOfMonth+"/"+year);	
+			}
+		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
+		date.getDatePicker().setCalendarViewShown(false);
+		date.show();
+	}
+	
 }

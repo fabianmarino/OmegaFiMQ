@@ -34,7 +34,7 @@
 	            android:layout_height="@dimen/photo_size"
 	            android:layout_marginRight="6dp"
 	            android:adjustViewBounds="true"
-	            android:src="@drawable/photo_1"
+	            android:src="@drawable/photo_member"
 	            android:scaleType="centerCrop"
 	            />
 	        <LinearLayout android:orientation="vertical"

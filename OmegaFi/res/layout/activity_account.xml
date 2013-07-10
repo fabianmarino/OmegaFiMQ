@@ -12,6 +12,7 @@
 	    style="@style/LinearContentAll"
 	    android:orientation="vertical">
 	    <com.appsolution.layouts.UserContactLayout
+	        android:id="@+id/userContactAccount"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginBottom="@dimen/margin_10dp_poll"
@@ -27,6 +28,7 @@
 	            android:layout_height="wrap_content"
 	            android:weightSum="3">
 	       <com.appsolution.layouts.LabelInfoVertical
+	           	android:id="@+id/accountNumberInfo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -36,6 +38,7 @@
                 android:layout_height="fill_parent"
                 android:background="@android:color/darker_gray"/>
             <com.appsolution.layouts.LabelInfoVertical
+                android:id="@+id/balanceDueInfo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 secom:color_font_vertical="@color/red_wine"
@@ -86,6 +89,7 @@
 	            />
 	        <include layout="@layout/line_jagged"/>
 	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowBalanceAsOf"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="balance as of"
@@ -101,6 +105,7 @@
 	            android:layout_marginRight="@dimen/padding_6dp"
 	            android:background="@color/blue_marine_dark"/>
 	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowPaymentsAccount"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="Payments"
@@ -109,6 +114,7 @@
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowCreditsAccount"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="Credits"
@@ -117,6 +123,7 @@
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowDebitsAccount"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="Debits"
@@ -130,6 +137,7 @@
 	            android:layout_marginRight="@dimen/padding_6dp"
 	            android:background="@color/blue_marine_dark"/>
 	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowCurrentBalance"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            android:layout_marginBottom="@dimen/padding_6dp"

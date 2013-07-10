@@ -29,11 +29,16 @@ public class AccountsService extends ServerContext {
 			try {
 				array = jsonAccounts.getJSONArray("accounts");
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return array;
+	}
+	
+	public Object[] getAccountSelected(int id){
+		Account accountSelected=null;
+		Object[] json=server.makeRequestGet(Server.ACCOUNTS_SERVICE+"/"+id);
+		return json;
 	}
 	
 

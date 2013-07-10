@@ -36,6 +36,12 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 		return radioOption.isChecked();
 	}
 	
+	public void setMarginRightCheckBox(int marginRight){
+		LayoutParams params=(LayoutParams) radioOption.getLayoutParams();
+		params.rightMargin=marginRight;
+		radioOption.setLayoutParams(params);
+	}
+	
 	public String getItemRow(){
 		String item=this.getNameInfo();
 		if(!this.getNameSubInfo().isEmpty()){
