@@ -7,18 +7,16 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 import com.appsolution.layouts.RowInformation;
-import com.appsolution.logic.HistoryItem;
 import com.appsolution.logic.Server;
 import com.appsolution.logic.Statement;
 
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;
-import android.app.DownloadManager.Request;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -29,6 +27,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 public class StatementsActivity extends OmegaFiActivity {
 
@@ -198,41 +197,53 @@ public class StatementsActivity extends OmegaFiActivity {
     }
     
     private void dowloadFileAsyncTask(final String url,final String nameFIle){
-    	AsyncTask<Void, Integer, Boolean> downloader=new AsyncTask<Void, Integer, Boolean>() {
-			
-    		String path=null;
-    		
-    		@Override
-    		protected void onPreExecute() {
-    			startProgressDialog("Downloading", "Downloading pdf statement...");
-    		}
-    		
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				try {
-					path=OmegaFiActivity.servicesOmegaFi.downloadFile(url, nameFIle);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return true;
-			}
-			
-			@Override
-			protected void onPostExecute(Boolean result) {
-				stopProgressDialog();
-				Log.d("path", path);
-				if(path!=null){
-					Intent intent = new Intent(Intent.ACTION_VIEW);
-			        intent.setDataAndType(
-			                Uri.parse(path),
-			                "application/pdf");
-
-			        startActivity(intent);
-				}
-			}
-		};
-		downloader.execute();
+    	ProgressDialog dialog=new ProgressDialog(this);
+    	dialog.setTitle("Downloading file...");
+    	dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+    	dialog.setIndeterminate(false);
+    	dialog.setMax(0);
+    	try {
+			OmegaFiActivity.servicesOmegaFi.downloadFileAsync(url, nameFIle, dialog);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+//    	AsyncTask<Void, Integer, Boolean> downloader=new AsyncTask<Void, Integer, Boolean>() {
+//			
+//    		String path=null;
+//    		
+//    		@Override
+//    		protected void onPreExecute() {
+//    			startProgressDialog("Downloading", "Downloading pdf statement...");
+//    		}
+//    		
+//			@Override
+//			protected Boolean doInBackground(Void... params) {
+//				try {
+//					path=OmegaFiActivity.servicesOmegaFi.downloadFile(url, nameFIle);
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				return true;
+//			}
+//			
+//			@Override
+//			protected void onPostExecute(Boolean result) {
+//				stopProgressDialog();
+//				Log.d("path", path);
+//				if(path!=null){
+//					Intent intent = new Intent(Intent.ACTION_VIEW);
+//			        intent.setDataAndType(
+//			                Uri.parse(path),
+//			                "application/pdf");
+//
+//			        startActivity(intent);
+//				}
+//			}
+//		};
+//		downloader.execute();
     }
     
     

@@ -88,5 +88,11 @@ public class OmegaFiLoginActivity extends Activity {
 		editor.putString(OMEGAFI_PREF_USERNAME, username);
 		editor.commit();
 	}
+	
+	@Override
+	public void onBackPressed() {
+		finish();
+		super.onBackPressed();
+	}
 
 }

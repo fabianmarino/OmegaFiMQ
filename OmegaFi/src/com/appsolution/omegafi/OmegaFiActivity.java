@@ -420,7 +420,15 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	@Override
 	public void onBackPressed() {
+		this.finish();
+		try {
+			this.finalize();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		super.onBackPressed();
+		
 	}
 	
 	protected void stopProgressDialog(){

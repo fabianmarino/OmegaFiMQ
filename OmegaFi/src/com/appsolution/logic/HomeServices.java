@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.omegafi.PaymentMethod;
+
 import android.util.Log;
 
 public class HomeServices extends ServerContext{
@@ -107,10 +109,53 @@ public class HomeServices extends ServerContext{
 		statusArray[1]=statements;
 		return statusArray;
 	}
+	/**
+	 * 
+	 * @param idAccount: Account of User
+	 * @return: ScheduledOfCharges object, with information
+	 */
+	public Object[] getScheduledOfCharges(int idAccount){
+		Object[] jsonStatus=server.makeRequestGet(Server.getUrlScheduledCharges(idAccount));
+		ScheduledOfCharges scheduledCharges=null;
+		if(jsonStatus[1]!=null){
+			JSONObject statusSchedule=(JSONObject)jsonStatus[1];
+			if(statusSchedule!=null){
+				try {
+					scheduledCharges=new ScheduledOfCharges(statusSchedule.getJSONObject("schedule_of_charges"));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		Object[] statusScheduled=new Object[2];
+		statusScheduled[0]=jsonStatus[0];
+		statusScheduled[1]=scheduledCharges;
+		return statusScheduled;
+	}
 	
-	
-	
-	
-	
+	public Object[] getPaymentMethods(int idAccount){
+		Object[] statusJson=server.makeRequestGet(Server.getUrlPaymentMethods(idAccount));
+		ArrayList<PaymentMethod> methods = null;
+		JSONArray arrayMethods=null;
+		try {
+			if(statusJson[1]!=null){
+				methods=new ArrayList<PaymentMethod>();
+				JSONObject jsonAux=(JSONObject)statusJson[1];
+				arrayMethods = jsonAux.getJSONArray("payment_profiles");
+				for (int i = 0; i < arrayMethods.length(); i++) {
+					methods.add(new PaymentMethod(arrayMethods.getJSONObject(i).getJSONObject("payment_profile")));
+				}
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Object[] statusMethods=new Object[2];
+		statusMethods[0]=statusJson[0];
+		statusMethods[1]=methods;
+		return statusMethods;
+	}
 	
 }

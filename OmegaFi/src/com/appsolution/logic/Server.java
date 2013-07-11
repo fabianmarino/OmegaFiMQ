@@ -1,13 +1,17 @@
 package com.appsolution.logic;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.text.NumberFormat;
 import java.util.List;
 
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -21,6 +25,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
@@ -33,12 +38,17 @@ import org.json.JSONObject;
 
 import com.appsolution.omegafi.OmegaFiActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.os.storage.StorageManager;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 public class Server {
 
@@ -284,6 +294,14 @@ public class Server {
 		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/statements/"+idStatement+"?statement_type=Regular";
 	}
 	
+	public static String getUrlScheduledCharges(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/charges";
+	}
+	
+	public static String getUrlPaymentMethods(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/payment_profiles";
+	}
+	
 	public Bitmap downloadBitmap(String url) throws IOException {
 		Bitmap bitmap=null;
 		if(url!=null){
@@ -308,6 +326,75 @@ public class Server {
 		return bitmap;
     }
 	
+	public void downloadFileAsync(final String url, final String nameFile, final ProgressDialog barCreated) throws IOException {
+		
+		AsyncTask<Void, Integer, Boolean> taskAsync=new AsyncTask<Void, Integer, Boolean>() {
+			private String pathFile=null;
+			
+			@Override
+			protected void onPreExecute() {
+				barCreated.show();
+			}
+			
+			@Override
+			protected void onProgressUpdate(Integer... progress) {
+				barCreated.setProgress(progress[0]);
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				if(url!=null){
+					pathFile=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)+"/"+nameFile;
+					HttpGet httpget = new HttpGet(url);
+			        HttpResponse response;
+					try {
+						response = clientRequest.execute(httpget,contextHttp);
+						HttpEntity entity = response.getEntity();
+				        int totalSize = 0; 
+				        int downloadedSize = 0;
+				        if (entity != null) {
+				        	BufferedHttpEntity bufHttpEntity = new BufferedHttpEntity(entity);
+				        	totalSize=(int)bufHttpEntity.getContentLength();
+				        	barCreated.setMax(totalSize/1000);
+				            InputStream stream = bufHttpEntity.getContent();
+				            byte buf[] = new byte[1024];
+				            int numBytesRead;
+				            BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(pathFile));
+				            do {
+				                numBytesRead = stream.read(buf);
+				                if (numBytesRead > 0) {
+				                    fos.write(buf, 0, numBytesRead);
+				                    downloadedSize += numBytesRead;
+				                    publishProgress(downloadedSize/1000);
+				                }
+				            } while (numBytesRead > 0);
+				            fos.flush();
+				            fos.close();
+				            stream.close();
+				            }
+					} catch (ClientProtocolException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			    }
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+		        intent.setDataAndType(Uri.parse("file://"+pathFile),
+		                "application/pdf");
+		        barCreated.getContext().startActivity(intent);
+		        barCreated.dismiss();
+			}
+		};
+		taskAsync.execute();
+    }
+	
 	public String downloadFile(String url, String nameFile) throws IOException {
 		String pathFile=null;
 		if(url!=null){
@@ -318,7 +405,7 @@ public class Server {
 	        StatusLine statusLine = response.getStatusLine();
 	        int statusCode = statusLine.getStatusCode();
 	        if (statusCode == 200) {
-	        	pathFile="/sdcard/"+nameFile;
+	        	pathFile="file://sdcard/"+nameFile;
 	        	OutputStream output = new FileOutputStream(pathFile);
 	            HttpEntity entity = response.getEntity();
 	            byte[] bytes = EntityUtils.toByteArray(entity);

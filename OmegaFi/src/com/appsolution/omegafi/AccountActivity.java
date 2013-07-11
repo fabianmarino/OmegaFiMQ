@@ -1,5 +1,7 @@
 package com.appsolution.omegafi;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,6 +49,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	private RowInformation rowCredits;
 	private RowInformation rowDebits;
 	private RowInformation rowCurrentBalance;
+	private ArrayList<PaymentMethod> methods;
 	
 	
 	@Override
@@ -151,7 +154,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	public void selectPayMethod(View view){
 		final DialogSelectableOF selectable=new DialogSelectableOF(this);
-		selectable.setOptionsSelectables(selectable.getOptionsTest());
+		selectable.setOptionsSelectables(getPaymentMethodsList());
 		selectable.setTitleDialog("Select Payment Method");
 		selectable.setTextButton("Save");
 		selectable.setCloseOnSelectedItem(false);
@@ -197,6 +200,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			break;
 		case 106:
 			Intent viewScheduleCharges=new Intent(this, ScheduleChargesActivity.class);
+			viewScheduleCharges.putExtra("id", actualAccount.getId());
 			startActivity(viewScheduleCharges);
 			break;
 		case 107:
@@ -232,6 +236,9 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 						e.printStackTrace();
 					}	
 				}
+				Object[] statusMethods=OmegaFiActivity.servicesOmegaFi.getHome().getPaymentMethods(actualAccount.getId());
+				methods=(ArrayList<PaymentMethod>)statusMethods[1];
+				
 				return true;
 			}
 			
@@ -251,8 +258,17 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 				rowCurrentBalance.setValueInfo("$ "+actualAccount.getCurrentBalance());
 				toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
 			}
-		};
-		
+		};		
 		task.execute();
+	}
+	
+	private ArrayList<String> getPaymentMethodsList(){
+		ArrayList<String> list=new ArrayList<String>();
+		if(methods!=null){
+			for (PaymentMethod method:methods) {
+				list.add(method.getCardName()+","+method.getProfileType()+" ("+method.getId()+")");
+			}
+		}
+		return list;
 	}
 }

@@ -1,5 +1,8 @@
 package com.appsolution.layouts;
 
+import java.util.ArrayList;
+
+import com.appsolution.logic.Charge;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -14,6 +17,7 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 
 	private RowTripleInformation rowTriple;
 	private LinearLayout linearCharges;
+	private ArrayList<Charge> listCharges;
 	
 	public CycleCharge(Context context){
 		super(context);
@@ -52,11 +56,13 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 	
 	private void completeCycleCharges(){
 		linearCharges.removeAllViews();
-		for (int i = 0; i < 5; i++) {
-			RowInformation row=new RowInformation(super.getContext());
-			row.setNameInfo("Charge Title");
-			row.setValueInfo("$42.00");
-			this.addRowCharge(row);
+		if(listCharges!=null){
+			for (Charge chargeAux:listCharges) {
+				RowInformation row=new RowInformation(super.getContext());
+				row.setNameInfo(chargeAux.getDescription());
+				row.setValueInfo(chargeAux.getAmount());
+				this.addRowCharge(row);
+			}
 		}
 	}
 	
@@ -96,6 +102,16 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 			linearCharges.setVisibility(GONE);
 			rowTriple.setImageIcon(R.drawable.right_down);
 		}
+	}
+	
+	
+
+	public ArrayList<Charge> getListCharges() {
+		return listCharges;
+	}
+
+	public void setListCharges(ArrayList<Charge> listCharges) {
+		this.listCharges = listCharges;
 	}
 
 	@Override
