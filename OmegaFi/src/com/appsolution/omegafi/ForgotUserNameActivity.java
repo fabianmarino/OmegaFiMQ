@@ -41,7 +41,7 @@ public class ForgotUserNameActivity extends OmegaFiLoginActivity {
 				}
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().forgotUserName(rowEmail.getTextEditSubmit())[0];
+					status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().forgotUserName(rowEmail.getTextEditSubmit())[0];
 					return true;
 				}
 				

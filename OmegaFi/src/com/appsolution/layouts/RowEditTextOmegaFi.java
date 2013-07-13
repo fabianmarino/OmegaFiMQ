@@ -175,4 +175,12 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		textEdit2.setTextSize(size);
 	}
 	
+	public String getValueInfo1(){
+		return textEdit.getText().toString();
+	}
+	
+	public String getValueInfo2(){
+		return textEdit2.getText().toString();
+	}
+	
 }

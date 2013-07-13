@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.appsolution.omegafi.PaymentMethod;
 
 import android.util.Log;
 

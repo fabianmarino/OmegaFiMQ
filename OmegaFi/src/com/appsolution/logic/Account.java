@@ -165,7 +165,7 @@ public class Account {
 
 	public String getDueOn() {
 		if(dueOn.length()>=10){
-			return CalendarEvent.getFormatDate(1, dueOn.substring(0, 10), "yyyy-MM-dd");
+			return CalendarEvent.getFormatDate(3, dueOn.substring(0, 10), "yyyy-MM-dd");
 		}
 		else{
 			return null;
@@ -239,4 +239,6 @@ public class Account {
 	public String getNameOrgDesignationOrg(){
 		return nameOrg+" - "+designationOrg;
 	}
+	
+	
 }

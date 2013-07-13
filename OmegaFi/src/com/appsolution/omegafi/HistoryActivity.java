@@ -68,7 +68,7 @@ public class HistoryActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] listItems=OmegaFiActivity.servicesOmegaFi.getHome().getListHistory(id);
+				Object[] listItems=MainActivity.servicesOmegaFi.getHome().getListHistory(id);
 				status=(Integer)listItems[0];
 				ArrayList<HistoryItem> arrayList = (ArrayList<HistoryItem>)listItems[1];
 				list=arrayList;

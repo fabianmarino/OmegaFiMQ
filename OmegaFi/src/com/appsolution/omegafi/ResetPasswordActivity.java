@@ -61,7 +61,7 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
+				status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
 						rowConfirmPassword.getTextQuestionEdit())[0];
 				return true;
 			}

@@ -34,6 +34,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 	private Activity thisActivity;
 	private CheckBox saveUsername;
 	private TextView textForgot;
+	public static final Server servicesOmegaFi=new Server();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 		textForgot=(TextView)findViewById(R.id.text_forgot);
 		textForgot.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		thisActivity=this;
-		OmegaFiActivity.servicesOmegaFi.logCookies();
+		MainActivity.servicesOmegaFi.logCookies();
 	}
 	
 	public void nextHome(View boton){
@@ -70,7 +71,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 				}
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().loginUser(textUser.getText().toString(), textPassword.getText().toString())[0];
+					status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().loginUser(textUser.getText().toString(), textPassword.getText().toString())[0];
 					return true;
 				}
 				@Override

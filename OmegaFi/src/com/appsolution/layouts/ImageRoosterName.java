@@ -2,6 +2,7 @@ package com.appsolution.layouts;
 
 import java.io.IOException;
 
+import com.appsolution.omegafi.MainActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
@@ -132,7 +133,7 @@ public class ImageRoosterName extends LinearLayout {
 			protected Boolean doInBackground(Void... params) {
 					try {
 						if(isHostOmegaFi){
-							bitPhoto = OmegaFiActivity.servicesOmegaFi.downloadBitmap(url);
+							bitPhoto = MainActivity.servicesOmegaFi.downloadBitmap(url);
 							Log.d("charging",nameRooster.getText().toString());
 						}
 						else{

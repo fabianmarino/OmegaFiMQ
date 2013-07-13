@@ -19,6 +19,7 @@ import com.appsolution.layouts.SectionAccountUser;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Account;
+import com.appsolution.logic.PaymentMethod;
 
 import android.app.Activity;
 import android.content.Context;
@@ -154,7 +155,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	public void selectPayMethod(View view){
 		final DialogSelectableOF selectable=new DialogSelectableOF(this);
-		selectable.setOptionsSelectables(getPaymentMethodsList());
+		selectable.setOptionsSelectables(getPaymentMethodsList(methods));
 		selectable.setTitleDialog("Select Payment Method");
 		selectable.setTextButton("Save");
 		selectable.setCloseOnSelectedItem(false);
@@ -170,6 +171,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	public void activityPayNow(View button){
 		Intent viewPayNow=new Intent(getApplicationContext(), PayNowActivity.class);
+		viewPayNow.putExtra("id", actualAccount.getId());
 		startActivity(viewPayNow);
 	}
 	
@@ -226,7 +228,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] objectAux=OmegaFiActivity.servicesOmegaFi.getHome().getAccounts().getAccountSelected(id);
+				Object[] objectAux=MainActivity.servicesOmegaFi.getHome().getAccounts().getAccountSelected(id);
 				status=(Integer)objectAux[0];
 				jsonAccount=(JSONObject)objectAux[1];
 				if(jsonAccount!=null){
@@ -236,7 +238,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 						e.printStackTrace();
 					}	
 				}
-				Object[] statusMethods=OmegaFiActivity.servicesOmegaFi.getHome().getPaymentMethods(actualAccount.getId());
+				Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(actualAccount.getId());
 				methods=(ArrayList<PaymentMethod>)statusMethods[1];
 				
 				return true;
@@ -262,7 +264,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		task.execute();
 	}
 	
-	private ArrayList<String> getPaymentMethodsList(){
+	public static ArrayList<String> getPaymentMethodsList(ArrayList<PaymentMethod> methods){
 		ArrayList<String> list=new ArrayList<String>();
 		if(methods!=null){
 			for (PaymentMethod method:methods) {

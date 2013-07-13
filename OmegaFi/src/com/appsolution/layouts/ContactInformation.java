@@ -3,6 +3,7 @@ package com.appsolution.layouts;
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.util.Log;
 
 public class ContactInformation extends SectionOmegaFi{
 
@@ -32,6 +33,19 @@ public class ContactInformation extends SectionOmegaFi{
 		
 		this.addView(rowEditEmail);
 		this.addView(rowEditPhone);
+	}
+	
+	public boolean isValidInformation(){
+		return android.util.Patterns.EMAIL_ADDRESS.matcher(rowEditEmail.getValueInfo1()).matches() &&
+				android.util.Patterns.PHONE.matcher(rowEditPhone.getValueInfo1()).matches();
+	}
+	
+	public String getEmail(){
+		return rowEditEmail.getValueInfo1();
+	}
+	
+	public String getPhone(){
+		return rowEditPhone.getValueInfo2();
 	}
 
 }

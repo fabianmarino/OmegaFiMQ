@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
@@ -48,5 +49,14 @@ public class DialogInformationOF {
 	
 	public void setButtonListener(View.OnClickListener event){
 		buttonOK.setOnClickListener(event);
+	}
+	
+	public static OnClickListener getDismissListener(final DialogInformationOF of){
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				of.dismissDialog();	
+			}
+		};
 	}
 }

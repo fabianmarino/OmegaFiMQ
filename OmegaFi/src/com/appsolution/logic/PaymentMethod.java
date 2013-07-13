@@ -1,4 +1,4 @@
-package com.appsolution.omegafi;
+package com.appsolution.logic;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +38,16 @@ public class PaymentMethod {
 
 	public String getCardAccountNumber() {
 		return cardAccountNumber;
+	}
+	
+	public boolean isEChecked(){
+		boolean isChecked=false;
+		if(profileType!=null){
+		if(profileType.equalsIgnoreCase("checking")){	
+			isChecked=true;
+		}
+		}
+		return isChecked;
 	}
 	
 	

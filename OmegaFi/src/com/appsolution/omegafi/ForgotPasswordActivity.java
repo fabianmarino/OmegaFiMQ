@@ -46,7 +46,7 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 				
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					response=OmegaFiActivity.servicesOmegaFi.getForgotLogin().forgotPassword(rowSubmitUsername.getTextEditSubmit());
+					response=MainActivity.servicesOmegaFi.getForgotLogin().forgotPassword(rowSubmitUsername.getTextEditSubmit());
 					status=(Integer)response[0];
 					return true;
 				}

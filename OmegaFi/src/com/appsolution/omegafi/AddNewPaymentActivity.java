@@ -3,8 +3,13 @@ package com.appsolution.omegafi;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.appsolution.layouts.ContactInformation;
 import com.appsolution.layouts.CustomDatePickerDialog;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
@@ -20,6 +25,7 @@ import com.appsolution.logic.CalendarEvent;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -45,8 +51,12 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	private RowEditTextOmegaFi rowTextNumberCard;
 	private RowEditTextOmegaFi rowTextZipCode;
 	private RowToogleOmegaFi rowSaveForFutureUse;
+	private RowToogleOmegaFi rowSaveForFutureUse2;
 	
 	private LinearLayout linearChekingAccount;
+	private RowEditTextOmegaFi rowTextNameOnAccount;
+	private RowEditTextOmegaFi rowTextRoutingNumber;
+	private RowEditTextOmegaFi rowTextAccountNumber;
 	
 	private SectionOmegaFi sectionAddress;
 	private RowEditNameTopInfo rowEditAddres1;
@@ -56,7 +66,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	private RowEditNameTopInfo rowCity;
 	private SpinnerNameTopInfo rowSpinner;
 	private RowEditNameTopInfo rowZIP;
-	
+	private ContactInformation contact;
 	
 	private Button buttonAddContinue;
 	private DatePickerDialog mDialog;
@@ -65,19 +75,36 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     private int mYear = 2013;
     private int mMonth = 5;
     private int mDay = 30;
+    
+    private int idAccount;
+    private int indexCardType=-1;
+    private ArrayList<String> listCreditCards=new ArrayList<String>();
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_new_payment);
+		listCreditCards.add("Visa");
+		listCreditCards.add("Mastercard");
+		listCreditCards.add("Discover");
+		listCreditCards.add("American Express");
 		typeNewPayment=(Spinner)findViewById(R.id.spinnerCreditECheck);
 		this.completeSpinnerNewPayment();
 		linearCreditDebit=(LinearLayout)findViewById(R.id.linearCreditDebitCard);
 		linearChekingAccount=(LinearLayout)findViewById(R.id.linearCheckingAccount);
 		rowTextNameOnCard=(RowEditTextOmegaFi)findViewById(R.id.textNameOnCard);
+		rowTextNameOnAccount=(RowEditTextOmegaFi)findViewById(R.id.textNameOnAccount);
+		rowTextRoutingNumber=(RowEditTextOmegaFi)findViewById(R.id.textRoutingNumber);
+		rowTextNumberCard=(RowEditTextOmegaFi)findViewById(R.id.textNumberCard);
+		rowTextAccountNumber=(RowEditTextOmegaFi)findViewById(R.id.textAccountNumber);
+		rowTextZipCode=(RowEditTextOmegaFi)findViewById(R.id.textZipCode);
 		rowSelectCardType=(RowInformation)findViewById(R.id.selectCardType);
 		rowSaveForFutureUse=(RowToogleOmegaFi)findViewById(R.id.rowSaveForFutureUse);
+		rowSaveForFutureUse2=(RowToogleOmegaFi)findViewById(R.id.rowSaveForFutureUse2);
+		
 		rowExpirationDate=(RowInformation)findViewById(R.id.rowSelectExpirationDate);
+		contact=(ContactInformation)findViewById(R.id.contactInfoCreditDebitCard);
 		rowExpirationDate.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -92,22 +119,28 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);
         mMonth = c.get(Calendar.MONTH);
+        idAccount=getIntent().getExtras().getInt("id");
 	}
 	
 	private void completeFields(){
-		rowSaveForFutureUse.setOnChangeListenerToogle(new CompoundButton.OnCheckedChangeListener() {
+		Date today=Calendar.getInstance().getTime();
+		rowExpirationDate.setValueInfo(today.getMonth()+2+"/"+(today.getYear()+1900));
+		
+		
+		CompoundButton.OnCheckedChangeListener listenerToogle=new CompoundButton.OnCheckedChangeListener() {
 			
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
-					buttonAddContinue.setText("Add");
+					buttonAddContinue.setText(getResources().getString(R.string.new_payment_add));
 				}
 				else{
-					buttonAddContinue.setText("Continue");
+					buttonAddContinue.setText(getResources().getString(R.string.new_payment_continue));
 				}
 			}
-		});
-		
+		};
+		rowSaveForFutureUse.setOnChangeListenerToogle(listenerToogle);
+		rowSaveForFutureUse2.setOnChangeListenerToogle(listenerToogle);
 		rowEditAddres1=new RowEditNameTopInfo(this);
 		rowEditAddres1.setWidthFillParent(true);
 		rowEditAddres1.setNameInfoTop("Address Line 1");
@@ -146,6 +179,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		sectionAddress.addView(rowEditAddres1);
 		sectionAddress.addView(rowEditAddres2);
 		sectionAddress.addView(linearCityStateZIP);
+		
 	}
 	
 	@Override
@@ -158,14 +192,9 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	}
 	
 	public void selectCardType(View view){
-		ArrayList<String> list=new ArrayList<String>();
-		list.add("Visa");
-		list.add("Mastercard");
-		list.add("Discover");
-		list.add("American Express");
 		final DialogSelectableOF selectable=new DialogSelectableOF(this);
 		selectable.setTitleDialog("Select Card Type");
-		selectable.setOptionsSelectables(list);
+		selectable.setOptionsSelectables(listCreditCards);
 		selectable.setTextButton("Save");
 		selectable.setCloseOnSelectedItem(false);
 		selectable.setSelectedItem(rowSelectCardType.getValueInfo());
@@ -174,6 +203,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			@Override
 			public void onClick(View v) {
 				rowSelectCardType.setValueInfo(selectable.getItemSelected());
+				indexCardType=selectable.getIndexSelected();
 				selectable.dismissDialog();
 			}
 		});
@@ -181,16 +211,12 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	}
 	
 	public void addContinueNewPayment(View view){
-		final DialogInformationOF dialog=new DialogInformationOF(this);
-		dialog.setMessageDialog("You've successfuly added a payment method");
-		dialog.setButtonListener(new View.OnClickListener() {
+		if(typeNewPayment.getSelectedItemPosition()==0){
+			addCreditCard();
+		}
+		else if(typeNewPayment.getSelectedItemPosition()==1){
 			
-			@Override
-			public void onClick(View v) {
-				dialog.dismissDialog();
-			}
-		});
-		dialog.showDialog();
+		}
 	}
 	
 	
@@ -207,15 +233,26 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				Log.d("Cambia spinner", position+"");
 				switch (position) {
 				case 0:
 					linearChekingAccount.setVisibility(LinearLayout.GONE);
 					linearCreditDebit.setVisibility(LinearLayout.VISIBLE);
+					if(rowSaveForFutureUse.isActivatedOn()){
+						buttonAddContinue.setText(getResources().getString(R.string.new_payment_add));
+					}
+					else{
+						buttonAddContinue.setText(getResources().getString(R.string.new_payment_continue));
+					}
 					break;
 				case 1:
 					linearCreditDebit.setVisibility(LinearLayout.GONE);
 					linearChekingAccount.setVisibility(LinearLayout.VISIBLE);
+					if(rowSaveForFutureUse2.isActivatedOn()){
+						buttonAddContinue.setText(getResources().getString(R.string.new_payment_add));
+					}
+					else{
+						buttonAddContinue.setText(getResources().getString(R.string.new_payment_continue));
+					}
 					break;
 
 				default:
@@ -241,21 +278,11 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	DatePickerDialog.OnDateSetListener mDateSetListner = new DatePickerDialog.OnDateSetListener() {
 		
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                 int dayOfMonth) {
-
             mYear = year;
             mMonth = monthOfYear;
             mDay = dayOfMonth;
@@ -369,12 +396,133 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	list.add("UT");
     	list.add("VT");
     	list.add("VA");
-    	
     	list.add("WA");
     	list.add("WV");
     	list.add("WI");
     	list.add("WY");
   return list;	
     }
+    
+    private void showDialogSuccesffully(){
+    	OmegaFiActivity.showAlertMessage("You've successfully added a payment method", this);
+    }
+    
+    private void showDialogErrorsBefore(){
+    	OmegaFiActivity.showAlertMessage("The information you've entered is incorrect. Please review and try again.", this);
+    }
+    
+    
+    private boolean validateCCInformation(){
+    	boolean valide=true;
+    	if(rowTextNameOnCard.getValueInfo1().isEmpty()){
+    		valide=false;
+    		Log.d("entra nameonCard", "jhbkhj");
+    	}
+    	else if(indexCardType==-1){
+    		valide=false;
+    		Log.d("entra type", "j,khj");
+    	}
+    	else if(rowTextNumberCard.getValueInfo1().isEmpty()){
+    		valide=false;
+    		Log.d("entra numbercard", "ngvgv");
+    	}
+    	else if(rowTextZipCode.getValueInfo1().isEmpty()){
+    		valide=false;
+    		Log.d("entra zip", ",kjhkjh");
+    	}
+    	else if(!contact.isValidInformation()){
+    		valide=false;
+    		Log.d("entra contact", "nvnhgv");
+    	}
+    	return valide;
+    }
 	
+    private boolean validateECheckInformation(){
+    	boolean valide=true;
+    	if(rowTextNameOnAccount.getValueInfo1().isEmpty()){
+    		valide=false;
+    	}
+    	else if(rowTextRoutingNumber.getValueInfo1().isEmpty()){
+    		valide=false;
+    	}
+    	else if(rowTextAccountNumber.getValueInfo1().isEmpty()){
+    		valide=false;
+    	}
+    	else if(rowEditAddres1.getValueInfo().isEmpty()||rowEditAddres2.getValueInfo().isEmpty()||rowCity.getValueInfo().isEmpty()
+    			||rowZIP.getValueInfo().isEmpty()){
+    		valide=false;
+    	}
+    	else if(!contact.isValidInformation()){
+    		valide=false;
+    	}
+    	return valide;
+    }
+    
+    private void addCreditCard(){
+    	if(validateCCInformation()){
+    		addCreditCardAsync();
+    	}
+    	else{
+    		showDialogErrorsBefore();
+    	}
+    }
+    
+    private void addCreditCardAsync(){
+    	AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+
+    		int status=0;
+    		private JSONObject response=null;
+    		
+    		@Override
+    		protected void onPreExecute() {
+    			startProgressDialog("Adding Credit Card...",getResources().getString(R.string.please_wait));
+    		}
+    		
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				int[] monthYear=rowExpirationDate.getMonthYear();
+				Object[] statusJson=MainActivity.servicesOmegaFi.getHome().getAccounts().createPaymentCC
+						(idAccount, rowTextNameOnCard.getValueInfo1(),rowTextNumberCard.getValueInfo1(),listCreditCards.get(indexCardType), 
+								monthYear[0], monthYear[1], contact.getEmail(), Integer.parseInt(rowTextZipCode.getValueInfo1()), contact.getPhone());
+				status=(Integer)statusJson[0];
+				response=(JSONObject)statusJson[1];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				if(status==200 || status==201){
+					showDialogSuccesffully();
+				}
+				else if(status==422){
+					OmegaFiActivity.showAlertMessage(getErrorJson(response), AddNewPaymentActivity.this);
+				}
+				else{
+					OmegaFiActivity.showErrorConection(AddNewPaymentActivity.this, status, "Object not found");
+				}
+			}	
+    	};
+    	task.execute();
+    }
+    
+    private String getErrorJson(JSONObject errorJson){
+    	String error=null;
+    	if(errorJson!=null){
+	    	try {
+	    		JSONObject jsonErrors=errorJson.getJSONObject("errors");
+	    		if(jsonErrors.has("cardnumber")){
+	    			error="Nopo";
+	    		}
+	    		else if(jsonErrors.has("cardtype")){
+	    			error="Si entra acasito";
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}jhgkjgh
+    	return error;
+    }
+    
 }

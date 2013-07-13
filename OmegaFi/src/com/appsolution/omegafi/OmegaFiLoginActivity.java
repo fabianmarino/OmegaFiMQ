@@ -33,7 +33,7 @@ public class OmegaFiLoginActivity extends Activity {
 	}
 	
 	public void backToLogin(View button) {
-		OmegaFiActivity.servicesOmegaFi.getForgotLogin().clearForgotLoginService();
+		MainActivity.servicesOmegaFi.getForgotLogin().clearForgotLoginService();
 		Intent backToLogin=new Intent(this, MainActivity.class);
 		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(backToLogin);

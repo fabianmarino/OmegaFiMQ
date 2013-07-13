@@ -36,6 +36,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.omegafi.MainActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
 
 import android.app.ProgressDialog;
@@ -95,8 +96,6 @@ public class Server {
 			post.setEntity(new UrlEncodedFormEntity(data));
 			HttpResponse response=clientRequest.execute(post,contextHttp);
 			statusContent[0]=response.getStatusLine().getStatusCode();
-			Log.d("Status", statusContent[0]+" respuesta");
-			logCookies();
 			jsonResponse=this.fromResponseToJSON(response);
 		} catch (UnsupportedEncodingException e) {
 			System.err.print("Error at parsing input json ");
@@ -302,6 +301,10 @@ public class Server {
 		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/payment_profiles";
 	}
 	
+	public static String getUrlScheduledPaymentsCreate(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/scheduledpayments";
+	}
+	
 	public Bitmap downloadBitmap(String url) throws IOException {
 		Bitmap bitmap=null;
 		if(url!=null){
@@ -426,7 +429,7 @@ public class Server {
 				if(source!=null){
 					if(source.equalsIgnoreCase("omegafi")){
 						try {
-							imagePhoto=OmegaFiActivity.servicesOmegaFi.downloadBitmap(Server.HOST+url);
+							imagePhoto=MainActivity.servicesOmegaFi.downloadBitmap(Server.HOST+url);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}

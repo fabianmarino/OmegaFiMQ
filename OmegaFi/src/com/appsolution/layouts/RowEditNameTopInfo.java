@@ -45,5 +45,9 @@ public class RowEditNameTopInfo extends ViewNameTopInfo {
 	public void setTypeInputEditText(int type){
 		textInfo.setInputType(type);
 	}
+	
+	public String getValueInfo(){
+		return textInfo.getText().toString();
+	}
 
 }

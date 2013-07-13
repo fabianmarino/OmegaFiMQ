@@ -26,7 +26,7 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 		question1=(RowQuestionEditText)findViewById(R.id.questionMotherName);
 		question2=(RowQuestionEditText)findViewById(R.id.questionSchoolAttend);
 		question3=(RowQuestionEditText)findViewById(R.id.questionSchoolMascot);
-		jsonQuestions=OmegaFiActivity.servicesOmegaFi.getForgotLogin().getJsonQuestionResetPassword();
+		jsonQuestions=MainActivity.servicesOmegaFi.getForgotLogin().getJsonQuestionResetPassword();
 		this.completeFormQuestions();
 	}
 	
@@ -61,7 +61,7 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 				
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					status=(Integer)OmegaFiActivity.servicesOmegaFi.getForgotLogin().sendQuestionResetPassword
+					status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().sendQuestionResetPassword
 							(question1.getTextQuestionEdit(), question2.getTextQuestionEdit(), question3.getTextQuestionEdit())[0];
 					return true;
 				}

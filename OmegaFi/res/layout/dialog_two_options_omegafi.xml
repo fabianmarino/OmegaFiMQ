@@ -29,11 +29,11 @@
 	       	android:layout_marginRight="2dp"
 	       	style="@style/ButtonOmega"/>
 	    <Button android:id="@+id/buttonOption2"
+	        android:layout_weight="0.5"
 	        android:layout_width="fill_parent"
 	       	android:layout_height="wrap_content"
 	       	android:text="Option 2"
 	       	android:layout_marginRight="2dp"
-	       	android:layout_weight="0.5"
 	       	style="@style/ButtonOmega"/>
     </LinearLayout>
 </LinearLayout>

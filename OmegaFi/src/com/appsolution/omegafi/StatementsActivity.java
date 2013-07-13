@@ -172,7 +172,7 @@ public class StatementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] listItems=OmegaFiActivity.servicesOmegaFi.getHome().getListStatemets(idAccount);
+				Object[] listItems=MainActivity.servicesOmegaFi.getHome().getListStatemets(idAccount);
 				status=(Integer)listItems[0];
 				ArrayList<Statement> arrayList = (ArrayList<Statement>)listItems[1];
 				list=arrayList;
@@ -203,7 +203,7 @@ public class StatementsActivity extends OmegaFiActivity {
     	dialog.setIndeterminate(false);
     	dialog.setMax(0);
     	try {
-			OmegaFiActivity.servicesOmegaFi.downloadFileAsync(url, nameFIle, dialog);
+    		MainActivity.servicesOmegaFi.downloadFileAsync(url, nameFIle, dialog);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

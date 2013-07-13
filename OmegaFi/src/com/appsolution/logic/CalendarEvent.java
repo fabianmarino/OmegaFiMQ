@@ -72,6 +72,20 @@ public class CalendarEvent {
 		return beginDate;
 	}
 	
+	public static Date getDateFromString(String date, String format){
+		SimpleDateFormat dateFormat=new SimpleDateFormat(format);
+		SimpleDateFormat stringFormat=null;
+		Date dateFecha=null;
+		try {
+			dateFecha=dateFormat.parse(date);
+			dateFecha.setSeconds(1);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dateFecha;
+	}
+	
 	public static String getFormatDate(int type,String fecha,String format){
 		String fechaAux=fecha;
 		SimpleDateFormat dateFormat=new SimpleDateFormat(format);
@@ -101,6 +115,10 @@ public class CalendarEvent {
 			stringFormat=new SimpleDateFormat("MMMM yyyy");
 			fechaAux=stringFormat.format(dateFecha);
 			fechaAux = fechaAux.substring(0, 1).toUpperCase() + fechaAux.substring(1, fechaAux.length());
+			break;
+		case 5:
+			stringFormat=new SimpleDateFormat("yyyy-MM-dd");
+			fechaAux=stringFormat.format(dateFecha);
 			break;
 		default:
 			break;

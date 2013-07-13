@@ -60,4 +60,14 @@
 	<string name="please_wait">Please wait...</string>
 	<string name="changed_password_sucessfully">Your password has been reset successfully.\nPlease return to the home screen to login.</string>
 	<string name="field_not_empty">This field can not be empty!</string>
+	<string name="nothing_method_selected">You have not selected any payment method.</string>
+	<string name="dialog_confirmation_echeck">
+	    I am authorizing OmegaFi to electronically debit my account for my payment. In an effor to not inconvenience me, if my payment is dis-honored or returned for any reason, I am authorizing the electronic debit of my account for the amount of the dis-honored payment plus the recovery fee allowed by the state and any applicable taxes. You may wish to print and retain a copy of this authorization for your records.
+	</string>
+	<string name="yes">YES</string>
+	<string name="no">no</string>
+	<string name="ok">OK</string>
+	<string name="thanks_payment">Thank you for your payment.</string>
+	<string name="new_payment_add">Add</string>
+	<string name="new_payment_continue">Continue</string>
 </resources>

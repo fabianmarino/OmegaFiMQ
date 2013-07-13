@@ -44,7 +44,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public static final int BOLD_FONT_OMEGAFI=2;
 	
 	protected com.actionbarsherlock.app.ActionBar actionBar;
-	public static final Server servicesOmegaFi=new Server();
+	
 	protected SlidingMenu slidingMenu;
 	private UserContactLayout userContact;
 	private ItemMenuSliding itemAnnouncements;
@@ -135,6 +135,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		dia.showDialog();
 		return true;
 	}
+	
 	
 	public static boolean loadImageFromURL(String fileUrl, 
 			QuickContactBadge iv){
@@ -267,9 +268,9 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	private void loadSlidingMenu(){
-		loadImageSlidingMenu(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getUrlPhotoProfile());
-		userContact.setNameUserProfile(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getCompleteName());
-		itemAnnouncements.setNumberNotifications(OmegaFiActivity.servicesOmegaFi.getHome().getProfile().getAnnouncementsCount());
+		loadImageSlidingMenu(MainActivity.servicesOmegaFi.getHome().getProfile().getUrlPhotoProfile());
+		userContact.setNameUserProfile(MainActivity.servicesOmegaFi.getHome().getProfile().getCompleteName());
+		itemAnnouncements.setNumberNotifications(MainActivity.servicesOmegaFi.getHome().getProfile().getAnnouncementsCount());
 	}
 	
 	public void goToHome(View item){
@@ -342,7 +343,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-		                		OmegaFiActivity.servicesOmegaFi.getHome().clearHomeServices();
+		                		MainActivity.servicesOmegaFi.getHome().clearHomeServices();
 		                		startActivity(backToLogin);
 		                    }
 		                });
@@ -351,16 +352,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	public static void showAlertMessage(String msg, Activity activity){
-		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-		builder.setMessage(msg)
-		       .setCancelable(false)
-		       .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		                //do things
-		           }
-		       });
-		AlertDialog alert = builder.create();
-		alert.show();
+		DialogInformationOF of=new DialogInformationOF(activity);
+		of.setMessageDialog(msg);
+		of.setButtonListener(DialogInformationOF.getDismissListener(of));
+		of.showDialog();
 	}
 	
 	public static int getWidthPercentageDisplay(Context context,float percentaje){

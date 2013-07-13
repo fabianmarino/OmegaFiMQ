@@ -68,7 +68,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusScheduled=OmegaFiActivity.servicesOmegaFi.getHome().getScheduledOfCharges(idAccount);
+				Object[] statusScheduled=MainActivity.servicesOmegaFi.getHome().getScheduledOfCharges(idAccount);
 				status=(Integer)statusScheduled[0];
 				scheduled=(ScheduledOfCharges)statusScheduled[1];
 				return true;

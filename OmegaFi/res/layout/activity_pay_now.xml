@@ -18,6 +18,7 @@
 	        android:orientation="horizontal"
 	        android:weightSum="2">
 	            <com.appsolution.layouts.LabelInfoVertical
+	                android:id="@+id/currentBalancePayNow"
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
@@ -29,6 +30,7 @@
 	                android:layout_height="fill_parent"
 	                android:background="@android:color/darker_gray"/>
 	            <com.appsolution.layouts.LabelInfoVertical
+	                android:id="@+id/dueOnPayNow"
 	                android:layout_width="0dp"
 	                android:layout_height="wrap_content"
 	                android:layout_weight="1"
@@ -46,7 +48,8 @@
 	            android:layout_height="wrap_content"
 	            android:orientation="vertical"
 	            android:background="@android:color/white">
-	        <com.appsolution.layouts.RowEditTextOmegaFi 
+	        <com.appsolution.layouts.RowEditTextOmegaFi
+	            android:id="@+id/rowEditTextAmount" 
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:width_edit_percentaje="0.4"

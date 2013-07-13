@@ -5,8 +5,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.appsolution.omegafi.R;
@@ -19,6 +22,7 @@ public class DialogTwoOptionsOF {
 	private LayoutInflater layoutInflater;
 	
 	private TextView textMessage;
+	private LinearLayout linearButtons;
 	private Button buttonOption1;
 	private Button buttonOption2;
 	
@@ -30,6 +34,7 @@ public class DialogTwoOptionsOF {
 		builderDialog = new AlertDialog.Builder(activity);
 		builderDialog.setView(layout);
 		textMessage=(TextView)layout.findViewById(R.id.messageInformationDialog);
+		linearButtons=(LinearLayout)layout.findViewById(R.id.linearButtonsOptions);
 		buttonOption1=(Button)layout.findViewById(R.id.buttonOption1);
 		buttonOption2=(Button)layout.findViewById(R.id.buttonOption2);
 		
@@ -62,6 +67,26 @@ public class DialogTwoOptionsOF {
 	
 	public void setListenerOption2(View.OnClickListener event){
 		buttonOption2.setOnClickListener(event);
+	}
+	
+	public void setOrientationButtons(int orientation){
+		if(orientation==LinearLayout.VERTICAL){
+			LayoutParams params=(LayoutParams) buttonOption2.getLayoutParams();
+			params.topMargin=activity.getResources().getDimensionPixelSize(R.dimen.padding_6dp);
+			buttonOption2.setLayoutParams(params);
+			linearButtons.setWeightSum(0);
+			linearButtons.setOrientation(LinearLayout.VERTICAL);
+		}
+	}
+	
+	public static OnClickListener getListenerDismiss(final DialogTwoOptionsOF of){
+		return new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				of.dismissDialog();
+			}
+		};
 	}
 	
 }
