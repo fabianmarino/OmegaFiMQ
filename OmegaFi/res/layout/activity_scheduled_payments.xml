@@ -11,7 +11,7 @@
 	    android:orientation="vertical"
 	    style="@style/LinearContentAll"
 	    >
-	    <com.appsolution.layouts.RowInformation
+	    <!--<com.appsolution.layouts.RowInformation
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:onClick="seeScheduleDetailsProcessing"
@@ -29,6 +29,6 @@
 	        secom:value_information="$335.00"
 	        secom:show_arrow_info="true"
 	        secom:put_border_bottom="true"
-	        />
+	        />-->
     </LinearLayout>
 </ScrollView>

@@ -84,5 +84,11 @@ public class SpinnerNameTopInfo extends LinearLayout {
 		spinner.setAdapter(dataAdapter);
 	}
 	
+	public String getSelectedItem(){
+		return spinner.getSelectedItem().toString();
+	}
+	
+	
+	
 
 }

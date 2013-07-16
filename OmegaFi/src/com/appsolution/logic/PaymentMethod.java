@@ -43,11 +43,15 @@ public class PaymentMethod {
 	public boolean isEChecked(){
 		boolean isChecked=false;
 		if(profileType!=null){
-		if(profileType.equalsIgnoreCase("checking")){	
-			isChecked=true;
-		}
+			if(profileType.equalsIgnoreCase("checking")){	
+				isChecked=true;
+			}
 		}
 		return isChecked;
+	}
+	
+	public String getCardNameNumber(){
+		return cardName+" - "+profileType+"("+id+")";
 	}
 	
 	

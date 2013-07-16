@@ -45,7 +45,7 @@ public class ContactInformation extends SectionOmegaFi{
 	}
 	
 	public String getPhone(){
-		return rowEditPhone.getValueInfo2();
+		return rowEditPhone.getValueInfo1();
 	}
 
 }

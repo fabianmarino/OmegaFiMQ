@@ -19,7 +19,6 @@ import android.widget.ScrollView;
 
 public class HistoryActivity extends OmegaFiActivity {
 
-	private ScrollView scroll;
 	private LinearLayout linearContent;
 	private int id;
 	
@@ -27,7 +26,6 @@ public class HistoryActivity extends OmegaFiActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_history);
-		scroll=(ScrollView)findViewById(R.id.scrollHistory);
 		linearContent=(LinearLayout)findViewById(R.id.contentLinearHistory);
 		id=getIntent().getExtras().getInt("id");
 		chargeHistory();
@@ -80,7 +78,6 @@ public class HistoryActivity extends OmegaFiActivity {
 				stopProgressDialog();
 				completeHistory(list);
 				linearContent.postInvalidate();
-				scroll.postInvalidate();
 				refreshActivity();
 			}
 		};

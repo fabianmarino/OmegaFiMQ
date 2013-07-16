@@ -32,6 +32,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
@@ -42,6 +43,20 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public static final int THIN_FONT_OMEGAFI=0;
 	public static final int CONDENSED_FONT_OMEGAFI=1;
 	public static final int BOLD_FONT_OMEGAFI=2;
+	
+	public static final int ACTIVITY_HOME=2;
+	public static final int ACTIVITY_VIEW_ACCOUNT=3;
+	public static final int ACTIVITY_PAY_NOW=4;
+	public static final int ACTIVITY_LIST_MEMBERS=5;
+	public static final int ACTIVITY_MEMBER_DETAIL=6;
+	public static final int ACTIVITY_SCHEDULED_PAYMENTS=7;
+	public static final int ACTIVITY_SCHEDULED_PAYMENT_DETAIL=8;
+	public static final int ACTIVITY_HISTORY=9;
+	public static final int ACTIVITY_SCHEDULED_OF_CHARGES=10;
+	public static final int ACTIVITY_STATEMENTS=11;
+	public static final int ACTIVITY_PAYMENT_METHODS=12;
+	
+	
 	
 	protected com.actionbarsherlock.app.ActionBar actionBar;
 	

@@ -1,8 +1,12 @@
 package com.appsolution.omegafi;
 import com.appsolution.layouts.IconLabelVertical;
 import com.appsolution.layouts.LabelInfoVertical;
+import com.appsolution.layouts.RowInformation;
+import com.appsolution.logic.MemberRooster;
+import com.appsolution.logic.Server;
 
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +14,7 @@ import android.widget.LinearLayout;
 
 public class OfficerMemberDetailActivity extends OmegaFiActivity {
 
-	
+	private ImageView photoMember;
 	private LabelInfoVertical infoMemberInitiate;
 	private IconLabelVertical phoneIcon;
 	private IconLabelVertical emailIcon;
@@ -22,11 +26,25 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	private LinearLayout linearPhone;
 	private LinearLayout linearEmail;
 	private LinearLayout linearAddress;
+	private int idChapter=-1;
+	private int idMember=-1;
+	private MemberRooster memberRooster;
+	
+	private RowInformation phoneMain;
+	private RowInformation phoneSecundary;
+	
+	private RowInformation emailMain;
+	private RowInformation emailSecundary;
+	
+	private RowInformation addressMain;
+	private RowInformation addressSecundary;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_officer_member_detail);
+		
+		photoMember=(ImageView)findViewById(R.id.photoMemberDetail);
 		
 		infoMemberInitiate=(LabelInfoVertical)findViewById(R.id.labelInfoMemberInitiate);
 		infoMemberInitiate.setTypeFaceValueInfo(OmegaFiActivity.getFont(getApplicationContext(), 0));
@@ -43,6 +61,20 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		linearPhone=(LinearLayout)findViewById(R.id.linearPhoneNumberO);
 		linearEmail=(LinearLayout)findViewById(R.id.linearEmailProfileO);
 		linearAddress=(LinearLayout)findViewById(R.id.linearAddressProfileO);
+		
+		phoneMain=(RowInformation)findViewById(R.id.mainPhone);
+		phoneSecundary=(RowInformation)findViewById(R.id.secundaryPhone);
+		
+		emailMain=(RowInformation)findViewById(R.id.mainEmail);
+		emailSecundary=(RowInformation)findViewById(R.id.secondaryEmail);
+		
+		addressMain=(RowInformation)findViewById(R.id.mainAddress);
+		addressSecundary=(RowInformation)findViewById(R.id.secondaryAddress);
+		
+		Bundle extras=getIntent().getExtras();
+		idChapter=extras.getInt("idc");
+		idMember=extras.getInt("idm");
+		chargeDetailsInformation();
 	}
 	
 	@Override
@@ -93,6 +125,67 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		emailIcon.setBackgroundColor(Color.TRANSPARENT);
 		addresseIcon.setBackgroundColor(Color.TRANSPARENT);
 	}
+	
+	private void chargeDetailsInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+
+			int status=0;
+			private MemberRooster member=null;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Charging Member", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Object[] statusMember=MainActivity.servicesOmegaFi.getHome().getChapters().
+						getStatusMemberRooster(idChapter, idMember);
+				status=(Integer)statusMember[0];
+				member=(MemberRooster)statusMember[1];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				if(status==200){
+					completeFieldsMember(member);
+				}
+				else{
+					OmegaFiActivity.showErrorConection(OfficerMemberDetailActivity.this, status, "Object not found");
+				}
+			}
+			
+		};
+		task.execute();
+	}
+	
+	private void completeFieldsMember(MemberRooster member){
+		actionBarCustom.setTitle(member.getCompleteName().toUpperCase());
+		
+		infoMemberInitiate.setTitleLabel(member.getStatusName());
+		infoMemberInitiate.setValueLabel(member.getInitiationDate());
+		
+		String[] phones=member.getPhones();
+		String[] emails=member.getEmails();
+		String[] adresses=member.getAdresses();
+		
+		phoneMain.setValueInfo(phones[0]);
+		phoneSecundary.setValueInfo(phones[1]);
+		
+		emailMain.setValueInfo(emails[0]);
+		emailSecundary.setValueInfo(emails[1]);
+		
+		
+		addressMain.setValueInfo(adresses[0]);
+		addressMain.setValueInfo2(adresses[0]);
+		addressSecundary.setValueInfo(adresses[1]);
+		addressSecundary.setValueInfo2(adresses[1]);
+		
+		Server.chargeBitmapInImageView(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
+	}
+	
 
 
 }

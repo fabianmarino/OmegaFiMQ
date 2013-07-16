@@ -46,6 +46,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	private LabelInfoVertical infoBalanceDue;
 	
 	private RowInformation rowDueOn;
+	private RowInformation rowBalanceAsOf;
 	private RowInformation rowPayments;
 	private RowInformation rowCredits;
 	private RowInformation rowDebits;
@@ -66,6 +67,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		infoNumberAccount=(LabelInfoVertical)findViewById(R.id.accountNumberInfo);
 		infoBalanceDue=(LabelInfoVertical)findViewById(R.id.balanceDueInfo);
 		rowDueOn=(RowInformation)findViewById(R.id.rowBalanceDueOn);
+		rowBalanceAsOf=(RowInformation)findViewById(R.id.rowBalanceAsOf);
 		rowPayments=(RowInformation)findViewById(R.id.rowPaymentsAccount);
 		rowCredits=(RowInformation)findViewById(R.id.rowCreditsAccount);
 		rowDebits=(RowInformation)findViewById(R.id.rowDebitsAccount);
@@ -172,7 +174,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	public void activityPayNow(View button){
 		Intent viewPayNow=new Intent(getApplicationContext(), PayNowActivity.class);
 		viewPayNow.putExtra("id", actualAccount.getId());
-		startActivity(viewPayNow);
+		startActivityForResult(viewPayNow, OmegaFiActivity.ACTIVITY_PAY_NOW);
 	}
 	
 	public void goToMyProfile(View user){
@@ -195,7 +197,8 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			break;
 		case 104:
 			Intent viewScheduledPayments=new Intent(this, ScheduledPaymentsActivity.class);
-			startActivity(viewScheduledPayments);
+			viewScheduledPayments.putExtra("id", actualAccount.getId());
+			startActivityForResult(viewScheduledPayments,OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENTS);
 			break;
 		case 105:
 			this.selectPayMethod(null);
@@ -253,6 +256,8 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 				userContact.setThirdLine(actualAccount.getUniversity());
 				infoNumberAccount.setValueLabel(actualAccount.getId()+"");
 				infoBalanceDue.setValueLabel("$ "+actualAccount.getAdjustedBalance());
+				rowBalanceAsOf.setNameSubInfo(actualAccount.getDateBalanceAsOf());
+				rowBalanceAsOf.setValueInfo("$"+actualAccount.getMoneyBalanceAsOf());
 				rowDueOn.setValueInfo(actualAccount.getDueOn());
 				rowPayments.setValueInfo("$ "+actualAccount.getPaymentsLast());
 				rowCredits.setValueInfo("$ "+actualAccount.getCreditsLast());

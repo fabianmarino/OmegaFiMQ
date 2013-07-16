@@ -20,9 +20,11 @@
 	            android:layout_height="wrap_content"
 	            android:background="@android:color/white"
 	            android:padding="@dimen/padding_8dp">
-		        <ImageView android:layout_width="@dimen/sliding_photo_size_130dp"
+		        <ImageView
+		            android:id="@+id/photoMemberDetail" 
+		            android:layout_width="@dimen/sliding_photo_size_130dp"
 		            android:layout_height="@dimen/sliding_photo_size_130dp"
-		            android:src="@drawable/photo_1"/>
+		            android:src="@drawable/photo_member"/>
 	        </LinearLayout>
 	        <com.appsolution.layouts.LabelInfoVertical
 	            android:id="@+id/labelInfoMemberInitiate"
@@ -139,6 +141,7 @@
                     android:padding="@dimen/padding_10dp"
                     android:orientation="vertical">
                     <com.appsolution.layouts.RowInformation
+                        android:id="@+id/mainPhone"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         secom:text_size_name_information="@dimen/text_8sp"
@@ -146,6 +149,7 @@
                         secom:name_information="MAIN"
                         secom:value_information="231-312-3123" />
                     <com.appsolution.layouts.RowInformation
+                        android:id="@+id/secundaryPhone"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_6dp"
@@ -162,6 +166,7 @@
                     android:visibility="gone"
                     android:orientation="vertical">
                     <com.appsolution.layouts.RowInformation
+                        android:id="@+id/mainEmail"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         secom:text_size_name_information="@dimen/text_8sp"
@@ -169,6 +174,7 @@
                         secom:name_information="MAIN"
                         secom:value_information="jhkjg@example.com" />
                     <com.appsolution.layouts.RowInformation
+                        android:id="@+id/secondaryEmail"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_6dp"
@@ -188,14 +194,15 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 	                    <com.appsolution.layouts.RowInformation
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        secom:text_size_name_information="@dimen/text_8sp"
-                        secom:background_row_info="@drawable/white_input"
-                        secom:name_information="MAIN"
-                        secom:value_information="6544 Cambell Rd"
-                        secom:value_information_2="Troy, NY 12180" />
+	                        android:id="@+id/mainAddress"
+	                        android:layout_width="fill_parent"
+	                        android:layout_height="wrap_content"
+	                        secom:text_size_name_information="@dimen/text_8sp"
+	                        secom:background_row_info="@drawable/white_input"
+	                        secom:name_information="MAIN"
+	                        secom:value_information="6544 Cambell Rd" />
                     <com.appsolution.layouts.RowInformation
+                        android:id="@+id/secondaryAddress"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/padding_6dp"
@@ -203,7 +210,7 @@
                         secom:background_row_info="@drawable/white_input"
                         secom:name_information="SECUNDARY"
                         secom:value_information="3213 Burdett Ave"
-                        secom:value_information_2="Troy, NY 12180" />
+                         />
                     </LinearLayout>
                 </LinearLayout>
                 <View android:layout_width="fill_parent"

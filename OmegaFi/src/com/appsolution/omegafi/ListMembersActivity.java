@@ -6,7 +6,10 @@ import java.util.Collections;
 import java.util.List;
 
 import com.actionbarsherlock.widget.SearchView;
+import com.appsolution.logic.ChaptersService;
+import com.appsolution.logic.SimpleMember;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -14,6 +17,7 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,16 +30,17 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 
 	private EditText search;
 	private ListView listMembers;
-	private AlphabeticAdapter members;
+	private AlphabeticAdapter membersAlpha;
 	private SearchView mSearchView;
+	private int idChapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_members);
 		listMembers=(ListView)findViewById(R.id.listViewMembers);
-		members=new AlphabeticAdapter(this,android.R.layout.simple_list_item_1, getArrayTest());
-		listMembers.setAdapter(members);
+		idChapter=getIntent().getExtras().getInt("id");
+		chargeListMembers();
 	}
 	
 	public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
@@ -125,7 +130,7 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	}
 	
 	 public boolean onQueryTextChange(String newText) {
-	        members.getFilter().filter(newText);
+	        membersAlpha.getFilter().filter(newText);
 	        return false;
 	    }
 	 
@@ -139,6 +144,39 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	 
 	    protected boolean isAlwaysExpanded() {
 	        return false;
+	    }
+	    
+	    private void chargeListMembers(){
+	    	AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+				
+	    		private int status=0;
+	    		private ArrayList<SimpleMember> members; 
+	    		
+	    		@Override
+	    		protected void onPreExecute() {
+	    			startProgressDialog("Charging members", getResources().getString(R.string.please_wait));
+	    		}
+	    		
+				@Override
+				protected Boolean doInBackground(Void... params) {
+					Object[] statusMembers=MainActivity.servicesOmegaFi.getHome().getChapters().getListSimpleMembers(idChapter);
+					status=(Integer)statusMembers[0];
+					members=(ArrayList<SimpleMember>)statusMembers[1];
+					return true;
+				}
+				
+				@Override
+				protected void onPostExecute(Boolean result) {
+					stopProgressDialog();
+					if(status==200){
+						membersAlpha=new AlphabeticAdapter(ListMembersActivity.this,android.R.layout.simple_list_item_1, 
+								ChaptersService.getNamesMembers(members),idChapter);
+						listMembers.setAdapter(membersAlpha);
+						refreshActivity();
+					}
+				}
+			};
+			task.execute();
 	    }
 
 }

@@ -14,7 +14,6 @@ public class OfficersService extends ServerContext {
 
 	private ArrayList<Officer> listOfficers;
 	
-	
 	public OfficersService(Server server) {
 		super(server);
 		listOfficers=new ArrayList<Officer>();

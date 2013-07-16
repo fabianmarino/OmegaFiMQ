@@ -28,6 +28,8 @@ public class Account {
 	private String sourcePhoto;
 	private String urlPhotoAccount;
 	
+	private String dateBalanceAsOf;
+	private String moneyBalanceAsOf;
 	
 	public Account(JSONObject jsonAccount) {
 		try {
@@ -43,16 +45,18 @@ public class Account {
 			nameOrg=objectOrg.getString("name");
 			designationOrg=objectOrg.getString("designation");
 			university=objectOrg.getString("university");
-			
 			currentBalance=jsonAccount.getString("current_balance");
-			JSONObject  lastestStatement=jsonAccount.getJSONObject("latest_statement");
-			dueOn=lastestStatement.getString("due_on");
 			adjustedBalance=jsonAccount.getString("adjusted_balance");
-			
 			creditsLast=jsonAccount.getString("credits_since_last_statement");
 			paymentsLast=jsonAccount.getString("payments_since_last_statement");
 			activityLast=jsonAccount.getString("activity_since_last_statement");
 			
+			JSONObject  lastestStatement=jsonAccount.getJSONObject("latest_statement");
+			if(lastestStatement!=null){
+				dueOn=lastestStatement.getString("due_on");
+				dateBalanceAsOf=lastestStatement.getString("cycle_on");
+				moneyBalanceAsOf=lastestStatement.getString("current_balance");
+			}
 			JSONArray arrayNotifications=jsonAccount.getJSONArray("account_notifications");
 			
 			for (int i = 0; i < arrayNotifications.length(); i++) {
@@ -164,8 +168,13 @@ public class Account {
 
 
 	public String getDueOn() {
-		if(dueOn.length()>=10){
-			return CalendarEvent.getFormatDate(3, dueOn.substring(0, 10), "yyyy-MM-dd");
+		if(dueOn!=null){
+			if(dueOn.length()>=10){
+				return CalendarEvent.getFormatDate(3, dueOn.substring(0, 10), "yyyy-MM-dd");
+			}
+			else{
+				return null;
+			}
 		}
 		else{
 			return null;
@@ -239,6 +248,24 @@ public class Account {
 	public String getNameOrgDesignationOrg(){
 		return nameOrg+" - "+designationOrg;
 	}
+
+
+	public String getDateBalanceAsOf() {
+		String date=null;
+		if(dateBalanceAsOf!=null){
+			if(dateBalanceAsOf.length()>=10){
+				date=CalendarEvent.getFormatDate(3, dateBalanceAsOf.substring(0, 10), "yyyy-MM-dd");
+			}
+		}
+		return date;
+	}
+
+
+	public String getMoneyBalanceAsOf() {
+		return moneyBalanceAsOf;
+	}
+	
+	
 	
 	
 }

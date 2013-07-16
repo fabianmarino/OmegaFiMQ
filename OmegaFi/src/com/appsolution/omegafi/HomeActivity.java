@@ -62,6 +62,7 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	private TextView textTerms;
 	private TextView textPrivacy;
+	private int indexChapter=0;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,7 @@ public class HomeActivity extends OmegaFiActivity {
 			@Override
 			public void onClick(View v) {
 				Intent memberRosters=new Intent(getApplicationContext(), ListMembersActivity.class);
+				memberRosters.putExtra("id",MainActivity.servicesOmegaFi.getHome().getChapters().getIdChapter( indexChapter));
 				startActivity(memberRosters);
 			}
 		});
@@ -151,7 +153,7 @@ public class HomeActivity extends OmegaFiActivity {
 					public void onClick(View v) {
 						Intent payNow=new Intent(getApplicationContext(), PayNowActivity.class);
 						payNow.putExtra("id", account.getIdAccount());
-						startActivity(payNow);		
+						startActivityForResult(payNow, OmegaFiActivity.ACTIVITY_PAY_NOW);		
 					}
 				});
 				linearAccounts.addView(account);
@@ -265,6 +267,7 @@ public class HomeActivity extends OmegaFiActivity {
 //								changeListImages();
 								rowChapter.setNameInfo(selectables.getRowSelected().getNameInfo());
 								rowChapter.setNameSubInfo(selectables.getRowSelected().getNameSubInfo());
+								indexChapter=0;//Cambiar
 							}
 						});
 						selectables.setTitleDialog(null);

@@ -12,6 +12,7 @@ import org.json.JSONObject;
 public class AccountsService extends ServerContext {
 
 	private JSONObject jsonAccounts;
+	private SimpleScheduledPayment selected=null;
 	
 	public AccountsService(Server server) {
 		super(server);
@@ -91,5 +92,41 @@ public class AccountsService extends ServerContext {
 		Object[] statusJson=server.makeRequestPost(Server.getUrlPaymentMethods(idAccount), nameValuePairs);
 		return statusJson;
 	}
+	
+	public Object[] getScheduledPayments(int idAccount){
+		ArrayList<SimpleScheduledPayment> scheduleds=new ArrayList<SimpleScheduledPayment>();
+		Object[] statusJson=server.makeRequestGet(Server.getUrlScheduledPayments(idAccount));
+		JSONObject scheduledJson=(JSONObject)statusJson[1];
+		try {
+			JSONArray arrayScheduled=scheduledJson.getJSONArray("scheduled_payments");
+			for (int i = 0; i < arrayScheduled.length(); i++) {
+				JSONObject jsonScheduled=arrayScheduled.getJSONObject(i);
+				scheduleds.add(new SimpleScheduledPayment(jsonScheduled));
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Object[] statusScheduleds=new Object[2];
+		statusScheduleds[0]=statusJson[0];
+		statusScheduleds[1]=scheduleds;
+		return statusScheduleds;
+	}
+
+	public SimpleScheduledPayment getSelected() {
+		return selected;
+	}
+
+	public void setJsonAccounts(JSONObject jsonAccounts) {
+		this.jsonAccounts = jsonAccounts;
+	}
+
+	public void setSelected(SimpleScheduledPayment selected) {
+		this.selected = selected;
+	}
+	
+	
+	
+	
 
 }

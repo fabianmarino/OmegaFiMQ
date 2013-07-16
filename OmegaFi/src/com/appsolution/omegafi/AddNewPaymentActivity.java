@@ -25,6 +25,7 @@ import com.appsolution.logic.CalendarEvent;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
@@ -155,7 +156,6 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		linearCityStateZIP.setOrientation(LinearLayout.HORIZONTAL);
 		linearCityStateZIP.setWeightSum(10);
 		rowCity=new RowEditNameTopInfo(getApplicationContext());
-		
 		rowCity.setNameInfoTop("City");
 		LayoutParams paramCity=new LayoutParams(0, LayoutParams.WRAP_CONTENT, 5);
 		rowCity.setLayoutParams(paramCity);
@@ -215,7 +215,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			addCreditCard();
 		}
 		else if(typeNewPayment.getSelectedItemPosition()==1){
-			
+			addECheck();
 		}
 	}
 	
@@ -404,7 +404,21 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     }
     
     private void showDialogSuccesffully(){
-    	OmegaFiActivity.showAlertMessage("You've successfully added a payment method", this);
+    	final DialogInformationOF of=new DialogInformationOF(this);
+    	of.setMessageDialog("You've successfully added a payment method");
+    	of.setButtonListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				of.dismissDialog();
+				finish();
+				finishActivity(OmegaFiActivity.ACTIVITY_PAY_NOW);
+				Intent payNow=new Intent(AddNewPaymentActivity.this,PayNowActivity.class);
+				payNow.putExtra("id", idAccount);
+				startActivityForResult(payNow, OmegaFiActivity.ACTIVITY_PAY_NOW);
+			}
+		});
+    	of.showDialog();
     }
     
     private void showDialogErrorsBefore(){
@@ -416,23 +430,18 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	boolean valide=true;
     	if(rowTextNameOnCard.getValueInfo1().isEmpty()){
     		valide=false;
-    		Log.d("entra nameonCard", "jhbkhj");
     	}
     	else if(indexCardType==-1){
     		valide=false;
-    		Log.d("entra type", "j,khj");
     	}
     	else if(rowTextNumberCard.getValueInfo1().isEmpty()){
     		valide=false;
-    		Log.d("entra numbercard", "ngvgv");
     	}
     	else if(rowTextZipCode.getValueInfo1().isEmpty()){
     		valide=false;
-    		Log.d("entra zip", ",kjhkjh");
     	}
     	else if(!contact.isValidInformation()){
     		valide=false;
-    		Log.d("entra contact", "nvnhgv");
     	}
     	return valide;
     }
@@ -461,6 +470,15 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     private void addCreditCard(){
     	if(validateCCInformation()){
     		addCreditCardAsync();
+    	}
+    	else{
+    		showDialogErrorsBefore();
+    	}
+    }
+    
+    private void addECheck(){
+    	if(validateECheckInformation()){
+    		addECheckAsync();
     	}
     	else{
     		showDialogErrorsBefore();
@@ -512,16 +530,115 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	    	try {
 	    		JSONObject jsonErrors=errorJson.getJSONObject("errors");
 	    		if(jsonErrors.has("cardnumber")){
-	    			error="Nopo";
+	    			error=jsonErrors.getJSONArray("cardnumber").getString(0);
 	    		}
 	    		else if(jsonErrors.has("cardtype")){
-	    			error="Si entra acasito";
+	    			error=jsonErrors.getJSONArray("cardtype").getString(0);
+				}
+	    		else if(jsonErrors.has("nameoncard")){
+	    			error=jsonErrors.getJSONArray("nameoncard").getString(0);
+				}
+	    		else if(jsonErrors.has("expmonth")){
+	    			error=jsonErrors.getJSONArray("expmonth").getString(0);
+				}
+	    		else if(jsonErrors.has("expyear")){
+	    			error=jsonErrors.getJSONArray("expyear").getString(0);
+				}
+	    		else if(jsonErrors.has("emailaddress")){
+	    			error=jsonErrors.getJSONArray("emailaddress").getString(0);
+				}
+	    		else if(jsonErrors.has("zipcode")){
+	    			error=jsonErrors.getJSONArray("zipcode").getString(0);
+				}
+	    		else if(jsonErrors.has("transactionphone")){
+	    			error=jsonErrors.getJSONArray("transactionphone").getString(0);
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    	}jhgkjgh
+    	}//jhgkjgh
+    	return error;
+    }
+    
+    private void addECheckAsync(){
+    	AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+
+    		int status=0;
+    		private JSONObject response=null;
+    		
+    		@Override
+    		protected void onPreExecute() {
+    			startProgressDialog("Adding E-Check...",getResources().getString(R.string.please_wait));
+    		}
+    		
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				int[] monthYear=rowExpirationDate.getMonthYear();
+				Object[] statusJson=MainActivity.servicesOmegaFi.getHome().getAccounts().createPaymentECheck
+						(idAccount,rowTextNameOnAccount.getValueInfo1(), rowTextRoutingNumber.getValueInfo1(),
+								rowTextAccountNumber.getValueInfo1(), contact.getEmail(), contact.getPhone(),
+								rowEditAddres1.getValueInfo(), rowEditAddres2.getValueInfo(), rowCity.getValueInfo(), rowSpinner.getSelectedItem(),
+								Integer.parseInt(rowZIP.getValueInfo()));
+				status=(Integer)statusJson[0];
+				response=(JSONObject)statusJson[1];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				if(status==200 || status==201){
+					showDialogSuccesffully();
+				}
+				else if(status==422){
+					OmegaFiActivity.showAlertMessage(getErrorJsonECheck(response), AddNewPaymentActivity.this);
+				}
+				else{
+					OmegaFiActivity.showErrorConection(AddNewPaymentActivity.this, status, "Object not found");
+				}
+			}	
+    	};
+    	task.execute();
+    }
+    
+    private String getErrorJsonECheck(JSONObject errorJson){
+    	String error=null;
+    	if(errorJson!=null){
+	    	try {
+	    		JSONObject jsonErrors=errorJson.getJSONObject("errors");
+	    		if(jsonErrors.has("routingnumber")){
+	    			error=jsonErrors.getJSONArray("routingnumber").getString(0);
+	    		}
+	    		else if(jsonErrors.has("accountnumber")){
+	    			error=jsonErrors.getJSONArray("accountnumber").getString(0);
+				}
+	    		else if(jsonErrors.has("nameonaccount")){
+	    			error=jsonErrors.getJSONArray("nameonaccount").getString(0);
+				}
+	    		else if(jsonErrors.has("emailaddress")){
+	    			error=jsonErrors.getJSONArray("emailaddress").getString(0);
+				}
+	    		else if(jsonErrors.has("phonenumber")){
+	    			error=jsonErrors.getJSONArray("phonenumber").getString(0);
+				}
+	    		else if(jsonErrors.has("address1")){
+	    			error=jsonErrors.getJSONArray("address1").getString(0);
+				}
+	    		else if(jsonErrors.has("city")){
+	    			error=jsonErrors.getJSONArray("city").getString(0);
+				}
+	    		else if(jsonErrors.has("state")){
+	    			error=jsonErrors.getJSONArray("state").getString(0);
+				}
+	    		else if(jsonErrors.has("zipcode")){
+	    			error=jsonErrors.getJSONArray("zipcode").getString(0);
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}//jhgkjgh
     	return error;
     }
     

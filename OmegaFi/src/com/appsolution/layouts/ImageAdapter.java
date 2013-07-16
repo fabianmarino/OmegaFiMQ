@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 import com.appsolution.logic.Officer;
 import com.appsolution.omegafi.R;
+
+import android.app.Activity;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.sax.StartElementListener;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 public class ImageAdapter extends BaseAdapter {
 
-	private Context context;
+	private Activity context;
 	private ArrayList<Officer> listOfficers;
 	
 	private int[] listImages ={ R.drawable.photo_2, R.drawable.photo_3,
@@ -21,7 +22,7 @@ public class ImageAdapter extends BaseAdapter {
 		       R.drawable.photo_2, R.drawable.photo_3,
 		       R.drawable.photo_member};
 	
-	public ImageAdapter(Context context){
+	public ImageAdapter(Activity context){
 		this.context=context;
 	}
 	
@@ -47,20 +48,24 @@ public class ImageAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		ImageRoosterName rooster=new ImageRoosterName(context);
-		rooster.setNameRooster(listOfficers.get(position).getShortName());
-		rooster.setTypeRooster(listOfficers.get(position).getOfficeType());
-//		rooster.setImageResource(listImages[position]);
-		if(listOfficers.get(position).getHostPhoto()!=null){
-			if(listOfficers.get(position).getHostPhoto().equals("OmegaFi")){
-				rooster.setHostOmegaFi(true);
+		if(convertView==null){
+			LayoutInflater inflate = context.getLayoutInflater();  
+	         convertView= (View) inflate.inflate(R.layout.layout_image_rooster_name, null);
+			ImageRoosterName rooster=(ImageRoosterName)convertView.findViewById(R.id.userContactOfficer);
+			rooster.setNameRooster(listOfficers.get(position).getShortName());
+			rooster.setTypeRooster(listOfficers.get(position).getOfficeType());
+	//		rooster.setImageResource(listImages[position]);
+			if(listOfficers.get(position).getHostPhoto()!=null){
+				if(listOfficers.get(position).getHostPhoto().equals("OmegaFi")){
+					rooster.setHostOmegaFi(true);
+				}
+				else{
+					rooster.setHostOmegaFi(false);
+				}
+				rooster.chargePhotoOfficer(listOfficers.get(position).getUrlPhoto());
 			}
-			else{
-				rooster.setHostOmegaFi(false);
-			}
-			rooster.chargePhotoOfficer(listOfficers.get(position).getUrlPhoto());
 		}
-		return rooster;
+		return convertView;
 	}
 	
 	public Officer getOfficer(int position){

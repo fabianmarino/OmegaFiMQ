@@ -1,14 +1,20 @@
 package com.appsolution.omegafi;
 
+import java.util.ArrayList;
+
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.SimpleScheduledPayment;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.DatePickerDialog;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +24,6 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 
 	private SectionOmegaFi sectionDetails;
 	private SectionOmegaFi sectionMethod;
-	
-	
 	private RowEditTextOmegaFi rowEditAmount;
 	private RowInformation rowPaymentDate;
 	private RowInformation rowPaymentMethod;
@@ -27,6 +31,10 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	private Button buttonState;
 	private Button buttonSave;
 	private Button buttonDelete;
+	
+	private SimpleScheduledPayment selected;
+	private ArrayList<PaymentMethod> methods=null;
+	private int idAccount=-1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,9 +50,12 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		this.completePaymentMethod();
 		
 		Bundle bundle=getIntent().getExtras();
+		idAccount=bundle.getInt("id");
 		if(!bundle.getBoolean("editable")){
 			this.setEditableActivity(false);
 		}
+		selected=MainActivity.servicesOmegaFi.getHome().getAccounts().getSelected();
+		chargePaymentMethods();
 	}
 	
 	@Override
@@ -59,7 +70,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	private void completePaymentDetails(){
 		rowEditAmount=new RowEditTextOmegaFi(this);
 		rowEditAmount.setNameInfo("Amount");
-		rowEditAmount.setTextEdit("$335.00");
+		rowEditAmount.setTextEdit("");
 		rowEditAmount.setTypeInputEditText(2);
 		rowEditAmount.setWidthEditPercentaje(0.4f);
 		rowEditAmount.setBorderBottom(true);
@@ -67,7 +78,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		
 		rowPaymentDate=new RowInformation(this);
 		rowPaymentDate.setNameInfo("Payment Date");
-		rowPaymentDate.setValueInfo("4/5/2013");
+		rowPaymentDate.setValueInfo("");
 		rowPaymentDate.setBackgroundValueInfo(R.drawable.spinner_large);
 		rowPaymentDate.setOnClickListener(new View.OnClickListener() {
 			
@@ -180,6 +191,58 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			buttonSave.setVisibility(View.GONE);
 			buttonDelete.setVisibility(View.GONE);
 		}
+	}
+	
+	private void chargePaymentMethods(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			private int status=0;
+			
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Charging...", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... arg0) {
+				Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(idAccount);
+				status=(Integer)statusMethods[0];
+				methods=(ArrayList<PaymentMethod>)statusMethods[1];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				if(status==200){
+					rowEditAmount.setTextEdit("$"+selected.getPaymentAmount());
+					rowPaymentDate.setValueInfo(selected.getPaymentDate());
+					rowPaymentMethod.setValueInfo(methods.get(getIndexPaymenthMethod()).getCardNameNumber());
+				}
+				else{
+					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Object not found");
+				}
+			}
+		};
+		
+		task.execute();
+	}
+	
+	private int getIndexPaymenthMethod(){
+		boolean found=false;
+		int id=-1;
+		for (int i = 0; i < methods.size()&&!found; i++) {
+			Log.d("method", methods.get(i).getCardNameNumber());
+			Log.d("methods", methods.get(i).getId()+"");
+			Log.d("selected", selected.getIdProfilepayment()+"");
+			if(methods.get(i).getId()==selected.getIdProfilepayment()){
+				Log.d("entra a la escojencia", methods.get(i).getCardNameNumber());
+				found=true;
+				id=i;
+			}
+		}
+		return id;
 	}
 
 

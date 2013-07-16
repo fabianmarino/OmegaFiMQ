@@ -90,6 +90,8 @@ public class Server {
 		statusContent[0]=0;
 		JSONObject jsonResponse = null;
 		HttpPost post=new HttpPost(url);
+//		post.addHeader("Content-Type", "text/plain");
+		post.addHeader("Accept", "*/*");
 		HttpConnectionParams.setConnectionTimeout(post.getParams(), TIME_OUT);
 		HttpConnectionParams.setSoTimeout(post.getParams(), TIME_OUT);
 		try {
@@ -188,7 +190,9 @@ public class Server {
 	        while ((line = rd.readLine()) != null) {
 	        	todo.append(line);
 	        }
-	        jsonResponse=new JSONObject(todo.toString()); 
+	        Log.d("response", todo.toString());
+	        jsonResponse=new JSONObject(todo.toString());
+	        
 	        rd.close();
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
@@ -305,10 +309,21 @@ public class Server {
 		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/scheduledpayments";
 	}
 	
+	public static String getUrlScheduledPayments(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/scheduledpayments";
+	}
+	
+	public static String getUrlMemberRooster(int idChapter){
+		return Server.CHAPTERS_SERVICE+"/"+idChapter+"/members";
+	}
+	
+	public static String getUrlMemberDetails(int idChapter, int idMember){
+		return Server.CHAPTERS_SERVICE+"/"+idChapter+"/members/"+idMember;
+	}
+	
 	public Bitmap downloadBitmap(String url) throws IOException {
 		Bitmap bitmap=null;
 		if(url!=null){
-			Log.d("download bitmap", url);
 	        HttpUriRequest request = new HttpGet(url.toString());
 	        HttpClient httpClient = new DefaultHttpClient();
 	        HttpResponse response = httpClient.execute(request,contextHttp);
