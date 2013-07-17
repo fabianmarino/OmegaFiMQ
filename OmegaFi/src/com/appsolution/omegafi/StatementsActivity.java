@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.Server;
@@ -26,12 +28,17 @@ import android.os.Environment;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 public class StatementsActivity extends OmegaFiActivity {
 
 	private LinearLayout linearStatements;
+	private ListView listStatements;
+	private StatementArrayAdapter statementArray;
 	private int idAccount;
 	private long enqueue;
     private DownloadManager dm;
@@ -41,6 +48,7 @@ public class StatementsActivity extends OmegaFiActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_statements);
 		linearStatements=(LinearLayout)findViewById(R.id.linearStatements);
+		listStatements=(ListView)findViewById(R.id.listViewStatements);
 		idAccount=getIntent().getExtras().getInt("id");
 		this.chargeStatements();
 		
@@ -92,26 +100,12 @@ public class StatementsActivity extends OmegaFiActivity {
 		actionBar.setCustomView(actionBarCustom);
 	}
 	
-	private void completeStatements(ArrayList<Statement> statements){
-		int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
-		for (final Statement auxStatement:statements) {
-			RowInformation rowpdf=new RowInformation(this);
-			rowpdf.setImageIconInfo(R.drawable.pdf_icon);
-			rowpdf.setNameInfo(auxStatement.getDateClose());
-			rowpdf.setVisibleArrow(true);
-			rowpdf.setBorderBottom(true);
-			rowpdf.setPaddingRow(padding, padding, padding, padding);
-			rowpdf.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View arg0) {
-					dowloadFileAsyncTask(Server.getUrlStatementsView(idAccount, auxStatement.getId()),
-							"statement-"+auxStatement.getDateClose()+".pdf");
-				}
-			});
-			rowpdf.postInvalidate();
-			linearStatements.addView(rowpdf);
+	private List<String> getListAdapter(ArrayList<Statement> statements){
+		List<String> list=new ArrayList<String>();
+		for(Statement statement:statements){
+			list.add(statement.getId()+"¿"+statement.getDateClose());
 		}
+		return list;
 	}
 	
 	private void openIntentPdf(){
@@ -181,8 +175,9 @@ public class StatementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
+				statementArray=new StatementArrayAdapter(getApplicationContext(),  getListAdapter(list));
+				listStatements.setAdapter(statementArray);
 				stopProgressDialog();
-				completeStatements(list);
 				refreshActivity();
 			}
 		};
@@ -246,7 +241,56 @@ public class StatementsActivity extends OmegaFiActivity {
 //		downloader.execute();
     }
     
+    private class StatementArrayAdapter extends ArrayAdapter<String> {
+
+        HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
+
+        public StatementArrayAdapter(Context context, List<String> objects) {
+          super(context, android.R.layout.simple_list_item_1, objects);
+          for (int i = 0; i < objects.size(); ++i) {
+            mIdMap.put(objects.get(i), i);
+          }
+        }
+
+        @Override
+        public long getItemId(int position) {
+          String item = getItem(position);
+          return mIdMap.get(item);
+        }
+        
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+        	final String[] itemStatement=getItem(position).split("¿");
+        	RowInformation rowpdf=null;
+        	if(convertView==null){
+        		convertView=new RowInformation(getApplicationContext()); 
+        		rowpdf=(RowInformation)convertView;
+        	}
+        	else{
+        		rowpdf=(RowInformation)convertView;
+        	}
+        		rowpdf.setImageIconInfo(R.drawable.pdf_icon);
+    			rowpdf.setNameInfo(itemStatement[1]);
+    			rowpdf.setVisibleArrow(true);
+
+    			int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
+    			rowpdf.setPaddingRow(padding, padding, padding, padding);
+    			rowpdf.setOnClickListener(new View.OnClickListener() {
+    				
+    				@Override
+    				public void onClick(View arg0) {
+    					dowloadFileAsyncTask(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0])),
+    							"statement-"+Integer.parseInt(itemStatement[0])+".pdf");
+    				}
+    			});
+    			return convertView; 
+        }
+
+        @Override
+        public boolean hasStableIds() {
+          return true;
+        }
+
+      }
     
-
-
 }

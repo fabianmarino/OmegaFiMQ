@@ -141,6 +141,10 @@
     <style name="BackgroundActivity">
         <item name="android:background">@color/gray_background</item>
     </style>
+    <style name="BackgroundPaddingActivity">
+        <item name="android:background">@color/gray_background</item>
+        <item name="android:padding">@dimen/padding_8dp</item>
+    </style>
     <style name="LinearContentAll">
         <item name="android:padding">@dimen/padding_8dp</item>
     </style>

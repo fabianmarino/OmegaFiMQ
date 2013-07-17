@@ -1,32 +1,41 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.HistoryItem;
+import com.appsolution.logic.Server;
 import com.appsolution.omegafi.R.drawable;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.drm.DrmStore.Action;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ScrollView;
 
 public class HistoryActivity extends OmegaFiActivity {
 
-	private LinearLayout linearContent;
+	
+	private HistoryArrayAdapter adapterHistory;
+	private ListView listHistory;
 	private int id;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_history);
-		linearContent=(LinearLayout)findViewById(R.id.contentLinearHistory);
+		listHistory=(ListView)findViewById(R.id.listViewHistory);
 		id=getIntent().getExtras().getInt("id");
 		chargeHistory();
 	}
@@ -40,17 +49,12 @@ public class HistoryActivity extends OmegaFiActivity {
 		actionBar.setCustomView(actionBarCustom);
 	}
 	
-	private void completeHistory(ArrayList<HistoryItem> list){
+	private List<String> getListHistory(ArrayList<HistoryItem> list){
+		List<String> listHistory=new ArrayList<String>();
 		for (HistoryItem item:list) {
-			Log.d("esta entrando", "Hasta aqui");
-			RowInformation row=new RowInformation(this);
-			row.setNameInfo(item.getDescription());
-			row.setNameSubInfo(item.getDateTransaction());
-			row.setValueInfo("$ "+item.getTransactionAmount());
-			row.postInvalidate();
-			linearContent.addView(row);
+			listHistory.add(item.getDescription()+"¿"+item.getDateTransaction()+"¿"+item.getTransactionAmount());
 		}
-		
+		return listHistory;
 	}
 	
 	private void chargeHistory(){
@@ -75,14 +79,57 @@ public class HistoryActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
+				if(list!=null){
+					adapterHistory=new HistoryArrayAdapter(getApplicationContext(), getListHistory(list));
+					listHistory.setAdapter(adapterHistory);
+				}
 				stopProgressDialog();
-				completeHistory(list);
-				linearContent.postInvalidate();
 				refreshActivity();
 			}
 		};
 		
 		task.execute();
 	}
+	
+    private class HistoryArrayAdapter extends ArrayAdapter<String> {
 
+        HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
+
+        public HistoryArrayAdapter(Context context, List<String> objects) {
+          super(context, android.R.layout.simple_list_item_1, objects);
+          for (int i = 0; i < objects.size(); ++i) {
+            mIdMap.put(objects.get(i), i);
+          }
+        }
+
+        @Override
+        public long getItemId(int position) {
+          String item = getItem(position);
+          return mIdMap.get(item);
+        }
+        
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+        	final String[] itemStatement=getItem(position).split("¿");
+        	RowInformation rowHistory=null;
+        	if(convertView==null){
+        		convertView=new RowInformation(getApplicationContext()); 
+        		rowHistory=(RowInformation)convertView;
+        	}
+        	else{
+        		rowHistory=(RowInformation)convertView;
+        	}
+        	
+        	rowHistory.setNameInfo(itemStatement[0]);
+        	rowHistory.setNameSubInfo(itemStatement[1]);
+        	rowHistory.setValueInfo("$"+itemStatement[2]);
+    			return convertView; 
+        }
+
+        @Override
+        public boolean hasStableIds() {
+          return true;
+        }
+
+      }	
 }

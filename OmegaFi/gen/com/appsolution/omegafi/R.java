@@ -2463,7 +2463,7 @@ containing a value of this type.
         public static final int buttonBackToLogin=0x7f040124;
         public static final int buttonCancelImage=0x7f0400f8;
         public static final int buttonChooseFromLibrary=0x7f0400f7;
-        public static final int buttonDeleteScheduled=0x7f0400d7;
+        public static final int buttonDeleteScheduled=0x7f0400d6;
         public static final int buttonForgotMyPassword=0x7f040079;
         public static final int buttonForgotMyUser=0x7f040078;
         public static final int buttonMenuSpecificPay=0x7f040069;
@@ -2476,9 +2476,9 @@ containing a value of this type.
         public static final int buttonResetPassword=0x7f040081;
         public static final int buttonResetPasswordNew=0x7f0400cc;
         public static final int buttonSave=0x7f040076;
-        public static final int buttonSaveScheduled=0x7f0400d6;
+        public static final int buttonSaveScheduled=0x7f0400d5;
         public static final int buttonSendRequest=0x7f0400bc;
-        public static final int buttonStateScheduled=0x7f0400d4;
+        public static final int buttonStateScheduled=0x7f0400d3;
         public static final int buttonSubmitEdit=0x7f04014f;
         public static final int buttonSubmitPayment=0x7f0400c3;
         public static final int buttonTakePhoto=0x7f0400f6;
@@ -2492,12 +2492,11 @@ containing a value of this type.
         public static final int contactInfoCreditDebitCard=0x7f040063;
         public static final int contentAnnouncementDetail=0x7f040066;
         public static final int contentAnswersPoll=0x7f040130;
-        public static final int contentBarSplash=0x7f0400dd;
+        public static final int contentBarSplash=0x7f0400dc;
         public static final int contentButtonSubmit=0x7f040131;
-        public static final int contentButtonsScheduled=0x7f0400d5;
+        public static final int contentButtonsScheduled=0x7f0400d4;
         public static final int contentImageUser=0x7f04016b;
         public static final int contentInfoVertical=0x7f040120;
-        public static final int contentLinearHistory=0x7f040087;
         public static final int contentNamesInformation=0x7f040144;
         public static final int contentNotification=0x7f040045;
         public static final int contentNumberNotifications=0x7f04011d;
@@ -2506,11 +2505,11 @@ containing a value of this type.
         public static final int contentPollResults=0x7f040134;
         public static final int contentRowsSelectables=0x7f0400fc;
         public static final int contentScheduleCycle=0x7f0400e8;
-        public static final int contentScheduledDetails=0x7f0400d1;
+        public static final int contentScheduledDetails=0x7f0400d0;
         public static final int contentSectionOmegaFi=0x7f040160;
         public static final int contentSelectCard=0x7f04006f;
         public static final int contentSelectablesDialog=0x7f0400fa;
-        public static final int contentSetupAuto=0x7f0400d8;
+        public static final int contentSetupAuto=0x7f0400d7;
         public static final int contentTSOmegaFi=0x7f04015c;
         public static final int contentTitleSectionOmegaFi=0x7f04015b;
         public static final int contentUserContact=0x7f04016a;
@@ -2566,7 +2565,7 @@ containing a value of this type.
         public static final int labelInfoBalanceDue=0x7f040040;
         public static final int labelInfoCurrent=0x7f040041;
         public static final int labelInfoMemberInitiate=0x7f0400a9;
-        public static final int labelLoadingSplash=0x7f0400df;
+        public static final int labelLoadingSplash=0x7f0400de;
         public static final int layoutEventNewContent=0x7f040126;
         public static final int layout_root_contact=0x7f0400f0;
         public static final int layout_root_image=0x7f0400f5;
@@ -2595,7 +2594,6 @@ containing a value of this type.
         public static final int linearContentSectionOmegaFi=0x7f04015a;
         public static final int linearCotentInfoMember=0x7f040115;
         public static final int linearCreditDebitCard=0x7f040056;
-        public static final int linearCyclesCharges=0x7f0400cf;
         public static final int linearEmailProfile=0x7f04009f;
         public static final int linearEmailProfileO=0x7f0400b3;
         public static final int linearForgotLogin=0x7f040077;
@@ -2615,16 +2613,20 @@ containing a value of this type.
         public static final int linearRowQuestions=0x7f04007d;
         public static final int linearRowQuestionsPw=0x7f0400c9;
         public static final int linearScheduleCharges=0x7f0400cd;
-        public static final int linearScheduledPayments=0x7f0400d0;
+        public static final int linearScheduledPayments=0x7f0400cf;
         public static final int linearScroll=0x7f040109;
-        public static final int linearStatements=0x7f0400e0;
+        public static final int linearStatements=0x7f0400df;
         public static final int linearTermsPrivate=0x7f04010f;
         public static final int linearTermsUse=0x7f0400c5;
         public static final int linearTextsAnnouncement=0x7f040137;
         public static final int linearViewNameTopInfo=0x7f040172;
         public static final int linearViewNameTopInfoSpinner=0x7f040166;
+        public static final int linearhistory=0x7f040086;
+        public static final int listCyclesCharges=0x7f0400ce;
         public static final int listMode=0x7f040007;
+        public static final int listViewHistory=0x7f040087;
         public static final int listViewMembers=0x7f040089;
+        public static final int listViewStatements=0x7f0400e0;
         public static final int login=0x7f04008f;
         public static final int login_form=0x7f04008c;
         public static final int login_status=0x7f04008a;
@@ -2659,11 +2661,11 @@ containing a value of this type.
         public static final int pager_indicator_container=0x7f040175;
         public static final int password=0x7f04008e;
         public static final int percentageBarResult=0x7f04012c;
-        public static final int percentajeLoading=0x7f0400de;
+        public static final int percentajeLoading=0x7f0400dd;
         public static final int phoneIconMember=0x7f0400aa;
         public static final int phoneIconMyProfile=0x7f040098;
         public static final int photoMemberDetail=0x7f0400a8;
-        public static final int photoProfileSplash=0x7f0400da;
+        public static final int photoProfileSplash=0x7f0400d9;
         public static final int pollResultsContent=0x7f040132;
         public static final int pollSwitcher=0x7f04012e;
         public static final int questionMotherName=0x7f04007e;
@@ -2690,8 +2692,6 @@ containing a value of this type.
         public static final int rowSpecificDayMonth=0x7f04006c;
         public static final int rowSubmitForgotPassword=0x7f04007b;
         public static final int rowTitleCalendarContent=0x7f0400e2;
-        public static final int rowTotalAllCycles=0x7f0400ce;
-        public static final int scrollHistory=0x7f040086;
         public static final int secondRow=0x7f040154;
         public static final int secondTextAnnouncement=0x7f040139;
         public static final int secondaryAddress=0x7f0400b8;
@@ -2707,11 +2707,11 @@ containing a value of this type.
         public static final int sectionEvents=0x7f04010c;
         public static final int sectionNews=0x7f04010e;
         public static final int sectionPoll=0x7f04010d;
-        public static final int sectionScheduledPaymentDetails=0x7f0400d2;
-        public static final int sectionScheduledPaymentMethod=0x7f0400d3;
+        public static final int sectionScheduledPaymentDetails=0x7f0400d1;
+        public static final int sectionScheduledPaymentMethod=0x7f0400d2;
         public static final int secundaryPhone=0x7f0400b2;
         public static final int selectCardType=0x7f040058;
-        public static final int selectCreditCardSetup=0x7f0400d9;
+        public static final int selectCreditCardSetup=0x7f0400d8;
         public static final int selectPaymentMethod=0x7f0400c2;
         public static final int selected_view=0x7f040019;
         public static final int showCustom=0x7f04000d;
@@ -2731,7 +2731,7 @@ containing a value of this type.
         public static final int textBottomImage=0x7f04016d;
         public static final int textContactUs=0x7f040125;
         public static final int textEmailSent=0x7f040085;
-        public static final int textHelloUser=0x7f0400db;
+        public static final int textHelloUser=0x7f0400da;
         public static final int textItemMenuSliding=0x7f04011c;
         public static final int textLeftContent=0x7f04013f;
         public static final int textNameOnAccount=0x7f04005e;
@@ -2750,7 +2750,7 @@ containing a value of this type.
         public static final int textSourceAnnouncementActivity=0x7f040067;
         public static final int textSpecificAmount=0x7f04006d;
         public static final int textTermsUse=0x7f040110;
-        public static final int textWelcomeUser=0x7f0400dc;
+        public static final int textWelcomeUser=0x7f0400db;
         public static final int textZipCode=0x7f04005b;
         public static final int text_forgot=0x7f040093;
         public static final int titleActionBar=0x7f040123;
@@ -3051,6 +3051,7 @@ containing a value of this type.
         public static final int BackgroundActivity=0x7f09006e;
         public static final int BackgroundLoginForm=0x7f09006d;
         public static final int BackgroundLoginScreen=0x7f09006c;
+        public static final int BackgroundPaddingActivity=0x7f09006f;
         public static final int ButtonOmega=0x7f090064;
         public static final int ButtonOmegaMedium=0x7f090065;
         public static final int ButtonOmegaSmall=0x7f090067;
@@ -3060,7 +3061,7 @@ containing a value of this type.
         public static final int EditTextLogin=0x7f090061;
         public static final int EditTextLoginNormal=0x7f090062;
         public static final int EditTextLoginNotEditable=0x7f090063;
-        public static final int LinearContentAll=0x7f09006f;
+        public static final int LinearContentAll=0x7f090070;
         public static final int LinearContentStyle=0x7f090069;
         /**  Application theme. 
          */
@@ -3105,7 +3106,7 @@ containing a value of this type.
         public static final int TextAppearance_Sherlock_Widget_PopupMenu_Small=0x7f090046;
         public static final int TextAppearance_Sherlock_Widget_TextView_SpinnerItem=0x7f090048;
         public static final int TextAppearance_TabPageIndicator=0x7f090003;
-        public static final int Theme_OmegaFiTheme=0x7f090070;
+        public static final int Theme_OmegaFiTheme=0x7f090071;
         public static final int Theme_PageIndicatorDefaults=0x7f090000;
         public static final int Theme_Sherlock=0x7f090058;
         public static final int Theme_Sherlock_Light=0x7f090059;
@@ -3114,7 +3115,7 @@ containing a value of this type.
         public static final int Theme_Sherlock_NoActionBar=0x7f09005b;
         public static final int Widget=0x7f090001;
         public static final int Widget_IconPageIndicator=0x7f090004;
-        public static final int Widget_MyTheme_ActionBar=0x7f090071;
+        public static final int Widget_MyTheme_ActionBar=0x7f090072;
         public static final int Widget_Sherlock_ActionBar=0x7f090006;
         public static final int Widget_Sherlock_ActionBar_Solid=0x7f090007;
         public static final int Widget_Sherlock_ActionBar_TabBar=0x7f09000e;

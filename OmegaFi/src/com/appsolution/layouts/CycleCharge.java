@@ -8,6 +8,7 @@ import com.appsolution.omegafi.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -93,6 +94,7 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 	}
 	
 	public void showHideChargesLines(){
+		Log.d("visibility charge", "jdahlkj eso");
 		if(linearCharges.getVisibility()==LinearLayout.GONE){
 			this.completeCycleCharges();
 			linearCharges.setVisibility(VISIBLE);

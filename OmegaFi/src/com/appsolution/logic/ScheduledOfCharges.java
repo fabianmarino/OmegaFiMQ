@@ -10,14 +10,13 @@ public class ScheduledOfCharges {
 
 	private String interval;
 	private String grandTotal;
-	private ArrayList<BillingCycle> billingCycles;
+	private ArrayList<BillingCycle> billingCycles=new ArrayList<BillingCycle>();
 	
 	public ScheduledOfCharges(JSONObject jsonScheduledCharges) {
 		try {
 			if(jsonScheduledCharges!=null){
 					interval=jsonScheduledCharges.getString("interval");
 					grandTotal=jsonScheduledCharges.getString("grand_total");
-					billingCycles=new ArrayList<BillingCycle>();
 					
 					JSONArray arrayCycles=jsonScheduledCharges.getJSONArray("billing_cycles");
 					for (int i = 0; i < arrayCycles.length(); i++) {
@@ -45,7 +44,4 @@ public class ScheduledOfCharges {
 	public ArrayList<BillingCycle> getBillingCycles() {
 		return billingCycles;
 	}
-	
-	
-
 }

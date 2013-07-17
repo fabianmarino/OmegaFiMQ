@@ -1,28 +1,39 @@
 package com.appsolution.omegafi;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import com.appsolution.layouts.CycleCharge;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.BillingCycle;
 import com.appsolution.logic.ScheduledOfCharges;
+import com.appsolution.logic.Server;
+
+import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.style.BulletSpan;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.LinearLayout.LayoutParams;
 
 public class ScheduleChargesActivity extends OmegaFiActivity {
 
-	private RowInformation rowInterval;
-	private LinearLayout linearCycles;
+	private ListView listCycles;
 	private int idAccount;
+	private ScheduledChargesAdapter chargesAdapter=null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_schedule_charges);
-		rowInterval=(RowInformation)findViewById(R.id.rowTotalAllCycles);
-		rowInterval.setVisibility(View.INVISIBLE);
-		linearCycles=(LinearLayout)findViewById(R.id.linearCyclesCharges);
+		listCycles=(ListView)findViewById(R.id.listCyclesCharges);
 		idAccount=getIntent().getExtras().getInt("id");
 		this.chargeScheduledCharges();
 	}
@@ -34,25 +45,6 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 		actionBar.setDisplayShowCustomEnabled(true);
 		actionBarCustom.setTitle("SCHEDULED OF CHARGES");
 		actionBar.setCustomView(actionBarCustom);
-	}
-	
-	private void completeCyclesCharges(ScheduledOfCharges scheduled){
-		if(scheduled!=null){
-			rowInterval.setVisibility(View.VISIBLE);
-			rowInterval.setNameInfo(scheduled.getInterval());
-			rowInterval.setValueInfo("$"+scheduled.getGrandTotal());
-			for (BillingCycle cycleBilling:scheduled.getBillingCycles()) {
-				CycleCharge cycle=new CycleCharge(this);
-				LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-				params.setMargins(0, 0, 0, 10);
-				cycle.setLayoutParams(params);
-				cycle.setNamesInfo("Cycle "+cycleBilling.getCycleNumber(), "Billed: "+cycleBilling.getDateBillOn(),
-						"Due: "+cycleBilling.getDateDueOn());
-				cycle.setValueInfo("$"+cycleBilling.getTotalAmount());
-				cycle.setListCharges(cycleBilling.getListCharges());
-				linearCycles.addView(cycle);
-			}
-		}
 	}
 	
 	private void chargeScheduledCharges(){
@@ -76,7 +68,10 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				completeCyclesCharges(scheduled);
+				if(scheduled!=null){
+					chargesAdapter=new ScheduledChargesAdapter(ScheduleChargesActivity.this, scheduled);
+					listCycles.setAdapter(chargesAdapter);
+				}
 				stopProgressDialog();
 				refreshActivity();
 			}
@@ -84,5 +79,63 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 		task.execute();
 	}
 	
+	private class ScheduledChargesAdapter extends BaseAdapter {
 
+		private Activity activity;
+		private ScheduledOfCharges scheduled;
+		
+        public ScheduledChargesAdapter(Activity activity,ScheduledOfCharges scheduled){
+        	this.scheduled=scheduled;
+        	this.activity=activity;
+        }
+
+		@Override
+		public int getCount() {
+			return	scheduled.getBillingCycles().size();
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			return scheduled.getBillingCycles().get(arg0);
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			return arg0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			CycleCharge cycle=null;
+			if(position!=0){
+				BillingCycle cycleBilling=(BillingCycle)getItem(position);
+				if(convertView==null){
+					convertView=new CycleCharge(activity);
+					cycle=(CycleCharge)convertView;
+				}
+				else{
+					cycle=(CycleCharge)convertView;
+				}
+				cycle.setNamesInfo("Cycle "+cycleBilling.getCycleNumber(), "Billed: "+cycleBilling.getDateBillOn(),
+						"Due: "+cycleBilling.getDateDueOn());
+				cycle.setValueInfo("$"+cycleBilling.getTotalAmount());
+				cycle.setListCharges(cycleBilling.getListCharges());
+			}
+			else{
+				RowInformation rowInfo=null;
+				if(convertView==null){
+					convertView=new RowInformation(activity);
+					rowInfo=(RowInformation)convertView;
+				}
+				else{
+					rowInfo=(RowInformation)convertView;
+				}
+				rowInfo.setNameInfo(scheduled.getInterval());
+				rowInfo.setValueInfo("$"+scheduled.getGrandTotal());
+			}
+			return convertView;
+		}
+        
+	}
+	
 }

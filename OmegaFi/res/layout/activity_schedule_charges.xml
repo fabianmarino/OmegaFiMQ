@@ -1,31 +1,18 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/BackgroundActivity"
-    tools:context=".ScheduleChargesActivity" >
-
     <LinearLayout 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+	    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+	    xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearScheduleCharges"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        style="@style/LinearContentAll"
+        android:layout_height="fill_parent"
+        style="@style/BackgroundPaddingActivity"
         android:orientation="vertical">
-        <com.appsolution.layouts.RowInformation
-            android:id="@+id/rowTotalAllCycles"
+        <ListView 
+            android:id="@+id/listCyclesCharges"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            secom:put_border_bottom="true"
-            secom:name_information="Fall 2013 Total"
-            secom:value_information="$510.00"
-            secom:padding_row_info="8dp"/>
-        <LinearLayout 
-            android:id="@+id/linearCyclesCharges"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:layout_height="fill_parent"
+            android:background="@android:color/transparent"
+            android:dividerHeight="@dimen/padding_5dp"
+            android:divider="@android:color/transparent"
+             />
     </LinearLayout>
-</ScrollView>
