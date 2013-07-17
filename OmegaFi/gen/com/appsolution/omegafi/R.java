@@ -2613,7 +2613,6 @@ containing a value of this type.
         public static final int linearRowQuestions=0x7f04007d;
         public static final int linearRowQuestionsPw=0x7f0400c9;
         public static final int linearScheduleCharges=0x7f0400cd;
-        public static final int linearScheduledPayments=0x7f0400cf;
         public static final int linearScroll=0x7f040109;
         public static final int linearStatements=0x7f0400df;
         public static final int linearTermsPrivate=0x7f04010f;
@@ -2626,6 +2625,7 @@ containing a value of this type.
         public static final int listMode=0x7f040007;
         public static final int listViewHistory=0x7f040087;
         public static final int listViewMembers=0x7f040089;
+        public static final int listViewScheduledPayments=0x7f0400cf;
         public static final int listViewStatements=0x7f0400e0;
         public static final int login=0x7f04008f;
         public static final int login_form=0x7f04008c;

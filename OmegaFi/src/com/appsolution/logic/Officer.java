@@ -24,6 +24,7 @@ public class Officer {
 	private String email;
 	private String hostPhoto;
 	private String urlPhoto;
+	
 	AsyncTask<Void, Integer, Boolean> task;
 	
 	
@@ -31,6 +32,7 @@ public class Officer {
 		try {
 		if(officerJSON!=null){
 			JSONObject individual = officerJSON.getJSONObject("individual");
+			id=individual.getInt("party_id");
 			firstName=individual.getString("first_name");
 			lastName=individual.getString("last_name");
 			JSONObject type= officerJSON.getJSONObject("office_type");

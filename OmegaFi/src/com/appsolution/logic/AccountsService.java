@@ -11,39 +11,52 @@ import org.json.JSONObject;
 
 public class AccountsService extends ServerContext {
 
-	private JSONObject jsonAccounts;
+	private ArrayList<Account> accounts;
 	private SimpleScheduledPayment selected=null;
 	
 	public AccountsService(Server server) {
 		super(server);
-		jsonAccounts=null;
-	}
-	
-	public JSONObject getJsonAccounts() {
-		return jsonAccounts;
+		accounts=new ArrayList<Account>();
 	}
 
+	
 	public Object[] chargeAccounts(){
 		Object[] json=server.makeRequestGet(Server.ACCOUNTS_SERVICE);
-		jsonAccounts=(JSONObject)json[1];
-		return json;
-	}
-	
-	public JSONArray getAccountsArray(){
-		JSONArray array=null;
-		if(jsonAccounts!=null){
-			try {
-				array = jsonAccounts.getJSONArray("accounts");
-			} catch (JSONException e) {
-				e.printStackTrace();
+		JSONObject jsonAccounts=(JSONObject)json[1];
+		try {
+			if(jsonAccounts!=null){
+					JSONArray arrayAccounts=jsonAccounts.getJSONArray("accounts");
+					accounts.clear();
+					for (int i = 0; i < arrayAccounts.length(); i++) {
+						accounts.add(new Account(arrayAccounts.getJSONObject(i).getJSONObject("account")));
+					}
 			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return array;
+		Object[] statusAccounts=new Object[2];
+		statusAccounts[0]=json[0];
+		statusAccounts[1]=accounts;
+		return statusAccounts;
 	}
 	
-	public Object[] getAccountSelected(int id){
+	public Object[] getStatusAccount(int id){
+		Account actual=null;
 		Object[] json=server.makeRequestGet(Server.ACCOUNTS_SERVICE+"/"+id);
-		return json;
+		try {
+			if(json[1]!=null){
+				JSONObject accountJson=(JSONObject)json[1];
+				actual=new Account(accountJson.getJSONObject("account"));	
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Object[] statusAccount=new Object[2];
+		statusAccount[0]=json[0];
+		statusAccount[1]=actual;
+		return statusAccount;
 	}
 	
 	public int submitPayNow(int idAccount, String paymenthAmmount, String datePaymenth, String typePaymenth, int idPaymenth){
@@ -117,12 +130,13 @@ public class AccountsService extends ServerContext {
 		return selected;
 	}
 
-	public void setJsonAccounts(JSONObject jsonAccounts) {
-		this.jsonAccounts = jsonAccounts;
-	}
-
 	public void setSelected(SimpleScheduledPayment selected) {
 		this.selected = selected;
+	}
+
+
+	public ArrayList<Account> getAccounts() {
+		return accounts;
 	}
 	
 	

@@ -222,7 +222,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	private void chargeAccountSelected(final int id){
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			int status=0;
-			JSONObject jsonAccount=null;
+			private Account account=null;
 			
 			@Override
 			protected void onPreExecute() {
@@ -231,39 +231,36 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] objectAux=MainActivity.servicesOmegaFi.getHome().getAccounts().getAccountSelected(id);
+				Object[] objectAux=MainActivity.servicesOmegaFi.getHome().getAccounts().getStatusAccount(id);
 				status=(Integer)objectAux[0];
-				jsonAccount=(JSONObject)objectAux[1];
-				if(jsonAccount!=null){
-					try {
-						actualAccount=new Account(jsonAccount.getJSONObject("account"));
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}	
+				account=(Account)objectAux[1];
+				actualAccount=account;
+				if(actualAccount!=null){
+					Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(actualAccount.getId());
+					methods=(ArrayList<PaymentMethod>)statusMethods[1];
 				}
-				Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(actualAccount.getId());
-				methods=(ArrayList<PaymentMethod>)statusMethods[1];
-				
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
+				if(actualAccount!=null){
+					userContact.chargeImageFromUrlAsync(actualAccount.getSourcePhoto(), actualAccount.getUrlPhotoAccount());
+					userContact.setNameUserProfile(actualAccount.getCompleteName());
+					userContact.setSubTitleProfile(actualAccount.getNameOrgDesignationOrg());
+					userContact.setThirdLine(actualAccount.getUniversity());
+					infoNumberAccount.setValueLabel(actualAccount.getId()+"");
+					infoBalanceDue.setValueLabel("$ "+actualAccount.getAdjustedBalance());
+					rowBalanceAsOf.setNameSubInfo(actualAccount.getDateBalanceAsOf());
+					rowBalanceAsOf.setValueInfo("$"+actualAccount.getMoneyBalanceAsOf());
+					rowDueOn.setValueInfo(actualAccount.getDueOn());
+					rowPayments.setValueInfo("$ "+actualAccount.getPaymentsLast());
+					rowCredits.setValueInfo("$ "+actualAccount.getCreditsLast());
+					rowDebits.setValueInfo("$ "+actualAccount.getActivityLast());
+					rowCurrentBalance.setValueInfo("$ "+actualAccount.getCurrentBalance());
+					toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
+				}
 				stopProgressDialog();
-				userContact.chargeImageFromUrlAsync(actualAccount.getSourcePhoto(), actualAccount.getUrlPhotoAccount());
-				userContact.setNameUserProfile(actualAccount.getCompleteName());
-				userContact.setSubTitleProfile(actualAccount.getNameOrgDesignationOrg());
-				userContact.setThirdLine(actualAccount.getUniversity());
-				infoNumberAccount.setValueLabel(actualAccount.getId()+"");
-				infoBalanceDue.setValueLabel("$ "+actualAccount.getAdjustedBalance());
-				rowBalanceAsOf.setNameSubInfo(actualAccount.getDateBalanceAsOf());
-				rowBalanceAsOf.setValueInfo("$"+actualAccount.getMoneyBalanceAsOf());
-				rowDueOn.setValueInfo(actualAccount.getDueOn());
-				rowPayments.setValueInfo("$ "+actualAccount.getPaymentsLast());
-				rowCredits.setValueInfo("$ "+actualAccount.getCreditsLast());
-				rowDebits.setValueInfo("$ "+actualAccount.getActivityLast());
-				rowCurrentBalance.setValueInfo("$ "+actualAccount.getCurrentBalance());
-				toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
 			}
 		};		
 		task.execute();

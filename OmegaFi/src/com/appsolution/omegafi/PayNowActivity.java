@@ -261,17 +261,9 @@ public class PayNowActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] account=MainActivity.servicesOmegaFi.getHome().getAccounts().getAccountSelected(idAccount);
+				Object[] account=MainActivity.servicesOmegaFi.getHome().getAccounts().getStatusAccount(idAccount);
 				statusAcccount=(Integer)account[0];
-				JSONObject jsonAccount=(JSONObject)account[1];
-				try {
-					if(jsonAccount!=null){
-						actualAccount=new Account(jsonAccount.getJSONObject("account"));
-					}
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				actualAccount=(Account)account[1];
 				Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(idAccount);
 				this.statusMethods=(Integer)statusMethods[0];
 				methodsPayment=(ArrayList<PaymentMethod>)statusMethods[1];

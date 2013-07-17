@@ -321,6 +321,10 @@ public class Server {
 		return Server.CHAPTERS_SERVICE+"/"+idChapter+"/members/"+idMember;
 	}
 	
+	public static String getUrlOfficerDetails(int idChapter, int idOfficer){
+		return Server.CHAPTERS_SERVICE+"/"+idChapter+"/officers/"+idOfficer;
+	}
+	
 	public Bitmap downloadBitmap(String url) throws IOException {
 		Bitmap bitmap=null;
 		if(url!=null){

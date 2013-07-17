@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class Account {
 
 	private int id;
@@ -57,10 +59,10 @@ public class Account {
 				dateBalanceAsOf=lastestStatement.getString("cycle_on");
 				moneyBalanceAsOf=lastestStatement.getString("current_balance");
 			}
+			listNotifications=new ArrayList<String>();
 			JSONArray arrayNotifications=jsonAccount.getJSONArray("account_notifications");
-			
 			for (int i = 0; i < arrayNotifications.length(); i++) {
-				listNotifications=new ArrayList<String>();
+				
 				JSONObject objectNotification=arrayNotifications.getJSONObject(i).getJSONObject("account_notification");
 				listNotifications.add(objectNotification.getString("notification"));
 			}

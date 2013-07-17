@@ -1,16 +1,15 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/BackgroundActivity"
     tools:context=".ScheduledPaymentsActivity">
-	<LinearLayout android:id="@+id/linearScheduledPayments"
+	<ListView android:id="@+id/listViewScheduledPayments"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical"
 	    style="@style/LinearContentAll"
-	    >
+	    />
 	    <!--<com.appsolution.layouts.RowInformation
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
@@ -30,5 +29,4 @@
 	        secom:show_arrow_info="true"
 	        secom:put_border_bottom="true"
 	        />-->
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

@@ -15,7 +15,9 @@ import com.appsolution.layouts.PollAdapter;
 import com.appsolution.layouts.PollOmegaFiContent;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
+import com.appsolution.logic.Officer;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.app.Activity;
@@ -36,8 +38,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class HomeActivity extends OmegaFiActivity {
-	
-	
 	
 	private SectionOmegaFi sectionChapterDirectory;
 	private ImageAdapter listGallery;
@@ -63,6 +63,7 @@ public class HomeActivity extends OmegaFiActivity {
 	private TextView textTerms;
 	private TextView textPrivacy;
 	private int indexChapter=0;
+	private Officer officerActual=null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -118,33 +119,23 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void chargeAccounts(){
-		JSONArray array=null;
-		array=MainActivity.servicesOmegaFi.getHome().getAccounts().getAccountsArray();
-//		try {
-//			array = new JSONArray(OmegaFiActivity.getStringFile(getApplicationContext(), "txt/accounts.json"));
-//		} catch (JSONException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-		if(array!=null){
-			for (int i = 0; i < array.length(); i++) {
+		ArrayList<Account> accounts=null;
+		accounts=MainActivity.servicesOmegaFi.getHome().getAccounts().getAccounts();
+		if(accounts!=null){
+			for (Account accountAux:accounts) {
 				final AccountLayout account=new AccountLayout(getApplicationContext());
 				android.widget.LinearLayout.LayoutParams params=new android.widget.LinearLayout.LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
 						android.widget.LinearLayout.LayoutParams.WRAP_CONTENT);
 				params.setMargins(0, 0, 0, getResources().getDimensionPixelSize(R.dimen.padding_8dp));
+				account.setAccount(accountAux);
 				account.setLayoutParams(params);
-				try {
-					account.setAccount(array.getJSONObject(i).getJSONObject("account"));
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
 				account.setListenerViewAccount(new View.OnClickListener() {
 					
 					@Override
 					public void onClick(View v) {
 						Intent viewAccount=new Intent(getApplicationContext(), AccountActivity.class);
 						viewAccount.putExtra("id", account.getIdAccount());
-						startActivity(viewAccount);
+						startActivityForResult(viewAccount,OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
 					}
 				});
 				account.setListenerPayNow(new View.OnClickListener() {
@@ -181,7 +172,8 @@ public class HomeActivity extends OmegaFiActivity {
 			MainActivity.servicesOmegaFi.getHome().getOfficers().chargeOfficers(getApplicationContext());
 			listGallery.setListOfficers(MainActivity.servicesOmegaFi.getHome().getOfficers().getListOfficers());
 			listPhotos.setAdapter(listGallery);
-			listPhotos.setSelection(1);
+			if(listGallery.getCount()>0)
+				listPhotos.setSelection(1);
 			listPhotos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 	
 				@Override
@@ -196,10 +188,11 @@ public class HomeActivity extends OmegaFiActivity {
 					else{
 						rooster.setSelectedImageRooster(true);
 						detailsOffice.setVisibility(View.VISIBLE);
-						detailsOffice.setNameRooster(listGallery.getOfficer(position).getCompleteName());
-						detailsOffice.setPositionRooster(listGallery.getOfficer(position).getOfficeType());
-						detailsOffice.setPhoneRooster(listGallery.getOfficer(position).getTelephone());
-						detailsOffice.setEmailRooster(listGallery.getOfficer(position).getEmail());
+						officerActual=listGallery.getOfficer(position);
+						detailsOffice.setNameRooster(officerActual.getCompleteName());
+						detailsOffice.setPositionRooster(officerActual.getOfficeType());
+						detailsOffice.setPhoneRooster(officerActual.getTelephone());
+						detailsOffice.setEmailRooster(officerActual.getEmail());
 					}	
 				}
 	
@@ -218,10 +211,11 @@ public class HomeActivity extends OmegaFiActivity {
 						if(detailsOffice.getVisibility()==View.GONE){
 							detailsOffice.setVisibility(View.VISIBLE);
 							rooster.setSelectedImageRooster(true);
-							detailsOffice.setNameRooster(listGallery.getOfficer(position).getCompleteName());
-							detailsOffice.setPositionRooster(listGallery.getOfficer(position).getOfficeType());
-							detailsOffice.setPhoneRooster(listGallery.getOfficer(position).getTelephone());
-							detailsOffice.setEmailRooster(listGallery.getOfficer(position).getEmail());
+							officerActual=listGallery.getOfficer(position);
+							detailsOffice.setNameRooster(officerActual.getCompleteName());
+							detailsOffice.setPositionRooster(officerActual.getOfficeType());
+							detailsOffice.setPhoneRooster(officerActual.getTelephone());
+							detailsOffice.setEmailRooster(officerActual.getEmail());
 						}
 						else{
 							detailsOffice.setVisibility(View.GONE);
@@ -237,7 +231,6 @@ public class HomeActivity extends OmegaFiActivity {
 //			final ArrayList<String> chapters=new ArrayList<String>();
 			final ArrayList<String> chapters=MainActivity.servicesOmegaFi.getHome().getChapters().getChapterNames();
 			chapters.add("Sigma Pi - Beta Nu,Oregon State University");
-//			chapters.add("Alpha Delta Pi - Alpha Eta, Miami University");
 			String[] nameSubName=chapters.get(0).split(",");
 			final RowInformation rowChapter=new RowInformation(this);
 			rowChapter.setNameInfo(nameSubName[0]);
@@ -443,7 +436,11 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	public void seeMoreMemberRooster(View button){
 		Intent roosterDetail=new Intent(this, OfficerMemberDetailActivity.class);
-		startActivity(roosterDetail);
+		roosterDetail.putExtra(OfficerMemberDetailActivity.TYPE_ROOSTER, OfficerMemberDetailActivity.OFFICER_ROOSTER);
+		int idChapter=MainActivity.servicesOmegaFi.getHome().getChapters().getIdChapter(indexChapter);
+		roosterDetail.putExtra("idc", idChapter);
+		roosterDetail.putExtra("idm", officerActual.getId());
+		startActivityForResult(roosterDetail,OmegaFiActivity.ACTIVITY_MEMBER_DETAIL);
 	}
 	
 	public void callToMember(View button){

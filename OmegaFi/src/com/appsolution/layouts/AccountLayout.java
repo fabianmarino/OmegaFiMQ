@@ -3,6 +3,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
@@ -66,35 +67,21 @@ public class AccountLayout extends LinearLayout{
 		payNow.setOnClickListener(listener);
 	}
 	
-	public void setAccount(JSONObject account){
-		try {
-			idAccount=account.getInt("member_id");
-			textName.setText(account.getString("first_name")+" "+account.getString("last_name"));
-			JSONObject organization=account.getJSONObject("organization");
-			chapter.setText(organization.getString("name")+" - "+organization.getString("designation"));
+	public void setAccount(Account account){
+			idAccount=account.getId();
+			textName.setText(account.getCompleteName());
+			chapter.setText(account.getNameOrgDesignationOrg());
 			this.account.setValueLabel(""+idAccount);
-			this.balanceDue.setValueLabel(account.getString("adjusted_balance"));
-			this.current.setValueLabel(account.getString("current_balance"));
-			if(!account.isNull("latest_statement")){
-				JSONObject object=account.getJSONObject("latest_statement");
-				textDueOn.setText("Due on: "+CalendarEvent.getFormatDate(1, object.getString("due_on").substring(0, 10),"yyyy-MM-dd"));
-			}
-			else{
-				textDueOn.setText("Due on: ");
-			}
-			JSONArray array=account.getJSONArray("account_notifications");
-			for (int i = 0; i < array.length(); i++) {
-				JSONObject notification=array.getJSONObject(i);
+			this.balanceDue.setValueLabel(account.getAdjustedBalance());
+			this.current.setValueLabel(account.getCurrentBalance());
+				textDueOn.setText("Due on: "+account.getDueOn());
+				
+			for (String notification:account.getListNotifications()) {
 				AccountNotification noti=new AccountNotification(getContext());
-				noti.setTextNotification(notification.getJSONObject("account_notification").getString("notification"));
+				noti.setTextNotification(notification);
 				linearNotification.addView(noti);
 			}
-			
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-	}
 
 	public int getIdAccount() {
 		return idAccount;

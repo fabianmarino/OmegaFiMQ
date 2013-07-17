@@ -1,27 +1,37 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import com.appsolution.layouts.CycleCharge;
 import com.appsolution.layouts.RowInformation;
+import com.appsolution.logic.BillingCycle;
+import com.appsolution.logic.ScheduledOfCharges;
 import com.appsolution.logic.SimpleScheduledPayment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 public class ScheduledPaymentsActivity extends OmegaFiActivity {
 	
-	
-	private LinearLayout linearScheduledPayments;
+	private PaymentsAdapter adapterPayment;
+	private ListView listScheduledPayments;
 	private int idAccount=-1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scheduled_payments);
-		linearScheduledPayments=(LinearLayout)findViewById(R.id.linearScheduledPayments);
+		listScheduledPayments=(ListView)findViewById(R.id.listViewScheduledPayments);
 		idAccount=getIntent().getExtras().getInt("id");
 		chargeScheduledPayments();
 	}
@@ -47,25 +57,26 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 		startActivity(scheduledDetails);
 	}
 	
-	private void completeLinearSheduled(ArrayList<SimpleScheduledPayment> scheduleds){
+	private void getListStringScheduledPayments(ArrayList<SimpleScheduledPayment> scheduleds){
+		List<String> listPayments=new ArrayList<String>();
 		for (final SimpleScheduledPayment scheduled:scheduleds) {
-			RowInformation rowInfo=new RowInformation(getApplicationContext());
-			rowInfo.setNameInfo(scheduled.getPaymentDate()+" - "+scheduled.getStateScheduled());
-			rowInfo.setValueInfo("$"+scheduled.getPaymentAmount());
-			rowInfo.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View arg0) {
-					MainActivity.servicesOmegaFi.getHome().getAccounts().setSelected(scheduled);
-					Intent viewScheduledDetails=new Intent(getApplicationContext(), ScheduledPaymentsDetailActivity.class);
-					viewScheduledDetails.putExtra("id", idAccount);
-					viewScheduledDetails.putExtra("editable", false);
-					startActivityForResult(viewScheduledDetails, OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENT_DETAIL);
-				}
-			});
-			linearScheduledPayments.addView(rowInfo);
+			
+//			RowInformation rowInfo=new RowInformation(getApplicationContext());
+//			rowInfo.setNameInfo(scheduled.getPaymentDate()+" - "+scheduled.getStateScheduled());
+//			rowInfo.setValueInfo("$"+scheduled.getPaymentAmount());
+//			rowInfo.setOnClickListener(new View.OnClickListener() {
+//				
+//				@Override
+//				public void onClick(View arg0) {
+//					MainActivity.servicesOmegaFi.getHome().getAccounts().setSelected(scheduled);
+//					Intent viewScheduledDetails=new Intent(getApplicationContext(), ScheduledPaymentsDetailActivity.class);
+//					viewScheduledDetails.putExtra("id", idAccount);
+//					viewScheduledDetails.putExtra("editable", false);
+//					startActivityForResult(viewScheduledDetails, OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENT_DETAIL);
+//				}
+//			});
+//			listScheduledPayments.addView(rowInfo);
 		}
-		refreshActivity();
 	}
 	
 
@@ -91,15 +102,72 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
-				if(status==200){
-					completeLinearSheduled(scheduleds);
+				if(status==200&&scheduleds!=null){
+					adapterPayment=new PaymentsAdapter(ScheduledPaymentsActivity.this, scheduleds);
+					listScheduledPayments.setAdapter(adapterPayment);
 				}
 				else{
 					OmegaFiActivity.showErrorConection(ScheduledPaymentsActivity.this, status, "Object not found");
 				}
+				refreshActivity();
 			}
 			
 		};
 		task.execute();
 	}
+	
+	private class PaymentsAdapter extends BaseAdapter {
+
+		private Activity activity;
+		private ArrayList<SimpleScheduledPayment> payments=null;
+		
+        public PaymentsAdapter(Activity activity,ArrayList<SimpleScheduledPayment> payments){
+        	this.payments=payments;
+        	this.activity=activity;
+        }
+
+		@Override
+		public int getCount() {
+			return	payments.size();
+		}
+
+		@Override
+		public Object getItem(int arg0) {
+			return payments.get(arg0);
+		}
+
+		@Override
+		public long getItemId(int arg0) {
+			return arg0;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			RowInformation rowPayment=null;
+			final SimpleScheduledPayment actualPayment=(SimpleScheduledPayment)getItem(position);
+				if(convertView==null){
+					convertView=new RowInformation(activity);
+					rowPayment=(RowInformation)convertView;
+				}
+				else{
+					rowPayment=(RowInformation)convertView;
+				}
+				rowPayment.setNameInfo(actualPayment.getPaymentDate()+" - "+actualPayment.getStateScheduled());
+				rowPayment.setValueInfo("$"+actualPayment.getPaymentAmount());
+				rowPayment.setOnClickListener(new View.OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						MainActivity.servicesOmegaFi.getHome().getAccounts().setSelected(actualPayment);
+						Intent viewScheduledDetails=new Intent(getApplicationContext(), ScheduledPaymentsDetailActivity.class);
+						viewScheduledDetails.putExtra("id", idAccount);
+						viewScheduledDetails.putExtra("editable", false);
+						startActivityForResult(viewScheduledDetails, OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENT_DETAIL);
+					}
+				});
+			return convertView;
+		}
+        
+	}
+	
 }

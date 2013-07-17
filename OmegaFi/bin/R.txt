@@ -853,7 +853,6 @@ int id linearRightAnnouncement 0x7f040135
 int id linearRowQuestions 0x7f04007d
 int id linearRowQuestionsPw 0x7f0400c9
 int id linearScheduleCharges 0x7f0400cd
-int id linearScheduledPayments 0x7f0400cf
 int id linearScroll 0x7f040109
 int id linearStatements 0x7f0400df
 int id linearTermsPrivate 0x7f04010f
@@ -866,6 +865,7 @@ int id listCyclesCharges 0x7f0400ce
 int id listMode 0x7f040007
 int id listViewHistory 0x7f040087
 int id listViewMembers 0x7f040089
+int id listViewScheduledPayments 0x7f0400cf
 int id listViewStatements 0x7f0400e0
 int id login 0x7f04008f
 int id login_form 0x7f04008c

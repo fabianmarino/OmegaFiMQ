@@ -104,4 +104,24 @@ public class ChaptersService extends ServerContext {
 		return statusMember;
 	}
 	
+	
+	public Object[] getStatusOfficerRooster(int idChapter, int idOfficer){
+		Log.d("url officers ", Server.getUrlOfficerDetails(idChapter, idOfficer));
+		Object[] statusJson=server.makeRequestGet(Server.getUrlOfficerDetails(idChapter, idOfficer));
+		OfficerRooster rooster=null;
+		try {
+			if(statusJson[1]!=null){
+				JSONObject jsonMember;
+				jsonMember = ((JSONObject)statusJson[1]).getJSONObject("office_member");	
+				rooster=new OfficerRooster(jsonMember);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Object[] statusMember=new Object[2];
+		statusMember[0]=statusJson[0];
+		statusMember[1]=rooster;
+		return statusMember;
+	}
 }

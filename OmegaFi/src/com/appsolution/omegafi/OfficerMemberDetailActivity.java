@@ -3,6 +3,7 @@ import com.appsolution.layouts.IconLabelVertical;
 import com.appsolution.layouts.LabelInfoVertical;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.MemberRooster;
+import com.appsolution.logic.OfficerRooster;
 import com.appsolution.logic.Server;
 
 import android.graphics.Color;
@@ -39,6 +40,10 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	private RowInformation addressMain;
 	private RowInformation addressSecundary;
 	
+	public static final int MEMBER_ROOSTER=0;
+	public static final int OFFICER_ROOSTER=1;
+	public static final String TYPE_ROOSTER="typeRooster";
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -74,7 +79,12 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		Bundle extras=getIntent().getExtras();
 		idChapter=extras.getInt("idc");
 		idMember=extras.getInt("idm");
-		chargeDetailsInformation();
+		if(extras.getInt(OfficerMemberDetailActivity.TYPE_ROOSTER)==0){
+			chargeDetailsMemberInformation();
+		}
+		else{
+			chargeDetailsOfficerInformation();
+		}
 	}
 	
 	@Override
@@ -126,7 +136,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		addresseIcon.setBackgroundColor(Color.TRANSPARENT);
 	}
 	
-	private void chargeDetailsInformation(){
+	private void chargeDetailsMemberInformation(){
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
 
 			int status=0;
@@ -143,6 +153,41 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 						getStatusMemberRooster(idChapter, idMember);
 				status=(Integer)statusMember[0];
 				member=(MemberRooster)statusMember[1];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				stopProgressDialog();
+				if(status==200){
+					completeFieldsMember(member);
+				}
+				else{
+					OmegaFiActivity.showErrorConection(OfficerMemberDetailActivity.this, status, "Object not found");
+				}
+			}
+			
+		};
+		task.execute();
+	}
+	
+	private void chargeDetailsOfficerInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
+
+			int status=0;
+			private OfficerRooster member=null;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Charging Officer...", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Object[] statusMember=MainActivity.servicesOmegaFi.getHome().getChapters().
+						getStatusOfficerRooster(idChapter, idMember);
+				status=(Integer)statusMember[0];
+				member=(OfficerRooster)statusMember[1];
 				return true;
 			}
 			

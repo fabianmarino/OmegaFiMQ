@@ -218,7 +218,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 				if(status==200){
 					rowEditAmount.setTextEdit("$"+selected.getPaymentAmount());
 					rowPaymentDate.setValueInfo(selected.getPaymentDate());
-					rowPaymentMethod.setValueInfo(methods.get(getIndexPaymenthMethod()).getCardNameNumber());
+					rowPaymentMethod.setNameInfo(methods.get(getIndexPaymenthMethod()).getCardNameNumber());
 				}
 				else{
 					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Object not found");
