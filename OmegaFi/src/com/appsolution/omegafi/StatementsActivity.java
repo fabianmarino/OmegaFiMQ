@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.http.cookie.Cookie;
+
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.Server;
 import com.appsolution.logic.Statement;
@@ -19,12 +21,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Browser;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -42,6 +46,7 @@ public class StatementsActivity extends OmegaFiActivity {
 	private int idAccount;
 	private long enqueue;
     private DownloadManager dm;
+    public static final String MIME_TYPE_PDF = "application/pdf";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,6 +81,26 @@ public class StatementsActivity extends OmegaFiActivity {
         registerReceiver(receiver, new IntentFilter(
                 DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 		
+	}
+	
+	
+
+	/**
+	 * Check if the supplied context can render PDF files via some installed application that reacts to a intent
+	 * with the pdf mime type and viewing action.
+	 *
+	 * @param context
+	 * @return
+	 */
+	public static boolean canDisplayPdf(Context context) {
+	    PackageManager packageManager = context.getPackageManager();
+	    Intent testIntent = new Intent(Intent.ACTION_VIEW);
+	    testIntent.setType(MIME_TYPE_PDF);
+	    if (packageManager.queryIntentActivities(testIntent, PackageManager.MATCH_DEFAULT_ONLY).size() > 0) {
+	        return true;
+	    } else {
+	        return false;
+	    }
 	}
 	
 	private void downloadFile(int idStatement){
@@ -198,7 +223,7 @@ public class StatementsActivity extends OmegaFiActivity {
     	dialog.setIndeterminate(false);
     	dialog.setMax(0);
     	try {
-    		MainActivity.servicesOmegaFi.downloadFileAsync(url, nameFIle, dialog);
+    		MainActivity.servicesOmegaFi.downloadFileAsync(url, nameFIle, dialog,StatementsActivity.this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -224,6 +249,7 @@ public class StatementsActivity extends OmegaFiActivity {
 //				return true;
 //			}
 //			
+    	
 //			@Override
 //			protected void onPostExecute(Boolean result) {
 //				stopProgressDialog();
@@ -279,8 +305,26 @@ public class StatementsActivity extends OmegaFiActivity {
     				
     				@Override
     				public void onClick(View arg0) {
+    					if(StatementsActivity.canDisplayPdf(StatementsActivity.this)){
     					dowloadFileAsyncTask(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0])),
     							"statement-"+Integer.parseInt(itemStatement[0])+".pdf");
+    					}
+    					else{
+    						OmegaFiActivity.showAlertMessage("Please install a pdf reader", StatementsActivity.this);
+    					}
+//    					Log.d("Pdf show", "");
+//    		            String googleUrl = "http://docs.google.com/gview?embedded=true&url=";
+//    		            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(googleUrl +
+//    		            		Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0]))));
+//    		            Bundle bundle = new Bundle();
+//    		            List<Cookie> listCookies=MainActivity.servicesOmegaFi.getListCookies();
+//    		            if(listCookies!=null){
+//    		             for(Cookie cookie:listCookies){
+//    		              bundle.putString(cookie.getName(), cookie.getValue());
+//    		             }
+//    		            }
+//    		            browserIntent.putExtra(Browser., bundle);
+//    		            startActivity(browserIntent);
     				}
     			});
     			return convertView; 

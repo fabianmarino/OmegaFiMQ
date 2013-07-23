@@ -108,7 +108,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	
 	private void completePaymentMethod(){
 		rowPaymentMethod=new RowInformation(this);
-		rowPaymentMethod.setNameInfo("Winston Smith - Mastercard (4751)");
+		rowPaymentMethod.setNameInfo("");
 		rowPaymentMethod.setVisibleArrow(true);
 		rowPaymentMethod.setOnClickListener(new View.OnClickListener() {
 			

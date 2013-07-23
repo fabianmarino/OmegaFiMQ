@@ -25,7 +25,7 @@ public class Account {
 	private String creditsLast;
 	private String paymentsLast;
 	private String activityLast;
-	private ArrayList<String> listNotifications;
+	private ArrayList<String> listNotifications=new ArrayList<String>();
 	
 	private String sourcePhoto;
 	private String urlPhotoAccount;
@@ -59,7 +59,6 @@ public class Account {
 				dateBalanceAsOf=lastestStatement.getString("cycle_on");
 				moneyBalanceAsOf=lastestStatement.getString("current_balance");
 			}
-			listNotifications=new ArrayList<String>();
 			JSONArray arrayNotifications=jsonAccount.getJSONArray("account_notifications");
 			for (int i = 0; i < arrayNotifications.length(); i++) {
 				

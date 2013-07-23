@@ -38,7 +38,9 @@ import org.json.JSONObject;
 
 import com.appsolution.omegafi.MainActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
+import com.appsolution.omegafi.StatementsActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -65,6 +67,7 @@ public class Server {
 	public static final String FORGOT_VALIDATE_QUESTIONS=HOST+"/myomegafi/api/v1/forgottenpasswords/validatesecurityquestions";
 	public static final String CALENDAR_SERVICE=HOST+"/myomegafi/api/v1/calendar";
 	public static final String CHANGE_PASSWORD_SERVICE=HOST+"/myomegafi/api/v1/forgottenpasswords/changepassword";
+	public static final String ANNOUNCEMENTS_SERVICE=HOST+"/myomegafi/api/v1/announcements";
 	
 	public static int TIME_OUT=20000;
 	private HttpClient clientRequest;
@@ -153,21 +156,23 @@ public class Server {
 		return responseObject;
 	}
 	
-	public String getPrivacyOmegaFi(){
+	public Object[] getPrivacyOmegaFi(){
 		return this.makeRequestGetHtml(Server.PRIVACY_SERVICE);
 	}
 	
-	public String getTermsOmegaFi(){
+	public Object[] getTermsOmegaFi(){
 		return this.makeRequestGetHtml(Server.TERMS_SERVICE);
 	}
 	
-	public String makeRequestGetHtml(String url){
+	public Object[] makeRequestGetHtml(String url){
+		Object[] statusHtml=new Object[2];
 		HttpGet get=new HttpGet(url);
 		String builder="";
 		get.addHeader("Content-Type", "text/plain");
 		get.addHeader("Accept", "*/*");
 		try {
 			HttpResponse response=clientRequest.execute(get,contextHttp);
+			statusHtml[0]=response.getStatusLine().getStatusCode();
 			builder=this.fromResponseToString(response);
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
@@ -176,7 +181,8 @@ public class Server {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return builder;
+		statusHtml[1]=builder;
+		return statusHtml;
 	}
 	
 	private JSONObject fromResponseToJSON(HttpResponse response){
@@ -269,6 +275,10 @@ public class Server {
         }
 	}
 	
+	public List<Cookie> getListCookies(){
+		return cookieStore.getCookies();
+	}
+	
 	public ForgotLoginService getForgotLogin() {
 		return forgotLogin;
 	}
@@ -348,7 +358,7 @@ public class Server {
 		return bitmap;
     }
 	
-	public void downloadFileAsync(final String url, final String nameFile, final ProgressDialog barCreated) throws IOException {
+	public void downloadFileAsync(final String url, final String nameFile, final ProgressDialog barCreated,final Activity parent) throws IOException {
 		
 		AsyncTask<Void, Integer, Boolean> taskAsync=new AsyncTask<Void, Integer, Boolean>() {
 			private String pathFile=null;
@@ -407,10 +417,15 @@ public class Server {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-		        intent.setDataAndType(Uri.parse("file://"+pathFile),
-		                "application/pdf");
-		        barCreated.getContext().startActivity(intent);
+				if(StatementsActivity.canDisplayPdf(parent)){
+					Intent intent = new Intent(Intent.ACTION_VIEW);
+			        intent.setDataAndType(Uri.parse("file://"+pathFile),
+			                "application/pdf");
+			        barCreated.getContext().startActivity(intent);
+		        }
+				else{
+					OmegaFiActivity.showAlertMessage("Please install a pdf reader", parent);
+				}
 		        barCreated.dismiss();
 			}
 		};

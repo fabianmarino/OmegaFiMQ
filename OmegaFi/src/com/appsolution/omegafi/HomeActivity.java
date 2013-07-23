@@ -449,6 +449,14 @@ public class HomeActivity extends OmegaFiActivity {
 		startActivity(intentCall);
 	}
 	
+	public void sendEmailMember(View button){
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {detailsOffice.getEmailRooster()});
+		Intent mailer = Intent.createChooser(intent, null);
+		startActivity(mailer);
+	}
+	
 	public ArrayList<CalendarEvent> getTestCalendarEvent(){
 		ArrayList<CalendarEvent> array=new ArrayList<CalendarEvent>();
 		for (int i = 0; i < 6; i++) {

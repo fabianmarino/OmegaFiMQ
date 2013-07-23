@@ -91,6 +91,10 @@ public class EventNewsContent extends LinearLayout {
 		this.truncateNewOrEvent();
 	}
 	
+	public void setDescriptionHtmlComplete(String description){
+		descriptionNewEvent.setText(Html.fromHtml(description));
+	}
+	
 	public void setDescriptionHtmlNewEvent(String description){
 		descriptionNewEvent.setText(Html.fromHtml(description));
 		this.truncateNewOrEvent();

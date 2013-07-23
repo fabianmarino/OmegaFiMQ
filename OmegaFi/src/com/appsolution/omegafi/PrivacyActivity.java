@@ -16,7 +16,7 @@ public class PrivacyActivity extends OmegaFiActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_privacy);
 		webPrivacy=(WebView)findViewById(R.id.webViewPrivacy);
-		webPrivacy.getSettings().setDisplayZoomControls(true);
+		webPrivacy.getSettings().setDisplayZoomControls(false);
 		webPrivacy.getSettings().setBuiltInZoomControls(true);
 		this.loadPrivacyHtml();
 	}
@@ -35,29 +35,29 @@ public class PrivacyActivity extends OmegaFiActivity {
 		final Activity activity=this;
 		AsyncTask<Void, Integer, Boolean> async=new AsyncTask<Void, Integer, Boolean>(){
 
+			private int status=0;
 			private String html="";
 			
 			@Override
 			protected void onPreExecute() {
-				progress=new ProgressDialog(activity);
-				progress.setTitle("Charging...");
-				progress.setMessage("Wait please");
-				progress.setCancelable(false);
-				progress.setIndeterminate(true);
-				progress.show();
+				startProgressDialog("Charging Privacy", getString(R.string.please_wait));
 			}
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-//				html=OmegaFiActivity.servicesOmegaFi.getPrivacyOmegaFi();
-				html=OmegaFiActivity.getStringFile(PrivacyActivity.this, "txt/privacy.txt");
+				Object[] statusHtml=MainActivity.servicesOmegaFi.getPrivacyOmegaFi();
+				status=(Integer)statusHtml[0];
+				html=(String)statusHtml[1];
+//				html=OmegaFiActivity.getStringFile(PrivacyActivity.this, "txt/privacy.txt");
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				webPrivacy.loadData(html, "text/html; charset=UTF-8", null);
-				progress.dismiss();
+				if(status==200){
+					webPrivacy.loadData(html, "text/html; charset=UTF-8", null);
+				}
+				stopProgressDialog();
 			}
 			
 		};

@@ -30,6 +30,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -349,9 +350,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		        .setPositiveButton("Yes",
 		                new DialogInterface.OnClickListener() {
 		                    public void onClick(DialogInterface dialog, int id) {
-		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
-		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
+//		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		                		finish();
+		                		System.runFinalization();
 		                		try {
 									finalize();
 								} catch (Throwable e) {
@@ -359,7 +361,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 									e.printStackTrace();
 								}
 		                		MainActivity.servicesOmegaFi.getHome().clearHomeServices();
-		                		startActivity(backToLogin);
+//		                		startActivity(backToLogin);
 		                    }
 		                });
 		AlertDialog alert = builder.create();
@@ -461,6 +463,30 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setRequestedOrientation (orientation);
+	}
+	
+	@Override
+	protected void onPause() {
+		Log.d("Pause", this.getLocalClassName());
+		super.onPause();
+	}
+	
+	@Override
+	protected void onStop() {
+		Log.d("Stop", this.getLocalClassName());
+		super.onStop();
+	}
+	
+	@Override
+	protected void onResume() {
+		Log.d("Resume", this.getLocalClassName());
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPostResume() {
+		Log.d("Post resume", this.getLocalClassName());
+		super.onPostResume();
 	}
 	
 }

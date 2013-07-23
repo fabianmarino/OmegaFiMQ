@@ -61,7 +61,7 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 			for (Charge chargeAux:listCharges) {
 				RowInformation row=new RowInformation(super.getContext());
 				row.setNameInfo(chargeAux.getDescription());
-				row.setValueInfo(chargeAux.getAmount());
+				row.setValueInfo("$"+chargeAux.getAmount());
 				this.addRowCharge(row);
 			}
 		}
@@ -94,7 +94,6 @@ public class CycleCharge extends LinearLayout implements View.OnClickListener{
 	}
 	
 	public void showHideChargesLines(){
-		Log.d("visibility charge", "jdahlkj eso");
 		if(linearCharges.getVisibility()==LinearLayout.GONE){
 			this.completeCycleCharges();
 			linearCharges.setVisibility(VISIBLE);

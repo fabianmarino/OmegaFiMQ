@@ -115,6 +115,7 @@ public class HistoryActivity extends OmegaFiActivity {
         	if(convertView==null){
         		convertView=new RowInformation(getApplicationContext()); 
         		rowHistory=(RowInformation)convertView;
+        		rowHistory.getNameTextView().getLayoutParams().width=OmegaFiActivity.getWidthPercentageDisplay(getApplicationContext(), 0.8f);
         	}
         	else{
         		rowHistory=(RowInformation)convertView;

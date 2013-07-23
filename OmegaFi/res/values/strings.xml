@@ -70,4 +70,5 @@
 	<string name="thanks_payment">Thank you for your payment.</string>
 	<string name="new_payment_add">Add</string>
 	<string name="new_payment_continue">Continue</string>
+	<string name="object_not_found">Object not found</string>
 </resources>

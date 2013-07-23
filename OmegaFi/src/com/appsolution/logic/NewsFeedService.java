@@ -45,6 +45,30 @@ public class NewsFeedService extends ServerContext {
 			e.printStackTrace();
 		}
 	}
+	
+	public ArrayList<CalendarEvent> getNewsFeed(String urlstr){
+		ArrayList<CalendarEvent> auxNews=new ArrayList<CalendarEvent>();
+		try {
+			URL url=new URL(urlstr);
+			RssFeed  feed=RssReader.read(url);
+			ArrayList<RssItem> rssItems=feed.getRssItems();
+			for (int i = 0; i < rssItems.size(); i++) {
+				RssItem item=rssItems.get(i);
+				auxNews.add(new CalendarEvent(item));
+			}
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return auxNews;
+	}
 
 	public ArrayList<CalendarEvent> getNews() {
 		return news;

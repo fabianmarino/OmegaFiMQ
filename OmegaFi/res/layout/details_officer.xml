@@ -16,7 +16,10 @@
         android:layout_gravity="center_horizontal"/>
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_5dp"
+        android:paddingTop="@dimen/padding_5dp"
+        android:paddingLeft="@dimen/padding_10dp"
+        android:paddingRight="@dimen/padding_5dp"
+        android:paddingBottom="@dimen/padding_5dp"
         android:orientation="vertical">
 	    <TextView android:id="@+id/nameOfficerMemberRoster"
 	        android:layout_width="fill_parent"
@@ -56,6 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
+                android:onClick="sendEmailMember"
                 secom:src_icon_label_vertical="@drawable/icon_email_white"
                 secom:text_label_vertical="example@anything.com" />
             <View android:layout_width="1dp"

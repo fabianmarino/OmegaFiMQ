@@ -154,4 +154,25 @@ public class HomeServices extends ServerContext{
 		return statusMethods;
 	}
 	
+	public Object[] getStatusArrayAnnouncements(){
+		Object[] statusArray=server.makeRequestGetJSONArray(Server.ANNOUNCEMENTS_SERVICE);
+		ArrayList<SimpleAnnouncement> announcements=new ArrayList<SimpleAnnouncement>();
+		JSONArray jsonAnnouncements=(JSONArray)statusArray[1];
+		try {
+			if(jsonAnnouncements!=null){
+				for (int i = 0; i < jsonAnnouncements.length(); i++) {		
+						JSONObject objectAnnouncement=jsonAnnouncements.getJSONObject(i).getJSONObject("announcement");
+						announcements.add(new SimpleAnnouncement(objectAnnouncement));
+				}
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Object[] statusAnnouncements=new Object[2];
+		statusAnnouncements[0]=statusArray[0];
+		statusAnnouncements[1]=announcements;
+		return statusAnnouncements;
+	}
+	
 }

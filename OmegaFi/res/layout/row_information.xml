@@ -36,6 +36,8 @@
 			        android:text="Information"
 			        android:textSize="@dimen/text_12_notification"
 			        android:textColor="@color/gray_font_row_info"
+			        android:inputType="textMultiLine"
+			        android:singleLine="false"
 			        />
 			    <TextView android:id="@+id/nameSubInfo"
 			        android:layout_width="wrap_content"

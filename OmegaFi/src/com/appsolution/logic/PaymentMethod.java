@@ -54,6 +54,10 @@ public class PaymentMethod {
 		return cardName+" - "+profileType+"("+id+")";
 	}
 	
+	public String getProfileTypeNumber(){
+		return profileType+"("+id+")";
+	}
+	
 	
 
 }

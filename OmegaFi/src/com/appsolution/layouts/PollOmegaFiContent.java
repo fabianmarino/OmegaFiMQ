@@ -100,7 +100,7 @@ public class PollOmegaFiContent extends ViewSwitcher{
 			View line=new View(getContext());
 			line.setBackgroundColor(this.getResources().getColor(R.color.gray_font_welcome));
 			LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 1);
-			params.rightMargin=0;
+			params.rightMargin=getResources().getDimensionPixelSize(R.dimen.margin_9dp_right_poll);
 			line.setLayoutParams(params);
 			lineCheck.addView(check);
 			if(i<(lenght-1)){

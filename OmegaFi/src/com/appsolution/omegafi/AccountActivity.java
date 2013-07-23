@@ -52,7 +52,9 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	private RowInformation rowDebits;
 	private RowInformation rowCurrentBalance;
 	private ArrayList<PaymentMethod> methods;
+	private RowInformation section4;
 	
+	private int paymentSelected=-1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -146,29 +148,40 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			section2.setId(107);
 			section2.setOnClickListener(this);
 			accountDetails.addView(section2);
-			RowInformation section4=new RowInformation(getApplicationContext());
+			section4=new RowInformation(getApplicationContext());
 			section4.setNameInfo("Payment Methods");
 			section4.setVisibleArrow(true);
 			section4.setColorFontRowInformation(Color.GRAY);
 			section4.setId(105);
 			section4.setOnClickListener(this);
+			
 			accountDetails.addView(section4);
 	}
 	
 	public void selectPayMethod(View view){
-		final DialogSelectableOF selectable=new DialogSelectableOF(this);
-		selectable.setOptionsSelectables(getPaymentMethodsList(methods));
-		selectable.setTitleDialog("Select Payment Method");
-		selectable.setTextButton("Save");
-		selectable.setCloseOnSelectedItem(false);
-		selectable.setButtonListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				selectable.dismissDialog();
+		if(!methods.isEmpty()){
+			final DialogSelectableOF selectable=new DialogSelectableOF(this);
+			selectable.setOptionsSelectables(getPaymentMethodsList(methods));
+			selectable.setTitleDialog("Select Payment Method");
+			selectable.setTextButton("Save");
+			selectable.setCloseOnSelectedItem(false);
+			if(paymentSelected!=-1){
+				selectable.setSelectedIndex(paymentSelected);
 			}
-		});
-		selectable.showDialog();
+			selectable.setButtonListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					paymentSelected=selectable.getIndexSelected();
+					section4.setValueInfo(methods.get(paymentSelected).getProfileTypeNumber());
+					selectable.dismissDialog();
+				}
+			});
+			selectable.showDialog();
+		}
+		else{
+			OmegaFiActivity.showAlertMessage("No payment methods", AccountActivity.this);
+		}
 	}
 	
 	public void activityPayNow(View button){
@@ -259,6 +272,10 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 					rowDebits.setValueInfo("$ "+actualAccount.getActivityLast());
 					rowCurrentBalance.setValueInfo("$ "+actualAccount.getCurrentBalance());
 					toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
+					if(!methods.isEmpty()){
+						paymentSelected=0;
+						section4.setValueInfo(methods.get(paymentSelected).getProfileTypeNumber());
+					}
 				}
 				stopProgressDialog();
 			}

@@ -2,10 +2,9 @@ package com.appsolution.layouts;
 
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
-import com.viewpagerindicator.TitlePageIndicator;
-
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +50,7 @@ public class ContentAnnouncement extends LinearLayout {
 		inflate.inflate(R.layout.content_announcement, this, true);
 		contentAll=(LinearLayout)findViewById(R.id.linearContentAnnouncements);
 		rowTitleDate=(RowInformation)findViewById(R.id.titleNameDateAnnouncement);
+		rowTitleDate.getTextNameInfo().getLayoutParams().width=OmegaFiActivity.getWidthPercentageDisplay(super.getContext(), 0.7f);
 		descriptionAnnouncement=(TextView)findViewById(R.id.descriptionAnnouncement);
 		descriptionAnnouncement.setClickable(true);
 		descriptionAnnouncement.setTypeface(OmegaFiActivity.getFont(getContext(), 3));
@@ -67,7 +67,7 @@ public class ContentAnnouncement extends LinearLayout {
 	}
 	
 	public void setDescriptionAnnouncement(String description){
-		descriptionAnnouncement.setText(description);
+		descriptionAnnouncement.setText(Html.fromHtml(description));
 	}
 	
 	public void setBackgroundNewAnnoncement(){

@@ -78,6 +78,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 		
 		rowToogle=new RowToogleOmegaFi(this);
 		rowToogle.setNameInfo("Previous issue?");
+		rowToogle.setYesNoToogle(true);
 		
 		linearTextEdit.addView(textPleaseEnter);
 		linearTextEdit.addView(editEmailAddres);

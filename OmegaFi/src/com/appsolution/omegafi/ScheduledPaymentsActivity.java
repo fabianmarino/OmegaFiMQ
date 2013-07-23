@@ -60,22 +60,6 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 	private void getListStringScheduledPayments(ArrayList<SimpleScheduledPayment> scheduleds){
 		List<String> listPayments=new ArrayList<String>();
 		for (final SimpleScheduledPayment scheduled:scheduleds) {
-			
-//			RowInformation rowInfo=new RowInformation(getApplicationContext());
-//			rowInfo.setNameInfo(scheduled.getPaymentDate()+" - "+scheduled.getStateScheduled());
-//			rowInfo.setValueInfo("$"+scheduled.getPaymentAmount());
-//			rowInfo.setOnClickListener(new View.OnClickListener() {
-//				
-//				@Override
-//				public void onClick(View arg0) {
-//					MainActivity.servicesOmegaFi.getHome().getAccounts().setSelected(scheduled);
-//					Intent viewScheduledDetails=new Intent(getApplicationContext(), ScheduledPaymentsDetailActivity.class);
-//					viewScheduledDetails.putExtra("id", idAccount);
-//					viewScheduledDetails.putExtra("editable", false);
-//					startActivityForResult(viewScheduledDetails, OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENT_DETAIL);
-//				}
-//			});
-//			listScheduledPayments.addView(rowInfo);
 		}
 	}
 	

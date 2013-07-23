@@ -12,14 +12,13 @@ import android.webkit.WebView;
 public class TermsActivity extends OmegaFiActivity {
 
 	private WebView webViewTerms;
-	private ProgressDialog progress;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_terms);
 		webViewTerms=(WebView)findViewById(R.id.webViewTerms);
-		webViewTerms.getSettings().setDisplayZoomControls(true);
+		webViewTerms.getSettings().setDisplayZoomControls(false);
 		webViewTerms.getSettings().setBuiltInZoomControls(true);
 		this.loadTerms();
 	}
@@ -37,29 +36,29 @@ public class TermsActivity extends OmegaFiActivity {
 		final Activity activity=this;
 		AsyncTask<Void, Integer, Boolean> async=new AsyncTask<Void, Integer, Boolean>(){
 
+			private int status=0;
 			private String html="";
 			
 			@Override
 			protected void onPreExecute() {
-				progress=new ProgressDialog(activity);
-				progress.setTitle("Charging...");
-				progress.setMessage("Wait please");
-				progress.setCancelable(false);
-				progress.setIndeterminate(true);
-				progress.show();
+				startProgressDialog("Charging Terms...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-//				html=OmegaFiActivity.servicesOmegaFi.getTermsOmegaFi();
-				html=OmegaFiActivity.getStringFile(getApplicationContext(), "txt/terms.txt");
+				Object[] statusHtml=MainActivity.servicesOmegaFi.getTermsOmegaFi();
+				status=(Integer)statusHtml[0];
+				html=(String)statusHtml[1];
+//				html=OmegaFiActivity.getStringFile(getApplicationContext(), "txt/terms.txt");
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				webViewTerms.loadData(html, "text/html; charset=UTF-8", null);
-				progress.dismiss();
+				if(status==200){
+					webViewTerms.loadData(html, "text/html; charset=UTF-8", null);
+				}
+				stopProgressDialog();
 			}
 			
 		};

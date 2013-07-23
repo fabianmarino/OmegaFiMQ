@@ -6,7 +6,9 @@ import com.appsolution.logic.MemberRooster;
 import com.appsolution.logic.OfficerRooster;
 import com.appsolution.logic.Server;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -231,6 +233,21 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		Server.chargeBitmapInImageView(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
 	}
 	
+	
+	public void onFacebookIcon(View icon){
+		Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("https://www.facebook.com"));
+		startActivity(i);
+	}
+	
+	public void onTwitterIcon(View icon){
+		Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("https://www.twitter.com"));
+		startActivity(i);
+	}
+	
+	public void onLinkedIcon(View icon){
+		Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("http://www.linkedin.com"));
+		startActivity(i);
+	}
 
 
 }

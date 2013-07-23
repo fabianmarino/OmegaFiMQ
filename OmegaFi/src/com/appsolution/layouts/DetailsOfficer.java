@@ -61,5 +61,9 @@ public class DetailsOfficer extends LinearLayout {
 		return iconPhone.getTextLabel();
 	}
 	
+	public String getEmailRooster(){
+		return iconEmail.getTextLabel();
+	}
+	
 
 }

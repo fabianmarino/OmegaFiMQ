@@ -87,7 +87,7 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 				msg=new Message();
 				msg.obj=50;
 				handlerProgress.sendMessage(msg);
-				MainActivity.servicesOmegaFi.getHome().getCalendar().chargeEvents();
+				MainActivity.servicesOmegaFi.getHome().getCalendar().chargeEventsHome();
 				msg=new Message();
 				msg.obj=60;
 				handlerProgress.sendMessage(msg);

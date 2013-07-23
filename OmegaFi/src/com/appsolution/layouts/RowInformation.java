@@ -210,6 +210,10 @@ public class RowInformation extends RelativeLayout{
 		return linearNamesInformation;
 	}
 
+	public TextView getTextNameInfo(){
+		return textNameInfo;
+	}
+	
 	public TextView getTextNameSubInfo() {
 		return textNameSubInfo;
 	}
@@ -274,5 +278,9 @@ public class RowInformation extends RelativeLayout{
 	public void setGravityValueInfo(int gravity){
 		textValueInfo.setGravity(gravity);
 		textValueInfo2.setGravity(gravity);
+	}
+	
+	public TextView getNameTextView(){
+		return textNameInfo;
 	}
 }

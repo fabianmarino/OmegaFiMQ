@@ -74,7 +74,12 @@ public class RowToogleOmegaFi extends RowEditInformation {
 		toogleButton.setText("ACTIVATE");
 		toogleButton.setTextOn("DEACTIVATE");
 		toogleButton.setTextOff("ACTIVATE");
-		
+	}
+	
+	public void setYesNoToogle(boolean yesNo){
+		if(yesNo){
+			toogleButton.setBackgroundResource(R.drawable.toogle_omegafi_yes_no);
+		}
 	}
 
 }
