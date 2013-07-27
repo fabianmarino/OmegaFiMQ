@@ -91,9 +91,7 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 	}
 	
 	public void setEditable(boolean editable){
-		if(!editable){
-			textEdit.setKeyListener(null);
-		}
+		textEdit.setEnabled(editable);
 	}
 	
 	public void setTextEdit(String text){
@@ -181,6 +179,13 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 	
 	public String getValueInfo2(){
 		return textEdit2.getText().toString();
+	}
+	
+	public EditText getEditText(){
+		return textEdit;
+	}
+	public EditText getEditText2(){
+		return textEdit2;
 	}
 	
 }

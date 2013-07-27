@@ -6,44 +6,59 @@
     android:orientation="vertical"
     style="@style/BackgroundActivity"
     tools:context=".PaymentAmountActivity" >
-    
-    <Button android:id="@+id/buttonMenuSpecificPay"
+    <LinearLayout
+	    android:id="@+id/linearPaymentAmount" 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:onClick="changePaymentAmount"
-        android:text="Pay Amount Due"
-        android:background="@drawable/boton_style"/>
-    <LinearLayout android:id="@+id/linearPayAmount"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        style="@style/LinearContentAll"
         android:orientation="vertical">
-        <com.appsolution.layouts.RowInformation
-            android:id="@+id/rowNoMaximumAmount"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            secom:name_information="No Maximum Amount"
-            secom:put_border_bottom="true"
-            secom:padding_row_info="8dp"
-            secom:icon_drawable="@drawable/icon_ok_1"/>
-        <com.appsolution.layouts.RowInformation
-            android:id="@+id/rowSpecificDayMonth"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            secom:name_information="Maximum Amount"
-            secom:value_information="$0.00"
-            secom:put_border_bottom="true"
-            secom:padding_row_info="8dp"
-            />
-    </LinearLayout>
-        <com.appsolution.layouts.RowEditTextOmegaFi
-            android:id="@+id/textSpecificAmount"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:visibility="gone"
-            secom:name_information_e="Enter Amount"
-            />
-
+	    <Spinner
+		        android:id="@+id/spinnerMenuSpecificPay" 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:padding="@dimen/padding_6dp"
+		        android:background="@drawable/spinner_large"
+		        android:layout_marginBottom="@dimen/padding_6dp"
+		        android:entries="@array/payments_amount"
+		    />
+	    <LinearLayout android:id="@+id/linearPayAmountDue"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:orientation="vertical">
+	<!--    <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowNoMaximumAmount"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="No Maximum Amount"
+	            secom:put_border_bottom="true"
+	            secom:padding_row_info="8dp"
+	            secom:icon_drawable="@drawable/icon_ok_1"/>
+	        <com.appsolution.layouts.RowInformation
+	            android:id="@+id/rowSpecificDayMonth"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            secom:name_information="Maximum Amount"
+	            secom:value_information="$0.00"
+	            secom:put_border_bottom="true"
+	            secom:padding_row_info="8dp"
+	            />  -->
+	    </LinearLayout>
+	    <LinearLayout  android:id="@+id/linearSpecificAmount"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="5dp"
+	        android:visibility="gone"
+	        android:orientation="vertical">
+	        <com.appsolution.layouts.RowEditTextOmegaFi
+	            android:id="@+id/textSpecificAmount"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="5dp"
+	            secom:name_information_e="Enter Amount"
+	            secom:width_edit_percentaje="0.4"
+	            secom:type_input_row_info_1="@integer/input_type_number_decimal"
+	            />
+	    </LinearLayout>
+</LinearLayout>
 </LinearLayout>

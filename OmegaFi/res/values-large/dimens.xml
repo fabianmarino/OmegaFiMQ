@@ -89,6 +89,7 @@
     <dimen name="height_arrow_up_negative">-10dp</dimen>
     <dimen name="width_120dp">130dp</dimen>
     <dimen name="width_50dp">40dp</dimen>
+    <dimen name="height_30dp">42dp</dimen>
     
     <dimen name="slidingmenu_offset">100dp</dimen>
     <dimen name="list_padding">10dp</dimen>

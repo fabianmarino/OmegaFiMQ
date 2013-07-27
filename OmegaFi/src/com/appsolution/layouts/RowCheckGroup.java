@@ -17,6 +17,7 @@ public class RowCheckGroup {
 	private int indexSelected=0;
 	private String itemSelected="";
 	private RowCheckOmegaFi rowSelected;
+	private boolean isSingleCheckUnCheck=false;
 	
 	public RowCheckGroup(){
 		listener=new OnRowCheckListener() {
@@ -46,8 +47,15 @@ public class RowCheckGroup {
 			@Override
 			public void onClick(View v) {
 					RowCheckGroup.this.listener.actionBeforeChecked();
-					unCheckedAll();
-					row.setChecked(true);
+					
+					if(!isSingleCheckUnCheck){
+						unCheckedAll();
+						row.setChecked(true);
+					}
+					else{
+						row.setChecked(!rowSelected.isChecked());
+						}
+					
 					indexSelected=listRowsChecked.indexOf(row);
 					itemSelected=row.getItemRow();
 					rowSelected=row;
@@ -135,5 +143,15 @@ public class RowCheckGroup {
 		aux2=aux2.replace(" ", "");
 		return aux1.equals(aux2);
 	}
+
+	public boolean isSingleCheckUnCheck() {
+		return isSingleCheckUnCheck;
+	}
+
+	public void setSingleCheckUnCheck(boolean isSingleCheckUnCheck) {
+		this.isSingleCheckUnCheck = isSingleCheckUnCheck;
+	}
+	
+	
 	
 }

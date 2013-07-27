@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    style="@style/BackgroundActivity"
+    tools:context=".AutoPayEndDateActivity">
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        style="@style/LinearContentAll"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/linearContentEndDate" 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            />
+        <!-- <com.appsolution.layouts.RowCheckOmegaFi
+            android:id="@+id/rowCheckNoneBeginDate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+         />
+         <com.appsolution.layouts.RowInformation
+            android:id="@+id/rowEndDateNone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:name_information="None"
+            secom:put_border_bottom="true"
+            secom:padding_row_info="8dp"
+            secom:icon_drawable="@drawable/icon_ok_1"/>  
+        <com.appsolution.layouts.RowInformation
+            android:id="@+id/rowSpecificEndDateNone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            secom:name_information="Specific End Date"
+            secom:put_border_bottom="true"
+            secom:padding_row_info="8dp"
+            secom:icon_drawable="@drawable/calendar_1"/>
+            -->
+        <TextView android:id="@+id/noteChooseSpecific"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="Choose None to specify no end date"/>
+    </LinearLayout>
+
+</LinearLayout>

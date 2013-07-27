@@ -31,6 +31,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.CompoundButton;
 
 public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 
@@ -66,6 +67,16 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		accountDetails=(SectionOmegaFi)findViewById(R.id.sectionAccountDetails);
 		toogleAutoPay=(RowToogleOmegaFi)findViewById(R.id.toogleAutoPay);
 		toogleAutoPay.backgroundActiveForm();
+		toogleAutoPay.setOnChangeListenerToogle(null);
+		toogleAutoPay.setEnabled(false);
+		toogleAutoPay.setToggleOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				toogleAutoPay.setActivateOn(!toogleAutoPay.isActivatedOn());
+				viewAutoPay(toogleAutoPay.isActivatedOn());
+			}
+		});
 		infoNumberAccount=(LabelInfoVertical)findViewById(R.id.accountNumberInfo);
 		infoBalanceDue=(LabelInfoVertical)findViewById(R.id.balanceDueInfo);
 		rowDueOn=(RowInformation)findViewById(R.id.rowBalanceDueOn);
@@ -229,7 +240,13 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		default:
 			break;
 		}
-		
+	}
+	
+	private void viewAutoPay(boolean exist){
+		Intent intentAutoPay=new Intent(this, AutoPayActivity.class);
+		intentAutoPay.putExtra("id", actualAccount.getId());
+		intentAutoPay.putExtra("exist", exist);
+		startActivityForResult(intentAutoPay, OmegaFiActivity.ACTIVITY_AUTO_PAY);
 	}
 	
 	private void chargeAccountSelected(final int id){
@@ -239,7 +256,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Account", getResources().getString(R.string.please_wait));
+				startProgressDialog("Charging Account...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

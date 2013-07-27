@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="payments_amount">
+        <item>Pay Amount Due</item>
+        <item>Pay Specific Amount</item>
+    </string-array>
+</resources>

@@ -56,6 +56,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public static final int ACTIVITY_SCHEDULED_OF_CHARGES=10;
 	public static final int ACTIVITY_STATEMENTS=11;
 	public static final int ACTIVITY_PAYMENT_METHODS=12;
+	public static final int ACTIVITY_AUTO_PAY=13;
+	public static final int ACTIVITY_AUTO_PAY_END_DATE=14;
+	public static final int ACTIVITY_AUTO_PAY_PAYMENT_DATE=15;
+	public static final int ACTIVITY_AUTO_PAY_PAYMENT_AMOUNT=16;
 	
 	
 	
@@ -350,10 +354,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		        .setPositiveButton("Yes",
 		                new DialogInterface.OnClickListener() {
 		                    public void onClick(DialogInterface dialog, int id) {
-//		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
-//		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		                    	closeAllActivities();
+		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
+		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		                		finish();
-		                		System.runFinalization();
 		                		try {
 									finalize();
 								} catch (Throwable e) {
@@ -361,7 +365,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 									e.printStackTrace();
 								}
 		                		MainActivity.servicesOmegaFi.getHome().clearHomeServices();
-//		                		startActivity(backToLogin);
+		                		startActivity(backToLogin);
 		                    }
 		                });
 		AlertDialog alert = builder.create();
@@ -487,6 +491,34 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	protected void onPostResume() {
 		Log.d("Post resume", this.getLocalClassName());
 		super.onPostResume();
+	}
+	
+	protected void refreshAtTime(final int millis){
+		AsyncTask<Void, Integer, Boolean> sleep=new AsyncTask<Void, Integer, Boolean>() {
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				try {
+					Thread.sleep(millis);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				refreshActivity();
+			}
+		};
+		sleep.execute();
+	}
+	
+	protected void closeAllActivities(){
+		for (int i = OmegaFiActivity.ACTIVITY_HOME; i <= 16; i++) {
+			finishActivity(i);
+		}
 	}
 	
 }

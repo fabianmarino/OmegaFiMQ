@@ -30,6 +30,7 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 	
 	public void setChecked(boolean checked){
 		radioOption.setChecked(checked);
+		Log.d("se ha puesto en: ", checked+"");
 	}
 	
 	public boolean isChecked(){

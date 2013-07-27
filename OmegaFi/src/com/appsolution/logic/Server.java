@@ -20,8 +20,10 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.cookie.Cookie;
@@ -114,6 +116,50 @@ public class Server {
 		} 
 		statusContent[1]=jsonResponse;
 		return statusContent;
+	}
+	
+	public Object[]  makeRequestPut(String url,List<NameValuePair> data){
+		Object[] statusContent=new Object[2];
+		statusContent[0]=0;
+		JSONObject jsonResponse = null;
+		HttpPut put=new HttpPut(url);
+//		post.addHeader("Content-Type", "text/plain");
+		put.addHeader("Accept", "*/*");
+		HttpConnectionParams.setConnectionTimeout(put.getParams(), TIME_OUT);
+		HttpConnectionParams.setSoTimeout(put.getParams(), TIME_OUT);
+		try {
+			put.setEntity(new UrlEncodedFormEntity(data));
+			HttpResponse response=clientRequest.execute(put,contextHttp);
+			statusContent[0]=response.getStatusLine().getStatusCode();
+			jsonResponse=this.fromResponseToJSON(response);
+		} catch (UnsupportedEncodingException e) {
+			System.err.print("Error at parsing input json ");
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			System.err.print("Error at execute post ");
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		statusContent[1]=jsonResponse;
+		return statusContent;
+	}
+	
+	public int makeRequestDelete(String url){
+		int status=0;
+		HttpDelete delete=new HttpDelete(url);
+		delete.addHeader("Content-Type", "text/plain");
+		delete.addHeader("Accept", "*/*");
+		try {
+			HttpResponse response=clientRequest.execute(delete,contextHttp);
+			status=response.getStatusLine().getStatusCode();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return status;
 	}
 	
 	public Object[] makeRequestGet(String url){
@@ -321,6 +367,14 @@ public class Server {
 	
 	public static String getUrlScheduledPayments(int idAccount){
 		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/scheduledpayments";
+	}
+	
+	public static String getUrlAutoPay(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/autopays";
+	}
+	
+	public static String getUrlAutoPayId(int idAccount,int idAutoPay){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/autopays/"+idAutoPay;
 	}
 	
 	public static String getUrlMemberRooster(int idChapter){

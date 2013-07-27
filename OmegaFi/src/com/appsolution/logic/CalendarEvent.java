@@ -120,6 +120,10 @@ public class CalendarEvent {
 			stringFormat=new SimpleDateFormat("yyyy-MM-dd");
 			fechaAux=stringFormat.format(dateFecha);
 			break;
+		case 6:
+			stringFormat=new SimpleDateFormat("yyyy/MM/dd");
+			fechaAux=stringFormat.format(dateFecha);
+			break;
 		default:
 			break;
 		}

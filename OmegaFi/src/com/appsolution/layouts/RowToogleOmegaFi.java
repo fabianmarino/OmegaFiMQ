@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -47,11 +48,13 @@ public class RowToogleOmegaFi extends RowEditInformation {
 		int width=getContext().getResources().getDimensionPixelSize(R.dimen.width_95dp);
 		toogleButton.setLayoutParams(new LayoutParams(width, width/3));
 		toogleButton.setBackgroundResource(R.drawable.toogle_omegafi);
+		toogleButton.setChecked(false);
 		this.addViewRight(toogleButton);
 	
 	}
 	
 	public void setActivateOn(boolean on){
+		Log.d("Activated", on+"");
 		toogleButton.setChecked(on);
 	}
 	
@@ -61,6 +64,10 @@ public class RowToogleOmegaFi extends RowEditInformation {
 	
 	public void setOnChangeListenerToogle(OnCheckedChangeListener listener){
 		toogleButton.setOnCheckedChangeListener(listener);
+	}
+	
+	public void setEnabled(boolean enabled) {
+		toogleButton.setActivated(enabled);
 	}
 	
 	public void backgroundActiveForm(){
@@ -76,10 +83,16 @@ public class RowToogleOmegaFi extends RowEditInformation {
 		toogleButton.setTextOff("ACTIVATE");
 	}
 	
+	
+	
 	public void setYesNoToogle(boolean yesNo){
 		if(yesNo){
 			toogleButton.setBackgroundResource(R.drawable.toogle_omegafi_yes_no);
 		}
+	}
+	
+	public void setToggleOnClickListener(OnClickListener listener){
+		toogleButton.setOnClickListener(listener);
 	}
 
 }

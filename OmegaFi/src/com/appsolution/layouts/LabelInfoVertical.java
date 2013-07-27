@@ -36,11 +36,11 @@ public class LabelInfoVertical extends LinearLayout {
 			setValueLabel(textValue);
 			
 			int sizeName=a.getDimensionPixelSize(R.styleable.LabelInfoVertical_size_title_label,
-					super.getResources().getDimensionPixelSize(R.dimen.text_6sp));
+					super.getResources().getDimensionPixelSize(R.dimen.text_10sp));
 			setSizeTitleLabel(sizeName);
 			
 			int sizeSubName=a.getDimensionPixelSize(R.styleable.LabelInfoVertical_size_value_label,
-					super.getResources().getDimensionPixelSize(R.dimen.text_10sp));
+					super.getResources().getDimensionPixelSize(R.dimen.text_12sp_row_info));
 			setSizeValueLabel(sizeSubName);
 			
 		a.recycle();
@@ -72,11 +72,11 @@ public class LabelInfoVertical extends LinearLayout {
 	}
 	
 	public void setSizeTitleLabel(int size){
-		textNameInfo.setTextSize(TypedValue.COMPLEX_UNIT_SP,size);
+		textNameInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	public void setSizeValueLabel(int size){
-		textContentInfo.setTextSize(TypedValue.COMPLEX_UNIT_SP,size);
+		textContentInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX,size);
 	}
 	
 	public void setValueLabel(String value){

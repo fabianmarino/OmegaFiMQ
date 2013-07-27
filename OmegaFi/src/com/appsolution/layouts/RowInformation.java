@@ -236,6 +236,7 @@ public class RowInformation extends RelativeLayout{
 	public void setBackgroundValueInfo(int resource){
 		if(resource!=-1){
 			textValueInfo.getLayoutParams().width=OmegaFiActivity.getWidthPercentageDisplay(getContext(), 0.4f);
+			textValueInfo.getLayoutParams().height=getResources().getDimensionPixelSize(R.dimen.height_edit_submit);
 			textValueInfo.setBackgroundResource(resource);
 			textValueInfo.setTextColor(Color.GRAY);
 			textValueInfo.setGravity(Gravity.CENTER_VERTICAL|Gravity.LEFT);

@@ -17,5 +17,5 @@
         android:layout_gravity="center_horizontal"
         android:text="43563"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/text_14sp"/>
+        android:textSize="@dimen/text_12sp_row_info"/>
 </LinearLayout>

@@ -9,6 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class AccountsService extends ServerContext {
 
 	private ArrayList<Account> accounts;
@@ -139,8 +141,113 @@ public class AccountsService extends ServerContext {
 		return accounts;
 	}
 	
+	public Object[] getStatusAutoPay(int idAccount){
+		Object[] statusJson=server.makeRequestGet(Server.getUrlAutoPay(idAccount));
+		AutoPayConfig config=null;
+		if(statusJson[1]!=null){
+			config=new AutoPayConfig((JSONObject)statusJson[1]);	
+		}
+		Object[] statusAutoPay=new Object[2];
+		statusAutoPay[0]=statusJson[0];
+		statusAutoPay[1]=config;
+		return statusAutoPay;
+	}
 	
+	public int removeAutoPaySettings(int idAccount,int idAutoPay){
+		return server.makeRequestDelete(Server.getUrlAutoPayId(idAccount, idAutoPay));
+	}
 	
+	public Object[] createAutoPay(int idAccount, AutoPayConfig config){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		
+		if(config.getPaymentDayOfMonth()!=-1){
+			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+1));
+			Log.d("autopayrecord[payonduedate]", "1");
+			nameValuePairs.add(new BasicNameValuePair("autopayrecord[dayofmonth]", ""+config.getPaymentDayOfMonth()));
+			Log.d("autopayrecord[dayofmonth]", config.getPaymentDayOfMonth()+"");
+        }
+		else{
+			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+0));
+			Log.d("autopayrecord[payonduedate]", 0+"");
+		}
+        nameValuePairs.add(new BasicNameValuePair("autopayrecord[begindate]", config.getBeginDateRequest()));
+        Log.d("autopayrecord[begindate]", config.getBeginDateRequest());
+        if(config.getTypePaymenthAmount()==AutoPayConfig.PAY_AMOUNT_DUE){
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paydueamount]", 1+""));
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[capamount]", config.getAmountEnterMax()+""));
+        	Log.d("autopayrecord[paydueamount]", 1+"");
+        	Log.d("autopayrecord[capamount]", config.getAmountEnterMax()+"");
+        }
+        else{
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paydueamount]", 0+""));
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paymentamount]", config.getAmountEnterMax()+""));
+        	Log.d("autopayrecord[paydueamount]", 0+"");
+        	Log.d("autopayrecord[paymentamount]", config.getAmountEnterMax()+"");
+        }
+        
+        if(config.getEndDate()!=null){
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[enddate]", config.getEndDateRequest()));
+        	Log.d("autopayrecord[enddate]", config.getEndDateRequest());
+        }
+        
+        if(config.iseCheck()){
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[memberpaymentecheckid]", config.getIdCreditOrECheck()+""));
+        	Log.d("autopayrecord[memberpaymentecheckid]", config.getIdCreditOrECheck()+"");
+        }
+        else{
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[memberpaymentcreditcardid]", config.getIdCreditOrECheck()+""));
+        	Log.d("autopayrecord[memberpaymentcreditcardid]", config.getIdCreditOrECheck()+"");
+        }
+        
+		Object[] statusJson=server.makeRequestPost(Server.getUrlAutoPay(idAccount), nameValuePairs);
+		
+		return statusJson;
+	}
 	
+	public Object[] updateAutoPay(int idAccount, AutoPayConfig config){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		
+		if(config.getPaymentDayOfMonth()!=-1){
+			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+1));
+			Log.d("autopayrecord[payonduedate]", "1");
+			nameValuePairs.add(new BasicNameValuePair("autopayrecord[dayofmonth]", ""+config.getPaymentDayOfMonth()));
+			Log.d("autopayrecord[dayofmonth]", config.getPaymentDayOfMonth()+"");
+        }
+		else{
+			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+0));
+			Log.d("autopayrecord[payonduedate]", 0+"");
+		}
+        nameValuePairs.add(new BasicNameValuePair("autopayrecord[begindate]", config.getBeginDateRequest()));
+        Log.d("autopayrecord[begindate]", config.getBeginDateRequest());
+        if(config.getTypePaymenthAmount()==AutoPayConfig.PAY_AMOUNT_DUE){
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paydueamount]", 1+""));
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[capamount]", config.getAmountEnterMax()+""));
+        	Log.d("autopayrecord[paydueamount]", 1+"");
+        	Log.d("autopayrecord[capamount]", config.getAmountEnterMax()+"");
+        }
+        else{
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paydueamount]", 0+""));
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paymentamount]", config.getAmountEnterMax()+""));
+        	Log.d("autopayrecord[paydueamount]", 0+"");
+        	Log.d("autopayrecord[paymentamount]", config.getAmountEnterMax()+"");
+        }
+        
+        if(config.getEndDate()!=null){
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[enddate]", config.getEndDateRequest()));
+        	Log.d("autopayrecord[enddate]", config.getEndDateRequest());
+        }
+        
+        if(config.iseCheck()){
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[memberpaymentecheckid]", config.getIdCreditOrECheck()+""));
+        	Log.d("autopayrecord[memberpaymentecheckid]", config.getIdCreditOrECheck()+"");
+        }
+        else{
+        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[memberpaymentcreditcardid]", config.getIdCreditOrECheck()+""));
+        	Log.d("autopayrecord[memberpaymentcreditcardid]", config.getIdCreditOrECheck()+"");
+        }
+        
+		Object[] statusJson=server.makeRequestPut(Server.getUrlAutoPayId(idAccount,config.getId()), nameValuePairs);
+		return statusJson;
+	}
 
 }
