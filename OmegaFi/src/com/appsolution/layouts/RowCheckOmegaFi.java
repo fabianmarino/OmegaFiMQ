@@ -16,7 +16,7 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 		super(context);
 		setTextSizeInformation(context.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 		radioOption=new RadioButton(context);
-		radioOption.setEnabled(false);
+		radioOption.setEnabled(true);
 		int size=context.getResources().getDimensionPixelSize(R.dimen.width_arrow_down);
 		RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
 				RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -57,6 +57,12 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 	
 	public void setButtonDrawable(int resource){
 		radioOption.setButtonDrawable(resource);
+	}
+	
+	@Override
+	public void setOnClickListener(OnClickListener l) {
+		radioOption.setOnClickListener(l);
+		super.setOnClickListener(l);
 	}
 	
 }

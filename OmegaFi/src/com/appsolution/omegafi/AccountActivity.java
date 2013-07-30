@@ -2,36 +2,23 @@ package com.appsolution.omegafi;
 
 import java.util.ArrayList;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
 import com.appsolution.layouts.DialogContactAccount;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.LabelInfoVertical;
-import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowToogleOmegaFi;
-import com.appsolution.layouts.SectionAccountUser;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.PaymentMethod;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.CompoundButton;
 
 public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 
@@ -89,6 +76,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		this.completeAccountDetails();
 		accountId=getIntent().getExtras();
 		this.chargeAccountSelected(accountId.getInt("id"));
+		setResult(OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
 	}
 	
 	@Override
@@ -208,7 +196,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		Log.e("Account -> ", v.getId()+"");
 		switch (v.getId()) {
 		case 100:
 			Intent viewMake=new Intent(this, MakePaymentActivity.class);
@@ -243,6 +230,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	}
 	
 	private void viewAutoPay(boolean exist){
+		this.finish();
 		Intent intentAutoPay=new Intent(this, AutoPayActivity.class);
 		intentAutoPay.putExtra("id", actualAccount.getId());
 		intentAutoPay.putExtra("exist", exist);
@@ -304,9 +292,15 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		ArrayList<String> list=new ArrayList<String>();
 		if(methods!=null){
 			for (PaymentMethod method:methods) {
-				list.add(method.getCardName()+","+method.getProfileType()+" ("+method.getId()+")");
+				list.add(method.getNameTypeNumber());
 			}
 		}
 		return list;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		finishActivity(OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
+		super.onBackPressed();
 	}
 }

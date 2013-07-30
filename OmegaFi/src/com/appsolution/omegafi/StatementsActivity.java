@@ -305,26 +305,28 @@ public class StatementsActivity extends OmegaFiActivity {
     				
     				@Override
     				public void onClick(View arg0) {
-    					if(StatementsActivity.canDisplayPdf(StatementsActivity.this)){
-    					dowloadFileAsyncTask(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0])),
-    							"statement-"+Integer.parseInt(itemStatement[0])+".pdf");
-    					}
-    					else{
-    						OmegaFiActivity.showAlertMessage("Please install a pdf reader", StatementsActivity.this);
-    					}
-//    					Log.d("Pdf show", "");
-//    		            String googleUrl = "http://docs.google.com/gview?embedded=true&url=";
-//    		            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(googleUrl +
-//    		            		Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0]))));
-//    		            Bundle bundle = new Bundle();
-//    		            List<Cookie> listCookies=MainActivity.servicesOmegaFi.getListCookies();
+//    					if(StatementsActivity.canDisplayPdf(StatementsActivity.this)){
+//    					dowloadFileAsyncTask(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0])),
+//    							"statement-"+Integer.parseInt(itemStatement[0])+".pdf");
+//    					}
+//    					else{
+//    						OmegaFiActivity.showAlertMessage("Please install a pdf reader", StatementsActivity.this);
+//    					}
+    					Log.d("Pdf show", "");
+    					List<Cookie> listCookies=MainActivity.servicesOmegaFi.getListCookies();
+    					Cookie first=listCookies.get(0);
+    					Cookie second=listCookies.get(1);
+    		            String googleUrl = "http://docs.google.com/gview?embedded=true&url=";
+    		            Log.d("Cookie: "+first.getName(), first.getValue());
+    		            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0]))
+    		            		+"?"+first.getName()+"="+first.getValue()));
+    		            Bundle bundle = new Bundle();
 //    		            if(listCookies!=null){
 //    		             for(Cookie cookie:listCookies){
 //    		              bundle.putString(cookie.getName(), cookie.getValue());
 //    		             }
 //    		            }
-//    		            browserIntent.putExtra(Browser., bundle);
-//    		            startActivity(browserIntent);
+    		            startActivity(browserIntent);
     				}
     			});
     			return convertView; 

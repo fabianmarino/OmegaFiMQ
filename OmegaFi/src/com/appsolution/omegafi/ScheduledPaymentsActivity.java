@@ -69,6 +69,7 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 			
 			private int status=0;
 			private ArrayList<SimpleScheduledPayment> scheduleds=null;
+			private ArrayList<SimpleScheduledPayment> processing=null;
 			
 			@Override
 			protected void onPreExecute() {
@@ -80,6 +81,10 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 				Object[] statusScheduleds=MainActivity.servicesOmegaFi.getHome().getAccounts().getScheduledPayments(idAccount);
 				status=(Integer)statusScheduleds[0];
 				scheduleds=(ArrayList<SimpleScheduledPayment>)statusScheduleds[1];
+				Object[] statusProcessing=MainActivity.servicesOmegaFi.getHome().getAccounts().getProcessingPayments(idAccount);
+				status=(Integer)statusProcessing[0];
+				processing=(ArrayList<SimpleScheduledPayment>)statusProcessing[1];
+				scheduleds.addAll(processing);
 				return true;
 			}
 			
@@ -136,16 +141,21 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 				else{
 					rowPayment=(RowInformation)convertView;
 				}
-				rowPayment.setNameInfo(actualPayment.getPaymentDate()+" - "+actualPayment.getStateScheduled());
+				rowPayment.setNameInfo(actualPayment.getPaymentDate()+" - "+actualPayment.getStateScheduledWord());
 				rowPayment.setValueInfo("$"+actualPayment.getPaymentAmount());
 				rowPayment.setOnClickListener(new View.OnClickListener() {
 					
 					@Override
 					public void onClick(View arg0) {
+						finish();
 						MainActivity.servicesOmegaFi.getHome().getAccounts().setSelected(actualPayment);
 						Intent viewScheduledDetails=new Intent(getApplicationContext(), ScheduledPaymentsDetailActivity.class);
 						viewScheduledDetails.putExtra("id", idAccount);
-						viewScheduledDetails.putExtra("editable", false);
+						if(actualPayment.getStateScheduled()==SimpleScheduledPayment.STATE_PROCESSING)
+							viewScheduledDetails.putExtra("editable", false);
+						else
+							viewScheduledDetails.putExtra("editable", true);
+						
 						startActivityForResult(viewScheduledDetails, OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENT_DETAIL);
 					}
 				});

@@ -1,16 +1,21 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogOptionsImage;
 import com.appsolution.layouts.IconLabelVertical;
+import com.appsolution.layouts.RowEditNameTopInfo;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowInformation;
+import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
+import com.appsolution.logic.Profile;
 
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.Activity;
@@ -39,18 +44,34 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private ImageView arrowLeft;
 	private ImageView arrowCenter;
 	private ImageView arrowRight;
-	
 	private LinearLayout linearPhone;
 	private LinearLayout linearEmail;
 	private LinearLayout linearAddress;
 	
+	private EditText editMainNumber;
+	private EditText editSecondaryNumber;
+	private EditText editMainEmail;
+	private EditText editSecondaryEmail;
+	private RowEditNameTopInfo editTopHomeLine1;
+	private RowEditNameTopInfo editTopHomeLine2;
+	private RowEditNameTopInfo editTopSchoolLine1;
+	private RowEditNameTopInfo editTopSchoolLine2;
+	
+	
 	private Spinner spinnerPrefix;
+	private EditText editFirstName;
+	private EditText middleName;
+	private EditText lastName;
+	private EditText informalFirst;
+	private EditText parentsName;
 	private EditText editTravelVisa;
 	private EditText editCollegeEntry;
+	private EditText editSuffix;
+	private Spinner graduationYear;
+	private RowToogleOmegaFi tooglePublish;
 	
 	private static final int RESULT_LOAD_IMAGE=1;
 	private static final int CAMERA_REQUEST = 1888; 
-	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -72,29 +93,38 @@ public class MyProfileActivity extends OmegaFiActivity {
 		arrowCenter=(ImageView)findViewById(R.id.arrow_center_off_prof);
 		arrowRight=(ImageView)findViewById(R.id.arrow_right_off_prof);
 		
+		editMainNumber=(EditText)findViewById(R.id.editMainNumber);
+		editSecondaryNumber=(EditText)findViewById(R.id.editSecondaryNumber);
+		editMainEmail=(EditText)findViewById(R.id.editMainEmail);
+		editSecondaryEmail=(EditText)findViewById(R.id.editSecondaryEmail);
+		editSuffix=(EditText)findViewById(R.id.editSufixProfile);
+		editTopHomeLine1=(RowEditNameTopInfo)findViewById(R.id.editTopHomeLine1);
+		editTopHomeLine2=(RowEditNameTopInfo)findViewById(R.id.editTopHomeLine2);
+		editTopSchoolLine1=(RowEditNameTopInfo)findViewById(R.id.editTopSchoolLine1);
+		editTopSchoolLine2=(RowEditNameTopInfo)findViewById(R.id.editTopSchoolLine2);
+		tooglePublish=(RowToogleOmegaFi)findViewById(R.id.publishProfile);
+		editFirstName=(EditText)findViewById(R.id.editFirstName);
+		middleName=(EditText)findViewById(R.id.editMiddleName);
+		lastName=(EditText)findViewById(R.id.editLastName);
+		informalFirst=(EditText)findViewById(R.id.editInformalFirst);
+		parentsName=(EditText)findViewById(R.id.editParentsName);
 		spinnerPrefix=(Spinner)findViewById(R.id.spinnerPrefixProfile);
 		editTravelVisa=(EditText)findViewById(R.id.travelVisaNumber);
 		editCollegeEntry=(EditText)findViewById(R.id.editCollegeEntry);
-		
-		Log.d("Travel", editTravelVisa.getInputType()+" numberdecimal");
-		
-		final Activity activity=this;
+		graduationYear=(Spinner)findViewById(R.id.spinnerGraduationYear);
 		
 		this.completeSpinnerProfile();
 		this.completeImageProfile();
-		this.completePersonalInformation();
 		this.completeSectionEmail();
 		this.completeSectionPhone();
 		this.completeSectionAddress();
-	}
+		chargeProfile();
+		}
 	
 	private void completeSpinnerProfile(){
 		List<String> list = new ArrayList<String>();
-		list.add("Mr.");
-		list.add("Miss.");
-		list.add("Dr.");
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-			R.layout.spinner_omegafi, list);
+		R.layout.spinner_omegafi, list);
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinnerPrefix.setAdapter(dataAdapter);
 	}
@@ -140,50 +170,20 @@ public class MyProfileActivity extends OmegaFiActivity {
 		});
 	}
 	
-	private void completePersonalInformation(){
-		RowInformation row1=new RowInformation(this);
-		row1.setNameInfo("Prefix");
-		row1.setValueInfo("Mr");
-		
-		RowEditTextOmegaFi rowName=new RowEditTextOmegaFi(this);
-		rowName.setNameInfo("First Name");
-		rowName.setTextEdit("Winston");
-		rowName.setEditable(false);
-		
-		RowEditTextOmegaFi rowName2=new RowEditTextOmegaFi(this);
-		rowName2.setNameInfo("Middle Name");
-		rowName2.setTextEdit("");
-		rowName2.setEditable(false);
-		
-		RowInformation rowSuffix=new RowInformation(this);
-		rowSuffix.setNameInfo("Suffix");
-		rowSuffix.setValueInfo("");
-		
-		RowEditTextOmegaFi informalFirst=new RowEditTextOmegaFi(this);
-		informalFirst.setNameInfo("Informal First Name");
-		informalFirst.setTextEdit("Will");
-		informalFirst.setEditable(false);
-		
-		RowEditTextOmegaFi parentsName=new RowEditTextOmegaFi(this);
-		parentsName.setNameInfo("Parent's Name");
-		parentsName.setTextEdit("Wanda Smith");
-		parentsName.setEditable(false);
-		
-		RowEditTextOmegaFi travelVisa=new RowEditTextOmegaFi(this);
-		travelVisa.setNameInfo("Travel Visa Number");
-		travelVisa.setTextEdit("");
-		travelVisa.setEditable(false);
-		
-		RowInformation dateCollege=new RowInformation(this);
-		dateCollege.setNameInfo("Date of College Entry");
-		dateCollege.setValueInfo("");
-		dateCollege.setImageIcon(R.drawable.calendar_1);
-		
-		RowEditTextOmegaFi graduationYear=new RowEditTextOmegaFi(this);
-		graduationYear.setNameInfo("Graduation Year");
-		graduationYear.setTextEdit("2015");
-		graduationYear.setEditable(false);
-		
+	private void completeSpinnerGraduationYear(int year){
+		if(year>1900){
+			List<String> yearsGraduation=new ArrayList<String>();
+			int yearFuture=year+10;
+			int yearPast=year-15;
+			for (int i = yearPast; i <= yearFuture; i++) {
+				yearsGraduation.add(i+"");
+			}
+			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+					R.layout.spinner_omegafi, yearsGraduation);
+				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				graduationYear.setAdapter(dataAdapter);
+				graduationYear.setSelection(year-yearPast);
+			}
 	}
 	
 	private void completeSectionPhone(){
@@ -318,6 +318,109 @@ public class MyProfileActivity extends OmegaFiActivity {
 		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
 		date.getDatePicker().setCalendarViewShown(false);
 		date.show();
+	}
+	
+	private void chargeProfile(){
+		AsyncTask< Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			private int status=0;
+			private Profile profile=null;
+			private List<String> prefixes=null;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Charging Profile...", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Object[] statusProfile=MainActivity.servicesOmegaFi.getHome().getProfile().getStatusProfile();
+				status=(Integer)statusProfile[0];
+				profile=(Profile)statusProfile[1];
+				prefixes=MainActivity.servicesOmegaFi.getHome().getProfile().getPrefixesGender(profile.getGender());
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				if(status==200){
+					userHeader.setNameUserProfile(profile.getFirstLastName());
+					userHeader.setSubTitleProfile(profile.getDateInitiatePretty());
+					
+					completePhones(profile.getPhones());
+					completeEmails(profile.getEmails());
+					completeAddresses(profile.getAddresses());
+					
+					editFirstName.setText(profile.getFirstName());
+					middleName.setText(profile.getMiddleName());
+					lastName.setText(profile.getLastName());
+					informalFirst.setText(profile.getInformalFirstName());
+					parentsName.setText(profile.getParentsName());
+					editTravelVisa.setText(profile.getTravelVisaNumber());
+					editCollegeEntry.setText(profile.getDateCollegeEntryPretty());
+					completeSpinnerGraduationYear(profile.getGraduationYear());
+					tooglePublish.setActivateOn(profile.isPublishProfile());
+					editSuffix.setText(profile.getSuffix());
+					userHeader.chargeImageFromUrlAsync(profile.getSource(), profile.getUrlPhoto());
+					ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MyProfileActivity.this,
+							R.layout.spinner_omegafi, prefixes);
+							dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+							spinnerPrefix.setAdapter(dataAdapter);
+				}
+				else{
+					OmegaFiActivity.showErrorConection(MyProfileActivity.this, status, "Not Found!");
+				}
+				stopProgressDialog();
+			}
+		};
+		task.execute();
+	}
+	
+	private void completePhones(String[] phones){
+		editMainNumber.setText(phones[0]);
+		editSecondaryNumber.setText(phones[1]);
+	}
+	
+	private void completeEmails(String[] emails){
+		editMainEmail.setText(emails[0]);
+		editSecondaryEmail.setText(emails[1]);
+	}
+	
+	private void completeAddresses(String[] addresses){
+		if(addresses[0]!=null){
+			String[] home=addresses[0].split("¿");
+			if(home.length>1){
+				editTopHomeLine1.setValueInfo(home[0]);
+				if(home[1].equalsIgnoreCase("null")){
+					editTopHomeLine2.setValueInfo("");
+				}
+				else{
+					editTopHomeLine2.setValueInfo(home[1]);
+				}
+			}
+		}
+		if(addresses[1]!=null){
+			String[] school=addresses[1].split("¿");
+			if(school.length>1){
+				editTopSchoolLine1.setValueInfo(school[0]);
+				if(school[1].equalsIgnoreCase("null")){
+					editTopSchoolLine2.setValueInfo("");
+				}
+				else{
+					editTopSchoolLine2.setValueInfo(school[1]);
+				}
+			}
+		}
+	}
+	
+	private void selectedPrefixe(String prefix){
+		boolean found=false;
+		for (int i = 0; i < spinnerPrefix.getCount()&&!found; i++) {
+			if(spinnerPrefix.getItemAtPosition(i).toString().equalsIgnoreCase(prefix)){
+				spinnerPrefix.setSelection(i);
+				found=true;
+			}
+		}
 	}
 	
 }

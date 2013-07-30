@@ -116,7 +116,29 @@ public class AccountsService extends ServerContext {
 			JSONArray arrayScheduled=scheduledJson.getJSONArray("scheduled_payments");
 			for (int i = 0; i < arrayScheduled.length(); i++) {
 				JSONObject jsonScheduled=arrayScheduled.getJSONObject(i);
-				scheduleds.add(new SimpleScheduledPayment(jsonScheduled));
+				SimpleScheduledPayment scheduled=new SimpleScheduledPayment(jsonScheduled,SimpleScheduledPayment.STATE_PENDING);
+				scheduleds.add(scheduled);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Object[] statusScheduleds=new Object[2];
+		statusScheduleds[0]=statusJson[0];
+		statusScheduleds[1]=scheduleds;
+		return statusScheduleds;
+	}
+	
+	public Object[] getProcessingPayments(int idAccount){
+		ArrayList<SimpleScheduledPayment> scheduleds=new ArrayList<SimpleScheduledPayment>();
+		Object[] statusJson=server.makeRequestGet(Server.getUrlProcesingPayments(idAccount));
+		JSONObject scheduledJson=(JSONObject)statusJson[1];
+		try {
+			JSONArray arrayScheduled=scheduledJson.getJSONArray("processing_payments");
+			for (int i = 0; i < arrayScheduled.length(); i++) {
+				JSONObject jsonScheduled=arrayScheduled.getJSONObject(i);
+				SimpleScheduledPayment scheduled=new SimpleScheduledPayment(jsonScheduled,SimpleScheduledPayment.STATE_PROCESSING);
+				scheduleds.add(scheduled);
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -155,6 +177,10 @@ public class AccountsService extends ServerContext {
 	
 	public int removeAutoPaySettings(int idAccount,int idAutoPay){
 		return server.makeRequestDelete(Server.getUrlAutoPayId(idAccount, idAutoPay));
+	}
+	
+	public int removeScheduledPayments(int idAccount,int idScheduled){
+		return server.makeRequestDelete(Server.getUrlScheduledPaymentsId(idAccount, idScheduled));
 	}
 	
 	public Object[] createAutoPay(int idAccount, AutoPayConfig config){
@@ -249,5 +275,23 @@ public class AccountsService extends ServerContext {
 		Object[] statusJson=server.makeRequestPut(Server.getUrlAutoPayId(idAccount,config.getId()), nameValuePairs);
 		return statusJson;
 	}
+	
+	public Object[] updateScheduledPament(int idAccount, int idScheduled, String paymentAmount, String paymentDate, PaymentMethod method){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[paymentamount]", paymentAmount));
+		nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[paymentdate]", paymentDate));
+		if(method.isEChecked()){
+			nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[memberpaymentecheckid]", method.getId()+""));
+		}
+		else{
+			nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[memberpaymentcreditcardid]", method.getId()+""));
+		}
+		Object[] statusJson=server.makeRequestPut(Server.getUrlScheduledPaymentsId(idAccount,idScheduled),nameValuePairs);
+		return statusJson;
+	}
+	
+	
+	
+	
 
 }

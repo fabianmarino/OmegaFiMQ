@@ -11,6 +11,7 @@ import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.EventsNewsAdapter;
 import com.appsolution.layouts.ImageAdapter;
 import com.appsolution.layouts.ImageRoosterName;
+import com.appsolution.layouts.NotificationLayout;
 import com.appsolution.layouts.PollAdapter;
 import com.appsolution.layouts.PollOmegaFiContent;
 import com.appsolution.layouts.RowInformation;
@@ -39,6 +40,7 @@ import android.widget.TextView;
 
 public class HomeActivity extends OmegaFiActivity {
 	
+	private LinearLayout linearNotifications;
 	private SectionOmegaFi sectionChapterDirectory;
 	private ImageAdapter listGallery;
 	private DetailsOfficer detailsOffice;
@@ -69,6 +71,7 @@ public class HomeActivity extends OmegaFiActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.home);
+		linearNotifications=(LinearLayout)findViewById(R.id.linearNotificationsHome);
 		linearAccounts=(LinearLayout)findViewById(R.id.linearChargeAccounts);
 //		Intent intent=new Intent(this, AccountActivity.class);
 //		startActivity(intent);
@@ -84,7 +87,7 @@ public class HomeActivity extends OmegaFiActivity {
 		});
 		detailsOffice=new DetailsOfficer(this);
 		detailsOffice.setVisibility(LinearLayout.GONE);
-		
+		this.chargeNotifications();
 		this.chargeAccounts();
 		this.completeChapterDirectory();
 		
@@ -116,6 +119,15 @@ public class HomeActivity extends OmegaFiActivity {
 		textPrivacy.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 0));
 		
 		this.completeNewsSection();
+	}
+	
+	private void chargeNotifications(){
+		ArrayList<String> notifications=MainActivity.servicesOmegaFi.getHome().getProfile().getNotifications();
+		for (String noti:notifications) {
+			NotificationLayout notifiLayout=new NotificationLayout(this);
+			notifiLayout.setNotification(noti);
+			linearNotifications.addView(notifiLayout);
+		}
 	}
 	
 	private void chargeAccounts(){
@@ -163,8 +175,9 @@ public class HomeActivity extends OmegaFiActivity {
 			sectionOfficers.setShowArrow(false);
 			sectionOfficers.setPutBorderBottom(false);
 			sectionOfficers.setBackgroundColorLinear(Color.TRANSPARENT);
+			
 			listPhotos=new Gallery(this);
-			listPhotos.setPadding(10,10, 10, 10);
+			listPhotos.setPadding(12,10, 10, 10);
 			listPhotos.setSpacing(10);
 			listPhotos.setLayoutParams(new LayoutParams(android.widget.Gallery.LayoutParams.MATCH_PARENT,
 					android.widget.Gallery.LayoutParams.WRAP_CONTENT));
@@ -271,7 +284,9 @@ public class HomeActivity extends OmegaFiActivity {
 				});
 			}
 			int padding=this.getResources().getDimensionPixelSize(R.dimen.padding_5dp);
-			rowChapter.setPaddingRow(padding,5,padding, 5);	
+			rowChapter.setPaddingRow(padding,5,padding, 5);
+			rowChapter.getTextNameInfo().setPadding(5, 0, 0, 0);
+			rowChapter.getTextNameSubInfo().setPadding(5, 0, 0, 0);
 			sectionChapterDirectory.addView(rowChapter);
 			sectionChapterDirectory.addView(sectionOfficers);
 			sectionChapterDirectory.addView(detailsOffice);
@@ -351,6 +366,7 @@ public class HomeActivity extends OmegaFiActivity {
 		else{
 			sectionPoll.setBackgroundResourceTitle(R.drawable.background_trans_white_border);
 			LinearLayout content=(LinearLayout)sectionPoll.findViewById(R.id.contentSectionOmegaFi);
+			content.setPadding(0, content.getPaddingTop(), content.getPaddingRight(), content.getPaddingBottom());
 			paginator2=new ViewPager(getApplicationContext());
 			paginator2.setAdapter(new PollAdapter(getApplicationContext()));
 			paginator2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 

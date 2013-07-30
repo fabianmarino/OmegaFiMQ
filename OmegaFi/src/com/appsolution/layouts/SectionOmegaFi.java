@@ -80,14 +80,14 @@ public class SectionOmegaFi extends LinearLayout{
 			int padding=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getContext().getResources().getDisplayMetrics());
 			contentTitle.setBackgroundResource(R.drawable.abs__ab_bottom_transparent_dark_holo);
 			contentTitle.setBackgroundColor(Color.TRANSPARENT);
-			contentTitle.setPadding(padding,padding,padding,padding);
+			contentTitle.setPadding(getResources().getDimensionPixelSize(R.dimen.padding_10dp),padding,padding,padding);
 		}
 	}
 	
 	public void setBackgroundResourceTitle(int src){
 		int padding=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, getContext().getResources().getDisplayMetrics());
 		contentTitle.setBackgroundResource(src);
-		contentTitle.setPadding(padding,padding,padding,padding);
+		contentTitle.setPadding(getResources().getDimensionPixelSize(R.dimen.padding_10dp),padding,padding,padding);
 	}
 	
 	public SectionOmegaFi(Context context, AttributeSet attrs) {

@@ -130,13 +130,17 @@
 	                    android:layout_height="wrap_content"
 	                    android:padding="@dimen/padding_10dp"
 	                    android:orientation="vertical">
-	                    <EditText android:layout_width="fill_parent"
+	                    <EditText
+	                        android:id="@+id/editMainNumber" 
+	                        android:layout_width="fill_parent"
 	                        android:layout_height="wrap_content"
 	                        android:hint="Main Number"
 	                        android:inputType="phone"
 	                        style="@style/EditTextLoginNormal"
 	                        />
-	                    <EditText android:layout_width="fill_parent"
+	                    <EditText
+	                        android:id="@+id/editSecondaryNumber" 
+	                        android:layout_width="fill_parent"
 	                        android:layout_marginTop="@dimen/padding_6dp"
 	                        android:layout_height="wrap_content"
 	                        android:hint="Secondary Number"
@@ -151,13 +155,17 @@
 	                    android:padding="@dimen/padding_10dp"
 	                    android:visibility="gone"
 	                    android:orientation="vertical">
-	                    <EditText android:layout_width="fill_parent"
+	                    <EditText
+	                        android:id="@+id/editMainEmail" 
+	                        android:layout_width="fill_parent"
 	                        android:layout_height="wrap_content"
 	                        android:hint="Main Email"
 	                        android:inputType="textEmailAddress"
 	                        style="@style/EditTextLoginNormal"
 	                        />
-	                    <EditText android:layout_width="fill_parent"
+	                    <EditText
+	                        android:id="@+id/editSecondaryEmail" 
+	                        android:layout_width="fill_parent"
 	                        android:layout_marginTop="@dimen/padding_6dp"
 	                        android:layout_height="wrap_content"
 	                        android:hint="Secondary Email"
@@ -176,12 +184,14 @@
 	                        android:layout_height="wrap_content"
 	                        android:orientation="vertical">
 		                    <com.appsolution.layouts.RowEditNameTopInfo
+		                        android:id="@+id/editTopHomeLine1"
 		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        secom:name_top_info="Home Address"
 		                        secom:hint_text_top_info="Line 1"
 		                        secom:width_fill_parent="true" />
 		                    <com.appsolution.layouts.RowEditNameTopInfo
+		                        android:id="@+id/editTopHomeLine2"
 		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        secom:hint_text_top_info="Line 2"
@@ -191,12 +201,14 @@
 	                        android:layout_height="wrap_content"
 	                        android:orientation="vertical">
 		                    <com.appsolution.layouts.RowEditNameTopInfo
+		                        android:id="@+id/editTopSchoolLine1"
 		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        secom:name_top_info="School Address"
 		                        secom:hint_text_top_info="Line 1"
 		                        secom:width_fill_parent="true" />
 		                    <com.appsolution.layouts.RowEditNameTopInfo
+		                        android:id="@+id/editTopSchoolLine2"
 		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        secom:hint_text_top_info="Line 2"
@@ -207,6 +219,7 @@
 	                        android:layout_height="1dp"
 	                        android:background="@android:color/darker_gray"/>
 	                <com.appsolution.layouts.RowToogleOmegaFi
+	                    android:id="@+id/publishProfile"
 	                    android:layout_width="fill_parent"
 	                    android:layout_height="wrap_content"
 	                    secom:text_toogle="Share Contact info"
@@ -244,19 +257,23 @@
                     android:layout_gravity="center_vertical"
                     android:background="@drawable/white_input_spinner"
                     />
-                <EditText android:layout_width="0dp"
+                <EditText
+                    android:id="@+id/editFirstName" 
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
-                    android:text="First Name"
+                    android:hint="First Name"
                     style="@style/EditTextLoginNormal"/>
             </TableRow>
             </TableLayout>
             <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_5dp">
-                <EditText android:layout_width="fill_parent"
+                <EditText
+                    android:id="@+id/editMiddleName" 
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Middle Name"
+                    android:hint="Middle Name"
                     style="@style/EditTextLoginNormal"/>
             </LinearLayout>
             <TableLayout android:layout_width="fill_parent"
@@ -265,35 +282,41 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_5dp"
                 android:weightSum="1">
-                <EditText android:layout_width="fill_parent"
+                <EditText
+                    android:id="@+id/editLastName" 
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
-                    android:text="Last Name"
+                    android:layout_weight="0.7"
+                    android:hint="Last Name"
                     style="@style/EditTextLoginNormal"/>
-                <Spinner
-                    android:id="@+id/spinnerSufixProfile" 
-                    android:layout_width="100dp"
+                <EditText
+                    android:id="@+id/editSufixProfile" 
+                    android:layout_width="0dp"
                     android:layout_height="fill_parent"
-                    android:layout_weight="0.2"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/white_input"
+                    android:layout_weight="0.3"
+                    android:hint="Sufix"
+                    style="@style/EditTextLoginNormal"
                     />
             </TableRow>
             </TableLayout>
             <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_5dp">
-                <EditText android:layout_width="fill_parent"
+                <EditText
+                    android:id="@+id/editInformalFirst" 
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Informal First Name"
+                    android:hint="Informal First Name"
                     style="@style/EditTextLoginNormal"/>
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_5dp">
-                <EditText android:layout_width="fill_parent"
+                <EditText
+                    android:id="@+id/editParentsName" 
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Parent's Name"
+                    android:hint="Parent's Name"
                     style="@style/EditTextLoginNormal"/>
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent"
@@ -303,7 +326,7 @@
                     android:id="@+id/travelVisaNumber" 
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="Travel Visa Number"
+                    android:hint="Travel Visa Number"
                     android:inputType="number"
                     style="@style/EditTextLoginNormal"/>
             </LinearLayout>
@@ -316,16 +339,17 @@
             	<EditText
             	    android:id="@+id/editCollegeEntry" 
             	    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="College Entry Date"
+                    android:layout_height="@dimen/height_edit_submit"
+                    android:hint="College Entry Date"
                     android:editable="false"
                     android:onClick="showCalendarEntryDate"
                     android:layout_marginRight="2dp"
                     android:layout_weight="0.5"
                     style="@style/EditTextLoginNotEditable"/>
-                <Spinner android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Graduation Year"
+                <Spinner
+                    android:id="@+id/spinnerGraduationYear" 
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/height_edit_submit"
                     android:layout_marginLeft="2dp"
                     android:layout_weight="0.5"
                     style="@style/EditTextLoginNotEditable"/>

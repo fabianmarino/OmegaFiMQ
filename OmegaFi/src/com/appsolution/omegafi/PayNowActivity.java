@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
 import com.appsolution.layouts.LabelInfoVertical;
@@ -21,7 +17,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
@@ -96,11 +91,10 @@ public class PayNowActivity extends OmegaFiActivity {
 				
 				@Override
 				public void onClick(View v) {
-					rowPaymentMethod.setValueInfo(selectable.getItemSelectedSubInfo());
-					rowPaymentMethod.invalidate();
-					rowPaymentMethod.postInvalidate();
 					indexMethodSelected=selectable.getIndexSelected();
+					rowPaymentMethod.setValueInfo(methodsPayment.get(indexMethodSelected).getProfileTypeNumber());
 					selectable.dismissDialog();
+					refreshActivity();
 				}
 			});
 			if(indexMethodSelected!=-1){
@@ -226,7 +220,6 @@ public class PayNowActivity extends OmegaFiActivity {
 		Intent activityAddNewPayment=new Intent(this, AddNewPaymentActivity.class);
 		activityAddNewPayment.putExtra("id", idAccount);
 		startActivity(activityAddNewPayment);
-//		enteroTest=1;
 	}
 	
 	
@@ -237,7 +230,7 @@ public class PayNowActivity extends OmegaFiActivity {
 		cal.set(Calendar.MINUTE,0);
 		cal.set(Calendar.SECOND,0);
 		
-		if(rowAmount.getValueInfo1().isEmpty()){
+		if(rowAmount.getValueInfo1().isEmpty()||OmegaFiActivity.isDouble(rowAmount.getValueInfo1())){
 			validate=false;
 		}
 		else if(!CalendarEvent.getDateFromString(rowDate.getValueInfo(), "MM/dd/yyyy").
@@ -279,8 +272,8 @@ public class PayNowActivity extends OmegaFiActivity {
 					if(!methodsPayment.isEmpty()){
 						indexMethodSelected=methodsPayment.size()-1;
 						PaymentMethod last=methodsPayment.get(indexMethodSelected);
-						rowPaymentMethod.setValueInfo(last.getProfileType()+" ("+last.getId()+")");
-						rowPaymentMethod.postInvalidate();
+						rowPaymentMethod.setValueInfo(methodsPayment.get(indexMethodSelected).getProfileTypeNumber());
+						refreshActivity();
 					}
 				}
 			}

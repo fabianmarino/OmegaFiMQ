@@ -51,5 +51,9 @@ public class RowEditNameTopInfo extends ViewNameTopInfo {
 	public String getValueInfo(){
 		return textInfo.getText().toString();
 	}
+	
+	public void setValueInfo(String info){
+		textInfo.setText(info);
+	}
 
 }

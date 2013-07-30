@@ -8,10 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.text.NumberFormat;
 import java.util.List;
-
-import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -50,10 +47,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
-import android.os.storage.StorageManager;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 public class Server {
 
@@ -61,7 +56,15 @@ public class Server {
 	public static final String LOGIN_SERVICE=HOST+"/myomegafi/api/v1/login/mobile_login_post.php";
 	public static final String ACCOUNTS_SERVICE=HOST+"/myomegafi/api/v1/accounts";
 	public static final String CHAPTERS_SERVICE=HOST+"/myomegafi/api/v1/chapters";
+	
 	public static final String PROFILE_SERVICE=HOST+"/myomegafi/api/v1/user/profile";
+	public static final String PROFILE_PHONES=HOST+"/myomegafi/api/v1/user/phone_numbers";
+	public static final String PROFILE_EMAILS=HOST+"/myomegafi/api/v1/user/email_addresses";
+	public static final String PROFILE_ADDRESSES=HOST+"/myomegafi/api/v1/user/addresses";
+	public static final String PREFIXES_MALE=HOST+"/myomegafi/api/v1/prefixes/male";
+	public static final String PREFIXES_FEMALE=HOST+"/myomegafi/api/v1/prefixes/female";
+	public static final String PREFIXES_ALL=HOST+"/myomegafi/api/v1/prefixes/all";
+	
 	public static final String TERMS_SERVICE=HOST+"/myomegafi/api/v1/terms";
 	public static final String PRIVACY_SERVICE=HOST+"/myomegafi/api/v1/privacy";
 	public static final String FORGOT_USERNAME=HOST+"/myomegafi/api/v1/forgottenusernames";
@@ -70,6 +73,7 @@ public class Server {
 	public static final String CALENDAR_SERVICE=HOST+"/myomegafi/api/v1/calendar";
 	public static final String CHANGE_PASSWORD_SERVICE=HOST+"/myomegafi/api/v1/forgottenpasswords/changepassword";
 	public static final String ANNOUNCEMENTS_SERVICE=HOST+"/myomegafi/api/v1/announcements";
+	public static final String NOTIFICATIONS_SERVICE=HOST+"/myomegafi/api/v1/user/notifications";
 	
 	public static int TIME_OUT=20000;
 	private HttpClient clientRequest;
@@ -79,6 +83,7 @@ public class Server {
 	private HomeServices home;
 	private ForgotLoginService forgotLogin;
 	
+	private static Server server=null;
 	
 	public Server(){
 		clientRequest=new DefaultHttpClient();
@@ -88,6 +93,13 @@ public class Server {
 		home=new HomeServices(this);
 		forgotLogin=new ForgotLoginService(this);
 		logCookies();
+	}
+	
+	public static Server getServer(){
+		if(server==null){
+			server=new Server();
+		}
+		return server;
 	}
 	
 	public Object[]  makeRequestPost(String url,List<NameValuePair> data){
@@ -315,7 +327,7 @@ public class Server {
 	
 	public void logCookies(){
 		List<Cookie> cookies = cookieStore.getCookies();
-		Log.d("Cookies", cookies.size()+"");
+		Log.d("Cookies from cookie store", cookies.size()+"");
         for (int i = 0; i < cookies.size(); i++) {
             Log.d("Cookies", "Local cookie: " + cookies.get(i));
         }
@@ -367,6 +379,14 @@ public class Server {
 	
 	public static String getUrlScheduledPayments(int idAccount){
 		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/scheduledpayments";
+	}
+	
+	public static String getUrlScheduledPaymentsId(int idAccount, int idScheduled){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/scheduledpayments/"+idScheduled;
+	}
+	
+	public static String getUrlProcesingPayments(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/processingpayments";
 	}
 	
 	public static String getUrlAutoPay(int idAccount){

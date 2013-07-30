@@ -13,12 +13,14 @@ public class ContactInformation extends SectionOmegaFi{
 	public ContactInformation(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.setTitleSection("Contact Information");
+		this.setShowArrow(false);
 		this.initializeComponents();
 	}
 	
 	public ContactInformation(Context context) {
 		super(context);
 		this.setTitleSection("Contact Information");
+		this.setShowArrow(false);
 		this.initializeComponents();
 	}
 	

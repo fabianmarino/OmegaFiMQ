@@ -13,6 +13,7 @@ public class RowInfoDescription extends LinearLayout {
 
 	private TextView textLeft;
 	private TextView textRight;
+	private TextView textSource;
 	
 	public RowInfoDescription(Context context){
 		super(context);
@@ -39,6 +40,7 @@ public class RowInfoDescription extends LinearLayout {
 		inflate.inflate(R.layout.row_info_description, this, true);
 		textLeft=(TextView)findViewById(R.id.textLeftContent);
 		textRight=(TextView)findViewById(R.id.textRightContent);
+		textSource=(TextView)findViewById(R.id.textSourceCalendar);
 	}
 	
 	public void setLeftText(String text){
@@ -52,6 +54,13 @@ public class RowInfoDescription extends LinearLayout {
 	public void setInfoDescription(String textLeft, String textRight){
 		setLeftText(textLeft);
 		setRightText(textRight);
+	}
+	
+	public void setSourceEventCalendar(String source){
+		if(source!=null)
+			textSource.setText("Source: "+source);
+		else
+			textSource.setText("Source: ");
 	}
 	
 }

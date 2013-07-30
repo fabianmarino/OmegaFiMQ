@@ -87,7 +87,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 	private void completeSpinnerMethods(){
 		List<String> list = new ArrayList<String>();
 		for (PaymentMethod method:methodsPayment) {
-			list.add(method.getCardNameNumber());
+			list.add(method.getNameTypeNumber());
 		}	
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 			R.layout.spinner_omegafi, list);
@@ -156,7 +156,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-//				startProgressDialog("Creating AutoPay...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Creating AutoPay...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -179,7 +179,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 				else{
 					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, "Not Found!");
 				}
-//				stopProgressDialog();
+				stopProgressDialog();
 			}
 		};
 		task.execute();
@@ -247,7 +247,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 		dialog.setMessageDialog("Your AutoPay have been updated.");
 		dialog.setButtonListener(new View.OnClickListener() {
 			
-			@Override
+			@Override 
 			public void onClick(View v) {
 				dialog.dismissDialog();
 				finishActivity(OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
@@ -447,6 +447,14 @@ public class AutoPayActivity extends OmegaFiActivity {
 			message="The min begin date must be tomorrow.";
 		}
 			return message;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent viewAccount=new Intent(getApplicationContext(), AccountActivity.class);
+		viewAccount.putExtra("id", idAccount);
+		startActivityForResult(viewAccount, OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
+		super.onBackPressed();
 	}
 	
 

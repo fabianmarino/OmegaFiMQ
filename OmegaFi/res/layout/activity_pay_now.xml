@@ -24,8 +24,7 @@
 	                android:layout_weight="1"
 	                secom:text_title_label="CURRENT BALANCE"
 	                secom:text_value_label="$335.00"
-	                secom:size_title_label="@dimen/text_6sp"
-	                secom:size_value_label="@dimen/text_12sp_row_info" />
+	                 />
 	            <View android:layout_width="1dp"
 	                android:layout_height="fill_parent"
 	                android:background="@android:color/darker_gray"/>
@@ -36,8 +35,7 @@
 	                android:layout_weight="1"
 	                secom:text_title_label="DUE ON"
 	                secom:text_value_label="09/31/2013"
-	                secom:size_title_label="@dimen/text_6sp"
-	                secom:size_value_label="@dimen/text_12sp_row_info"/>
+	                />
 	    </LinearLayout>
 	    <LinearLayout android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"

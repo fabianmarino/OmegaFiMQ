@@ -4,10 +4,49 @@
             "event_id": 69197,
             "event_begin_date": "2013/07/03 00:00:00 -0400",
             "event_end_date": "2013/07/03 00:00:00 -0400",
-            "event_begin_time": null,
+            "event_begin_time": "1900/01/01 06:00:00 -0500",
             "event_end_time": null,
             "event_title": "Summer Recruitment",
-            "event_description": null,
+            "event_description": "Lorem ipsum dolor sit amet",
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69197,
+            "event_begin_date": "2013/07/03 00:00:00 -0400",
+            "event_end_date": "2013/07/03 00:00:00 -0400",
+            "event_begin_time": "1900/01/01 07:00:00 -0500",
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": "Lorem ipsum dolor sit amet",
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69197,
+            "event_begin_date": "2013/07/03 00:00:00 -0400",
+            "event_end_date": "2013/07/03 00:00:00 -0400",
+            "event_begin_time": "1900/01/01 08:30:00 -0500",
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": "Lorem ipsum dolor sit amet",
+            "event_source": "Gamma Mu - ZBT",
+            "event_type": "Recruitment"
+        }
+    },
+    {
+        "calendar_event": {
+            "event_id": 69197,
+            "event_begin_date": "2013/07/03 00:00:00 -0400",
+            "event_end_date": "2013/07/03 00:00:00 -0400",
+            "event_begin_time": "1900/01/01 14:00:00 -0500",
+            "event_end_time": null,
+            "event_title": "Summer Recruitment",
+            "event_description": "Lorem ipsum dolor sit amet",
             "event_source": "Gamma Mu - ZBT",
             "event_type": "Recruitment"
         }

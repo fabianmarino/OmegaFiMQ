@@ -50,14 +50,17 @@ public class PaymentMethod {
 		return isChecked;
 	}
 	
-	public String getCardNameNumber(){
-		return cardName+" - "+profileType+"("+id+")";
+	public String getNameTypeNumber(){
+		return cardName+" - "+profileType+"("+getCardAccountNumber2()+")";
 	}
 	
 	public String getProfileTypeNumber(){
-		return profileType+"("+id+")";
+		return profileType+"("+getCardAccountNumber2()+")";
 	}
 	
+	public String getCardAccountNumber2(){
+		return cardAccountNumber.replace("*", "");
+	}
 	
 
 }

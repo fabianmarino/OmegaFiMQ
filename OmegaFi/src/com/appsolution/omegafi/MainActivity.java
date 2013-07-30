@@ -1,36 +1,22 @@
 package com.appsolution.omegafi;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.logic.Server;
 import com.appsolution.omegafi.R;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends OmegaFiLoginActivity {
 
 	private EditText textUser;
 	private EditText textPassword;
-	private ProgressDialog progress;
 	private Activity thisActivity;
 	private CheckBox saveUsername;
 	private TextView textForgot;
@@ -77,6 +63,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 				@Override
 				protected void onPostExecute(Boolean result) {
 					stopProgressDialog();
+					textPassword.setText("");
 					if(status==200){
 						Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
 						startActivity(splashView);
@@ -144,5 +131,12 @@ public class MainActivity extends OmegaFiLoginActivity {
 			textPassword.setError(null);
 		}
 		return true;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		System.runFinalization();
+		super.onBackPressed();
+		
 	}
 }

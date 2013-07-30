@@ -1,5 +1,8 @@
 package com.appsolution.layouts;
 
+import java.util.ArrayList;
+
+import com.appsolution.logic.CalendarEvent;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
@@ -56,6 +59,16 @@ public class CalendarContentDay extends LinearLayout {
 	
 	public void addRowDescription(RowInfoDescription rowDesc){
 		linearContentDay.addView(rowDesc);
+	}
+	
+	public void setEventsDay(ArrayList<CalendarEvent> events){
+		linearContentDay.removeAllViews();
+		for (CalendarEvent event:events) {
+			RowInfoDescription rowDes=new RowInfoDescription(super.getContext());
+			rowDes.setInfoDescription(event.getBeginTimeHourDayAMPM(), event.getDescription());
+			rowDes.setSourceEventCalendar(event.getSource());
+			this.addRowDescription(rowDes);
+		}
 	}
 
 }

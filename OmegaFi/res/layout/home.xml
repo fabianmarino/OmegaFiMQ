@@ -6,73 +6,83 @@
     android:layout_height="fill_parent"
     style="@style/BackgroundActivity"
     android:orientation="vertical">
-    <LinearLayout android:id="@+id/linearScroll"
-        android:layout_width="fill_parent"
+    <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        style="@style/LinearContentAll"
         android:orientation="vertical">
-        <LinearLayout android:id="@+id/linearChargeAccounts"
+        <LinearLayout
+            android:id="@+id/linearNotificationsHome"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="vertical">
-        </LinearLayout>
-	    
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionChapterDirectory"
+            android:orientation="vertical"
+            />
+	    <LinearLayout android:id="@+id/linearScroll"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	       	android:layout_marginBottom="@dimen/margin_10dp_poll"
-	        secom:title_section="Member Roster"
-	        />
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionEvents" 
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/margin_10dp_poll"
-	        secom:title_section="Calendar"
-	        secom:show_arrow="true"
-	        />
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionPoll" 
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	       	android:layout_marginBottom="@dimen/margin_10dp_poll"
-	       	secom:background_color_section="@android:color/transparent"
-	        secom:show_arrow="false"
-	        secom:title_section="Poll"
-	        />
-	    <com.appsolution.layouts.SectionOmegaFi
-	        android:id="@+id/sectionNews" 
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:layout_marginBottom="@dimen/margin_10dp_poll"
-	        secom:title_section="Alpha Eta News"
-	        secom:show_arrow="true"
-	        />
-	    <LinearLayout android:id="@+id/linearTermsPrivate"
-	        android:layout_width="fill_parent"
-	        android:layout_height="wrap_content"
-	        android:orientation="horizontal"
-	        android:gravity="center_horizontal">
-	        <TextView android:id="@+id/textTermsUse"
-	            android:layout_width="wrap_content"
-	            android:padding="@dimen/padding_8dp"
+	        style="@style/LinearContentAll"
+	        android:orientation="vertical">
+	        <LinearLayout android:id="@+id/linearChargeAccounts"
+	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
-	            android:text="Terms of Use"
-	            android:clickable="true"
-	            android:onClick="activityTermsUse"/>
-	        <View android:layout_height="fill_parent"
-				  android:layout_width="2px"
-				  android:layout_marginBottom="1dp"
-				  android:background="#90909090"/>
-	        <TextView android:id="@+id/textPrivatePolicy"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:padding="@dimen/padding_8dp"
-	            android:clickable="true"
-	            android:onClick="activityPrivatePolicy"
-	            android:text="Privacy Policy"/>
+	            android:layout_marginBottom="5dp"
+	            android:orientation="vertical">
+	        </LinearLayout>
+		    
+		    <com.appsolution.layouts.SectionOmegaFi
+		        android:id="@+id/sectionChapterDirectory"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		       	android:layout_marginBottom="@dimen/margin_10dp_poll"
+		        secom:title_section="Member Roster"
+		        />
+		    <com.appsolution.layouts.SectionOmegaFi
+		        android:id="@+id/sectionEvents" 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="@dimen/margin_10dp_poll"
+		        secom:title_section="Calendar"
+		        secom:show_arrow="true"
+		        />
+		    <com.appsolution.layouts.SectionOmegaFi
+		        android:id="@+id/sectionPoll" 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		       	android:layout_marginBottom="@dimen/margin_10dp_poll"
+		       	secom:background_color_section="@android:color/transparent"
+		        secom:show_arrow="false"
+		        secom:title_section="Poll"
+		        />
+		    <com.appsolution.layouts.SectionOmegaFi
+		        android:id="@+id/sectionNews" 
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="@dimen/margin_10dp_poll"
+		        secom:title_section="Alpha Eta News"
+		        secom:show_arrow="true"
+		        />
+		    <LinearLayout android:id="@+id/linearTermsPrivate"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:gravity="center_horizontal">
+		        <TextView android:id="@+id/textTermsUse"
+		            android:layout_width="wrap_content"
+		            android:padding="@dimen/padding_8dp"
+		            android:layout_height="wrap_content"
+		            android:text="Terms of Use"
+		            android:clickable="true"
+		            android:onClick="activityTermsUse"/>
+		        <View android:layout_height="fill_parent"
+					  android:layout_width="2px"
+					  android:layout_marginBottom="1dp"
+					  android:background="#90909090"/>
+		        <TextView android:id="@+id/textPrivatePolicy"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:padding="@dimen/padding_8dp"
+		            android:clickable="true"
+		            android:onClick="activityPrivatePolicy"
+		            android:text="Privacy Policy"/>
+		    </LinearLayout>
 	    </LinearLayout>
     </LinearLayout>
 </ScrollView>

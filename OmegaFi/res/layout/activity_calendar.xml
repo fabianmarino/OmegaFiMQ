@@ -1,14 +1,17 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/BackgroundActivity"
-    tools:context=".CalendarActivity" >
-	<LinearLayout android:id="@+id/linearContentCalendar"
-	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    style="@style/LinearContentAll">
-	    
-	</LinearLayout>
-</ScrollView>
+    tools:context=".NewsOmegaFiActivity" >
+    <ListView 
+        android:id="@+id/listCalendarOmegaFi"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="@dimen/padding_6dp"
+        android:divider="@android:color/transparent"
+        style="@style/LinearContentAll"
+        android:orientation="vertical">
+        
+    </ListView>
+</LinearLayout>

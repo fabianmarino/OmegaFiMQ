@@ -8,12 +8,14 @@ import com.appsolution.layouts.DialogTwoOptionsOF;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
 import com.appsolution.logic.SimpleScheduledPayment;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -35,6 +37,8 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	private SimpleScheduledPayment selected;
 	private ArrayList<PaymentMethod> methods=null;
 	private int idAccount=-1;
+	private boolean editableScheduled=false;
+	private int indexMethod=-1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -51,11 +55,13 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		
 		Bundle bundle=getIntent().getExtras();
 		idAccount=bundle.getInt("id");
-		if(!bundle.getBoolean("editable")){
+		editableScheduled=bundle.getBoolean("editable");
+		if (!editableScheduled) {
 			this.setEditableActivity(false);
 		}
 		selected=MainActivity.servicesOmegaFi.getHome().getAccounts().getSelected();
-		chargePaymentMethods();
+		chargeInformationPayment();
+		refreshAtTime(100);
 	}
 	
 	@Override
@@ -71,7 +77,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		rowEditAmount=new RowEditTextOmegaFi(this);
 		rowEditAmount.setNameInfo("Amount");
 		rowEditAmount.setTextEdit("");
-		rowEditAmount.setTypeInputEditText(2);
+		RowEditTextOmegaFi.setTypeInputTextFromAttrs(4, rowEditAmount.getEditText());
 		rowEditAmount.setWidthEditPercentaje(0.4f);
 		rowEditAmount.setBorderBottom(true);
 		 
@@ -114,14 +120,44 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			public void onClick(View arg0) {
-				selectPayMethod();
-				
+				selectPayMethod();		
 			}
 		});
 		sectionMethod.addView(rowPaymentMethod);
 	}
 	
 	public void saveSchedulePayment(View button){
+		String validate=validateSaveScheduled();
+		if(validate==null){
+			updateScheduledPayment();
+		}
+		else{
+			OmegaFiActivity.showAlertMessage(validate, ScheduledPaymentsDetailActivity.this);
+		}
+	}
+	
+	private String validateSaveScheduled(){
+		String validate=null;
+		if(OmegaFiActivity.isDouble(rowEditAmount.getValueInfo1())){
+			validate="Number amount invalid.";
+		}
+		else if(indexMethod==-1){
+			validate="Paymenth method not selected.";
+		}
+		return validate;
+	}
+	
+	public static int getNumCharacter(String cadena,char character){
+		int veces=0;
+		for (int i = 0; i <cadena.length(); i++) {
+			if(cadena.charAt(i)==character){
+				veces++;
+			}
+		}
+		return veces;
+	}
+	
+	private void showConfirmSavedPayment(){
 		final DialogInformationOF saved=new DialogInformationOF(this);
 		saved.setMessageDialog("Your payment has been saved.");
 		saved.setButtonListener(new View.OnClickListener() {
@@ -145,35 +181,78 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			@Override
 			public void onClick(View v) {
 				yesNo.dismissDialog();
-				final DialogInformationOF confirm=new DialogInformationOF(omega);
-				confirm.setMessageDialog("Your payment has been deleted.");
-				confirm.setButtonListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View v) {
-						confirm.dismissDialog();
-					}
-				});
-				confirm.showDialog();
+				deleteScheduledPayment();
 			}
 		});
 		yesNo.showDialog();
 	}
 	
-	private void selectPayMethod(){
-		final DialogSelectableOF selectable=new DialogSelectableOF(this);
-		selectable.setOptionsSelectables(selectable.getOptionsTest());
-		selectable.setTitleDialog("Select Payment Method");
-		selectable.setTextButton("Save");
-		selectable.setCloseOnSelectedItem(false);
-		selectable.setButtonListener(new View.OnClickListener() {
+	private void showConfirmDeletedScheduled(){
+		final DialogInformationOF confirm=new DialogInformationOF(ScheduledPaymentsDetailActivity.this);
+		confirm.setMessageDialog("Your payment has been deleted.");
+		confirm.setButtonListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				selectable.dismissDialog();
+				confirm.dismissDialog();
+				onBackPressed();
 			}
 		});
-		selectable.showDialog();
+		confirm.showDialog();
+	}
+	
+	
+	private void deleteScheduledPayment(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			private int status=0;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Deleting scheduled payment...", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				status=MainActivity.servicesOmegaFi.getHome().getAccounts().removeScheduledPayments(idAccount, selected.getId());
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				if(status==200){
+					showConfirmDeletedScheduled();
+				}
+				else{
+					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Not Found!");
+				}
+				stopProgressDialog();
+			}
+		};
+		task.execute();
+	}
+	
+	private void selectPayMethod(){
+		if(!methods.isEmpty()){
+			final DialogSelectableOF selectable=new DialogSelectableOF(this);
+			selectable.setOptionsSelectables(AccountActivity.getPaymentMethodsList(methods));
+			selectable.setTitleDialog("Select Payment Method");
+			selectable.setTextButton("Save");
+			selectable.setCloseOnSelectedItem(false);
+			selectable.setButtonListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					indexMethod=selectable.getIndexSelected();
+					rowPaymentMethod.setNameInfo(methods.get(indexMethod).getNameTypeNumber());
+					selectable.dismissDialog();
+				}
+			});
+			selectable.showDialog();
+		}
+		else{
+			OmegaFiActivity.showAlertMessage("No payment methods", ScheduledPaymentsDetailActivity.this);
+		}
 	}
 	
 	public void setEditableActivity(boolean editable){
@@ -185,11 +264,24 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			rowPaymentDate.setBackgroundValueInfo(0);
 			rowPaymentDate.setGravityValueInfo(Gravity.RIGHT);
 			rowPaymentDate.setOnClickListener(null);
+			rowPaymentDate.setPaddingRow(10,5, 5, 5);
+			rowPaymentDate.setGravityValueInfo(Gravity.CENTER_VERTICAL|Gravity.RIGHT);
 			rowPaymentMethod.setOnClickListener(null);
 			rowPaymentMethod.setVisibleArrow(false);
 			buttonState.setText(getResources().getString(R.string.procesing_state));
 			buttonSave.setVisibility(View.GONE);
 			buttonDelete.setVisibility(View.GONE);
+		}
+	}
+	
+	private void chargeInformationPayment(){
+		if(editableScheduled){
+			chargePaymentMethods();
+		}
+		else{
+			rowEditAmount.setTextEdit("$"+selected.getPaymentAmount());
+			rowPaymentDate.setValueInfo(selected.getPaymentDate());
+			rowPaymentMethod.setNameInfo(selected.getNameTypeMethodPayment());
 		}
 	}
 	
@@ -216,9 +308,11 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
 				if(status==200){
-					rowEditAmount.setTextEdit("$"+selected.getPaymentAmount());
+					rowEditAmount.setTextEdit(selected.getPaymentAmount());
 					rowPaymentDate.setValueInfo(selected.getPaymentDate());
-					rowPaymentMethod.setNameInfo(methods.get(getIndexPaymenthMethod()).getCardNameNumber());
+					getIndexPaymenthMethod();
+					if(indexMethod!=-1)
+						rowPaymentMethod.setNameInfo(methods.get(indexMethod).getNameTypeNumber());
 				}
 				else{
 					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Object not found");
@@ -229,21 +323,60 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		task.execute();
 	}
 	
-	private int getIndexPaymenthMethod(){
+	private void getIndexPaymenthMethod(){
 		boolean found=false;
-		int id=-1;
 		for (int i = 0; i < methods.size()&&!found; i++) {
-			Log.d("method", methods.get(i).getCardNameNumber());
-			Log.d("methods", methods.get(i).getId()+"");
-			Log.d("selected", selected.getIdProfilepayment()+"");
 			if(methods.get(i).getId()==selected.getIdProfilepayment()){
-				Log.d("entra a la escojencia", methods.get(i).getCardNameNumber());
 				found=true;
-				id=i;
+				indexMethod=i;
 			}
 		}
-		return id;
+		
 	}
 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		Intent scheduledPayments=new Intent(ScheduledPaymentsDetailActivity.this, ScheduledPaymentsActivity.class);
+		scheduledPayments.putExtra("id", idAccount);
+		startActivityForResult(scheduledPayments, OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENTS);
+	}
+	
+	private void updateScheduledPayment(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			private int status=0;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Updating scheduled", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Object[] statusUpdated=MainActivity.servicesOmegaFi.getHome().getAccounts().updateScheduledPament(idAccount
+						, selected.getId(), rowEditAmount.getValueInfo1(),
+						CalendarEvent.getFormatDate(5, rowPaymentDate.getValueInfo(), "MM/dd/yyyy"), 
+						methods.get(indexMethod));
+				status=(Integer)statusUpdated[0];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				if(status==200||status==201){
+					showConfirmSavedPayment();
+				}
+				else if(status==422){
+					OmegaFiActivity.showAlertMessage("Invalid request.", ScheduledPaymentsDetailActivity.this);
+				}
+				else{
+					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Not found!");
+				}
+				stopProgressDialog();
+			}
+		};
+		task.execute();
+	}
 
 }

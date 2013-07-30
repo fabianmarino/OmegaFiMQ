@@ -99,7 +99,9 @@ public class UserContactLayout extends RelativeLayout {
 	}
 	
 	public void chargeImageFromUrlAsync(String source, String url){
-		Server.chargeBitmapInImageView(source, url, imageProfile);
+		if(source!=null){
+			Server.chargeBitmapInImageView(source, url, imageProfile);
+		}
 	}
 	
 	public void chargeImageTest(){

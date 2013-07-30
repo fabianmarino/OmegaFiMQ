@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.DatePicker;
@@ -88,7 +89,8 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 			checkNone.setChecked(true);
 		}
 		else{
-			infoDate.setValueInfo(CalendarEvent.getFormatDate(3, AutoPayActivity.configAutoPay.getEndDate(), "yyyy-MM-dd"));
+			Log.d("end date", AutoPayActivity.configAutoPay.getEndDate());
+			infoDate.setValueInfo(CalendarEvent.getFormatDate(3, AutoPayActivity.configAutoPay.getEndDateRequest(), "yyyy-MM-dd"));
 		}
 	}
 	

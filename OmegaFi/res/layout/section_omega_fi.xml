@@ -19,7 +19,7 @@
 	       android:paddingTop="@dimen/padding_10dp_header_section"
 	       android:paddingRight="@dimen/padding_10dp_header_section"
 	       android:paddingBottom="@dimen/padding_10dp_header_section"
-	       android:paddingLeft="@dimen/padding_6dp"
+	       android:paddingLeft="@dimen/padding_8dp"
 	       android:background="@drawable/border_bottom"
 	       >
 	       <LinearLayout android:id="@+id/contentTSOmegaFi"

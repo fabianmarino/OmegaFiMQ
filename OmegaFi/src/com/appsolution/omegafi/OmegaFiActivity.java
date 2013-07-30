@@ -149,7 +149,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				dia.dismissDialog();
-				
 			}
 		});
 		dia.showDialog();
@@ -355,17 +354,20 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		                new DialogInterface.OnClickListener() {
 		                    public void onClick(DialogInterface dialog, int id) {
 		                    	closeAllActivities();
-		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
-		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		                		finish();
+		                    	finish();
 		                		try {
 									finalize();
 								} catch (Throwable e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+		                		Runtime.getRuntime().gc();
+		                		System.gc();
 		                		MainActivity.servicesOmegaFi.getHome().clearHomeServices();
+		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
+		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		                		startActivity(backToLogin);
+		                		
 		                    }
 		                });
 		AlertDialog alert = builder.create();
@@ -484,6 +486,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	protected void onResume() {
 		Log.d("Resume", this.getLocalClassName());
+		MainActivity.servicesOmegaFi.logCookies();
 		super.onResume();
 	}
 	
@@ -491,6 +494,13 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	protected void onPostResume() {
 		Log.d("Post resume", this.getLocalClassName());
 		super.onPostResume();
+	}
+	
+	@Override
+	protected void onDestroy() {
+		Log.d("On destroy", this.getLocalClassName());
+		super.onDestroy();
+		Runtime.getRuntime().gc();
 	}
 	
 	protected void refreshAtTime(final int millis){
@@ -520,5 +530,18 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			finishActivity(i);
 		}
 	}
+	
+	public static boolean isDouble(String cad)
+	 {
+	 try
+	 {
+	   Double.parseDouble(cad);
+	   return true;
+	 }
+	 catch(NumberFormatException nfe)
+	 {
+	   return false;
+	 }
+	 }
 	
 }

@@ -94,7 +94,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(true);
-		actionBarCustom.setTitle("BILLY BOB SMITHHEIMER");
+		actionBarCustom.setTitle("");
 		actionBar.setCustomView(actionBarCustom);
 	}
 	
@@ -195,13 +195,13 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				stopProgressDialog();
 				if(status==200){
 					completeFieldsMember(member);
 				}
 				else{
 					OmegaFiActivity.showErrorConection(OfficerMemberDetailActivity.this, status, "Object not found");
 				}
+				stopProgressDialog();
 			}
 			
 		};

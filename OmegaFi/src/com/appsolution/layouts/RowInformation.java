@@ -284,4 +284,8 @@ public class RowInformation extends RelativeLayout{
 	public TextView getNameTextView(){
 		return textNameInfo;
 	}
+	
+	public TextView getValueTextView(){
+		return textValueInfo;
+	}
 }
