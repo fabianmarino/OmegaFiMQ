@@ -9,6 +9,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.omegafi.OmegaFiLoginActivity;
+
+import android.content.Context;
+
 public class ForgotLoginService extends ServerContext{
 	
 	private JSONObject jsonQuestionResetPassword;
@@ -67,13 +71,49 @@ public class ForgotLoginService extends ServerContext{
 		return response;
 	}
 	
-	public Object[] loginUser(String username, String password){
+	public Object[] loginUser(String username, String password,Context context){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("UserName",username));
         nameValuePairs.add(new BasicNameValuePair("Password", password));
         nameValuePairs.add(new BasicNameValuePair("pipe", "mobile"));
         Object[] response=server.makeRequestPost(Server.LOGIN_SERVICE, nameValuePairs);
         this.jsonLoginService=(JSONObject)response[1];
+        int status=(Integer)response[0];
+        if(status==200||status==201){
+        	String firstName="";
+        	String title="News";
+        	String urlFeed="";
+        	if(jsonLoginService!=null){
+        		if(!jsonLoginService.isNull("FirstName"))
+					try {
+						firstName=jsonLoginService.getString("FirstName");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
+        	if(jsonLoginService!=null){
+        		if(!jsonLoginService.isNull("RSSTitle"))
+					try {
+						title= jsonLoginService.getString("RSSTitle");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
+        	if(jsonLoginService!=null){
+        		if(!jsonLoginService.isNull("OmegaFiRSSFeed"))
+					try {
+						urlFeed= jsonLoginService.getString("OmegaFiRSSFeed");
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+			}
+        	
+        	OmegaFiLoginActivity.setFirstNameTitleUrlFeeds(firstName, title, urlFeed, context);
+        	server.setupCookies();
+        }
         return response;
 	}
 	
@@ -95,40 +135,18 @@ public class ForgotLoginService extends ServerContext{
         return response;
 	}
 	
-	public String getFirstName(){
-		String username="Charles";
-		try {
-			if(jsonLoginService!=null){
-				username= this.jsonLoginService.getString("FirstName");
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public String getFirstName(Context context){
+		String username=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_FIRST_NAME, context);
 		return username;
 	}
 	
-	public String getTitleFeed(){
-		String title="Title News";
-		try {
-			if(this.jsonLoginService!=null){
-				title= this.jsonLoginService.getString("RSSTitle");
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public String getTitleFeed(Context context){
+		String title=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_TITLE_NEW_FEEDS, context);
 		return title;
 	}
 	
-	public String getUrlFeed(){
-		String url=null;
-		try {
-			url= this.jsonLoginService.getString("OmegaFiRSSFeed");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public String getUrlFeed(Context context){
+		String url=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_URL_NEW_FEEDS, context);
 		return url;
 	}
 	

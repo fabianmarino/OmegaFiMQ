@@ -7,6 +7,7 @@ import com.appsolution.layouts.EventNewsContent;
 import com.appsolution.layouts.RowInfoDescription;
 import com.appsolution.logic.CalendarDay;
 import com.appsolution.logic.CalendarEvent;
+import com.appsolution.logic.Server;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -99,7 +100,7 @@ public class CalendarActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusCalendar=MainActivity.servicesOmegaFi.getHome().getCalendar().getArrayCalendarEvents();
+				Object[] statusCalendar=Server.getServer().getHome().getCalendar().getArrayCalendarEvents();
 //				Object[] statusCalendar=MainActivity.servicesOmegaFi.getHome().getCalendar().getArrayCalendarEventsTest(getApplicationContext());
 				status=(Integer)statusCalendar[0];
 				calendarItems=(ArrayList<CalendarEvent>)statusCalendar[1];

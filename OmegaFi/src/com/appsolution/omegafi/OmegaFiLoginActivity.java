@@ -1,29 +1,26 @@
 package com.appsolution.omegafi;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import com.appsolution.layouts.DialogContactAccount;
+import com.appsolution.logic.Server;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.QuickContactBadge;
 
 public class OmegaFiLoginActivity extends Activity {
 
 	private ProgressDialog progressDiag;
 	private final static String OMEGAFI_PREFERENCES="OmegaFiPref";
 	private final static String OMEGAFI_PREF_USERNAME="username";
+	public final static String OMEGAFI_PREF_URL_NEW_FEEDS="urlFeeds";
+	public final static String OMEGAFI_PREF_TITLE_NEW_FEEDS="titleFeeds";
+	public final static String OMEGAFI_PREF_FIRST_NAME="firstName";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +30,7 @@ public class OmegaFiLoginActivity extends Activity {
 	}
 	
 	public void backToLogin(View button) {
-		MainActivity.servicesOmegaFi.getForgotLogin().clearForgotLoginService();
+		Server.getServer().getForgotLogin().clearForgotLoginService();
 		Intent backToLogin=new Intent(this, MainActivity.class);
 		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(backToLogin);
@@ -79,20 +76,34 @@ public class OmegaFiLoginActivity extends Activity {
 	}
 	
 	protected String getSaveUsername(){
-		 return this.getSharedPreferences(OMEGAFI_PREFERENCES, 0).getString(OMEGAFI_PREF_USERNAME, "");
+		 return OmegaFiLoginActivity.getPreferenceSaved(OMEGAFI_PREF_USERNAME, this);
 	}
 	
 	protected void saveUsername(String username){
-		SharedPreferences prefs=this.getSharedPreferences(OMEGAFI_PREFERENCES, MODE_PRIVATE);
-		SharedPreferences.Editor editor=prefs.edit();
-		editor.putString(OMEGAFI_PREF_USERNAME, username);
-		editor.commit();
+		OmegaFiLoginActivity.savePreference(OMEGAFI_PREF_USERNAME, username, this);
 	}
 	
 	@Override
 	public void onBackPressed() {
 		finish();
 		super.onBackPressed();
+	}
+	
+	public static String getPreferenceSaved(String preference, Context context){
+		return context.getSharedPreferences(OMEGAFI_PREFERENCES, 0).getString(preference, "");
+	}
+	
+	public static void savePreference(String preference, String value, Context contex){
+		SharedPreferences prefs=contex.getSharedPreferences(OMEGAFI_PREFERENCES, MODE_PRIVATE);
+		SharedPreferences.Editor editor=prefs.edit();
+		editor.putString(preference, value);
+		editor.commit();
+	}
+	
+	public static void setFirstNameTitleUrlFeeds(String name,String title, String url,Context context){
+		savePreference(OMEGAFI_PREF_FIRST_NAME, name, context);
+		savePreference(OMEGAFI_PREF_TITLE_NEW_FEEDS,title, context);
+		savePreference(OMEGAFI_PREF_URL_NEW_FEEDS, url, context);
 	}
 
 }

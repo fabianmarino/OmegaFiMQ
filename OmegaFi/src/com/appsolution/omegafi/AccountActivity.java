@@ -11,12 +11,14 @@ import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.Server;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -75,6 +77,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		this.completeAccountContacts();
 		this.completeAccountDetails();
 		accountId=getIntent().getExtras();
+		Log.d("Este es el id", accountId+"");
 		this.chargeAccountSelected(accountId.getInt("id"));
 		setResult(OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
 	}
@@ -249,12 +252,12 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] objectAux=MainActivity.servicesOmegaFi.getHome().getAccounts().getStatusAccount(id);
+				Object[] objectAux=Server.getServer().getHome().getAccounts().getStatusAccount(id);
 				status=(Integer)objectAux[0];
 				account=(Account)objectAux[1];
 				actualAccount=account;
 				if(actualAccount!=null){
-					Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(actualAccount.getId());
+					Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(actualAccount.getId());
 					methods=(ArrayList<PaymentMethod>)statusMethods[1];
 				}
 				return true;

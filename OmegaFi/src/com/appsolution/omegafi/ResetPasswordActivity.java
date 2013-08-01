@@ -3,6 +3,7 @@ package com.appsolution.omegafi;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.HeaderOmegaFi;
 import com.appsolution.layouts.RowQuestionEditText;
+import com.appsolution.logic.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -61,7 +62,7 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
+				status=(Integer)Server.getServer().getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
 						rowConfirmPassword.getTextQuestionEdit())[0];
 				return true;
 			}

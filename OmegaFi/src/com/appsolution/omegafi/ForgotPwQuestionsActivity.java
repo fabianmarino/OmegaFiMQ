@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowQuestionEditText;
+import com.appsolution.logic.Server;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -26,7 +27,7 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 		question1=(RowQuestionEditText)findViewById(R.id.questionMotherName);
 		question2=(RowQuestionEditText)findViewById(R.id.questionSchoolAttend);
 		question3=(RowQuestionEditText)findViewById(R.id.questionSchoolMascot);
-		jsonQuestions=MainActivity.servicesOmegaFi.getForgotLogin().getJsonQuestionResetPassword();
+		jsonQuestions=Server.getServer().getForgotLogin().getJsonQuestionResetPassword();
 		this.completeFormQuestions();
 	}
 	
@@ -61,7 +62,7 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 				
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().sendQuestionResetPassword
+					status=(Integer)Server.getServer().getForgotLogin().sendQuestionResetPassword
 							(question1.getTextQuestionEdit(), question2.getTextQuestionEdit(), question3.getTextQuestionEdit())[0];
 					return true;
 				}

@@ -58,7 +58,7 @@
                 />
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/gray_line_divisor"/>
             <com.appsolution.layouts.LabelInfoVertical
                 android:id="@+id/labelInfoBalanceDue"
                 android:layout_width="0dp"
@@ -69,7 +69,7 @@
                 secom:color_font_vertical="@color/red_wine"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/gray_line_divisor"/>
             <com.appsolution.layouts.LabelInfoVertical
                 android:id="@+id/labelInfoCurrent"
                 android:layout_width="0dp"

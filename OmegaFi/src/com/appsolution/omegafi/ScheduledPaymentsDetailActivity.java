@@ -10,6 +10,7 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleScheduledPayment;
 
 import android.os.AsyncTask;
@@ -59,7 +60,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		if (!editableScheduled) {
 			this.setEditableActivity(false);
 		}
-		selected=MainActivity.servicesOmegaFi.getHome().getAccounts().getSelected();
+		selected=Server.getServer().getHome().getAccounts().getSelected();
 		chargeInformationPayment();
 		refreshAtTime(100);
 	}
@@ -138,7 +139,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	
 	private String validateSaveScheduled(){
 		String validate=null;
-		if(OmegaFiActivity.isDouble(rowEditAmount.getValueInfo1())){
+		if(!OmegaFiActivity.isDouble(rowEditAmount.getValueInfo1())){
 			validate="Number amount invalid.";
 		}
 		else if(indexMethod==-1){
@@ -214,7 +215,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				status=MainActivity.servicesOmegaFi.getHome().getAccounts().removeScheduledPayments(idAccount, selected.getId());
+				status=Server.getServer().getHome().getAccounts().removeScheduledPayments(idAccount, selected.getId());
 				return true;
 			}
 			
@@ -298,7 +299,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... arg0) {
-				Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(idAccount);
+				Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(idAccount);
 				status=(Integer)statusMethods[0];
 				methods=(ArrayList<PaymentMethod>)statusMethods[1];
 				return true;
@@ -354,7 +355,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusUpdated=MainActivity.servicesOmegaFi.getHome().getAccounts().updateScheduledPament(idAccount
+				Object[] statusUpdated=Server.getServer().getHome().getAccounts().updateScheduledPament(idAccount
 						, selected.getId(), rowEditAmount.getValueInfo1(),
 						CalendarEvent.getFormatDate(5, rowPaymentDate.getValueInfo(), "MM/dd/yyyy"), 
 						methods.get(indexMethod));

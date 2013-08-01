@@ -14,6 +14,7 @@ import com.appsolution.logic.Account;
 import com.appsolution.logic.AutoPayConfig;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -161,7 +162,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusJson=MainActivity.servicesOmegaFi.getHome().getAccounts().createAutoPay(idAccount, configAutoPay);
+				Object[] statusJson=Server.getServer().getHome().getAccounts().createAutoPay(idAccount, configAutoPay);
 				status=(Integer)statusJson[0];
 				if(statusJson[1]!=null)
 					message=statusJson[1].toString();
@@ -198,7 +199,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusJson=MainActivity.servicesOmegaFi.getHome().getAccounts().updateAutoPay(idAccount, configAutoPay);
+				Object[] statusJson=Server.getServer().getHome().getAccounts().updateAutoPay(idAccount, configAutoPay);
 				status=(Integer)statusJson[0];
 				if(statusJson[1]!=null)
 					message=statusJson[1].toString();
@@ -297,11 +298,11 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(idAccount);
+				Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(idAccount);
 				this.statusMethods=(Integer)statusMethods[0];
 				methodsPayment=(ArrayList<PaymentMethod>)statusMethods[1];
 				if(existAutoPay){
-					Object[] auxAutoPay=MainActivity.servicesOmegaFi.getHome().getAccounts().getStatusAutoPay(idAccount);
+					Object[] auxAutoPay=Server.getServer().getHome().getAccounts().getStatusAutoPay(idAccount);
 					statusAutoPay=(Integer)auxAutoPay[0];
 					configAutoPay.setAutoPayConfig((AutoPayConfig)auxAutoPay[1]);
 				}
@@ -397,7 +398,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				status=MainActivity.servicesOmegaFi.getHome().getAccounts().removeAutoPaySettings(idAccount, configAutoPay.getId());
+				status=Server.getServer().getHome().getAccounts().removeAutoPaySettings(idAccount, configAutoPay.getId());
 				return true;
 			}
 			

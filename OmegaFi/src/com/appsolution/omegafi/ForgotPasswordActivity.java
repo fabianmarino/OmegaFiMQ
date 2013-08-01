@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowEditTextSubmit;
+import com.appsolution.logic.Server;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -46,7 +47,7 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 				
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					response=MainActivity.servicesOmegaFi.getForgotLogin().forgotPassword(rowSubmitUsername.getTextEditSubmit());
+					response=Server.getServer().getForgotLogin().forgotPassword(rowSubmitUsername.getTextEditSubmit());
 					status=(Integer)response[0];
 					return true;
 				}

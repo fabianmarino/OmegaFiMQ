@@ -1,5 +1,7 @@
 package com.appsolution.omegafi;
 
+import com.appsolution.logic.Server;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -45,7 +47,7 @@ public class PrivacyActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusHtml=MainActivity.servicesOmegaFi.getPrivacyOmegaFi();
+				Object[] statusHtml=Server.getServer().getPrivacyOmegaFi();
 				status=(Integer)statusHtml[0];
 				html=(String)statusHtml[1];
 //				html=OmegaFiActivity.getStringFile(PrivacyActivity.this, "txt/privacy.txt");

@@ -8,6 +8,7 @@ import com.appsolution.layouts.CycleCharge;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.BillingCycle;
 import com.appsolution.logic.ScheduledOfCharges;
+import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleScheduledPayment;
 
 import android.os.AsyncTask;
@@ -78,10 +79,10 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... arg0) {
-				Object[] statusScheduleds=MainActivity.servicesOmegaFi.getHome().getAccounts().getScheduledPayments(idAccount);
+				Object[] statusScheduleds=Server.getServer().getHome().getAccounts().getScheduledPayments(idAccount);
 				status=(Integer)statusScheduleds[0];
 				scheduleds=(ArrayList<SimpleScheduledPayment>)statusScheduleds[1];
-				Object[] statusProcessing=MainActivity.servicesOmegaFi.getHome().getAccounts().getProcessingPayments(idAccount);
+				Object[] statusProcessing=Server.getServer().getHome().getAccounts().getProcessingPayments(idAccount);
 				status=(Integer)statusProcessing[0];
 				processing=(ArrayList<SimpleScheduledPayment>)statusProcessing[1];
 				scheduleds.addAll(processing);
@@ -148,7 +149,7 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 					@Override
 					public void onClick(View arg0) {
 						finish();
-						MainActivity.servicesOmegaFi.getHome().getAccounts().setSelected(actualPayment);
+						Server.getServer().getHome().getAccounts().setSelected(actualPayment);
 						Intent viewScheduledDetails=new Intent(getApplicationContext(), ScheduledPaymentsDetailActivity.class);
 						viewScheduledDetails.putExtra("id", idAccount);
 						if(actualPayment.getStateScheduled()==SimpleScheduledPayment.STATE_PROCESSING)

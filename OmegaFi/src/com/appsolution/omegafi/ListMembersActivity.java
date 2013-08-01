@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.actionbarsherlock.widget.SearchView;
 import com.appsolution.logic.ChaptersService;
+import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleMember;
 
 import android.os.AsyncTask;
@@ -159,7 +160,7 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 	    		
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					Object[] statusMembers=MainActivity.servicesOmegaFi.getHome().getChapters().getListSimpleMembers(idChapter);
+					Object[] statusMembers=Server.getServer().getHome().getChapters().getListSimpleMembers(idChapter);
 					status=(Integer)statusMembers[0];
 					members=(ArrayList<SimpleMember>)statusMembers[1];
 					return true;

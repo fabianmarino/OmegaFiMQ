@@ -22,6 +22,7 @@ import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.SpinnerNameTopInfo;
 import com.appsolution.logic.CalendarEvent;
+import com.appsolution.logic.Server;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -499,7 +500,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			@Override
 			protected Boolean doInBackground(Void... params) {
 				int[] monthYear=rowExpirationDate.getMonthYear();
-				Object[] statusJson=MainActivity.servicesOmegaFi.getHome().getAccounts().createPaymentCC
+				Object[] statusJson=Server.getServer().getHome().getAccounts().createPaymentCC
 						(idAccount, rowTextNameOnCard.getValueInfo1(),rowTextNumberCard.getValueInfo1(),listCreditCards.get(indexCardType), 
 								monthYear[0], monthYear[1], contact.getEmail(), Integer.parseInt(rowTextZipCode.getValueInfo1()), contact.getPhone());
 				status=(Integer)statusJson[0];
@@ -575,7 +576,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			@Override
 			protected Boolean doInBackground(Void... params) {
 				int[] monthYear=rowExpirationDate.getMonthYear();
-				Object[] statusJson=MainActivity.servicesOmegaFi.getHome().getAccounts().createPaymentECheck
+				Object[] statusJson=Server.getServer().getHome().getAccounts().createPaymentECheck
 						(idAccount,rowTextNameOnAccount.getValueInfo1(), rowTextRoutingNumber.getValueInfo1(),
 								rowTextAccountNumber.getValueInfo1(), contact.getEmail(), contact.getPhone(),
 								rowEditAddres1.getValueInfo(), rowEditAddres2.getValueInfo(), rowCity.getValueInfo(), rowSpinner.getSelectedItem(),

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.appsolution.layouts.EventNewsContent;
 import com.appsolution.logic.CalendarEvent;
+import com.appsolution.logic.Server;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -57,14 +58,14 @@ public class NewsOmegaFiActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				newsArray=MainActivity.servicesOmegaFi.getHome().getFeeds().getNewsFeed
-						(MainActivity.servicesOmegaFi.getForgotLogin().getUrlFeed());
+				newsArray=Server.getServer().getHome().getFeeds().getNewsFeed
+						(Server.getServer().getForgotLogin().getUrlFeed(NewsOmegaFiActivity.this));
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				actionBarCustom.setTitle(MainActivity.servicesOmegaFi.getForgotLogin().getTitleFeed().toUpperCase());
+				actionBarCustom.setTitle(Server.getServer().getForgotLogin().getTitleFeed(NewsOmegaFiActivity.this).toUpperCase());
 				if(newsArray!=null){
 					newsAdapter=new NewsOmegaFiAdapter(NewsOmegaFiActivity.this, newsArray);
 					listNews.setAdapter(newsAdapter);

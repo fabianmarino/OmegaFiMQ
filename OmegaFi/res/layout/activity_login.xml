@@ -1,134 +1,103 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginActivity" >
-    
-    <LinearLayout
-        android:id="@+id/login_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:visibility="gone" >
+<ScrollView
+   xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:tools="http://schemas.android.com/tools"
+   tools:context=".LoginActivity"
+   android:id="@+id/login_form"
+   android:layout_width="match_parent"
+   android:layout_height="match_parent"
+   android:layout_gravity="center_horizontal"
+   style="@style/BackgroundLoginScreen"
+   android:measureAllChildren="false" >
+   <LinearLayout style="@style/ContentLoginForm"
+       >
+      <LinearLayout
+          style="@style/LoginFormContainer"
+          android:orientation="vertical"
+          android:gravity="left" >
+          <com.appsolution.layouts.HeaderOmegaFi
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+           />
+          
+          <EditText
+              android:id="@+id/email"
+              style="@style/EditTextLogin"
+              android:hint="@string/username"
+              android:inputType="textEmailAddress"
+              android:maxLines="1"
+              android:layout_marginBottom="10dp"
+              android:singleLine="true" />
 
-        <ProgressBar
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/login_status_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="sans-serif-light"
-            android:textColor="@android:color/white"
-            android:text="@string/login_progress_signing_in"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <!-- Login form -->
-
-    <ScrollView
-        android:id="@+id/login_form"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        style="@style/BackgroundLoginScreen"
-        android:measureAllChildren="false" >
-        <LinearLayout style="@style/ContentLoginForm"
-            >
-        <LinearLayout
-            style="@style/LoginFormContainer"
-            android:orientation="vertical"
-            android:gravity="left" >
-            <com.appsolution.layouts.HeaderOmegaFi
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-             />
-            
-            <EditText
-                android:id="@+id/email"
-                style="@style/EditTextLogin"
-                android:hint="@string/username"
-                android:inputType="textEmailAddress"
-                android:maxLines="1"
-                android:layout_marginBottom="10dp"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/password"
-                style="@style/EditTextLogin"
-                android:hint="@string/prompt_password"
-                android:imeActionId="@+id/login"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionUnspecified"
-                android:inputType="textPassword"
-                 />
-            <Button
-                android:id="@+id/sign_in_button"
-                style="@style/ButtonOmega"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:text="@string/login_user"
-                android:onClick="nextHome" />
-        </LinearLayout>
-        <LinearLayout android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_trans_gray_border"
-            android:orientation="vertical">
-        <include layout="@layout/line_jagged"/>
-        <LinearLayout
-			 android:id="@+id/check_forgot"
-			 android:layout_width="fill_parent"
-			 android:layout_height="wrap_content"
-			 android:orientation="horizontal"
-			 android:weightSum="2"
-			 >
-			<LinearLayout android:layout_width="0dp"
-			    android:layout_height="wrap_content"
-			    android:orientation="vertical"
-			    android:paddingTop="@dimen/padding_12dp"
-			 	android:paddingBottom="@dimen/padding_10dp"
-			    android:gravity="center"
-			    android:layout_weight="1">
-			    <CheckBox
-			        android:id="@+id/check_save"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:text="@string/save_username"
-			        android:layout_marginTop="-3dp"
-			        android:textColor="@android:color/white"
-			        android:textSize="@dimen/text_12_notification"
-			         />
-			</LinearLayout>
-			<View android:layout_width="1dp"
-			    android:layout_height="fill_parent"
-			    android:background="@color/gray_font_row_info"/>
-			<LinearLayout android:layout_width="0dp"
-			    android:layout_height="wrap_content"
-			    android:orientation="vertical"
-			    android:paddingTop="@dimen/padding_12dp"
-			 	android:paddingBottom="@dimen/padding_10dp"
-			    android:gravity="center"
-			    android:layout_weight="1">
-			    <TextView
-			        android:id="@+id/text_forgot"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			   		android:clickable="true"
-			        android:textColor="@android:color/white"
-			        android:onClick="activityForgotLogin"
-			        android:text="@string/forgot_user"
-			        android:textSize="@dimen/text_12_notification"
-			        android:layout_marginTop="5dp"
-			    />
-			</LinearLayout>
-		</LinearLayout>
-		</LinearLayout>
-		</LinearLayout>
-    </ScrollView>
-
-</merge>
+          <EditText
+              android:id="@+id/password"
+              style="@style/EditTextLogin"
+              android:hint="@string/prompt_password"
+              android:imeActionId="@+id/login"
+              android:imeActionLabel="@string/action_sign_in_short"
+              android:imeOptions="actionUnspecified"
+              android:inputType="textPassword"
+               />
+          <Button
+              android:id="@+id/sign_in_button"
+              style="@style/ButtonOmega"
+              android:layout_gravity="center_horizontal"
+              android:layout_marginTop="16dp"
+              android:layout_weight="1"
+              android:text="@string/login_user"
+              android:onClick="nextHome" />
+      </LinearLayout>
+      <LinearLayout android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:background="@drawable/background_trans_gray_border"
+          android:orientation="vertical">
+      <include layout="@layout/line_jagged"/>
+      <LinearLayout
+	 android:id="@+id/check_forgot"
+	 android:layout_width="fill_parent"
+	 android:layout_height="wrap_content"
+	 android:orientation="horizontal"
+	 android:weightSum="2"
+	 >
+	<LinearLayout android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:paddingTop="@dimen/padding_12dp"
+	 	android:paddingBottom="@dimen/padding_10dp"
+	    android:gravity="center"
+	    android:layout_weight="1">
+	    <CheckBox
+	        android:id="@+id/check_save"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/save_username"
+	        android:layout_marginTop="-3dp"
+	        android:textColor="@android:color/white"
+	        android:textSize="@dimen/text_12_notification"
+	         />
+	</LinearLayout>
+	<View android:layout_width="1dp"
+	    android:layout_height="fill_parent"
+	    android:background="@color/gray_font_row_info"/>
+	<LinearLayout android:layout_width="0dp"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:paddingTop="@dimen/padding_12dp"
+	 	android:paddingBottom="@dimen/padding_10dp"
+	    android:gravity="center"
+	    android:layout_weight="1">
+	    <TextView
+	        android:id="@+id/text_forgot"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	   		android:clickable="true"
+	        android:textColor="@android:color/white"
+	        android:onClick="activityForgotLogin"
+	        android:text="@string/forgot_user"
+	        android:textSize="@dimen/text_12_notification"
+	        android:layout_marginTop="5dp"
+	    />
+	</LinearLayout>
+</LinearLayout>
+</LinearLayout>
+</LinearLayout>
+</ScrollView>

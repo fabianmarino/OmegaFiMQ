@@ -13,6 +13,7 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Profile;
+import com.appsolution.logic.Server;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -334,10 +335,10 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusProfile=MainActivity.servicesOmegaFi.getHome().getProfile().getStatusProfile();
+				Object[] statusProfile=Server.getServer().getHome().getProfile().getStatusProfile();
 				status=(Integer)statusProfile[0];
 				profile=(Profile)statusProfile[1];
-				prefixes=MainActivity.servicesOmegaFi.getHome().getProfile().getPrefixesGender(profile.getGender());
+				prefixes=Server.getServer().getHome().getProfile().getPrefixesGender(profile.getGender());
 				return true;
 			}
 			

@@ -36,7 +36,7 @@
                 secom:text_value_label="745468"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
-                android:background="@android:color/darker_gray"/>
+                android:background="@color/gray_line_divisor"/>
             <com.appsolution.layouts.LabelInfoVertical
                 android:id="@+id/balanceDueInfo"
                 android:layout_width="0dp"

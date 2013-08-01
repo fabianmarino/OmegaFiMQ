@@ -27,7 +27,7 @@
 	                 />
 	            <View android:layout_width="1dp"
 	                android:layout_height="fill_parent"
-	                android:background="@android:color/darker_gray"/>
+	                android:background="@color/gray_line_divisor"/>
 	            <com.appsolution.layouts.LabelInfoVertical
 	                android:id="@+id/dueOnPayNow"
 	                android:layout_width="0dp"

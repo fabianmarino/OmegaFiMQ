@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.webkit.CookieSyncManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -17,20 +18,18 @@ public class MainActivity extends OmegaFiLoginActivity {
 
 	private EditText textUser;
 	private EditText textPassword;
-	private Activity thisActivity;
 	private CheckBox saveUsername;
 	private TextView textForgot;
-	public static final Server servicesOmegaFi=new Server();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		CookieSyncManager.createInstance(this);
+		CookieSyncManager.getInstance().startSync();
 		textUser = (EditText)findViewById(R.id.email);
-//		textUser.setText(username);
 		textUser.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		textPassword = (EditText)findViewById(R.id.password);
-//		textPassword.setText("1234##");
 		saveUsername=(CheckBox)findViewById(R.id.check_save);
 		clearUserNameCheckBox();
 		saveUsername.setButtonDrawable(R.drawable.radio_button);
@@ -38,8 +37,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 		getUserNameSaved();
 		textForgot=(TextView)findViewById(R.id.text_forgot);
 		textForgot.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
-		thisActivity=this;
-		MainActivity.servicesOmegaFi.logCookies();
+		Server.getServer().logCookies();
 	}
 	
 	public void nextHome(View boton){
@@ -57,7 +55,8 @@ public class MainActivity extends OmegaFiLoginActivity {
 				}
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().loginUser(textUser.getText().toString(), textPassword.getText().toString())[0];
+					status=(Integer)Server.getServer().getForgotLogin().loginUser(textUser.getText().toString(),
+							textPassword.getText().toString(),MainActivity.this)[0];
 					return true;
 				}
 				@Override
@@ -70,7 +69,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 						finish();
 					}
 					else{
-						OmegaFiActivity.showErrorConection(thisActivity, status, "Web service not found.");
+						OmegaFiActivity.showErrorConection(MainActivity.this, status, "Web service not found.");
 					}
 				}
 			};
@@ -104,6 +103,18 @@ public class MainActivity extends OmegaFiLoginActivity {
 		else{
 			saveUsername.setChecked(false);
 		}
+	}
+	
+	@Override
+	protected void onResume() {
+		CookieSyncManager.getInstance().stopSync();
+		super.onResume();
+	}
+	
+	@Override
+	protected void onPause() {
+		CookieSyncManager.getInstance().startSync();
+		super.onPause();
 	}
 	
 	private void saveUsername(){

@@ -46,7 +46,7 @@ public class TermsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusHtml=MainActivity.servicesOmegaFi.getTermsOmegaFi();
+				Object[] statusHtml=Server.getServer().getTermsOmegaFi();
 				status=(Integer)statusHtml[0];
 				html=(String)statusHtml[1];
 //				html=OmegaFiActivity.getStringFile(getApplicationContext(), "txt/terms.txt");

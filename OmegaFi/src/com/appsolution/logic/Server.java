@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
 import java.util.List;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -27,6 +28,7 @@ import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.BufferedHttpEntity;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
@@ -37,10 +39,12 @@ import org.json.JSONObject;
 
 import com.appsolution.omegafi.MainActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
+import com.appsolution.omegafi.SplashOmegaFiActivity;
 import com.appsolution.omegafi.StatementsActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,11 +52,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
 
 public class Server {
-
-	public static final String HOST="https://qa-services.omegafi.com";
+	
+	public static final String DOMAIN="qa-services.omegafi.com";
+	public static final String HOST="https://"+DOMAIN;
 	public static final String LOGIN_SERVICE=HOST+"/myomegafi/api/v1/login/mobile_login_post.php";
 	public static final String ACCOUNTS_SERVICE=HOST+"/myomegafi/api/v1/accounts";
 	public static final String CHAPTERS_SERVICE=HOST+"/myomegafi/api/v1/chapters";
@@ -82,17 +89,17 @@ public class Server {
 	public String evaluador=null;
 	private HomeServices home;
 	private ForgotLoginService forgotLogin;
-	
 	private static Server server=null;
+	private boolean emptyInformation;
 	
-	public Server(){
+	private Server(){
 		clientRequest=new DefaultHttpClient();
 		contextHttp=new BasicHttpContext();
 		cookieStore=new BasicCookieStore();
 		contextHttp.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 		home=new HomeServices(this);
 		forgotLogin=new ForgotLoginService(this);
-		logCookies();
+		emptyInformation=true;
 	}
 	
 	public static Server getServer(){
@@ -254,7 +261,7 @@ public class Server {
 	        while ((line = rd.readLine()) != null) {
 	        	todo.append(line);
 	        }
-	        Log.d("response", todo.toString());
+//	        Log.d("response", todo.toString());
 	        jsonResponse=new JSONObject(todo.toString());
 	        
 	        rd.close();
@@ -327,7 +334,6 @@ public class Server {
 	
 	public void logCookies(){
 		List<Cookie> cookies = cookieStore.getCookies();
-		Log.d("Cookies from cookie store", cookies.size()+"");
         for (int i = 0; i < cookies.size(); i++) {
             Log.d("Cookies", "Local cookie: " + cookies.get(i));
         }
@@ -537,7 +543,7 @@ public class Server {
 				if(source!=null){
 					if(source.equalsIgnoreCase("omegafi")){
 						try {
-							imagePhoto=MainActivity.servicesOmegaFi.downloadBitmap(Server.HOST+url);
+							imagePhoto=Server.getServer().downloadBitmap(Server.HOST+url);
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
@@ -557,6 +563,145 @@ public class Server {
 			}
 		};
 		task.execute();
+	}
+	
+	protected void setupCookies(){
+		List<Cookie> cookies = getListCookies();
+		logCookies();
+		if (!cookies.isEmpty())
+		{
+		    CookieManager cookieManager = CookieManager.getInstance();
+		    for (Cookie cookie : cookies)
+		    {
+		        Cookie sessionInfo = cookie;
+		        String cookieString = sessionInfo.getName() + "=" + sessionInfo.getValue() + "; domain=" + sessionInfo.getDomain();
+		        cookieManager.setCookie(Server.DOMAIN, cookieString);
+		        CookieSyncManager.getInstance().sync();
+		    }
+		}
+	}
+	
+	public void restoreCookies(){
+		CookieSyncManager.getInstance().sync();
+		if(getListCookies().size()==0){
+			for (int i = 0; i < 2; i++) {
+				String[] keyValueSets = CookieManager.getInstance().getCookie(Server.DOMAIN).split(";");
+				for(String cookie : keyValueSets)
+				{
+				    String[] keyValue = cookie.split("=");
+				    String key = keyValue[0];
+				    String value = "";
+				    if(keyValue.length>1){
+				    	value = keyValue[1];
+				    }
+				    final String nameCookie=key;
+				    final String valueCookie=value;
+				    final String domainCookie=Server.DOMAIN;
+				    cookieStore.addCookie(new Cookie() {
+						
+						@Override
+						public boolean isSecure() {
+							// TODO Auto-generated method stub
+							return true;
+						}
+						
+						@Override
+						public boolean isPersistent() {
+							// TODO Auto-generated method stub
+							return false;
+						}
+						
+						@Override
+						public boolean isExpired(Date date) {
+							// TODO Auto-generated method stub
+							return false;
+						}
+						
+						@Override
+						public int getVersion() {
+							// TODO Auto-generated method stub
+							return 0;
+						}
+						
+						@Override
+						public String getValue() {
+							// TODO Auto-generated method stub
+							return valueCookie;
+						}
+						
+						@Override
+						public int[] getPorts() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String getPath() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String getName() {
+							// TODO Auto-generated method stub
+							return nameCookie;
+						}
+						
+						@Override
+						public Date getExpiryDate() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String getDomain() {
+							// TODO Auto-generated method stub
+							return domainCookie;
+						}
+						
+						@Override
+						public String getCommentURL() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+						
+						@Override
+						public String getComment() {
+							// TODO Auto-generated method stub
+							return null;
+						}
+					});
+				}
+			}
+			}
+		Log.d("despues cokies", ":P");
+		logCookies();
+	}
+	
+	public int chargeHome(Context context){
+		int status=0;
+		if(isEmptyInformation()){
+			status=(Integer)Server.getServer().getHome().getProfile().chargeProfileData()[0];
+			Server.getServer().getHome().getAccounts().chargeAccounts();
+			Server.getServer().getHome().getChapters().chargeChapters();
+			Server.getServer().getHome().getOfficers().chargeOfficers(
+					Server.getServer().getHome().getChapters().getIdChapter(0));
+			Server.getServer().getHome().getCalendar().chargeEventsHome();
+			Server.getServer().getHome().getFeeds().chargeNewsFeed
+			(getForgotLogin().getUrlFeed(context));
+			if(status==200||status==201){
+				emptyInformation=false;
+			}
+		}
+		return status;
+	}
+
+	public boolean isEmptyInformation() {
+		return emptyInformation;
+	}
+
+	public void setEmptyInformation(boolean emptyInformation) {
+		this.emptyInformation = emptyInformation;
 	}
 	
 	

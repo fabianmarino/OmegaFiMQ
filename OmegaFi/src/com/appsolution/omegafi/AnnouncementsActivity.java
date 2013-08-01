@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.appsolution.layouts.ContentAnnouncement;
 import com.appsolution.layouts.EventNewsContent;
 import com.appsolution.layouts.RowInformation;
+import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleAnnouncement;
 import com.appsolution.logic.SimpleScheduledPayment;
 
@@ -65,7 +66,7 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusAnnouncements=MainActivity.servicesOmegaFi.getHome().getStatusArrayAnnouncements();
+				Object[] statusAnnouncements=Server.getServer().getHome().getStatusArrayAnnouncements();
 				status=(Integer)statusAnnouncements[0];
 				announcements=(ArrayList<SimpleAnnouncement>)statusAnnouncements[1];
 				return true;

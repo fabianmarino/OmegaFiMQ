@@ -191,7 +191,7 @@ public class StatementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] listItems=MainActivity.servicesOmegaFi.getHome().getListStatemets(idAccount);
+				Object[] listItems=Server.getServer().getHome().getListStatemets(idAccount);
 				status=(Integer)listItems[0];
 				ArrayList<Statement> arrayList = (ArrayList<Statement>)listItems[1];
 				list=arrayList;
@@ -223,7 +223,7 @@ public class StatementsActivity extends OmegaFiActivity {
     	dialog.setIndeterminate(false);
     	dialog.setMax(0);
     	try {
-    		MainActivity.servicesOmegaFi.downloadFileAsync(url, nameFIle, dialog,StatementsActivity.this);
+    		Server.getServer().downloadFileAsync(url, nameFIle, dialog,StatementsActivity.this);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -313,7 +313,7 @@ public class StatementsActivity extends OmegaFiActivity {
 //    						OmegaFiActivity.showAlertMessage("Please install a pdf reader", StatementsActivity.this);
 //    					}
     					Log.d("Pdf show", "");
-    					List<Cookie> listCookies=MainActivity.servicesOmegaFi.getListCookies();
+    					List<Cookie> listCookies=Server.getServer().getListCookies();
     					Cookie first=listCookies.get(0);
     					Cookie second=listCookies.get(1);
     		            String googleUrl = "http://docs.google.com/gview?embedded=true&url=";

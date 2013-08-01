@@ -12,6 +12,7 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.Server;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -254,10 +255,10 @@ public class PayNowActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] account=MainActivity.servicesOmegaFi.getHome().getAccounts().getStatusAccount(idAccount);
+				Object[] account=Server.getServer().getHome().getAccounts().getStatusAccount(idAccount);
 				statusAcccount=(Integer)account[0];
 				actualAccount=(Account)account[1];
-				Object[] statusMethods=MainActivity.servicesOmegaFi.getHome().getPaymentMethods(idAccount);
+				Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(idAccount);
 				this.statusMethods=(Integer)statusMethods[0];
 				methodsPayment=(ArrayList<PaymentMethod>)statusMethods[1];
 				return true;
@@ -273,6 +274,10 @@ public class PayNowActivity extends OmegaFiActivity {
 						indexMethodSelected=methodsPayment.size()-1;
 						PaymentMethod last=methodsPayment.get(indexMethodSelected);
 						rowPaymentMethod.setValueInfo(methodsPayment.get(indexMethodSelected).getProfileTypeNumber());
+						if(methodsPayment.size()==1){
+							rowPaymentMethod.setVisibleArrow(false);
+							rowPaymentMethod.setOnClickListener(null);
+						}
 						refreshActivity();
 					}
 				}
@@ -295,7 +300,7 @@ public class PayNowActivity extends OmegaFiActivity {
 			@Override
 			protected Boolean doInBackground(Void... params) {
 				PaymentMethod selected=methodsPayment.get(indexMethodSelected);
-				status=MainActivity.servicesOmegaFi.getHome().getAccounts().submitPayNow
+				status=Server.getServer().getHome().getAccounts().submitPayNow
 						(idAccount, rowAmount.getValueInfo1(), CalendarEvent.getFormatDate(5, rowDate.getValueInfo(), "MM/dd/yyyy"),
 								selected.getProfileType(), selected.getId());
 				return true;

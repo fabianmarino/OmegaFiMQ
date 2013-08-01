@@ -35,6 +35,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
 import android.widget.RelativeLayout;
@@ -74,6 +75,8 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		CookieSyncManager.createInstance(this);
+		Server.getServer().restoreCookies();
 		this.showSlidingMenu();
 		 actionBar = getSupportActionBar();
 		 actionBarCustom=new LayoutActionBar(getApplicationContext());
@@ -287,9 +290,9 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	private void loadSlidingMenu(){
-		loadImageSlidingMenu(MainActivity.servicesOmegaFi.getHome().getProfile().getUrlPhotoProfile());
-		userContact.setNameUserProfile(MainActivity.servicesOmegaFi.getHome().getProfile().getCompleteName());
-		itemAnnouncements.setNumberNotifications(MainActivity.servicesOmegaFi.getHome().getProfile().getAnnouncementsCount());
+		loadImageSlidingMenu(Server.getServer().getHome().getProfile().getUrlPhotoProfile());
+		userContact.setNameUserProfile(Server.getServer().getHome().getProfile().getCompleteName());
+		itemAnnouncements.setNumberNotifications(Server.getServer().getHome().getProfile().getAnnouncementsCount());
 	}
 	
 	public void goToHome(View item){
@@ -363,7 +366,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 								}
 		                		Runtime.getRuntime().gc();
 		                		System.gc();
-		                		MainActivity.servicesOmegaFi.getHome().clearHomeServices();
+		                		Server.getServer().getHome().clearHomeServices();
 		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
 		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		                		startActivity(backToLogin);
@@ -474,6 +477,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	protected void onPause() {
 		Log.d("Pause", this.getLocalClassName());
+		CookieSyncManager.getInstance().startSync();
 		super.onPause();
 	}
 	
@@ -486,7 +490,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	protected void onResume() {
 		Log.d("Resume", this.getLocalClassName());
-		MainActivity.servicesOmegaFi.logCookies();
+		CookieSyncManager.getInstance().stopSync();
 		super.onResume();
 	}
 	

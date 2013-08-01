@@ -2,6 +2,7 @@ package com.appsolution.omegafi;
 
 import com.appsolution.layouts.HeaderOmegaFi;
 import com.appsolution.layouts.RowEditTextSubmit;
+import com.appsolution.logic.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class ForgotUserNameActivity extends OmegaFiLoginActivity {
 				}
 				@Override
 				protected Boolean doInBackground(Void... params) {
-					status=(Integer)MainActivity.servicesOmegaFi.getForgotLogin().forgotUserName(rowEmail.getTextEditSubmit())[0];
+					status=(Integer)Server.getServer().getForgotLogin().forgotUserName(rowEmail.getTextEditSubmit())[0];
 					return true;
 				}
 				

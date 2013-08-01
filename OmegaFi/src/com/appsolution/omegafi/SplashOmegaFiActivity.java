@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.appsolution.layouts.DialogInformationOF;
+import com.appsolution.logic.Server;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -55,7 +56,7 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		textLoading=(TextView)findViewById(R.id.labelLoadingSplash);
 		textLoading.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Light.ttf"));
 		
-		textUserName.setText("Hello, "+MainActivity.servicesOmegaFi.getForgotLogin().getFirstName());
+		textUserName.setText("Hello, "+Server.getServer().getForgotLogin().getFirstName(SplashOmegaFiActivity.this));
 		barSplash=new ChargerSplash();
 		barSplash.execute();
 	}
@@ -67,37 +68,37 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			status=(Integer)MainActivity.servicesOmegaFi.getHome().getProfile().chargeProfileData()[0];
+			status=(Integer)Server.getServer().getHome().getProfile().chargeProfileData()[0];
 			if(status==200){
 				Message msg=new Message();
 				msg.obj=10;
 				handlerProgress.sendMessage(msg);
-				OmegaFiActivity.loadImageFromURL(MainActivity.servicesOmegaFi.getHome().getProfile().getUrlPhotoProfile(), imageContact);
+				OmegaFiActivity.loadImageFromURL(Server.getServer().getHome().getProfile().getUrlPhotoProfile(), imageContact);
 				msg=new Message();
 				msg.obj=20;
 				handlerProgress.sendMessage(msg);
-				MainActivity.servicesOmegaFi.getHome().getAccounts().chargeAccounts();
+				Server.getServer().getHome().getAccounts().chargeAccounts();
 				msg=new Message();
 				msg.obj=50;
 				handlerProgress.sendMessage(msg);
-				MainActivity.servicesOmegaFi.getHome().getChapters().chargeChapters();
-				Log.d("first chapter", MainActivity.servicesOmegaFi.getHome().getChapters().getIdChapter(0)+"");
-				MainActivity.servicesOmegaFi.getHome().getOfficers().chargeOfficers(
-						MainActivity.servicesOmegaFi.getHome().getChapters().getIdChapter(0));			
+				Server.getServer().getHome().getChapters().chargeChapters();
+				Log.d("first chapter", Server.getServer().getHome().getChapters().getIdChapter(0)+"");
+				Server.getServer().getHome().getOfficers().chargeOfficers(
+						Server.getServer().getHome().getChapters().getIdChapter(0));			
 				msg=new Message();
 				msg.obj=50;
 				handlerProgress.sendMessage(msg);
-				MainActivity.servicesOmegaFi.getHome().getCalendar().chargeEventsHome();
+				Server.getServer().getHome().getCalendar().chargeEventsHome();
 				msg=new Message();
 				msg.obj=60;
 				handlerProgress.sendMessage(msg);
-				Log.d("url", MainActivity.servicesOmegaFi.getForgotLogin().getUrlFeed());
-				MainActivity.servicesOmegaFi.getHome().getFeeds().chargeNewsFeed
-				(MainActivity.servicesOmegaFi.getForgotLogin().getUrlFeed());
+				Log.d("url", Server.getServer().getForgotLogin().getUrlFeed(SplashOmegaFiActivity.this));
+				Server.getServer().getHome().getFeeds().chargeNewsFeed
+				(Server.getServer().getForgotLogin().getUrlFeed(SplashOmegaFiActivity.this));
 				msg=new Message();
 				msg.obj=60;
 				handlerProgress.sendMessage(msg);
-				
+				Server.getServer().setEmptyInformation(false);
 				msg=new Message();
 				msg.obj=99;
 				handlerProgress.sendMessage(msg);

@@ -151,7 +151,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusMember=MainActivity.servicesOmegaFi.getHome().getChapters().
+				Object[] statusMember=Server.getServer().getHome().getChapters().
 						getStatusMemberRooster(idChapter, idMember);
 				status=(Integer)statusMember[0];
 				member=(MemberRooster)statusMember[1];
@@ -186,7 +186,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusMember=MainActivity.servicesOmegaFi.getHome().getChapters().
+				Object[] statusMember=Server.getServer().getHome().getChapters().
 						getStatusOfficerRooster(idChapter, idMember);
 				status=(Integer)statusMember[0];
 				member=(OfficerRooster)statusMember[1];
