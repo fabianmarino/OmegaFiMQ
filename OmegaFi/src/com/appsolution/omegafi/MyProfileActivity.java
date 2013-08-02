@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class MyProfileActivity extends OmegaFiActivity {
 	
@@ -66,7 +67,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private EditText informalFirst;
 	private EditText parentsName;
 	private EditText editTravelVisa;
-	private EditText editCollegeEntry;
+	private TextView editCollegeEntry;
 	private EditText editSuffix;
 	private Spinner graduationYear;
 	private RowToogleOmegaFi tooglePublish;
@@ -111,7 +112,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 		parentsName=(EditText)findViewById(R.id.editParentsName);
 		spinnerPrefix=(Spinner)findViewById(R.id.spinnerPrefixProfile);
 		editTravelVisa=(EditText)findViewById(R.id.travelVisaNumber);
-		editCollegeEntry=(EditText)findViewById(R.id.editCollegeEntry);
+		editCollegeEntry=(TextView)findViewById(R.id.editCollegeEntry);
 		graduationYear=(Spinner)findViewById(R.id.spinnerGraduationYear);
 		
 		this.completeSpinnerProfile();
@@ -358,7 +359,14 @@ public class MyProfileActivity extends OmegaFiActivity {
 					informalFirst.setText(profile.getInformalFirstName());
 					parentsName.setText(profile.getParentsName());
 					editTravelVisa.setText(profile.getTravelVisaNumber());
-					editCollegeEntry.setText(profile.getDateCollegeEntryPretty());
+					if(profile.getDateCollegeEntryPretty()!=null){
+						if(!profile.getDateCollegeEntryPretty().isEmpty())
+							editCollegeEntry.setText(profile.getDateCollegeEntryPretty());
+					}
+					else{
+						editCollegeEntry.setText("College Entry Date");
+						editCollegeEntry.setTextColor(Color.GRAY);
+					}
 					completeSpinnerGraduationYear(profile.getGraduationYear());
 					tooglePublish.setActivateOn(profile.isPublishProfile());
 					editSuffix.setText(profile.getSuffix());
@@ -422,6 +430,12 @@ public class MyProfileActivity extends OmegaFiActivity {
 				found=true;
 			}
 		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		goToHome();
+		super.onBackPressed();
 	}
 	
 }

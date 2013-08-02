@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.logic.ContactAccount;
 import com.appsolution.omegafi.OpenRequestActivity;
 import com.appsolution.omegafi.R;
 
@@ -27,9 +28,13 @@ public class DialogContactAccount {
 	private TextView callNumberContact;
 	
 	private boolean isReguarAccount;
+	private int idAccount;
+	private ContactAccount contact;
+	private String phoneNumberExtern;
 	
-	public DialogContactAccount(Activity activity, boolean isRegular){
+	public DialogContactAccount(Activity activity, boolean isRegular, int idAccount){
 		this.activity=activity;
+		this.idAccount=idAccount;
 		this.isReguarAccount=isRegular;
 		layoutInflater=(LayoutInflater)this.activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = layoutInflater.inflate(R.layout.dialog_layout_contact, (ViewGroup)this.activity.findViewById(R.id.layout_root_contact));
@@ -55,8 +60,14 @@ public class DialogContactAccount {
 				@Override
 				public void onClick(View v) {
 					alertDialog.dismiss();
-					Intent activityOpen=new Intent(DialogContactAccount.this.activity, OpenRequestActivity.class);
-					DialogContactAccount.this.activity.startActivity(activityOpen);
+					if(!contact.isRegularContact()){
+						Intent activityOpen=new Intent(DialogContactAccount.this.activity, OpenRequestActivity.class);
+						activityOpen.putExtra("id", DialogContactAccount.this.idAccount);
+						DialogContactAccount.this.activity.startActivity(activityOpen);
+					}
+					else{
+						sendEmailToContact();
+					}
 				}
 			});
 		}
@@ -90,8 +101,48 @@ public class DialogContactAccount {
 	
 	private void callToMember(){
 		Intent intentCall=new Intent(Intent.ACTION_CALL);
-		intentCall.setData(Uri.parse("tel:*123"));
+		if(contact!=null)
+			intentCall.setData(Uri.parse("tel:"+contact.getPhoneToCall()));
+		else
+			intentCall.setData(Uri.parse("tel:"+phoneNumberExtern));
+		
 		activity.startActivity(intentCall);
 	}
+	
+	public void setContact(ContactAccount contact){
+		this.contact=contact;
+		completeDialog();
+	}
+	
+	private void completeDialog(){
+		if(this.contact!=null){
+			textNameContact.setText(contact.getNameContact());
+			callNumberContact.setText("Call "+contact.getPhoneContact());
+			if(contact.isRegularContact()){
+				textEmailOpenRequest.setText("Email "+contact.getEmailContact());
+			}
+			else{
+				textEmailOpenRequest.setText("Open Request");
+			}
+		}
+	}
+	
+	public void sendEmailToContact(){
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {contact.getEmailContact()});
+		Intent mailer = Intent.createChooser(intent, null);
+		activity.startActivity(mailer);
+	}
+
+	public String getPhoneNumberExtern() {
+		return phoneNumberExtern;
+	}
+
+	public void setPhoneNumberExtern(String phoneNumberExtern) {
+		this.phoneNumberExtern = phoneNumberExtern;
+	}
+	
+	
 	
 }

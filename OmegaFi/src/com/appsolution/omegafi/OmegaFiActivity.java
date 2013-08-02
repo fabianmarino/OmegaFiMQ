@@ -16,7 +16,9 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -33,7 +35,6 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
@@ -61,6 +62,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public static final int ACTIVITY_AUTO_PAY_END_DATE=14;
 	public static final int ACTIVITY_AUTO_PAY_PAYMENT_DATE=15;
 	public static final int ACTIVITY_AUTO_PAY_PAYMENT_AMOUNT=16;
+	public static final int ACTIVITY_MY_PROFILE=17;
 	
 	
 	
@@ -316,7 +318,8 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void goToAnnouncements(View item){
 		if(this.getClass() != AnnouncementsActivity.class){
-			Intent goToAnnouncements=new Intent(this, AnnouncementsActivity.class);
+			finish();
+			Intent goToAnnouncements=new Intent(getApplicationContext(), AnnouncementsActivity.class);
 			startActivity(goToAnnouncements);
 		}
 		else if(this.getClass() != AnnouncementDetailActivity.class){
@@ -334,10 +337,12 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void goToMyProfile(View item){
 		if(this.getClass()!=MyProfileActivity.class){
+			finish();
 			Intent goToMyProfile=new Intent(this, MyProfileActivity.class);
-			startActivity(goToMyProfile);
+			startActivityForResult(goToMyProfile,OmegaFiActivity.ACTIVITY_MY_PROFILE);
 		}
 		else{
+			
 			slidingMenu.showContent(true);
 		}
 	}
@@ -356,21 +361,12 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		        .setPositiveButton("Yes",
 		                new DialogInterface.OnClickListener() {
 		                    public void onClick(DialogInterface dialog, int id) {
-		                    	closeAllActivities();
 		                    	finish();
-		                		try {
-									finalize();
-								} catch (Throwable e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
+		                    	closeAllActivities();
 		                		Runtime.getRuntime().gc();
 		                		System.gc();
 		                		Server.getServer().getHome().clearHomeServices();
-		                    	Intent backToLogin=new Intent(getApplicationContext(), MainActivity.class);
-		                		backToLogin.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		                		startActivity(backToLogin);
-		                		
+		                		restartApp();
 		                    }
 		                });
 		AlertDialog alert = builder.create();
@@ -530,7 +526,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	protected void closeAllActivities(){
-		for (int i = OmegaFiActivity.ACTIVITY_HOME; i <= 16; i++) {
+		for (int i = OmegaFiActivity.ACTIVITY_HOME; i <= 17; i++) {
 			finishActivity(i);
 		}
 	}
@@ -547,5 +543,21 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	   return false;
 	 }
 	 }
+	
+	private void restartApp(){
+		AlarmManager alm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+		Intent mainActivity=new Intent(this, MainActivity.class);
+		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 500, PendingIntent.getActivity(this, 0,mainActivity , 0));
+		System.runFinalization();
+		System.exit(0);
+		
+	}
+	
+	protected void goToHome(){
+		finishActivity(OmegaFiActivity.ACTIVITY_HOME);
+		Intent home=new Intent(this, HomeActivity.class);
+		startActivityForResult(home,OmegaFiActivity.ACTIVITY_HOME);
+	}
 	
 }

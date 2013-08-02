@@ -21,6 +21,7 @@ public class OmegaFiLoginActivity extends Activity {
 	public final static String OMEGAFI_PREF_URL_NEW_FEEDS="urlFeeds";
 	public final static String OMEGAFI_PREF_TITLE_NEW_FEEDS="titleFeeds";
 	public final static String OMEGAFI_PREF_FIRST_NAME="firstName";
+	public final static int DIALOG_CONTACT_OMEGAFI_LOGIN=-2;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,14 +48,16 @@ public class OmegaFiLoginActivity extends Activity {
 	}
 	
 	public void showContactusButton(View button){
-		final DialogContactAccount diag=new DialogContactAccount(this,false);
+		final DialogContactAccount diag=new DialogContactAccount(this,false,DIALOG_CONTACT_OMEGAFI_LOGIN);
 		diag.setNameContact("Omega Fi");
+		diag.setPhoneNumberExtern("18886913021");
 		diag.setOnOpenRequest(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
 				diag.dimissDialog();
 				Intent openRequest=new Intent(getApplicationContext(), OpenRequestActivity.class);
+				openRequest.putExtra("id", DIALOG_CONTACT_OMEGAFI_LOGIN);
 				startActivity(openRequest);
 			}
 		});

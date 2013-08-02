@@ -137,13 +137,13 @@ public class EventNewsContent extends LinearLayout {
 	                    public void onGlobalLayout() {
 	                        ViewTreeObserver obs = descriptionNewEvent.getViewTreeObserver();
 	                        obs.removeGlobalOnLayoutListener(this);
-	                        int linesDescription=4-(linesTitle-1);
-	                        if(linesTitle==2&&dateNewEvent.getVisibility()==View.VISIBLE){
-	                        	linesDescription--;
-	                        }
-	                		if(dateNewEvent.getVisibility()==View.GONE&&linesTitle==1){
-	                			linesDescription++;
-	                		}
+	                        int linesDescription=4;//-(linesTitle-1);
+//	                        if(linesTitle==2&&dateNewEvent.getVisibility()==View.VISIBLE){
+//	                        	linesDescription--;
+//	                        }
+//	                		if(dateNewEvent.getVisibility()==View.GONE&&linesTitle==1){
+//	                			linesDescription++;
+//	                		}
 	                        descriptionLines=descriptionNewEvent.getLineCount();
 	                        Layout layout = descriptionNewEvent.getLayout();
 	                        String text = descriptionNewEvent.getText().toString();
@@ -155,11 +155,8 @@ public class EventNewsContent extends LinearLayout {
 	                            textDescription.append(text.substring(start,end));
 	                            start = end;
 	                        }
-	                    	if(textDescription.charAt(textDescription.length()-1)==' '){
-	                        	textDescription.replace(textDescription.length()-1, textDescription.length(), "...");
-	                        }
-	                        else{
-	                        	textDescription.append("...");
+	                    	if(textDescription.charAt(textDescription.length()-1)!='.'){
+	                    		textDescription.append("...");
 	                        }
                         
 	                        descriptionNewEvent.setText(Html.fromHtml(textDescription.toString()));

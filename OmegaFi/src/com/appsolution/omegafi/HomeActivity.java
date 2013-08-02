@@ -68,6 +68,8 @@ public class HomeActivity extends OmegaFiActivity {
 	private int indexChapter=0;
 	private Officer officerActual=null;
 	
+	private int servicesCharged=0;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,6 +79,7 @@ public class HomeActivity extends OmegaFiActivity {
 //		Intent intent=new Intent(this, AccountActivity.class);
 //		startActivity(intent);
 		sectionChapterDirectory=(SectionOmegaFi)findViewById(R.id.sectionChapterDirectory);
+		sectionChapterDirectory.setPaddingLeft(getResources().getDimensionPixelSize(R.dimen.padding_10dp));
 		sectionChapterDirectory.setOnClickTitleListener(new View.OnClickListener() {
 			
 			@Override
@@ -119,7 +122,7 @@ public class HomeActivity extends OmegaFiActivity {
 		textPrivacy=(TextView)findViewById(R.id.textPrivatePolicy);
 		textPrivacy.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 0));
 		this.completeNewsSection();
-		chargeHome();
+		chargeHomeAsync();
 	}
 	
 	private void chargeNotifications(){
@@ -178,7 +181,7 @@ public class HomeActivity extends OmegaFiActivity {
 			sectionOfficers.setBackgroundColorLinear(Color.TRANSPARENT);
 			
 			listPhotos=new Gallery(this);
-			listPhotos.setPadding(12,10, 10, 10);
+			listPhotos.setPadding(15,10, 10, 10);
 			listPhotos.setSpacing(10);
 			listPhotos.setLayoutParams(new LayoutParams(android.widget.Gallery.LayoutParams.MATCH_PARENT,
 					android.widget.Gallery.LayoutParams.WRAP_CONTENT));
@@ -244,7 +247,7 @@ public class HomeActivity extends OmegaFiActivity {
 			linearSection.addView(listPhotos);
 //			final ArrayList<String> chapters=new ArrayList<String>();
 			final ArrayList<String> chapters=Server.getServer().getHome().getChapters().getChapterNames();
-			chapters.add("Sigma Pi - Beta Nu,Oregon State University");
+//			chapters.add("Sigma Pi - Beta Nu,Oregon State University");
 			String[] nameSubName=chapters.get(0).split(",");
 			final RowInformation rowChapter=new RowInformation(this);
 			rowChapter.setNameInfo(nameSubName[0]);
@@ -252,6 +255,7 @@ public class HomeActivity extends OmegaFiActivity {
 			rowChapter.setColorFontRowInformation(Color.BLACK);
 			rowChapter.setImageIcon(R.drawable.icon_spinner);
 			rowChapter.setBorderBottom(true);
+			
 			final Activity home=this;
 			if(chapters.size()>1){
 				rowChapter.setOnClickListener(new View.OnClickListener() {
@@ -285,7 +289,7 @@ public class HomeActivity extends OmegaFiActivity {
 				});
 			}
 			int padding=this.getResources().getDimensionPixelSize(R.dimen.padding_5dp);
-			rowChapter.setPaddingRow(padding,5,padding, 5);
+			rowChapter.setPaddingRow(padding+8,5,padding, 5);
 			rowChapter.getTextNameInfo().setPadding(5, 0, 0, 0);
 			rowChapter.getTextNameSubInfo().setPadding(5, 0, 0, 0);
 			sectionChapterDirectory.addView(rowChapter);
@@ -361,7 +365,7 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completePollSection(){
-		if(false){
+		if(true){
 			sectionPoll.setVisibility(View.GONE);
 		}
 		else{
@@ -461,17 +465,22 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	public void callToMember(View button){
-		Intent intentCall=new Intent(Intent.ACTION_CALL);
-		intentCall.setData(Uri.parse("tel:"+detailsOffice.getPhoneCall().replace("-", "")));
-		startActivity(intentCall);
+		String numberCall=detailsOffice.getPhoneCall().replace("-", "");
+		if(!numberCall.isEmpty()){
+			Intent intentCall=new Intent(Intent.ACTION_CALL);
+			intentCall.setData(Uri.parse("tel:"+numberCall));
+			startActivity(intentCall);
+		}
 	}
 	
 	public void sendEmailMember(View button){
-		Intent intent = new Intent(Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {detailsOffice.getEmailRooster()});
-		Intent mailer = Intent.createChooser(intent, null);
-		startActivity(mailer);
+		if(!detailsOffice.getEmailRooster().isEmpty()){
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.setType("text/plain");
+			intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {detailsOffice.getEmailRooster()});
+			Intent mailer = Intent.createChooser(intent, null);
+			startActivity(mailer);
+		}
 	}
 	
 	public ArrayList<CalendarEvent> getTestCalendarEvent(){
@@ -544,6 +553,118 @@ public class HomeActivity extends OmegaFiActivity {
 			task.execute();
 		}
 	}
+	
+	private void finishCharge(){
+		servicesCharged++;
+		if(servicesCharged>=5){
+			Server.getServer().setEmptyInformation(false);
+			servicesCharged=0;
+			stopProgressDialog();
+			recreate();
+			refreshActivity();
+		}
+	}
+	
+	private void chargeProfileInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			int status=0;
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				status=(Integer)Server.getServer().getHome().getProfile().chargeProfileData()[0];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				finishCharge();
+			}
+		};
+		task.execute();
+	}
+	
+	private void chargeAccountsInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Server.getServer().getHome().getAccounts().chargeAccounts();
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				finishCharge();
+			}
+		};
+		task.execute();
+	}
+	
+	private void chargeChaptersInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Server.getServer().getHome().getChapters().chargeChapters();
+				Server.getServer().getHome().getOfficers().chargeOfficers(
+						Server.getServer().getHome().getChapters().getIdChapter(0));
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				finishCharge();
+			}
+		};
+		task.execute();
+	}
+	
+	private void chargeCalendarInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Server.getServer().getHome().getCalendar().chargeEventsHome();
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				finishCharge();
+			}
+		};
+		task.execute();
+	}
+	
+	private void chargeNewsInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Server.getServer().getHome().getFeeds().chargeNewsFeed
+				(Server.getServer().getForgotLogin().getUrlFeed(HomeActivity.this));
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				finishCharge();
+			}
+		};
+		task.execute();
+	
+	}
+	
+	private void chargeHomeAsync(){
+		if(Server.getServer().isEmptyInformation()){
+			startProgressDialog("Charging Home", getResources().getString(R.string.please_wait));
+			chargeProfileInformation();
+			chargeAccountsInformation();
+			chargeChaptersInformation();
+			chargeCalendarInformation();
+			chargeNewsInformation();
+		}
+	}
+	
 	
 	
 }

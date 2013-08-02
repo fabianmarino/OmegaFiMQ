@@ -11,8 +11,10 @@ import com.appsolution.logic.SimpleScheduledPayment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,20 +27,11 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 
 	private ListView listAnnouncements;
 	private AnnouncementsAdapter adapterAnnouncements=null;
-	private OnClickListener listener;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_announcements);
-		listener=new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent detailAnnouncement=new Intent(getApplication(), AnnouncementDetailActivity.class);
-				startActivity(detailAnnouncement);
-			}
-		};
 		listAnnouncements=(ListView)findViewById(R.id.listContentAnnouncements);
 		chargeAnnouncementsList();
 	}
@@ -120,18 +113,44 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 				if(convertView==null){
 					convertView=new ContentAnnouncement(activity);
 					contentAnnouncement=(ContentAnnouncement)convertView;
-					contentAnnouncement.setOnClickListener(listener);
+					
 				}
 				else{
 					contentAnnouncement=(ContentAnnouncement)convertView;
 				}
+				contentAnnouncement.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View arg0) {
+						Server.getServer().getHome().setAnnouncementSelected(actualAnnouncement);
+						goToAnnouncemenDetail();
+					}
+				});
 				contentAnnouncement.setTitleAnnouncement(actualAnnouncement.getSubject());
 				contentAnnouncement.setDateAnnouncement(actualAnnouncement.getDateCreate());
-				contentAnnouncement.setDescriptionAnnouncement(actualAnnouncement.getDescription());
+				contentAnnouncement.setDescriptionAnnouncement(actualAnnouncement.getPreviewAnnoncement());
+				contentAnnouncement.setSourceAnnouncement(actualAnnouncement.getSource());
+				if(position<Server.getServer().getHome().getProfile().getAnnouncementsCount()){
+						contentAnnouncement.setBackgroundNewAnnoncement();
+				}
+				if(position==announcements.size()-1){
+					contentAnnouncement.setBackgroundResource(0);
+					contentAnnouncement.setBackgroundColor(Color.WHITE);
+				}
 				return convertView;
 		}
         
 	}
 	
+	private void goToAnnouncemenDetail(){
+		Intent announcementDetails=new Intent(this, AnnouncementDetailActivity.class);
+		startActivity(announcementDetails);
+	}
+	
+	@Override
+	public void onBackPressed() {
+		goToHome();
+		super.onBackPressed();
+	}
 
 }

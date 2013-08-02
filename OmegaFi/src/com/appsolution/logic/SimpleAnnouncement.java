@@ -8,15 +8,24 @@ public class SimpleAnnouncement {
 	private int id;
 	private String subject;
 	private String dateCreate;
-	private String description;
+	private String announcement;
+	private String source;
+	private String previewAnnoncement;
 	
 	public SimpleAnnouncement(JSONObject jsonAnnouncement) {
 		try {
 			if(jsonAnnouncement!=null){	
 					id=jsonAnnouncement.getInt("announcement_id");
-					subject=jsonAnnouncement.getString("subject");
-					description=jsonAnnouncement.getString("announcement");
-					dateCreate=jsonAnnouncement.getString("created_on");
+					if(!jsonAnnouncement.isNull("subject"))
+						subject=jsonAnnouncement.getString("subject");
+					if(!jsonAnnouncement.isNull("announcement"))
+						announcement=jsonAnnouncement.getString("announcement");
+					if(!jsonAnnouncement.isNull("created_on"))
+						dateCreate=jsonAnnouncement.getString("created_on");
+					if(!jsonAnnouncement.isNull("source"))
+						source=jsonAnnouncement.getString("source");
+					if(!jsonAnnouncement.isNull("announcement_preview"))
+						previewAnnoncement=jsonAnnouncement.getString("announcement_preview");
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -42,9 +51,18 @@ public class SimpleAnnouncement {
 		return date;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getAnnouncement() {
+		return announcement;
 	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public String getPreviewAnnoncement() {
+		return previewAnnoncement;
+	}
+	
 	
 	
 

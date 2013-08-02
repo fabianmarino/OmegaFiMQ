@@ -30,5 +30,5 @@
         android:textStyle="bold"
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/text_content_newevent_title_omegafi"
-        android:text="Source: Lorem Ipsum Dolor"/>
+        android:text="Source:"/>
 </LinearLayout>

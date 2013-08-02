@@ -93,7 +93,7 @@ public class PayNowActivity extends OmegaFiActivity {
 				@Override
 				public void onClick(View v) {
 					indexMethodSelected=selectable.getIndexSelected();
-					rowPaymentMethod.setValueInfo(methodsPayment.get(indexMethodSelected).getProfileTypeNumber());
+					rowPaymentMethod.setNameInfo(methodsPayment.get(indexMethodSelected).getProfileTypeNumber());
 					selectable.dismissDialog();
 					refreshActivity();
 				}
@@ -231,7 +231,7 @@ public class PayNowActivity extends OmegaFiActivity {
 		cal.set(Calendar.MINUTE,0);
 		cal.set(Calendar.SECOND,0);
 		
-		if(rowAmount.getValueInfo1().isEmpty()||OmegaFiActivity.isDouble(rowAmount.getValueInfo1())){
+		if(rowAmount.getValueInfo1().isEmpty()||!OmegaFiActivity.isDouble(rowAmount.getValueInfo1())){
 			validate=false;
 		}
 		else if(!CalendarEvent.getDateFromString(rowDate.getValueInfo(), "MM/dd/yyyy").
@@ -271,9 +271,9 @@ public class PayNowActivity extends OmegaFiActivity {
 					infoCurrent.setValueLabel("$"+actualAccount.getCurrentBalance());
 					infoDueOn.setValueLabel(actualAccount.getDueOn());
 					if(!methodsPayment.isEmpty()){
-						indexMethodSelected=methodsPayment.size()-1;
+						indexMethodSelected=0;
 						PaymentMethod last=methodsPayment.get(indexMethodSelected);
-						rowPaymentMethod.setValueInfo(methodsPayment.get(indexMethodSelected).getProfileTypeNumber());
+						rowPaymentMethod.setNameInfo(methodsPayment.get(indexMethodSelected).getNameTypeNumber());
 						if(methodsPayment.size()==1){
 							rowPaymentMethod.setVisibleArrow(false);
 							rowPaymentMethod.setOnClickListener(null);
@@ -291,6 +291,7 @@ public class PayNowActivity extends OmegaFiActivity {
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
 
 			int status=0;
+			
 			
 			@Override
 			protected void onPreExecute() {

@@ -82,6 +82,12 @@ public class ContentAnnouncement extends LinearLayout {
 	}
 	
 	@Override
+	public void setBackgroundColor(int color) {
+		contentAll.setBackgroundColor(color);
+		setPadding(10);
+	}
+	
+	@Override
 	public void setOnClickListener(OnClickListener l) {
 		descriptionAnnouncement.setOnClickListener(l);
 		rowTitleDate.setOnClickListener(l);
@@ -99,6 +105,12 @@ public class ContentAnnouncement extends LinearLayout {
 	
 	private void setPadding(int padding){
 		  contentAll.setPadding(padding, padding, padding, padding);
+	}
+	
+	public void setSourceAnnouncement(String source){
+		if(source!=null){
+			textSource.setText("Source: "+source);
+		}
 	}
 	
 }

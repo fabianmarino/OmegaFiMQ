@@ -3,7 +3,10 @@
     android:id="@+id/linearContentNewsEvents"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/padding_5dp"
+    android:paddingLeft="@dimen/padding_8dp"
+    android:paddingTop="@dimen/padding_5dp"
+    android:paddingRight="@dimen/padding_5dp"
+    android:paddingBottom="@dimen/padding_5dp"
     android:orientation="vertical" >
     <TextView android:id="@+id/titleEventNewOmegaFi"
         android:layout_width="fill_parent"

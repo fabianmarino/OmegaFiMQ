@@ -3,13 +3,16 @@ package com.appsolution.omegafi;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowEditInformation;
 import com.appsolution.layouts.RowEditTextOmegaFi;
+import com.appsolution.layouts.RowEditTextSubmit;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -33,6 +36,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	private EditText textRequest;
 	
 	private Button buttonSend;
+	private int idAccount=-1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 		this.completeSectionContactInformation();
 		sectionRequestContact=(SectionOmegaFi)findViewById(R.id.sectionContactRequest);
 		this.completeSectionRequestContact();
+		idAccount=getIntent().getExtras().getInt("id");
 	}
 	
 	@Override
@@ -100,6 +105,17 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	}
 	
 	public void sendRequestContact(View button){
+		String validateRequest=this.validateRequest();
+		if(validateRequest==null){
+			this.showRequestSucessfully();
+		}
+		else{
+			OmegaFiActivity.showAlertMessage(validateRequest, this);
+		}
+		
+	}
+	
+	private void showRequestSucessfully(){
 		final DialogInformationOF information=new DialogInformationOF(this);
 		information.setMessageDialog("Thank you for sending in your request. We will get back to you as soon as possible.");
 		information.setButtonListener(new View.OnClickListener() {
@@ -107,13 +123,36 @@ public class OpenRequestActivity extends OmegaFiActivity {
 			@Override
 			public void onClick(View v) {
 				information.dismissDialog();
-				Intent intent=new Intent(getApplicationContext(), AccountActivity.class);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
 				finish();
 			}
 		});
 		information.showDialog();
 	}
+	
+	private String validateRequest(){
+		String validate=null;
+		Log.d("validate", editEmailAddres.getText().toString());
+		if(!RowEditTextSubmit.isValidEmail(editEmailAddres.getText().toString())){
+			validate="Email sintax is invalid.";
+		}
+		else if(textRequest.getText().toString().isEmpty()){
+			validate="The request is empty.";
+		}
+		return validate;
+	}
+	
+	private void enviar(String[] to, String[] cc,
+		    String asunto, String mensaje) {
+		    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+		    emailIntent.setData(Uri.parse("mailto:"));
+		    //String[] to = direccionesEmail;
+		    //String[] cc = copias;
+		    emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+		    emailIntent.putExtra(Intent.EXTRA_CC, cc);
+		    emailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto);
+		    emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+		    emailIntent.setType("message/rfc822");
+		    startActivity(Intent.createChooser(emailIntent, "Email "));
+		}
 
 }

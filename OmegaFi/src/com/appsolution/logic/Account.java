@@ -33,6 +33,8 @@ public class Account {
 	private String dateBalanceAsOf;
 	private String moneyBalanceAsOf;
 	
+	private ArrayList<ContactAccount> contacts=new ArrayList<ContactAccount>();
+	
 	public Account(JSONObject jsonAccount) {
 		try {
 			id=jsonAccount.getInt("member_id");
@@ -52,6 +54,16 @@ public class Account {
 			creditsLast=jsonAccount.getString("credits_since_last_statement");
 			paymentsLast=jsonAccount.getString("payments_since_last_statement");
 			activityLast=jsonAccount.getString("activity_since_last_statement");
+			
+			if(!jsonAccount.isNull("omegafi_contact")){
+				JSONObject omegafiContact=jsonAccount.getJSONObject("omegafi_contact");
+				contacts.add(new ContactAccount(omegafiContact, false));
+			}
+			
+			if(!jsonAccount.isNull("organization")){
+				JSONObject regularContact=jsonAccount.getJSONObject("organization");
+				contacts.add(new ContactAccount(regularContact, true));
+			}
 			
 			JSONObject  lastestStatement=jsonAccount.getJSONObject("latest_statement");
 			if(lastestStatement!=null){
@@ -265,6 +277,12 @@ public class Account {
 	public String getMoneyBalanceAsOf() {
 		return moneyBalanceAsOf;
 	}
+
+
+	public ArrayList<ContactAccount> getContacts() {
+		return contacts;
+	}
+	
 	
 	
 	

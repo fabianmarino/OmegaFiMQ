@@ -1,6 +1,8 @@
 package com.appsolution.omegafi;
 
 import com.appsolution.layouts.ContentAnnouncement;
+import com.appsolution.logic.Server;
+import com.appsolution.logic.SimpleAnnouncement;
 
 import android.os.Bundle;
 import android.text.Html;
@@ -10,21 +12,26 @@ public class AnnouncementDetailActivity extends OmegaFiActivity {
 
 	private ContentAnnouncement announcement;
 	private TextView textSource;
+	private SimpleAnnouncement selected;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_announcement_detail);
+		selected=Server.getServer().getHome().getAnnouncementSelected();
 		announcement=(ContentAnnouncement)findViewById(R.id.contentAnnouncementDetail);
 		textSource=(TextView)findViewById(R.id.textSourceAnnouncementActivity);
-		announcement.setDescriptionAnnouncement("Lorem ipsum dolor sit amet, consectetur adipisicing"+ 
-           " elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim"+ 
-           " ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea"+ 
-            "commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse"+
-             "cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,"+
-              "sunt in culpa qui officia deserunt mollit anim id est laborum.");
+		completeAnnouncementDetail();
 		announcement.setBackgroundResource(R.drawable.background_white_pure);
-		textSource.setText(Html.fromHtml("<b>Source: </b>Lorem ipsum dolor"));
+	}
+	
+	private void completeAnnouncementDetail(){
+		if(selected!=null){
+			announcement.setTitleAnnouncement(selected.getSubject());
+			announcement.setDateAnnouncement(selected.getDateCreate());
+			announcement.setDescriptionAnnouncement(selected.getAnnouncement());
+			setSourceAnnouncement(selected.getSource());
+		}
 	}
 	
 	@Override
@@ -34,6 +41,13 @@ public class AnnouncementDetailActivity extends OmegaFiActivity {
 		actionBar.setDisplayShowCustomEnabled(true);
 		actionBarCustom.setTitle("ANNOUNCEMENTS");
 		actionBar.setCustomView(actionBarCustom);
+	}
+	
+	private void setSourceAnnouncement(String source){
+		textSource.setText(Html.fromHtml("<b>Source: </b>"));
+		if(source!=null){
+			textSource.setText(Html.fromHtml("<b>Source: </b>"+source));
+		}
 	}
 
 }

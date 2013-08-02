@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.appsolution.interfaces.OnRowCheckListener;
+import com.appsolution.layouts.RowCheckBoxOmegaFi;
 import com.appsolution.layouts.RowCheckGroup;
 import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowEditInformation;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
@@ -28,7 +30,7 @@ import android.widget.Spinner;
 public class AutoPayPaymentDateActivity extends OmegaFiActivity {
 
 	private LinearLayout linearPaymentDate;
-	private RowCheckOmegaFi checkOnDueDate;
+	private RowCheckBoxOmegaFi checkOnDueDate;
 	private Spinner spinnerDateMonth;
 	private RowEditInformation rowSpinner;
 	private int activateSpinner=-1;
@@ -45,10 +47,12 @@ public class AutoPayPaymentDateActivity extends OmegaFiActivity {
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				R.layout.spinner_omegafi_small, getDateOfMonth());
 		dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		
 		dataAdapter.setNotifyOnChange(true);
 		spinnerDateMonth=new Spinner(this);
-		spinnerDateMonth.setLayoutParams(new LayoutParams(getResources().getDimensionPixelSize(R.dimen.width_95dp),
+		spinnerDateMonth.setLayoutParams(new LayoutParams(getResources().getDimensionPixelSize(R.dimen.width_70dp_spinner),
 				getResources().getDimensionPixelSize(R.dimen.height_edit_submit)));
+		spinnerDateMonth.setDropDownWidth(getResources().getDimensionPixelSize(R.dimen.width_70dp_spinner));
 		spinnerDateMonth.setBackgroundResource(R.drawable.white_input_spinner);
 		spinnerDateMonth.setAdapter(dataAdapter);
 		rowSpinner.addViewRight(spinnerDateMonth);
@@ -101,25 +105,9 @@ public class AutoPayPaymentDateActivity extends OmegaFiActivity {
     }
 	
 	private void completeFields(){
-		final RowCheckGroup group=new RowCheckGroup();
-		group.setOnCheckedListener(new OnRowCheckListener() {
-			
-			@Override
-			public void actionBeforeChecked() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void actionAfterChecked() {
-					AutoPayActivity.configAutoPay.setPayOnDueDate(checkOnDueDate.isChecked());
-			}
-		});
-		group.setSingleCheckUnCheck(true);
-		checkOnDueDate=new RowCheckOmegaFi(this, group);
+		checkOnDueDate=new RowCheckBoxOmegaFi(this);
 		checkOnDueDate.getTextNameInfo().setTextColor(Color.BLACK);
 		checkOnDueDate.setNameInfo("Pay on Due Date");
-		
 		int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
 		checkOnDueDate.setPaddingRow(padding,0,0,0);
 		

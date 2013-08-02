@@ -11,7 +11,14 @@ public class MemberRooster extends SimpleMember{
 	private String[] phones=new String[2];
 	private String[] emails=new String[2];
 	private String[] adresses=new String[2];
-	private String initiationDate="";
+	private String initiationDate;
+	private String profFacebook;
+	private String profTwitter;
+	private String profLinked;
+	public static final String TYPE_FACEBOOK="facebook";
+	public static final String TYPE_TWITTER="twitter";
+	public static final String TYPE_LINKEDIN="linkedin";
+	
 	
 	public MemberRooster(JSONObject jsonMember) {
 		super(jsonMember);
@@ -21,10 +28,15 @@ public class MemberRooster extends SimpleMember{
 				if(!individual.isNull("initiation_date")){
 					initiationDate=individual.getString("initiation_date");
 				}
+				completeSocialProfiles(individual.getJSONArray("social_profiles"));
 				JSONArray arrayPhones=individual.getJSONArray("phone_numbers");
 				chargePhones(arrayPhones);
 				JSONArray arrayEmails=individual.getJSONArray("emails");
 				chargeEmails(arrayEmails);
+				if(individual.has("addresses")){
+					JSONArray arrayAddresses=individual.getJSONArray("addresses");
+					chargeAddresses(arrayAddresses);
+				}
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -74,6 +86,27 @@ public class MemberRooster extends SimpleMember{
 			}
 		}
 	}
+	
+	private void chargeAddresses(JSONArray arrayAddresses){
+		if(arrayAddresses.length()>0){
+			try {
+				for (int i = 0; i < arrayAddresses.length(); i++) {
+						JSONObject jsonEmail=arrayAddresses.getJSONObject(i).getJSONObject("address");
+						if(jsonEmail.getBoolean("primary")){
+							adresses[0]=jsonEmail.getString("line_1")+"¿"+jsonEmail.getString("line_2")+"¿"+jsonEmail.getString("city");
+						}
+						else{
+							if(adresses[1]==null)
+								adresses[1]=jsonEmail.getString("line_1")+"¿"+jsonEmail.getString("line_2")+"¿"+jsonEmail.getString("city");
+						}
+					
+				}
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 	public String[] getPhones() {
 		return phones;
@@ -94,6 +127,39 @@ public class MemberRooster extends SimpleMember{
 		else{
 			return null;
 		}
+	}
+	
+	private void completeSocialProfiles(JSONArray arraySocial){
+		for (int i = 0; i < arraySocial.length(); i++) {
+			try {
+				JSONObject jsonSocial=arraySocial.getJSONObject(i).getJSONObject("social_profile");
+				if(jsonSocial.getString("type").equalsIgnoreCase(TYPE_FACEBOOK)){
+					profFacebook=jsonSocial.getString("social_url");
+				}
+				else if(jsonSocial.getString("type").equalsIgnoreCase(TYPE_LINKEDIN)){
+					profLinked=jsonSocial.getString("social_url");
+				}
+				else{
+					profTwitter=jsonSocial.getString("social_url");
+				}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public String getProfFacebook() {
+		return profFacebook;
+	}
+
+	public String getProfTwitter() {
+		return profTwitter;
+	}
+
+	public String getProfLinked() {
+		return profLinked;
 	}
 	
 	

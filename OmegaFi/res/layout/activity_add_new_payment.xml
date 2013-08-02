@@ -49,7 +49,7 @@
                 android:id="@+id/textNumberCard"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                secom:type_input_row_info_1="@integer/input_type_number"
+                secom:type_input_row_info_1="@integer/input_type_phone"
                 secom:name_information_e="Card Number"
                 />
             <com.appsolution.layouts.RowInformation
@@ -68,7 +68,7 @@
                 android:id="@+id/textZipCode"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                secom:type_input_row_info_1="@integer/input_type_number"
+                secom:type_input_row_info_1="@integer/input_type_phone"
                 secom:name_information_e="Zip Code"
                 />
             <com.appsolution.layouts.RowToogleOmegaFi

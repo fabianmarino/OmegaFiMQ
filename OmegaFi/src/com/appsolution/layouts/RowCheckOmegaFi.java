@@ -5,6 +5,7 @@ import com.appsolution.omegafi.R;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
@@ -64,5 +65,19 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 		radioOption.setOnClickListener(l);
 		super.setOnClickListener(l);
 	}
+	
+	public void setOnCheckedChangeListener(OnCheckedChangeListener listener){
+		radioOption.setOnCheckedChangeListener(listener);
+	}
+
+	public RadioButton getRadioOption() {
+		return radioOption;
+	}
+
+	public void setRadioOption(RadioButton radioOption) {
+		this.radioOption = radioOption;
+	}
+	
+	
 	
 }

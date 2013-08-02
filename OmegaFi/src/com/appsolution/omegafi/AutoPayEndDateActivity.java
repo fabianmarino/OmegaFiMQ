@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.appsolution.interfaces.OnRowCheckListener;
+import com.appsolution.layouts.RowCheckBoxOmegaFi;
 import com.appsolution.layouts.RowCheckGroup;
 import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowInformation;
@@ -16,13 +17,14 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 
 public class AutoPayEndDateActivity extends OmegaFiActivity {
 
 	private LinearLayout linearContentDate;
-	private RowCheckOmegaFi checkNone;
+	private RowCheckBoxOmegaFi checkNone;
 	private RowInformation infoDate;
 	
 	@Override
@@ -44,30 +46,9 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 	
 	
 	private void completeFields(){
-		final RowCheckGroup group=new RowCheckGroup();
-		group.setOnCheckedListener(new OnRowCheckListener() {
-			
-			@Override
-			public void actionBeforeChecked() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void actionAfterChecked() {
-				if(!group.getRowSelected().isChecked()){
-					AutoPayActivity.configAutoPay.setEndDate(CalendarEvent.getFormatDate(5, infoDate.getValueInfo(), "MM/dd/yyyy"));
-				}
-				else{
-					AutoPayActivity.configAutoPay.setEndDate(null);
-				}
-			}
-		});
-		group.setSingleCheckUnCheck(true);
-		checkNone=new RowCheckOmegaFi(this, group);
+		checkNone=new RowCheckBoxOmegaFi(this);
 		checkNone.getTextNameInfo().setTextColor(Color.BLACK);
 		checkNone.setNameInfo("None");
-		
 		int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
 		checkNone.setPaddingRow(padding,0,0,0);
 		infoDate=new RowInformation(this);
@@ -87,6 +68,7 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 		linearContentDate.addView(infoDate);
 		if(AutoPayActivity.configAutoPay.getEndDate()==null){
 			checkNone.setChecked(true);
+			Log.d("Cambiado", "a null");
 		}
 		else{
 			Log.d("end date", AutoPayActivity.configAutoPay.getEndDate());
@@ -112,7 +94,14 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 
 	@Override
 	public void onBackPressed() {
-		finishActivity(OmegaFiActivity.ACTIVITY_AUTO_PAY_END_DATE);
+		if(!checkNone.isChecked()){
+			Log.d("Establecida", " no está seleccionado");
+			AutoPayActivity.configAutoPay.setEndDate(CalendarEvent.getFormatDate(6, infoDate.getValueInfo(), "MM/dd/yyyy"));
+		}
+		else{
+			Log.d("Nula", "no está seleccionado");
+			AutoPayActivity.configAutoPay.setEndDate(null);
+		}
 		super.onBackPressed();
 	}
 

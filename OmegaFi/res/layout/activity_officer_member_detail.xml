@@ -59,7 +59,7 @@
                          />
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
-                        android:background="@android:color/darker_gray"/>
+                        android:background="@color/gray_table_row"/>
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/emailIconMember"
                         android:layout_width="0dp"
@@ -71,7 +71,7 @@
                          />
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
-                        android:background="@android:color/darker_gray"/>
+                        android:background="@color/gray_table_row"/>
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/addressIconMember"
                         android:layout_width="0dp"
@@ -147,7 +147,7 @@
                         secom:text_size_name_information="@dimen/text_8sp"
                         secom:background_row_info="@drawable/white_input"
                         secom:name_information="MAIN"
-                        secom:value_information="231-312-3123" />
+                        secom:value_information="" />
                     <com.appsolution.layouts.RowInformation
                         android:id="@+id/secundaryPhone"
                         android:layout_width="fill_parent"
@@ -156,7 +156,7 @@
                         secom:text_size_name_information="@dimen/text_8sp"
                         secom:background_row_info="@drawable/white_input"
                         secom:name_information="SECUNDARY"
-                        secom:value_information="231-312-3123" />
+                        secom:value_information="" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/linearEmailProfileO" 
@@ -172,7 +172,7 @@
                         secom:text_size_name_information="@dimen/text_8sp"
                         secom:background_row_info="@drawable/white_input"
                         secom:name_information="MAIN"
-                        secom:value_information="jhkjg@example.com" />
+                        secom:value_information="" />
                     <com.appsolution.layouts.RowInformation
                         android:id="@+id/secondaryEmail"
                         android:layout_width="fill_parent"
@@ -181,7 +181,7 @@
                         secom:text_size_name_information="@dimen/text_8sp"
                         secom:background_row_info="@drawable/white_input"
                         secom:name_information="SECUNDARY"
-                        secom:value_information="jhkjg@example.com" />
+                        secom:value_information="" />
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/linearAddressProfileO" 
@@ -200,7 +200,7 @@
 	                        secom:text_size_name_information="@dimen/text_8sp"
 	                        secom:background_row_info="@drawable/white_input"
 	                        secom:name_information="MAIN"
-	                        secom:value_information="6544 Cambell Rd" />
+	                        secom:value_information="" />
                     <com.appsolution.layouts.RowInformation
                         android:id="@+id/secondaryAddress"
                         android:layout_width="fill_parent"
@@ -209,13 +209,13 @@
                         secom:text_size_name_information="@dimen/text_8sp"
                         secom:background_row_info="@drawable/white_input"
                         secom:name_information="SECUNDARY"
-                        secom:value_information="3213 Burdett Ave"
+                        secom:value_information=""
                          />
                     </LinearLayout>
                 </LinearLayout>
                 <View android:layout_width="fill_parent"
                         android:layout_height="1dp"
-                        android:background="@android:color/darker_gray"/> 
+                        android:background="@color/gray_table_row"/> 
                 <TableLayout android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
 	                android:background="@android:color/white">
@@ -237,7 +237,7 @@
                     </LinearLayout>
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
-                        android:background="@android:color/darker_gray"/>
+                        android:background="@color/gray_table_row"/>
                     <LinearLayout android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/padding_10dp"
@@ -253,7 +253,7 @@
                     </LinearLayout>
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
-                        android:background="@android:color/darker_gray"/>
+                        android:background="@color/gray_table_row"/>
                     <LinearLayout android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/padding_10dp"

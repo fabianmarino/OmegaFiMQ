@@ -30,6 +30,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 		textUser = (EditText)findViewById(R.id.email);
 		textUser.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		textPassword = (EditText)findViewById(R.id.password);
+		textPassword.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		saveUsername=(CheckBox)findViewById(R.id.check_save);
 		clearUserNameCheckBox();
 		saveUsername.setButtonDrawable(R.drawable.radio_button);
@@ -146,8 +147,10 @@ public class MainActivity extends OmegaFiLoginActivity {
 	
 	@Override
 	public void onBackPressed() {
+		finish();
+		finishActivity(OmegaFiActivity.ACTIVITY_HOME);
 		System.runFinalization();
+		System.exit(0);
 		super.onBackPressed();
-		
 	}
 }

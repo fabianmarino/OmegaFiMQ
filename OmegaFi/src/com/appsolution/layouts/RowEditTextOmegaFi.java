@@ -134,8 +134,8 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 			edit.setInputType(InputType.TYPE_CLASS_NUMBER);
 			break;
 		case 4:
-//			edit.setInputType(InputType.TYPE_CLASS_PHONE);
-			edit.setKeyListener(DigitsKeyListener.getInstance(true, true)); //Pendiente, el type class phone tambien trae el punto, sin embargo estar pendiente
+			edit.setInputType(InputType.TYPE_CLASS_PHONE);
+//			edit.setKeyListener(DigitsKeyListener.getInstance(true, true)); //Pendiente, el type class phone tambien trae el punto, sin embargo estar pendiente
 			break;
 		case 5:
 			edit.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);

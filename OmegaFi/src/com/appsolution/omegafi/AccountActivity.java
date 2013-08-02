@@ -10,6 +10,7 @@ import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Account;
+import com.appsolution.logic.ContactAccount;
 import com.appsolution.logic.PaymentMethod;
 import com.appsolution.logic.Server;
 
@@ -74,7 +75,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		rowCredits=(RowInformation)findViewById(R.id.rowCreditsAccount);
 		rowDebits=(RowInformation)findViewById(R.id.rowDebitsAccount);
 		rowCurrentBalance=(RowInformation)findViewById(R.id.rowCurrentBalance);
-		this.completeAccountContacts();
 		this.completeAccountDetails();
 		accountId=getIntent().getExtras();
 		Log.d("Este es el id", accountId+"");
@@ -92,27 +92,31 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	}
 	
 	public void completeAccountContacts(){
-		for (int i = 0; i < 5; i++) {
-			RowInformation row=new RowInformation(activity);
-			row.setNameInfo("Contact #"+i);
-			row.setBorderBottom(true);
-			row.setNameSubInfo("Info description");
-			row.setColorFontRowInformation(Color.BLACK);
-			row.setTypeFaceNameSubInfo(OmegaFiActivity.getFont(activity, 0));
-			row.setColorNameSubInfo(Color.GRAY);
-			row.setVisibleArrow(true);
-			row.setOnClickListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					DialogContactAccount diag=new DialogContactAccount(activity,false);
-					diag.showDialog();
+		if(actualAccount!=null){
+			ArrayList<ContactAccount> contacts=actualAccount.getContacts();
+			for (final ContactAccount contact:contacts) {
+				RowInformation row=new RowInformation(activity);
+				row.setNameInfo(contact.getNameContact());
+				row.setBorderBottom(true);
+				row.setNameSubInfo(contact.getTitleContact());
+				row.setColorFontRowInformation(Color.BLACK);
+				row.setTypeFaceNameSubInfo(OmegaFiActivity.getFont(activity, 0));
+				row.setColorNameSubInfo(Color.GRAY);
+				row.setVisibleArrow(true);
+				row.setOnClickListener(new View.OnClickListener() {
 					
-				}
-			});
-			int padding=super.getResources().getDimensionPixelSize(R.dimen.padding_6dp);
-			row.setPaddingRow(padding, padding,padding,padding);
-			accountContacts.addView(row);
+					@Override
+					public void onClick(View v) {
+						DialogContactAccount diag=new DialogContactAccount(activity,false,actualAccount.getId());
+						diag.setContact(contact);
+						diag.showDialog();
+						
+					}
+				});
+				int padding=super.getResources().getDimensionPixelSize(R.dimen.padding_6dp);
+				row.setPaddingRow(padding, padding,padding,padding);
+				accountContacts.addView(row);
+			}
 		}
 	}
 	
@@ -233,11 +237,16 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	}
 	
 	private void viewAutoPay(boolean exist){
-		this.finish();
-		Intent intentAutoPay=new Intent(this, AutoPayActivity.class);
-		intentAutoPay.putExtra("id", actualAccount.getId());
-		intentAutoPay.putExtra("exist", exist);
-		startActivityForResult(intentAutoPay, OmegaFiActivity.ACTIVITY_AUTO_PAY);
+		if(!methods.isEmpty()){
+			this.finish();
+			Intent intentAutoPay=new Intent(this, AutoPayActivity.class);
+			intentAutoPay.putExtra("id", actualAccount.getId());
+			intentAutoPay.putExtra("exist", exist);
+			startActivityForResult(intentAutoPay, OmegaFiActivity.ACTIVITY_AUTO_PAY);
+		}
+		else{
+			OmegaFiActivity.showAlertMessage("No payment methods", AccountActivity.this);
+		}
 	}
 	
 	private void chargeAccountSelected(final int id){
@@ -284,6 +293,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 						paymentSelected=0;
 						section4.setValueInfo(methods.get(paymentSelected).getProfileTypeNumber());
 					}
+					completeAccountContacts();
 				}
 				stopProgressDialog();
 			}

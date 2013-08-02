@@ -3,6 +3,7 @@ package com.appsolution.omegafi;
 import java.util.ArrayList;
 import java.util.List;
 import com.appsolution.interfaces.OnRowCheckListener;
+import com.appsolution.layouts.RowCheckBoxOmegaFi;
 import com.appsolution.layouts.RowCheckGroup;
 import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowEditTextOmegaFi;
@@ -20,7 +21,7 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 
 	
 	private Spinner spinnerTypeAmmount;
-	private RowCheckOmegaFi checkOnDueDate;
+	private RowCheckBoxOmegaFi checkOnDueDate;
 	private RowEditTextOmegaFi rowTextMaximum;
 	private LinearLayout linearPaymentDue;
 	private LinearLayout linearSpecificAmount;
@@ -101,37 +102,7 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 	}
 	
 	private void completeFields(){
-		final RowCheckGroup group=new RowCheckGroup();
-		group.setOnCheckedListener(new OnRowCheckListener() {
-			
-			@Override
-			public void actionBeforeChecked() {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void actionAfterChecked() {
-				if(group.getRowSelected().isChecked()){
-					Log.d("editable", "false");
-					rowTextMaximum.setEditable(false);
-					rowTextMaximum.setTextEdit("0");
-					AutoPayActivity.configAutoPay.setAmountEnterMax(-1f);
-				}
-				else{
-					Log.d("editable", "true");
-					rowTextMaximum.setEditable(true);
-					if(!rowTextMaximum.getValueInfo1().isEmpty()){
-						AutoPayActivity.configAutoPay.setAmountEnterMax(Float.parseFloat(rowTextMaximum.getValueInfo1()));
-					}
-					else{
-						rowTextMaximum.setTextEdit("0");
-					}
-				}
-			}
-		});
-		group.setSingleCheckUnCheck(true);
-		checkOnDueDate=new RowCheckOmegaFi(this, group);
+		checkOnDueDate=new RowCheckBoxOmegaFi(this);
 		checkOnDueDate.getTextNameInfo().setTextColor(Color.BLACK);
 		checkOnDueDate.setNameInfo("No Maximum Amount");
 		

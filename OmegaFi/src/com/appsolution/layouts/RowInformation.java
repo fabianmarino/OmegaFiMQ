@@ -136,7 +136,10 @@ public class RowInformation extends RelativeLayout{
 	
 	
 	public void setValueInfo(String value){
-		textValueInfo.setText(value);
+		if(value!=null){
+			if(!value.contains("null"))	
+				textValueInfo.setText(value);
+		}
 		textValueInfo.setVisibility(View.VISIBLE);
 		textNameInfo.refreshDrawableState();
 	}
@@ -221,7 +224,8 @@ public class RowInformation extends RelativeLayout{
 	public void setValueInfo2(String text){
 		if(text!=null){
 			textValueInfo2.setVisibility(VISIBLE);
-			textValueInfo2.setText(text);
+			if(!text.contains("null"))
+				textValueInfo2.setText(text);
 		}
 	}
 	

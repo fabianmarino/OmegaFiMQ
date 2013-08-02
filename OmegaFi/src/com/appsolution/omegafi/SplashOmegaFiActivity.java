@@ -151,7 +151,7 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 			else{
 				Intent homeActivity=new Intent(getApplication(), HomeActivity.class);
 				finish();
-				startActivity(homeActivity);
+				startActivityForResult(homeActivity,OmegaFiActivity.ACTIVITY_HOME);
 			}
 		}
 	}

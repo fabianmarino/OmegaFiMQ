@@ -168,7 +168,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		rowSpinner.setLayoutParams(paramsState);
 		
 		rowZIP=new RowEditNameTopInfo(getApplicationContext());
-		rowZIP.setTypeInputEditText(InputType.TYPE_CLASS_NUMBER);
+		rowZIP.setTypeInputEditText(InputType.TYPE_CLASS_PHONE);
 		rowZIP.setNameInfoTop("ZIP");
 		LayoutParams paramsZIP=new LayoutParams(0, LayoutParams.WRAP_CONTENT,3);
 		rowZIP.setLayoutParams(paramsZIP);
@@ -435,10 +435,10 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	else if(indexCardType==-1){
     		valide=false;
     	}
-    	else if(rowTextNumberCard.getValueInfo1().isEmpty()){
+    	else if(rowTextNumberCard.getValueInfo1().isEmpty()||!rowTextNumberCard.getValueInfo1().matches("[0-9]*")){
     		valide=false;
     	}
-    	else if(rowTextZipCode.getValueInfo1().isEmpty()){
+    	else if(rowTextZipCode.getValueInfo1().isEmpty()||!rowTextZipCode.getValueInfo1().matches("[0-9]*")){
     		valide=false;
     	}
     	else if(!contact.isValidInformation()){
@@ -452,14 +452,14 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	if(rowTextNameOnAccount.getValueInfo1().isEmpty()){
     		valide=false;
     	}
-    	else if(rowTextRoutingNumber.getValueInfo1().isEmpty()){
+    	else if(rowTextRoutingNumber.getValueInfo1().isEmpty()||!rowTextRoutingNumber.getValueInfo1().matches("[0-9]*")){
     		valide=false;
     	}
-    	else if(rowTextAccountNumber.getValueInfo1().isEmpty()){
+    	else if(rowTextAccountNumber.getValueInfo1().isEmpty()||!rowTextAccountNumber.getValueInfo1().matches("[0-9]*")){
     		valide=false;
     	}
     	else if(rowEditAddres1.getValueInfo().isEmpty()||rowEditAddres2.getValueInfo().isEmpty()||rowCity.getValueInfo().isEmpty()
-    			||rowZIP.getValueInfo().isEmpty()){
+    			||rowZIP.getValueInfo().isEmpty()||!rowZIP.getValueInfo().matches("[0-9]*")){
     		valide=false;
     	}
     	else if(!contact.isValidInformation()){

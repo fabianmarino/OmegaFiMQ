@@ -32,10 +32,9 @@
               android:id="@+id/password"
               style="@style/EditTextLogin"
               android:hint="@string/prompt_password"
-              android:imeActionId="@+id/login"
-              android:imeActionLabel="@string/action_sign_in_short"
-              android:imeOptions="actionUnspecified"
               android:inputType="textPassword"
+              android:singleLine="true"
+              android:maxLines="1"
                />
           <Button
               android:id="@+id/sign_in_button"

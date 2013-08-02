@@ -37,13 +37,17 @@ public class Officer {
 			lastName=individual.getString("last_name");
 			JSONObject type= officerJSON.getJSONObject("office_type");
 			officeType=type.getString("office_name");
-			JSONArray emails=individual.getJSONArray("emails");
-			if(emails!=null){
-				email=emails.getJSONObject(0).getJSONObject("email").getString("address");
+			if(individual.has("emails")){
+				JSONArray emails=individual.getJSONArray("emails");
+				if(emails!=null){
+					email=emails.getJSONObject(0).getJSONObject("email").getString("address");
+				}
 			}
-			JSONArray phones=individual.getJSONArray("phone_numbers");
-			if(phones!=null){
-				telephone=phones.getJSONObject(0).getJSONObject("phone_number").getString("number");
+			if(individual.has("phone_numbers")){
+				JSONArray phones=individual.getJSONArray("phone_numbers");
+				if(phones!=null){
+					telephone=phones.getJSONObject(0).getJSONObject("phone_number").getString("number");
+				}
 			}
 			hostPhoto=null;
 			if(!individual.isNull("profile_picture")){

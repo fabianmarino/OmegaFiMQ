@@ -54,7 +54,7 @@ public class RowCheckGroup {
 					}
 					else{
 						row.setChecked(!rowSelected.isChecked());
-						}
+					}
 					
 					indexSelected=listRowsChecked.indexOf(row);
 					itemSelected=row.getItemRow();

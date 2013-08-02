@@ -29,7 +29,7 @@ public class ProfileService extends ServerContext{
 	public String getUrlPhotoProfile(){
 		String url=null;
 		try {
-			Log.d("profile", profile+"");
+
 			if(profile!=null){
 				if(!profile.getJSONObject("individual").isNull("profile_picture")){
 					url=profile.getJSONObject("individual").getJSONObject("profile_picture").getString("url");
@@ -43,7 +43,7 @@ public class ProfileService extends ServerContext{
 	}
 	
 	public String getCompleteName(){
-		String name="Charles Smith";
+		String name="";
 		try {
 			if(profile!=null){
 				name=profile.getJSONObject("individual").getString("first_name")+" "+
@@ -57,7 +57,7 @@ public class ProfileService extends ServerContext{
 	}
 	
 	public int getAnnouncementsCount(){
-		int number=2;
+		int number=0;
 		try {
 			if(profile!=null){
 				number= profile.getJSONObject("individual").getInt("announcement_count");
@@ -71,12 +71,7 @@ public class ProfileService extends ServerContext{
 	
 	public Object[] getStatusProfile(){
 		Object[] statusJsonProfile=server.makeRequestGet(Server.PROFILE_SERVICE);
-		Object[] statusJsonPhones=server.makeRequestGetJSONArray(Server.PROFILE_PHONES);
-		Object[] statusJsonEmails=server.makeRequestGetJSONArray(Server.PROFILE_EMAILS);
-		Object[] statusJsonAddresses=server.makeRequestGetJSONArray(Server.PROFILE_ADDRESSES);
-		
-		Profile myProfile=new Profile((JSONObject)statusJsonProfile[1], (JSONArray)statusJsonPhones[1], 
-				(JSONArray)statusJsonEmails[1], (JSONArray)statusJsonAddresses[1]);
+		Profile myProfile=new Profile((JSONObject)statusJsonProfile[1]);
 		Object[] statusProfile=new Object[2];
 		statusProfile[0]=statusJsonProfile[0];
 		statusProfile[1]=myProfile;

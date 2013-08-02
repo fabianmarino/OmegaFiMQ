@@ -77,6 +77,7 @@
     <dimen name="height_button_small">47dp</dimen>
     <dimen name="width_row_edit_text">150dp</dimen>
     <dimen name="width_95dp">120dp</dimen>
+    <dimen name="width_70dp_spinner">90dp</dimen>
     <dimen name="width_25dp">20dp</dimen>
     <dimen name="height_poll_content">350dp</dimen>
     <dimen name="width_15dp_icon_spinner">22dp</dimen>

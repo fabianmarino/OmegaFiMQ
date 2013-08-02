@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Tamanos tipografias -->
     <dimen name="edit_login">18sp</dimen>
     <dimen name="text_large">20sp</dimen>
@@ -68,13 +67,14 @@
     <dimen name="width_image_chapter">100dp</dimen>
     <dimen name="height_image_chapter">80dp</dimen>
     <dimen name="size_notification_circle">20dp</dimen>
-    <dimen name="height_new_event_content">155dp</dimen>
+    <dimen name="height_new_event_content">140dp</dimen>
     <dimen name="size_circle_newevents">3dp</dimen>
     <dimen name="width_image_label">30dp</dimen>
     <dimen name="width_arrow_down">20dp</dimen>
     <dimen name="height_button_small">35dp</dimen>
     <dimen name="width_row_edit_text">150dp</dimen>
     <dimen name="width_95dp">80dp</dimen>
+    <dimen name="width_70dp_spinner">70dp</dimen>
     <dimen name="width_20dp">20dp</dimen>
     <dimen name="height_poll_content">260dp</dimen>
     <dimen name="width_15dp_icon_spinner">10dp</dimen>

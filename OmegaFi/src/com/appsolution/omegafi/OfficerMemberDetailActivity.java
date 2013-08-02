@@ -31,7 +31,6 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	private LinearLayout linearAddress;
 	private int idChapter=-1;
 	private int idMember=-1;
-	private MemberRooster memberRooster;
 	
 	private RowInformation phoneMain;
 	private RowInformation phoneSecundary;
@@ -45,6 +44,10 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	public static final int MEMBER_ROOSTER=0;
 	public static final int OFFICER_ROOSTER=1;
 	public static final String TYPE_ROOSTER="typeRooster";
+	
+	private String urlFacebook;
+	private String urlTwitter;
+	private String urlLinkedIn;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -224,29 +227,43 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		emailMain.setValueInfo(emails[0]);
 		emailSecundary.setValueInfo(emails[1]);
 		
+		if(adresses[0]!=null){
+			String[] addressM=adresses[0].split("¿");
+			addressMain.setValueInfo(addressM[2]+", "+addressM[0]);
+			addressMain.setValueInfo2(adresses[1]);
+		}
+		if(adresses[1]!=null){
+			String[] addressS=adresses[1].split("¿");
+			addressSecundary.setValueInfo(addressS[2]+", "+addressS[0]);
+			addressSecundary.setValueInfo2(addressS[1]);
+		}	
 		
-		addressMain.setValueInfo(adresses[0]);
-		addressMain.setValueInfo2(adresses[0]);
-		addressSecundary.setValueInfo(adresses[1]);
-		addressSecundary.setValueInfo2(adresses[1]);
-		
+		urlFacebook=member.getProfFacebook();
+		urlLinkedIn=member.getProfLinked();
+		urlTwitter=member.getProfTwitter();
 		Server.chargeBitmapInImageView(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
 	}
 	
 	
 	public void onFacebookIcon(View icon){
-		Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("https://www.facebook.com"));
-		startActivity(i);
+		if(urlFacebook!=null){
+			Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse(urlFacebook));
+			startActivity(i);
+		}
 	}
 	
 	public void onTwitterIcon(View icon){
-		Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("https://www.twitter.com"));
-		startActivity(i);
+		if(urlTwitter!=null){
+			Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse(urlTwitter));
+			startActivity(i);
+		}
 	}
 	
 	public void onLinkedIcon(View icon){
-		Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse("http://www.linkedin.com"));
-		startActivity(i);
+		if(urlLinkedIn!=null){
+			Intent i = new Intent(Intent.ACTION_VIEW,  Uri.parse(urlLinkedIn));
+			startActivity(i);
+		}
 	}
 
 

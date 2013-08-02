@@ -14,6 +14,7 @@ public class HomeServices extends ServerContext{
 	private OfficersService officers;
 	private CalendarService calendar;
 	private NewsFeedService feeds;
+	private SimpleAnnouncement announcementSelected;
 	
 	public HomeServices(Server server){
 		super(server);
@@ -174,5 +175,15 @@ public class HomeServices extends ServerContext{
 		statusAnnouncements[1]=announcements;
 		return statusAnnouncements;
 	}
+
+	public SimpleAnnouncement getAnnouncementSelected() {
+		return announcementSelected;
+	}
+
+	public void setAnnouncementSelected(SimpleAnnouncement announcementSelected) {
+		this.announcementSelected = announcementSelected;
+	}
+	
+	
 	
 }

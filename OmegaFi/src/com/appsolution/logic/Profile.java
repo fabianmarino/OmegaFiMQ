@@ -31,7 +31,7 @@ public class Profile {
 	private List<String> prefixes=new ArrayList<String>();
 	
 	
-	public Profile(JSONObject objectprofile,JSONArray phones, JSONArray emails, JSONArray address) {
+	public Profile(JSONObject objectprofile) {
 		JSONObject individual;
 		try {
 			individual = objectprofile.getJSONObject("individual");
@@ -67,9 +67,9 @@ public class Profile {
 			
 			publishProfile=individual.getBoolean("publish_profile");
 			
-			this.completePhones(phones);
-			this.completeEmails(emails);
-			this.completeAdresses(address);
+			this.completePhones(individual.getJSONArray("phone_numbers"));
+			this.completeEmails(individual.getJSONArray("emails"));
+			this.completeAdresses(individual.getJSONArray("addresses"));
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
