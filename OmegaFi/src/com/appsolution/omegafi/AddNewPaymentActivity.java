@@ -88,7 +88,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_new_payment);
 		listCreditCards.add("Visa");
-		listCreditCards.add("Mastercard");
+		listCreditCards.add("MasterCard");
 		listCreditCards.add("Discover");
 		listCreditCards.add("American Express");
 		typeNewPayment=(Spinner)findViewById(R.id.spinnerCreditECheck);
@@ -518,7 +518,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 					OmegaFiActivity.showAlertMessage(getErrorJson(response), AddNewPaymentActivity.this);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(AddNewPaymentActivity.this, status, "Object not found");
+					OmegaFiActivity.showErrorConection(AddNewPaymentActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 			}	
     	};
@@ -596,7 +596,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 					OmegaFiActivity.showAlertMessage(getErrorJsonECheck(response), AddNewPaymentActivity.this);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(AddNewPaymentActivity.this, status, "Object not found");
+					OmegaFiActivity.showErrorConection(AddNewPaymentActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 			}	
     	};

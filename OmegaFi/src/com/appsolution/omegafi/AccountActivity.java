@@ -77,7 +77,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		rowCurrentBalance=(RowInformation)findViewById(R.id.rowCurrentBalance);
 		this.completeAccountDetails();
 		accountId=getIntent().getExtras();
-		Log.d("Este es el id", accountId+"");
 		this.chargeAccountSelected(accountId.getInt("id"));
 		setResult(OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
 	}
@@ -107,7 +106,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 					
 					@Override
 					public void onClick(View v) {
-						DialogContactAccount diag=new DialogContactAccount(activity,false,actualAccount.getId());
+						DialogContactAccount diag=new DialogContactAccount(activity,false,actualAccount.getId(),contact.getOrganizationId());
 						diag.setContact(contact);
 						diag.showDialog();
 						
@@ -198,7 +197,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	public void goToMyProfile(View user){
 		Intent activityProfile=new Intent(this, MyProfileActivity.class);
-		startActivity(activityProfile);
+		startActivityForResult(activityProfile,OmegaFiActivity.ACTIVITY_MY_PROFILE);
 	}
 
 	@Override
@@ -282,7 +281,8 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 					infoNumberAccount.setValueLabel(actualAccount.getId()+"");
 					infoBalanceDue.setValueLabel("$ "+actualAccount.getAdjustedBalance());
 					rowBalanceAsOf.setNameSubInfo(actualAccount.getDateBalanceAsOf());
-					rowBalanceAsOf.setValueInfo("$"+actualAccount.getMoneyBalanceAsOf());
+					if(actualAccount.getMoneyBalanceAsOf()!=null)
+						rowBalanceAsOf.setValueInfo("$"+actualAccount.getMoneyBalanceAsOf());
 					rowDueOn.setValueInfo(actualAccount.getDueOn());
 					rowPayments.setValueInfo("$ "+actualAccount.getPaymentsLast());
 					rowCredits.setValueInfo("$ "+actualAccount.getCreditsLast());
@@ -295,6 +295,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 					}
 					completeAccountContacts();
 				}
+				refreshActivity();
 				stopProgressDialog();
 			}
 		};		

@@ -3,6 +3,8 @@ package com.appsolution.logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -106,12 +108,15 @@ public class ProfileService extends ServerContext{
 	}
 	
 	public void chargeNotifications(){
+		notifications.clear();
 		Object[] statusJson=server.makeRequestGet(Server.NOTIFICATIONS_SERVICE);
 		try {
-			JSONArray jsonArray=((JSONObject)statusJson[1]).getJSONArray("profile_notifications");
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonNoti=jsonArray.getJSONObject(i);
-				notifications.add(jsonNoti.getString("notification"));
+			if(((JSONObject)statusJson[1])!=null){
+				JSONArray jsonArray=((JSONObject)statusJson[1]).getJSONArray("profile_notifications");
+				for (int i = 0; i < jsonArray.length(); i++) {
+					JSONObject jsonNoti=jsonArray.getJSONObject(i);
+					notifications.add(jsonNoti.getString("notification"));
+				}
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -126,6 +131,26 @@ public class ProfileService extends ServerContext{
 
 	public ArrayList<String> getNotifications() {
 		return notifications;
+	}
+	
+	public Object[] updateProfileBasic(String firstName, String lastName, String middleName, String prefix, String sufix, String informalFirstName,
+			String parentsName, int graduationYear, String travelVisaNumber, String dateCollege){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("profile[first_name]", firstName));
+		nameValuePairs.add(new BasicNameValuePair("profile[last_name]", lastName));
+		nameValuePairs.add(new BasicNameValuePair("profile[middle_name]", middleName));
+		nameValuePairs.add(new BasicNameValuePair("profile[prefix]", prefix));
+		nameValuePairs.add(new BasicNameValuePair("profile[suffix]", sufix));
+		nameValuePairs.add(new BasicNameValuePair("profile[informal_first_name]", informalFirstName));
+		nameValuePairs.add(new BasicNameValuePair("profile[parents_name]", parentsName));
+		if(graduationYear!=-1)
+			nameValuePairs.add(new BasicNameValuePair("profile[graduation_year]", graduationYear+""));
+		nameValuePairs.add(new BasicNameValuePair("profile[travel_visa_number]", travelVisaNumber));
+		if(dateCollege!=null)
+			nameValuePairs.add(new BasicNameValuePair("profile[date_of_college_entry]", dateCollege));
+		
+		Object[] statusJson=server.makeRequestPut(Server.PROFILE_SERVICE,nameValuePairs);
+		return statusJson;
 	}
 	
 	

@@ -72,8 +72,11 @@ public class AccountLayout extends LinearLayout{
 			textName.setText(account.getCompleteName());
 			chapter.setText(account.getNameOrgDesignationOrg());
 			this.account.setValueLabel(""+idAccount);
-			this.balanceDue.setValueLabel(account.getAdjustedBalance());
-			this.current.setValueLabel(account.getCurrentBalance());
+			if(account.getAdjustedBalance()!=null)
+				this.balanceDue.setValueLabel("$"+account.getAdjustedBalance());
+			if(account.getCurrentBalance()!=null)
+				this.current.setValueLabel("$"+account.getCurrentBalance());
+			if(account.getDueOn()!=null)
 				textDueOn.setText("Due on: "+account.getDueOn());
 				
 			for (String notification:account.getListNotifications()) {

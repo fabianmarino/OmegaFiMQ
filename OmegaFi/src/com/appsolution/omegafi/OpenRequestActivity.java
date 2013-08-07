@@ -1,15 +1,21 @@
 package com.appsolution.omegafi;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowEditInformation;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowEditTextSubmit;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.logic.Server;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -37,6 +43,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	
 	private Button buttonSend;
 	private int idAccount=-1;
+	private int organizationNumber;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 		sectionRequestContact=(SectionOmegaFi)findViewById(R.id.sectionContactRequest);
 		this.completeSectionRequestContact();
 		idAccount=getIntent().getExtras().getInt("id");
+		organizationNumber=getIntent().getExtras().getInt("organizationId");
 	}
 	
 	@Override
@@ -59,12 +67,12 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	}
 	
 	private void completeSectionContactInformation(){
-		
 		linearTextEdit=new LinearLayout(getApplicationContext());
 		linearTextEdit.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		linearTextEdit.setOrientation(LinearLayout.VERTICAL);
 		linearTextEdit.setBackgroundResource(R.drawable.border_bottom);
-		linearTextEdit.setPadding(10, 10, 10, 10);
+		int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
+		linearTextEdit.setPadding(padding,padding,padding,padding);
 		
 		textPleaseEnter=new TextView(getApplicationContext());
 		textPleaseEnter.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
@@ -107,7 +115,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	public void sendRequestContact(View button){
 		String validateRequest=this.validateRequest();
 		if(validateRequest==null){
-			this.showRequestSucessfully();
+			sendRequest();
 		}
 		else{
 			OmegaFiActivity.showAlertMessage(validateRequest, this);
@@ -141,18 +149,94 @@ public class OpenRequestActivity extends OmegaFiActivity {
 		return validate;
 	}
 	
-	private void enviar(String[] to, String[] cc,
-		    String asunto, String mensaje) {
-		    Intent emailIntent = new Intent(Intent.ACTION_SEND);
-		    emailIntent.setData(Uri.parse("mailto:"));
-		    //String[] to = direccionesEmail;
-		    //String[] cc = copias;
-		    emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
-		    emailIntent.putExtra(Intent.EXTRA_CC, cc);
-		    emailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto);
-		    emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
-		    emailIntent.setType("message/rfc822");
-		    startActivity(Intent.createChooser(emailIntent, "Email "));
+	public int isPreviousIssue(){
+		if(rowToogle.isActivatedOn()){
+			return 1;
 		}
+		else{
+			return 0;
+		}
+	}
+	
+	private void sendRequest(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			private int status=0;
+			private JSONObject errors=null;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Sending Request...", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Object[] statusJson=Server.getServer().getHome().getAccounts().sendOpenRequest
+						(idAccount, "322232", organizationNumber+"", editEmailAddres.getText().toString(),isPreviousIssue(), textRequest.getText().toString());
+				status=(Integer)statusJson[0];
+				errors=(JSONObject)statusJson[1];
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				if(status==200||status==201){
+					showRequestSucessfully();
+				}
+				else if(status==422){
+					showAlertMessage(error422(errors), OpenRequestActivity.this);
+				}
+				else{
+					OmegaFiActivity.showErrorConection(OpenRequestActivity.this, status, getResources().getString(R.string.object_not_found),
+							false);
+				}
+				stopProgressDialog();
+			}
+		};
+		task.execute();
+	}
+	
+	
+	private String error422(JSONObject json){
+		String typeError=null;
+		JSONArray jsonErrors=null;
+		try {
+			if(json.has("phonenumber")){
+				typeError="Phone Number: ";	
+				jsonErrors=json.getJSONArray("phonenumber");
+			}
+			else if(json.has("openedby")){
+				typeError="Opened By: ";	
+				jsonErrors=json.getJSONArray("openedby");
+			}
+			else if(json.has("organizationnumber")){
+				typeError="Organization Number: ";	
+				jsonErrors=json.getJSONArray("organizationnumber");
+			}
+			else if(json.has("email")){
+				typeError="Email: ";	
+				jsonErrors=json.getJSONArray("email");
+			}
+			else if(json.has("request")){
+				typeError="Request: ";	
+				jsonErrors=json.getJSONArray("request");
+			}
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String completeError=null;
+		try {
+			if(typeError!=null){
+				completeError=typeError+jsonErrors.getString(0);
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return completeError;
+		
+	}
 
 }

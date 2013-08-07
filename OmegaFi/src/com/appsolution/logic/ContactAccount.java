@@ -10,6 +10,7 @@ public class ContactAccount {
 	private String titleContact;
 	private String phoneContact;
 	private String emailContact;
+	private int organizationId;
 	
 	
 	public ContactAccount(JSONObject jsonContact, boolean isRegular) {
@@ -24,22 +25,6 @@ public class ContactAccount {
 	
 	private void completeContactRegular(JSONObject jsonContact){
 		try {
-			if(!jsonContact.isNull("contact_on_statement_name"))
-				nameContact=jsonContact.getString("contact_on_statement_name");
-			if(!jsonContact.isNull("contact_on_statement_title"))
-				titleContact=jsonContact.getString("contact_on_statement_title");
-			if(!jsonContact.isNull("contact_on_statement_email"))
-				emailContact=jsonContact.getString("contact_on_statement_email");
-			if(!jsonContact.isNull("contact_on_statement_phone_number"))
-				phoneContact=jsonContact.getString("contact_on_statement_phone_number");
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private void completeContactNotRegular(JSONObject jsonContact){
-		try {
 			if(!jsonContact.isNull("contact_name"))
 				nameContact=jsonContact.getString("contact_name");
 			if(!jsonContact.isNull("contact_title"))
@@ -52,6 +37,25 @@ public class ContactAccount {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private void completeContactNotRegular(JSONObject jsonContact){
+		try {
+			if(!jsonContact.isNull("contact_on_statement_name"))
+				nameContact=jsonContact.getString("contact_on_statement_name");
+			if(!jsonContact.isNull("contact_on_statement_title"))
+				titleContact=jsonContact.getString("contact_on_statement_title");
+			if(!jsonContact.isNull("contact_on_statement_email"))
+				emailContact=jsonContact.getString("contact_on_statement_email");
+			if(!jsonContact.isNull("contact_on_statement_phone_number"))
+				phoneContact=jsonContact.getString("contact_on_statement_phone_number");
+			if(!jsonContact.isNull("organization_id"))
+				organizationId=jsonContact.getInt("organization_id");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	public boolean isRegularContact() {
@@ -76,6 +80,10 @@ public class ContactAccount {
 	
 	public String getPhoneToCall(){
 		return phoneContact.replace("-", "");
+	}
+
+	public int getOrganizationId() {
+		return organizationId;
 	}
 	
 	

@@ -20,6 +20,7 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.backup.RestoreObserver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -110,7 +111,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
         this.loadSlidingMenu();
 	}
 	
-	public static boolean showErrorConection(Activity activity,int httpCode,String error404){
+	public static boolean showErrorConection(final Activity activity,int httpCode,String error404,final boolean login){
 		if(error404==null){
 			error404="The web service has  not found: 404 error";
 		}
@@ -130,7 +131,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 				dia.setMessageDialog("Name resolution failed");
 				break;
 			case 401:
-				dia.setMessageDialog("Incorrect Username or Password");
+				if(login)
+					dia.setMessageDialog("Incorrect Username or Password.");
+				else
+					dia.setMessageDialog("Not logged in or your session has expired.\nPlease login to continue");
 				break;
 			case 404:
 				dia.setMessageDialog(error404);
@@ -154,6 +158,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				dia.dismissDialog();
+				if(!login){
+					
+					restartApp(activity);
+				}
 			}
 		});
 		dia.showDialog();
@@ -362,11 +370,11 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		                new DialogInterface.OnClickListener() {
 		                    public void onClick(DialogInterface dialog, int id) {
 		                    	finish();
-		                    	closeAllActivities();
+		                    	closeAllActivities(OmegaFiActivity.this);
 		                		Runtime.getRuntime().gc();
 		                		System.gc();
 		                		Server.getServer().getHome().clearHomeServices();
-		                		restartApp();
+		                		restartApp(OmegaFiActivity.this);
 		                    }
 		                });
 		AlertDialog alert = builder.create();
@@ -525,9 +533,9 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		sleep.execute();
 	}
 	
-	protected void closeAllActivities(){
+	private static  void closeAllActivities(Activity activity){
 		for (int i = OmegaFiActivity.ACTIVITY_HOME; i <= 17; i++) {
-			finishActivity(i);
+			activity.finishActivity(i);
 		}
 	}
 	
@@ -544,14 +552,14 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	 }
 	 }
 	
-	private void restartApp(){
-		AlarmManager alm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-		Intent mainActivity=new Intent(this, MainActivity.class);
+	private static void restartApp(Activity context){
+		closeAllActivities(context);
+		AlarmManager alm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		Intent mainActivity=new Intent(context, MainActivity.class);
 		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 500, PendingIntent.getActivity(this, 0,mainActivity , 0));
+		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 500, PendingIntent.getActivity(context, 0,mainActivity , 0));
 		System.runFinalization();
 		System.exit(0);
-		
 	}
 	
 	protected void goToHome(){

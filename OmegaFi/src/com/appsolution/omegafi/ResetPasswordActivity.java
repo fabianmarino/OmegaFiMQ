@@ -75,7 +75,7 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 					header.setMessageForForm(getResources().getString(R.string.changed_password_sucessfully));
 				}
 				else{
-					OmegaFiActivity.showErrorConection(ResetPasswordActivity.this, status, null);
+					OmegaFiActivity.showErrorConection(ResetPasswordActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 			}
 		};

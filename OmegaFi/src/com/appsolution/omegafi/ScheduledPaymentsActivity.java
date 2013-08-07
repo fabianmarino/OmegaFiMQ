@@ -97,7 +97,7 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 					listScheduledPayments.setAdapter(adapterPayment);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(ScheduledPaymentsActivity.this, status, "Object not found");
+					OmegaFiActivity.showErrorConection(ScheduledPaymentsActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				refreshActivity();
 			}

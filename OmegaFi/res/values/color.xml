@@ -18,4 +18,5 @@
     <color name="gray_font_row_info">#444444</color>
     <color name="gray_toogle_off">#999999</color>
     <color name="gray_toogle_on">#a71931</color>
+    <color name="gray_darker_table">#7a7a7a</color>
 </resources>

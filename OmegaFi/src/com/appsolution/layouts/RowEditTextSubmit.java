@@ -51,6 +51,7 @@ public class RowEditTextSubmit extends LinearLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.row_text_edit_submit, this, true);
 		textEdit=(EditText)findViewById(R.id.editText_submit);
+		textEdit.setSingleLine(true);
 		buttonSubmit=(Button)findViewById(R.id.buttonSubmitEdit);
 	}
 	

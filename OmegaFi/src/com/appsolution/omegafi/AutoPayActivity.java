@@ -178,7 +178,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 					OmegaFiActivity.showAlertMessage(message, AutoPayActivity.this);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, "Not Found!");
+					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}
@@ -215,7 +215,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 					OmegaFiActivity.showAlertMessage(message, AutoPayActivity.this);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, "Not Found!");
+					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}
@@ -423,7 +423,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 					of.showDialog();
 				}
 				else{
-					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, "Not Found");
+					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 				

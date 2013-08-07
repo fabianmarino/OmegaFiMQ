@@ -50,6 +50,7 @@
         <!-- <item name="android:fontFamily"></item> -->
         <item name="android:background">@drawable/white_input</item>
         <item name="android:padding">@dimen/button_padding</item>
+        <item name="android:singleLine">true</item>
     </style>
     <style name="EditTextLoginSmall">
         <item name="android:layout_width">fill_parent</item>
@@ -59,6 +60,7 @@
         <!-- <item name="android:fontFamily"></item> -->
         <item name="android:background">@drawable/white_input_small_edit</item>
         <item name="android:padding">@dimen/button_padding</item>
+        <item name="android:singleLine">true</item>
     </style>
     <style name="EditTextLoginNotEditable">
         <item name="android:layout_width">fill_parent</item>

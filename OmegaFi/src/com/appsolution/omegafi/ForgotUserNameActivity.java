@@ -54,7 +54,7 @@ public class ForgotUserNameActivity extends OmegaFiLoginActivity {
 						headerOmegaFi.setMessageForForm("Your username has been sent to "+rowEmail.getTextEditSubmit());
 					}
 					else{
-						OmegaFiActivity.showErrorConection(ForgotUserNameActivity.this, status, "Your email was not found");
+						OmegaFiActivity.showErrorConection(ForgotUserNameActivity.this, status, "Your email was not found",true);
 					}
 				}
 			};

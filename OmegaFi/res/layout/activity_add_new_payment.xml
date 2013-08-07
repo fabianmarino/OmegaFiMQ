@@ -136,11 +136,19 @@
             android:id="@+id/buttonAddContinue"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginBottom="@dimen/padding_6dp"
             android:text="@string/new_payment_add"
             android:onClick="addContinueNewPayment"
             style="@style/ButtonOmega"
             />
+        <TextView android:id="@+id/labelSecurityInformation"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_6dp"
+            android:textSize="@dimen/text_11sp"
+            android:textColor="@android:color/black"
+            android:text="@string/security_phrase"/>
     </LinearLayout>
 
 </ScrollView>

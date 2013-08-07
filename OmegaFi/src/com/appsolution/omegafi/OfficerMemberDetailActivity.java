@@ -168,7 +168,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 					completeFieldsMember(member);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(OfficerMemberDetailActivity.this, status, "Object not found");
+					OmegaFiActivity.showErrorConection(OfficerMemberDetailActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 			}
 			
@@ -202,7 +202,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 					completeFieldsMember(member);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(OfficerMemberDetailActivity.this, status, "Object not found");
+					OmegaFiActivity.showErrorConection(OfficerMemberDetailActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}

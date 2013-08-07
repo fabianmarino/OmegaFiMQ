@@ -55,14 +55,15 @@ public class Account {
 			paymentsLast=jsonAccount.getString("payments_since_last_statement");
 			activityLast=jsonAccount.getString("activity_since_last_statement");
 			
-			if(!jsonAccount.isNull("omegafi_contact")){
-				JSONObject omegafiContact=jsonAccount.getJSONObject("omegafi_contact");
-				contacts.add(new ContactAccount(omegafiContact, false));
-			}
-			
 			if(!jsonAccount.isNull("organization")){
 				JSONObject regularContact=jsonAccount.getJSONObject("organization");
-				contacts.add(new ContactAccount(regularContact, true));
+				contacts.add(new ContactAccount(regularContact, false));
+			}
+			
+			
+			if(!jsonAccount.isNull("omegafi_contact")){
+				JSONObject omegafiContact=jsonAccount.getJSONObject("omegafi_contact");
+				contacts.add(new ContactAccount(omegafiContact, true));
 			}
 			
 			JSONObject  lastestStatement=jsonAccount.getJSONObject("latest_statement");

@@ -225,7 +225,8 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 					showConfirmDeletedScheduled();
 				}
 				else{
-					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Not Found!");
+					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status,
+							getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}
@@ -316,7 +317,8 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 						rowPaymentMethod.setNameInfo(methods.get(indexMethod).getNameTypeNumber());
 				}
 				else{
-					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Object not found");
+					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status,
+							getResources().getString(R.string.object_not_found),false);
 				}
 			}
 		};
@@ -372,7 +374,8 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 					OmegaFiActivity.showAlertMessage("Invalid request.", ScheduledPaymentsDetailActivity.this);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, "Not found!");
+					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, 
+							getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}

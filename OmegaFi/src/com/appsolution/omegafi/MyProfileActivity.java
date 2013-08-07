@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogOptionsImage;
 import com.appsolution.layouts.IconLabelVertical;
@@ -12,6 +14,10 @@ import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
+import com.appsolution.logic.AddressContact;
+import com.appsolution.logic.CalendarEvent;
+import com.appsolution.logic.EmailContact;
+import com.appsolution.logic.PhoneContact;
 import com.appsolution.logic.Profile;
 import com.appsolution.logic.Server;
 
@@ -21,6 +27,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -62,15 +69,19 @@ public class MyProfileActivity extends OmegaFiActivity {
 	
 	private Spinner spinnerPrefix;
 	private EditText editFirstName;
-	private EditText middleName;
-	private EditText lastName;
-	private EditText informalFirst;
-	private EditText parentsName;
+	private EditText editMiddleName;
+	private EditText editLastName;
+	private EditText editInformalFirst;
+	private EditText editParentsName;
 	private EditText editTravelVisa;
 	private TextView editCollegeEntry;
 	private EditText editSuffix;
 	private Spinner graduationYear;
 	private RowToogleOmegaFi tooglePublish;
+	
+	private PhoneContact[] phones=new PhoneContact[2];
+	private EmailContact[] emails=new EmailContact[2];
+	private AddressContact[] addresses=new AddressContact[2];
 	
 	private static final int RESULT_LOAD_IMAGE=1;
 	private static final int CAMERA_REQUEST = 1888; 
@@ -106,13 +117,14 @@ public class MyProfileActivity extends OmegaFiActivity {
 		editTopSchoolLine2=(RowEditNameTopInfo)findViewById(R.id.editTopSchoolLine2);
 		tooglePublish=(RowToogleOmegaFi)findViewById(R.id.publishProfile);
 		editFirstName=(EditText)findViewById(R.id.editFirstName);
-		middleName=(EditText)findViewById(R.id.editMiddleName);
-		lastName=(EditText)findViewById(R.id.editLastName);
-		informalFirst=(EditText)findViewById(R.id.editInformalFirst);
-		parentsName=(EditText)findViewById(R.id.editParentsName);
+		editMiddleName=(EditText)findViewById(R.id.editMiddleName);
+		editLastName=(EditText)findViewById(R.id.editLastName);
+		editInformalFirst=(EditText)findViewById(R.id.editInformalFirst);
+		editParentsName=(EditText)findViewById(R.id.editParentsName);
 		spinnerPrefix=(Spinner)findViewById(R.id.spinnerPrefixProfile);
 		editTravelVisa=(EditText)findViewById(R.id.travelVisaNumber);
 		editCollegeEntry=(TextView)findViewById(R.id.editCollegeEntry);
+		clearCollegeEntryDate();
 		graduationYear=(Spinner)findViewById(R.id.spinnerGraduationYear);
 		
 		this.completeSpinnerProfile();
@@ -173,42 +185,52 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	private void completeSpinnerGraduationYear(int year){
+		List<String> yearsGraduation=new ArrayList<String>();
+		yearsGraduation.add("No year");
+		int yearPast=0;
 		if(year>1900){
-			List<String> yearsGraduation=new ArrayList<String>();
-			int yearFuture=year+10;
-			int yearPast=year-15;
+			int yearFuture=year+20;
+			yearPast=year-20;
 			for (int i = yearPast; i <= yearFuture; i++) {
 				yearsGraduation.add(i+"");
 			}
+		}
+		else{
+			int actualYear=Calendar.getInstance().getTime().getYear()+1900;
+			for (int i = actualYear-20; i <= actualYear+20; i++) {
+				yearsGraduation.add(i+"");
+			}
+		}
 			ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 					R.layout.spinner_omegafi, yearsGraduation);
 				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 				graduationYear.setAdapter(dataAdapter);
-				graduationYear.setSelection(year-yearPast);
-			}
+				if(yearPast!=0){
+					graduationYear.setSelection(year-yearPast+1);
+				}
 	}
 	
 	private void completeSectionPhone(){
 		RowEditTextOmegaFi mainPhone=new RowEditTextOmegaFi(this);
 		mainPhone.setNameInfo("Main");
-		mainPhone.setTextEdit("(856) 977-8768");
+		mainPhone.setTextEdit("");
 		mainPhone.setEditable(false);
 		
 		RowEditTextOmegaFi otherPhone=new RowEditTextOmegaFi(this);
 		otherPhone.setNameInfo("Other");
-		otherPhone.setTextEdit("(856) 977-8768");
+		otherPhone.setTextEdit("");
 		otherPhone.setEditable(false);
 	}
 	
 	private void completeSectionEmail(){
 		RowEditTextOmegaFi mainEmail=new RowEditTextOmegaFi(this);
 		mainEmail.setNameInfo("Mail");
-		mainEmail.setTextEdit("wsmith@miamiuni.edu");
+		mainEmail.setTextEdit("");
 		mainEmail.setEditable(false);
 		
 		RowEditTextOmegaFi otherEmail=new RowEditTextOmegaFi(this);
 		otherEmail.setNameInfo("Other");
-		otherEmail.setTextEdit("otherwsmith@miamiuni.edu");
+		otherEmail.setTextEdit("");
 		otherEmail.setEditable(false);
 		
 	}
@@ -216,13 +238,13 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private void completeSectionAddress(){
 		RowInformation homeAddress=new RowInformation(this);
 		homeAddress.setNameInfo("Home");
-		homeAddress.setValueInfo("2218 Burdett Ave");
-		homeAddress.setValueInfo2("Troy, NY 23234-3422");
+		homeAddress.setValueInfo("");
+		homeAddress.setValueInfo2("");
 		
 		RowInformation homeSchool=new RowInformation(this);
 		homeSchool.setNameInfo("School");
-		homeSchool.setValueInfo("2218 Burdett Ave");
-		homeSchool.setValueInfo2("West Sunbury, NY 23234-3422");
+		homeSchool.setValueInfo("");
+		homeSchool.setValueInfo2("");
 	}
 	
 	public void phoneClick(View view){
@@ -265,6 +287,10 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	public void onSaveMyProfile(View button){
+		updateProfile();
+	}
+	
+	private void showSucessfullUpdated(){
 		final DialogInformationOF info=new DialogInformationOF(this);
 		info.setMessageDialog("Your profile changes have been successfully");
 		info.setButtonListener(new View.OnClickListener() {
@@ -318,6 +344,13 @@ public class MyProfileActivity extends OmegaFiActivity {
 				editCollegeEntry.setText((monthOfYear+1)+"/"+dayOfMonth+"/"+year);	
 			}
 		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
+		date.setOnCancelListener(new DatePickerDialog.OnCancelListener() {
+			
+			@Override
+			public void onCancel(DialogInterface arg0) {
+				clearCollegeEntryDate();
+			}
+		});
 		date.getDatePicker().setCalendarViewShown(false);
 		date.show();
 	}
@@ -354,10 +387,10 @@ public class MyProfileActivity extends OmegaFiActivity {
 					completeAddresses(profile.getAddresses());
 					
 					editFirstName.setText(profile.getFirstName());
-					middleName.setText(profile.getMiddleName());
-					lastName.setText(profile.getLastName());
-					informalFirst.setText(profile.getInformalFirstName());
-					parentsName.setText(profile.getParentsName());
+					editMiddleName.setText(profile.getMiddleName());
+					editLastName.setText(profile.getLastName());
+					editInformalFirst.setText(profile.getInformalFirstName());
+					editParentsName.setText(profile.getParentsName());
 					editTravelVisa.setText(profile.getTravelVisaNumber());
 					if(profile.getDateCollegeEntryPretty()!=null){
 						if(!profile.getDateCollegeEntryPretty().isEmpty())
@@ -377,7 +410,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 							spinnerPrefix.setAdapter(dataAdapter);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(MyProfileActivity.this, status, "Not Found!");
+					OmegaFiActivity.showErrorConection(MyProfileActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}
@@ -385,41 +418,33 @@ public class MyProfileActivity extends OmegaFiActivity {
 		task.execute();
 	}
 	
-	private void completePhones(String[] phones){
-		editMainNumber.setText(phones[0]);
-		editSecondaryNumber.setText(phones[1]);
+	private void completePhones(PhoneContact[] phones){
+		this.phones=phones;
+		if(phones[0]!=null)
+			editMainNumber.setText(phones[0].getNumber());
+		if(phones[1]!=null)
+			editSecondaryNumber.setText(phones[1].getNumber());
 	}
 	
-	private void completeEmails(String[] emails){
-		editMainEmail.setText(emails[0]);
-		editSecondaryEmail.setText(emails[1]);
+	private void completeEmails(EmailContact[] emails){
+		this.emails=emails;
+		if(emails[0]!=null)
+			editMainEmail.setText(emails[0].getEmail());
+		if(emails[1]!=null)
+			editSecondaryEmail.setText(emails[1].getEmail());
 	}
 	
-	private void completeAddresses(String[] addresses){
+	private void completeAddresses(AddressContact[] addresses){
+		this.addresses=addresses;
 		if(addresses[0]!=null){
-			String[] home=addresses[0].split("¿");
-			if(home.length>1){
-				editTopHomeLine1.setValueInfo(home[0]);
-				if(home[1].equalsIgnoreCase("null")){
-					editTopHomeLine2.setValueInfo("");
-				}
-				else{
-					editTopHomeLine2.setValueInfo(home[1]);
-				}
-			}
+			editTopHomeLine1.setValueInfo(addresses[0].getLine1());
+			editTopHomeLine2.setValueInfo(addresses[0].getLine2());
 		}
 		if(addresses[1]!=null){
-			String[] school=addresses[1].split("¿");
-			if(school.length>1){
-				editTopSchoolLine1.setValueInfo(school[0]);
-				if(school[1].equalsIgnoreCase("null")){
-					editTopSchoolLine2.setValueInfo("");
-				}
-				else{
-					editTopSchoolLine2.setValueInfo(school[1]);
-				}
-			}
+			editTopSchoolLine1.setValueInfo(addresses[1].getLine1());
+			editTopSchoolLine2.setValueInfo(addresses[1].getLine2());
 		}
+			
 	}
 	
 	private void selectedPrefixe(String prefix){
@@ -437,5 +462,51 @@ public class MyProfileActivity extends OmegaFiActivity {
 		goToHome();
 		super.onBackPressed();
 	}
+	
+	private void clearCollegeEntryDate(){
+		editCollegeEntry.setText("College Entry Date");
+	}
+	
+	private void updateProfile(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			int status=0;
+			private String errors=null;
+			
+			@Override
+			protected void onPreExecute() {
+				startProgressDialog("Updating profile...", getResources().getString(R.string.please_wait));
+			}
+			
+			@Override
+			protected Boolean doInBackground(Void... arg0) {
+				int graduationyear=(graduationYear.getSelectedItemPosition()==0) ? 0 :Integer.parseInt(graduationYear.getSelectedItem().toString());
+				String dateCollege=editCollegeEntry.getText().toString().contains("/") ? 
+						CalendarEvent.getFormatDate(5, editCollegeEntry.getText().toString(), "MM/dd/yyyy") : null ;
+				String prefix=spinnerPrefix.getSelectedItem()!=null ? spinnerPrefix.getSelectedItem().toString() : null; 
+				Object[] statusJson=Server.getServer().getHome().getProfile().updateProfileBasic
+						(editFirstName.getText().toString(),editLastName.getText().toString() , editMiddleName.getText().toString(),
+								prefix, editSuffix.getText().toString(), editInformalFirst.getText().toString(), 
+								editParentsName.getText().toString(), graduationyear, editTravelVisa.getText().toString(), dateCollege);
+				status=(Integer)statusJson[0];
+				errors= statusJson[1]!=null ? statusJson[1].toString() : null;
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				if(status==200||status==201){
+					showSucessfullUpdated();
+				}
+				else{
+					OmegaFiActivity.showAlertMessage(status+" "+errors, MyProfileActivity.this);
+				}
+				stopProgressDialog();
+			}
+		};
+		task.execute();
+	}
+	
+	
 	
 }

@@ -87,7 +87,7 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 						dia.showDialog();
 					}
 					else{
-						OmegaFiActivity.showErrorConection(ForgotPwQuestionsActivity.this, status, null);
+						OmegaFiActivity.showErrorConection(ForgotPwQuestionsActivity.this, status, getResources().getString(R.string.object_not_found),false);
 					}
 					}
 				

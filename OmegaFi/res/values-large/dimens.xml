@@ -70,7 +70,7 @@
     <dimen name="width_image_chapter">150dp</dimen>
     <dimen name="height_image_chapter">130dp</dimen>
     <dimen name="size_notification_circle">35dp</dimen>
-    <dimen name="height_new_event_content">220dp</dimen>
+    <dimen name="height_new_event_content">230dp</dimen>
     <dimen name="size_circle_newevents">5dp</dimen>
     <dimen name="width_image_label">50dp</dimen>
     <dimen name="width_arrow_down">40dp</dimen>

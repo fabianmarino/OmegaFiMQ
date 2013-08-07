@@ -136,10 +136,10 @@ public final class R {
 		public static final int abs__bright_foreground_disabled_holo_light = 0x7f050016;
 		public static final int abs__bright_foreground_holo_dark = 0x7f050013;
 		public static final int abs__bright_foreground_holo_light = 0x7f050014;
-		public static final int abs__primary_text_disable_only_holo_dark = 0x7f050029;
-		public static final int abs__primary_text_disable_only_holo_light = 0x7f05002a;
-		public static final int abs__primary_text_holo_dark = 0x7f05002b;
-		public static final int abs__primary_text_holo_light = 0x7f05002c;
+		public static final int abs__primary_text_disable_only_holo_dark = 0x7f05002a;
+		public static final int abs__primary_text_disable_only_holo_light = 0x7f05002b;
+		public static final int abs__primary_text_holo_dark = 0x7f05002c;
+		public static final int abs__primary_text_holo_light = 0x7f05002d;
 	}
 	public static final class dimen {
 		public static final int abs__action_bar_default_height = 0x7f08000e;
@@ -325,7 +325,7 @@ public final class R {
 		public static final int showCustom = 0x7f04000d;
 		public static final int showHome = 0x7f04000a;
 		public static final int showTitle = 0x7f04000c;
-		public static final int slidingmenumain = 0x7f04017f;
+		public static final int slidingmenumain = 0x7f040180;
 		public static final int tabMode = 0x7f040008;
 		public static final int useLogo = 0x7f040009;
 		public static final int wrap_content = 0x7f040005;

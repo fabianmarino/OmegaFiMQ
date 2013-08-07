@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
                 secom:text_title_label="account #"
-                secom:text_value_label="543654"
+                secom:text_value_label=""
                 />
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
                 secom:text_title_label="balance due"
-                secom:text_value_label="$300.00"
+                secom:text_value_label=""
                 secom:color_font_vertical="@color/red_wine"/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.33"
                 secom:text_title_label="current balance"
-                secom:text_value_label="$300.00"/>
+                secom:text_value_label=""/>
         </TableRow>
     </TableLayout>
     <View android:layout_width="fill_parent"
@@ -94,7 +94,7 @@
             android:textColor="@android:color/black"
             android:layout_alignParentLeft="true"
             android:gravity="center_vertical"
-            android:text="Due On: 03/31/2013"/>
+            android:text="Due on:"/>
         <Button android:id="@+id/buttonPayNowAccount"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_button_small"

@@ -73,7 +73,7 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 					refreshActivity();
 				}
 				else{
-					OmegaFiActivity.showErrorConection(AnnouncementsActivity.this, status, getResources().getString(R.string.object_not_found));
+					OmegaFiActivity.showErrorConection(AnnouncementsActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}

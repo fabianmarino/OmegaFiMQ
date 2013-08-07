@@ -21,8 +21,8 @@ public class AnnouncementDetailActivity extends OmegaFiActivity {
 		selected=Server.getServer().getHome().getAnnouncementSelected();
 		announcement=(ContentAnnouncement)findViewById(R.id.contentAnnouncementDetail);
 		textSource=(TextView)findViewById(R.id.textSourceAnnouncementActivity);
-		completeAnnouncementDetail();
 		announcement.setBackgroundResource(R.drawable.background_white_pure);
+		completeAnnouncementDetail();
 	}
 	
 	private void completeAnnouncementDetail(){
@@ -31,6 +31,9 @@ public class AnnouncementDetailActivity extends OmegaFiActivity {
 			announcement.setDateAnnouncement(selected.getDateCreate());
 			announcement.setDescriptionAnnouncement(selected.getAnnouncement());
 			setSourceAnnouncement(selected.getSource());
+		}
+		else{
+			this.finish();
 		}
 	}
 	

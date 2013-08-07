@@ -70,7 +70,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 						finish();
 					}
 					else{
-						OmegaFiActivity.showErrorConection(MainActivity.this, status, "Web service not found.");
+						OmegaFiActivity.showErrorConection(MainActivity.this, status, "Web service not found.",true);
 					}
 				}
 			};

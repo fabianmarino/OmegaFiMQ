@@ -144,8 +144,8 @@ public class Server {
 		HttpPut put=new HttpPut(url);
 //		post.addHeader("Content-Type", "text/plain");
 		put.addHeader("Accept", "*/*");
-		HttpConnectionParams.setConnectionTimeout(put.getParams(), TIME_OUT);
-		HttpConnectionParams.setSoTimeout(put.getParams(), TIME_OUT);
+		HttpConnectionParams.setConnectionTimeout(put.getParams(), TIME_OUT+1000);
+		HttpConnectionParams.setSoTimeout(put.getParams(), TIME_OUT+1000);
 		try {
 			put.setEntity(new UrlEncodedFormEntity(data));
 			HttpResponse response=clientRequest.execute(put,contextHttp);
@@ -413,6 +413,10 @@ public class Server {
 	
 	public static String getUrlOfficerDetails(int idChapter, int idOfficer){
 		return Server.CHAPTERS_SERVICE+"/"+idChapter+"/officers/"+idOfficer;
+	}
+	
+	public static String getUrlCreateTask(int idAccount){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/tasks";
 	}
 	
 	public Bitmap downloadBitmap(String url) throws IOException {

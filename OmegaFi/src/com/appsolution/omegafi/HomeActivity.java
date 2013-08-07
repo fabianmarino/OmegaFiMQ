@@ -544,7 +544,7 @@ public class HomeActivity extends OmegaFiActivity {
 						
 					}
 					else{
-						OmegaFiActivity.showErrorConection(HomeActivity.this, status, "Not Found!");
+						OmegaFiActivity.showErrorConection(HomeActivity.this, status, getResources().getString(R.string.object_not_found),false);
 					}
 					stopProgressDialog();
 					refreshActivity();

@@ -114,7 +114,7 @@ public class CalendarActivity extends OmegaFiActivity {
 					listCalendar.setAdapter(adapterCalendar);
 				}
 				else{
-					OmegaFiActivity.showErrorConection(CalendarActivity.this, status, "Not found!");
+					OmegaFiActivity.showErrorConection(CalendarActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 				stopProgressDialog();
 			}

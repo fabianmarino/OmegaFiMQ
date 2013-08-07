@@ -317,7 +317,7 @@ public class PayNowActivity extends OmegaFiActivity {
 					showAlertMessage("You can't select dates before today.", PayNowActivity.this);
 				}
 				else{
-					showErrorConection(PayNowActivity.this, status, "Object not found");
+					showErrorConection(PayNowActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
 			}
 		};

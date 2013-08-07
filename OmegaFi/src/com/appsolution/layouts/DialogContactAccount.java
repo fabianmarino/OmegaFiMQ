@@ -31,11 +31,13 @@ public class DialogContactAccount {
 	private int idAccount;
 	private ContactAccount contact;
 	private String phoneNumberExtern;
+	private int organizationId;
 	
-	public DialogContactAccount(Activity activity, boolean isRegular, int idAccount){
+	public DialogContactAccount(Activity activity, boolean isRegular, int idAccount, int organizationId){
 		this.activity=activity;
 		this.idAccount=idAccount;
 		this.isReguarAccount=isRegular;
+		this.organizationId=organizationId;
 		layoutInflater=(LayoutInflater)this.activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout = layoutInflater.inflate(R.layout.dialog_layout_contact, (ViewGroup)this.activity.findViewById(R.id.layout_root_contact));
 		builderDialog = new AlertDialog.Builder(activity);
@@ -63,6 +65,7 @@ public class DialogContactAccount {
 					if(!contact.isRegularContact()){
 						Intent activityOpen=new Intent(DialogContactAccount.this.activity, OpenRequestActivity.class);
 						activityOpen.putExtra("id", DialogContactAccount.this.idAccount);
+						activityOpen.putExtra("organizationId", DialogContactAccount.this.organizationId);
 						DialogContactAccount.this.activity.startActivity(activityOpen);
 					}
 					else{

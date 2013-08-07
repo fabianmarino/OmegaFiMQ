@@ -48,7 +48,7 @@ public class OmegaFiLoginActivity extends Activity {
 	}
 	
 	public void showContactusButton(View button){
-		final DialogContactAccount diag=new DialogContactAccount(this,false,DIALOG_CONTACT_OMEGAFI_LOGIN);
+		final DialogContactAccount diag=new DialogContactAccount(this,false,DIALOG_CONTACT_OMEGAFI_LOGIN,430);
 		diag.setNameContact("Omega Fi");
 		diag.setPhoneNumberExtern("18886913021");
 		diag.setOnOpenRequest(new View.OnClickListener() {

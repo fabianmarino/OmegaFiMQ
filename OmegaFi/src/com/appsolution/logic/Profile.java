@@ -15,9 +15,9 @@ public class Profile {
 	private String informalFirstName;
 	private String parentsName;
 	private String travelVisaNumber;
-	private String[] phones=new String[2];
-	private String[] emails=new String[2];
-	private String[] addresses=new String[2];
+	private PhoneContact[] phones=new PhoneContact[2];
+	private EmailContact[] emails=new EmailContact[2];
+	private AddressContact[] addresses=new AddressContact[2];
 	private String dateInitiate;
 	private int inititeYear;
 	private int graduationYear;
@@ -80,7 +80,11 @@ public class Profile {
 		for (int i = 0; i < phones.length()&&i<2; i++) {
 			try {
 				JSONObject jsonPhone=phones.getJSONObject(i).getJSONObject("phone_number");
-				this.phones[i]=jsonPhone.getString("phone_number");
+				PhoneContact phone=new PhoneContact(jsonPhone);
+				if(phone.isPrimary())
+					this.phones[0]=phone;
+				else
+					this.phones[1]=phone;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -92,7 +96,11 @@ public class Profile {
 		for (int i = 0; i < emails.length()&&i<2; i++) {
 			try {
 				JSONObject jsonEmail=emails.getJSONObject(i).getJSONObject("email");
-				this.emails[i]=jsonEmail.getString("email_address");
+				EmailContact email=new EmailContact(jsonEmail);
+				if(email.isPrimary())
+					this.emails[0]=email;
+				else
+					this.emails[1]=email;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -104,7 +112,13 @@ public class Profile {
 		for (int i = 0; i < addresses.length()&&i<2; i++) {
 			try {
 				JSONObject jsonAddress=addresses.getJSONObject(i).getJSONObject("address");
-				this.addresses[i]=jsonAddress.getString("line_1")+"¿"+jsonAddress.getString("line_2");
+				AddressContact address=new AddressContact(jsonAddress);
+				
+				if(address.isPrimary())
+					this.addresses[0]=address;
+				else
+					this.addresses[1]=address;
+				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -136,15 +150,15 @@ public class Profile {
 		return travelVisaNumber;
 	}
 
-	public String[] getPhones() {
+	public PhoneContact[] getPhones() {
 		return phones;
 	}
 
-	public String[] getEmails() {
+	public EmailContact[] getEmails() {
 		return emails;
 	}
 
-	public String[] getAddresses() {
+	public AddressContact[] getAddresses() {
 		return addresses;
 	}
 
@@ -216,8 +230,4 @@ public class Profile {
 		return publishProfile;
 	}
 	
-	
-	
-	
-
 }

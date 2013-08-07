@@ -16,7 +16,6 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginBottom="@dimen/margin_10dp_poll"
-	        android:onClick="goToMyProfile"
 	        secom:width_image_user="@dimen/width_95dp"
 	        secom:color_font_text="@android:color/black"
 	        secom:third_line_text="Miami University"
@@ -33,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 secom:text_title_label="account #"
-                secom:text_value_label="745468"/>
+                secom:text_value_label=""/>
             <View android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="@color/gray_table_row"/>
@@ -43,7 +42,7 @@
                 android:layout_height="wrap_content"
                 secom:color_font_vertical="@color/red_wine"
                 secom:text_title_label="balance due"
-                secom:text_value_label="$300.00"
+                secom:text_value_label=""
                 android:layout_weight="1"/>
             <LinearLayout android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -83,7 +82,7 @@
 	            android:background="@android:color/white"
 	            android:paddingTop="@dimen/padding_6dp"
 	            secom:name_information="Due On"
-	            secom:value_information="31/03/2013"
+	            secom:value_information=""
 	            secom:show_arrow_info="false"
 	            secom:padding_bottom_row_info="@dimen/padding_5dp" 
 	            />
@@ -93,8 +92,8 @@
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content"
 	            secom:name_information="balance as of"
-	            secom:name_subinformation="05/12/2013"
-	            secom:value_information="$300.00"
+	            secom:name_subinformation=""
+	            secom:value_information=""
 	            secom:text_size_name_information="@dimen/text_8sp"
 	            secom:text_size_name_subinformation="@dimen/text_14sp"
 	            secom:color_font_row_information="@android:color/white"
@@ -110,7 +109,7 @@
 	            android:layout_height="wrap_content"
 	            secom:name_information="Payments"
 	            secom:row_text_size="@dimen/text_11sp"
-	            secom:value_information="$0.00"
+	            secom:value_information=""
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <com.appsolution.layouts.RowInformation
@@ -119,7 +118,7 @@
 	            android:layout_height="wrap_content"
 	            secom:name_information="Credits"
 	            secom:row_text_size="@dimen/text_11sp"
-	            secom:value_information="$0.00"
+	            secom:value_information=""
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <com.appsolution.layouts.RowInformation
@@ -128,7 +127,7 @@
 	            android:layout_height="wrap_content"
 	            secom:name_information="Debits"
 	            secom:row_text_size="@dimen/text_11sp"
-	            secom:value_information="$0.00"
+	            secom:value_information=""
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <View android:layout_width="fill_parent"
@@ -142,7 +141,7 @@
 	            android:layout_height="wrap_content"
 	            android:layout_marginBottom="@dimen/padding_6dp"
 	            secom:name_information="Current Balance"
-	            secom:value_information="$300.00"
+	            secom:value_information=""
 	            secom:color_font_row_information="@android:color/white"
 	            />
 	        <com.appsolution.layouts.RowToogleOmegaFi

@@ -72,6 +72,7 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		textEdit.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
 		textEdit.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		textEdit.setTextSize(TypedValue.COMPLEX_UNIT_PX,super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
+		textEdit.setSingleLine(true);
 		textOriginal=textEdit.getBackground();
 		textEdit.setBackgroundResource(R.drawable.white_input);
 		textEdit.setLayoutParams(new LayoutParams(widthEdit,
@@ -83,6 +84,7 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		textEdit2.setVisibility(LinearLayout.GONE);
 		textEdit2.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
 		textEdit2.setTextSize(TypedValue.COMPLEX_UNIT_PX,super.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
+		textEdit2.setSingleLine(true);
 		linear.addView(textEdit);
 		linear.addView(textEdit2);
 		this.addViewRight(linear);

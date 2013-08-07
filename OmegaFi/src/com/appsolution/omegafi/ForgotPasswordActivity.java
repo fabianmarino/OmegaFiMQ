@@ -60,7 +60,7 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 						startActivity(activityPwQuestion);
 					}
 					else{
-						OmegaFiActivity.showErrorConection(ForgotPasswordActivity.this, status, "Your username has not found");
+						OmegaFiActivity.showErrorConection(ForgotPasswordActivity.this, status, "Your username has not found",true);
 					}
 				}
 				

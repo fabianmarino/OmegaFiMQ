@@ -290,6 +290,19 @@ public class AccountsService extends ServerContext {
 		return statusJson;
 	}
 	
+	public Object[] sendOpenRequest(int account, String phoneNumber, String numberOrganization, String email, int contactedBefore, String request){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("task[priority]", "1"));
+		nameValuePairs.add(new BasicNameValuePair("task[phonenumber]", phoneNumber));
+		nameValuePairs.add(new BasicNameValuePair("task[openedby]", "mys-332999"));
+		nameValuePairs.add(new BasicNameValuePair("task[organizationnumber]", numberOrganization));
+		nameValuePairs.add(new BasicNameValuePair("task[email]", email));
+		nameValuePairs.add(new BasicNameValuePair("task[contacted_before]", contactedBefore+""));
+		nameValuePairs.add(new BasicNameValuePair("task[request]", request));
+		Object[] statusJson=server.makeRequestPost(Server.getUrlCreateTask(account),nameValuePairs);
+		return statusJson;
+	}
+	
 	
 	
 	
