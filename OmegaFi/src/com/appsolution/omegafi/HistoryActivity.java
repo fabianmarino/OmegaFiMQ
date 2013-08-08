@@ -6,8 +6,8 @@ import java.util.List;
 
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.HistoryItem;
-import com.appsolution.logic.Server;
 import com.appsolution.omegafi.R.drawable;
+import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

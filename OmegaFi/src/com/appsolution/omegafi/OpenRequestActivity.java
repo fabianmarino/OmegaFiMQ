@@ -10,7 +10,7 @@ import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowEditTextSubmit;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.content.Intent;
 import android.graphics.Color;

@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.appsolution.omegafi.OmegaFiActivity;
+import com.appsolution.services.Server;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;

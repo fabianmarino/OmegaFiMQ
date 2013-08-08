@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.appsolution.logic.Account;
+import com.appsolution.logic.AutoPayConfig;
+import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.SimpleScheduledPayment;
 
 import android.util.Log;
 

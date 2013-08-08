@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -68,6 +68,10 @@ public class Server {
 	public static final String PROFILE_PHONES=HOST+"/myomegafi/api/v1/user/phone_numbers";
 	public static final String PROFILE_EMAILS=HOST+"/myomegafi/api/v1/user/email_addresses";
 	public static final String PROFILE_ADDRESSES=HOST+"/myomegafi/api/v1/user/addresses";
+	public static final String TYPE_PHONES=HOST+"/myomegafi/api/v1/user/phone_numbers/types";
+	public static final String TYPE_EMAILS=HOST+"/myomegafi/api/v1/user/email_addresses/types";
+	public static final String TYPE_ADDRESSES=HOST+"/myomegafi/api/v1/user/addresses/types";
+	
 	public static final String PREFIXES_MALE=HOST+"/myomegafi/api/v1/prefixes/male";
 	public static final String PREFIXES_FEMALE=HOST+"/myomegafi/api/v1/prefixes/female";
 	public static final String PREFIXES_ALL=HOST+"/myomegafi/api/v1/prefixes/all";

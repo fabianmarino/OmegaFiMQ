@@ -4,7 +4,7 @@ import com.appsolution.layouts.LabelInfoVertical;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.MemberRooster;
 import com.appsolution.logic.OfficerRooster;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.content.Intent;
 import android.graphics.Color;

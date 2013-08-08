@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import com.appsolution.layouts.EventNewsContent;
 import com.appsolution.logic.CalendarEvent;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.net.Uri;
 import android.os.AsyncTask;

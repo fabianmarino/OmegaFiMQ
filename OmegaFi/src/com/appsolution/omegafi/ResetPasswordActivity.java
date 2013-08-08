@@ -3,7 +3,7 @@ package com.appsolution.omegafi;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.HeaderOmegaFi;
 import com.appsolution.layouts.RowQuestionEditText;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

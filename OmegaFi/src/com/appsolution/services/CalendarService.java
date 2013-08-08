@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ import org.json.JSONException;
 
 import android.content.Context;
 
+import com.appsolution.logic.CalendarEvent;
 import com.appsolution.omegafi.OmegaFiActivity;
 
 public class CalendarService extends ServerContext {

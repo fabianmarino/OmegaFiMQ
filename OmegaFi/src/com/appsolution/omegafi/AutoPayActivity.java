@@ -14,7 +14,7 @@ import com.appsolution.logic.Account;
 import com.appsolution.logic.AutoPayConfig;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

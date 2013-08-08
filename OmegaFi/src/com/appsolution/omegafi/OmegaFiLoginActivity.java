@@ -1,7 +1,7 @@
 package com.appsolution.omegafi;
 
 import com.appsolution.layouts.DialogContactAccount;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

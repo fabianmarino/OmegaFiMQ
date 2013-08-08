@@ -19,7 +19,7 @@ import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.Officer;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import android.app.Activity;

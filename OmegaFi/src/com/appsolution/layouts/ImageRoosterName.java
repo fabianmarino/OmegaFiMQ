@@ -2,10 +2,10 @@ package com.appsolution.layouts;
 
 import java.io.IOException;
 
-import com.appsolution.logic.Server;
 import com.appsolution.omegafi.MainActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
+import com.appsolution.services.Server;
 
 import android.content.Context;
 import android.graphics.Bitmap;

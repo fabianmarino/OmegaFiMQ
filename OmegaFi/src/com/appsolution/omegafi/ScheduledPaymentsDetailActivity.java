@@ -10,8 +10,8 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
-import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleScheduledPayment;
+import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

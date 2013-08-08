@@ -22,7 +22,7 @@ import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.SpinnerNameTopInfo;
 import com.appsolution.logic.CalendarEvent;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 public class ServerContext {
 

@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.util.ArrayList;
 import java.util.List;

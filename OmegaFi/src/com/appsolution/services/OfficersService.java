@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+import com.appsolution.logic.Officer;
 import com.appsolution.omegafi.OmegaFiActivity;
 
 public class OfficersService extends ServerContext {

@@ -19,7 +19,8 @@ import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.EmailContact;
 import com.appsolution.logic.PhoneContact;
 import com.appsolution.logic.Profile;
-import com.appsolution.logic.Server;
+import com.appsolution.logic.TypeFormContact;
+import com.appsolution.services.Server;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -78,13 +79,14 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private EditText editSuffix;
 	private Spinner graduationYear;
 	private RowToogleOmegaFi tooglePublish;
-	
-	private PhoneContact[] phones=new PhoneContact[2];
-	private EmailContact[] emails=new EmailContact[2];
-	private AddressContact[] addresses=new AddressContact[2];
+	private Profile profile;
 	
 	private static final int RESULT_LOAD_IMAGE=1;
-	private static final int CAMERA_REQUEST = 1888; 
+	private static final int CAMERA_REQUEST = 1888;
+	
+	private TypeFormContact[] typePhones=new TypeFormContact[2];
+	private TypeFormContact[] typeEmails=new TypeFormContact[2];
+	private TypeFormContact[] typeAddresses=new TypeFormContact[2];
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -359,7 +361,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 		AsyncTask< Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			
 			private int status=0;
-			private Profile profile=null;
+			private Profile prof=null;
 			private List<String> prefixes=null;
 			
 			@Override
@@ -371,39 +373,40 @@ public class MyProfileActivity extends OmegaFiActivity {
 			protected Boolean doInBackground(Void... params) {
 				Object[] statusProfile=Server.getServer().getHome().getProfile().getStatusProfile();
 				status=(Integer)statusProfile[0];
-				profile=(Profile)statusProfile[1];
-				prefixes=Server.getServer().getHome().getProfile().getPrefixesGender(profile.getGender());
+				prof=(Profile)statusProfile[1];
+				prefixes=Server.getServer().getHome().getProfile().getPrefixesGender(prof.getGender());
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(status==200){
-					userHeader.setNameUserProfile(profile.getFirstLastName());
-					userHeader.setSubTitleProfile(profile.getDateInitiatePretty());
+					MyProfileActivity.this.profile=this.prof;
+					userHeader.setNameUserProfile(prof.getFirstLastName());
+					userHeader.setSubTitleProfile(prof.getDateInitiatePretty());
 					
-					completePhones(profile.getPhones());
-					completeEmails(profile.getEmails());
-					completeAddresses(profile.getAddresses());
+					completePhones(prof.getPhones());
+					completeEmails(prof.getEmails());
+					completeAddresses(prof.getAddresses());
 					
-					editFirstName.setText(profile.getFirstName());
-					editMiddleName.setText(profile.getMiddleName());
-					editLastName.setText(profile.getLastName());
-					editInformalFirst.setText(profile.getInformalFirstName());
-					editParentsName.setText(profile.getParentsName());
-					editTravelVisa.setText(profile.getTravelVisaNumber());
-					if(profile.getDateCollegeEntryPretty()!=null){
-						if(!profile.getDateCollegeEntryPretty().isEmpty())
-							editCollegeEntry.setText(profile.getDateCollegeEntryPretty());
+					editFirstName.setText(prof.getFirstName());
+					editMiddleName.setText(prof.getMiddleName());
+					editLastName.setText(prof.getLastName());
+					editInformalFirst.setText(prof.getInformalFirstName());
+					editParentsName.setText(prof.getParentsName());
+					editTravelVisa.setText(prof.getTravelVisaNumber());
+					if(prof.getDateCollegeEntryPretty()!=null){
+						if(!prof.getDateCollegeEntryPretty().isEmpty())
+							editCollegeEntry.setText(prof.getDateCollegeEntryPretty());
 					}
 					else{
 						editCollegeEntry.setText("College Entry Date");
 						editCollegeEntry.setTextColor(Color.GRAY);
 					}
-					completeSpinnerGraduationYear(profile.getGraduationYear());
-					tooglePublish.setActivateOn(profile.isPublishProfile());
-					editSuffix.setText(profile.getSuffix());
-					userHeader.chargeImageFromUrlAsync(profile.getSource(), profile.getUrlPhoto());
+					completeSpinnerGraduationYear(prof.getGraduationYear());
+					tooglePublish.setActivateOn(prof.isPublishProfile());
+					editSuffix.setText(prof.getSuffix());
+					userHeader.chargeImageFromUrlAsync(prof.getSource(), prof.getUrlPhoto());
 					ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MyProfileActivity.this,
 							R.layout.spinner_omegafi, prefixes);
 							dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -419,7 +422,6 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	private void completePhones(PhoneContact[] phones){
-		this.phones=phones;
 		if(phones[0]!=null)
 			editMainNumber.setText(phones[0].getNumber());
 		if(phones[1]!=null)
@@ -427,7 +429,6 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	private void completeEmails(EmailContact[] emails){
-		this.emails=emails;
 		if(emails[0]!=null)
 			editMainEmail.setText(emails[0].getEmail());
 		if(emails[1]!=null)
@@ -435,7 +436,6 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	private void completeAddresses(AddressContact[] addresses){
-		this.addresses=addresses;
 		if(addresses[0]!=null){
 			editTopHomeLine1.setValueInfo(addresses[0].getLine1());
 			editTopHomeLine2.setValueInfo(addresses[0].getLine2());
@@ -480,6 +480,11 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... arg0) {
+				Object[] statusTypePhones=Server.getServer().getHome().getProfile().getTypePhones();
+				Object[] statusTypeEmails=Server.getServer().getHome().getProfile().getTypeEmails();
+				Object[] statusTypeAddresses=Server.getServer().getHome().getProfile().getTypeAddresses();
+				completeTypeInformation((ArrayList<TypeFormContact>)statusTypePhones[1], 
+						(ArrayList<TypeFormContact>)statusTypeEmails[1], (ArrayList<TypeFormContact>)statusTypeAddresses[1]);
 				int graduationyear=(graduationYear.getSelectedItemPosition()==0) ? 0 :Integer.parseInt(graduationYear.getSelectedItem().toString());
 				String dateCollege=editCollegeEntry.getText().toString().contains("/") ? 
 						CalendarEvent.getFormatDate(5, editCollegeEntry.getText().toString(), "MM/dd/yyyy") : null ;
@@ -490,6 +495,11 @@ public class MyProfileActivity extends OmegaFiActivity {
 								editParentsName.getText().toString(), graduationyear, editTravelVisa.getText().toString(), dateCollege);
 				status=(Integer)statusJson[0];
 				errors= statusJson[1]!=null ? statusJson[1].toString() : null;
+				if(status==200||status==201){
+					updatePhoneNumbers();
+					updateEmails();
+					updateAdresses();
+				}
 				return true;
 			}
 			
@@ -501,12 +511,162 @@ public class MyProfileActivity extends OmegaFiActivity {
 				else{
 					OmegaFiActivity.showAlertMessage(status+" "+errors, MyProfileActivity.this);
 				}
+				finish();
 				stopProgressDialog();
 			}
 		};
 		task.execute();
 	}
 	
+	private void completeTypeInformation(ArrayList<TypeFormContact> tPhones, ArrayList<TypeFormContact> tEmails,
+			ArrayList<TypeFormContact> tAddresses){
+		completeTypePhones(tPhones);
+		completeTypemails(tEmails);
+		completeTypeAddresses(tAddresses);
+	}
+	
+	private void completeTypePhones(ArrayList<TypeFormContact> types){
+		if(types!=null){
+			for (int i = 0; i < types.size()&&i<2; i++) {
+				typePhones[i]=types.get(i);
+			}
+		}
+	}
+	
+	private void completeTypemails(ArrayList<TypeFormContact> types){
+		if(types!=null){
+			for (int i = 0; i < types.size()&&i<2; i++) {
+				typeEmails[i]=types.get(i);
+			}
+		}
+	}
+	
+	private void completeTypeAddresses(ArrayList<TypeFormContact> types){
+		if(types!=null){
+			for (int i = 0; i < types.size()&&i<2; i++) {
+				typeAddresses[i]=types.get(i);
+			}
+		}
+	}
+	
+	private void updatePhoneNumbers(){
+		if(profile.getPhones()[0]!=null){
+			if(editMainNumber.getText().toString().isEmpty()){
+				Server.getServer().getHome().getProfile().deletePhoneNumber(profile.getPhones()[0].getId());
+			}
+			else{
+				Server.getServer().getHome().getProfile().updatePhoneNumber
+				(profile.getPhones()[0].getId(), editMainNumber.getText().toString(), true);
+			}
+		}
+		else{
+			if(!editMainNumber.getText().toString().isEmpty()){
+				if(typePhones[0]!=null)
+					Server.getServer().getHome().getProfile().createPhoneNumber(typePhones[0].getId(),
+							editMainNumber.getText().toString(), true);
+			}
+		}
+		
+		if(profile.getPhones()[1]!=null){
+			if(editSecondaryNumber.getText().toString().isEmpty()){
+				Server.getServer().getHome().getProfile().deletePhoneNumber(profile.getPhones()[1].getId());
+			}
+			else{
+				Server.getServer().getHome().getProfile().updatePhoneNumber
+				(profile.getPhones()[1].getId(), editSecondaryNumber.getText().toString(), false);
+			}
+		}
+		else{
+			if(!editSecondaryNumber.getText().toString().isEmpty()){
+				if(typePhones[1]!=null)
+					Server.getServer().getHome().getProfile().createPhoneNumber(typePhones[1].getId(),
+							editSecondaryNumber.getText().toString(), false);
+			}
+		}
+		
+	}
+	
+	private void updateEmails(){
+		if(profile.getEmails()[0]!=null){
+			if(editMainEmail.getText().toString().isEmpty()){
+				Server.getServer().getHome().getProfile().deleteEmail(profile.getEmails()[0].getId());
+			}
+			else{
+				Server.getServer().getHome().getProfile().updateEmailAddress
+				(profile.getEmails()[0].getId(), editMainEmail.getText().toString(), true);
+			}
+		}
+		else{
+			if(!editMainEmail.getText().toString().isEmpty()){
+				if(typeEmails[0]!=null)
+					Server.getServer().getHome().getProfile().createEmail(typeEmails[0].getId(),
+							editMainEmail.getText().toString(), true);
+			}
+		}
+		
+		if(profile.getEmails()[1]!=null){
+			if(editSecondaryEmail.getText().toString().isEmpty()){
+				Server.getServer().getHome().getProfile().deleteEmail(profile.getEmails()[1].getId());
+			}
+			else{
+				Server.getServer().getHome().getProfile().updateEmailAddress
+				(profile.getEmails()[1].getId(), editSecondaryEmail.getText().toString(), false);
+			}
+		}
+		else{
+			if(!editSecondaryEmail.getText().toString().isEmpty()){
+				if(typeEmails[1]!=null)
+					Server.getServer().getHome().getProfile().createEmail(typeEmails[1].getId(),
+							editSecondaryEmail.getText().toString(), false);
+			}
+		}
+	}
+	
+	private void updateAdresses(){
+		if(profile.getAddresses()[0]!=null){
+			if(editTopHomeLine1.getValueInfo().isEmpty()&&editTopHomeLine2.getValueInfo().isEmpty()){
+				Server.getServer().getHome().getProfile().deleteAddress(profile.getAddresses()[0].getId());
+			}
+			else{
+				if(typeAddresses[0]!=null){
+					Server.getServer().getHome().getProfile().updateAddress
+					(profile.getAddresses()[0].getId(), typeAddresses[0].getId(), editTopHomeLine1.getValueInfo(), editTopHomeLine2.getValueInfo(), 
+							true);
+				}
+			}	
+		}
+		else{
+			if(!editTopHomeLine1.getValueInfo().isEmpty()||!editTopHomeLine2.getValueInfo().isEmpty()){
+				if(typeAddresses[0]!=null){
+					Server.getServer().getHome().getProfile().createAddress
+					(typeAddresses[0].getId(), editTopHomeLine1.getValueInfo(), editTopHomeLine2.getValueInfo(), 
+							true);
+				}
+			}
+		}
+		//-----
+		if(profile.getAddresses()[1]!=null){
+			if(editTopSchoolLine1.getValueInfo().isEmpty()&&editTopSchoolLine2.getValueInfo().isEmpty()){
+				Server.getServer().getHome().getProfile().deleteAddress(profile.getAddresses()[1].getId());
+			}
+			else{
+				if(typeAddresses[1]!=null){
+					Server.getServer().getHome().getProfile().updateAddress
+					(profile.getAddresses()[1].getId(), typeAddresses[1].getId(), editTopSchoolLine1.getValueInfo(), editTopSchoolLine2.getValueInfo(), 
+							true);
+				}
+			}	
+		}
+		else{
+			if(!editTopSchoolLine1.getValueInfo().isEmpty()||!editTopSchoolLine2.getValueInfo().isEmpty()){
+				if(typeAddresses[1]!=null){
+					Server.getServer().getHome().getProfile().createAddress
+					(typeAddresses[1].getId(), editTopSchoolLine1.getValueInfo(), editTopSchoolLine2.getValueInfo(), 
+							true);
+				}
+			}
+		}		
+	}
 	
 	
 }

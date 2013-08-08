@@ -11,8 +11,8 @@ import java.util.List;
 import org.apache.http.cookie.Cookie;
 
 import com.appsolution.layouts.RowInformation;
-import com.appsolution.logic.Server;
 import com.appsolution.logic.Statement;
+import com.appsolution.services.Server;
 
 import android.app.DownloadManager;
 import android.app.DownloadManager.Query;

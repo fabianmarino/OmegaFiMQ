@@ -12,7 +12,7 @@ import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.ContactAccount;
 import com.appsolution.logic.PaymentMethod;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.app.Activity;
 import android.content.Intent;

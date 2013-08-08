@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowEditTextSubmit;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.content.Intent;
 import android.os.AsyncTask;

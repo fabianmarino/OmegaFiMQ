@@ -8,8 +8,8 @@ import com.appsolution.layouts.CycleCharge;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.BillingCycle;
 import com.appsolution.logic.ScheduledOfCharges;
-import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleScheduledPayment;
+import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

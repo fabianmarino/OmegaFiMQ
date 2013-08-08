@@ -1,10 +1,16 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.appsolution.logic.HistoryItem;
+import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.ScheduledOfCharges;
+import com.appsolution.logic.SimpleAnnouncement;
+import com.appsolution.logic.Statement;
 
 public class HomeServices extends ServerContext{
 

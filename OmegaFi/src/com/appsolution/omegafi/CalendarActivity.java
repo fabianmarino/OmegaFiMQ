@@ -7,7 +7,7 @@ import com.appsolution.layouts.EventNewsContent;
 import com.appsolution.layouts.RowInfoDescription;
 import com.appsolution.logic.CalendarDay;
 import com.appsolution.logic.CalendarEvent;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 
 import android.net.Uri;
 import android.os.AsyncTask;

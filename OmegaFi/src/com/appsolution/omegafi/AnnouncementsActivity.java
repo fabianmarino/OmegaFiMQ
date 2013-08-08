@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import com.appsolution.layouts.ContentAnnouncement;
 import com.appsolution.layouts.EventNewsContent;
 import com.appsolution.layouts.RowInformation;
-import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleAnnouncement;
 import com.appsolution.logic.SimpleScheduledPayment;
+import com.appsolution.services.Server;
 
 import android.app.Activity;
 import android.content.Intent;

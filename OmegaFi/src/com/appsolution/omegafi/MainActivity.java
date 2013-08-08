@@ -1,7 +1,7 @@
 package com.appsolution.omegafi;
 
-import com.appsolution.logic.Server;
 import com.appsolution.omegafi.R;
+import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

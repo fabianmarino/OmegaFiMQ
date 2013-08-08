@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.List;
 
 import com.actionbarsherlock.widget.SearchView;
-import com.appsolution.logic.ChaptersService;
-import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleMember;
+import com.appsolution.services.ChaptersService;
+import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

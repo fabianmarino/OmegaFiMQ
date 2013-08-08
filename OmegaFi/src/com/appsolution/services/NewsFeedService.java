@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import org.xml.sax.SAXException;
+
+import com.appsolution.logic.CalendarEvent;
 
 import android.util.Log;
 

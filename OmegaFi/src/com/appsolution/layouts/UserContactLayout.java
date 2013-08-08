@@ -1,8 +1,8 @@
 package com.appsolution.layouts;
 
-import com.appsolution.logic.Server;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
+import com.appsolution.services.Server;
 
 import android.content.Context;
 import android.content.res.TypedArray;

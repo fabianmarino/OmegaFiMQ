@@ -1,4 +1,4 @@
-package com.appsolution.logic;
+package com.appsolution.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,11 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.appsolution.logic.Chapter;
+import com.appsolution.logic.MemberRooster;
+import com.appsolution.logic.OfficerRooster;
+import com.appsolution.logic.SimpleMember;
 
 import android.util.Log;
 

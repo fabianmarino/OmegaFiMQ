@@ -11,7 +11,7 @@ import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.ItemMenuSliding;
 import com.appsolution.layouts.LayoutActionBar;
 import com.appsolution.layouts.UserContactLayout;
-import com.appsolution.logic.Server;
+import com.appsolution.services.Server;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 

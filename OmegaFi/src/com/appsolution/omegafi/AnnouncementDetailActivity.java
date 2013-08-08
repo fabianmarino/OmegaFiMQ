@@ -1,8 +1,8 @@
 package com.appsolution.omegafi;
 
 import com.appsolution.layouts.ContentAnnouncement;
-import com.appsolution.logic.Server;
 import com.appsolution.logic.SimpleAnnouncement;
+import com.appsolution.services.Server;
 
 import android.os.Bundle;
 import android.text.Html;
