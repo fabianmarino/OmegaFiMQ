@@ -158,6 +158,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 						getStatusMemberRooster(idChapter, idMember);
 				status=(Integer)statusMember[0];
 				member=(MemberRooster)statusMember[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -193,6 +194,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 						getStatusOfficerRooster(idChapter, idMember);
 				status=(Integer)statusMember[0];
 				member=(OfficerRooster)statusMember[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -241,7 +243,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		urlFacebook=member.getProfFacebook();
 		urlLinkedIn=member.getProfLinked();
 		urlTwitter=member.getProfTwitter();
-		Server.chargeBitmapInImageView(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
+		Server.chargeBitmapInImageViewAsync(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
 	}
 	
 	

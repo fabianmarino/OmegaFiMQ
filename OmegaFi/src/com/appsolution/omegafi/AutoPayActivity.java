@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.appsolution.layouts.DialogInformationOF;
@@ -82,6 +83,10 @@ public class AutoPayActivity extends OmegaFiActivity {
 			}
 		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
 		date.getDatePicker().setCalendarViewShown(false);
+		Calendar calToday=Calendar.getInstance();
+		calToday.set(calToday.get(Calendar.YEAR), calToday.get(Calendar.MONTH), calToday.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+		calToday.add(Calendar.DAY_OF_MONTH, 1);
+		date.getDatePicker().setMinDate(calToday.getTimeInMillis());
 		date.show();
 	}
 	
@@ -153,7 +158,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			
 			private int status=0;
-			private String message=null;
+			private JSONObject message=null;
 			
 			@Override
 			protected void onPreExecute() {
@@ -165,7 +170,8 @@ public class AutoPayActivity extends OmegaFiActivity {
 				Object[] statusJson=Server.getServer().getHome().getAccounts().createAutoPay(idAccount, configAutoPay);
 				status=(Integer)statusJson[0];
 				if(statusJson[1]!=null)
-					message=statusJson[1].toString();
+					message=(JSONObject)statusJson[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -175,7 +181,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 					showAutoPayActive();
 				}
 				else if(status==422){
-					OmegaFiActivity.showAlertMessage(message, AutoPayActivity.this);
+					showErrorsRequest(message);
 				}
 				else{
 					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, getResources().getString(R.string.object_not_found),false);
@@ -190,7 +196,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			
 			private int status=0;
-			private String message=null;
+			private JSONObject jsonErrors=null;
 			
 			@Override
 			protected void onPreExecute() {
@@ -202,7 +208,8 @@ public class AutoPayActivity extends OmegaFiActivity {
 				Object[] statusJson=Server.getServer().getHome().getAccounts().updateAutoPay(idAccount, configAutoPay);
 				status=(Integer)statusJson[0];
 				if(statusJson[1]!=null)
-					message=statusJson[1].toString();
+					jsonErrors=(JSONObject)statusJson[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -212,7 +219,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 					showAutoPayUpdate();
 				}
 				else if(status==422){
-					OmegaFiActivity.showAlertMessage(message, AutoPayActivity.this);
+					showErrorsRequest(jsonErrors);
 				}
 				else{
 					OmegaFiActivity.showErrorConection(AutoPayActivity.this, status, getResources().getString(R.string.object_not_found),false);
@@ -309,6 +316,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 				else{
 					configAutoPay.clearInformation();
 				}
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -399,6 +407,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			@Override
 			protected Boolean doInBackground(Void... params) {
 				status=Server.getServer().getHome().getAccounts().removeAutoPaySettings(idAccount, configAutoPay.getId());
+				
 				return true;
 			}
 			
@@ -456,6 +465,18 @@ public class AutoPayActivity extends OmegaFiActivity {
 		viewAccount.putExtra("id", idAccount);
 		startActivityForResult(viewAccount, OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
 		super.onBackPressed();
+	}
+	
+	private void showErrorsRequest(JSONObject json){
+		JSONObject object=null;
+		try {
+			object=json.getJSONObject("validation_errors");
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		OmegaFiActivity.showAlertMessage(Server.getFirstError(object), AutoPayActivity.this);
+		
 	}
 	
 

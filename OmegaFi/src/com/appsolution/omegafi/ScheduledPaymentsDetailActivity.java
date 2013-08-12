@@ -1,6 +1,7 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
@@ -106,10 +107,14 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			@Override
 			public void onDateSet(DatePicker view, int year, int monthOfYear,
 					int dayOfMonth) {
-				rowPaymentDate.setValueInfo(dayOfMonth+"/"+(monthOfYear+1)+"/"+year);	
+				rowPaymentDate.setValueInfo((monthOfYear+1)+"/"+dayOfMonth+"/"+year);	
 			}
-		}, dayMonthYear[2], dayMonthYear[1]-1, dayMonthYear[0]);
+		}, dayMonthYear[2], dayMonthYear[0]-1,dayMonthYear[1]);
 		date.getDatePicker().setCalendarViewShown(false);
+		Calendar calToday=Calendar.getInstance();
+		calToday.set(calToday.get(Calendar.YEAR), calToday.get(Calendar.MONTH), calToday.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+		calToday.add(Calendar.DAY_OF_MONTH, 1);
+		date.getDatePicker().setMinDate(calToday.getTimeInMillis());
 		date.show();
 	}
 	
@@ -303,6 +308,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 				Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(idAccount);
 				status=(Integer)statusMethods[0];
 				methods=(ArrayList<PaymentMethod>)statusMethods[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

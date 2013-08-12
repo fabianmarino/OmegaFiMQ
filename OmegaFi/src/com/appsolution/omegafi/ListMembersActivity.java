@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.actionbarsherlock.widget.SearchView;
+import com.appsolution.layouts.AlphabeticAdapter;
 import com.appsolution.logic.SimpleMember;
 import com.appsolution.services.ChaptersService;
 import com.appsolution.services.Server;
@@ -163,6 +164,7 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 					Object[] statusMembers=Server.getServer().getHome().getChapters().getListSimpleMembers(idChapter);
 					status=(Integer)statusMembers[0];
 					members=(ArrayList<SimpleMember>)statusMembers[1];
+					Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 					return true;
 				}
 				

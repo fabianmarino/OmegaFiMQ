@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 import com.appsolution.logic.HistoryItem;
 import com.appsolution.logic.PaymentMethod;
 import com.appsolution.logic.ScheduledOfCharges;
@@ -190,6 +192,10 @@ public class HomeServices extends ServerContext{
 		this.announcementSelected = announcementSelected;
 	}
 	
-	
-	
+	public int updateAnnouncementsView(){
+		Object[] statusJson=server.makeRequestGet(Server.ANNOUNCEMENTS_VIEW_UPDATE);
+		int updated=(Integer)statusJson[0];
+		Log.d("actualizando update view", updated+"");
+		return updated;
+	}
 }

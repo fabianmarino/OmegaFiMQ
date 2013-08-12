@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class AccountNotification extends LinearLayout {
 	
-//	private LinearLayout contentNotification;
 	private TextView textNotification;
 
 	public AccountNotification(Context context) {
@@ -26,7 +25,6 @@ public class AccountNotification extends LinearLayout {
 	private void initialize() {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.account_notification, this, true);
-//		contentNotification=(LinearLayout)findViewById(R.id.contentNotification);
 		textNotification=(TextView)findViewById(R.id.textNotificationAccount);
 	}
 	

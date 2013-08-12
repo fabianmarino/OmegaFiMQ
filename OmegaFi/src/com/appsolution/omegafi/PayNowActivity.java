@@ -71,14 +71,10 @@ public class PayNowActivity extends OmegaFiActivity {
 			}
 		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
 		date.getDatePicker().setCalendarViewShown(false);
+		Calendar cal = Calendar.getInstance();
+		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+		date.getDatePicker().setMinDate(cal.getTimeInMillis());
 		date.show();
-	}
-	
-	public void onBackToHome(View button){
-		Intent intent=new Intent(this, HomeActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
-		finish();
 	}
 	
 	public void selectPayMethod(View view){
@@ -220,7 +216,7 @@ public class PayNowActivity extends OmegaFiActivity {
 	public void addNewPaymentMethod(View view){
 		Intent activityAddNewPayment=new Intent(this, AddNewPaymentActivity.class);
 		activityAddNewPayment.putExtra("id", idAccount);
-		startActivity(activityAddNewPayment);
+		startActivityForResult(activityAddNewPayment,OmegaFiActivity.ACTIVITY_ADD_NEW_PAYMENT);
 	}
 	
 	
@@ -261,6 +257,7 @@ public class PayNowActivity extends OmegaFiActivity {
 				Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(idAccount);
 				this.statusMethods=(Integer)statusMethods[0];
 				methodsPayment=(ArrayList<PaymentMethod>)statusMethods[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

@@ -2,13 +2,17 @@ package com.appsolution.services;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,6 +30,9 @@ import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.cookie.BasicClientCookie;
@@ -47,6 +54,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -65,6 +73,7 @@ public class Server {
 	public static final String CHAPTERS_SERVICE=HOST+"/myomegafi/api/v1/chapters";
 	
 	public static final String PROFILE_SERVICE=HOST+"/myomegafi/api/v1/user/profile";
+	public static final String PROFILE_IMAGE=HOST+"/myomegafi/api/v1/user/pictures";
 	public static final String PROFILE_PHONES=HOST+"/myomegafi/api/v1/user/phone_numbers";
 	public static final String PROFILE_EMAILS=HOST+"/myomegafi/api/v1/user/email_addresses";
 	public static final String PROFILE_ADDRESSES=HOST+"/myomegafi/api/v1/user/addresses";
@@ -84,6 +93,7 @@ public class Server {
 	public static final String CALENDAR_SERVICE=HOST+"/myomegafi/api/v1/calendar";
 	public static final String CHANGE_PASSWORD_SERVICE=HOST+"/myomegafi/api/v1/forgottenpasswords/changepassword";
 	public static final String ANNOUNCEMENTS_SERVICE=HOST+"/myomegafi/api/v1/announcements";
+	public static final String ANNOUNCEMENTS_VIEW_UPDATE=HOST+"/myomegafi/api/v1/announcements/updateviewattribute";
 	public static final String NOTIFICATIONS_SERVICE=HOST+"/myomegafi/api/v1/user/notifications";
 	
 	public static int TIME_OUT=20000;
@@ -118,7 +128,6 @@ public class Server {
 		statusContent[0]=0;
 		JSONObject jsonResponse = null;
 		HttpPost post=new HttpPost(url);
-//		post.addHeader("Content-Type", "text/plain");
 		post.addHeader("Accept", "*/*");
 		HttpConnectionParams.setConnectionTimeout(post.getParams(), TIME_OUT);
 		HttpConnectionParams.setSoTimeout(post.getParams(), TIME_OUT);
@@ -146,7 +155,6 @@ public class Server {
 		statusContent[0]=0;
 		JSONObject jsonResponse = null;
 		HttpPut put=new HttpPut(url);
-//		post.addHeader("Content-Type", "text/plain");
 		put.addHeader("Accept", "*/*");
 		HttpConnectionParams.setConnectionTimeout(put.getParams(), TIME_OUT+1000);
 		HttpConnectionParams.setSoTimeout(put.getParams(), TIME_OUT+1000);
@@ -265,7 +273,6 @@ public class Server {
 	        while ((line = rd.readLine()) != null) {
 	        	todo.append(line);
 	        }
-//	        Log.d("response", todo.toString());
 	        jsonResponse=new JSONObject(todo.toString());
 	        
 	        rd.close();
@@ -543,7 +550,7 @@ public class Server {
 		return pathFile;
     }
 	
-	public static void chargeBitmapInImageView(final String source,final String url, final ImageView image){
+	public static void chargeBitmapInImageViewAsync(final String source,final String url, final ImageView image){
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			Bitmap imagePhoto=null;
 			@Override
@@ -573,9 +580,27 @@ public class Server {
 		task.execute();
 	}
 	
+	public static Bitmap chargeBitmapInImageView(final String source,final String url){
+		Bitmap imagePhoto=null;
+				if(source!=null){
+					if(source.equalsIgnoreCase("omegafi")){
+						try {
+							imagePhoto=Server.getServer().downloadBitmap(Server.HOST+url);
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					else{
+						imagePhoto=OmegaFiActivity.loadImageFromURL(url);
+					}
+				}	
+		return imagePhoto;
+	}
+	
+	
+	
 	protected void setupCookies(){
 		List<Cookie> cookies = getListCookies();
-		logCookies();
 		if (!cookies.isEmpty())
 		{
 		    CookieManager cookieManager = CookieManager.getInstance();
@@ -682,8 +707,6 @@ public class Server {
 				}
 			}
 			}
-		Log.d("despues cokies", ":P");
-		logCookies();
 	}
 	
 	public int chargeHome(Context context){
@@ -712,6 +735,55 @@ public class Server {
 		this.emptyInformation = emptyInformation;
 	}
 	
+	public Object[] uploadImageProfile(String idJson,Bitmap bm){
+		Object[] statusJson=new Object[2];
+		int status=0;
+	        try {
+	            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	            bm.compress(CompressFormat.JPEG, 80, bos);
+	            byte[] data = bos.toByteArray();
+	            HttpPost postRequest = new HttpPost(Server.PROFILE_IMAGE);
+	            ByteArrayBody bab = new ByteArrayBody(data, Calendar.getInstance().getTimeInMillis()+".jpg");
+	            // File file= new File("/mnt/sdcard/forest.png");
+	            // FileBody bin = new FileBody(file);
+	            MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+	            reqEntity.addPart(idJson, bab);
+	            postRequest.setEntity(reqEntity);
+	            HttpResponse response = clientRequest.execute(postRequest,contextHttp);
+	            status=response.getStatusLine().getStatusCode();
+	            statusJson[0]=status;
+	            JSONObject object=fromResponseToJSON(response);
+	            statusJson[1]=object;
+	            } catch (Exception e) {
+	            // handle exception here
+	            Log.e(e.getClass().getName(), e.getMessage());
+	        }
+	        return statusJson;
+	    }
 	
+	public static ArrayList<String> getErrorsJSON(JSONObject json){
+		ArrayList<String> errorsString=new ArrayList<String>();
+		Iterator<String> iter = json.keys();
+	    while (iter.hasNext()) {
+	        String key = iter.next();
+	        try {
+	            JSONArray arrayError= json.getJSONArray(key);
+	            for (int i = 0; i < arrayError.length(); i++) {
+					errorsString.add(arrayError.getString(i));
+				}
+	        } catch (JSONException e) {
+	            // Something went wrong!
+	        }
+	    }
+	    return errorsString;
+	}
+	
+	public static String getFirstError(JSONObject json){
+		String error=null;
+		ArrayList<String> errors=Server.getErrorsJSON(json);
+		if(!errors.isEmpty())
+			error=errors.get(0);
+		return error;
+	}
 	
 }

@@ -216,57 +216,6 @@ public class StatementsActivity extends OmegaFiActivity {
         startActivity(i);
     }
     
-    private void dowloadFileAsyncTask(final String url,final String nameFIle){
-    	ProgressDialog dialog=new ProgressDialog(this);
-    	dialog.setTitle("Downloading file...");
-    	dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-    	dialog.setIndeterminate(false);
-    	dialog.setMax(0);
-    	try {
-    		Server.getServer().downloadFileAsync(url, nameFIle, dialog,StatementsActivity.this);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-//    	AsyncTask<Void, Integer, Boolean> downloader=new AsyncTask<Void, Integer, Boolean>() {
-//			
-//    		String path=null;
-//    		
-//    		@Override
-//    		protected void onPreExecute() {
-//    			startProgressDialog("Downloading", "Downloading pdf statement...");
-//    		}
-//    		
-//			@Override
-//			protected Boolean doInBackground(Void... params) {
-//				try {
-//					path=OmegaFiActivity.servicesOmegaFi.downloadFile(url, nameFIle);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//				return true;
-//			}
-//			
-    	
-//			@Override
-//			protected void onPostExecute(Boolean result) {
-//				stopProgressDialog();
-//				Log.d("path", path);
-//				if(path!=null){
-//					Intent intent = new Intent(Intent.ACTION_VIEW);
-//			        intent.setDataAndType(
-//			                Uri.parse(path),
-//			                "application/pdf");
-//
-//			        startActivity(intent);
-//				}
-//			}
-//		};
-//		downloader.execute();
-    }
-    
     private class StatementArrayAdapter extends ArrayAdapter<String> {
 
         HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();

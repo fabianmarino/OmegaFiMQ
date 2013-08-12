@@ -51,51 +51,51 @@
           android:orientation="vertical">
       <include layout="@layout/line_jagged"/>
       <LinearLayout
-	 android:id="@+id/check_forgot"
-	 android:layout_width="fill_parent"
-	 android:layout_height="wrap_content"
-	 android:orientation="horizontal"
-	 android:weightSum="2"
-	 >
-	<LinearLayout android:layout_width="0dp"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:paddingTop="@dimen/padding_12dp"
-	 	android:paddingBottom="@dimen/padding_10dp"
-	    android:gravity="center"
-	    android:layout_weight="1">
-	    <CheckBox
-	        android:id="@+id/check_save"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/save_username"
-	        android:layout_marginTop="-3dp"
-	        android:textColor="@android:color/white"
-	        android:textSize="@dimen/text_12_notification"
-	         />
-	</LinearLayout>
-	<View android:layout_width="1dp"
-	    android:layout_height="fill_parent"
-	    android:background="@color/gray_font_row_info"/>
-	<LinearLayout android:layout_width="0dp"
-	    android:layout_height="wrap_content"
-	    android:orientation="vertical"
-	    android:paddingTop="@dimen/padding_12dp"
-	 	android:paddingBottom="@dimen/padding_10dp"
-	    android:gravity="center"
-	    android:layout_weight="1">
-	    <TextView
-	        android:id="@+id/text_forgot"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	   		android:clickable="true"
-	        android:textColor="@android:color/white"
-	        android:onClick="activityForgotLogin"
-	        android:text="@string/forgot_user"
-	        android:textSize="@dimen/text_12_notification"
-	        android:layout_marginTop="5dp"
-	    />
-	</LinearLayout>
+		 android:id="@+id/check_forgot"
+		 android:layout_width="fill_parent"
+		 android:layout_height="wrap_content"
+		 android:gravity="center_vertical"
+		 android:orientation="horizontal"
+		 android:weightSum="2"
+	 	>
+			<LinearLayout android:layout_width="0dp"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:paddingTop="@dimen/padding_12dp"
+			 	android:paddingBottom="@dimen/padding_10dp"
+			    android:gravity="center"
+			    android:layout_weight="1">
+			    <CheckBox
+			        android:id="@+id/check_save"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/save_username"
+			        android:textColor="@android:color/white"
+			        android:textSize="@dimen/text_12_notification"
+			         />
+			</LinearLayout>
+			<View android:layout_width="1dp"
+			    android:layout_height="fill_parent"
+			    android:background="@color/gray_font_row_info"/>
+			<LinearLayout android:layout_width="0dp"
+			    android:layout_height="wrap_content"
+			    android:orientation="vertical"
+			    android:paddingTop="@dimen/padding_12dp"
+			 	android:paddingBottom="@dimen/padding_10dp"
+			    android:gravity="center"
+			    android:layout_weight="1">
+			    <TextView
+			        android:id="@+id/text_forgot"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_gravity="center"
+			   		android:clickable="true"
+			        android:textColor="@android:color/white"
+			        android:onClick="activityForgotLogin"
+			        android:text="@string/forgot_user"
+			        android:textSize="@dimen/text_12_notification"
+			    />
+			</LinearLayout>
 </LinearLayout>
 </LinearLayout>
 </LinearLayout>

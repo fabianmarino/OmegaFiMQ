@@ -41,13 +41,13 @@
             android:padding="@dimen/padding_10dp"
             android:layout_marginTop="@dimen/padding_5dp"
             android:orientation="vertical">
-            <TableLayout android:layout_width="fill_parent"
+            <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/gray_table_row"
+                android:orientation="horizontal"
+                android:weightSum="3"
                 >
-                <TableRow android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3">
+                
                     <com.appsolution.layouts.IconLabelVertical
                         android:id="@+id/phoneIconMember"
                         android:layout_width="0dp"
@@ -81,11 +81,10 @@
                         secom:src_icon_label_vertical="@drawable/icon_address_white"
                         secom:text_label_vertical="Address"
                          />
-                </TableRow>
-            </TableLayout>
+            </LinearLayout>
             <View android:layout_width="fill_parent"
-                android:layout_height="2px"
-                android:background="@drawable/shadow"/>
+			      android:layout_height="@dimen/height_shadow_2dp"
+			      android:background="@drawable/shadow_line"/>
             <LinearLayout 
                 	android:layout_width="fill_parent"
                     android:layout_height="@dimen/height_arrow_up"
@@ -155,7 +154,7 @@
                         android:layout_marginTop="@dimen/padding_6dp"
                         secom:text_size_name_information="@dimen/text_10sp"
                         secom:background_row_info="@drawable/white_input"
-                        secom:name_information="SECUNDARY"
+                        secom:name_information="SEC0NDARY"
                         secom:value_information="" />
                 </LinearLayout>
                 <LinearLayout
@@ -180,7 +179,7 @@
                         android:layout_marginTop="@dimen/padding_6dp"
                         secom:text_size_name_information="@dimen/text_10sp"
                         secom:background_row_info="@drawable/white_input"
-                        secom:name_information="SECUNDARY"
+                        secom:name_information="SECONDARY"
                         secom:value_information="" />
                 </LinearLayout>
                 <LinearLayout
@@ -208,7 +207,7 @@
                         android:layout_marginTop="@dimen/padding_6dp"
                         secom:text_size_name_information="@dimen/text_10sp"
                         secom:background_row_info="@drawable/white_input"
-                        secom:name_information="SECUNDARY"
+                        secom:name_information="SECONDARY"
                         secom:value_information=""
                          />
                     </LinearLayout>
@@ -216,12 +215,11 @@
                 <View android:layout_width="fill_parent"
                         android:layout_height="1dp"
                         android:background="@color/gray_table_row"/> 
-                <TableLayout android:layout_width="fill_parent"
+                <LinearLayout android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
-	                android:background="@android:color/white">
-                <TableRow android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="3">
+	                android:background="@android:color/white"
+	                android:weightSum="3"
+	                android:orientation="horizontal">
                     <LinearLayout android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:paddingTop="@dimen/padding_10dp"
@@ -267,8 +265,7 @@
                             android:minWidth="@dimen/width_image_label"
                             android:src="@drawable/icon_twitter"/>
                     </LinearLayout>
-                </TableRow>
-            	</TableLayout>
+            	</LinearLayout>
             </LinearLayout>
             <include layout="@layout/line_jagged"/>
         </LinearLayout>

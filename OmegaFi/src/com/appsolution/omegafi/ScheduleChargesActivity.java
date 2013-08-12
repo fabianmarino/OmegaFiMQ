@@ -63,6 +63,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 				Object[] statusScheduled=Server.getServer().getHome().getScheduledOfCharges(idAccount);
 				status=(Integer)statusScheduled[0];
 				scheduled=(ScheduledOfCharges)statusScheduled[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

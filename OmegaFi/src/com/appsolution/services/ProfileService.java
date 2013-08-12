@@ -16,7 +16,7 @@ import android.util.Log;
 
 public class ProfileService extends ServerContext{
 	
-	private JSONObject profile;
+	private Profile profile;
 	private ArrayList<String> notifications=new ArrayList<String>();
 	
 	public ProfileService(Server server){
@@ -26,57 +26,25 @@ public class ProfileService extends ServerContext{
 	
 	public Object[] chargeProfileData(){
 		Object[] response=server.makeRequestGet(Server.PROFILE_SERVICE);
-		profile=(JSONObject)response[1];
+		profile=(Profile)this.getStatusProfile()[1];
 		chargeNotifications();
 		return response;
 	}
 	
-	public String getUrlPhotoProfile(){
-		String url=null;
-		try {
-
-			if(profile!=null){
-				if(!profile.getJSONObject("individual").isNull("profile_picture")){
-					url=profile.getJSONObject("individual").getJSONObject("profile_picture").getString("url");
-				}
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public Object[] updateProfileIfNecessary(){
+		if(profile==null){
+			return chargeProfileData();
 		}
-		return url;
-	}
-	
-	public String getCompleteName(){
-		String name="";
-		try {
-			if(profile!=null){
-				name=profile.getJSONObject("individual").getString("first_name")+" "+
-						profile.getJSONObject("individual").getString("last_name");
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		else{
+			return null;
 		}
-		return name;
-	}
-	
-	public int getAnnouncementsCount(){
-		int number=0;
-		try {
-			if(profile!=null){
-				number= profile.getJSONObject("individual").getInt("announcement_count");
-			}
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return number;
 	}
 	
 	public Object[] getStatusProfile(){
 		Object[] statusJsonProfile=server.makeRequestGet(Server.PROFILE_SERVICE);
 		Profile myProfile=new Profile((JSONObject)statusJsonProfile[1]);
+		if(myProfile!=null)
+			profile=myProfile;
 		Object[] statusProfile=new Object[2];
 		statusProfile[0]=statusJsonProfile[0];
 		statusProfile[1]=myProfile;
@@ -128,7 +96,7 @@ public class ProfileService extends ServerContext{
 		
 	}
 
-	public JSONObject getProfile() {
+	public Profile getProfile() {
 		return profile;
 	}
 
@@ -317,6 +285,8 @@ public class ProfileService extends ServerContext{
 		statusTypes[1]=types;
 		return statusTypes;
 	}
+	
+	
 	
 	
 	

@@ -158,8 +158,9 @@ public class EventNewsContent extends LinearLayout {
 	                    	if(textDescription.charAt(textDescription.length()-1)!='.'&&textDescription.charAt(textDescription.length()-2)!='.'){
 	                    		textDescription.append("...");
 	                        }
-                        
+	                    	
 	                        descriptionNewEvent.setText(Html.fromHtml(textDescription.toString()));
+	                        descriptionNewEvent.setLines(4);
 	                    }
 	                });
 	

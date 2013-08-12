@@ -64,6 +64,12 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public static final int ACTIVITY_AUTO_PAY_PAYMENT_DATE=15;
 	public static final int ACTIVITY_AUTO_PAY_PAYMENT_AMOUNT=16;
 	public static final int ACTIVITY_MY_PROFILE=17;
+	public static final int ACTIVITY_ANNOUNCEMENTS=18;
+	public static final int ACTIVITY_TERMS=19;
+	public static final int ACTIVITY_PRIVACY=20;
+	public static final int ACTIVITY_CALENDAR=21;
+	public static final int ACTIVITY_NEWS=22;
+	public static final int ACTIVITY_ADD_NEW_PAYMENT=23;
 	
 	
 	
@@ -111,7 +117,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
         this.loadSlidingMenu();
 	}
 	
-	public static boolean showErrorConection(final Activity activity,int httpCode,String error404,final boolean login){
+	public static boolean showErrorConection(final Activity activity,final int httpCode,String error404,final boolean login){
 		if(error404==null){
 			error404="The web service has  not found: 404 error";
 		}
@@ -158,8 +164,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			@Override
 			public void onClick(View v) {
 				dia.dismissDialog();
-				if(!login){
-					
+				if(!login&&httpCode==401){
 					restartApp(activity);
 				}
 			}
@@ -273,11 +278,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		return true;
 	}
 	
-	public void myAccountActivity(){
-		Intent viewAccount=new Intent(getApplicationContext(), AccountActivity.class);
-		startActivity(viewAccount);
-	}
-	
 	public boolean isOnline() {
 	    ConnectivityManager cm = 
 	         (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -288,35 +288,40 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	    return false;
 	}
 	
-	private void loadImageSlidingMenu(final String url){
-		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				userContact.chargeImageFromUrl(url);
-				return true;
-			}
-		};
-		task.execute();
+	
+	
+	private void loadImageSlidingMenu(){
+		if(Server.getServer().getHome().getProfile().getProfile()!=null){
+			userContact.chargeImageFromUrlAsync(Server.getServer().getHome().getProfile().getProfile().getSource(), 
+					Server.getServer().getHome().getProfile().getProfile().getUrlPhoto());
+		}
+		else{
+			userContact.chargeImageTest();
+		}
 	}
 	
 	private void loadSlidingMenu(){
-		loadImageSlidingMenu(Server.getServer().getHome().getProfile().getUrlPhotoProfile());
-		userContact.setNameUserProfile(Server.getServer().getHome().getProfile().getCompleteName());
-		itemAnnouncements.setNumberNotifications(Server.getServer().getHome().getProfile().getAnnouncementsCount());
+			loadImageSlidingMenu();
+			if(Server.getServer().getHome().getProfile().getProfile()!=null){
+				userContact.setNameUserProfile(Server.getServer().getHome().getProfile().getProfile().getFirstLastName());
+				itemAnnouncements.setNumberNotifications(Server.getServer().getHome().getProfile().getProfile().getAnnouncementsCount());
+			}
+		
 	}
 	
 	public void goToHome(View item){
 		if(this.getClass() != HomeActivity.class){
+			finishActivity(OmegaFiActivity.ACTIVITY_HOME);
+			finish();
 			Intent goToHome=new Intent(this, HomeActivity.class);
 			goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			finish();
 			try {
 				finalize();
 			} catch (Throwable e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			startActivity(goToHome);
+			startActivityForResult(goToHome,OmegaFiActivity.ACTIVITY_HOME);
 			
 		}
 		else{
@@ -326,9 +331,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void goToAnnouncements(View item){
 		if(this.getClass() != AnnouncementsActivity.class){
+			finishActivity(OmegaFiActivity.ACTIVITY_HOME);
 			finish();
 			Intent goToAnnouncements=new Intent(getApplicationContext(), AnnouncementsActivity.class);
-			startActivity(goToAnnouncements);
+			startActivityForResult(goToAnnouncements,OmegaFiActivity.ACTIVITY_ANNOUNCEMENTS);
 		}
 		else if(this.getClass() != AnnouncementDetailActivity.class){
 			slidingMenu.showContent(true);
@@ -345,12 +351,12 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void goToMyProfile(View item){
 		if(this.getClass()!=MyProfileActivity.class){
+			finishActivity(OmegaFiActivity.ACTIVITY_HOME);
 			finish();
 			Intent goToMyProfile=new Intent(this, MyProfileActivity.class);
 			startActivityForResult(goToMyProfile,OmegaFiActivity.ACTIVITY_MY_PROFILE);
 		}
-		else{
-			
+		else{		
 			slidingMenu.showContent(true);
 		}
 	}
@@ -369,12 +375,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		        .setPositiveButton("Yes",
 		                new DialogInterface.OnClickListener() {
 		                    public void onClick(DialogInterface dialog, int id) {
-		                    	finish();
-		                    	closeAllActivities(OmegaFiActivity.this);
 		                		Runtime.getRuntime().gc();
 		                		System.gc();
 		                		Server.getServer().getHome().clearHomeServices();
-		                		restartApp(OmegaFiActivity.this);
+		                		restartApp();
 		                    }
 		                });
 		AlertDialog alert = builder.create();
@@ -457,6 +461,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	protected void stopProgressDialog(){
+		this.loadSlidingMenu();
 		progressDiag.dismiss();
 		progressDiag=null;
 	}
@@ -480,20 +485,17 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	@Override
 	protected void onPause() {
-		Log.d("Pause", this.getLocalClassName());
 		CookieSyncManager.getInstance().startSync();
 		super.onPause();
 	}
 	
 	@Override
 	protected void onStop() {
-		Log.d("Stop", this.getLocalClassName());
 		super.onStop();
 	}
 	
 	@Override
 	protected void onResume() {
-		Log.d("Resume", this.getLocalClassName());
 		CookieSyncManager.getInstance().stopSync();
 		super.onResume();
 	}
@@ -533,12 +535,19 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		sleep.execute();
 	}
 	
-	private static  void closeAllActivities(Activity activity){
-		for (int i = OmegaFiActivity.ACTIVITY_HOME; i <= 17; i++) {
+	public static  void closeAllActivities(Activity activity){
+		for (int i = OmegaFiActivity.ACTIVITY_HOME; i <=23; i++) {
 			activity.finishActivity(i);
+			activity.finishActivityFromChild(activity, i);
 		}
+		
 	}
 	
+	public void closeActivities(){
+		for (int i = OmegaFiActivity.ACTIVITY_HOME; i <=23; i++) {
+			finishActivity(i);
+		}
+	}
 	public static boolean isDouble(String cad)
 	 {
 	 try
@@ -552,20 +561,40 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	 }
 	 }
 	
+	private void restartApp(){
+		finish();
+		closeActivities();
+		AlarmManager alm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		Intent mainActivity=new Intent(this, MainActivity.class);
+		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		startActivity(mainActivity);
+		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 100, PendingIntent.getActivity(this, 0,mainActivity , 0));
+		System.runFinalization();
+	}
+	
 	private static void restartApp(Activity context){
-		closeAllActivities(context);
+		context.finish();
 		AlarmManager alm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent mainActivity=new Intent(context, MainActivity.class);
 		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 500, PendingIntent.getActivity(context, 0,mainActivity , 0));
+		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 100, PendingIntent.getActivity(context, 0,mainActivity , 0));
 		System.runFinalization();
-		System.exit(0);
 	}
 	
 	protected void goToHome(){
 		finishActivity(OmegaFiActivity.ACTIVITY_HOME);
+		finish();
 		Intent home=new Intent(this, HomeActivity.class);
 		startActivityForResult(home,OmegaFiActivity.ACTIVITY_HOME);
 	}
+	
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
+		super.onActivityResult(arg0, arg1, arg2);
+		Log.d("on result", arg0+" - "+arg1);
+	}
+	
 	
 }

@@ -60,6 +60,7 @@ public class NewsOmegaFiActivity extends OmegaFiActivity {
 			protected Boolean doInBackground(Void... params) {
 				newsArray=Server.getServer().getHome().getFeeds().getNewsFeed
 						(Server.getServer().getForgotLogin().getUrlFeed(NewsOmegaFiActivity.this));
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

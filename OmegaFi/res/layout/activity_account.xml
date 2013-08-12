@@ -18,7 +18,7 @@
 	        android:layout_marginBottom="@dimen/margin_10dp_poll"
 	        secom:width_image_user="@dimen/width_95dp"
 	        secom:color_font_text="@android:color/black"
-	        secom:third_line_text="Miami University"
+	        secom:third_line_text=""
 	        secom:arrow_visible="false"/>
 	    <TableLayout android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"

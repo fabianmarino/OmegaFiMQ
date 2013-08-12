@@ -53,7 +53,10 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 		checkNone.setPaddingRow(padding,0,0,0);
 		infoDate=new RowInformation(this);
 		infoDate.setNameInfo("Specific End Date");
-		Date today=Calendar.getInstance().getTime();
+		Calendar calToday=Calendar.getInstance();
+		calToday.set(calToday.get(Calendar.YEAR), calToday.get(Calendar.MONTH), calToday.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+		calToday.add(Calendar.DAY_OF_MONTH, 1);
+		Date today=calToday.getTime();
 		infoDate.setValueInfo(today.getMonth()+1+"/"+today.getDate()+"/"+(today.getYear()+1900));
 		infoDate.setBackgroundValueInfo(R.drawable.white_input_spinner);
 		infoDate.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +92,10 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 			}
 		}, dayMonthYear[2],  dayMonthYear[0]-1,dayMonthYear[1]);
 		date.getDatePicker().setCalendarViewShown(false);
+		Calendar calToday=Calendar.getInstance();
+		calToday.set(calToday.get(Calendar.YEAR), calToday.get(Calendar.MONTH), calToday.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+		calToday.add(Calendar.DAY_OF_MONTH, 1);
+		date.getDatePicker().setMinDate(calToday.getTimeInMillis());
 		date.show();
 	}
 

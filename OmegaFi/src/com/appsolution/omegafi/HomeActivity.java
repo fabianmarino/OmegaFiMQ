@@ -86,7 +86,7 @@ public class HomeActivity extends OmegaFiActivity {
 			public void onClick(View v) {
 				Intent memberRosters=new Intent(getApplicationContext(), ListMembersActivity.class);
 				memberRosters.putExtra("id",Server.getServer().getHome().getChapters().getIdChapter( indexChapter));
-				startActivity(memberRosters);
+				startActivityForResult(memberRosters,OmegaFiActivity.ACTIVITY_LIST_MEMBERS);
 			}
 		});
 		detailsOffice=new DetailsOfficer(this);
@@ -100,7 +100,7 @@ public class HomeActivity extends OmegaFiActivity {
 			@Override
 			public void onClick(View v) {
 					Intent calendarActivity=new Intent(getApplication(), CalendarActivity.class);
-					startActivity(calendarActivity);
+					startActivityForResult(calendarActivity,OmegaFiActivity.ACTIVITY_CALENDAR);
 			}
 		});
 		this.completeEvents();
@@ -113,7 +113,7 @@ public class HomeActivity extends OmegaFiActivity {
 			@Override
 			public void onClick(View v) {
 					Intent newsActivity=new Intent(getApplication(), NewsOmegaFiActivity.class);
-					startActivity(newsActivity);
+					startActivityForResult(newsActivity,OmegaFiActivity.ACTIVITY_NEWS);
 			}
 		});
 		
@@ -149,7 +149,7 @@ public class HomeActivity extends OmegaFiActivity {
 					
 					@Override
 					public void onClick(View v) {
-						Intent viewAccount=new Intent(getApplicationContext(), AccountActivity.class);
+						Intent viewAccount=new Intent(HomeActivity.this, AccountActivity.class);
 						viewAccount.putExtra("id", account.getIdAccount());
 						startActivityForResult(viewAccount,OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
 					}
@@ -158,7 +158,8 @@ public class HomeActivity extends OmegaFiActivity {
 					
 					@Override
 					public void onClick(View v) {
-						Intent payNow=new Intent(getApplicationContext(), PayNowActivity.class);
+						
+						Intent payNow=new Intent(HomeActivity.this, PayNowActivity.class);
 						payNow.putExtra("id", account.getIdAccount());
 						startActivityForResult(payNow, OmegaFiActivity.ACTIVITY_PAY_NOW);		
 					}
@@ -253,7 +254,8 @@ public class HomeActivity extends OmegaFiActivity {
 			rowChapter.setNameInfo(nameSubName[0]);
 			rowChapter.setNameSubInfo(nameSubName[1]);
 			rowChapter.setColorFontRowInformation(Color.BLACK);
-			rowChapter.setImageIcon(R.drawable.icon_spinner);
+			if(chapters.size()>1)
+				rowChapter.setImageIcon(R.drawable.icon_spinner);
 			rowChapter.setBorderBottom(true);
 			
 			final Activity home=this;
@@ -274,7 +276,7 @@ public class HomeActivity extends OmegaFiActivity {
 							
 							@Override
 							public void actionAfterChecked() {
-//								changeListImages(selectables.getIndexSelected());
+								changeListImages(selectables.getIndexSelected());
 //								changeListImages();
 								rowChapter.setNameInfo(selectables.getRowSelected().getNameInfo());
 								rowChapter.setNameSubInfo(selectables.getRowSelected().getNameSubInfo());
@@ -320,11 +322,13 @@ public class HomeActivity extends OmegaFiActivity {
 			protected void onPostExecute(Boolean result) {
 				listGallery.setListOfficers(Server.getServer().getHome().getOfficers().getListOfficers());
 				listPhotos.setAdapter(listGallery);
-				listPhotos.setSelection(1);
+				if(listGallery.getCount()>0)
+					listPhotos.setSelection(1);
 				stopProgressDialog();
 			}
 			
 		};
+		task.execute();
 	}
 	
 
@@ -447,12 +451,12 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	public void activityTermsUse(View button){
 		Intent activityTerms=new Intent(this, TermsActivity.class);
-		startActivity(activityTerms);
+		startActivityForResult(activityTerms,OmegaFiActivity.ACTIVITY_TERMS);
 	}
 	
 	public void activityPrivatePolicy(View button){
 		Intent activityPrivacy=new Intent(this, PrivacyActivity.class);
-		startActivity(activityPrivacy);
+		startActivityForResult(activityPrivacy,OmegaFiActivity.ACTIVITY_PRIVACY);
 	}
 	
 	public void seeMoreMemberRooster(View button){
@@ -664,7 +668,6 @@ public class HomeActivity extends OmegaFiActivity {
 			chargeNewsInformation();
 		}
 	}
-	
 	
 	
 }

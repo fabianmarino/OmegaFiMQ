@@ -29,50 +29,55 @@ public class Profile {
 	private String dateCollegeEntry;
 	private boolean publishProfile;
 	private List<String> prefixes=new ArrayList<String>();
+	private int announcementsCount=0;
 	
 	
 	public Profile(JSONObject objectprofile) {
 		JSONObject individual;
-		try {
-			individual = objectprofile.getJSONObject("individual");
-			firstName=individual.getString("first_name");
-			if(!individual.isNull("middle_name"))
-				middleName=individual.getString("middle_name");
-			lastName=individual.getString("last_name");
-			if(!individual.isNull("informal_first_name"))
-				informalFirstName=individual.getString("informal_first_name");
-			if(!individual.isNull("parents_name"))
-				parentsName=individual.getString("parents_name");
-			if(!individual.isNull("travel_visa_number"))
-				travelVisaNumber=individual.getString("travel_visa_number");
-			if(!individual.isNull("initiation_date"))
-				dateInitiate=individual.getString("initiation_date");
-			if(!individual.isNull("initiation_year"))
-				inititeYear=individual.getInt("initiation_year");
-			if(!individual.isNull("graduation_year"))
-				graduationYear=individual.getInt("graduation_year");
-			if(!individual.isNull("profile_picture")){
-				JSONObject jsonPicture=individual.getJSONObject("profile_picture");
-				source=jsonPicture.getString("source");
-				urlPhoto=jsonPicture.getString("url");
+		if(objectprofile!=null){
+			try {
+				individual = objectprofile.getJSONObject("individual");
+				firstName=individual.getString("first_name");
+				if(!individual.isNull("middle_name"))
+					middleName=individual.getString("middle_name");
+				lastName=individual.getString("last_name");
+				if(!individual.isNull("informal_first_name"))
+					informalFirstName=individual.getString("informal_first_name");
+				if(!individual.isNull("parents_name"))
+					parentsName=individual.getString("parents_name");
+				if(!individual.isNull("travel_visa_number"))
+					travelVisaNumber=individual.getString("travel_visa_number");
+				if(!individual.isNull("initiation_date"))
+					dateInitiate=individual.getString("initiation_date");
+				if(!individual.isNull("initiation_year"))
+					inititeYear=individual.getInt("initiation_year");
+				if(!individual.isNull("graduation_year"))
+					graduationYear=individual.getInt("graduation_year");
+				if(!individual.isNull("announcement_count"))
+					announcementsCount=individual.getInt("announcement_count");
+				if(!individual.isNull("profile_picture")){
+					JSONObject jsonPicture=individual.getJSONObject("profile_picture");
+					source=jsonPicture.getString("source");
+					urlPhoto=jsonPicture.getString("url");
+				}
+				if(!individual.isNull("prefix"))
+					prefix=individual.getString("prefix");
+				if(!individual.isNull("suffix"))
+					suffix=individual.getString("suffix");
+				if(!individual.isNull("gender"))
+					gender=individual.getString("gender");
+				if(!individual.isNull("date_of_college_entry"))
+					dateCollegeEntry=individual.getString("date_of_college_entry");
+				
+				publishProfile=individual.getBoolean("publish_profile");
+				
+				this.completePhones(individual.getJSONArray("phone_numbers"));
+				this.completeEmails(individual.getJSONArray("emails"));
+				this.completeAdresses(individual.getJSONArray("addresses"));
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			if(!individual.isNull("prefix"))
-				prefix=individual.getString("prefix");
-			if(!individual.isNull("suffix"))
-				suffix=individual.getString("suffix");
-			if(!individual.isNull("gender"))
-				gender=individual.getString("gender");
-			if(!individual.isNull("date_of_college_entry"))
-				dateCollegeEntry=individual.getString("date_of_college_entry");
-			
-			publishProfile=individual.getBoolean("publish_profile");
-			
-			this.completePhones(individual.getJSONArray("phone_numbers"));
-			this.completeEmails(individual.getJSONArray("emails"));
-			this.completeAdresses(individual.getJSONArray("addresses"));
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -229,5 +234,15 @@ public class Profile {
 	public boolean isPublishProfile() {
 		return publishProfile;
 	}
+
+	public List<String> getPrefixes() {
+		return prefixes;
+	}
+
+	public int getAnnouncementsCount() {
+		return announcementsCount;
+	}
+	
+	
 	
 }

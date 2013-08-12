@@ -50,6 +50,7 @@ public class PrivacyActivity extends OmegaFiActivity {
 				Object[] statusHtml=Server.getServer().getPrivacyOmegaFi();
 				status=(Integer)statusHtml[0];
 				html=(String)statusHtml[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 //				html=OmegaFiActivity.getStringFile(PrivacyActivity.this, "txt/privacy.txt");
 				return true;
 			}

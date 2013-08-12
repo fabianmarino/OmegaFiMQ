@@ -64,6 +64,7 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 			protected Boolean doInBackground(Void... params) {
 				status=(Integer)Server.getServer().getForgotLogin().changePassword(rowNewPassword.getTextQuestionEdit(), 
 						rowConfirmPassword.getTextQuestionEdit())[0];
+				
 				return true;
 			}
 			

@@ -11,6 +11,7 @@ import com.appsolution.layouts.DialogOptionsImage;
 import com.appsolution.layouts.IconLabelVertical;
 import com.appsolution.layouts.RowEditNameTopInfo;
 import com.appsolution.layouts.RowEditTextOmegaFi;
+import com.appsolution.layouts.RowEditTextSubmit;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.UserContactLayout;
@@ -80,6 +81,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private Spinner graduationYear;
 	private RowToogleOmegaFi tooglePublish;
 	private Profile profile;
+	private Bitmap imageSelected=null;
 	
 	private static final int RESULT_LOAD_IMAGE=1;
 	private static final int CAMERA_REQUEST = 1888;
@@ -87,6 +89,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private TypeFormContact[] typePhones=new TypeFormContact[2];
 	private TypeFormContact[] typeEmails=new TypeFormContact[2];
 	private TypeFormContact[] typeAddresses=new TypeFormContact[2];
+	private List<String> prefixes=null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -289,12 +292,18 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	public void onSaveMyProfile(View button){
-		updateProfile();
+		String errors=validateInformation();
+		if(errors==null){
+			updateProfile();
+		}
+		else{
+			OmegaFiActivity.showAlertMessage(errors, this);
+		}
 	}
 	
 	private void showSucessfullUpdated(){
-		final DialogInformationOF info=new DialogInformationOF(this);
-		info.setMessageDialog("Your profile changes have been successfully");
+		final DialogInformationOF info=new DialogInformationOF(MyProfileActivity.this);
+		info.setMessageDialog("Your profile changes have been successfully updated.");
 		info.setButtonListener(new View.OnClickListener() {
 			
 			@Override
@@ -319,11 +328,13 @@ public class MyProfileActivity extends OmegaFiActivity {
 	         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 	         String picturePath = cursor.getString(columnIndex);
 	         cursor.close();
-	         userHeader.getImageUser().setImageBitmap(BitmapFactory.decodeFile(picturePath));
+	         imageSelected=BitmapFactory.decodeFile(picturePath);
+	         userHeader.getImageUser().setImageBitmap(imageSelected);
 		 }
 		 if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
 	            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
-	            userHeader.getImageUser().setImageBitmap(photo);
+	            imageSelected=photo;
+	            userHeader.getImageUser().setImageBitmap(imageSelected);
 	        }  
 	}
 	
@@ -362,7 +373,6 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 			private int status=0;
 			private Profile prof=null;
-			private List<String> prefixes=null;
 			
 			@Override
 			protected void onPreExecute() {
@@ -371,54 +381,63 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				Object[] statusProfile=Server.getServer().getHome().getProfile().getStatusProfile();
-				status=(Integer)statusProfile[0];
-				prof=(Profile)statusProfile[1];
-				prefixes=Server.getServer().getHome().getProfile().getPrefixesGender(prof.getGender());
+			Object[] statusProfile=Server.getServer().getHome().getProfile().getStatusProfile();
+			status=(Integer)statusProfile[0];
+			prof=(Profile)statusProfile[1];
+			prefixes=Server.getServer().getHome().getProfile().getPrefixesGender(prof.getGender());
+			Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(status==200){
-					MyProfileActivity.this.profile=this.prof;
-					userHeader.setNameUserProfile(prof.getFirstLastName());
-					userHeader.setSubTitleProfile(prof.getDateInitiatePretty());
-					
-					completePhones(prof.getPhones());
-					completeEmails(prof.getEmails());
-					completeAddresses(prof.getAddresses());
-					
-					editFirstName.setText(prof.getFirstName());
-					editMiddleName.setText(prof.getMiddleName());
-					editLastName.setText(prof.getLastName());
-					editInformalFirst.setText(prof.getInformalFirstName());
-					editParentsName.setText(prof.getParentsName());
-					editTravelVisa.setText(prof.getTravelVisaNumber());
-					if(prof.getDateCollegeEntryPretty()!=null){
-						if(!prof.getDateCollegeEntryPretty().isEmpty())
-							editCollegeEntry.setText(prof.getDateCollegeEntryPretty());
-					}
-					else{
-						editCollegeEntry.setText("College Entry Date");
-						editCollegeEntry.setTextColor(Color.GRAY);
-					}
-					completeSpinnerGraduationYear(prof.getGraduationYear());
-					tooglePublish.setActivateOn(prof.isPublishProfile());
-					editSuffix.setText(prof.getSuffix());
-					userHeader.chargeImageFromUrlAsync(prof.getSource(), prof.getUrlPhoto());
-					ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MyProfileActivity.this,
-							R.layout.spinner_omegafi, prefixes);
-							dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-							spinnerPrefix.setAdapter(dataAdapter);
+					completeMyProfileActivity(prof, prefixes);
 				}
 				else{
 					OmegaFiActivity.showErrorConection(MyProfileActivity.this, status, getResources().getString(R.string.object_not_found),false);
 				}
+				refreshActivity();
 				stopProgressDialog();
+				
 			}
 		};
 		task.execute();
+	}
+	
+	private void completeMyProfileActivity(Profile prof,List<String> prefixes){
+		MyProfileActivity.this.profile=prof;
+		userHeader.setNameUserProfile(prof.getFirstLastName());
+		if(prof.getDateInitiatePretty()!=null)
+			userHeader.setSubTitleProfile("Initiate - "+prof.getDateInitiatePretty());
+		
+		completePhones(prof.getPhones());
+		completeEmails(prof.getEmails());
+		completeAddresses(prof.getAddresses());
+		
+		editFirstName.setText(prof.getFirstName());
+		editMiddleName.setText(prof.getMiddleName());
+		editLastName.setText(prof.getLastName());
+		editInformalFirst.setText(prof.getInformalFirstName());
+		editParentsName.setText(prof.getParentsName());
+		editTravelVisa.setText(prof.getTravelVisaNumber());
+		if(prof.getDateCollegeEntryPretty()!=null){
+			if(!prof.getDateCollegeEntryPretty().isEmpty())
+				editCollegeEntry.setText(prof.getDateCollegeEntryPretty());
+		}
+		else{
+			editCollegeEntry.setText("College Entry Date");
+			editCollegeEntry.setTextColor(Color.GRAY);
+		}
+		completeSpinnerGraduationYear(prof.getGraduationYear());
+		tooglePublish.setActivateOn(prof.isPublishProfile());
+		editSuffix.setText(prof.getSuffix());
+		userHeader.chargeImageFromUrlAsync(prof.getSource(), prof.getUrlPhoto());
+		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MyProfileActivity.this,
+				R.layout.spinner_omegafi, prefixes);
+				dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+				spinnerPrefix.setAdapter(dataAdapter);
+		selectedPrefix(prof.getPrefix());
 	}
 	
 	private void completePhones(PhoneContact[] phones){
@@ -447,12 +466,14 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 	}
 	
-	private void selectedPrefixe(String prefix){
+	private void selectedPrefix(String prefix){
 		boolean found=false;
-		for (int i = 0; i < spinnerPrefix.getCount()&&!found; i++) {
-			if(spinnerPrefix.getItemAtPosition(i).toString().equalsIgnoreCase(prefix)){
-				spinnerPrefix.setSelection(i);
-				found=true;
+		if(prefix!=null){
+			for (int i = 0; i < spinnerPrefix.getCount()&&!found; i++) {
+				if(spinnerPrefix.getItemAtPosition(i).toString().equalsIgnoreCase(prefix)){
+					spinnerPrefix.setSelection(i);
+					found=true;
+				}
 			}
 		}
 	}
@@ -495,24 +516,32 @@ public class MyProfileActivity extends OmegaFiActivity {
 								editParentsName.getText().toString(), graduationyear, editTravelVisa.getText().toString(), dateCollege);
 				status=(Integer)statusJson[0];
 				errors= statusJson[1]!=null ? statusJson[1].toString() : null;
+				if(imageSelected!=null){
+					Server.getServer().uploadImageProfile("picture[filename]", imageSelected);
+				}
 				if(status==200||status==201){
 					updatePhoneNumbers();
 					updateEmails();
 					updateAdresses();
+					profile=(Profile)Server.getServer().getHome().getProfile().getStatusProfile()[1];
 				}
+				
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(status==200||status==201){
+					completeMyProfileActivity(profile, prefixes);
 					showSucessfullUpdated();
+					Log.d("errors", errors+"");
 				}
 				else{
 					OmegaFiActivity.showAlertMessage(status+" "+errors, MyProfileActivity.this);
 				}
-				finish();
+				refreshActivity();
 				stopProgressDialog();
+				
 			}
 		};
 		task.execute();
@@ -554,7 +583,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			if(editMainNumber.getText().toString().isEmpty()){
 				Server.getServer().getHome().getProfile().deletePhoneNumber(profile.getPhones()[0].getId());
 			}
-			else{
+			else if(!editMainNumber.getText().toString().equals((profile.getPhones()[0].getNumber()))){
 				Server.getServer().getHome().getProfile().updatePhoneNumber
 				(profile.getPhones()[0].getId(), editMainNumber.getText().toString(), true);
 			}
@@ -571,7 +600,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			if(editSecondaryNumber.getText().toString().isEmpty()){
 				Server.getServer().getHome().getProfile().deletePhoneNumber(profile.getPhones()[1].getId());
 			}
-			else{
+			else if(!editSecondaryNumber.getText().toString().equals((profile.getPhones()[1].getNumber()))){
 				Server.getServer().getHome().getProfile().updatePhoneNumber
 				(profile.getPhones()[1].getId(), editSecondaryNumber.getText().toString(), false);
 			}
@@ -591,7 +620,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			if(editMainEmail.getText().toString().isEmpty()){
 				Server.getServer().getHome().getProfile().deleteEmail(profile.getEmails()[0].getId());
 			}
-			else{
+			else if(!editMainEmail.getText().toString().equals(profile.getEmails()[0].getEmail())){
 				Server.getServer().getHome().getProfile().updateEmailAddress
 				(profile.getEmails()[0].getId(), editMainEmail.getText().toString(), true);
 			}
@@ -608,7 +637,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			if(editSecondaryEmail.getText().toString().isEmpty()){
 				Server.getServer().getHome().getProfile().deleteEmail(profile.getEmails()[1].getId());
 			}
-			else{
+			else if(!editSecondaryEmail.getText().toString().equals(profile.getEmails()[1].getEmail())){
 				Server.getServer().getHome().getProfile().updateEmailAddress
 				(profile.getEmails()[1].getId(), editSecondaryEmail.getText().toString(), false);
 			}
@@ -629,9 +658,12 @@ public class MyProfileActivity extends OmegaFiActivity {
 			}
 			else{
 				if(typeAddresses[0]!=null){
-					Server.getServer().getHome().getProfile().updateAddress
-					(profile.getAddresses()[0].getId(), typeAddresses[0].getId(), editTopHomeLine1.getValueInfo(), editTopHomeLine2.getValueInfo(), 
-							true);
+					if((!editTopHomeLine1.getValueInfo().equals(profile.getAddresses()[0].getLine1())||
+							!editTopHomeLine2.getValueInfo().equals(profile.getAddresses()[0].getLine2()))){
+						Server.getServer().getHome().getProfile().updateAddress
+						(profile.getAddresses()[0].getId(), typeAddresses[0].getId(), editTopHomeLine1.getValueInfo(), editTopHomeLine2.getValueInfo(), 
+								true);
+					}
 				}
 			}	
 		}
@@ -651,9 +683,12 @@ public class MyProfileActivity extends OmegaFiActivity {
 			}
 			else{
 				if(typeAddresses[1]!=null){
-					Server.getServer().getHome().getProfile().updateAddress
-					(profile.getAddresses()[1].getId(), typeAddresses[1].getId(), editTopSchoolLine1.getValueInfo(), editTopSchoolLine2.getValueInfo(), 
-							true);
+					if((!editTopSchoolLine1.getValueInfo().equals(profile.getAddresses()[1].getLine1())||
+							!editTopSchoolLine2.getValueInfo().equals(profile.getAddresses()[1].getLine2()))){
+						Server.getServer().getHome().getProfile().updateAddress
+						(profile.getAddresses()[1].getId(), typeAddresses[1].getId(), editTopSchoolLine1.getValueInfo(), editTopSchoolLine2.getValueInfo(), 
+								true);
+					}
 				}
 			}	
 		}
@@ -666,6 +701,26 @@ public class MyProfileActivity extends OmegaFiActivity {
 				}
 			}
 		}		
+	}
+	
+	private String validateInformation(){
+		String error=null;
+		if(!editMainEmail.getText().toString().isEmpty()&&!RowEditTextSubmit.isValidEmail(editMainEmail.getText().toString())){
+			error="Your Main Email is incorrect syntax.";
+		}
+		else if(!editSecondaryEmail.getText().toString().isEmpty()&&!RowEditTextSubmit.isValidEmail(editSecondaryEmail.getText().toString())){
+			error="Your Secondary Email is incorrect syntax.";
+		}
+		else if(profile.getPhones()[0]!=null&&editMainNumber.getText().toString().isEmpty()){
+			error="You cannot delete the primary phone number.";
+		}
+		else if(profile.getEmails()[0]!=null&&editMainEmail.getText().toString().isEmpty()){
+			error="You cannot delete the primary email address.";
+		}
+		else if(profile.getAddresses()[0]!=null&&editTopHomeLine1.getValueInfo().isEmpty()&&editTopHomeLine2.getValueInfo().isEmpty()){
+			error="You cannot delete the primary address.";
+		}
+		return error;
 	}
 	
 	

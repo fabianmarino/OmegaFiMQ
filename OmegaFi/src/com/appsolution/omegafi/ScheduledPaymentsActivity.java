@@ -1,24 +1,16 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import com.appsolution.layouts.CycleCharge;
 import com.appsolution.layouts.RowInformation;
-import com.appsolution.logic.BillingCycle;
-import com.appsolution.logic.ScheduledOfCharges;
 import com.appsolution.logic.SimpleScheduledPayment;
 import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -49,21 +41,14 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 	public void seeScheduleDetails(View button){
 		Intent scheduledDetails=new Intent(this, ScheduledPaymentsDetailActivity.class);
 		scheduledDetails.putExtra("editable", true);
-		startActivity(scheduledDetails);
+		startActivityForResult(scheduledDetails,OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENT_DETAIL);
 	}
 	
 	public void seeScheduleDetailsProcessing(View button){
 		Intent scheduledDetails=new Intent(this, ScheduledPaymentsDetailActivity.class);
 		scheduledDetails.putExtra("editable", false);
-		startActivity(scheduledDetails);
+		startActivityForResult(scheduledDetails,OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENT_DETAIL);
 	}
-	
-	private void getListStringScheduledPayments(ArrayList<SimpleScheduledPayment> scheduleds){
-		List<String> listPayments=new ArrayList<String>();
-		for (final SimpleScheduledPayment scheduled:scheduleds) {
-		}
-	}
-	
 
 	private void chargeScheduledPayments(){
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
@@ -86,6 +71,7 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 				status=(Integer)statusProcessing[0];
 				processing=(ArrayList<SimpleScheduledPayment>)statusProcessing[1];
 				scheduleds.addAll(processing);
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

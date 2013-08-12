@@ -328,6 +328,9 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 							mDialog.setTitle(CalendarEvent.getFormatDate(4, (monthOfYear+1)+"/"+year, "MM/yyyy"));							
 						}
 					});
+                    Calendar cal = Calendar.getInstance();
+            		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 0, 0, 0);
+            		datePicker.setMinDate(cal.getTimeInMillis());
                     Field datePickerFields[] = datePickerDialogField.getType()
                             .getDeclaredFields();
                     for (Field datePickerField : datePickerFields) {
@@ -505,6 +508,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 								monthYear[0], monthYear[1], contact.getEmail(), Integer.parseInt(rowTextZipCode.getValueInfo1()), contact.getPhone());
 				status=(Integer)statusJson[0];
 				response=(JSONObject)statusJson[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -608,6 +612,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	if(errorJson!=null){
 	    	try {
 	    		JSONObject jsonErrors=errorJson.getJSONObject("errors");
+	    		
 	    		if(jsonErrors.has("routingnumber")){
 	    			error=jsonErrors.getJSONArray("routingnumber").getString(0);
 	    		}
@@ -634,6 +639,9 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 				}
 	    		else if(jsonErrors.has("zipcode")){
 	    			error=jsonErrors.getJSONArray("zipcode").getString(0);
+				}
+	    		else if(jsonErrors.has("propaytoken")){
+	    			error=jsonErrors.getJSONArray("propaytoken").getString(0);
 				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

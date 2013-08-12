@@ -49,6 +49,7 @@ public class TermsActivity extends OmegaFiActivity {
 				Object[] statusHtml=Server.getServer().getTermsOmegaFi();
 				status=(Integer)statusHtml[0];
 				html=(String)statusHtml[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 //				html=OmegaFiActivity.getStringFile(getApplicationContext(), "txt/terms.txt");
 				return true;
 			}

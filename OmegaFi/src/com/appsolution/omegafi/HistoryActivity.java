@@ -74,6 +74,7 @@ public class HistoryActivity extends OmegaFiActivity {
 				status=(Integer)listItems[0];
 				ArrayList<HistoryItem> arrayList = (ArrayList<HistoryItem>)listItems[1];
 				list=arrayList;
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

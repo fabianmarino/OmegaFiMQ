@@ -1,4 +1,4 @@
-package com.appsolution.omegafi;
+package com.appsolution.layouts;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -6,9 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import com.appsolution.layouts.DetailsOfficer;
-import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.SimpleMember;
+import com.appsolution.omegafi.OfficerMemberDetailActivity;
+import com.appsolution.omegafi.OmegaFiActivity;
+import com.appsolution.omegafi.R;
+import com.appsolution.omegafi.R.id;
+import com.appsolution.omegafi.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

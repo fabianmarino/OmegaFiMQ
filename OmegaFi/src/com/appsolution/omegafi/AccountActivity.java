@@ -203,14 +203,10 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case 100:
-			Intent viewMake=new Intent(this, MakePaymentActivity.class);
-			startActivity(viewMake);
-			break;
 		case 101:
 			Intent viewHistory=new Intent(this, HistoryActivity.class);
 			viewHistory.putExtra("id", actualAccount.getId());
-			startActivity(viewHistory);
+			startActivityForResult(viewHistory,OmegaFiActivity.ACTIVITY_HISTORY);
 			break;
 		case 104:
 			Intent viewScheduledPayments=new Intent(this, ScheduledPaymentsActivity.class);
@@ -223,12 +219,12 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		case 106:
 			Intent viewScheduleCharges=new Intent(this, ScheduleChargesActivity.class);
 			viewScheduleCharges.putExtra("id", actualAccount.getId());
-			startActivity(viewScheduleCharges);
+			startActivityForResult(viewScheduleCharges,OmegaFiActivity.ACTIVITY_SCHEDULED_OF_CHARGES);
 			break;
 		case 107:
 			Intent viewStatements=new Intent(this, StatementsActivity.class);
 			viewStatements.putExtra("id", actualAccount.getId());
-			startActivity(viewStatements);
+			startActivityForResult(viewStatements,OmegaFiActivity.ACTIVITY_STATEMENTS);
 			break;
 		default:
 			break;
@@ -267,6 +263,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 				if(actualAccount!=null){
 					Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(actualAccount.getId());
 					methods=(ArrayList<PaymentMethod>)statusMethods[1];
+					Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				}
 				return true;
 			}

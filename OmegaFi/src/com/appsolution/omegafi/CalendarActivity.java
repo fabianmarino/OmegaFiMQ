@@ -104,6 +104,7 @@ public class CalendarActivity extends OmegaFiActivity {
 //				Object[] statusCalendar=MainActivity.servicesOmegaFi.getHome().getCalendar().getArrayCalendarEventsTest(getApplicationContext());
 				status=(Integer)statusCalendar[0];
 				calendarItems=(ArrayList<CalendarEvent>)statusCalendar[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

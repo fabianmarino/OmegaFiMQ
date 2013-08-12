@@ -148,9 +148,8 @@ public class MainActivity extends OmegaFiLoginActivity {
 	@Override
 	public void onBackPressed() {
 		finish();
-		finishActivity(OmegaFiActivity.ACTIVITY_HOME);
+		OmegaFiActivity.closeAllActivities(this);
 		System.runFinalization();
-		System.exit(0);
 		super.onBackPressed();
 	}
 }

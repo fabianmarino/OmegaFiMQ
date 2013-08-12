@@ -62,6 +62,8 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 				Object[] statusAnnouncements=Server.getServer().getHome().getStatusArrayAnnouncements();
 				status=(Integer)statusAnnouncements[0];
 				announcements=(ArrayList<SimpleAnnouncement>)statusAnnouncements[1];
+				Server.getServer().getHome().updateAnnouncementsView();
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -130,7 +132,7 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 				contentAnnouncement.setDateAnnouncement(actualAnnouncement.getDateCreate());
 				contentAnnouncement.setDescriptionAnnouncement(actualAnnouncement.getPreviewAnnoncement());
 				contentAnnouncement.setSourceAnnouncement(actualAnnouncement.getSource());
-				if(position<Server.getServer().getHome().getProfile().getAnnouncementsCount()){
+				if(position<Server.getServer().getHome().getProfile().getProfile().getAnnouncementsCount()){
 						contentAnnouncement.setBackgroundNewAnnoncement();
 				}
 				if(position==announcements.size()-1){
@@ -144,7 +146,7 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 	
 	private void goToAnnouncemenDetail(){
 		Intent announcementDetails=new Intent(this, AnnouncementDetailActivity.class);
-		startActivity(announcementDetails);
+		startActivityForResult(announcementDetails,OmegaFiActivity.ACTIVITY_ANNOUNCEMENTS);
 	}
 	
 	@Override
