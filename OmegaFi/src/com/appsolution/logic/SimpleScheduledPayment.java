@@ -3,8 +3,6 @@ package com.appsolution.logic;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.appsolution.layouts.EventNewsContent;
-
 public class SimpleScheduledPayment {
 
 	private int id;

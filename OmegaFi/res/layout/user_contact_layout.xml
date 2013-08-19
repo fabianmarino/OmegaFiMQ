@@ -18,8 +18,9 @@
 	        <ImageView android:id="@+id/imageUserContact"
 	            android:layout_width="@dimen/sliding_photo_size"
 	            android:layout_height="@dimen/sliding_photo_size"
-	            android:scaleType="centerCrop"
 	            android:src="@drawable/photo_member"
+	            android:adjustViewBounds="true"
+	            android:scaleType="centerCrop"
 	             />
 	        <TextView
 	            android:id="@+id/textBottomImage" 

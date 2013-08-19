@@ -3,7 +3,6 @@ package com.appsolution.omegafi;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
 import com.appsolution.layouts.LabelInfoVertical;
@@ -13,7 +12,6 @@ import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
 import com.appsolution.services.Server;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -24,7 +22,6 @@ import android.widget.LinearLayout;
 
 public class PayNowActivity extends OmegaFiActivity {
 
-//	private int enteroTest=0;
 	private RowEditTextOmegaFi rowAmount;
 	private RowInformation rowDate;
 	private RowInformation rowPaymentMethod;
@@ -33,6 +30,7 @@ public class PayNowActivity extends OmegaFiActivity {
 	private int idAccount;
 	private ArrayList<PaymentMethod> methodsPayment=null;
 	private int indexMethodSelected=-1;
+	private boolean backIsHome;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +44,7 @@ public class PayNowActivity extends OmegaFiActivity {
 		infoCurrent=(LabelInfoVertical)findViewById(R.id.currentBalancePayNow);
 		infoDueOn=(LabelInfoVertical)findViewById(R.id.dueOnPayNow);
 		idAccount=getIntent().getExtras().getInt("id");
+		backIsHome=getIntent().getExtras().getBoolean("home");
 		if(idAccount!=-1){
 			this.chargePayNow();
 		}
@@ -100,11 +99,11 @@ public class PayNowActivity extends OmegaFiActivity {
 			selectable.showDialog();
 		}
 		else{
-			this.showDialogAddNewPaymenth();
+			this.showDialogAddNewPayment();
 		}
 	}
 	
-	private void showDialogAddNewPaymenth(){
+	private void showDialogAddNewPayment(){
 		final DialogTwoOptionsOF options=new DialogTwoOptionsOF(this);
 		options.setMessageDialog("You have not added a payment method");
 		options.setOption1("OK");
@@ -129,7 +128,7 @@ public class PayNowActivity extends OmegaFiActivity {
 	}
 	
 	
-	private void showConfirmationECheckPaymenth(){
+	private void showConfirmationECheckPayment(){
 		final DialogTwoOptionsOF info=new DialogTwoOptionsOF(this);
 		info.setMessageDialog(getResources().getString(R.string.dialog_confirmation_echeck));
 		info.setOption1(getResources().getString(R.string.yes));
@@ -152,7 +151,7 @@ public class PayNowActivity extends OmegaFiActivity {
 		info.showDialog();
 	}
 	
-	private void showThankForYourPaymenth(){
+	private void showThankForYourPayment(){
 		final DialogTwoOptionsOF info=new DialogTwoOptionsOF(this);
 		info.setMessageDialog(getResources().getString(R.string.thanks_payment));
 		info.setOption1(getResources().getString(R.string.ok));
@@ -181,10 +180,10 @@ public class PayNowActivity extends OmegaFiActivity {
 			if(this.validateFieldsPayNow()){
 				PaymentMethod method=methodsPayment.get(indexMethodSelected);
 				if(method.isEChecked()){
-					this.showConfirmationECheckPaymenth();
+					this.showConfirmationECheckPayment();
 				}
 				else{
-					this.showConfirmationCardPaymenth();
+					this.showConfirmationCardPayment();
 				}
 			}
 			else{
@@ -192,11 +191,11 @@ public class PayNowActivity extends OmegaFiActivity {
 			}
 		}
 		else{
-			this.showDialogAddNewPaymenth();
+			this.showDialogAddNewPayment();
 		}
 	}
 	
-	private void showConfirmationCardPaymenth(){
+	private void showConfirmationCardPayment(){
 		final DialogTwoOptionsOF of=new DialogTwoOptionsOF(this);
 		of.setMessageDialog("Are you sure you want to submit?");
 		of.setOption1(getString(R.string.yes));
@@ -246,7 +245,7 @@ public class PayNowActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -265,11 +264,10 @@ public class PayNowActivity extends OmegaFiActivity {
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
 				if(actualAccount!=null){
-					infoCurrent.setValueLabel("$"+actualAccount.getCurrentBalance());
+					infoCurrent.setValueLabel(actualAccount.getCurrentBalance());
 					infoDueOn.setValueLabel(actualAccount.getDueOn());
 					if(!methodsPayment.isEmpty()){
 						indexMethodSelected=0;
-						PaymentMethod last=methodsPayment.get(indexMethodSelected);
 						rowPaymentMethod.setNameInfo(methodsPayment.get(indexMethodSelected).getNameTypeNumber());
 						if(methodsPayment.size()==1){
 							rowPaymentMethod.setVisibleArrow(false);
@@ -292,7 +290,7 @@ public class PayNowActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Submit paymenth", getResources().getString(R.string.please_wait));
+				startProgressDialog("Submit payment...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -308,7 +306,7 @@ public class PayNowActivity extends OmegaFiActivity {
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
 				if(status==200){
-					showThankForYourPaymenth();
+					showThankForYourPayment();
 				}
 				else if(status==422){
 					showAlertMessage("You can't select dates before today.", PayNowActivity.this);
@@ -319,5 +317,13 @@ public class PayNowActivity extends OmegaFiActivity {
 			}
 		};
 		task.execute();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if(backIsHome){
+			goToHome();
+		}
+		super.onBackPressed();
 	}
 }

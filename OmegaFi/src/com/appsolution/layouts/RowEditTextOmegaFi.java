@@ -5,17 +5,11 @@ import com.appsolution.omegafi.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
-import android.text.method.DigitsKeyListener;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 

@@ -7,12 +7,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,7 +18,6 @@ public class RowEditInformation extends RelativeLayout {
 	private RelativeLayout content;
 	private TextView textNameInfo;
 	private TextView textSubNameInfo;
-	private TextView textThirdLine;
 	
 	public RowEditInformation(Context context){
 		super(context);

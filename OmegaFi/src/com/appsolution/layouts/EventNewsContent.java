@@ -8,12 +8,10 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.Layout;
-import android.text.Spannable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,6 +24,7 @@ public class EventNewsContent extends LinearLayout {
 	private TextView descriptionNewEvent;
 	private int linesTitle=0;
 	private int descriptionLines=0;
+	private static final int MAX_LINES=4;
 	
 	public EventNewsContent(Context context) {
 		super(context);
@@ -36,8 +35,7 @@ public class EventNewsContent extends LinearLayout {
 		super(context, attrs);
 		this.initialize();
 		
-		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.EventNewsContent);
-		   boolean isEvent = a.getBoolean(R.styleable.EventNewsContent_is_event, false);	   
+		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.EventNewsContent);	   
 		   
 		   String titleNewEvent=a.getString(R.styleable.EventNewsContent_title_new_event);
 		   setTitleNewEvent(titleNewEvent);
@@ -86,7 +84,6 @@ public class EventNewsContent extends LinearLayout {
 	}
 	
 	public void setDescriptionNewEvent(String description){
-		Log.d("description", description);
 		descriptionNewEvent.setText(description);
 		this.truncateNewOrEvent();
 	}
@@ -137,13 +134,10 @@ public class EventNewsContent extends LinearLayout {
 	                    public void onGlobalLayout() {
 	                        ViewTreeObserver obs = descriptionNewEvent.getViewTreeObserver();
 	                        obs.removeGlobalOnLayoutListener(this);
-	                        int linesDescription=4;//-(linesTitle-1);
-//	                        if(linesTitle==2&&dateNewEvent.getVisibility()==View.VISIBLE){
-//	                        	linesDescription--;
-//	                        }
-//	                		if(dateNewEvent.getVisibility()==View.GONE&&linesTitle==1){
-//	                			linesDescription++;
-//	                		}
+	                        int linesDescription=MAX_LINES;
+	                        if(dateNewEvent.getVisibility()==View.VISIBLE){
+	                        	linesDescription--;
+	                        }
 	                        descriptionLines=descriptionNewEvent.getLineCount();
 	                        Layout layout = descriptionNewEvent.getLayout();
 	                        String text = descriptionNewEvent.getText().toString();
@@ -152,15 +146,16 @@ public class EventNewsContent extends LinearLayout {
 	                        StringBuilder textDescription=new StringBuilder();
 	                        for (int i=0; i<descriptionNewEvent.getLineCount()&&i<linesDescription; i++) {
 	                            end = layout.getLineEnd(i);
+//	                            if(i+1==MAX_LINES)
+//	                            	end=end-3;
 	                            textDescription.append(text.substring(start,end));
 	                            start = end;
 	                        }
 	                    	if(textDescription.charAt(textDescription.length()-1)!='.'&&textDescription.charAt(textDescription.length()-2)!='.'){
 	                    		textDescription.append("...");
 	                        }
-	                    	
 	                        descriptionNewEvent.setText(Html.fromHtml(textDescription.toString()));
-	                        descriptionNewEvent.setLines(4);
+	                        descriptionNewEvent.setLines(linesDescription);
 	                    }
 	                });
 	

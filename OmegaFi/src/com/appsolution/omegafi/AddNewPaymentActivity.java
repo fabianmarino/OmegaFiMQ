@@ -5,19 +5,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.appsolution.layouts.ContactInformation;
-import com.appsolution.layouts.CustomDatePickerDialog;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
-import com.appsolution.layouts.RowEditInformation;
 import com.appsolution.layouts.RowEditNameTopInfo;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowInformation;
-import com.appsolution.layouts.RowSpinnerNameTopInfo;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.SpinnerNameTopInfo;
@@ -32,7 +27,6 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -301,7 +295,6 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
         return null;
     }
 
-    @SuppressWarnings("deprecation")
     protected void updateDate() {
         int localMonth = (mMonth + 1);
         String monthString = localMonth < 10 ? "0" + localMonth : Integer
@@ -375,7 +368,6 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	list.add("MD");
     	list.add("MA");
     	list.add("MI");
-    	
     	list.add("MN");
     	list.add("MS");
     	list.add("MO");
@@ -461,7 +453,7 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	else if(rowTextAccountNumber.getValueInfo1().isEmpty()||!rowTextAccountNumber.getValueInfo1().matches("[0-9]*")){
     		valide=false;
     	}
-    	else if(rowEditAddres1.getValueInfo().isEmpty()||rowEditAddres2.getValueInfo().isEmpty()||rowCity.getValueInfo().isEmpty()
+    	else if(rowEditAddres1.getValueInfo().isEmpty()||rowCity.getValueInfo().isEmpty()
     			||rowZIP.getValueInfo().isEmpty()||!rowZIP.getValueInfo().matches("[0-9]*")){
     		valide=false;
     	}
@@ -505,7 +497,8 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 				int[] monthYear=rowExpirationDate.getMonthYear();
 				Object[] statusJson=Server.getServer().getHome().getAccounts().createPaymentCC
 						(idAccount, rowTextNameOnCard.getValueInfo1(),rowTextNumberCard.getValueInfo1(),listCreditCards.get(indexCardType), 
-								monthYear[0], monthYear[1], contact.getEmail(), Integer.parseInt(rowTextZipCode.getValueInfo1()), contact.getPhone());
+								monthYear[0], monthYear[1], contact.getEmail(), Integer.parseInt(rowTextZipCode.getValueInfo1()), contact.getPhone(),
+								rowSaveForFutureUse.isActivatedOn());
 				status=(Integer)statusJson[0];
 				response=(JSONObject)statusJson[1];
 				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
@@ -534,35 +527,11 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	if(errorJson!=null){
 	    	try {
 	    		JSONObject jsonErrors=errorJson.getJSONObject("errors");
-	    		if(jsonErrors.has("cardnumber")){
-	    			error=jsonErrors.getJSONArray("cardnumber").getString(0);
-	    		}
-	    		else if(jsonErrors.has("cardtype")){
-	    			error=jsonErrors.getJSONArray("cardtype").getString(0);
-				}
-	    		else if(jsonErrors.has("nameoncard")){
-	    			error=jsonErrors.getJSONArray("nameoncard").getString(0);
-				}
-	    		else if(jsonErrors.has("expmonth")){
-	    			error=jsonErrors.getJSONArray("expmonth").getString(0);
-				}
-	    		else if(jsonErrors.has("expyear")){
-	    			error=jsonErrors.getJSONArray("expyear").getString(0);
-				}
-	    		else if(jsonErrors.has("emailaddress")){
-	    			error=jsonErrors.getJSONArray("emailaddress").getString(0);
-				}
-	    		else if(jsonErrors.has("zipcode")){
-	    			error=jsonErrors.getJSONArray("zipcode").getString(0);
-				}
-	    		else if(jsonErrors.has("transactionphone")){
-	    			error=jsonErrors.getJSONArray("transactionphone").getString(0);
-				}
+	    		error=Server.getFirstError(jsonErrors);
 			} catch (JSONException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-    	}//jhgkjgh
+    	}
     	return error;
     }
     
@@ -579,14 +548,14 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     		
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				int[] monthYear=rowExpirationDate.getMonthYear();
 				Object[] statusJson=Server.getServer().getHome().getAccounts().createPaymentECheck
 						(idAccount,rowTextNameOnAccount.getValueInfo1(), rowTextRoutingNumber.getValueInfo1(),
 								rowTextAccountNumber.getValueInfo1(), contact.getEmail(), contact.getPhone(),
 								rowEditAddres1.getValueInfo(), rowEditAddres2.getValueInfo(), rowCity.getValueInfo(), rowSpinner.getSelectedItem(),
-								Integer.parseInt(rowZIP.getValueInfo()));
+								Integer.parseInt(rowZIP.getValueInfo()),rowSaveForFutureUse2.isActivatedOn());
 				status=(Integer)statusJson[0];
 				response=(JSONObject)statusJson[1];
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -612,38 +581,8 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
     	if(errorJson!=null){
 	    	try {
 	    		JSONObject jsonErrors=errorJson.getJSONObject("errors");
-	    		
-	    		if(jsonErrors.has("routingnumber")){
-	    			error=jsonErrors.getJSONArray("routingnumber").getString(0);
-	    		}
-	    		else if(jsonErrors.has("accountnumber")){
-	    			error=jsonErrors.getJSONArray("accountnumber").getString(0);
-				}
-	    		else if(jsonErrors.has("nameonaccount")){
-	    			error=jsonErrors.getJSONArray("nameonaccount").getString(0);
-				}
-	    		else if(jsonErrors.has("emailaddress")){
-	    			error=jsonErrors.getJSONArray("emailaddress").getString(0);
-				}
-	    		else if(jsonErrors.has("phonenumber")){
-	    			error=jsonErrors.getJSONArray("phonenumber").getString(0);
-				}
-	    		else if(jsonErrors.has("address1")){
-	    			error=jsonErrors.getJSONArray("address1").getString(0);
-				}
-	    		else if(jsonErrors.has("city")){
-	    			error=jsonErrors.getJSONArray("city").getString(0);
-				}
-	    		else if(jsonErrors.has("state")){
-	    			error=jsonErrors.getJSONArray("state").getString(0);
-				}
-	    		else if(jsonErrors.has("zipcode")){
-	    			error=jsonErrors.getJSONArray("zipcode").getString(0);
-				}
-	    		else if(jsonErrors.has("propaytoken")){
-	    			error=jsonErrors.getJSONArray("propaytoken").getString(0);
-				}
-			} catch (JSONException e) {
+	    		error=Server.getFirstError(jsonErrors);
+	    		} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

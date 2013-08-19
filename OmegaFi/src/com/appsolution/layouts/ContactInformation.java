@@ -3,7 +3,6 @@ package com.appsolution.layouts;
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
-import android.util.Log;
 
 public class ContactInformation extends SectionOmegaFi{
 
@@ -27,7 +26,7 @@ public class ContactInformation extends SectionOmegaFi{
 	private void initializeComponents(){
 		rowEditEmail=new RowEditTextOmegaFi(getContext());
 		rowEditEmail.setNameInfo("Email");
-		rowEditEmail.setTypeInputEditText(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+		rowEditEmail.setTypeInputEditText(InputType.TYPE_TEXT_VARIATION_WEB_EMAIL_ADDRESS);
 		
 		rowEditPhone=new RowEditTextOmegaFi(getContext());
 		rowEditPhone.setNameInfo("Phone");

@@ -1,9 +1,6 @@
 package com.appsolution.omegafi;
+
 import java.util.ArrayList;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.layouts.AccountLayout;
 import com.appsolution.layouts.DetailsOfficer;
@@ -30,7 +27,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -149,6 +145,7 @@ public class HomeActivity extends OmegaFiActivity {
 					
 					@Override
 					public void onClick(View v) {
+						finish();
 						Intent viewAccount=new Intent(HomeActivity.this, AccountActivity.class);
 						viewAccount.putExtra("id", account.getIdAccount());
 						startActivityForResult(viewAccount,OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
@@ -161,6 +158,7 @@ public class HomeActivity extends OmegaFiActivity {
 						
 						Intent payNow=new Intent(HomeActivity.this, PayNowActivity.class);
 						payNow.putExtra("id", account.getIdAccount());
+						payNow.putExtra("home", true);
 						startActivityForResult(payNow, OmegaFiActivity.ACTIVITY_PAY_NOW);		
 					}
 				});
@@ -276,11 +274,11 @@ public class HomeActivity extends OmegaFiActivity {
 							
 							@Override
 							public void actionAfterChecked() {
-								changeListImages(selectables.getIndexSelected());
+								indexChapter=selectables.getIndexSelected();
+								changeListImages();
 //								changeListImages();
 								rowChapter.setNameInfo(selectables.getRowSelected().getNameInfo());
 								rowChapter.setNameSubInfo(selectables.getRowSelected().getNameSubInfo());
-								indexChapter=0;//Cambiar
 							}
 						});
 						selectables.setTitleDialog(null);
@@ -303,17 +301,17 @@ public class HomeActivity extends OmegaFiActivity {
 		}
 	}
 	
-	public void changeListImages(final int index){
+	public void changeListImages(){	
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
 
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Officers","Charging...");
+				startProgressDialog("Officers","Loading...");
 			}
 			
 			@Override
 			protected Boolean doInBackground(Void... arg0) {
-				int idChapter=Server.getServer().getHome().getChapters().getIdChapter(index);
+				int idChapter=Server.getServer().getHome().getChapters().getIdChapter(indexChapter);
 				Server.getServer().getHome().getOfficers().chargeOfficers(idChapter);
 				return true;
 			}
@@ -353,7 +351,6 @@ public class HomeActivity extends OmegaFiActivity {
 					this.getResources().getDimensionPixelSize(R.dimen.height_new_event_content)));
 			adapterPager1=new EventsNewsAdapter(this);
 			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(Server.getServer().getHome().getCalendar().getListEvents());
-//			((EventsNewsAdapter)adapterPager1).setListaEventsOrNews(getTestCalendarEvent());
 			paginator1.setAdapter(adapterPager1);
 			CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
 			titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
@@ -495,11 +492,6 @@ public class HomeActivity extends OmegaFiActivity {
 		return array;
 	}
 	
-	public void changeListImages(){
-		listGallery.changeOrderImages();
-		listPhotos.setAdapter(listGallery);
-		listPhotos.setSelection(1);
-	}
 
 	@Override
 	protected void finalize() throws Throwable {
@@ -530,7 +522,7 @@ public class HomeActivity extends OmegaFiActivity {
 				
 				@Override
 				protected void onPreExecute() {
-					startProgressDialog("Charging home...", getResources().getString(R.string.please_wait));
+					startProgressDialog("Loading home...", getResources().getString(R.string.please_wait));
 				}
 				
 				@Override
@@ -543,9 +535,6 @@ public class HomeActivity extends OmegaFiActivity {
 				protected void onPostExecute(Boolean result) {
 					if(status==200||status==201){
 						recreate();
-					}
-					else if(status==401){
-						
 					}
 					else{
 						OmegaFiActivity.showErrorConection(HomeActivity.this, status, getResources().getString(R.string.object_not_found),false);
@@ -660,7 +649,7 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	private void chargeHomeAsync(){
 		if(Server.getServer().isEmptyInformation()){
-			startProgressDialog("Charging Home", getResources().getString(R.string.please_wait));
+			startProgressDialog("Loading Home...", getResources().getString(R.string.please_wait));
 			chargeProfileInformation();
 			chargeAccountsInformation();
 			chargeChaptersInformation();

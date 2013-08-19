@@ -7,7 +7,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 public class LayoutActionBar extends RelativeLayout {
 
 	private TextView titleBar;
-	private ImageView imageArrow;
+	
 	private LinearLayout linearArrow;
 	
 	public LayoutActionBar(Context context) {
@@ -34,7 +33,7 @@ public class LayoutActionBar extends RelativeLayout {
 		inflate.inflate(R.layout.layout_action_bar, this, true);
 		titleBar=(TextView)findViewById(R.id.titleActionBar);
 		titleBar.setTypeface(OmegaFiActivity.getFont(getContext(), 1));
-		imageArrow=(ImageView)findViewById(R.id.arrowBackActionBar);
+	
 		linearArrow=(LinearLayout)findViewById(R.id.linearArrowBack);
 	}
 	

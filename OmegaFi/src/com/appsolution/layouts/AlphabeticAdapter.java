@@ -6,13 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-import com.appsolution.logic.SimpleMember;
 import com.appsolution.omegafi.OfficerMemberDetailActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
-import com.appsolution.omegafi.R.id;
-import com.appsolution.omegafi.R.layout;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+@SuppressLint("DefaultLocale")
 public class AlphabeticAdapter extends ArrayAdapter<String> implements SectionIndexer {
 	  	private HashMap<String, Integer> alphaIndexer;
 	    private String[] sections;

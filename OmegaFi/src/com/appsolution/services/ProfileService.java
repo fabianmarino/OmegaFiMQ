@@ -12,12 +12,14 @@ import org.json.JSONObject;
 import com.appsolution.logic.Profile;
 import com.appsolution.logic.TypeFormContact;
 
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 public class ProfileService extends ServerContext{
 	
 	private Profile profile;
 	private ArrayList<String> notifications=new ArrayList<String>();
+	private Drawable photoTemp;
 	
 	public ProfileService(Server server){
 		super(server);
@@ -105,7 +107,7 @@ public class ProfileService extends ServerContext{
 	}
 	
 	public Object[] updateProfileBasic(String firstName, String lastName, String middleName, String prefix, String sufix, String informalFirstName,
-			String parentsName, int graduationYear, String travelVisaNumber, String dateCollege){
+			String parentsName, int graduationYear, String travelVisaNumber, String dateCollege, boolean publish){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("profile[first_name]", firstName));
 		nameValuePairs.add(new BasicNameValuePair("profile[last_name]", lastName));
@@ -119,6 +121,8 @@ public class ProfileService extends ServerContext{
 		nameValuePairs.add(new BasicNameValuePair("profile[travel_visa_number]", travelVisaNumber));
 		if(dateCollege!=null)
 			nameValuePairs.add(new BasicNameValuePair("profile[date_of_college_entry]", dateCollege));
+		int publishInt = publish ? 1 : 0;
+		nameValuePairs.add(new BasicNameValuePair("profile[publish_profile]", publishInt+""));
 		
 		Object[] statusJson=server.makeRequestPut(Server.PROFILE_SERVICE,nameValuePairs);
 		return statusJson;
@@ -284,6 +288,14 @@ public class ProfileService extends ServerContext{
 		statusTypes[0]=status;
 		statusTypes[1]=types;
 		return statusTypes;
+	}
+
+	public Drawable getPhotoTemp() {
+		return photoTemp;
+	}
+
+	public void setPhotoTemp(Drawable photoTemp) {
+		this.photoTemp = photoTemp;
 	}
 	
 	

@@ -1,7 +1,6 @@
 package com.appsolution.layouts;
 
 import com.appsolution.omegafi.R;
-
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -18,10 +17,10 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 		setTextSizeInformation(context.getResources().getDimensionPixelSize(R.dimen.text_12_notification));
 		radioOption=new RadioButton(context);
 		radioOption.setEnabled(true);
-		int size=context.getResources().getDimensionPixelSize(R.dimen.width_arrow_down);
 		RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
 				RelativeLayout.LayoutParams.WRAP_CONTENT);
-		params.setMargins(params.leftMargin, params.topMargin, 10, params.bottomMargin);
+		params.setMargins(params.leftMargin, params.topMargin, getResources().getDimensionPixelSize(R.dimen.padding_6dp),
+				params.bottomMargin);
 		radioOption.setLayoutParams(params);
 		radioOption.setButtonDrawable(R.drawable.radio_button);
 		this.addViewRight(radioOption);

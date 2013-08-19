@@ -2,9 +2,7 @@ package com.appsolution.layouts;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.appsolution.omegafi.R;
-
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -14,12 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-/**
- * @author Jarrod Robins, Papercloud
- *
- */
 public class SimpleViewPagerIndicator extends LinearLayout implements OnPageChangeListener {
-  private static final String TAG = SimpleViewPagerIndicator.class.getSimpleName();
   
   private Context context;
   private ViewPager pager;

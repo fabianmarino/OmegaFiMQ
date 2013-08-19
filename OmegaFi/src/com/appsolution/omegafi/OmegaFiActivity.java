@@ -12,15 +12,14 @@ import com.appsolution.layouts.ItemMenuSliding;
 import com.appsolution.layouts.LayoutActionBar;
 import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.services.Server;
+import com.google.analytics.tracking.android.EasyTracker;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
-import android.app.backup.RestoreObserver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,11 +31,13 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.ImageView;
 import android.widget.QuickContactBadge;
@@ -70,8 +71,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	public static final int ACTIVITY_CALENDAR=21;
 	public static final int ACTIVITY_NEWS=22;
 	public static final int ACTIVITY_ADD_NEW_PAYMENT=23;
-	
-	
+	public static final int ACTIVITY_LOGOUT=24;
 	
 	protected com.actionbarsherlock.app.ActionBar actionBar;
 	
@@ -265,12 +265,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 				onBackPressed();
 			break;
 		case 1:
-			if(slidingMenu.isMenuShowing()){
-				slidingMenu.showContent(true);
-			}
-			else{
-				slidingMenu.showMenu(true);
-			}
+			slidingMenu.toggle();
 			break;
 		default:
 			break;
@@ -304,6 +299,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			loadImageSlidingMenu();
 			if(Server.getServer().getHome().getProfile().getProfile()!=null){
 				userContact.setNameUserProfile(Server.getServer().getHome().getProfile().getProfile().getFirstLastName());
+				userContact.setSubTitleProfile("Initiate");
 				itemAnnouncements.setNumberNotifications(Server.getServer().getHome().getProfile().getProfile().getAnnouncementsCount());
 			}
 		
@@ -325,7 +321,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			
 		}
 		else{
-			slidingMenu.showContent(true);
+			slidingMenu.toggle();
 		}
 	}
 	
@@ -341,7 +337,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			onBackPressed();
 		}
 		else{
-			slidingMenu.showContent(true);
+			slidingMenu.toggle();
 		}
 	}
 	
@@ -357,7 +353,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			startActivityForResult(goToMyProfile,OmegaFiActivity.ACTIVITY_MY_PROFILE);
 		}
 		else{		
-			slidingMenu.showContent(true);
+			slidingMenu.toggle();
 		}
 	}
 	
@@ -375,10 +371,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		        .setPositiveButton("Yes",
 		                new DialogInterface.OnClickListener() {
 		                    public void onClick(DialogInterface dialog, int id) {
-		                		Runtime.getRuntime().gc();
-		                		System.gc();
-		                		Server.getServer().getHome().clearHomeServices();
-		                		restartApp();
+		                		logoutApp();
 		                    }
 		                });
 		AlertDialog alert = builder.create();
@@ -453,7 +446,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		try {
 			this.finalize();
 		} catch (Throwable e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		super.onBackPressed();
@@ -484,6 +476,12 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	
 	@Override
+	protected void onStart() {
+		super.onStart();
+		EasyTracker.getInstance().activityStart(this);
+	}
+	
+	@Override
 	protected void onPause() {
 		CookieSyncManager.getInstance().startSync();
 		super.onPause();
@@ -492,6 +490,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	protected void onStop() {
 		super.onStop();
+		EasyTracker.getInstance().activityStop(this);
 	}
 	
 	@Override
@@ -502,13 +501,11 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	@Override
 	protected void onPostResume() {
-		Log.d("Post resume", this.getLocalClassName());
 		super.onPostResume();
 	}
 	
 	@Override
 	protected void onDestroy() {
-		Log.d("On destroy", this.getLocalClassName());
 		super.onDestroy();
 		Runtime.getRuntime().gc();
 	}
@@ -521,7 +518,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 				try {
 					Thread.sleep(millis);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				return true;
@@ -550,6 +546,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	}
 	public static boolean isDouble(String cad)
 	 {
+		
 	 try
 	 {
 	   Double.parseDouble(cad);
@@ -562,25 +559,30 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	 }
 	
 	private void restartApp(){
+		CookieManager.getInstance().removeAllCookie();
 		finish();
 		closeActivities();
-		AlarmManager alm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//		AlarmManager alm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 		Intent mainActivity=new Intent(this, MainActivity.class);
-		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+//		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 700, PendingIntent.getActivity(this, 0,mainActivity , 0));
 		startActivity(mainActivity);
-		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 100, PendingIntent.getActivity(this, 0,mainActivity , 0));
+		Runtime.getRuntime().gc();
+		System.gc();
 		System.runFinalization();
 	}
 	
+	
 	private static void restartApp(Activity context){
 		context.finish();
-		AlarmManager alm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent mainActivity=new Intent(context, MainActivity.class);
 		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		mainActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-		alm.set(AlarmManager.RTC, System.currentTimeMillis() + 100, PendingIntent.getActivity(context, 0,mainActivity , 0));
+		mainActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		System.runFinalization();
+		Runtime.getRuntime().gc();
+		System.gc();
+		context.startActivity(mainActivity);
 	}
 	
 	protected void goToHome(){
@@ -590,10 +592,11 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		startActivityForResult(home,OmegaFiActivity.ACTIVITY_HOME);
 	}
 	
-	@Override
-	protected void onActivityResult(int arg0, int arg1, Intent arg2) {
-		super.onActivityResult(arg0, arg1, arg2);
-		Log.d("on result", arg0+" - "+arg1);
+	protected void logoutApp(){
+		Server.getServer().getHome().getProfile().setPhotoTemp(userContact.getImageUser().getDrawable());
+		finish();
+		Intent logout=new Intent(this, LogoutOmegaFiActivity.class);
+		startActivityForResult(logout, OmegaFiActivity.ACTIVITY_LOGOUT);
 	}
 	
 	

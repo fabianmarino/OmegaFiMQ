@@ -3,24 +3,17 @@ package com.appsolution.omegafi;
 import java.util.ArrayList;
 
 import com.appsolution.layouts.ContentAnnouncement;
-import com.appsolution.layouts.EventNewsContent;
-import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.SimpleAnnouncement;
-import com.appsolution.logic.SimpleScheduledPayment;
 import com.appsolution.services.Server;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 public class AnnouncementsActivity extends OmegaFiActivity {
@@ -54,7 +47,7 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging announcements", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Announcements...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

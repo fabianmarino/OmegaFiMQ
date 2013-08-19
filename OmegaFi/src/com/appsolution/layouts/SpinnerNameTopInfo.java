@@ -2,11 +2,8 @@ package com.appsolution.layouts;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;

@@ -248,6 +248,12 @@
             android:windowSoftInputMode="stateHidden"
             android:configChanges="orientation|screenSize" >
         </activity>
+        <activity
+            android:name="com.appsolution.omegafi.LogoutOmegaFiActivity"
+            android:label="@string/title_activity_splash_omega_fi"
+            android:windowSoftInputMode="stateHidden"
+            android:configChanges="orientation|screenSize" >
+        </activity>
     </application>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />

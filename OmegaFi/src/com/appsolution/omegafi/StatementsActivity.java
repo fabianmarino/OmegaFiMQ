@@ -128,7 +128,7 @@ public class StatementsActivity extends OmegaFiActivity {
 	private List<String> getListAdapter(ArrayList<Statement> statements){
 		List<String> list=new ArrayList<String>();
 		for(Statement statement:statements){
-			list.add(statement.getId()+"¿"+statement.getDateClose());
+			list.add(statement.getId()+"ï¿½"+statement.getDateClose());
 		}
 		return list;
 	}
@@ -186,7 +186,7 @@ public class StatementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging statements", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Statements...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -235,7 +235,7 @@ public class StatementsActivity extends OmegaFiActivity {
         
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-        	final String[] itemStatement=getItem(position).split("¿");
+        	final String[] itemStatement=getItem(position).split("ï¿½");
         	RowInformation rowpdf=null;
         	if(convertView==null){
         		convertView=new RowInformation(getApplicationContext()); 
@@ -254,28 +254,27 @@ public class StatementsActivity extends OmegaFiActivity {
     				
     				@Override
     				public void onClick(View arg0) {
-//    					if(StatementsActivity.canDisplayPdf(StatementsActivity.this)){
-//    					dowloadFileAsyncTask(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0])),
-//    							"statement-"+Integer.parseInt(itemStatement[0])+".pdf");
-//    					}
-//    					else{
-//    						OmegaFiActivity.showAlertMessage("Please install a pdf reader", StatementsActivity.this);
-//    					}
-    					Log.d("Pdf show", "");
-    					List<Cookie> listCookies=Server.getServer().getListCookies();
-    					Cookie first=listCookies.get(0);
-    					Cookie second=listCookies.get(1);
-    		            String googleUrl = "http://docs.google.com/gview?embedded=true&url=";
-    		            Log.d("Cookie: "+first.getName(), first.getValue());
-    		            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0]))
-    		            		+"?"+first.getName()+"="+first.getValue()));
-    		            Bundle bundle = new Bundle();
-//    		            if(listCookies!=null){
-//    		             for(Cookie cookie:listCookies){
-//    		              bundle.putString(cookie.getName(), cookie.getValue());
-//    		             }
-//    		            }
-    		            startActivity(browserIntent);
+    					if(StatementsActivity.canDisplayPdf(StatementsActivity.this)){
+    					try {
+    						ProgressDialog progressDiag=new ProgressDialog(StatementsActivity.this);
+    						progressDiag.setTitle("Download Statement");
+    						progressDiag.setMessage(getResources().getString(R.string.please_wait));
+    						progressDiag.setCancelable(false);
+    						progressDiag.setIndeterminate(false);
+    						progressDiag.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+							Server.getServer().downloadFileAsync(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0])),
+									"statement-"+Integer.parseInt(itemStatement[0])+".pdf", progressDiag, StatementsActivity.this);
+						} catch (NumberFormatException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+    					}
+    					else{
+    						OmegaFiActivity.showAlertMessage("Please install a pdf reader", StatementsActivity.this);
+    					}
     				}
     			});
     			return convertView; 

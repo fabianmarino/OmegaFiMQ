@@ -22,6 +22,7 @@ public class CalendarService extends ServerContext {
 	public Object[] chargeEventsHome(){
 		Object[] response=server.makeRequestGetJSONArray(Server.CALENDAR_SERVICE);
 		JSONArray array=(JSONArray)response[1];
+		listEvents.clear();
 		if(array!=null){
 			for (int i = 0; i < 6 && i < array.length(); i++) {
 				try {

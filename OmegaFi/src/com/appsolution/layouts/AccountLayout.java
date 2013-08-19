@@ -1,18 +1,12 @@
 package com.appsolution.layouts;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import com.appsolution.logic.Account;
-import com.appsolution.logic.CalendarEvent;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -73,9 +67,9 @@ public class AccountLayout extends LinearLayout{
 			chapter.setText(account.getNameOrgDesignationOrg());
 			this.account.setValueLabel(""+idAccount);
 			if(account.getAdjustedBalance()!=null)
-				this.balanceDue.setValueLabel("$"+account.getAdjustedBalance());
+				this.balanceDue.setValueLabel(account.getAdjustedBalance());
 			if(account.getCurrentBalance()!=null)
-				this.current.setValueLabel("$"+account.getCurrentBalance());
+				this.current.setValueLabel(account.getCurrentBalance());
 			if(account.getDueOn()!=null)
 				textDueOn.setText("Due on: "+account.getDueOn());
 				

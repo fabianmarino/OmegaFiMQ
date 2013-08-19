@@ -12,6 +12,7 @@ import android.widget.TextView;
 public class RowInfoDescription extends LinearLayout {
 
 	private TextView textLeft;
+	private TextView textTitle;
 	private TextView textRight;
 	private TextView textSource;
 	
@@ -39,6 +40,7 @@ public class RowInfoDescription extends LinearLayout {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.row_info_description, this, true);
 		textLeft=(TextView)findViewById(R.id.textLeftContent);
+		textTitle=(TextView)findViewById(R.id.textTitleCalendar);
 		textRight=(TextView)findViewById(R.id.textRightContent);
 		textSource=(TextView)findViewById(R.id.textSourceCalendar);
 	}
@@ -51,7 +53,12 @@ public class RowInfoDescription extends LinearLayout {
 		textRight.setText(text);
 	}
 	
-	public void setInfoDescription(String textLeft, String textRight){
+	public void setTitleText(String text){
+		textTitle.setText(text);
+	}
+	
+	public void setInfoDescription(String title,String textLeft, String textRight){
+		setTitleText(title);
 		setLeftText(textLeft);
 		setRightText(textRight);
 	}

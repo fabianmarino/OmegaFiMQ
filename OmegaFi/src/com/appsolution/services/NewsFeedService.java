@@ -31,6 +31,7 @@ public class NewsFeedService extends ServerContext {
 			RssFeed  feed=RssReader.read(url);
 			ArrayList<RssItem> rssItems=feed.getRssItems();
 			Log.d("cargando feeds...", rssItems.size()+"");
+			news.clear();
 			for (int i = 0; i < rssItems.size()&&i<6; i++) {
 				RssItem item=rssItems.get(i);
 				Log.d("item feed", item.getTitle());

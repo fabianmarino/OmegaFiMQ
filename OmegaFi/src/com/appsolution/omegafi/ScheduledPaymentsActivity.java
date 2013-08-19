@@ -59,7 +59,7 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Scheduled Payments", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Scheduled Payments...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

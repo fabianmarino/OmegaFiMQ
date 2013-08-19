@@ -5,21 +5,16 @@ import com.appsolution.omegafi.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.Display;
 import android.view.LayoutInflater;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 public class RowEditTextSubmit extends LinearLayout {
 	
 	private EditText textEdit;
 	private Button buttonSubmit;
-	private WindowManager wm;
-	private Display display;
 
 	public RowEditTextSubmit(Context context){
 		super(context);
@@ -45,9 +40,6 @@ public class RowEditTextSubmit extends LinearLayout {
 	}
 	
 	private void initialize() {
-		wm=(WindowManager)super.getContext().getSystemService(Context.WINDOW_SERVICE);
-		display=wm.getDefaultDisplay();
-		
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.row_text_edit_submit, this, true);
 		textEdit=(EditText)findViewById(R.id.editText_submit);

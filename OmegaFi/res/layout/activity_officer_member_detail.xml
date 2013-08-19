@@ -24,6 +24,7 @@
 		            android:id="@+id/photoMemberDetail" 
 		            android:layout_width="@dimen/sliding_photo_size_130dp"
 		            android:layout_height="@dimen/sliding_photo_size_130dp"
+		            android:scaleType="centerCrop"
 		            android:src="@drawable/photo_member"/>
 	        </LinearLayout>
 	        <com.appsolution.layouts.LabelInfoVertical
@@ -154,7 +155,7 @@
                         android:layout_marginTop="@dimen/padding_6dp"
                         secom:text_size_name_information="@dimen/text_10sp"
                         secom:background_row_info="@drawable/white_input"
-                        secom:name_information="SEC0NDARY"
+                        secom:name_information="SECONDARY"
                         secom:value_information="" />
                 </LinearLayout>
                 <LinearLayout

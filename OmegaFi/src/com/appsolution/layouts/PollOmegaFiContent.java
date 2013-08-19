@@ -4,20 +4,14 @@ import java.util.ArrayList;
 
 import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.omegafi.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 

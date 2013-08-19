@@ -5,9 +5,9 @@ import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -25,28 +25,30 @@ public class MainActivity extends OmegaFiLoginActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		Runtime.getRuntime().gc();
+		System.gc();
 		CookieSyncManager.createInstance(this);
 		CookieSyncManager.getInstance().startSync();
+		CookieManager.getInstance().removeAllCookie();
 		textUser = (EditText)findViewById(R.id.email);
 		textUser.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		textPassword = (EditText)findViewById(R.id.password);
 		textPassword.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		saveUsername=(CheckBox)findViewById(R.id.check_save);
+		if(OmegaFiActivity.getWidthPercentageDisplay(getApplicationContext(), 1)>730){
+			saveUsername.setPadding(getResources().getDimensionPixelSize(R.dimen.spacing_inches_checkbox), 
+					saveUsername.getPaddingTop(), saveUsername.getPaddingRight(), saveUsername.getPaddingBottom());
+		}
 		clearUserNameCheckBox();
 		saveUsername.setButtonDrawable(R.drawable.radio_button);
 		saveUsername.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		getUserNameSaved();
 		textForgot=(TextView)findViewById(R.id.text_forgot);
 		textForgot.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
-		Server.getServer().logCookies();
 	}
 	
 	public void nextHome(View boton){
-//		Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
-//		startActivity(splashView);
-//		finish();
 		if(this.validateDataLogin()){
-			final Activity activity=this;
 			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 				int status=-1;
 				@Override

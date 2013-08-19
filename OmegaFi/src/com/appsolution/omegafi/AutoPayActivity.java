@@ -11,7 +11,6 @@ import org.json.JSONObject;
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
 import com.appsolution.layouts.RowInformation;
-import com.appsolution.logic.Account;
 import com.appsolution.logic.AutoPayConfig;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
@@ -21,7 +20,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -172,6 +170,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 				if(statusJson[1]!=null)
 					message=(JSONObject)statusJson[1];
 				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
+				
 				return true;
 			}
 			
@@ -300,7 +299,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

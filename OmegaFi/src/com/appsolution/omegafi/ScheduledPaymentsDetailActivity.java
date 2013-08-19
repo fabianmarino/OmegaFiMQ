@@ -2,7 +2,6 @@ package com.appsolution.omegafi;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
@@ -13,12 +12,10 @@ import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
 import com.appsolution.logic.SimpleScheduledPayment;
 import com.appsolution.services.Server;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -177,7 +174,6 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 	}
 	
 	public void deleteSchedulePayment(View button){
-		final OmegaFiActivity omega=this;
 		final DialogTwoOptionsOF yesNo=new DialogTwoOptionsOF(this);
 		yesNo.setMessageDialog("Are you sure you want to delete this payment?");
 		yesNo.setOption1("Yes");
@@ -255,6 +251,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 					selectable.dismissDialog();
 				}
 			});
+			selectable.setSelectedIndex(indexMethod);
 			selectable.showDialog();
 		}
 		else{
@@ -292,6 +289,8 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		}
 	}
 	
+	
+	
 	private void chargePaymentMethods(){
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			
@@ -300,7 +299,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

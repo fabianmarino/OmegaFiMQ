@@ -1,11 +1,10 @@
 package com.appsolution.omegafi;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import org.json.JSONObject;
-
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogOptionsImage;
 import com.appsolution.layouts.IconLabelVertical;
@@ -23,9 +22,11 @@ import com.appsolution.logic.Profile;
 import com.appsolution.logic.TypeFormContact;
 import com.appsolution.services.Server;
 
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -35,6 +36,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -47,8 +49,10 @@ import android.widget.TextView;
 
 public class MyProfileActivity extends OmegaFiActivity {
 	
-	private UserContactLayout userHeader;
+	private static final String namePhotoTemp="omegaFiTemp.jpg";
 	
+	private UserContactLayout userHeader;
+	private TextView labelChangesPending;
 	private IconLabelVertical phoneIcon;
 	private IconLabelVertical emailIcon;
 	private IconLabelVertical addresseIcon;
@@ -97,7 +101,8 @@ public class MyProfileActivity extends OmegaFiActivity {
 		setContentView(R.layout.activity_my_profile);
 		
 		userHeader=(UserContactLayout)findViewById(R.id.userContactMyProfile);
-		
+		labelChangesPending=(TextView)findViewById(R.id.textChangesPending);
+		labelChangesPending.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
 		phoneIcon=(IconLabelVertical)findViewById(R.id.phoneIconMyProfile);
 		phoneIcon.setBackgroundColor(this.getResources().getColor(R.color.blue_marine));
 		emailIcon=(IconLabelVertical)findViewById(R.id.emailIconMyProfile);
@@ -169,8 +174,12 @@ public class MyProfileActivity extends OmegaFiActivity {
 					@Override
 					public void onClick(View v) {
 						 imageOptions.dismissDialog();
-						Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
-		                startActivityForResult(cameraIntent, CAMERA_REQUEST); 
+//						Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
+//		                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+						 Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+						 File file = new File(Environment.getExternalStorageDirectory()+File.separator + namePhotoTemp);
+						 intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+						 startActivityForResult(intent, CAMERA_REQUEST);
 					}
 				});
 				imageOptions.setOnClickLibrary(new View.OnClickListener() {
@@ -191,7 +200,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 	
 	private void completeSpinnerGraduationYear(int year){
 		List<String> yearsGraduation=new ArrayList<String>();
-		yearsGraduation.add("No year");
+		yearsGraduation.add("Graduation Year");
 		int yearPast=0;
 		if(year>1900){
 			int yearFuture=year+20;
@@ -301,9 +310,13 @@ public class MyProfileActivity extends OmegaFiActivity {
 		}
 	}
 	
-	private void showSucessfullUpdated(){
+	private void showSucessfullUpdated(String errors){
 		final DialogInformationOF info=new DialogInformationOF(MyProfileActivity.this);
-		info.setMessageDialog("Your profile changes have been successfully updated.");
+		String message="Your profile changes have been successfully updated.";
+		if(errors!=null){
+			message=message+"\n"+errors;
+		}
+		info.setMessageDialog(message);
 		info.setButtonListener(new View.OnClickListener() {
 			
 			@Override
@@ -318,25 +331,76 @@ public class MyProfileActivity extends OmegaFiActivity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
+		BitmapFactory.Options options=new BitmapFactory.Options();
+        options.inSampleSize = 8;
 		 if (requestCode ==RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
 	         Uri selectedImage = data.getData();
 	         String[] filePathColumn = { MediaStore.Images.Media.DATA };
-	 
 	         Cursor cursor = getContentResolver().query(selectedImage,
 	                 filePathColumn, null, null, null);
 	         cursor.moveToFirst();
 	         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
 	         String picturePath = cursor.getString(columnIndex);
 	         cursor.close();
-	         imageSelected=BitmapFactory.decodeFile(picturePath);
+	         
+	         imageSelected=decodeSampledBitmapFromFile(picturePath);
 	         userHeader.getImageUser().setImageBitmap(imageSelected);
 		 }
-		 if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
-	            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
-	            imageSelected=photo;
+		 if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+	            File file = new File(Environment.getExternalStorageDirectory()+File.separator + namePhotoTemp);
+	            imageSelected=decodeSampledBitmapFromFile(file.getAbsolutePath());
 	            userHeader.getImageUser().setImageBitmap(imageSelected);
 	        }  
 	}
+	
+	public static Bitmap decodeSampledBitmapFromFile(String path) {
+	    final BitmapFactory.Options options = new BitmapFactory.Options();
+	    options.inJustDecodeBounds = true;
+	    options.inPreferredConfig = Bitmap.Config.RGB_565;
+	   	options.inJustDecodeBounds = false;
+	    options.inSampleSize=8;
+        Bitmap aux=BitmapFactory.decodeFile(path, options);
+        ExifInterface exif=null;
+		try {
+			exif = new ExifInterface(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        int exifOrientation = exif.getAttributeInt(
+        ExifInterface.TAG_ORIENTATION,
+        ExifInterface.ORIENTATION_NORMAL);
+
+        int rotate = 0;
+
+        switch (exifOrientation) {
+        case ExifInterface.ORIENTATION_ROTATE_90:
+        rotate = 90;
+        break; 
+
+       case ExifInterface.ORIENTATION_ROTATE_180:
+       rotate = 180;
+       break;
+
+       case ExifInterface.ORIENTATION_ROTATE_270:
+       rotate = 270;
+       break;
+       }
+
+         if (rotate != 0) {
+        int w = aux.getWidth();
+        int h = aux.getHeight();
+
+//Setting pre rotate
+        Matrix mtx = new Matrix();
+        mtx.preRotate(rotate);
+
+       // Rotating Bitmap & convert to ARGB_8888, required by tess
+       aux = Bitmap.createBitmap(aux, 0, 0, w, h, mtx, false);
+       aux = aux.copy(Bitmap.Config.ARGB_8888, true);
+         }
+        return aux;
+	  }
 	
 	private int[] getDayMonthYearEntryCollege(){
 		int[] date=new int[3];
@@ -376,7 +440,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Profile...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Profile...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -415,6 +479,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 		completeEmails(prof.getEmails());
 		completeAddresses(prof.getAddresses());
 		
+		setChangesPending(prof.isChangesPending());
 		editFirstName.setText(prof.getFirstName());
 		editMiddleName.setText(prof.getMiddleName());
 		editLastName.setText(prof.getLastName());
@@ -513,11 +578,11 @@ public class MyProfileActivity extends OmegaFiActivity {
 				Object[] statusJson=Server.getServer().getHome().getProfile().updateProfileBasic
 						(editFirstName.getText().toString(),editLastName.getText().toString() , editMiddleName.getText().toString(),
 								prefix, editSuffix.getText().toString(), editInformalFirst.getText().toString(), 
-								editParentsName.getText().toString(), graduationyear, editTravelVisa.getText().toString(), dateCollege);
+								editParentsName.getText().toString(), graduationyear, editTravelVisa.getText().toString(), dateCollege,tooglePublish.isActivatedOn());
 				status=(Integer)statusJson[0];
-				errors= statusJson[1]!=null ? statusJson[1].toString() : null;
 				if(imageSelected!=null){
-					Server.getServer().uploadImageProfile("picture[filename]", imageSelected);
+					int statusImage=(Integer)Server.getServer().uploadImageProfile("picture[filename]", imageSelected)[0];
+					errors=(statusImage!=200 && statusImage!=201) ? "Error("+statusImage+"): Upload Image":null;
 				}
 				if(status==200||status==201){
 					updatePhoneNumbers();
@@ -525,7 +590,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 					updateAdresses();
 					profile=(Profile)Server.getServer().getHome().getProfile().getStatusProfile()[1];
 				}
-				
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			
@@ -533,8 +598,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			protected void onPostExecute(Boolean result) {
 				if(status==200||status==201){
 					completeMyProfileActivity(profile, prefixes);
-					showSucessfullUpdated();
-					Log.d("errors", errors+"");
+					showSucessfullUpdated(errors);
 				}
 				else{
 					OmegaFiActivity.showAlertMessage(status+" "+errors, MyProfileActivity.this);
@@ -721,6 +785,11 @@ public class MyProfileActivity extends OmegaFiActivity {
 			error="You cannot delete the primary address.";
 		}
 		return error;
+	}
+	
+	private void setChangesPending(boolean pending){
+		int visibility=pending ? View.VISIBLE : View.GONE;
+		labelChangesPending.setVisibility(visibility);
 	}
 	
 	

@@ -19,7 +19,9 @@ public class OfficerRooster extends MemberRooster{
 			e.printStackTrace();
 		}
 	}
-	
-	
 
+	public String getOfficeType() {
+		return officeType;
+	}
+	
 }

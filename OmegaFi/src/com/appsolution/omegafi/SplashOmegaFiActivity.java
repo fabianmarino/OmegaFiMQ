@@ -1,11 +1,7 @@
 package com.appsolution.omegafi;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.services.Server;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -16,7 +12,6 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.QuickContactBadge;
 import android.widget.TextView;
 
 public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
@@ -29,12 +24,6 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 	private TextView textLoading;
 	private ImageView imageContact;
 	private Handler handlerPhoto;
-	
-	private android.view.ViewGroup.LayoutParams params1;
-	
-	/**
-	 * JSONs services to Home
-	 */
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +44,7 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 				textPercentaje.setText(msg.obj+"%");
 			};
 		};
+		
 		handlerPhoto=new Handler(){
 			@Override
 			public void handleMessage(android.os.Message msg) {

@@ -1,19 +1,11 @@
 package com.appsolution.logic;
 
-import java.io.IOException;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.services.Server;
-
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.AsyncTask.Status;
-import android.util.Log;
-import android.widget.ImageView;
 
 public class Officer {
 
@@ -41,13 +33,15 @@ public class Officer {
 			if(individual.has("emails")){
 				JSONArray emails=individual.getJSONArray("emails");
 				if(emails!=null){
-					email=emails.getJSONObject(0).getJSONObject("email").getString("address");
+					if(emails.length()>0)
+						email=emails.getJSONObject(0).getJSONObject("email").getString("address");
 				}
 			}
 			if(individual.has("phone_numbers")){
 				JSONArray phones=individual.getJSONArray("phone_numbers");
 				if(phones!=null){
-					telephone=phones.getJSONObject(0).getJSONObject("phone_number").getString("number");
+					if(phones.length()>0)
+						telephone=phones.getJSONObject(0).getJSONObject("phone_number").getString("number");
 				}
 			}
 			hostPhoto=null;

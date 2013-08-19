@@ -12,6 +12,7 @@ import com.appsolution.layouts.UserContactLayout;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.ContactAccount;
 import com.appsolution.logic.PaymentMethod;
+import com.appsolution.services.ForgotLoginService;
 import com.appsolution.services.Server;
 
 import android.app.Activity;
@@ -19,7 +20,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -93,6 +93,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	public void completeAccountContacts(){
 		if(actualAccount!=null){
 			ArrayList<ContactAccount> contacts=actualAccount.getContacts();
+			contacts.add(0, ForgotLoginService.getContactOmegaFi(AccountActivity.this));
 			for (final ContactAccount contact:contacts) {
 				RowInformation row=new RowInformation(activity);
 				row.setNameInfo(contact.getNameContact());
@@ -192,6 +193,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	public void activityPayNow(View button){
 		Intent viewPayNow=new Intent(getApplicationContext(), PayNowActivity.class);
 		viewPayNow.putExtra("id", actualAccount.getId());
+		viewPayNow.putExtra("home", false);
 		startActivityForResult(viewPayNow, OmegaFiActivity.ACTIVITY_PAY_NOW);
 	}
 	
@@ -251,7 +253,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Account...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Account...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -270,27 +272,33 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(actualAccount!=null){
-					userContact.chargeImageFromUrlAsync(actualAccount.getSourcePhoto(), actualAccount.getUrlPhotoAccount());
-					userContact.setNameUserProfile(actualAccount.getCompleteName());
-					userContact.setSubTitleProfile(actualAccount.getNameOrgDesignationOrg());
-					userContact.setThirdLine(actualAccount.getUniversity());
-					infoNumberAccount.setValueLabel(actualAccount.getId()+"");
-					infoBalanceDue.setValueLabel("$ "+actualAccount.getAdjustedBalance());
-					rowBalanceAsOf.setNameSubInfo(actualAccount.getDateBalanceAsOf());
-					if(actualAccount.getMoneyBalanceAsOf()!=null)
-						rowBalanceAsOf.setValueInfo("$"+actualAccount.getMoneyBalanceAsOf());
-					rowDueOn.setValueInfo(actualAccount.getDueOn());
-					rowPayments.setValueInfo("$ "+actualAccount.getPaymentsLast());
-					rowCredits.setValueInfo("$ "+actualAccount.getCreditsLast());
-					rowDebits.setValueInfo("$ "+actualAccount.getActivityLast());
-					rowCurrentBalance.setValueInfo("$ "+actualAccount.getCurrentBalance());
-					toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
-					if(!methods.isEmpty()){
-						paymentSelected=0;
-						section4.setValueInfo(methods.get(paymentSelected).getProfileTypeNumber());
+				if(status==200){
+					if(actualAccount!=null){
+						userContact.chargeImageFromUrlAsync(actualAccount.getSourcePhoto(), actualAccount.getUrlPhotoAccount());
+						userContact.setNameUserProfile(actualAccount.getCompleteName());
+						userContact.setSubTitleProfile(actualAccount.getNameOrgDesignationOrg());
+						userContact.setThirdLine(actualAccount.getUniversity());
+						infoNumberAccount.setValueLabel(actualAccount.getId()+"");
+						infoBalanceDue.setValueLabel(actualAccount.getAdjustedBalance());
+						rowBalanceAsOf.setNameSubInfo(actualAccount.getDateBalanceAsOf());
+						if(actualAccount.getMoneyBalanceAsOf()!=null)
+							rowBalanceAsOf.setValueInfo(actualAccount.getMoneyBalanceAsOf());
+						rowDueOn.setValueInfo(actualAccount.getDueOn());
+						rowPayments.setValueInfo(actualAccount.getPaymentsLast());
+						rowCredits.setValueInfo(actualAccount.getCreditsLast());
+						rowDebits.setValueInfo(actualAccount.getActivityLast());
+						rowCurrentBalance.setValueInfo(actualAccount.getCurrentBalance());
+						toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
+						if(!methods.isEmpty()){
+							paymentSelected=0;
+							section4.setValueInfo(methods.get(paymentSelected).getProfileTypeNumber());
+						}
+						completeAccountContacts();
 					}
-					completeAccountContacts();
+				}
+				else{
+					OmegaFiActivity.showErrorConection
+					(AccountActivity.this, status, getResources().getString(R.string.object_not_found), false);
 				}
 				refreshActivity();
 				stopProgressDialog();
@@ -311,7 +319,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	
 	@Override
 	public void onBackPressed() {
-		finishActivity(OmegaFiActivity.ACTIVITY_VIEW_ACCOUNT);
+		goToHome();
 		super.onBackPressed();
 	}
 }

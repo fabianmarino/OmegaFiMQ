@@ -21,6 +21,7 @@ public class OfficersService extends ServerContext {
 	}
 	
 	public Object chargeOfficers(int idChapter){
+		listOfficers.clear();
 		Object[] response=null;
 		if(idChapter!=-1){
 			response=server.makeRequestGetJSONArray(server.getUrlOfficers(idChapter));

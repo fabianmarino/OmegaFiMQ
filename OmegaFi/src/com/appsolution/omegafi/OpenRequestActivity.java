@@ -3,18 +3,13 @@ package com.appsolution.omegafi;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import com.appsolution.layouts.DialogInformationOF;
-import com.appsolution.layouts.RowEditInformation;
-import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.layouts.RowEditTextSubmit;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
+import com.appsolution.services.ForgotLoginService;
 import com.appsolution.services.Server;
-
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
@@ -22,13 +17,10 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.ToggleButton;
 
 public class OpenRequestActivity extends OmegaFiActivity {
 
@@ -41,7 +33,6 @@ public class OpenRequestActivity extends OmegaFiActivity {
 	private SectionOmegaFi sectionRequestContact;
 	private EditText textRequest;
 	
-	private Button buttonSend;
 	private int idAccount=-1;
 	private int organizationNumber;
 	
@@ -55,6 +46,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 		this.completeSectionRequestContact();
 		idAccount=getIntent().getExtras().getInt("id");
 		organizationNumber=getIntent().getExtras().getInt("organizationId");
+		
 	}
 	
 	@Override
@@ -141,7 +133,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 		String validate=null;
 		Log.d("validate", editEmailAddres.getText().toString());
 		if(!RowEditTextSubmit.isValidEmail(editEmailAddres.getText().toString())){
-			validate="Email sintax is invalid.";
+			validate="You have typed in an invalid email address.";
 		}
 		else if(textRequest.getText().toString().isEmpty()){
 			validate="The request is empty.";
@@ -172,7 +164,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 			@Override
 			protected Boolean doInBackground(Void... params) {
 				Object[] statusJson=Server.getServer().getHome().getAccounts().sendOpenRequest
-						(idAccount, "322232", organizationNumber+"", editEmailAddres.getText().toString(),isPreviousIssue(), textRequest.getText().toString());
+						(idAccount, ForgotLoginService.getPhoneService(getApplicationContext()), organizationNumber+"", ForgotLoginService.getLogAs(getApplicationContext()),editEmailAddres.getText().toString(),isPreviousIssue(), textRequest.getText().toString());
 				status=(Integer)statusJson[0];
 				errors=(JSONObject)statusJson[1];
 				return true;

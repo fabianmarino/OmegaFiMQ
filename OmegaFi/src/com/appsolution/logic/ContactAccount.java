@@ -5,6 +5,10 @@ import org.json.JSONObject;
 
 public class ContactAccount {
 
+	public static final int TYPE_OMEGAFI=0;
+	public static final int TYPE_ORGANIZATION=1;
+	
+	
 	private boolean isRegularContact;
 	private String nameContact;
 	private String titleContact;
@@ -13,14 +17,24 @@ public class ContactAccount {
 	private int organizationId;
 	
 	
-	public ContactAccount(JSONObject jsonContact, boolean isRegular) {
+	
+	public ContactAccount(JSONObject jsonContact, boolean isRegular, int type) {
 		this.isRegularContact=isRegular;
-		if(isRegularContact){
+		if(type==TYPE_OMEGAFI){
 			completeContactRegular(jsonContact);
 		}
 		else{
 			completeContactNotRegular(jsonContact);
 		}
+	}
+	
+	public ContactAccount(String name, String title, String phone, String phoneBilling){
+		isRegularContact=false;
+		nameContact=name;
+		titleContact=title;
+		phoneContact=phone;
+		emailContact="";
+		organizationId=-1;
 	}
 	
 	private void completeContactRegular(JSONObject jsonContact){
@@ -71,6 +85,7 @@ public class ContactAccount {
 	}
 
 	public String getPhoneContact() {
+		phoneContact.replace(".", "-");
 		return phoneContact;
 	}
 
@@ -79,7 +94,7 @@ public class ContactAccount {
 	}
 	
 	public String getPhoneToCall(){
-		return phoneContact.replace("-", "");
+		return phoneContact.replace("-", "").replace(".", "");
 	}
 
 	public int getOrganizationId() {

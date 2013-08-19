@@ -1,12 +1,9 @@
 package com.appsolution.layouts;
 
 import java.util.ArrayList;
-
 import com.appsolution.logic.Officer;
 import com.appsolution.omegafi.R;
-
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

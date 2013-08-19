@@ -9,6 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.logic.ContactAccount;
+import com.appsolution.omegafi.ForgotLoginActivity;
 import com.appsolution.omegafi.OmegaFiLoginActivity;
 
 import android.content.Context;
@@ -83,35 +85,38 @@ public class ForgotLoginService extends ServerContext{
         	String firstName="";
         	String title="News";
         	String urlFeed="";
-        	if(jsonLoginService!=null){
-        		if(!jsonLoginService.isNull("FirstName"))
-					try {
-						firstName=jsonLoginService.getString("FirstName");
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
-        	if(jsonLoginService!=null){
-        		if(!jsonLoginService.isNull("RSSTitle"))
-					try {
-						title= jsonLoginService.getString("RSSTitle");
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
-        	if(jsonLoginService!=null){
-        		if(!jsonLoginService.isNull("OmegaFiRSSFeed"))
-					try {
-						urlFeed= jsonLoginService.getString("OmegaFiRSSFeed");
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-			}
-        	
-        	OmegaFiLoginActivity.setFirstNameTitleUrlFeeds(firstName, title, urlFeed, context);
+        	String logAs="";
+        	String nameContact="";
+        	String titleContact="";
+        	String phoneContact="";
+        	String phoneBilling="";
+        	try {
+	        	if(jsonLoginService!=null){
+	        		if(!jsonLoginService.isNull("FirstName"))		
+	        			firstName=jsonLoginService.getString("FirstName");
+	        		if(!jsonLoginService.isNull("RSSTitle"))
+	        			title= jsonLoginService.getString("RSSTitle");
+	        		if(!jsonLoginService.isNull("OmegaFiRSSFeed"))
+	        			urlFeed= jsonLoginService.getString("OmegaFiRSSFeed");
+	        		if(!jsonLoginService.isNull("UserLogAs"))
+	        			logAs= jsonLoginService.getString("UserLogAs");
+	        		if(!jsonLoginService.isNull("UserLogAs"))
+	        			logAs= jsonLoginService.getString("UserLogAs");
+	        		if(!jsonLoginService.isNull("OmegaFiVaultBillingContactName"))
+	        			nameContact= jsonLoginService.getString("OmegaFiVaultBillingContactName");
+	        		if(!jsonLoginService.isNull("OmegaFiVaultBillingContactTitle"))
+	        			titleContact= jsonLoginService.getString("OmegaFiVaultBillingContactTitle");
+	        		if(!jsonLoginService.isNull("OmegaFiCustomerServicePhone"))
+	        			phoneContact= jsonLoginService.getString("OmegaFiCustomerServicePhone");
+	        		if(!jsonLoginService.isNull("OmegaFiVaultBillingPhone"))
+	        			phoneBilling= jsonLoginService.getString("OmegaFiVaultBillingPhone");
+				}
+        	} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+        	OmegaFiLoginActivity.setFirstNameTitleUrlFeeds(firstName, title, urlFeed, logAs,context);
+        	OmegaFiLoginActivity.saveOmegaFiContact(context, nameContact, titleContact, phoneContact, phoneBilling);
         	server.setupCookies();
         }
         return response;
@@ -148,6 +153,25 @@ public class ForgotLoginService extends ServerContext{
 	public String getUrlFeed(Context context){
 		String url=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_URL_NEW_FEEDS, context);
 		return url;
+	}
+	
+	public static String getLogAs(Context context){
+		String logAs=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_LOG_AS, context);
+		return logAs;
+	}
+	
+	public static ContactAccount getContactOmegaFi(Context context){
+		String name=ForgotLoginActivity.getPreferenceSaved(ForgotLoginActivity.OMEGAFI_CONTACT_NAME, context);
+		String title=ForgotLoginActivity.getPreferenceSaved(ForgotLoginActivity.OMEGAFI_CONTACT_TITLE, context);
+		String phone=ForgotLoginActivity.getPreferenceSaved(ForgotLoginActivity.OMEGAFI_CONTACT_PHONE_SERVICE, context);
+		String phoneBilling=ForgotLoginActivity.getPreferenceSaved(ForgotLoginActivity.OMEGAFI_CONTACT_PHONE_BILLING, context);
+		ContactAccount contact=new ContactAccount(name, title, phone, phoneBilling);
+		return contact;
+	}
+	
+	public static String getPhoneService(Context context){
+		String phone=ForgotLoginActivity.getPreferenceSaved(ForgotLoginActivity.OMEGAFI_CONTACT_PHONE_SERVICE, context);
+		return phone;
 	}
 	
 	public void clearForgotLoginService(){

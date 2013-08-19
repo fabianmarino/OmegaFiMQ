@@ -1,7 +1,6 @@
 package com.appsolution.layouts;
 
 import android.app.DatePickerDialog;
-import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
 import android.widget.DatePicker;
 

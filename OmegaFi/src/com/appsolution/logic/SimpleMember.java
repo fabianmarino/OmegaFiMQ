@@ -26,8 +26,8 @@ public class SimpleMember {
 				if(memberStatus!=null){
 					statusName=memberStatus.getString("status_name");
 				}
-				if(!jsonMember.isNull("profile_picture")){
-					JSONObject photoJson=jsonMember.getJSONObject("profile_picture");
+				if(!individual.isNull("profile_picture")){
+					JSONObject photoJson=individual.getJSONObject("profile_picture");
 					sourcePhoto=photoJson.getString("source");
 					urlPhoto=photoJson.getString("url");
 				}

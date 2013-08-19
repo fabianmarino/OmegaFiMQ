@@ -25,7 +25,16 @@ public class Charge {
 	}
 
 	public String getAmount() {
-		return amount;
+		if(amount!=null){
+			int index=amount.indexOf(".");
+			if(index!=1){
+				int rest=amount.length()-index;
+				if(rest<3){
+					amount+="0";
+				}
+			}
+			}
+			return amount;
 	}
 	
 	

@@ -1,17 +1,11 @@
 package com.appsolution.omegafi;
 
-import java.util.ArrayList;
-import java.util.List;
-import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.layouts.RowCheckBoxOmegaFi;
-import com.appsolution.layouts.RowCheckGroup;
-import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.logic.AutoPayConfig;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.method.DigitsKeyListener;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;

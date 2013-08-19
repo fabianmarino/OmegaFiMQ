@@ -5,6 +5,7 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.MemberRooster;
 import com.appsolution.logic.OfficerRooster;
 import com.appsolution.services.Server;
+import com.google.analytics.tracking.android.Log;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -149,7 +150,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Member", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Member...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -185,7 +186,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Officer...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Officer...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -214,8 +215,10 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	}
 	
 	private void completeFieldsMember(MemberRooster member){
+		android.util.Log.d("Before", "Photo"+member.getSourcePhoto()+","+member.getUrlPhoto());
+		Server.chargeBitmapInImageViewAsync(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
+		android.util.Log.d("After", "Photo");
 		actionBarCustom.setTitle(member.getCompleteName().toUpperCase());
-		
 		infoMemberInitiate.setTitleLabel(member.getStatusName());
 		infoMemberInitiate.setValueLabel(member.getInitiationDate());
 		
@@ -230,12 +233,12 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		emailSecundary.setValueInfo(emails[1]);
 		
 		if(adresses[0]!=null){
-			String[] addressM=adresses[0].split("¿");
+			String[] addressM=adresses[0].split("ï¿½");
 			addressMain.setValueInfo(addressM[2]+", "+addressM[0]);
 			addressMain.setValueInfo2(adresses[1]);
 		}
 		if(adresses[1]!=null){
-			String[] addressS=adresses[1].split("¿");
+			String[] addressS=adresses[1].split("ï¿½");
 			addressSecundary.setValueInfo(addressS[2]+", "+addressS[0]);
 			addressSecundary.setValueInfo2(addressS[1]);
 		}	
@@ -243,7 +246,6 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		urlFacebook=member.getProfFacebook();
 		urlLinkedIn=member.getProfLinked();
 		urlTwitter=member.getProfTwitter();
-		Server.chargeBitmapInImageViewAsync(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
 	}
 	
 	

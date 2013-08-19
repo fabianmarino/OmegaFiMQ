@@ -1,12 +1,9 @@
 package com.appsolution.layouts;
 
 import java.io.IOException;
-
-import com.appsolution.omegafi.MainActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 import com.appsolution.services.Server;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -25,6 +22,7 @@ import android.widget.TextView;
 
 public class ImageRoosterName extends LinearLayout {
 
+	private LinearLayout linearPhoto;
 	private ImageView photoRooster;
 	private TextView nameRooster;
 	private TextView typeRooster;
@@ -44,6 +42,7 @@ public class ImageRoosterName extends LinearLayout {
 	private void initialize() {
 		LayoutInflater inflate= (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflate.inflate(R.layout.image_rooster_name, this, true);
+		linearPhoto=(LinearLayout)findViewById(R.id.linearPhotoRooster);
 		photoRooster=(ImageView)findViewById(R.id.imageRoosterGalery);
 		nameRooster=(TextView)findViewById(R.id.nameRoosterGalery);
 		nameRooster.setTypeface(OmegaFiActivity.getFont(getContext(), 0));
@@ -90,12 +89,12 @@ public class ImageRoosterName extends LinearLayout {
 	
 	public void setSelectedImageRooster(boolean selected){
 		if(selected){
-			photoRooster.setBackgroundColor(this.getResources().getColor(R.color.blue_marine));
+			linearPhoto.setBackgroundColor(this.getResources().getColor(R.color.blue_marine));
 			nameRooster.setVisibility(View.INVISIBLE);
 			typeRooster.setVisibility(View.INVISIBLE);
 		}
 		else{
-			photoRooster.setBackgroundColor(Color.WHITE);
+			linearPhoto.setBackgroundColor(Color.WHITE);
 			nameRooster.setVisibility(View.VISIBLE);
 			typeRooster.setVisibility(View.VISIBLE);
 		}
@@ -111,7 +110,6 @@ public class ImageRoosterName extends LinearLayout {
 		}
 		else{
 			if(taskChargePhoto.getStatus()==Status.FINISHED){
-				Log.d("Finalizado", "siiiiii");
 				this.startChargePhoto(url);
 			}
 		}

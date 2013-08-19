@@ -41,7 +41,7 @@ public class TermsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Terms...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Terms...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

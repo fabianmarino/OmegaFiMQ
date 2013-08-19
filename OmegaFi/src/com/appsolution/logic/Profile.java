@@ -30,7 +30,7 @@ public class Profile {
 	private boolean publishProfile;
 	private List<String> prefixes=new ArrayList<String>();
 	private int announcementsCount=0;
-	
+	private boolean changesPending=false;
 	
 	public Profile(JSONObject objectprofile) {
 		JSONObject individual;
@@ -69,6 +69,7 @@ public class Profile {
 				if(!individual.isNull("date_of_college_entry"))
 					dateCollegeEntry=individual.getString("date_of_college_entry");
 				
+				changesPending=individual.getBoolean("pending_change");
 				publishProfile=individual.getBoolean("publish_profile");
 				
 				this.completePhones(individual.getJSONArray("phone_numbers"));
@@ -242,6 +243,11 @@ public class Profile {
 	public int getAnnouncementsCount() {
 		return announcementsCount;
 	}
+
+	public boolean isChangesPending() {
+		return changesPending;
+	}
+	
 	
 	
 	

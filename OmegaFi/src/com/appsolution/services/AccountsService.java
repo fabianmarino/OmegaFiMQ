@@ -82,7 +82,7 @@ public class AccountsService extends ServerContext {
 	}
 	
 	public Object[] createPaymentCC(int idAccount,String nameCC, String creditNumber, String typeCard ,
-			int month, int year, String emailAddress, int zipCode, String phone){
+			int month, int year, String emailAddress, int zipCode, String phone, boolean saveForFuture){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("credit_card_profile[nameoncard]", nameCC));
         nameValuePairs.add(new BasicNameValuePair("credit_card_profile[cardnumber]", creditNumber));
@@ -92,13 +92,15 @@ public class AccountsService extends ServerContext {
         nameValuePairs.add(new BasicNameValuePair("credit_card_profile[emailaddress]", emailAddress));
         nameValuePairs.add(new BasicNameValuePair("credit_card_profile[zipcode]", zipCode+""));
         nameValuePairs.add(new BasicNameValuePair("credit_card_profile[transactionphone]", phone));
+        int booleanValue=saveForFuture ? 1 : 0;
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[profile]", booleanValue+""));
 		Object[] statusJson=server.makeRequestPost(Server.getUrlPaymentMethods(idAccount), nameValuePairs);
 		return statusJson;
 	}
 	
 	//Falta lo de las dos lineas de la direccion al servicio web solo hay que enviarle un string
 	public Object[] createPaymentECheck(int idAccount, String nameAccount, String routingNumber, String accountNumber, 
-			String emailAddress, String phone, String addressLine1, String addressLine2, String city, String state, int zipCode){
+			String emailAddress, String phone, String addressLine1, String addressLine2, String city, String state, int zipCode, boolean saveForFuture){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[routingnumber]", routingNumber));
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[accountnumber]", accountNumber));
@@ -106,9 +108,13 @@ public class AccountsService extends ServerContext {
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[emailaddress]", emailAddress));
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[phonenumber]", phone));
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[address1]", addressLine1));
+        if(!addressLine2.isEmpty())
+        	nameValuePairs.add(new BasicNameValuePair("echeck_profile[address2]", addressLine2));
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[city]", city));
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[state]", state));
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[zipcode]", zipCode+""));
+        int booleanValue=saveForFuture ? 1 : 0;
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[profile]", booleanValue+""));
 		Object[] statusJson=server.makeRequestPost(Server.getUrlPaymentMethods(idAccount), nameValuePairs);
 		return statusJson;
 	}
@@ -295,11 +301,11 @@ public class AccountsService extends ServerContext {
 		return statusJson;
 	}
 	
-	public Object[] sendOpenRequest(int account, String phoneNumber, String numberOrganization, String email, int contactedBefore, String request){
+	public Object[] sendOpenRequest(int account, String phoneNumber, String numberOrganization, String logAs, String email, int contactedBefore, String request){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("task[priority]", "1"));
 		nameValuePairs.add(new BasicNameValuePair("task[phonenumber]", phoneNumber));
-		nameValuePairs.add(new BasicNameValuePair("task[openedby]", "mys-332999"));
+		nameValuePairs.add(new BasicNameValuePair("task[openedby]", logAs));
 		nameValuePairs.add(new BasicNameValuePair("task[organizationnumber]", numberOrganization));
 		nameValuePairs.add(new BasicNameValuePair("task[email]", email));
 		nameValuePairs.add(new BasicNameValuePair("task[contacted_before]", contactedBefore+""));

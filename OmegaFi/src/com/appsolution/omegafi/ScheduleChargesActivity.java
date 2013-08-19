@@ -1,27 +1,17 @@
 package com.appsolution.omegafi;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import com.appsolution.layouts.CycleCharge;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.BillingCycle;
 import com.appsolution.logic.ScheduledOfCharges;
 import com.appsolution.services.Server;
-
 import android.app.Activity;
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.style.BulletSpan;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.LinearLayout.LayoutParams;
 
 public class ScheduleChargesActivity extends OmegaFiActivity {
 
@@ -43,7 +33,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(false);
 		actionBar.setDisplayShowCustomEnabled(true);
-		actionBarCustom.setTitle("SCHEDULED OF CHARGES");
+		actionBarCustom.setTitle("SCHEDULE OF CHARGES");
 		actionBar.setCustomView(actionBarCustom);
 	}
 	
@@ -55,7 +45,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Scheduled of Charges", "Charging cycles...");
+				startProgressDialog("Loading Schedule of Charges...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -69,9 +59,15 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(scheduled!=null){
-					chargesAdapter=new ScheduledChargesAdapter(ScheduleChargesActivity.this, scheduled);
-					listCycles.setAdapter(chargesAdapter);
+				if(status==200||status==201){
+					if(scheduled!=null){
+						chargesAdapter=new ScheduledChargesAdapter(ScheduleChargesActivity.this, scheduled);
+						listCycles.setAdapter(chargesAdapter);
+					}
+				}
+				else{
+					OmegaFiActivity.showErrorConection
+					(ScheduleChargesActivity.this, status, getResources().getString(R.string.object_not_found), false);
 				}
 				stopProgressDialog();
 				refreshActivity();
@@ -119,7 +115,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 				}
 				cycle.setNamesInfo("Cycle "+cycleBilling.getCycleNumber(), "Billed: "+cycleBilling.getDateBillOn(),
 						"Due: "+cycleBilling.getDateDueOn());
-				cycle.setValueInfo("$"+cycleBilling.getTotalAmount());
+				cycle.setValueInfo(cycleBilling.getTotalAmount());
 				cycle.setListCharges(cycleBilling.getListCharges());
 			}
 			else{
@@ -132,7 +128,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 					rowInfo=(RowInformation)convertView;
 				}
 				rowInfo.setNameInfo(scheduled.getInterval());
-				rowInfo.setValueInfo("$"+scheduled.getGrandTotal());
+				rowInfo.setValueInfo(scheduled.getGrandTotal());
 			}
 			return convertView;
 		}

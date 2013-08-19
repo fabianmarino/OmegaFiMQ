@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:secom="http://schemas.android.com/apk/res/com.appsolution.omegafi"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/BackgroundLoginScreen"
+    android:orientation="vertical"
+    tools:context=".SplashOmegaFiActivity" >
+    <LinearLayout style="@style/ContentLoginForm"
+            >
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        style="@style/LoginFormContainer"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp" >
+	    <com.appsolution.layouts.HeaderOmegaFi
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"/>
+	    <View android:layout_width="fill_parent"
+	        android:layout_height="1px"
+	        android:background="@color/gray_line_divisor"
+	        android:layout_marginTop="@dimen/padding_8dp"
+	        android:layout_marginBottom="@dimen/padding_8dp"
+	        />
+	    <LinearLayout
+	        android:orientation="horizontal"
+	        android:gravity="center_horizontal"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content">
+	        <ImageView android:id="@+id/photoProfileLogout"
+	            android:layout_width="@dimen/photo_size"
+	            android:layout_height="@dimen/photo_size"
+	            android:layout_marginRight="6dp"
+	            android:adjustViewBounds="true"
+	            android:src="@drawable/photo_member"
+	            android:scaleType="centerCrop"
+	            />
+	        <LinearLayout android:orientation="vertical"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content">
+			    <TextView android:id="@+id/textByeUser"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:text="Goodbye, "
+			        android:textSize="@dimen/text_large"
+			        />
+			    <!-- <TextView android:id="@+id/textWelcomeUser"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_marginTop="5dp"
+			        android:text="@string/welcome_to_myomegafi"
+			        android:textSize="@dimen/text_medium"
+			        android:textColor="@color/gray_font_welcome"
+			        /> -->
+		    </LinearLayout>
+	    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/jagged"></LinearLayout>
+    </LinearLayout>
+    <!-- <LinearLayout android:id="@+id/contentBarSplash"
+	        android:layout_width="@dimen/circle_chargin_size"
+	        android:layout_height="@dimen/circle_chargin_size"
+	        android:layout_marginTop="@dimen/margin_top_circle_charging"
+	        android:gravity="center"
+	        android:layout_gravity="center_horizontal"
+	        android:orientation="vertical"
+	        android:background="@drawable/circle_blue">
+	       	<TextView android:id="@+id/percentajeLoading"
+	       	    android:layout_width="wrap_content"
+	       	    android:layout_height="wrap_content"
+	       	    android:layout_gravity="center_horizontal"
+	       	    android:textSize="@dimen/text_x_large"
+	       	    android:textColor="@android:color/white"
+	       	    android:text="0%"
+	       	    />
+	       	<View android:layout_width="@dimen/large_line_circle"
+	       	    android:layout_height="3dp"
+	       	    android:background="@android:color/white"/>
+	       	<TextView
+	       	    android:id="@+id/labelLoadingSplash" 
+	       	    android:layout_width="wrap_content"
+	       	    android:layout_height="wrap_content"
+	       	    android:layout_gravity="center_horizontal"
+	       	    android:text="LOADING"
+	       	    android:textColor="@android:color/white"
+	       	    android:textSize="@dimen/text_small_loading"/>
+		</LinearLayout> -->
+</LinearLayout>

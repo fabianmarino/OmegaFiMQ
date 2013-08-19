@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
 
 public class PollAdapter extends PagerAdapter {
@@ -25,7 +23,7 @@ public class PollAdapter extends PagerAdapter {
     }  
     
     /**
-     * Método de prueba para llenar noticias o eventos con contenido falso 
+     * Test method for poll simulate 
      */
     private void initializeNewsEventsTest(){
     	for (int i = 0; i <6; i++) {	
@@ -53,12 +51,6 @@ public class PollAdapter extends PagerAdapter {
     }  
   
     @Override  
-    public void finishUpdate(View arg0) {  
-        // TODO Auto-generated method stub  
-          
-    }  
-  
-    @Override  
     public int getCount() {  
         return listaEventsOrNews.size();  
     }  
@@ -81,22 +73,5 @@ public class PollAdapter extends PagerAdapter {
          return view==((ViewSwitcher)object);  
     }  
   
-    @Override  
-    public void restoreState(Parcelable arg0, ClassLoader arg1) {  
-        // TODO Auto-generated method stub  
-          
-    }  
-  
-    @Override  
-    public Parcelable saveState() {  
-        // TODO Auto-generated method stub  
-        return null;  
-    }  
-  
-    @Override  
-    public void startUpdate(View arg0) {  
-        // TODO Auto-generated method stub  
-          
-    }
 
 }

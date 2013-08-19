@@ -3,21 +3,15 @@ package com.appsolution.omegafi;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.layouts.RowCheckBoxOmegaFi;
-import com.appsolution.layouts.RowCheckGroup;
-import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.CalendarEvent;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 

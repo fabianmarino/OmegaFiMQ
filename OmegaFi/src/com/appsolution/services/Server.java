@@ -49,6 +49,7 @@ import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.SplashOmegaFiActivity;
 import com.appsolution.omegafi.StatementsActivity;
 
+import android.R;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -121,6 +122,10 @@ public class Server {
 			server=new Server();
 		}
 		return server;
+	}
+	
+	public static void clearServer(){
+		server=null;
 	}
 	
 	public Object[]  makeRequestPost(String url,List<NameValuePair> data){
@@ -555,25 +560,18 @@ public class Server {
 			Bitmap imagePhoto=null;
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				if(source!=null){
-					if(source.equalsIgnoreCase("omegafi")){
-						try {
-							imagePhoto=Server.getServer().downloadBitmap(Server.HOST+url);
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					}
-					else{
-						imagePhoto=OmegaFiActivity.loadImageFromURL(url);
-					}
-				}
+				imagePhoto=chargeBitmapInImageView(source, url);
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(imagePhoto!=null){
+					Log.d("ImagePhoto", imagePhoto+url);
 					image.setImageBitmap(imagePhoto);
+				}
+				else{
+					Log.d("Image Nula "+source, url+"");
 				}
 			}
 		};
@@ -600,6 +598,7 @@ public class Server {
 	
 	
 	protected void setupCookies(){
+		CookieManager.getInstance().removeAllCookie();
 		List<Cookie> cookies = getListCookies();
 		if (!cookies.isEmpty())
 		{
@@ -617,93 +616,95 @@ public class Server {
 	public void restoreCookies(){
 		CookieSyncManager.getInstance().sync();
 		if(getListCookies().size()==0){
-			for (int i = 0; i < 2; i++) {
-				String[] keyValueSets = CookieManager.getInstance().getCookie(Server.DOMAIN).split(";");
-				for(String cookie : keyValueSets)
-				{
-				    String[] keyValue = cookie.split("=");
-				    String key = keyValue[0];
-				    String value = "";
-				    if(keyValue.length>1){
-				    	value = keyValue[1];
-				    }
-				    final String nameCookie=key;
-				    final String valueCookie=value;
-				    final String domainCookie=Server.DOMAIN;
-				    cookieStore.addCookie(new Cookie() {
-						
-						@Override
-						public boolean isSecure() {
-							// TODO Auto-generated method stub
-							return true;
-						}
-						
-						@Override
-						public boolean isPersistent() {
-							// TODO Auto-generated method stub
-							return false;
-						}
-						
-						@Override
-						public boolean isExpired(Date date) {
-							// TODO Auto-generated method stub
-							return false;
-						}
-						
-						@Override
-						public int getVersion() {
-							// TODO Auto-generated method stub
-							return 0;
-						}
-						
-						@Override
-						public String getValue() {
-							// TODO Auto-generated method stub
-							return valueCookie;
-						}
-						
-						@Override
-						public int[] getPorts() {
-							// TODO Auto-generated method stub
-							return null;
-						}
-						
-						@Override
-						public String getPath() {
-							// TODO Auto-generated method stub
-							return null;
-						}
-						
-						@Override
-						public String getName() {
-							// TODO Auto-generated method stub
-							return nameCookie;
-						}
-						
-						@Override
-						public Date getExpiryDate() {
-							// TODO Auto-generated method stub
-							return null;
-						}
-						
-						@Override
-						public String getDomain() {
-							// TODO Auto-generated method stub
-							return domainCookie;
-						}
-						
-						@Override
-						public String getCommentURL() {
-							// TODO Auto-generated method stub
-							return null;
-						}
-						
-						@Override
-						public String getComment() {
-							// TODO Auto-generated method stub
-							return null;
-						}
-					});
+			if(CookieManager.getInstance().hasCookies()){
+				for (int i = 0; i < 2; i++) {
+					String[] keyValueSets = CookieManager.getInstance().getCookie(Server.DOMAIN).split(";");
+					for(String cookie : keyValueSets)
+					{
+					    String[] keyValue = cookie.split("=");
+					    String key = keyValue[0];
+					    String value = "";
+					    if(keyValue.length>1){
+					    	value = keyValue[1];
+					    }
+					    final String nameCookie=key;
+					    final String valueCookie=value;
+					    final String domainCookie=Server.DOMAIN;
+					    cookieStore.addCookie(new Cookie() {
+							
+							@Override
+							public boolean isSecure() {
+								// TODO Auto-generated method stub
+								return true;
+							}
+							
+							@Override
+							public boolean isPersistent() {
+								// TODO Auto-generated method stub
+								return false;
+							}
+							
+							@Override
+							public boolean isExpired(Date date) {
+								// TODO Auto-generated method stub
+								return false;
+							}
+							
+							@Override
+							public int getVersion() {
+								// TODO Auto-generated method stub
+								return 0;
+							}
+							
+							@Override
+							public String getValue() {
+								// TODO Auto-generated method stub
+								return valueCookie;
+							}
+							
+							@Override
+							public int[] getPorts() {
+								// TODO Auto-generated method stub
+								return null;
+							}
+							
+							@Override
+							public String getPath() {
+								// TODO Auto-generated method stub
+								return null;
+							}
+							
+							@Override
+							public String getName() {
+								// TODO Auto-generated method stub
+								return nameCookie;
+							}
+							
+							@Override
+							public Date getExpiryDate() {
+								// TODO Auto-generated method stub
+								return null;
+							}
+							
+							@Override
+							public String getDomain() {
+								// TODO Auto-generated method stub
+								return domainCookie;
+							}
+							
+							@Override
+							public String getCommentURL() {
+								// TODO Auto-generated method stub
+								return null;
+							}
+							
+							@Override
+							public String getComment() {
+								// TODO Auto-generated method stub
+								return null;
+							}
+						});
+					}
 				}
 			}
 			}
@@ -740,22 +741,20 @@ public class Server {
 		int status=0;
 	        try {
 	            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	            bm.compress(CompressFormat.JPEG, 80, bos);
+	            bm.compress(CompressFormat.JPEG, 20, bos);
 	            byte[] data = bos.toByteArray();
 	            HttpPost postRequest = new HttpPost(Server.PROFILE_IMAGE);
 	            ByteArrayBody bab = new ByteArrayBody(data, Calendar.getInstance().getTimeInMillis()+".jpg");
-	            // File file= new File("/mnt/sdcard/forest.png");
-	            // FileBody bin = new FileBody(file);
 	            MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 	            reqEntity.addPart(idJson, bab);
 	            postRequest.setEntity(reqEntity);
 	            HttpResponse response = clientRequest.execute(postRequest,contextHttp);
 	            status=response.getStatusLine().getStatusCode();
 	            statusJson[0]=status;
+	            Log.d("updload photo", fromResponseToString(response));
 	            JSONObject object=fromResponseToJSON(response);
 	            statusJson[1]=object;
 	            } catch (Exception e) {
-	            // handle exception here
 	            Log.e(e.getClass().getName(), e.getMessage());
 	        }
 	        return statusJson;

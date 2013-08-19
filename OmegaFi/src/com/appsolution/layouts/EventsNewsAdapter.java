@@ -1,25 +1,15 @@
 package com.appsolution.layouts;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import com.appsolution.logic.CalendarEvent;
-
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class EventsNewsAdapter extends PagerAdapter {
 
@@ -60,11 +50,6 @@ public class EventsNewsAdapter extends PagerAdapter {
         ((ViewPager) collection).removeView((EventNewsContent) view);
    }
   
-    @Override  
-    public void finishUpdate(View arg0) {  
-        // TODO Auto-generated method stub  
-          
-    }
     
     @Override
     public int getItemPosition(Object object) {

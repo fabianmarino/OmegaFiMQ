@@ -1,12 +1,9 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
-
-
 import com.appsolution.layouts.EventNewsContent;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.services.Server;
-
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,7 +20,6 @@ public class NewsOmegaFiActivity extends OmegaFiActivity {
 
 	private ListView listNews;
 	private NewsOmegaFiAdapter newsAdapter=null;
-	private OnClickListener listener;
 	private int padding;
 	
 	@Override
@@ -53,7 +49,7 @@ public class NewsOmegaFiActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging News...", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading News...", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

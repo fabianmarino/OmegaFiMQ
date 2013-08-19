@@ -1,28 +1,18 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
-
 import com.appsolution.layouts.CalendarContentDay;
-import com.appsolution.layouts.EventNewsContent;
-import com.appsolution.layouts.RowInfoDescription;
 import com.appsolution.logic.CalendarDay;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.services.Server;
-
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.LinearLayout.LayoutParams;
 
 public class CalendarActivity extends OmegaFiActivity {
 
@@ -44,22 +34,6 @@ public class CalendarActivity extends OmegaFiActivity {
 		actionBar.setDisplayShowCustomEnabled(true);
 		actionBarCustom.setTitle("CALENDAR");
 		actionBar.setCustomView(actionBarCustom);
-	}
-	
-	private void completeLinearCalendar(){
-		LayoutParams params=new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-		params.setMargins(0, 10, 0, 0);
-		for (int i = 0; i < 10; i++) {
-			CalendarContentDay day=new CalendarContentDay(this);
-			day.setLayoutParams(params);
-			for (int j = 0; j < 4; j++) {
-				RowInfoDescription rowDes=new RowInfoDescription(this);
-				rowDes.setInfoDescription("09:30 AM", "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do" +
-						" eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-				day.addRowDescription(rowDes);
-			}
-//			linearCalendar.addView(day);
-		}
 	}
 	
 	public static ArrayList<CalendarDay> ordenateItemsCalendar(ArrayList<CalendarEvent> events){
@@ -95,7 +69,7 @@ public class CalendarActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Calendar...",getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading Calendar...",getResources().getString(R.string.please_wait));
 			}
 			
 			@Override

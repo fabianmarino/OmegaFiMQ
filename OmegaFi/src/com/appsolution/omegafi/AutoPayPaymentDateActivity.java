@@ -2,29 +2,15 @@ package com.appsolution.omegafi;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.layouts.RowCheckBoxOmegaFi;
-import com.appsolution.layouts.RowCheckGroup;
-import com.appsolution.layouts.RowCheckOmegaFi;
 import com.appsolution.layouts.RowEditInformation;
-import com.appsolution.logic.AutoPayConfig;
-import com.appsolution.logic.CalendarEvent;
-
 import android.os.Bundle;
-import android.app.Activity;
 import android.graphics.Color;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 
 public class AutoPayPaymentDateActivity extends OmegaFiActivity {

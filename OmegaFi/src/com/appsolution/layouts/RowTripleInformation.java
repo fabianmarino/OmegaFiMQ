@@ -1,8 +1,6 @@
 package com.appsolution.layouts;
 
 import com.appsolution.omegafi.OmegaFiActivity;
-import com.appsolution.omegafi.R;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;

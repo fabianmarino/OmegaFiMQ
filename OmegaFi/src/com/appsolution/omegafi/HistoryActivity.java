@@ -6,23 +6,15 @@ import java.util.List;
 
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.HistoryItem;
-import com.appsolution.omegafi.R.drawable;
 import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.drm.DrmStore.Action;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 
 public class HistoryActivity extends OmegaFiActivity {
 
@@ -52,7 +44,7 @@ public class HistoryActivity extends OmegaFiActivity {
 	private List<String> getListHistory(ArrayList<HistoryItem> list){
 		List<String> listHistory=new ArrayList<String>();
 		for (HistoryItem item:list) {
-			listHistory.add(item.getDescription()+"¿"+item.getDateTransaction()+"¿"+item.getTransactionAmount());
+			listHistory.add(item.getDescription()+"ï¿½"+item.getDateTransaction()+"ï¿½"+item.getTransactionAmount());
 		}
 		return listHistory;
 	}
@@ -60,12 +52,12 @@ public class HistoryActivity extends OmegaFiActivity {
 	private void chargeHistory(){
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
 
-			int status=0;
+			private int status=0;
 			ArrayList<HistoryItem> list;
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging history", getResources().getString(R.string.please_wait));
+				startProgressDialog("Loading history", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -80,9 +72,14 @@ public class HistoryActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(list!=null){
-					adapterHistory=new HistoryArrayAdapter(getApplicationContext(), getListHistory(list));
-					listHistory.setAdapter(adapterHistory);
+				if(status==200||status==201){
+					if(list!=null){
+						adapterHistory=new HistoryArrayAdapter(getApplicationContext(), getListHistory(list));
+						listHistory.setAdapter(adapterHistory);
+						}
+					}
+				else{
+					OmegaFiActivity.showErrorConection(HistoryActivity.this, status, getResources().getString(R.string.object_not_found), false);
 				}
 				stopProgressDialog();
 				refreshActivity();
@@ -111,7 +108,7 @@ public class HistoryActivity extends OmegaFiActivity {
         
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-        	final String[] itemStatement=getItem(position).split("¿");
+        	final String[] itemStatement=getItem(position).split("ï¿½");
         	RowInformation rowHistory=null;
         	if(convertView==null){
         		convertView=new RowInformation(getApplicationContext()); 

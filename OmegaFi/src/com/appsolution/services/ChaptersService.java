@@ -84,8 +84,8 @@ public class ChaptersService extends ServerContext {
 	public static List<String> getNamesMembers(ArrayList<SimpleMember> members){
 		List<String> listNames=new ArrayList<String>();
 		for (SimpleMember auxMember:members) {
-			listNames.add(auxMember.getLastFirstName()+"¿"+auxMember.getStatusName()+"¿"+auxMember.getSourcePhoto()+"¿"
-					+auxMember.getUrlPhoto()+"¿"+auxMember.getId());
+			listNames.add(auxMember.getLastFirstName()+"ï¿½"+auxMember.getStatusName()+"ï¿½"+auxMember.getSourcePhoto()+"ï¿½"
+					+auxMember.getUrlPhoto()+"ï¿½"+auxMember.getId());
 		}
 		return listNames;
 	}
@@ -111,7 +111,6 @@ public class ChaptersService extends ServerContext {
 	
 	
 	public Object[] getStatusOfficerRooster(int idChapter, int idOfficer){
-		Log.d("url officers ", Server.getUrlOfficerDetails(idChapter, idOfficer));
 		Object[] statusJson=server.makeRequestGet(Server.getUrlOfficerDetails(idChapter, idOfficer));
 		OfficerRooster rooster=null;
 		try {

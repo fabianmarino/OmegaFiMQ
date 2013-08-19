@@ -1,8 +1,5 @@
 package com.appsolution.omegafi;
 
-import org.json.JSONObject;
-
-import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowEditTextSubmit;
 import com.appsolution.services.Server;
 
@@ -20,7 +17,6 @@ public class ForgotPasswordActivity extends OmegaFiLoginActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_forgot_password);
 		rowSubmitUsername=(RowEditTextSubmit)findViewById(R.id.rowSubmitForgotPassword);
-//		rowSubmitUsername.setTextRowEditSubmit("parent001");
 		rowSubmitUsername.onSubmit(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {

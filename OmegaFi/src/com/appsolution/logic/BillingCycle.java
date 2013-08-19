@@ -40,6 +40,15 @@ public class BillingCycle {
 	}
 
 	public String getTotalAmount() {
+		if(totalAmount!=null){
+		int index=totalAmount.indexOf(".");
+		if(index!=1){
+			int rest=totalAmount.length()-index;
+			if(rest<3){
+				totalAmount+="0";
+			}
+		}
+		}
 		return totalAmount;
 	}
 

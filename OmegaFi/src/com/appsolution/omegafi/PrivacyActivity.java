@@ -1,9 +1,6 @@
 package com.appsolution.omegafi;
 
 import com.appsolution.services.Server;
-
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -11,7 +8,6 @@ import android.webkit.WebView;
 public class PrivacyActivity extends OmegaFiActivity {
 
 	private WebView webPrivacy;
-	private ProgressDialog progress;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +30,6 @@ public class PrivacyActivity extends OmegaFiActivity {
 	}
 	
 	private void loadPrivacyHtml(){
-		final Activity activity=this;
 		AsyncTask<Void, Integer, Boolean> async=new AsyncTask<Void, Integer, Boolean>(){
 
 			private int status=0;
@@ -42,7 +37,7 @@ public class PrivacyActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Charging Privacy", getString(R.string.please_wait));
+				startProgressDialog("Loading Privacy...", getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -51,7 +46,6 @@ public class PrivacyActivity extends OmegaFiActivity {
 				status=(Integer)statusHtml[0];
 				html=(String)statusHtml[1];
 				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
-//				html=OmegaFiActivity.getStringFile(PrivacyActivity.this, "txt/privacy.txt");
 				return true;
 			}
 			

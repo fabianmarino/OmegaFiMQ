@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
+import com.appsolution.services.ForgotLoginService;
 
 public class Account {
 
@@ -55,18 +55,19 @@ public class Account {
 			paymentsLast=jsonAccount.getString("payments_since_last_statement");
 			activityLast=jsonAccount.getString("activity_since_last_statement");
 			
+			
 			if(!jsonAccount.isNull("organization")){
 				JSONObject regularContact=jsonAccount.getJSONObject("organization");
-				contacts.add(new ContactAccount(regularContact, false));
+				contacts.add(new ContactAccount(regularContact, false,ContactAccount.TYPE_ORGANIZATION));
 			}
 			
 			
 			if(!jsonAccount.isNull("omegafi_contact")){
 				JSONObject omegafiContact=jsonAccount.getJSONObject("omegafi_contact");
-				contacts.add(new ContactAccount(omegafiContact, true));
+				contacts.add(new ContactAccount(omegafiContact, false,ContactAccount.TYPE_OMEGAFI));
 			}
 			
-			JSONObject  lastestStatement=jsonAccount.getJSONObject("latest_statement");
+			JSONObject  lastestStatement= !jsonAccount.isNull("latest_statement") ? jsonAccount.getJSONObject("latest_statement") : null;
 			if(lastestStatement!=null){
 				dueOn=lastestStatement.getString("due_on");
 				dateBalanceAsOf=lastestStatement.getString("cycle_on");
@@ -74,7 +75,6 @@ public class Account {
 			}
 			JSONArray arrayNotifications=jsonAccount.getJSONArray("account_notifications");
 			for (int i = 0; i < arrayNotifications.length(); i++) {
-				
 				JSONObject objectNotification=arrayNotifications.getJSONObject(i).getJSONObject("account_notification");
 				listNotifications.add(objectNotification.getString("notification"));
 			}
@@ -172,7 +172,11 @@ public class Account {
 
 
 	public String getCurrentBalance() {
-		return currentBalance;
+		String currentBal=currentBalance;
+		if(currentBalance!=null){
+			currentBal=currentBal.contains("-") ? "("+currentBal.replace("-", "")+")": currentBal;
+		}
+		return currentBal;
 	}
 
 
@@ -202,7 +206,11 @@ public class Account {
 
 
 	public String getAdjustedBalance() {
-		return adjustedBalance;
+		String adjusted=adjustedBalance;
+		if(adjustedBalance!=null){
+			adjusted=adjusted.contains("-") ? "("+adjusted.replace("-", "")+")": adjusted;
+		}
+		return adjusted;
 	}
 
 
@@ -212,7 +220,11 @@ public class Account {
 
 
 	public String getCreditsLast() {
-		return creditsLast;
+		String credits = creditsLast;
+		if(creditsLast!=null){
+			credits=credits.contains("-") ? "("+credits.replace("-", "") +")": credits;
+		}
+		return credits;
 	}
 
 
@@ -222,7 +234,11 @@ public class Account {
 
 
 	public String getPaymentsLast() {
-		return paymentsLast;
+		String payment=paymentsLast;
+		if(paymentsLast!=null){
+			payment=payment.contains("-") ? "("+payment.replace("-", "")+")":payment;
+		}
+		return payment;
 	}
 
 
@@ -232,7 +248,11 @@ public class Account {
 
 
 	public String getActivityLast() {
-		return activityLast;
+		String activLast=activityLast;
+		if(activityLast!=null){
+			activLast=activLast.contains("-") ? "("+activLast.replace("-", "")+")":activLast;
+		}
+		return activLast;
 	}
 
 
@@ -276,7 +296,11 @@ public class Account {
 
 
 	public String getMoneyBalanceAsOf() {
-		return moneyBalanceAsOf;
+		String money=moneyBalanceAsOf;
+		if(moneyBalanceAsOf!=null){
+			money=money.contains("-") ? "("+money.replace("-", "")+")":money;
+		}
+		return money;
 	}
 
 

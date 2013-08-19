@@ -58,7 +58,7 @@ public class DialogSelectableOF {
 	
 	public void setOptionsSelectables(ArrayList<String> array){
 		optionsSelectables.clear();
-		optionsSelectables=(ArrayList<String>)array.clone();
+		optionsSelectables=((ArrayList<String>)array.clone());
 		this.completeOptionsSelectable();
 	}
 	

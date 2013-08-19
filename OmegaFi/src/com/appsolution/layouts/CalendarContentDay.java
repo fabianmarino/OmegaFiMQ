@@ -65,7 +65,7 @@ public class CalendarContentDay extends LinearLayout {
 		linearContentDay.removeAllViews();
 		for (CalendarEvent event:events) {
 			RowInfoDescription rowDes=new RowInfoDescription(super.getContext());
-			rowDes.setInfoDescription(event.getBeginTimeHourDayAMPM(), event.getDescription());
+			rowDes.setInfoDescription(event.getTitle(),event.getBeginTimeHourDayAMPM(), event.getDescription());
 			rowDes.setSourceEventCalendar(event.getSource());
 			this.addRowDescription(rowDes);
 		}

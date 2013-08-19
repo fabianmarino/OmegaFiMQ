@@ -93,7 +93,6 @@ public class CalendarEvent {
 	
 	public static Date getDateFromString(String date, String format){
 		SimpleDateFormat dateFormat=new SimpleDateFormat(format);
-		SimpleDateFormat stringFormat=null;
 		Date dateFecha=null;
 		try {
 			dateFecha=dateFormat.parse(date);
