@@ -60,5 +60,14 @@
 	            secom:type_input_row_info_1="@integer/input_type_number_decimal"
 	            />
 	    </LinearLayout>
+	    <Button
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="@dimen/padding_12dp"
+		    android:padding="10dp"
+		    android:text="SAVE"
+		    android:onClick="saveAmountAutoPay"
+		    style="@style/ButtonOmega"
+		    />
 </LinearLayout>
 </LinearLayout>

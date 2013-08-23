@@ -71,7 +71,7 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			status=(Integer)Server.getServer().getHome().getProfile().chargeProfileData()[0];
-			if(status==200){
+			if(Server.isStatusOk(status)){
 				Message msg=new Message();
 				msg.obj=10;
 				handlerProgress.sendMessage(msg);
@@ -102,6 +102,10 @@ public class SplashOmegaFiActivity extends OmegaFiLoginActivity {
 				(Server.getServer().getForgotLogin().getUrlFeed(SplashOmegaFiActivity.this));
 				msg=new Message();
 				msg.obj=60;
+				handlerProgress.sendMessage(msg);
+				Server.getServer().getHome().getPolls().chargePolls();
+				msg=new Message();
+				msg.obj=75;
 				handlerProgress.sendMessage(msg);
 				Server.getServer().setEmptyInformation(false);
 				msg=new Message();

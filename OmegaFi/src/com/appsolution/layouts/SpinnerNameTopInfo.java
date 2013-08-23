@@ -85,6 +85,22 @@ public class SpinnerNameTopInfo extends LinearLayout {
 		return spinner.getSelectedItem().toString();
 	}
 	
+	public void setSelectedItem(String item){
+		spinner.setSelection(getIndexItem(item));
+	}
+	
+	private int getIndexItem(String item){
+		int position=-1;
+		if(item!=null){
+			for (int i = 0; i < spinner.getCount()&&position==-1; i++) {
+				if(spinner.getItemAtPosition(i).toString().equalsIgnoreCase(item))
+					position=i;
+			}
+		}
+		position=position==-1? 0 :position;
+		return position;
+	}
+	
 	
 	
 

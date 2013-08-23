@@ -14,9 +14,9 @@ public class RowCheckGroup {
 	private ArrayList< RowCheckOmegaFi> listRowsChecked=new ArrayList<RowCheckOmegaFi>();
 	private DialogSelectableOF contentSelectable;
 	private OnRowCheckListener listener;
-	private int indexSelected=0;
-	private String itemSelected="";
-	private RowCheckOmegaFi rowSelected;
+	private int indexSelected=-1;
+	private String itemSelected=null;
+	private RowCheckOmegaFi rowSelected=null;
 	private boolean isSingleCheckUnCheck=false;
 	
 	public RowCheckGroup(){
@@ -37,11 +37,6 @@ public class RowCheckGroup {
 	}
 	
 	public void addRowCheck(final RowCheckOmegaFi row){
-		if(rowSelected==null){
-			rowSelected=row;
-			indexSelected=0;
-			itemSelected=row.getItemRow();
-		}
 		View.OnClickListener listener=new View.OnClickListener() {
 			
 			@Override
@@ -71,7 +66,7 @@ public class RowCheckGroup {
 		listRowsChecked.add(row);
 	}
 	
-	private void unCheckedAll(){
+	public void unCheckedAll(){
 		for (RowCheckOmegaFi chek:listRowsChecked) {
 			chek.setChecked(false);
 		}

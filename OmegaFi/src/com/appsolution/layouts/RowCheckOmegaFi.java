@@ -3,7 +3,6 @@ package com.appsolution.layouts;
 import com.appsolution.omegafi.R;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -30,7 +29,6 @@ public class RowCheckOmegaFi  extends RowEditInformation{
 	
 	public void setChecked(boolean checked){
 		radioOption.setChecked(checked);
-		Log.d("se ha puesto en: ", checked+"");
 	}
 	
 	public boolean isChecked(){

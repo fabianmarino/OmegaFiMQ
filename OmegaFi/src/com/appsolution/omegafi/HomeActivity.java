@@ -1,6 +1,11 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.appsolution.interfaces.OnRowCheckListener;
 import com.appsolution.layouts.AccountLayout;
 import com.appsolution.layouts.DetailsOfficer;
@@ -16,6 +21,7 @@ import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.Officer;
+import com.appsolution.logic.Poll;
 import com.appsolution.services.Server;
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -65,6 +71,7 @@ public class HomeActivity extends OmegaFiActivity {
 	private Officer officerActual=null;
 	
 	private int servicesCharged=0;
+	private static final int NUM_SERVICES_TO_CHARGING=6;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -185,7 +192,7 @@ public class HomeActivity extends OmegaFiActivity {
 			listPhotos.setLayoutParams(new LayoutParams(android.widget.Gallery.LayoutParams.MATCH_PARENT,
 					android.widget.Gallery.LayoutParams.WRAP_CONTENT));
 			listGallery=new ImageAdapter(this);
-			Server.getServer().getHome().getOfficers().chargeOfficers(getApplicationContext());
+//			Server.getServer().getHome().getOfficers().chargeOfficers(getApplicationContext());
 			listGallery.setListOfficers(Server.getServer().getHome().getOfficers().getListOfficers());
 			listPhotos.setAdapter(listGallery);
 			if(listGallery.getCount()>0)
@@ -358,7 +365,7 @@ public class HomeActivity extends OmegaFiActivity {
 			int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
 			titlesIndicator.setRadius(circleSize);
 			titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
-					40));
+					getResources().getDimensionPixelSize(R.dimen.height_20dp)));
 			titlesIndicator.setViewPager(paginator1);
 			sectionEvents.addView(paginator1);
 			sectionEvents.addView(titlesIndicator);
@@ -366,7 +373,8 @@ public class HomeActivity extends OmegaFiActivity {
 	}
 	
 	private void completePollSection(){
-		if(true){
+		if(Server.getServer().getHome().getPolls().isEmpty()){
+//		if(false){
 			sectionPoll.setVisibility(View.GONE);
 		}
 		else{
@@ -374,7 +382,10 @@ public class HomeActivity extends OmegaFiActivity {
 			LinearLayout content=(LinearLayout)sectionPoll.findViewById(R.id.contentSectionOmegaFi);
 			content.setPadding(0, content.getPaddingTop(), content.getPaddingRight(), content.getPaddingBottom());
 			paginator2=new ViewPager(getApplicationContext());
-			paginator2.setAdapter(new PollAdapter(getApplicationContext()));
+			PollAdapter pollAdapter=new PollAdapter(this);
+//			pollAdapter.setPolls(getPollsTest());
+			pollAdapter.setPolls(Server.getServer().getHome().getPolls().getPolls());
+			paginator2.setAdapter(pollAdapter);
 			paginator2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, 
 					getResources().getDimensionPixelSize(R.dimen.height_poll_content)));
 			
@@ -388,7 +399,7 @@ public class HomeActivity extends OmegaFiActivity {
 			
 			CirclePageIndicator titlesIndicator=new CirclePageIndicator(this);
 			titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
-					40));
+				getResources().getDimensionPixelSize(R.dimen.height_20dp)));
 			titlesIndicator.setPadding(0, 8, 0, 0);
 			titlesIndicator.setBackgroundColor(Color.WHITE);
 			titlesIndicator.setFillColor(this.getResources().getColor(R.color.red_wine));
@@ -421,7 +432,7 @@ public class HomeActivity extends OmegaFiActivity {
 			sectionNews.setPaddingAll(0, 0, 0, 0);
 			paginator3=new ViewPager(getApplicationContext());
 			paginator3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, this.getResources().getDimensionPixelSize
-					(R.dimen.height_new_event_content)));
+					(R.dimen.height_new_event_content_2)));
 			adapterPager3=new EventsNewsAdapter(this);
 			((EventsNewsAdapter)adapterPager3).setHTML(true);
 			((EventsNewsAdapter)adapterPager3).setListaEventsOrNews(Server.getServer().getHome().getFeeds().getNews());
@@ -434,7 +445,7 @@ public class HomeActivity extends OmegaFiActivity {
 			int circleSize=this.getResources().getDimensionPixelSize(R.dimen.size_circle_newevents);
 			titlesIndicator.setRadius(circleSize);
 			titlesIndicator.setLayoutParams(new LayoutParams(android.widget.LinearLayout.LayoutParams.MATCH_PARENT, 
-					40));
+					getResources().getDimensionPixelSize(R.dimen.height_20dp)));
 			titlesIndicator.setViewPager(paginator3);
 			sectionNews.addView(paginator3);
 			sectionNews.addView(titlesIndicator);
@@ -514,42 +525,9 @@ public class HomeActivity extends OmegaFiActivity {
 		super.finalize();
 	}
 	
-	private void chargeHome(){
-		if(Server.getServer().isEmptyInformation()){
-			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-				
-				int status=0;
-				
-				@Override
-				protected void onPreExecute() {
-					startProgressDialog("Loading home...", getResources().getString(R.string.please_wait));
-				}
-				
-				@Override
-				protected Boolean doInBackground(Void... params) {
-					status=Server.getServer().chargeHome(HomeActivity.this);
-					return true;
-				}
-				
-				@Override
-				protected void onPostExecute(Boolean result) {
-					if(status==200||status==201){
-						recreate();
-					}
-					else{
-						OmegaFiActivity.showErrorConection(HomeActivity.this, status, getResources().getString(R.string.object_not_found),false);
-					}
-					stopProgressDialog();
-					refreshActivity();
-				}
-			};
-			task.execute();
-		}
-	}
-	
 	private void finishCharge(){
 		servicesCharged++;
-		if(servicesCharged>=5){
+		if(servicesCharged>=NUM_SERVICES_TO_CHARGING){
 			Server.getServer().setEmptyInformation(false);
 			servicesCharged=0;
 			stopProgressDialog();
@@ -628,6 +606,23 @@ public class HomeActivity extends OmegaFiActivity {
 		task.execute();
 	}
 	
+	private void chargePollsInformation(){
+		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+			
+			@Override
+			protected Boolean doInBackground(Void... params) {
+				Server.getServer().getHome().getPolls().chargePolls();
+				return true;
+			}
+			
+			@Override
+			protected void onPostExecute(Boolean result) {
+				finishCharge();
+			}
+		};
+		task.execute();
+	}
+	
 	private void chargeNewsInformation(){
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			
@@ -644,8 +639,8 @@ public class HomeActivity extends OmegaFiActivity {
 			}
 		};
 		task.execute();
-	
 	}
+	
 	
 	private void chargeHomeAsync(){
 		if(Server.getServer().isEmptyInformation()){
@@ -654,9 +649,24 @@ public class HomeActivity extends OmegaFiActivity {
 			chargeAccountsInformation();
 			chargeChaptersInformation();
 			chargeCalendarInformation();
+			chargePollsInformation();
 			chargeNewsInformation();
 		}
 	}
 	
+	private ArrayList<Poll> getPollsTest(){
+		ArrayList<Poll> polls=new ArrayList<Poll>();
+		try {
+			JSONArray jsonFile=new JSONArray(OmegaFiActivity.getStringFile(getApplicationContext(), "txt/polls.json"));
+			for (int i = 0; i < jsonFile.length(); i++) {	
+				JSONObject jsonPoll=jsonFile.getJSONObject(i).getJSONObject("poll");
+				polls.add(new Poll(jsonPoll));
+		}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return polls;
+	}
 	
 }

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.util.Log;
 
 import com.appsolution.logic.HistoryItem;
@@ -22,6 +21,7 @@ public class HomeServices extends ServerContext{
 	private OfficersService officers;
 	private CalendarService calendar;
 	private NewsFeedService feeds;
+	private PollsService polls;
 	private SimpleAnnouncement announcementSelected;
 	
 	public HomeServices(Server server){
@@ -30,6 +30,7 @@ public class HomeServices extends ServerContext{
 		accounts=new AccountsService(server);
 		chapters=new ChaptersService(server);
 		officers=new OfficersService(server);
+		polls=new PollsService(server);
 		calendar=new CalendarService(server);
 		feeds=new NewsFeedService(server);
 	}
@@ -198,4 +199,9 @@ public class HomeServices extends ServerContext{
 		Log.d("actualizando update view", updated+"");
 		return updated;
 	}
+
+	public PollsService getPolls() {
+		return polls;
+	}
+	
 }

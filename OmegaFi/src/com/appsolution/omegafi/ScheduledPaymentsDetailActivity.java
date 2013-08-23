@@ -222,7 +222,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					showConfirmDeletedScheduled();
 				}
 				else{
@@ -314,7 +314,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					rowEditAmount.setTextEdit(selected.getPaymentAmount());
 					rowPaymentDate.setValueInfo(selected.getPaymentDate());
 					getIndexPaymenthMethod();
@@ -357,7 +357,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPreExecute() {
-				startProgressDialog("Updating scheduled", getResources().getString(R.string.please_wait));
+				startProgressDialog("Updating payment", getResources().getString(R.string.please_wait));
 			}
 			
 			@Override
@@ -372,7 +372,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200||status==201){
+				if(Server.isStatusOk(status)){
 					showConfirmSavedPayment();
 				}
 				else if(status==422){

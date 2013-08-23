@@ -1,11 +1,14 @@
 package com.appsolution.omegafi;
 
+import com.appsolution.logic.CachingImage;
 import com.appsolution.omegafi.R;
 import com.appsolution.services.Server;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
@@ -45,6 +48,8 @@ public class MainActivity extends OmegaFiLoginActivity {
 		getUserNameSaved();
 		textForgot=(TextView)findViewById(R.id.text_forgot);
 		textForgot.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
+		Bitmap bitmap=CachingImage.getCachingImage().getBitmapFromMemCache("image");
+		Log.d("Bitmap cache", bitmap+"");
 	}
 	
 	public void nextHome(View boton){
@@ -66,7 +71,7 @@ public class MainActivity extends OmegaFiLoginActivity {
 				protected void onPostExecute(Boolean result) {
 					stopProgressDialog();
 					textPassword.setText("");
-					if(status==200){
+					if(Server.isStatusOk(status)){
 						Intent splashView=new Intent(getApplicationContext(), SplashOmegaFiActivity.class);
 						startActivity(splashView);
 						finish();

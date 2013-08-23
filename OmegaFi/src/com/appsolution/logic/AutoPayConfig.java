@@ -47,11 +47,15 @@ public class AutoPayConfig {
 				payOnDueDate=autoPayRecord.getBoolean("payonduedate");
 				if(autoPayRecord.getBoolean("paydueamount")){
 					typePaymenthAmount=AutoPayConfig.PAY_AMOUNT_DUE;
-					amountEnterMax=Float.parseFloat(autoPayRecord.getString("capamount"));
+					if(!autoPayRecord.isNull("capamount"))
+						amountEnterMax=Float.parseFloat(autoPayRecord.getString("capamount").replace("$", ""));
+					else
+						amountEnterMax=-1;
 				}
 				else{
 					typePaymenthAmount=AutoPayConfig.PAY_SPECIFIC_AMOUNT;
-					amountEnterMax=Float.parseFloat(autoPayRecord.getString("paymentamount"));
+					if(!autoPayRecord.isNull("paymentamount"))
+						amountEnterMax=Float.parseFloat(autoPayRecord.getString("paymentamount").replace("$", ""));
 				}
 			}
 		} catch (JSONException e) {
@@ -105,6 +109,7 @@ public class AutoPayConfig {
 		eCheck=config.iseCheck();
 		idCreditOrECheck=config.getIdCreditOrECheck();
 		amountEnterMax=config.getAmountEnterMax();
+		payOnDueDate=config.isPayOnDueDate();
 	}
 
 	public String getEndDate() {

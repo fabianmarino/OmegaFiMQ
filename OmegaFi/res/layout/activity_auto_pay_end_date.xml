@@ -45,6 +45,14 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:text="Choose None to specify no end date"/>
+        <Button
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="@dimen/padding_6dp"
+		    android:padding="10dp"
+		    android:text="SAVE"
+		    android:onClick="saveEndDateAutoPay"
+		    style="@style/ButtonOmega"
+		    />
     </LinearLayout>
-
 </LinearLayout>

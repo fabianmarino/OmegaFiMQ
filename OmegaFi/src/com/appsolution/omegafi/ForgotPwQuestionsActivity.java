@@ -70,7 +70,7 @@ public class ForgotPwQuestionsActivity extends OmegaFiLoginActivity {
 				@Override
 				protected void onPostExecute(Boolean result) {
 					stopProgressDialog();
-					if(status==200){
+					if(Server.isStatusOk(status)){
 						Intent activityResetPassword=new Intent(ForgotPwQuestionsActivity.this, ResetPasswordActivity.class);
 						startActivity(activityResetPassword);
 					}

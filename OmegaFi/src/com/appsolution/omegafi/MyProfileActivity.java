@@ -37,6 +37,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -122,9 +123,19 @@ public class MyProfileActivity extends OmegaFiActivity {
 		editSecondaryEmail=(EditText)findViewById(R.id.editSecondaryEmail);
 		editSuffix=(EditText)findViewById(R.id.editSufixProfile);
 		editTopHomeLine1=(RowEditNameTopInfo)findViewById(R.id.editTopHomeLine1);
+		editTopHomeLine1.setTextSizeTop(getResources().getDimensionPixelSize(R.dimen.text_11sp));
+		editTopHomeLine1.setTextTypeFaceTop(Typeface.DEFAULT);
+		editTopHomeLine1.setTextColorTop(Color.GRAY);
+		editTopHomeLine1.setEnabledEditText(false);
 		editTopHomeLine2=(RowEditNameTopInfo)findViewById(R.id.editTopHomeLine2);
+		editTopHomeLine2.setEnabledEditText(false);
 		editTopSchoolLine1=(RowEditNameTopInfo)findViewById(R.id.editTopSchoolLine1);
+		editTopSchoolLine1.setTextSizeTop(getResources().getDimensionPixelSize(R.dimen.text_11sp));
+		editTopSchoolLine1.setTextTypeFaceTop(Typeface.DEFAULT);
+		editTopSchoolLine1.setTextColorTop(Color.GRAY);
+		editTopSchoolLine1.setEnabledEditText(false);
 		editTopSchoolLine2=(RowEditNameTopInfo)findViewById(R.id.editTopSchoolLine2);
+		editTopSchoolLine2.setEnabledEditText(false);
 		tooglePublish=(RowToogleOmegaFi)findViewById(R.id.publishProfile);
 		editFirstName=(EditText)findViewById(R.id.editFirstName);
 		editMiddleName=(EditText)findViewById(R.id.editMiddleName);
@@ -455,7 +466,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					completeMyProfileActivity(prof, prefixes);
 				}
 				else{
@@ -472,8 +483,9 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private void completeMyProfileActivity(Profile prof,List<String> prefixes){
 		MyProfileActivity.this.profile=prof;
 		userHeader.setNameUserProfile(prof.getFirstLastName());
+		userHeader.setSubTitleProfile(prof.getNationalStatusName());
 		if(prof.getDateInitiatePretty()!=null)
-			userHeader.setSubTitleProfile("Initiate - "+prof.getDateInitiatePretty());
+			userHeader.setThirdLine("Initiated - "+prof.getDateInitiatePretty());
 		
 		completePhones(prof.getPhones());
 		completeEmails(prof.getEmails());
@@ -584,7 +596,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 					int statusImage=(Integer)Server.getServer().uploadImageProfile("picture[filename]", imageSelected)[0];
 					errors=(statusImage!=200 && statusImage!=201) ? "Error("+statusImage+"): Upload Image":null;
 				}
-				if(status==200||status==201){
+				if(Server.isStatusOk(status)){
 					updatePhoneNumbers();
 					updateEmails();
 					updateAdresses();
@@ -596,7 +608,7 @@ public class MyProfileActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200||status==201){
+				if(Server.isStatusOk(status)){
 					completeMyProfileActivity(profile, prefixes);
 					showSucessfullUpdated(errors);
 				}

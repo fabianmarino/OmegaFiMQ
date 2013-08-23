@@ -22,6 +22,7 @@ public class OmegaFiLoginActivity extends Activity {
 	public final static String OMEGAFI_PREF_URL_NEW_FEEDS="urlFeeds";
 	public final static String OMEGAFI_PREF_TITLE_NEW_FEEDS="titleFeeds";
 	public final static String OMEGAFI_PREF_FIRST_NAME="firstName";
+	public final static String OMEGAFI_PREF_INFORMAL_NAME="informalName";
 	public final static String OMEGAFI_PREF_LOG_AS="logAs";
 	
 	public final static String OMEGAFI_CONTACT_NAME="omegaFiName";
@@ -111,8 +112,9 @@ public class OmegaFiLoginActivity extends Activity {
 		editor.commit();
 	}
 	
-	public static void setFirstNameTitleUrlFeeds(String name,String title, String url, String logAs,Context context){
+	public static void setFirstNameTitleUrlFeeds(String name,String informalName,String title, String url, String logAs,Context context){
 		savePreference(OMEGAFI_PREF_FIRST_NAME, name, context);
+		savePreference(OMEGAFI_PREF_INFORMAL_NAME, informalName, context);
 		savePreference(OMEGAFI_PREF_TITLE_NEW_FEEDS,title, context);
 		savePreference(OMEGAFI_PREF_URL_NEW_FEEDS, url, context);
 		savePreference(OMEGAFI_PREF_LOG_AS, logAs, context);

@@ -44,7 +44,8 @@ public class OfficersService extends ServerContext {
 		return response;
 	}
 	
-	public void chargeOfficers(Context context){
+	public void chargeOfficersTest(Context context){
+			listOfficers.clear();
 			JSONArray object=null;
 			try {
 				object = new JSONArray(OmegaFiActivity.getStringFile(context, "txt/officers.json"));

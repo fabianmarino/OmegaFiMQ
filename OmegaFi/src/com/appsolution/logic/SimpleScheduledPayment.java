@@ -82,7 +82,11 @@ public class SimpleScheduledPayment {
 	}
 
 	public String getPaymentAmount() {
-		return paymentAmount;
+		String payment=paymentAmount;
+		if(paymentAmount!=null){
+			payment=payment.contains("-") ? payment.replace("-", "(")+")" :payment;
+		}
+		return payment;
 	}
 
 	public int getIdProfilepayment() {

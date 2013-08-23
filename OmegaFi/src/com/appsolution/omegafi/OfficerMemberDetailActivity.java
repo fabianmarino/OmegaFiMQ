@@ -50,6 +50,11 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	private String urlTwitter;
 	private String urlLinkedIn;
 	
+	private ImageView iconFace;
+	private ImageView iconLinked;
+	private ImageView iconTwitter;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,6 +86,10 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		
 		addressMain=(RowInformation)findViewById(R.id.mainAddress);
 		addressSecundary=(RowInformation)findViewById(R.id.secondaryAddress);
+		
+		iconFace=(ImageView)findViewById(R.id.iconFacebook);
+		iconLinked=(ImageView)findViewById(R.id.iconLinkedin);
+		iconTwitter=(ImageView)findViewById(R.id.iconTwitter);
 		
 		Bundle extras=getIntent().getExtras();
 		idChapter=extras.getInt("idc");
@@ -166,7 +175,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					completeFieldsMember(member);
 				}
 				else{
@@ -201,7 +210,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					completeFieldsMember(member);
 				}
 				else{
@@ -215,9 +224,7 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 	}
 	
 	private void completeFieldsMember(MemberRooster member){
-		android.util.Log.d("Before", "Photo"+member.getSourcePhoto()+","+member.getUrlPhoto());
 		Server.chargeBitmapInImageViewAsync(member.getSourcePhoto(), member.getUrlPhoto(), photoMember);
-		android.util.Log.d("After", "Photo");
 		actionBarCustom.setTitle(member.getCompleteName().toUpperCase());
 		infoMemberInitiate.setTitleLabel(member.getStatusName());
 		infoMemberInitiate.setValueLabel(member.getInitiationDate());
@@ -242,10 +249,20 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 			addressSecundary.setValueInfo(addressS[2]+", "+addressS[0]);
 			addressSecundary.setValueInfo2(addressS[1]);
 		}	
-		
+		configSocialButtons(member);
+	}
+	
+	private void configSocialButtons(MemberRooster member){
 		urlFacebook=member.getProfFacebook();
 		urlLinkedIn=member.getProfLinked();
 		urlTwitter=member.getProfTwitter();
+		if(urlFacebook!=null)
+			iconFace.setImageResource(R.drawable.icon_face);
+		if(urlTwitter!=null)
+			iconTwitter.setImageResource(R.drawable.icon_twitter);
+		if(urlLinkedIn!=null)
+			iconLinked.setImageResource(R.drawable.icon_linked);
+		
 	}
 	
 	

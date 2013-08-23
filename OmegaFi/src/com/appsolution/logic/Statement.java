@@ -6,12 +6,16 @@ import org.json.JSONObject;
 public class Statement {
 
 	private int id;
-	private String dateClose; 
+	private String dateClose;
+	private String typeStatement;
 	
 	public Statement(JSONObject statement) {
 		try {
 			id=statement.getInt("statement_id");
-			dateClose=statement.getString("closing_date");
+			if(!statement.isNull("closing_date"))
+				dateClose=statement.getString("closing_date");
+			if(!statement.isNull("statement_type"))
+				typeStatement=statement.getString("statement_type");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,6 +33,10 @@ public class Statement {
 		else{
 			return null;
 		}
+	}
+
+	public String getTypeStatement() {
+		return typeStatement;
 	}
 	
 	

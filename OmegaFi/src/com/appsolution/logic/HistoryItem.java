@@ -39,7 +39,13 @@ public class HistoryItem {
 
 
 	public String getTransactionAmount() {
-		return transactionAmount;
+		String transAmount=transactionAmount;
+		if(transAmount!=null){
+			transAmount=transAmount.contains("-")?transAmount.replace("-", "(")+")":transAmount;
+				
+		}
+		
+		return transAmount;
 	}
 	
 	

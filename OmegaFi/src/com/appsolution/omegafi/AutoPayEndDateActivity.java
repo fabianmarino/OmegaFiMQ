@@ -92,18 +92,20 @@ public class AutoPayEndDateActivity extends OmegaFiActivity {
 		date.getDatePicker().setMinDate(calToday.getTimeInMillis());
 		date.show();
 	}
-
-	@Override
-	public void onBackPressed() {
+	
+	private void saveChanges(){
 		if(!checkNone.isChecked()){
-			Log.d("Establecida", " no está seleccionado");
 			AutoPayActivity.configAutoPay.setEndDate(CalendarEvent.getFormatDate(6, infoDate.getValueInfo(), "MM/dd/yyyy"));
 		}
 		else{
-			Log.d("Nula", "no está seleccionado");
 			AutoPayActivity.configAutoPay.setEndDate(null);
 		}
-		super.onBackPressed();
+	}
+	
+	
+	public void saveEndDateAutoPay(View button){
+		saveChanges();
+		finish();
 	}
 
 }

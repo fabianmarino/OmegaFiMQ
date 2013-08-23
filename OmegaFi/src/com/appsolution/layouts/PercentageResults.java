@@ -20,6 +20,7 @@ public class PercentageResults extends LinearLayout{
 	private TextView textQuestionResult;
 	private TextView percentageAnswer;
 	private View barPercentage;
+	private static final float REST_DISPLAY=0.27f; 
 	
 	public PercentageResults(Context context) {
 		super(context);
@@ -33,9 +34,7 @@ public class PercentageResults extends LinearLayout{
 		TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.PercentageResults);
 		   
 		String title=a.getString(R.styleable.PercentageResults_title_question_result);
-		setTitleQuestionResult(title);
-		
-		int percentage = a.getInt(R.styleable.PercentageResults_answer_percentage, 0); 
+		setTextQuestionResult(title); 
 		
 		a.recycle();
 	}
@@ -48,7 +47,7 @@ public class PercentageResults extends LinearLayout{
 		display = wm.getDefaultDisplay();
 		
 		contenPercentageBar=(LinearLayout)findViewById(R.id.contentPercentageBar);
-		int widthMax=display.getWidth()-(int)(display.getWidth()*0.25);
+		int widthMax=display.getWidth()-(int)(display.getWidth()*REST_DISPLAY);
 		contenPercentageBar.getLayoutParams().width=widthMax;
 		textQuestionResult=(TextView)findViewById(R.id.textQuestionResult);
 		textQuestionResult.setTextColor(Color.BLACK);
@@ -56,14 +55,14 @@ public class PercentageResults extends LinearLayout{
 		barPercentage=(View)findViewById(R.id.percentageBarResult);
 	}
 	
-	public void setTitleQuestionResult(String text){
+	public void setTextQuestionResult(String text){
 		textQuestionResult.setText(text);
 	}
 	
-	public void setPercentageAnswer(int percentage){
+	public void setPercentageAnswer(double percentage){
 		float floatPercent=(float)percentage/(float)100;
 		percentageAnswer.setText(percentage+"%");
-		int widthMax=display.getWidth()-(int)(display.getWidth()*0.25);
+		int widthMax=display.getWidth()-(int)(display.getWidth()*REST_DISPLAY);
 		barPercentage.getLayoutParams().width=(int)(widthMax*floatPercent);
 	}
 	

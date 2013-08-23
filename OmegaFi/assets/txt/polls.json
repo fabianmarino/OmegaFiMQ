@@ -1,0 +1,214 @@
+[
+  {
+    "poll": {
+      "poll_id": 397,
+      "owner_party_id": 1386,
+      "poll_type": "Chapter",
+      "poll_name": "Test Poll",
+      "poll_question": "Test Poll this is a test for comprobate the lenght to textview it has more long that normal, for this rason is it",
+      "close_on": "2013/08/31 00:00:00 -0400",
+      "created_by": "MY-868873",
+      "created_on": "2013/08/12 15:57:57 -0400",
+      "modified_by": "MY-868873",
+      "modified_on": "2013/08/15 20:10:12 -0400",
+      "classification": "Chapter",
+      "voted": true,
+      "answers": [
+        {
+          "answer": {
+            "poll_answer_id": 1764,
+            "poll_answer": "Test Poll this is a test for comprobate the lenght to textview it has more long that normal, for this rason is it",
+            "votes": 1
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1765,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1766,
+            "poll_answer": "Test Poll this is a test for comprobate the lenght to textview it has more long that normal, for this rason is it",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1767,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1768,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "poll": {
+      "poll_id": 397,
+      "owner_party_id": 1386,
+      "poll_type": "Chapter",
+      "poll_name": "Test Poll",
+      "poll_question": "Test Poll this is a test for comprobate the lenght to textview it has more long that normal, for this rason is it",
+      "close_on": "2013/08/31 00:00:00 -0400",
+      "created_by": "MY-868873",
+      "created_on": "2013/08/12 15:57:57 -0400",
+      "modified_by": "MY-868873",
+      "modified_on": "2013/08/15 20:10:12 -0400",
+      "classification": "Chapter",
+      "voted": false,
+      "answers": [
+        {
+          "answer": {
+            "poll_answer_id": 1764,
+            "poll_answer": "Test Poll this is a test for comprobate the lenght to textview it has more long that normal, for this rason is it",
+            "votes": 1
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1765,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1766,
+            "poll_answer": "Test Poll this is a test for comprobate the lenght to textview it has more long that normal, for this rason is it",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1767,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1768,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "poll": {
+      "poll_id": 398,
+      "owner_party_id": 1386,
+      "poll_type": "Chapter",
+      "poll_name": "new poll title",
+      "poll_question": "new poll quesiton",
+      "close_on": "2013/08/31 00:00:00 -0400",
+      "created_by": "MY-868873",
+      "created_on": "2013/08/15 20:06:26 -0400",
+      "modified_by": null,
+      "modified_on": null,
+      "classification": "Chapter",
+      "voted": false,
+      "answers": [
+        {
+          "answer": {
+            "poll_answer_id": 1754,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1755,
+            "poll_answer": "answer 2",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1756,
+            "poll_answer": "answer 3",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1757,
+            "poll_answer": "answer 4",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1758,
+            "poll_answer": "answer 5",
+            "votes": 0
+          }
+        }
+      ]
+    }
+  },
+  {
+    "poll": {
+      "poll_id": 399,
+      "owner_party_id": 1386,
+      "poll_type": "Chapter",
+      "poll_name": "Poll #2",
+      "poll_question": "Question #2",
+      "close_on": "2013/08/31 00:00:00 -0400",
+      "created_by": "MY-868873",
+      "created_on": "2013/08/15 20:07:48 -0400",
+      "modified_by": null,
+      "modified_on": null,
+      "classification": "Chapter",
+      "voted": false,
+      "answers": [
+        {
+          "answer": {
+            "poll_answer_id": 1759,
+            "poll_answer": "answer 1",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1760,
+            "poll_answer": "answer 2",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1761,
+            "poll_answer": "answer 3",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1762,
+            "poll_answer": "answer 4",
+            "votes": 0
+          }
+        },
+        {
+          "answer": {
+            "poll_answer_id": 1763,
+            "poll_answer": "answer 5",
+            "votes": 0
+          }
+        }
+      ]
+    }
+  }
+]

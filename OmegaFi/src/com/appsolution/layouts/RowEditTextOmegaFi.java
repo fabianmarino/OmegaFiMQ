@@ -185,4 +185,13 @@ public class RowEditTextOmegaFi extends RowEditInformation{
 		return textEdit2;
 	}
 	
+	public static boolean isDecimal(String cad){
+	 try	 {
+	   Double.parseDouble(cad);
+	   return true;
+	   }
+	 catch(NumberFormatException nfe){
+	   return false;	 }
+	 }
+	
 }

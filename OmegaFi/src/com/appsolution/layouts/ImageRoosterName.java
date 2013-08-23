@@ -1,6 +1,8 @@
 package com.appsolution.layouts;
 
 import java.io.IOException;
+
+import com.appsolution.logic.CachingImage;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 import com.appsolution.services.Server;
@@ -124,40 +126,46 @@ public class ImageRoosterName extends LinearLayout {
 	}
 	
 	private void startChargePhoto(final String url){
-		taskChargePhoto=new AsyncTask<Void, Integer, Boolean>(){
-
-			Bitmap bitPhoto=null;
-			
-			@Override
-			protected Boolean doInBackground(Void... params) {
-					try {
-						if(isHostOmegaFi){
-							bitPhoto = Server.getServer().downloadBitmap(url);
-							Log.d("charging",nameRooster.getText().toString());
-						}
-						else{
-							bitPhoto = OmegaFiActivity.loadImageFromURL(url);
-							Log.d("charging",nameRooster.getText().toString());
-						}
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+		Bitmap bitPhoto=CachingImage.getCachingImage().getBitmapFromMemCache(url);
+			if(bitPhoto==null){
+				taskChargePhoto=new AsyncTask<Void, Integer, Boolean>(){
+		
+					Bitmap bitPhoto=null;
+					
+					@Override
+					protected Boolean doInBackground(Void... params) {
+							try {
+								if(isHostOmegaFi){
+									bitPhoto = Server.getServer().downloadBitmap(url);
+									Log.d("charging",nameRooster.getText().toString());
+								}
+								else{
+									bitPhoto = OmegaFiActivity.loadImageFromURL(url);
+									Log.d("charging",nameRooster.getText().toString());
+								}
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						return true;
 					}
-				return true;
+					
+					@Override
+					protected void onPostExecute(Boolean result) {
+						if(bitPhoto!=null){
+							CachingImage.getCachingImage().addBitmapToMemoryCache(url, bitPhoto);
+							photoRooster.setImageBitmap(bitPhoto);
+							photoRooster.refreshDrawableState();
+						}
+					}
+					
+				};
+				taskChargePhoto.execute();
 			}
-			
-			@Override
-			protected void onPostExecute(Boolean result) {
-				if(bitPhoto!=null){
-					Log.d("charged",nameRooster.getText().toString());
-					photoRooster.setImageBitmap(bitPhoto);
-					photoRooster.refreshDrawableState();
-				}
-				bitPhoto=null;
+			else{
+			photoRooster.setImageBitmap(bitPhoto);
+			photoRooster.refreshDrawableState();
 			}
-			
-		};
-		taskChargePhoto.execute();
 	}
 
 	public boolean isHostOmegaFi() {

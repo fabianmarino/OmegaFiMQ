@@ -176,7 +176,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					showAutoPayActive();
 				}
 				else if(status==422){
@@ -214,7 +214,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					showAutoPayUpdate();
 				}
 				else if(status==422){
@@ -328,7 +328,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 					}
 				}
 				stopProgressDialog();
-				configAutoPay.setBeginDate(CalendarEvent.getFormatDate(6, rowInfoBeginDate.getValueInfo(), "MM/dd/yyyy"));
+//				configAutoPay.setBeginDate(CalendarEvent.getFormatDate(6, rowInfoBeginDate.getValueInfo(), "MM/dd/yyyy"));
 			}
 		};
 		
@@ -353,7 +353,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 		else{
 			rowInfoEndDate.setValueInfo(configAutoPay.getEndDatePretty());
 		}
-		if(configAutoPay.getPaymentDayOfMonth()==-1){
+		if(configAutoPay.isPayOnDueDate()){
 			rowPaymentDate.setValueInfo("Pay on Due Date");
 		}
 		else{
@@ -362,11 +362,11 @@ public class AutoPayActivity extends OmegaFiActivity {
 		if(configAutoPay.getTypePaymenthAmount()==AutoPayConfig.PAY_AMOUNT_DUE){
 			rowPaymentAmount.setValueInfo("Pay Amount Due");
 			if(configAutoPay.getAmountEnterMax()>-1){
-				rowPaymentAmount.setValueInfo("Pay Amount Due ($"+configAutoPay.getAmountEnterMax()+")");
+				rowPaymentAmount.setValueInfo("Pay Amount Due ($"+String.format("%.2f", configAutoPay.getAmountEnterMax()).replace(",", ".")+")");
 			}
 		}
 		else{
-			rowPaymentAmount.setValueInfo("Specific Amount($"+configAutoPay.getAmountEnterMax()+")");
+			rowPaymentAmount.setValueInfo("Specific Amount($"+String.format("%.2f", configAutoPay.getAmountEnterMax()).replace(",", ".")+")");
 		}
 		super.onResume();
 	}
@@ -412,7 +412,7 @@ public class AutoPayActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					final DialogInformationOF of=new DialogInformationOF(AutoPayActivity.this);
 					of.setMessageDialog("Your AutoPay settings have been deleted.");
 					of.setButtonListener(new View.OnClickListener() {
@@ -443,8 +443,10 @@ public class AutoPayActivity extends OmegaFiActivity {
 	
 	private String validateInformation(){
 		String message=null;
-		if(AutoPayActivity.configAutoPay.getAmountEnterMax()<=0){
-			message="The payment amount must be greater than 0.";
+		if(AutoPayActivity.configAutoPay.getTypePaymenthAmount()==configAutoPay.PAY_SPECIFIC_AMOUNT){
+			if(configAutoPay.getAmountEnterMax()<0){
+				message="Please write a amount specific";
+			}
 		}
 		Calendar calToday=Calendar.getInstance();
 		calToday.add(Calendar.DAY_OF_MONTH, 1);

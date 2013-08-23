@@ -3,6 +3,8 @@ package com.appsolution.layouts;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,4 +61,21 @@ public class DialogInformationOF {
 			}
 		};
 	}
+	
+	public void setFinishActivityOnBack(){
+		alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener(){
+            @Override
+            public boolean onKey(DialogInterface arg0, int keyCode,
+                    KeyEvent event) {
+                // TODO Auto-generated method stub
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                	dismissDialog();
+                    activity.finish();
+                }
+                return true;
+            }
+        });
+	}
+	
+	
 }

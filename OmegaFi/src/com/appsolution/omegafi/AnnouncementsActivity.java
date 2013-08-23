@@ -62,7 +62,7 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					adapterAnnouncements=new AnnouncementsAdapter(AnnouncementsActivity.this, announcements);
 					listAnnouncements.setAdapter(adapterAnnouncements);
 					refreshActivity();

@@ -84,7 +84,7 @@ public class CalendarActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					adapterCalendar=new CalendarAdapter(CalendarActivity.this, CalendarActivity.ordenateItemsCalendar(calendarItems));
 					listCalendar.setAdapter(adapterCalendar);
 				}

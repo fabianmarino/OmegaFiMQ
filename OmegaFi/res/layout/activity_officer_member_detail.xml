@@ -227,12 +227,14 @@
                         android:paddingBottom="@dimen/padding_10dp"
                         android:gravity="center"
                         android:layout_weight="1">
-                        <ImageView android:layout_width="@dimen/width_image_label"
+                        <ImageView
+                            android:id="@+id/iconFacebook" 
+                            android:layout_width="@dimen/width_image_label"
                             android:layout_height="@dimen/width_image_label"
                             android:adjustViewBounds="true"
                             android:onClick="onFacebookIcon"
                             android:minWidth="@dimen/width_image_label"
-                            android:src="@drawable/icon_face"/>
+                            android:src="@drawable/face_opa"/>
                     </LinearLayout>
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
@@ -243,12 +245,14 @@
                         android:paddingBottom="@dimen/padding_10dp"
                         android:gravity="center"
                         android:layout_weight="1">
-                        <ImageView android:layout_width="@dimen/width_image_label"
+                        <ImageView
+                            android:id="@+id/iconLinkedin" 
+                            android:layout_width="@dimen/width_image_label"
                             android:layout_height="@dimen/width_image_label"
                             android:adjustViewBounds="true"
                             android:onClick="onLinkedIcon"
                             android:minWidth="@dimen/width_image_label"
-                            android:src="@drawable/icon_linked"/>
+                            android:src="@drawable/link_opa"/>
                     </LinearLayout>
                     <View android:layout_width="1dp"
                         android:layout_height="fill_parent"
@@ -259,12 +263,14 @@
                         android:paddingBottom="@dimen/padding_10dp"
                         android:gravity="center"
                         android:layout_weight="1">
-                        <ImageView android:layout_width="@dimen/width_image_label"
+                        <ImageView
+                            android:id="@+id/iconTwitter" 
+                            android:layout_width="@dimen/width_image_label"
                             android:layout_height="@dimen/width_image_label"
                             android:adjustViewBounds="true"
                             android:onClick="onTwitterIcon"
                             android:minWidth="@dimen/width_image_label"
-                            android:src="@drawable/icon_twitter"/>
+                            android:src="@drawable/twitter_opa"/>
                     </LinearLayout>
             	</LinearLayout>
             </LinearLayout>

@@ -172,7 +172,7 @@ public class OpenRequestActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200||status==201){
+				if(Server.isStatusOk(status)){
 					showRequestSucessfully();
 				}
 				else if(status==422){

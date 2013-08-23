@@ -142,6 +142,33 @@
             android:onClick="addContinueNewPayment"
             style="@style/ButtonOmega"
             />
+        <LinearLayout
+            android:id="@+id/linearSaveDeleteMethod" 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/padding_8dp"
+            android:layout_marginBottom="@dimen/padding_6dp"
+            >
+            <Button
+	            android:id="@+id/buttonSavePaymentMethod"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="@dimen/padding_6dp"
+	            android:text="SAVE"
+	            android:onClick="savePaymentMethod"
+	            style="@style/ButtonOmega"
+	            />
+            <Button
+	            android:id="@+id/buttonDeletePaymentMethod"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:text="DELETE"
+	            android:onClick="deletePaymentMethod"
+	            style="@style/ButtonOmega"
+	            />
+            
+        </LinearLayout>
         <TextView android:id="@+id/labelSecurityInformation"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

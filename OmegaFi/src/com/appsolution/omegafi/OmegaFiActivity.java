@@ -11,6 +11,7 @@ import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.ItemMenuSliding;
 import com.appsolution.layouts.LayoutActionBar;
 import com.appsolution.layouts.UserContactLayout;
+import com.appsolution.logic.Profile;
 import com.appsolution.services.Server;
 import com.google.analytics.tracking.android.EasyTracker;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -299,7 +300,9 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			loadImageSlidingMenu();
 			if(Server.getServer().getHome().getProfile().getProfile()!=null){
 				userContact.setNameUserProfile(Server.getServer().getHome().getProfile().getProfile().getFirstLastName());
-				userContact.setSubTitleProfile("Initiate");
+				String nationalStatusName=Server.getServer().getHome().getProfile().getProfile().getNationalStatusName().
+						equalsIgnoreCase(Profile.NATIONAL_STATUS_NAME_NONE) ? Server.getServer().getHome().getProfile().getProfile().getNationalStatusName() : "";
+				userContact.setSubTitleProfile(nationalStatusName);
 				itemAnnouncements.setNumberNotifications(Server.getServer().getHome().getProfile().getProfile().getAnnouncementsCount());
 			}
 		

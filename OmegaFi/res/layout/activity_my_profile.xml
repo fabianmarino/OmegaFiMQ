@@ -57,7 +57,7 @@
 		            <com.appsolution.layouts.RowInformation
 		                android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
-		                secom:name_information="Public Profile Info"
+		                secom:name_information="My Profile Information"
 		                secom:text_size_name_information="@dimen/text_15sp"
 		                secom:padding_row_info="@dimen/padding_8dp"
 		                secom:put_border_bottom="false" />
@@ -152,21 +152,31 @@
 		                    android:layout_height="wrap_content"
 		                    android:padding="@dimen/padding_10dp"
 		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Main number"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                    <EditText
 		                        android:id="@+id/editMainNumber" 
 		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
-		                        android:hint="Main Number"
-		                        android:inputType="phone"
+		                        android:enabled="false"
 		                        style="@style/EditTextLoginNormal"
 		                        />
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Secondary Number"
+		                        android:layout_marginTop="@dimen/padding_6dp"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                    <EditText
 		                        android:id="@+id/editSecondaryNumber" 
 		                        android:layout_width="fill_parent"
-		                        android:layout_marginTop="@dimen/padding_6dp"
 		                        android:layout_height="wrap_content"
-		                        android:hint="Secundary Number"
 		                        android:inputType="phone"
+		                        android:enabled="false"
+		                        android:editable="false"
 		                        style="@style/EditTextLoginNormal"
 		                        />
 		                </LinearLayout>
@@ -177,21 +187,31 @@
 		                    android:padding="@dimen/padding_10dp"
 		                    android:visibility="gone"
 		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Main Email"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                    <EditText
 		                        android:id="@+id/editMainEmail" 
 		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
-		                        android:hint="Main Email"
 		                        android:inputType="textEmailAddress"
+		                        android:enabled="false"
 		                        style="@style/EditTextLoginNormal"
 		                        />
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Secondary Email"
+		                        android:layout_marginTop="@dimen/padding_6dp"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                    <EditText
 		                        android:id="@+id/editSecondaryEmail" 
 		                        android:layout_width="fill_parent"
-		                        android:layout_marginTop="@dimen/padding_6dp"
 		                        android:layout_height="wrap_content"
-		                        android:hint="Secondary Email"
 		                        android:inputType="textEmailAddress"
+		                        android:enabled="false"
 		                        style="@style/EditTextLoginNormal"
 		                        />
 		                </LinearLayout>
@@ -209,14 +229,12 @@
 			                        android:id="@+id/editTopHomeLine1"
 			                        android:layout_width="fill_parent"
 			                        android:layout_height="wrap_content"
-			                        secom:name_top_info="Home Address"		                    
-			                        secom:hint_text_top_info="Line 1"
+			                        secom:name_top_info="Home Address"
 			                        secom:width_fill_parent="true" />
 			                    <com.appsolution.layouts.RowEditNameTopInfo
 			                        android:id="@+id/editTopHomeLine2"
 			                        android:layout_width="fill_parent"
 			                        android:layout_height="wrap_content"
-			                        secom:hint_text_top_info="Line 2"
 			                        secom:width_fill_parent="true" />
 		                    </LinearLayout>
 		                    <LinearLayout android:layout_width="fill_parent"
@@ -227,13 +245,11 @@
 			                        android:layout_width="fill_parent"
 			                        android:layout_height="wrap_content"
 			                        secom:name_top_info="School Address"
-			                        secom:hint_text_top_info="Line 1"
 			                        secom:width_fill_parent="true" />
 			                    <com.appsolution.layouts.RowEditNameTopInfo
 			                        android:id="@+id/editTopSchoolLine2"
 			                        android:layout_width="fill_parent"
 			                        android:layout_height="wrap_content"
-			                        secom:hint_text_top_info="Line 2"
 			                        secom:width_fill_parent="true" />
 		                    </LinearLayout>
 		                </LinearLayout>
@@ -247,7 +263,6 @@
 		                    secom:text_toogle="Publish Profile"
 		                    secom:put_border_bottom_e="false"
 		                    android:layout_margin="@dimen/padding_5dp" />
-		                    
 		            </LinearLayout>
 		        </LinearLayout>
 	        </LinearLayout>
@@ -262,7 +277,7 @@
 	            <com.appsolution.layouts.RowInformation
 	                android:layout_width="fill_parent"
 	                android:layout_height="wrap_content"
-	                secom:name_information="Personal Info"
+	                secom:name_information="Personal Information"
 	                secom:text_size_name_information="@dimen/text_15sp"
 	                secom:padding_row_info="@dimen/padding_8dp"
 	                secom:put_border_bottom="true" />
@@ -273,33 +288,58 @@
 	                >
 		            <LinearLayout android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
-		                android:padding="@dimen/padding_5dp"
+		                android:paddingLeft="@dimen/padding_5dp"
+		                android:paddingRight="@dimen/padding_5dp"
+		                android:paddingBottom="@dimen/padding_5dp"
 		                android:orientation="horizontal"
 		                android:weightSum="1">
-		                <Spinner
-		                    android:id="@+id/spinnerPrefixProfile" 
-		                    android:layout_width="0dp"
+		                <LinearLayout android:layout_width="0dp"
 		                    android:layout_height="fill_parent"
 		                    android:layout_weight="0.3"
-		                    android:layout_gravity="center_vertical"
-		                    android:background="@drawable/white_input_small"
-		                    />
-		                <EditText
-		                    android:id="@+id/editFirstName" 
-		                    android:layout_width="0dp"
+		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text=""
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
+			                <Spinner
+			                    android:id="@+id/spinnerPrefixProfile" 
+			                    android:layout_width="fill_parent"
+			                    android:layout_height="fill_parent"
+			                    android:layout_gravity="center_vertical"
+			                    android:background="@drawable/white_input_small"
+			                    />
+		                </LinearLayout>
+		                <LinearLayout android:layout_width="0dp"
 		                    android:layout_height="wrap_content"
 		                    android:layout_weight="0.7"
-		                    android:hint="First Name"
-		                    style="@style/EditTextLoginNormal"/>
+		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="First Name"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
+			                <EditText
+			                    android:id="@+id/editFirstName" 
+			                    android:layout_width="fill_parent"
+			                    android:layout_height="wrap_content"
+			                    android:hint=""
+			                    style="@style/EditTextLoginNormal"/>
+			            </LinearLayout> 
 		            </LinearLayout>
 		            <LinearLayout android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
-		                android:padding="@dimen/padding_5dp">
+		                android:padding="@dimen/padding_5dp"
+		                android:orientation="vertical">
+		                <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Middle Name"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                <EditText
 		                    android:id="@+id/editMiddleName" 
 		                    android:layout_width="fill_parent"
 		                    android:layout_height="wrap_content"
-		                    android:hint="Middle Name"
 		                    style="@style/EditTextLoginNormal"/>
 		            </LinearLayout>
 		           
@@ -308,51 +348,81 @@
 		                android:padding="@dimen/padding_5dp"
 		                android:orientation="horizontal"
 		                android:weightSum="1">
-		                <EditText
-		                    android:id="@+id/editLastName" 
-		                    android:layout_width="0dp"
-		                    android:layout_height="wrap_content"
+		                <LinearLayout android:layout_width="0dp"
+		                    android:layout_height="fill_parent"
 		                    android:layout_weight="0.7"
-		                    android:hint="Last Name"
-		                    style="@style/EditTextLoginNormal"/>
-		                <EditText
-		                    android:id="@+id/editSufixProfile" 
-		                    android:layout_width="0dp"
+		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Last Name"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
+			                <EditText
+			                    android:id="@+id/editLastName" 
+			                    android:layout_width="fill_parent"
+			                    android:layout_height="wrap_content"
+			                    style="@style/EditTextLoginNormal"/>
+			            </LinearLayout>
+			            <LinearLayout android:layout_width="0dp"
 		                    android:layout_height="fill_parent"
 		                    android:layout_weight="0.3"
-		                    android:hint="Sufix"
-		                    style="@style/EditTextLoginSmall"
-		                    />
+		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Suffix"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
+			                <EditText
+			                    android:id="@+id/editSufixProfile" 
+			                    android:layout_width="fill_parent"
+			                    android:layout_height="fill_parent"
+			                    style="@style/EditTextLoginSmall"
+			                    />
+			            </LinearLayout>    
 		            </LinearLayout>
-		           
 		            <LinearLayout android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
-		                android:padding="@dimen/padding_5dp">
+		                android:padding="@dimen/padding_5dp"
+		                android:orientation="vertical">
+		                <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Informal First Name"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                <EditText
 		                    android:id="@+id/editInformalFirst" 
 		                    android:layout_width="fill_parent"
 		                    android:layout_height="wrap_content"
-		                    android:hint="Informal First Name"
 		                    style="@style/EditTextLoginNormal"/>
 		            </LinearLayout>
 		            <LinearLayout android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
-		                android:padding="@dimen/padding_5dp">
+		                android:padding="@dimen/padding_5dp"
+		                android:orientation="vertical">
+		                <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Parent's Name"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                <EditText
 		                    android:id="@+id/editParentsName" 
 		                    android:layout_width="fill_parent"
 		                    android:layout_height="wrap_content"
-		                    android:hint="Parent's Name"
 		                    style="@style/EditTextLoginNormal"/>
 		            </LinearLayout>
 		            <LinearLayout android:layout_width="fill_parent"
 		                android:layout_height="wrap_content"
-		                android:padding="@dimen/padding_5dp">
+		                android:padding="@dimen/padding_5dp"
+		                android:orientation="vertical">
+		                <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Travel Visa Number"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
 		                <EditText
 		                    android:id="@+id/travelVisaNumber" 
 		                    android:layout_width="fill_parent"
 		                    android:layout_height="wrap_content"
-		                    android:hint="Travel Visa Number"
 		                    android:inputType="number"
 		                    style="@style/EditTextLoginNormal"/>
 		            </LinearLayout>
@@ -362,23 +432,41 @@
 		                android:orientation="horizontal"
 		                android:gravity="center_vertical"
 		                android:weightSum="1">
-		            	<TextView
-		            	    android:id="@+id/editCollegeEntry" 
-		            	    android:layout_width="fill_parent"
-		                    android:layout_height="@dimen/height_edit_submit"
-		                    android:gravity="left|center_vertical"
-		                    android:clickable="true"
-		                    android:onClick="showCalendarEntryDate"
+		                <LinearLayout android:layout_width="0dp"
+		                    android:layout_height="fill_parent"
 		                    android:layout_marginRight="2dp"
 		                    android:layout_weight="0.5"
-		                    style="@style/EditTextLoginNotEditable"/>
-		                <Spinner
-		                    android:id="@+id/spinnerGraduationYear" 
-		                    android:layout_width="fill_parent"
-		                    android:layout_height="@dimen/height_edit_submit"
-		                    android:layout_marginLeft="2dp"
+		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="College Entry Date"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
+			            	<TextView
+			            	    android:id="@+id/editCollegeEntry" 
+			            	    android:layout_width="fill_parent"
+			                    android:layout_height="@dimen/height_edit_submit"
+			                    android:gravity="left|center_vertical"
+			                    android:clickable="true"
+			                    android:onClick="showCalendarEntryDate"
+			                    style="@style/EditTextLoginNotEditable"/>
+			            </LinearLayout>	
+			            <LinearLayout android:layout_width="0dp"
+		                    android:layout_height="fill_parent"
 		                    android:layout_weight="0.5"
-		                    style="@style/EditTextLoginNotEditable"/>
+		                    android:layout_marginLeft="2dp"
+		                    android:orientation="vertical">
+		                    <TextView android:layout_width="fill_parent"
+		                        android:layout_height="wrap_content"
+		                        android:text="Graduation Year"
+		                        android:textColor="@android:color/darker_gray"
+		                        android:textSize="@dimen/text_11sp"/>
+			                <Spinner
+			                    android:id="@+id/spinnerGraduationYear" 
+			                    android:layout_width="fill_parent"
+			                    android:layout_height="@dimen/height_edit_submit"
+			                    style="@style/EditTextLoginNotEditable"/>
+			            </LinearLayout>    
 		            </LinearLayout>
 	            </LinearLayout>
 	        </LinearLayout>

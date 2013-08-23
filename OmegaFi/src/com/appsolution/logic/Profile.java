@@ -31,6 +31,10 @@ public class Profile {
 	private List<String> prefixes=new ArrayList<String>();
 	private int announcementsCount=0;
 	private boolean changesPending=false;
+	private String statusName;
+	private String nationalStatusName;
+	
+	public static final String NATIONAL_STATUS_NAME_NONE="None";
 	
 	public Profile(JSONObject objectprofile) {
 		JSONObject individual;
@@ -72,6 +76,11 @@ public class Profile {
 				changesPending=individual.getBoolean("pending_change");
 				publishProfile=individual.getBoolean("publish_profile");
 				
+				if(!individual.isNull("member_status")){
+					JSONObject memberStatus=individual.getJSONObject("member_status");
+					statusName=memberStatus.getString("status_name");
+					nationalStatusName=memberStatus.getString("national_status_name");
+				}
 				this.completePhones(individual.getJSONArray("phone_numbers"));
 				this.completeEmails(individual.getJSONArray("emails"));
 				this.completeAdresses(individual.getJSONArray("addresses"));
@@ -83,13 +92,13 @@ public class Profile {
 	}
 	
 	private void completePhones(JSONArray phones){
-		for (int i = 0; i < phones.length()&&i<2; i++) {
+		for (int i = 0; i < phones.length(); i++) {
 			try {
 				JSONObject jsonPhone=phones.getJSONObject(i).getJSONObject("phone_number");
 				PhoneContact phone=new PhoneContact(jsonPhone);
 				if(phone.isPrimary())
 					this.phones[0]=phone;
-				else
+				else if(this.phones[1]==null)
 					this.phones[1]=phone;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -99,13 +108,13 @@ public class Profile {
 	}
 	
 	private void completeEmails(JSONArray emails){
-		for (int i = 0; i < emails.length()&&i<2; i++) {
+		for (int i = 0; i < emails.length(); i++) {
 			try {
 				JSONObject jsonEmail=emails.getJSONObject(i).getJSONObject("email");
 				EmailContact email=new EmailContact(jsonEmail);
 				if(email.isPrimary())
 					this.emails[0]=email;
-				else
+				else if(this.emails[1]==null)
 					this.emails[1]=email;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -115,14 +124,14 @@ public class Profile {
 	}
 	
 	private void completeAdresses(JSONArray addresses){
-		for (int i = 0; i < addresses.length()&&i<2; i++) {
+		for (int i = 0; i < addresses.length(); i++) {
 			try {
 				JSONObject jsonAddress=addresses.getJSONObject(i).getJSONObject("address");
 				AddressContact address=new AddressContact(jsonAddress);
 				
 				if(address.isPrimary())
 					this.addresses[0]=address;
-				else
+				else if(this.addresses[1]==null)
 					this.addresses[1]=address;
 				
 			} catch (JSONException e) {
@@ -247,6 +256,15 @@ public class Profile {
 	public boolean isChangesPending() {
 		return changesPending;
 	}
+
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public String getNationalStatusName() {
+		return nationalStatusName;
+	}
+	
 	
 	
 	

@@ -37,7 +37,7 @@
     <dimen name="padding_25dp">30dp</dimen>
     <dimen name="padding_side_button_small">15dp</dimen>
     <dimen name="padding_3dp">7dp</dimen>
-    <dimen name="padding_5dp">15dp</dimen>
+    <dimen name="padding_5dp">8dp</dimen>
     <dimen name="padding_6dp">8dp</dimen>
     <dimen name="padding_8dp">10dp</dimen>
     <dimen name="padding_10dp">23dp</dimen>
@@ -73,6 +73,7 @@
     <dimen name="height_image_chapter">130dp</dimen>
     <dimen name="size_notification_circle">35dp</dimen>
     <dimen name="height_new_event_content">230dp</dimen>
+    <dimen name="height_new_event_content_2">210dp</dimen>
     <dimen name="size_circle_newevents">5dp</dimen>
     <dimen name="width_image_label">50dp</dimen>
     <dimen name="width_arrow_down">40dp</dimen>
@@ -81,11 +82,11 @@
     <dimen name="width_95dp">120dp</dimen>
     <dimen name="width_70dp_spinner">90dp</dimen>
     <dimen name="width_25dp">20dp</dimen>
-    <dimen name="height_poll_content">350dp</dimen>
+    <dimen name="height_poll_content">370dp</dimen>
     <dimen name="width_15dp_icon_spinner">22dp</dimen>
     <dimen name="height_shadow_2dp">3dp</dimen>
     <dimen name="height_shadow_margin">-4dp</dimen>
-    <dimen name="height_bar_poll">22dp</dimen>
+    <dimen name="height_bar_poll">25dp</dimen>
     <dimen name="height_edit_submit">58dp</dimen>
     <dimen name="width_arrow_up">20dp</dimen>
     <dimen name="height_arrow_up">10dp</dimen>
@@ -93,6 +94,7 @@
     <dimen name="width_120dp">130dp</dimen>
     <dimen name="width_50dp">40dp</dimen>
     <dimen name="height_30dp">42dp</dimen>
+    <dimen name="height_20dp">28dp</dimen>
     
     <dimen name="slidingmenu_offset">100dp</dimen>
     <dimen name="list_padding">10dp</dimen>

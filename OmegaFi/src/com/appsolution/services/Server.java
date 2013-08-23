@@ -44,6 +44,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.appsolution.logic.CachingImage;
 import com.appsolution.omegafi.MainActivity;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.SplashOmegaFiActivity;
@@ -96,8 +97,9 @@ public class Server {
 	public static final String ANNOUNCEMENTS_SERVICE=HOST+"/myomegafi/api/v1/announcements";
 	public static final String ANNOUNCEMENTS_VIEW_UPDATE=HOST+"/myomegafi/api/v1/announcements/updateviewattribute";
 	public static final String NOTIFICATIONS_SERVICE=HOST+"/myomegafi/api/v1/user/notifications";
+	public static final String POLLS_SERVICE=HOST+"/myomegafi/api/v1/polls";
 	
-	public static int TIME_OUT=20000;
+	public static int TIME_OUT=35000;
 	private HttpClient clientRequest;
 	private HttpContext contextHttp;
 	private CookieStore cookieStore;
@@ -383,8 +385,8 @@ public class Server {
 		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/statements";
 	}
 	
-	public static String getUrlStatementsView(int idAccount,int idStatement){
-		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/statements/"+idStatement+"?statement_type=Regular";
+	public static String getUrlStatementsView(int idAccount,int idStatement,String type){
+		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/statements/"+idStatement+"?statement_type="+type;
 	}
 	
 	public static String getUrlScheduledCharges(int idAccount){
@@ -393,6 +395,10 @@ public class Server {
 	
 	public static String getUrlPaymentMethods(int idAccount){
 		return Server.ACCOUNTS_SERVICE+"/"+idAccount+"/payment_profiles";
+	}
+	
+	public static String getUrlPaymentMethodsId(int idAccount, int idPaymenthMethod){
+		return getUrlPaymentMethods(idAccount)+"/"+idPaymenthMethod;
 	}
 	
 	public static String getUrlScheduledPaymentsCreate(int idAccount){
@@ -556,26 +562,32 @@ public class Server {
     }
 	
 	public static void chargeBitmapInImageViewAsync(final String source,final String url, final ImageView image){
-		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-			Bitmap imagePhoto=null;
-			@Override
-			protected Boolean doInBackground(Void... params) {
-				imagePhoto=chargeBitmapInImageView(source, url);
-				return true;
-			}
-			
-			@Override
-			protected void onPostExecute(Boolean result) {
-				if(imagePhoto!=null){
-					Log.d("ImagePhoto", imagePhoto+url);
-					image.setImageBitmap(imagePhoto);
+		Bitmap bitPhoto=CachingImage.getCachingImage().getBitmapFromMemCache(url);
+		if(bitPhoto==null){
+			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+				Bitmap imagePhoto=null;
+				@Override
+				protected Boolean doInBackground(Void... params) {
+					imagePhoto=chargeBitmapInImageView(source, url);
+					return true;
 				}
-				else{
-					Log.d("Image Nula "+source, url+"");
+				
+				@Override
+				protected void onPostExecute(Boolean result) {
+					if(imagePhoto!=null){
+						CachingImage.getCachingImage().addBitmapToMemoryCache(url, imagePhoto);
+						image.setImageBitmap(imagePhoto);
+						image.refreshDrawableState();
+					}
 				}
-			}
-		};
-		task.execute();
+			};
+			task.execute();
+		}
+		else{
+			image.setImageBitmap(bitPhoto);
+			image.refreshDrawableState();
+		}
+		
 	}
 	
 	public static Bitmap chargeBitmapInImageView(final String source,final String url){
@@ -721,7 +733,7 @@ public class Server {
 			Server.getServer().getHome().getCalendar().chargeEventsHome();
 			Server.getServer().getHome().getFeeds().chargeNewsFeed
 			(getForgotLogin().getUrlFeed(context));
-			if(status==200||status==201){
+			if(Server.isStatusOk(status)){
 				emptyInformation=false;
 			}
 		}
@@ -748,6 +760,7 @@ public class Server {
 	            MultipartEntity reqEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
 	            reqEntity.addPart(idJson, bab);
 	            postRequest.setEntity(reqEntity);
+	            postRequest.addHeader("Accept", "*/*");
 	            HttpResponse response = clientRequest.execute(postRequest,contextHttp);
 	            status=response.getStatusLine().getStatusCode();
 	            statusJson[0]=status;
@@ -783,6 +796,14 @@ public class Server {
 		if(!errors.isEmpty())
 			error=errors.get(0);
 		return error;
+	}
+	
+	public static String getUrlVotePoll(int idPoll){
+		return Server.POLLS_SERVICE+"/"+idPoll+"/votes";
+	}
+	
+	public static boolean isStatusOk(int status){
+		return status>=200&&status<=203;
 	}
 	
 }

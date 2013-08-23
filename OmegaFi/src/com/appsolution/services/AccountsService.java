@@ -98,7 +98,6 @@ public class AccountsService extends ServerContext {
 		return statusJson;
 	}
 	
-	//Falta lo de las dos lineas de la direccion al servicio web solo hay que enviarle un string
 	public Object[] createPaymentECheck(int idAccount, String nameAccount, String routingNumber, String accountNumber, 
 			String emailAddress, String phone, String addressLine1, String addressLine2, String city, String state, int zipCode, boolean saveForFuture){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -116,6 +115,43 @@ public class AccountsService extends ServerContext {
         int booleanValue=saveForFuture ? 1 : 0;
         nameValuePairs.add(new BasicNameValuePair("echeck_profile[profile]", booleanValue+""));
 		Object[] statusJson=server.makeRequestPost(Server.getUrlPaymentMethods(idAccount), nameValuePairs);
+		return statusJson;
+	}
+	
+	public Object[] updatePaymentCC(int idAccount,int idMethod,String nameCC, String creditNumber, String typeCard ,
+			int month, int year, String emailAddress, int zipCode, String phone, boolean saveForFuture){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[nameoncard]", nameCC));
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[cardnumber]", creditNumber));
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[cardtype]", typeCard));
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[expmonth]", month+""));
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[expyear]", year+""));
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[emailaddress]", emailAddress));
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[zipcode]", zipCode+""));
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[transactionphone]", phone));
+        int booleanValue=saveForFuture ? 1 : 0;
+        nameValuePairs.add(new BasicNameValuePair("credit_card_profile[profile]", booleanValue+""));
+		Object[] statusJson=server.makeRequestPut(Server.getUrlPaymentMethodsId(idAccount,idMethod), nameValuePairs);
+		return statusJson;
+	}
+	
+	public Object[] updatePaymentECheck(int idAccount, int idMethod,String nameAccount, String routingNumber, String accountNumber, 
+			String emailAddress, String phone, String addressLine1, String addressLine2, String city, String state, int zipCode, boolean saveForFuture){
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[routingnumber]", routingNumber));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[accountnumber]", accountNumber));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[nameonaccount]", nameAccount));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[emailaddress]", emailAddress));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[phonenumber]", phone));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[address1]", addressLine1));
+        if(!addressLine2.isEmpty())
+        	nameValuePairs.add(new BasicNameValuePair("echeck_profile[address2]", addressLine2));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[city]", city));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[state]", state));
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[zipcode]", zipCode+""));
+        int booleanValue=saveForFuture ? 1 : 0;
+        nameValuePairs.add(new BasicNameValuePair("echeck_profile[profile]", booleanValue+""));
+		Object[] statusJson=server.makeRequestPut(Server.getUrlPaymentMethodsId(idAccount,idMethod), nameValuePairs);
 		return statusJson;
 	}
 	
@@ -197,21 +233,18 @@ public class AccountsService extends ServerContext {
 	public Object[] createAutoPay(int idAccount, AutoPayConfig config){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		
-		if(config.getPaymentDayOfMonth()!=-1){
-			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+1));
-			Log.d("autopayrecord[payonduedate]", "1");
-			nameValuePairs.add(new BasicNameValuePair("autopayrecord[dayofmonth]", ""+config.getPaymentDayOfMonth()));
-			Log.d("autopayrecord[dayofmonth]", config.getPaymentDayOfMonth()+"");
-        }
-		else{
-			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+0));
-			Log.d("autopayrecord[payonduedate]", 0+"");
-		}
+		int payOnDueDate=config.isPayOnDueDate() ? 1 : 0;
+		
+		nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+payOnDueDate));
+		nameValuePairs.add(new BasicNameValuePair("autopayrecord[dayofmonth]", ""+config.getPaymentDayOfMonth()));
+		Log.d("autopayrecord[dayofmonth]", config.getPaymentDayOfMonth()+"");
+	
         nameValuePairs.add(new BasicNameValuePair("autopayrecord[begindate]", config.getBeginDateRequest()));
         Log.d("autopayrecord[begindate]", config.getBeginDateRequest());
         if(config.getTypePaymenthAmount()==AutoPayConfig.PAY_AMOUNT_DUE){
         	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paydueamount]", 1+""));
-        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[capamount]", config.getAmountEnterMax()+""));
+        	if(config.getAmountEnterMax()>=0)
+        		nameValuePairs.add(new BasicNameValuePair("autopayrecord[capamount]", config.getAmountEnterMax()+""));
         	Log.d("autopayrecord[paydueamount]", 1+"");
         	Log.d("autopayrecord[capamount]", config.getAmountEnterMax()+"");
         }
@@ -244,21 +277,18 @@ public class AccountsService extends ServerContext {
 	public Object[] updateAutoPay(int idAccount, AutoPayConfig config){
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		
-		if(config.getPaymentDayOfMonth()!=-1){
-			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+1));
-			Log.d("autopayrecord[payonduedate]", "1");
+			int payOnDueDate=config.isPayOnDueDate() ? 1 :0;
+		
+			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+payOnDueDate));
 			nameValuePairs.add(new BasicNameValuePair("autopayrecord[dayofmonth]", ""+config.getPaymentDayOfMonth()));
 			Log.d("autopayrecord[dayofmonth]", config.getPaymentDayOfMonth()+"");
-        }
-		else{
-			nameValuePairs.add(new BasicNameValuePair("autopayrecord[payonduedate]", ""+0));
-			Log.d("autopayrecord[payonduedate]", 0+"");
-		}
+			
         nameValuePairs.add(new BasicNameValuePair("autopayrecord[begindate]", config.getBeginDateRequest()));
         Log.d("autopayrecord[begindate]", config.getBeginDateRequest());
         if(config.getTypePaymenthAmount()==AutoPayConfig.PAY_AMOUNT_DUE){
         	nameValuePairs.add(new BasicNameValuePair("autopayrecord[paydueamount]", 1+""));
-        	nameValuePairs.add(new BasicNameValuePair("autopayrecord[capamount]", config.getAmountEnterMax()+""));
+        	if(config.getAmountEnterMax()>=0)
+        		nameValuePairs.add(new BasicNameValuePair("autopayrecord[capamount]", config.getAmountEnterMax()+""));
         	Log.d("autopayrecord[paydueamount]", 1+"");
         	Log.d("autopayrecord[capamount]", config.getAmountEnterMax()+"");
         }
@@ -293,9 +323,11 @@ public class AccountsService extends ServerContext {
 		nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[paymentdate]", paymentDate));
 		if(method.isEChecked()){
 			nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[memberpaymentecheckid]", method.getId()+""));
+			nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[memberpaymentcreditcardid]", ""));
 		}
 		else{
 			nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[memberpaymentcreditcardid]", method.getId()+""));
+			nameValuePairs.add(new BasicNameValuePair("scheduledpaymentrecord[memberpaymentecheckid]", ""));
 		}
 		Object[] statusJson=server.makeRequestPut(Server.getUrlScheduledPaymentsId(idAccount,idScheduled),nameValuePairs);
 		return statusJson;
@@ -314,8 +346,8 @@ public class AccountsService extends ServerContext {
 		return statusJson;
 	}
 	
+	public int deletePaymentMethod(int account, int idPayment){
+		return server.makeRequestDelete(Server.getUrlPaymentMethodsId(account, idPayment));
+	}
 	
-	
-	
-
 }

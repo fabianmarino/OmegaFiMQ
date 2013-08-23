@@ -5,7 +5,9 @@ import com.appsolution.omegafi.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -67,6 +69,18 @@ public class ViewNameTopInfo extends LinearLayout {
 		else{
 			contentAll.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		}
+	}
+	
+	public void setTextSizeTop(int size){
+		nameTopInfo.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+	}
+	
+	public void setTextTypeFaceTop(Typeface type){
+		nameTopInfo.setTypeface(type);
+	}
+	
+	public void setTextColorTop(int color){
+		nameTopInfo.setTextColor(color);
 	}
 	
 

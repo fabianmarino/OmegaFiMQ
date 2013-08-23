@@ -49,7 +49,7 @@ public class ForgotUserNameActivity extends OmegaFiLoginActivity {
 				@Override
 				protected void onPostExecute(Boolean result) {
 					stopProgressDialog();
-					if(status==200){
+					if(Server.isStatusOk(status)){
 						rowEmail.setVisibility(LinearLayout.GONE);
 						headerOmegaFi.setMessageForForm("Your username has been sent to "+rowEmail.getTextEditSubmit());
 					}

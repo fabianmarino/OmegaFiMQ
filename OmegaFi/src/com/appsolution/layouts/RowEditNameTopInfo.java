@@ -54,5 +54,9 @@ public class RowEditNameTopInfo extends ViewNameTopInfo {
 	public void setValueInfo(String info){
 		textInfo.setText(info);
 	}
+	
+	public void setEnabledEditText(boolean enabled){
+		textInfo.setEnabled(enabled);
+	}
 
 }

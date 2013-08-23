@@ -1,5 +1,7 @@
 package com.appsolution.omegafi;
 
+import java.text.DecimalFormat;
+
 import com.appsolution.layouts.RowCheckBoxOmegaFi;
 import com.appsolution.layouts.RowEditTextOmegaFi;
 import com.appsolution.logic.AutoPayConfig;
@@ -8,6 +10,7 @@ import android.os.Bundle;
 import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
@@ -66,7 +69,7 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 		if(AutoPayActivity.configAutoPay.getTypePaymenthAmount()==AutoPayConfig.PAY_AMOUNT_DUE){
 			spinnerTypeAmmount.setSelection(0);
 			if(AutoPayActivity.configAutoPay.getAmountEnterMax()>=0){
-				rowTextMaximum.setTextEdit(AutoPayActivity.configAutoPay.getAmountEnterMax()+"");
+				rowTextMaximum.setTextEdit(String.format("%.2f",AutoPayActivity.configAutoPay.getAmountEnterMax()).replace(",", "."));
 			}
 			else{
 				rowTextMaximum.setTextEdit("");
@@ -77,10 +80,10 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 		else{
 			spinnerTypeAmmount.setSelection(1);
 			if(AutoPayActivity.configAutoPay.getAmountEnterMax()<0){
-				rowEditText.setTextEdit("0");
+				rowEditText.setTextEdit("0.00");
 			}
 			else{
-				rowEditText.setTextEdit(AutoPayActivity.configAutoPay.getAmountEnterMax()+"");
+				rowEditText.setTextEdit(String.format("%.2f",AutoPayActivity.configAutoPay.getAmountEnterMax()).replace(",", "."));
 			}
 		}
 		refreshAtTime(100);
@@ -99,7 +102,13 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 		checkOnDueDate=new RowCheckBoxOmegaFi(this);
 		checkOnDueDate.getTextNameInfo().setTextColor(Color.BLACK);
 		checkOnDueDate.setNameInfo("No Maximum Amount");
-		
+		checkOnDueDate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				rowTextMaximum.setEditable(!isChecked);
+			}
+		});
 		int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
 		checkOnDueDate.setPaddingRow(padding,0,0,0);
 		rowTextMaximum=new RowEditTextOmegaFi(this);
@@ -109,14 +118,17 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 		refreshAtTime(1000);
 	}
 	
-	@Override
-	public void onBackPressed() {
+	private void saveChanges(){
 		if(spinnerTypeAmmount.getSelectedItemPosition()==1){
 			if(rowEditText.getValueInfo1().isEmpty()){
 				AutoPayActivity.configAutoPay.setAmountEnterMax(0f);
 			}
 			else{
-				AutoPayActivity.configAutoPay.setAmountEnterMax(Float.parseFloat(rowEditText.getValueInfo1()));
+				String amount=rowEditText.getValueInfo1();
+				if(RowEditTextOmegaFi.isDecimal(amount))
+					AutoPayActivity.configAutoPay.setAmountEnterMax(Float.parseFloat(amount));
+				else
+					OmegaFiActivity.showAlertMessage("Your amount number is invalid.", this);
 			}
 		}
 		else{
@@ -125,11 +137,22 @@ public class AutoPaymentAmountActivity extends OmegaFiActivity {
 					AutoPayActivity.configAutoPay.setAmountEnterMax(0f);
 				}
 				else{
-					AutoPayActivity.configAutoPay.setAmountEnterMax(Float.parseFloat(rowTextMaximum.getValueInfo1()));
+					String amount=rowTextMaximum.getValueInfo1();
+					if(RowEditTextOmegaFi.isDecimal(amount))
+						AutoPayActivity.configAutoPay.setAmountEnterMax(Float.parseFloat(amount));
+					else
+						OmegaFiActivity.showAlertMessage("Your amount number is invalid.", this);
 				}
 			}
+			else{
+				AutoPayActivity.configAutoPay.setAmountEnterMax(-1f);
+			}
 		}
-		super.onBackPressed();
+	}
+	
+	public void saveAmountAutoPay(View button){
+		saveChanges();
+		finish();
 	}
 
 }

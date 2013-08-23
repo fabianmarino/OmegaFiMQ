@@ -49,7 +49,10 @@ public class BillingCycle {
 			}
 		}
 		}
-		return totalAmount;
+		String totAmount=totalAmount;
+		if(totAmount!=null)
+			totAmount=totAmount.contains("-") ? totAmount.replace("-", "(")+")":totAmount;
+		return totAmount;
 	}
 
 	public String getDateBillOn() {

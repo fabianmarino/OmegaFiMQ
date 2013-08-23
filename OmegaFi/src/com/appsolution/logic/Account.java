@@ -55,16 +55,16 @@ public class Account {
 			paymentsLast=jsonAccount.getString("payments_since_last_statement");
 			activityLast=jsonAccount.getString("activity_since_last_statement");
 			
-			
+			contacts.clear();
 			if(!jsonAccount.isNull("organization")){
 				JSONObject regularContact=jsonAccount.getJSONObject("organization");
-				contacts.add(new ContactAccount(regularContact, false,ContactAccount.TYPE_ORGANIZATION));
+				contacts.add(new ContactAccount(regularContact, true,ContactAccount.TYPE_ORGANIZATION));
 			}
 			
 			
 			if(!jsonAccount.isNull("omegafi_contact")){
 				JSONObject omegafiContact=jsonAccount.getJSONObject("omegafi_contact");
-				contacts.add(new ContactAccount(omegafiContact, false,ContactAccount.TYPE_OMEGAFI));
+				contacts.add(new ContactAccount(omegafiContact, true,ContactAccount.TYPE_OMEGAFI));
 			}
 			
 			JSONObject  lastestStatement= !jsonAccount.isNull("latest_statement") ? jsonAccount.getJSONObject("latest_statement") : null;
@@ -174,7 +174,7 @@ public class Account {
 	public String getCurrentBalance() {
 		String currentBal=currentBalance;
 		if(currentBalance!=null){
-			currentBal=currentBal.contains("-") ? "("+currentBal.replace("-", "")+")": currentBal;
+			currentBal=currentBal.contains("-") ? currentBal.replace("-", "(")+")": currentBal;
 		}
 		return currentBal;
 	}
@@ -208,7 +208,7 @@ public class Account {
 	public String getAdjustedBalance() {
 		String adjusted=adjustedBalance;
 		if(adjustedBalance!=null){
-			adjusted=adjusted.contains("-") ? "("+adjusted.replace("-", "")+")": adjusted;
+			adjusted=adjusted.contains("-") ? adjusted.replace("-", "(")+")": adjusted;
 		}
 		return adjusted;
 	}
@@ -222,7 +222,7 @@ public class Account {
 	public String getCreditsLast() {
 		String credits = creditsLast;
 		if(creditsLast!=null){
-			credits=credits.contains("-") ? "("+credits.replace("-", "") +")": credits;
+			credits=credits.contains("-") ? credits.replace("-", "(") +")": credits;
 		}
 		return credits;
 	}
@@ -236,7 +236,7 @@ public class Account {
 	public String getPaymentsLast() {
 		String payment=paymentsLast;
 		if(paymentsLast!=null){
-			payment=payment.contains("-") ? "("+payment.replace("-", "")+")":payment;
+			payment=payment.contains("-") ? payment.replace("-", "(")+")":payment;
 		}
 		return payment;
 	}
@@ -250,7 +250,7 @@ public class Account {
 	public String getActivityLast() {
 		String activLast=activityLast;
 		if(activityLast!=null){
-			activLast=activLast.contains("-") ? "("+activLast.replace("-", "")+")":activLast;
+			activLast=activLast.contains("-") ? activLast.replace("-", "(")+")":activLast;
 		}
 		return activLast;
 	}
@@ -298,7 +298,7 @@ public class Account {
 	public String getMoneyBalanceAsOf() {
 		String money=moneyBalanceAsOf;
 		if(moneyBalanceAsOf!=null){
-			money=money.contains("-") ? "("+money.replace("-", "")+")":money;
+			money=money.contains("-") ? money.replace("-", "(")+")":money;
 		}
 		return money;
 	}

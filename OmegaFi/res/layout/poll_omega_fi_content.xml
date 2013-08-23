@@ -33,7 +33,6 @@
 	        android:layout_height="wrap_content"
 	        android:orientation="vertical"
 	        android:paddingTop="@dimen/padding_5dp"
-	        android:paddingBottom="@dimen/padding_5dp"
 	        android:paddingLeft="@dimen/padding_10dp"
 	        android:paddingRight="@dimen/padding_10dp" >
 	        <LinearLayout 
@@ -52,14 +51,13 @@
 	        android:layout_height="wrap_content"
 	        android:orientation="horizontal"
 	        >
-	        <!--  <Button 
+	        <Button 
 	            android:id="@+id/buttonSubmitPoll"
 	            android:layout_width="wrap_content"
 	            android:layout_height="@dimen/height_button_small"
 	            android:text="SUBMIT"
-	            android:layout_marginLeft="@dimen/padding_6dp"
-	            android:layout_marginTop="@dimen/padding_3dp"
-	            style="@style/ButtonOmegaSmall"/>  -->
+	            android:layout_marginLeft="@dimen/padding_14dp"
+	            style="@style/ButtonOmegaSmall"/>
 	    </LinearLayout>
 	</LinearLayout>
 	
@@ -84,7 +82,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:gravity="center_horizontal"
-	        android:padding="@dimen/padding_5dp"
+	        android:layout_marginTop="8dp"
 	        android:orientation="vertical">
 	    </LinearLayout>
 	</LinearLayout>

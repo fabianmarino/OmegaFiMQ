@@ -112,7 +112,7 @@ public class ListMembersActivity extends OmegaFiActivity implements SearchView.O
 				@Override
 				protected void onPostExecute(Boolean result) {
 					stopProgressDialog();
-					if(status==200){
+					if(Server.isStatusOk(status)){
 						membersAlpha=new AlphabeticAdapter(ListMembersActivity.this,android.R.layout.simple_list_item_1, 
 								ChaptersService.getNamesMembers(members),idChapter);
 						listMembers.setAdapter(membersAlpha);

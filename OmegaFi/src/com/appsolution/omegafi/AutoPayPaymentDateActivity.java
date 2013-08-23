@@ -5,6 +5,7 @@ import java.util.List;
 import com.appsolution.layouts.RowCheckBoxOmegaFi;
 import com.appsolution.layouts.RowEditInformation;
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.Spinner;
 
+@SuppressLint("NewApi")
 public class AutoPayPaymentDateActivity extends OmegaFiActivity {
 
 	private LinearLayout linearPaymentDate;
@@ -96,9 +98,15 @@ public class AutoPayPaymentDateActivity extends OmegaFiActivity {
 		checkOnDueDate.setNameInfo("Pay on Due Date");
 		int padding=getResources().getDimensionPixelSize(R.dimen.padding_6dp);
 		checkOnDueDate.setPaddingRow(padding,0,0,0);
-		
+	}
+	
+	public void saveDateAutoPay(View button){
+		saveChanges();
+		finish();
 	}
 
-	
+	private void saveChanges(){
+		AutoPayActivity.configAutoPay.setPayOnDueDate(checkOnDueDate.isChecked());
+	}
 	
 }

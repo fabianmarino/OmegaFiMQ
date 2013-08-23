@@ -24,7 +24,7 @@ public class LogoutOmegaFiActivity extends OmegaFiLoginActivity {
 		imageContact.setImageDrawable(Server.getServer().getHome().getProfile().getPhotoTemp());
 		textUserName=(TextView)findViewById(R.id.textByeUser);
 		textUserName.setTypeface(bold);
-		textUserName.setText("GoodBye, "+Server.getServer().getForgotLogin().getFirstName(LogoutOmegaFiActivity.this));
+		textUserName.setText("Goodbye, "+Server.getServer().getForgotLogin().getFirstName(LogoutOmegaFiActivity.this));
 		chargeLogout();
 	}
 	

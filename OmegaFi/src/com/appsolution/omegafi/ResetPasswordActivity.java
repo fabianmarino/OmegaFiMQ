@@ -71,7 +71,7 @@ public class ResetPasswordActivity extends OmegaFiLoginActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					linearQuestions.setVisibility(LinearLayout.GONE);
 					header.setMessageForForm(getResources().getString(R.string.changed_password_sucessfully));
 				}

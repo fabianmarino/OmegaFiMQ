@@ -1,8 +1,10 @@
 package com.appsolution.layouts;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
+import com.appsolution.logic.Poll;
+
+import android.app.Activity;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,61 +12,40 @@ import android.view.View;
 import android.widget.ViewSwitcher;
 
 public class PollAdapter extends PagerAdapter {
-
-	private ArrayList<String[]> listaEventsOrNews;  
-    private Context context;  
+  
+    private Activity context;
+    private ArrayList<Poll> polls;
       
       
-    public PollAdapter(Context context) {  
+    public PollAdapter(Activity context) {  
         super();    
         this.context = context;
-        listaEventsOrNews=new ArrayList<String[]>();
-        this.initializeNewsEventsTest();
-    }  
-    
-    /**
-     * Test method for poll simulate 
-     */
-    private void initializeNewsEventsTest(){
-    	for (int i = 0; i <6; i++) {	
-    		if(i%2==0){
-    			String title="New "+(i+1);
-    			String[] new1={title,null,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod" +
-    					" tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud " +
-    					"exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."};
-    			listaEventsOrNews.add(new1);
-    		}
-    		else{
-    			String title="Event "+(i+1);
-    			String[] new1={title,Calendar.getInstance().getTime().toLocaleString(),"Lorem ipsum dolor sit amet, consectetur " +
-    					"adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-    					"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea" +
-    					" commodo consequat."};
-    			listaEventsOrNews.add(new1);
-    		}
-		}
     }
+    
+    
   
-    @Override  
+    public void setPolls(ArrayList<Poll> polls) {
+		this.polls = polls;
+	}
+
+
+
+	@Override  
     public void destroyItem(View collection, int position, Object view) {  
         ((ViewPager) collection).removeView((ViewSwitcher) view);  
     }  
   
     @Override  
     public int getCount() {  
-        return listaEventsOrNews.size();  
+        return polls.size();  
     }  
   
     @Override  
-    public Object instantiateItem(View collection, int position) {        
+    public Object instantiateItem(View collection, int position) {
+    	Poll actualPoll=polls.get(position);
     	PollOmegaFiContent poll=new PollOmegaFiContent(context);
-    	poll.setTitleQuestion("Lorem ipsum dolor sit amet, consectetur adipisicing?");
-		ArrayList<String> aux=new ArrayList<String>();
-		for (int i = 0; i < 4; i++) {
-			aux.add("Lorem ipsum dolor sit amet, consectetur adipisicing");
-		}
-		poll.addAnswersToPoll(aux);
-        ((ViewPager) collection).addView(poll,0);  
+    	poll.completeLayoutFromPoll(actualPoll);
+        ((ViewPager) collection).addView(poll);  
         return poll;  
     }  
   

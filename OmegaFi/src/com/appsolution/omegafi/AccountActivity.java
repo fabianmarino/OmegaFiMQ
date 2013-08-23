@@ -164,32 +164,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			accountDetails.addView(section4);
 	}
 	
-	public void selectPayMethod(View view){
-		if(!methods.isEmpty()){
-			final DialogSelectableOF selectable=new DialogSelectableOF(this);
-			selectable.setOptionsSelectables(getPaymentMethodsList(methods));
-			selectable.setTitleDialog("Select Payment Method");
-			selectable.setTextButton("Save");
-			selectable.setCloseOnSelectedItem(false);
-			if(paymentSelected!=-1){
-				selectable.setSelectedIndex(paymentSelected);
-			}
-			selectable.setButtonListener(new View.OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					paymentSelected=selectable.getIndexSelected();
-					section4.setValueInfo(methods.get(paymentSelected).getProfileTypeNumber());
-					selectable.dismissDialog();
-				}
-			});
-			selectable.showDialog();
-		}
-		else{
-			OmegaFiActivity.showAlertMessage("No payment methods", AccountActivity.this);
-		}
-	}
-	
 	public void activityPayNow(View button){
 		Intent viewPayNow=new Intent(getApplicationContext(), PayNowActivity.class);
 		viewPayNow.putExtra("id", actualAccount.getId());
@@ -213,10 +187,18 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		case 104:
 			Intent viewScheduledPayments=new Intent(this, ScheduledPaymentsActivity.class);
 			viewScheduledPayments.putExtra("id", actualAccount.getId());
-			startActivityForResult(viewScheduledPayments,OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENTS);
+			startActivityForResult(viewScheduledPayments,OmegaFiActivity.ACTIVITY_ADD_NEW_PAYMENT);
 			break;
 		case 105:
-			this.selectPayMethod(null);
+			if(methods.isEmpty()){
+				OmegaFiActivity.showAlertMessage("No payment methods", AccountActivity.this);
+			}
+			else{
+				Intent editPaymentMethods=new Intent(this, AddNewPaymentActivity.class);
+				editPaymentMethods.putExtra("id", actualAccount.getId());
+				editPaymentMethods.putExtra("create", false);
+				startActivityForResult(editPaymentMethods,OmegaFiActivity.ACTIVITY_ADD_NEW_PAYMENT);
+			}
 			break;
 		case 106:
 			Intent viewScheduleCharges=new Intent(this, ScheduleChargesActivity.class);
@@ -272,7 +254,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					if(actualAccount!=null){
 						userContact.chargeImageFromUrlAsync(actualAccount.getSourcePhoto(), actualAccount.getUrlPhotoAccount());
 						userContact.setNameUserProfile(actualAccount.getCompleteName());
@@ -289,10 +271,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 						rowDebits.setValueInfo(actualAccount.getActivityLast());
 						rowCurrentBalance.setValueInfo(actualAccount.getCurrentBalance());
 						toogleAutoPay.setActivateOn(actualAccount.isAutoPay());
-						if(!methods.isEmpty()){
-							paymentSelected=0;
-							section4.setValueInfo(methods.get(paymentSelected).getProfileTypeNumber());
-						}
 						completeAccountContacts();
 					}
 				}

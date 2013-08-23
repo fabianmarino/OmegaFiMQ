@@ -1,5 +1,6 @@
 package com.appsolution.layouts;
 
+import com.appsolution.logic.CachingImage;
 import com.appsolution.omegafi.OmegaFiActivity;
 import com.appsolution.omegafi.R;
 import com.appsolution.services.Server;

@@ -1,6 +1,8 @@
 package com.appsolution.omegafi;
 
 import java.util.ArrayList;
+
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.SimpleScheduledPayment;
 import com.appsolution.services.Server;
@@ -78,7 +80,10 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
-				if(status==200&&scheduleds!=null){
+				if(Server.isStatusOk(status)&&scheduleds!=null){
+					if(scheduleds.isEmpty()){
+						showMessageNotScheduledPayments();
+					}
 					adapterPayment=new PaymentsAdapter(ScheduledPaymentsActivity.this, scheduleds);
 					listScheduledPayments.setAdapter(adapterPayment);
 				}
@@ -90,6 +95,20 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 			
 		};
 		task.execute();
+	}
+	
+	private void showMessageNotScheduledPayments(){
+		DialogInformationOF of=new DialogInformationOF(this);
+		of.setMessageDialog("There are no scheduled payments at this time.");
+		of.setButtonListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				finish();
+			}
+		}
+		);
+		of.showDialog();
 	}
 	
 	private class PaymentsAdapter extends BaseAdapter {
@@ -129,7 +148,7 @@ public class ScheduledPaymentsActivity extends OmegaFiActivity {
 					rowPayment=(RowInformation)convertView;
 				}
 				rowPayment.setNameInfo(actualPayment.getPaymentDate()+" - "+actualPayment.getStateScheduledWord());
-				rowPayment.setValueInfo("$"+actualPayment.getPaymentAmount());
+				rowPayment.setValueInfo(actualPayment.getPaymentAmount());
 				rowPayment.setOnClickListener(new View.OnClickListener() {
 					
 					@Override

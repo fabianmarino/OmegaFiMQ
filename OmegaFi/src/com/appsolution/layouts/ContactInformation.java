@@ -41,12 +41,28 @@ public class ContactInformation extends SectionOmegaFi{
 				android.util.Patterns.PHONE.matcher(rowEditPhone.getValueInfo1()).matches();
 	}
 	
+	public boolean isValidEmail(){
+		return android.util.Patterns.EMAIL_ADDRESS.matcher(rowEditEmail.getValueInfo1()).matches();
+	}
+	
+	public boolean isValidPhone(){
+		return android.util.Patterns.PHONE.matcher(rowEditPhone.getValueInfo1()).matches();
+	}
+	
 	public String getEmail(){
 		return rowEditEmail.getValueInfo1();
 	}
 	
 	public String getPhone(){
 		return rowEditPhone.getValueInfo1();
+	}
+	
+	public void setEmail(String email){
+		rowEditEmail.setTextEdit(email);
+	}
+	
+	public void setPhone(String phone){
+		rowEditPhone.setTextEdit(phone);
 	}
 
 }

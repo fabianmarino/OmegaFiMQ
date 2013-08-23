@@ -59,7 +59,7 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200||status==201){
+				if(Server.isStatusOk(status)){
 					if(scheduled!=null){
 						chargesAdapter=new ScheduledChargesAdapter(ScheduleChargesActivity.this, scheduled);
 						listCycles.setAdapter(chargesAdapter);

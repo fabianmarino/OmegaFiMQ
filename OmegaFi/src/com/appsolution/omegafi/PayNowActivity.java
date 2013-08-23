@@ -11,6 +11,7 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
+import com.appsolution.logic.PaymentMethodTemp;
 import com.appsolution.services.Server;
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -30,6 +31,7 @@ public class PayNowActivity extends OmegaFiActivity {
 	private int idAccount;
 	private ArrayList<PaymentMethod> methodsPayment=null;
 	private int indexMethodSelected=-1;
+	private PaymentMethodTemp methodTemp=null;
 	private boolean backIsHome;
 	
 	@Override
@@ -44,7 +46,8 @@ public class PayNowActivity extends OmegaFiActivity {
 		infoCurrent=(LabelInfoVertical)findViewById(R.id.currentBalancePayNow);
 		infoDueOn=(LabelInfoVertical)findViewById(R.id.dueOnPayNow);
 		idAccount=getIntent().getExtras().getInt("id");
-		backIsHome=getIntent().getExtras().getBoolean("home");
+		backIsHome=getIntent().getExtras().containsKey("home")?getIntent().getExtras().getBoolean("home"):false;
+		methodTemp=getIntent().getExtras().containsKey("temp")?(PaymentMethodTemp)getIntent().getSerializableExtra("temp"):null;	
 		if(idAccount!=-1){
 			this.chargePayNow();
 		}
@@ -190,6 +193,19 @@ public class PayNowActivity extends OmegaFiActivity {
 				OmegaFiActivity.showAlertMessage("The information you've entered is incorrect. Please review and try again", this);
 			}
 		}
+		else if(methodTemp!=null){
+			if(this.validateFieldsPayNow()){
+				if(methodTemp.iseCheck()){
+					this.showConfirmationECheckPayment();
+				}
+				else{
+					this.showConfirmationCardPayment();
+				}
+			}
+			else{
+				OmegaFiActivity.showAlertMessage("The information you've entered is incorrect. Please review and try again", this);
+			}
+		}
 		else{
 			this.showDialogAddNewPayment();
 		}
@@ -215,6 +231,7 @@ public class PayNowActivity extends OmegaFiActivity {
 	public void addNewPaymentMethod(View view){
 		Intent activityAddNewPayment=new Intent(this, AddNewPaymentActivity.class);
 		activityAddNewPayment.putExtra("id", idAccount);
+		activityAddNewPayment.putExtra("create", true);
 		startActivityForResult(activityAddNewPayment,OmegaFiActivity.ACTIVITY_ADD_NEW_PAYMENT);
 	}
 	
@@ -253,6 +270,7 @@ public class PayNowActivity extends OmegaFiActivity {
 				Object[] account=Server.getServer().getHome().getAccounts().getStatusAccount(idAccount);
 				statusAcccount=(Integer)account[0];
 				actualAccount=(Account)account[1];
+				
 				Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(idAccount);
 				this.statusMethods=(Integer)statusMethods[0];
 				methodsPayment=(ArrayList<PaymentMethod>)statusMethods[1];
@@ -266,16 +284,21 @@ public class PayNowActivity extends OmegaFiActivity {
 				if(actualAccount!=null){
 					infoCurrent.setValueLabel(actualAccount.getCurrentBalance());
 					infoDueOn.setValueLabel(actualAccount.getDueOn());
-					if(!methodsPayment.isEmpty()){
+					if(!methodsPayment.isEmpty()&&methodTemp==null){
 						indexMethodSelected=0;
 						rowPaymentMethod.setNameInfo(methodsPayment.get(indexMethodSelected).getNameTypeNumber());
 						if(methodsPayment.size()==1){
 							rowPaymentMethod.setVisibleArrow(false);
 							rowPaymentMethod.setOnClickListener(null);
 						}
-						refreshActivity();
+					}
+					else if(methodTemp!=null){
+						rowPaymentMethod.setNameInfo(methodTemp.getNameTypeNumber());
+						rowPaymentMethod.setVisibleArrow(false);
+						rowPaymentMethod.setOnClickListener(null);
 					}
 				}
+				refreshActivity();
 			}
 		};
 		
@@ -295,17 +318,30 @@ public class PayNowActivity extends OmegaFiActivity {
 			
 			@Override
 			protected Boolean doInBackground(Void... params) {
-				PaymentMethod selected=methodsPayment.get(indexMethodSelected);
+				String profileType=null;
+				int idMethod=-1;
+				if(methodTemp==null){
+					PaymentMethod selected=methodsPayment.get(indexMethodSelected);
+					profileType=selected.getProfileType();
+					idMethod=selected.getId();
+				}
+				else{
+					profileType=methodTemp.getTypeMethod();
+					idMethod=methodTemp.getId();
+				}
 				status=Server.getServer().getHome().getAccounts().submitPayNow
 						(idAccount, rowAmount.getValueInfo1(), CalendarEvent.getFormatDate(5, rowDate.getValueInfo(), "MM/dd/yyyy"),
-								selected.getProfileType(), selected.getId());
+								profileType, idMethod);
+				if(methodTemp!=null){
+					Server.getServer().getHome().getAccounts().getScheduledPayments(idAccount);
+				}
 				return true;
 			}
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
 				stopProgressDialog();
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					showThankForYourPayment();
 				}
 				else if(status==422){

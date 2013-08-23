@@ -103,18 +103,6 @@ public class StatementsActivity extends OmegaFiActivity {
 	    }
 	}
 	
-	private void downloadFile(int idStatement){
-		dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-		Uri Download_Uri = Uri.parse(Server.getUrlStatementsView(idAccount, idStatement));
-		   DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
-		   request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-		   request.setAllowedOverRoaming(false);
-		   request.setTitle("My Data Download");
-		   request.setDescription("Android Data download using DownloadManager.");
-		   request.setDestinationInExternalFilesDir(this,Environment.DIRECTORY_DOWNLOADS,"statement.pdf");
-        
-        enqueue = dm.enqueue(request);
-	}
 
 	@Override
 	protected void optionsActionBar() {
@@ -128,7 +116,7 @@ public class StatementsActivity extends OmegaFiActivity {
 	private List<String> getListAdapter(ArrayList<Statement> statements){
 		List<String> list=new ArrayList<String>();
 		for(Statement statement:statements){
-			list.add(statement.getId()+"�"+statement.getDateClose());
+			list.add(statement.getId()+"�"+statement.getDateClose()+"�"+statement.getTypeStatement());
 		}
 		return list;
 	}
@@ -200,8 +188,10 @@ public class StatementsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				statementArray=new StatementArrayAdapter(getApplicationContext(),  getListAdapter(list));
-				listStatements.setAdapter(statementArray);
+				if(Server.isStatusOk(status)){
+					statementArray=new StatementArrayAdapter(getApplicationContext(),  getListAdapter(list));
+					listStatements.setAdapter(statementArray);
+				}
 				stopProgressDialog();
 				refreshActivity();
 			}
@@ -262,8 +252,8 @@ public class StatementsActivity extends OmegaFiActivity {
     						progressDiag.setCancelable(false);
     						progressDiag.setIndeterminate(false);
     						progressDiag.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-							Server.getServer().downloadFileAsync(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0])),
-									"statement-"+Integer.parseInt(itemStatement[0])+".pdf", progressDiag, StatementsActivity.this);
+							Server.getServer().downloadFileAsync(Server.getUrlStatementsView(idAccount, Integer.parseInt(itemStatement[0]),itemStatement[2]),
+									"statement.pdf", progressDiag, StatementsActivity.this);
 						} catch (NumberFormatException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

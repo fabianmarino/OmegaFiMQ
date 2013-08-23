@@ -56,7 +56,7 @@ public class TermsActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200){
+				if(Server.isStatusOk(status)){
 					webViewTerms.loadData(html, "text/html; charset=UTF-8", null);
 				}
 				stopProgressDialog();

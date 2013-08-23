@@ -34,7 +34,11 @@ public class Charge {
 				}
 			}
 			}
-			return amount;
+		String amoun=amount;
+		if(amount!=null){
+			amoun=amoun.contains("-") ?amoun.replace("-", "(")+")":amoun;
+		}
+			return amoun;
 	}
 	
 	

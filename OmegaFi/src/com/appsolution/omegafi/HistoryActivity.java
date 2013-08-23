@@ -72,7 +72,7 @@ public class HistoryActivity extends OmegaFiActivity {
 			
 			@Override
 			protected void onPostExecute(Boolean result) {
-				if(status==200||status==201){
+				if(Server.isStatusOk(status)){
 					if(list!=null){
 						adapterHistory=new HistoryArrayAdapter(getApplicationContext(), getListHistory(list));
 						listHistory.setAdapter(adapterHistory);
@@ -121,7 +121,7 @@ public class HistoryActivity extends OmegaFiActivity {
         	
         	rowHistory.setNameInfo(itemStatement[0]);
         	rowHistory.setNameSubInfo(itemStatement[1]);
-        	rowHistory.setValueInfo("$"+itemStatement[2]);
+        	rowHistory.setValueInfo(itemStatement[2]);
     			return convertView; 
         }
 

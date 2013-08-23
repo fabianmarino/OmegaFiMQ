@@ -83,6 +83,7 @@ public class ForgotLoginService extends ServerContext{
         int status=(Integer)response[0];
         if(status==200||status==201){
         	String firstName="";
+        	String informalFirstName="";
         	String title="News";
         	String urlFeed="";
         	String logAs="";
@@ -94,10 +95,12 @@ public class ForgotLoginService extends ServerContext{
 	        	if(jsonLoginService!=null){
 	        		if(!jsonLoginService.isNull("FirstName"))		
 	        			firstName=jsonLoginService.getString("FirstName");
+	        		if(!jsonLoginService.isNull("InformalFirstName"))		
+	        			informalFirstName=jsonLoginService.getString("InformalFirstName");
 	        		if(!jsonLoginService.isNull("RSSTitle"))
 	        			title= jsonLoginService.getString("RSSTitle");
-	        		if(!jsonLoginService.isNull("OmegaFiRSSFeed"))
-	        			urlFeed= jsonLoginService.getString("OmegaFiRSSFeed");
+	        		if(!jsonLoginService.isNull("RSSFeed"))
+	        			urlFeed= jsonLoginService.getString("RSSFeed");
 	        		if(!jsonLoginService.isNull("UserLogAs"))
 	        			logAs= jsonLoginService.getString("UserLogAs");
 	        		if(!jsonLoginService.isNull("UserLogAs"))
@@ -115,7 +118,7 @@ public class ForgotLoginService extends ServerContext{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
-        	OmegaFiLoginActivity.setFirstNameTitleUrlFeeds(firstName, title, urlFeed, logAs,context);
+        	OmegaFiLoginActivity.setFirstNameTitleUrlFeeds(firstName,informalFirstName, title, urlFeed, logAs,context);
         	OmegaFiLoginActivity.saveOmegaFiContact(context, nameContact, titleContact, phoneContact, phoneBilling);
         	server.setupCookies();
         }
@@ -141,7 +144,10 @@ public class ForgotLoginService extends ServerContext{
 	}
 	
 	public String getFirstName(Context context){
-		String username=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_FIRST_NAME, context);
+		String username=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_INFORMAL_NAME, context);
+		if(username.isEmpty()){
+			username=OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_PREF_FIRST_NAME, context);
+		}
 		return username;
 	}
 	

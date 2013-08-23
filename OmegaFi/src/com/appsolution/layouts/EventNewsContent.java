@@ -24,7 +24,7 @@ public class EventNewsContent extends LinearLayout {
 	private TextView descriptionNewEvent;
 	private int linesTitle=0;
 	private int descriptionLines=0;
-	private static final int MAX_LINES=4;
+	private static final int MAX_LINES=3;
 	
 	public EventNewsContent(Context context) {
 		super(context);
@@ -135,9 +135,6 @@ public class EventNewsContent extends LinearLayout {
 	                        ViewTreeObserver obs = descriptionNewEvent.getViewTreeObserver();
 	                        obs.removeGlobalOnLayoutListener(this);
 	                        int linesDescription=MAX_LINES;
-	                        if(dateNewEvent.getVisibility()==View.VISIBLE){
-	                        	linesDescription--;
-	                        }
 	                        descriptionLines=descriptionNewEvent.getLineCount();
 	                        Layout layout = descriptionNewEvent.getLayout();
 	                        String text = descriptionNewEvent.getText().toString();
