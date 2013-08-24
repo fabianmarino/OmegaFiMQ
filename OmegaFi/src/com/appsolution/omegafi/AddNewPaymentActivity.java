@@ -17,7 +17,6 @@ import com.appsolution.layouts.RowInformation;
 import com.appsolution.layouts.RowToogleOmegaFi;
 import com.appsolution.layouts.SectionOmegaFi;
 import com.appsolution.layouts.SpinnerNameTopInfo;
-import com.appsolution.logic.Account;
 import com.appsolution.logic.CalendarEvent;
 import com.appsolution.logic.PaymentMethod;
 import com.appsolution.logic.PaymentMethodTemp;
@@ -30,6 +29,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -133,7 +133,8 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 	private void configureUpdatePayment(){
 		actionBarCustom.setTitle("PAYMENT METHOD");
 		actionBar.setCustomView(actionBarCustom);
-		chargePaymentMethods();
+		if(methodTemp==null)
+			chargePaymentMethods();
 	}
 	
 	private void completeFields(){
@@ -254,7 +255,10 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(Server.isStatusOk(statusMethods)){
-					completeSpinnerUpdatePayment();
+					if(!methodsPayment.isEmpty())
+						completeSpinnerUpdatePayment();
+					else
+						showMessageNotPaymentMethods();
 				}
 				else{
 					OmegaFiActivity.showErrorConection(AddNewPaymentActivity.this, statusMethods, getResources().getString(R.string.object_not_found), false);
@@ -264,6 +268,20 @@ public class AddNewPaymentActivity extends OmegaFiActivity {
 		};
 		
 		task.execute();
+	}
+	
+	private void showMessageNotPaymentMethods(){
+		final DialogInformationOF of=new DialogInformationOF(this);
+		of.setMessageDialog("There are no payment methods on file at this time.");
+		of.setButtonListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				of.dismissDialog();
+				finish();
+			}
+		});
+		of.showDialog();
 	}
 	
 	private List<String> getListStringForPayMethods(){

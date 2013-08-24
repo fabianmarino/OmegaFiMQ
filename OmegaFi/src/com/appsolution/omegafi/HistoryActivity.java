@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.HistoryItem;
 import com.appsolution.services.Server;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -73,10 +75,13 @@ public class HistoryActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(Server.isStatusOk(status)){
-					if(list!=null){
+					if(!list.isEmpty()){
 						adapterHistory=new HistoryArrayAdapter(getApplicationContext(), getListHistory(list));
 						listHistory.setAdapter(adapterHistory);
-						}
+					}
+					else{
+						showMessageNotHistory();
+					}
 					}
 				else{
 					OmegaFiActivity.showErrorConection(HistoryActivity.this, status, getResources().getString(R.string.object_not_found), false);
@@ -87,6 +92,20 @@ public class HistoryActivity extends OmegaFiActivity {
 		};
 		
 		task.execute();
+	}
+	
+	private void showMessageNotHistory(){
+		final DialogInformationOF of=new DialogInformationOF(this);
+		of.setMessageDialog("There are no transaction history on file at this time.");
+		of.setButtonListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				of.dismissDialog();
+				finish();
+			}
+		});
+		of.showDialog();
 	}
 	
     private class HistoryArrayAdapter extends ArrayAdapter<String> {

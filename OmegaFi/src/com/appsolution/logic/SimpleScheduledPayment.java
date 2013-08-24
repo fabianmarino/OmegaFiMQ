@@ -82,7 +82,7 @@ public class SimpleScheduledPayment {
 	}
 
 	public String getPaymentAmount() {
-		String payment=paymentAmount;
+		String payment="$"+paymentAmount;
 		if(paymentAmount!=null){
 			payment=payment.contains("-") ? payment.replace("-", "(")+")" :payment;
 		}

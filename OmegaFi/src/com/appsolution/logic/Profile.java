@@ -32,7 +32,9 @@ public class Profile {
 	private int announcementsCount=0;
 	private boolean changesPending=false;
 	private String statusName;
+	private int idMemberStatus;
 	private String nationalStatusName;
+	private Organization organizationMember=null;
 	
 	public static final String NATIONAL_STATUS_NAME_NONE="None";
 	
@@ -79,8 +81,16 @@ public class Profile {
 				if(!individual.isNull("member_status")){
 					JSONObject memberStatus=individual.getJSONObject("member_status");
 					statusName=memberStatus.getString("status_name");
+					idMemberStatus=memberStatus.getInt("member_status_id");
 					nationalStatusName=memberStatus.getString("national_status_name");
 				}
+				if(!individual.isNull("organization")){
+					JSONObject organization=individual.optJSONObject("organization");
+					if(organization!=null){
+						organizationMember=new Organization(organization);
+					}
+				}
+				
 				this.completePhones(individual.getJSONArray("phone_numbers"));
 				this.completeEmails(individual.getJSONArray("emails"));
 				this.completeAdresses(individual.getJSONArray("addresses"));
@@ -264,6 +274,16 @@ public class Profile {
 	public String getNationalStatusName() {
 		return nationalStatusName;
 	}
+
+	public int getIdMemberStatus() {
+		return idMemberStatus;
+	}
+
+	public Organization getOrganizationMember() {
+		return organizationMember;
+	}
+	
+	
 	
 	
 	

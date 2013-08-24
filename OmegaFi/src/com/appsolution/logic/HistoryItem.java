@@ -39,10 +39,9 @@ public class HistoryItem {
 
 
 	public String getTransactionAmount() {
-		String transAmount=transactionAmount;
+		String transAmount="$"+transactionAmount;
 		if(transAmount!=null){
 			transAmount=transAmount.contains("-")?transAmount.replace("-", "(")+")":transAmount;
-				
 		}
 		
 		return transAmount;

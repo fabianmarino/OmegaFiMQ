@@ -34,7 +34,7 @@ public class Charge {
 				}
 			}
 			}
-		String amoun=amount;
+		String amoun="$"+amount;
 		if(amount!=null){
 			amoun=amoun.contains("-") ?amoun.replace("-", "(")+")":amoun;
 		}

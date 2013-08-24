@@ -49,7 +49,7 @@ public class BillingCycle {
 			}
 		}
 		}
-		String totAmount=totalAmount;
+		String totAmount="$"+totalAmount;
 		if(totAmount!=null)
 			totAmount=totAmount.contains("-") ? totAmount.replace("-", "(")+")":totAmount;
 		return totAmount;

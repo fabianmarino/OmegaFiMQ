@@ -17,9 +17,7 @@ import com.google.analytics.tracking.android.EasyTracker;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,9 +30,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.sax.StartElementListener;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -310,28 +306,16 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void goToHome(View item){
 		if(this.getClass() != HomeActivity.class){
-			finishActivity(OmegaFiActivity.ACTIVITY_HOME);
-			finish();
-			Intent goToHome=new Intent(this, HomeActivity.class);
-			goToHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			try {
-				finalize();
-			} catch (Throwable e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			startActivityForResult(goToHome,OmegaFiActivity.ACTIVITY_HOME);
-			
+			goToHome();
 		}
 		else{
 			slidingMenu.toggle();
 		}
+		
 	}
 	
 	public void goToAnnouncements(View item){
 		if(this.getClass() != AnnouncementsActivity.class){
-			finishActivity(OmegaFiActivity.ACTIVITY_HOME);
-			finish();
 			Intent goToAnnouncements=new Intent(getApplicationContext(), AnnouncementsActivity.class);
 			startActivityForResult(goToAnnouncements,OmegaFiActivity.ACTIVITY_ANNOUNCEMENTS);
 		}
@@ -350,12 +334,10 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	
 	public void goToMyProfile(View item){
 		if(this.getClass()!=MyProfileActivity.class){
-			finishActivity(OmegaFiActivity.ACTIVITY_HOME);
-			finish();
 			Intent goToMyProfile=new Intent(this, MyProfileActivity.class);
 			startActivityForResult(goToMyProfile,OmegaFiActivity.ACTIVITY_MY_PROFILE);
 		}
-		else{		
+		else{
 			slidingMenu.toggle();
 		}
 	}
@@ -452,7 +434,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			e.printStackTrace();
 		}
 		super.onBackPressed();
-		
 	}
 	
 	protected void stopProgressDialog(){
@@ -481,6 +462,7 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
+		slidingMenu.showContent(true);
 		EasyTracker.getInstance().activityStart(this);
 	}
 	
@@ -592,7 +574,11 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 		finishActivity(OmegaFiActivity.ACTIVITY_HOME);
 		finish();
 		Intent home=new Intent(this, HomeActivity.class);
+		home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivityForResult(home,OmegaFiActivity.ACTIVITY_HOME);
+		System.runFinalization();
+		Runtime.getRuntime().gc();
+		System.gc();
 	}
 	
 	protected void logoutApp(){

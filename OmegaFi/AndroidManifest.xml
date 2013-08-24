@@ -138,6 +138,7 @@
             android:name="com.appsolution.omegafi.ScheduledPaymentsDetailActivity"
             android:label="@string/title_activity_scheduled_payments_detail"
             android:windowSoftInputMode="stateHidden"
+            
             android:configChanges="orientation|screenSize" >
         </activity>
         <activity
@@ -149,7 +150,7 @@
         <activity
             android:name="com.appsolution.omegafi.ScheduleChargesActivity"
             android:label="@string/title_activity_schedule_charges"
-            android:windowSoftInputMode="stateHidden"
+            android:windowSoftInputMode="adjustPan"
             android:configChanges="orientation|screenSize" >
         </activity>
         <activity

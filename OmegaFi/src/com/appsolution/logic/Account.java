@@ -172,7 +172,7 @@ public class Account {
 
 
 	public String getCurrentBalance() {
-		String currentBal=currentBalance;
+		String currentBal="$"+currentBalance;
 		if(currentBalance!=null){
 			currentBal=currentBal.contains("-") ? currentBal.replace("-", "(")+")": currentBal;
 		}
@@ -206,7 +206,7 @@ public class Account {
 
 
 	public String getAdjustedBalance() {
-		String adjusted=adjustedBalance;
+		String adjusted="$"+adjustedBalance;
 		if(adjustedBalance!=null){
 			adjusted=adjusted.contains("-") ? adjusted.replace("-", "(")+")": adjusted;
 		}
@@ -220,7 +220,7 @@ public class Account {
 
 
 	public String getCreditsLast() {
-		String credits = creditsLast;
+		String credits ="$"+ creditsLast;
 		if(creditsLast!=null){
 			credits=credits.contains("-") ? credits.replace("-", "(") +")": credits;
 		}
@@ -234,7 +234,7 @@ public class Account {
 
 
 	public String getPaymentsLast() {
-		String payment=paymentsLast;
+		String payment="$"+paymentsLast;
 		if(paymentsLast!=null){
 			payment=payment.contains("-") ? payment.replace("-", "(")+")":payment;
 		}
@@ -248,7 +248,7 @@ public class Account {
 
 
 	public String getActivityLast() {
-		String activLast=activityLast;
+		String activLast="$"+activityLast;
 		if(activityLast!=null){
 			activLast=activLast.contains("-") ? activLast.replace("-", "(")+")":activLast;
 		}
@@ -296,7 +296,7 @@ public class Account {
 
 
 	public String getMoneyBalanceAsOf() {
-		String money=moneyBalanceAsOf;
+		String money="$"+moneyBalanceAsOf;
 		if(moneyBalanceAsOf!=null){
 			money=money.contains("-") ? money.replace("-", "(")+")":money;
 		}
@@ -307,9 +307,5 @@ public class Account {
 	public ArrayList<ContactAccount> getContacts() {
 		return contacts;
 	}
-	
-	
-	
-	
 	
 }

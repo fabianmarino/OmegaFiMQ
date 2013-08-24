@@ -11,6 +11,7 @@ public class ContactAccount {
 	
 	private boolean isRegularContact;
 	private String nameContact;
+	private String titleDialog;
 	private String titleContact;
 	private String phoneContact;
 	private String emailContact;
@@ -99,6 +100,18 @@ public class ContactAccount {
 
 	public int getOrganizationId() {
 		return organizationId;
+	}
+
+	public String getTitleDialog() {
+		return titleDialog;
+	}
+
+	public void setTitleDialog(String titleDialog) {
+		this.titleDialog = titleDialog;
+	}
+
+	public void setPhoneContact(String phoneContact) {
+		this.phoneContact = phoneContact;
 	}
 	
 	

@@ -2,6 +2,10 @@ package com.appsolution.omegafi;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.DialogSelectableOF;
 import com.appsolution.layouts.DialogTwoOptionsOF;
@@ -235,6 +239,19 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		task.execute();
 	}
 	
+	private String getErrorJson(JSONObject errorJson){
+    	String error=null;
+    	if(errorJson!=null){
+	    	try {
+	    		JSONObject jsonErrors=errorJson.getJSONObject("errors");
+	    		error=Server.getFirstError(jsonErrors);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+    	}
+    	return error;
+    }
+	
 	private void selectPayMethod(){
 		if(!methods.isEmpty()){
 			final DialogSelectableOF selectable=new DialogSelectableOF(this);
@@ -354,6 +371,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
 			
 			private int status=0;
+			private JSONObject errors;
 			
 			@Override
 			protected void onPreExecute() {
@@ -367,6 +385,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 						CalendarEvent.getFormatDate(5, rowPaymentDate.getValueInfo(), "MM/dd/yyyy"), 
 						methods.get(indexMethod));
 				status=(Integer)statusUpdated[0];
+				errors=(JSONObject)statusUpdated[1];
 				return true;
 			}
 			
@@ -376,7 +395,7 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 					showConfirmSavedPayment();
 				}
 				else if(status==422){
-					OmegaFiActivity.showAlertMessage("Invalid request.", ScheduledPaymentsDetailActivity.this);
+					OmegaFiActivity.showAlertMessage(getErrorJsonScheduledUpdate(errors), ScheduledPaymentsDetailActivity.this);
 				}
 				else{
 					OmegaFiActivity.showErrorConection(ScheduledPaymentsDetailActivity.this, status, 
@@ -387,5 +406,21 @@ public class ScheduledPaymentsDetailActivity extends OmegaFiActivity {
 		};
 		task.execute();
 	}
+	
+	private String getErrorJsonScheduledUpdate(JSONObject errorJson){
+    	String error=null;
+    	if(errorJson!=null){
+	    	try {
+	    		JSONObject jsonErrors=errorJson.getJSONObject("validation_errors");
+	    		error=Server.getFirstError(jsonErrors);
+	    		} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}//jhgkjgh
+    	return error;
+    }
+	
+	
 
 }

@@ -568,6 +568,7 @@ public class Server {
 				Bitmap imagePhoto=null;
 				@Override
 				protected Boolean doInBackground(Void... params) {
+					Log.d("Calling photo", url);
 					imagePhoto=chargeBitmapInImageView(source, url);
 					return true;
 				}

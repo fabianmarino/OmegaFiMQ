@@ -119,7 +119,7 @@ public class DialogContactAccount {
 	
 	private void completeDialog(){
 		if(this.contact!=null){
-			textNameContact.setText(contact.getNameContact());
+			textNameContact.setText(contact.getTitleDialog());
 			callNumberContact.setText("Call "+contact.getPhoneContact());
 			if(contact.isRegularContact()){
 				textEmailOpenRequest.setText("Email "+contact.getEmailContact());

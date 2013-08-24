@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
 public class ScheduledOfCharges {
 
 	private String interval;
@@ -17,14 +19,11 @@ public class ScheduledOfCharges {
 			if(jsonScheduledCharges!=null){
 					interval=jsonScheduledCharges.getString("interval");
 					grandTotal=jsonScheduledCharges.getString("grand_total");
-					
 					JSONArray arrayCycles=jsonScheduledCharges.getJSONArray("billing_cycles");
 					for (int i = 0; i < arrayCycles.length(); i++) {
 						JSONObject cycle=arrayCycles.getJSONObject(i).getJSONObject("billing_cycle");
 						billingCycles.add(new BillingCycle(cycle));
 					}
-					
-					
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -38,7 +37,11 @@ public class ScheduledOfCharges {
 	}
 
 	public String getGrandTotal() {
-		return grandTotal;
+		String granTotal="$"+grandTotal;
+		if(grandTotal!=null){
+			granTotal=granTotal.contains("-") ? granTotal.replace("-", "(")+")":granTotal;
+		}
+		return granTotal; 
 	}
 
 	public ArrayList<BillingCycle> getBillingCycles() {

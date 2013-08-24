@@ -42,7 +42,6 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	private RowInformation rowCredits;
 	private RowInformation rowDebits;
 	private RowInformation rowCurrentBalance;
-	private ArrayList<PaymentMethod> methods;
 	private RowInformation section4;
 	
 	private int paymentSelected=-1;
@@ -95,6 +94,8 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 			ArrayList<ContactAccount> contacts=actualAccount.getContacts();
 			contacts.add(0, ForgotLoginService.getContactOmegaFi(AccountActivity.this));
 			for (final ContactAccount contact:contacts) {
+				contact.setTitleDialog(OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_CONTACT_NAME, this));
+				contact.setPhoneContact(OmegaFiLoginActivity.getPreferenceSaved(OmegaFiLoginActivity.OMEGAFI_CONTACT_PHONE_SERVICE, this));
 				RowInformation row=new RowInformation(activity);
 				row.setNameInfo(contact.getNameContact());
 				row.setBorderBottom(true);
@@ -187,18 +188,13 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 		case 104:
 			Intent viewScheduledPayments=new Intent(this, ScheduledPaymentsActivity.class);
 			viewScheduledPayments.putExtra("id", actualAccount.getId());
-			startActivityForResult(viewScheduledPayments,OmegaFiActivity.ACTIVITY_ADD_NEW_PAYMENT);
+			startActivityForResult(viewScheduledPayments,OmegaFiActivity.ACTIVITY_SCHEDULED_PAYMENTS);
 			break;
 		case 105:
-			if(methods.isEmpty()){
-				OmegaFiActivity.showAlertMessage("No payment methods", AccountActivity.this);
-			}
-			else{
 				Intent editPaymentMethods=new Intent(this, AddNewPaymentActivity.class);
 				editPaymentMethods.putExtra("id", actualAccount.getId());
 				editPaymentMethods.putExtra("create", false);
 				startActivityForResult(editPaymentMethods,OmegaFiActivity.ACTIVITY_ADD_NEW_PAYMENT);
-			}
 			break;
 		case 106:
 			Intent viewScheduleCharges=new Intent(this, ScheduleChargesActivity.class);
@@ -216,16 +212,11 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 	}
 	
 	private void viewAutoPay(boolean exist){
-		if(!methods.isEmpty()){
 			this.finish();
 			Intent intentAutoPay=new Intent(this, AutoPayActivity.class);
 			intentAutoPay.putExtra("id", actualAccount.getId());
 			intentAutoPay.putExtra("exist", exist);
 			startActivityForResult(intentAutoPay, OmegaFiActivity.ACTIVITY_AUTO_PAY);
-		}
-		else{
-			OmegaFiActivity.showAlertMessage("No payment methods", AccountActivity.this);
-		}
 	}
 	
 	private void chargeAccountSelected(final int id){
@@ -244,11 +235,7 @@ public class AccountActivity extends OmegaFiActivity implements OnClickListener{
 				status=(Integer)objectAux[0];
 				account=(Account)objectAux[1];
 				actualAccount=account;
-				if(actualAccount!=null){
-					Object[] statusMethods=Server.getServer().getHome().getPaymentMethods(actualAccount.getId());
-					methods=(ArrayList<PaymentMethod>)statusMethods[1];
-					Server.getServer().getHome().getProfile().updateProfileIfNecessary();
-				}
+				Server.getServer().getHome().getProfile().updateProfileIfNecessary();
 				return true;
 			}
 			

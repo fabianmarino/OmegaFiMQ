@@ -12,6 +12,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:background="@android:color/transparent"
+            android:transcriptMode="alwaysScroll"
             android:dividerHeight="@dimen/padding_5dp"
             android:divider="@android:color/transparent"
              />

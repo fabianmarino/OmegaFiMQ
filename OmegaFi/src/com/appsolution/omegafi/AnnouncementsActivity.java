@@ -3,6 +3,7 @@ package com.appsolution.omegafi;
 import java.util.ArrayList;
 
 import com.appsolution.layouts.ContentAnnouncement;
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.logic.SimpleAnnouncement;
 import com.appsolution.services.Server;
 import android.app.Activity;
@@ -63,8 +64,13 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(Server.isStatusOk(status)){
-					adapterAnnouncements=new AnnouncementsAdapter(AnnouncementsActivity.this, announcements);
-					listAnnouncements.setAdapter(adapterAnnouncements);
+					if(!announcements.isEmpty()){
+						adapterAnnouncements=new AnnouncementsAdapter(AnnouncementsActivity.this, announcements);
+						listAnnouncements.setAdapter(adapterAnnouncements);
+					}
+					else{
+						showMessageNotAnnouncements();
+					}
 					refreshActivity();
 				}
 				else{
@@ -74,6 +80,20 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 			}
 		};
 		task.execute();
+	}
+	
+	private void showMessageNotAnnouncements(){
+		final DialogInformationOF of=new DialogInformationOF(this);
+		of.setMessageDialog("There are no announcements at this time.");
+		of.setButtonListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				of.dismissDialog();
+				finish();
+			}
+		});
+		of.showDialog();
 	}
 	
 	private class AnnouncementsAdapter extends BaseAdapter {
@@ -140,12 +160,6 @@ public class AnnouncementsActivity extends OmegaFiActivity {
 	private void goToAnnouncemenDetail(){
 		Intent announcementDetails=new Intent(this, AnnouncementDetailActivity.class);
 		startActivityForResult(announcementDetails,OmegaFiActivity.ACTIVITY_ANNOUNCEMENTS);
-	}
-	
-	@Override
-	public void onBackPressed() {
-		goToHome();
-		super.onBackPressed();
 	}
 
 }

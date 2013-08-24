@@ -38,7 +38,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -482,8 +481,14 @@ public class MyProfileActivity extends OmegaFiActivity {
 	
 	private void completeMyProfileActivity(Profile prof,List<String> prefixes){
 		MyProfileActivity.this.profile=prof;
-		userHeader.setNameUserProfile(prof.getFirstLastName());
-		userHeader.setSubTitleProfile(prof.getNationalStatusName());
+		userHeader.setNameUserProfile(prof.getFirstLastName()+" "+prof.getStatusName());
+		String secondLine=prof.getNationalStatusName();
+		if(prof.getOrganizationMember()!=null){
+			secondLine=secondLine+=" - "+prof.getOrganizationMember().getNational()+"\n"
+					+prof.getOrganizationMember().getChapterDesignation()+"\n"
+					+prof.getOrganizationMember().getUniversity();
+		}
+		userHeader.setSubTitleProfile(secondLine);
 		if(prof.getDateInitiatePretty()!=null)
 			userHeader.setThirdLine("Initiated - "+prof.getDateInitiatePretty());
 		
@@ -555,12 +560,6 @@ public class MyProfileActivity extends OmegaFiActivity {
 		}
 	}
 	
-	@Override
-	public void onBackPressed() {
-		goToHome();
-		super.onBackPressed();
-	}
-	
 	private void clearCollegeEntryDate(){
 		editCollegeEntry.setText("College Entry Date");
 	}
@@ -597,9 +596,9 @@ public class MyProfileActivity extends OmegaFiActivity {
 					errors=(statusImage!=200 && statusImage!=201) ? "Error("+statusImage+"): Upload Image":null;
 				}
 				if(Server.isStatusOk(status)){
-					updatePhoneNumbers();
-					updateEmails();
-					updateAdresses();
+					//updatePhoneNumbers();
+					//updateEmails();
+					//updateAdresses();
 					profile=(Profile)Server.getServer().getHome().getProfile().getStatusProfile()[1];
 				}
 				Server.getServer().getHome().getProfile().updateProfileIfNecessary();

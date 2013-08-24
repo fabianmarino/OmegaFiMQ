@@ -1,6 +1,7 @@
 package com.appsolution.omegafi;
 
 import com.appsolution.layouts.CycleCharge;
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.BillingCycle;
 import com.appsolution.logic.ScheduledOfCharges;
@@ -10,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
@@ -64,6 +66,9 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 						chargesAdapter=new ScheduledChargesAdapter(ScheduleChargesActivity.this, scheduled);
 						listCycles.setAdapter(chargesAdapter);
 					}
+					else{
+						showMessageNotScheduleOfCharges();
+					}
 				}
 				else{
 					OmegaFiActivity.showErrorConection
@@ -74,6 +79,20 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 			}
 		};
 		task.execute();
+	}
+	
+	private void showMessageNotScheduleOfCharges(){
+		final DialogInformationOF of=new DialogInformationOF(this);
+		of.setMessageDialog("There are no schedule of charges at this time.");
+		of.setButtonListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				of.dismissDialog();
+				finish();
+			}
+		});
+		of.showDialog();
 	}
 	
 	private class ScheduledChargesAdapter extends BaseAdapter {
@@ -88,12 +107,12 @@ public class ScheduleChargesActivity extends OmegaFiActivity {
 
 		@Override
 		public int getCount() {
-			return	scheduled.getBillingCycles().size();
+			return	scheduled.getBillingCycles().size()+1;
 		}
 
 		@Override
 		public Object getItem(int arg0) {
-			return scheduled.getBillingCycles().get(arg0);
+			return scheduled.getBillingCycles().get(arg0-1);
 		}
 
 		@Override

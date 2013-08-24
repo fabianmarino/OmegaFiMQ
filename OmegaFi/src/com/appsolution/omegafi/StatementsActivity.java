@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.http.cookie.Cookie;
 
+import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.RowInformation;
 import com.appsolution.logic.Statement;
 import com.appsolution.services.Server;
@@ -33,6 +34,7 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -189,8 +191,13 @@ public class StatementsActivity extends OmegaFiActivity {
 			@Override
 			protected void onPostExecute(Boolean result) {
 				if(Server.isStatusOk(status)){
-					statementArray=new StatementArrayAdapter(getApplicationContext(),  getListAdapter(list));
-					listStatements.setAdapter(statementArray);
+					if(!list.isEmpty()){
+						statementArray=new StatementArrayAdapter(getApplicationContext(),  getListAdapter(list));
+						listStatements.setAdapter(statementArray);
+					}
+					else{
+						showMessageNotStatements();
+					}
 				}
 				stopProgressDialog();
 				refreshActivity();
@@ -198,6 +205,20 @@ public class StatementsActivity extends OmegaFiActivity {
 		};
 		
 		task.execute();
+	}
+    
+    private void showMessageNotStatements(){
+		final DialogInformationOF of=new DialogInformationOF(this);
+		of.setMessageDialog("There are no statements on file at this time.");
+		of.setButtonListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				of.dismissDialog();
+				finish();
+			}
+		});
+		of.showDialog();
 	}
     
     private void showDownload() {

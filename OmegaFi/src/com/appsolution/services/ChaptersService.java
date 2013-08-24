@@ -66,9 +66,11 @@ public class ChaptersService extends ServerContext {
 		ArrayList<SimpleMember> members=new ArrayList<SimpleMember>();
 		JSONArray jsonMembers=(JSONArray)statusJson[1];
 		try {
-			for (int i = 0; i < jsonMembers.length(); i++) {
-					JSONObject jsonMember=jsonMembers.getJSONObject(i).getJSONObject("member");
-					members.add(new SimpleMember(jsonMember));
+			if(jsonMembers!=null){
+				for (int i = 0; i < jsonMembers.length(); i++) {
+						JSONObject jsonMember=jsonMembers.getJSONObject(i).getJSONObject("member");
+						members.add(new SimpleMember(jsonMember));
+				}
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
