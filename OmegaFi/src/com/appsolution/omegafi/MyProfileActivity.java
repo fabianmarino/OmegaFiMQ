@@ -95,6 +95,11 @@ public class MyProfileActivity extends OmegaFiActivity {
 	private TypeFormContact[] typeAddresses=new TypeFormContact[2];
 	private List<String> prefixes=null;
 	
+	private TextView labelMainNumber;
+	private TextView labelSecondaryNumber;
+	private TextView labelMainEmail;
+	private TextView labelSecondaryEmail;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -111,6 +116,12 @@ public class MyProfileActivity extends OmegaFiActivity {
 		linearPhone=(LinearLayout)findViewById(R.id.linearPhoneNumber);
 		linearEmail=(LinearLayout)findViewById(R.id.linearEmailProfile);
 		linearAddress=(LinearLayout)findViewById(R.id.linearAddressProfile);
+		
+		labelMainNumber=(TextView)findViewById(R.id.labelMainNumber);
+		labelSecondaryNumber=(TextView)findViewById(R.id.labelSecondaryNumber);
+		labelMainEmail=(TextView)findViewById(R.id.labelMainEmail);
+		labelSecondaryEmail=(TextView)findViewById(R.id.labelSecondaryEmail);
+		
 		
 		arrowLeft=(ImageView)findViewById(R.id.arrow_left_off_prof);
 		arrowCenter=(ImageView)findViewById(R.id.arrow_center_off_prof);
@@ -149,9 +160,6 @@ public class MyProfileActivity extends OmegaFiActivity {
 		
 		this.completeSpinnerProfile();
 		this.completeImageProfile();
-		this.completeSectionEmail();
-		this.completeSectionPhone();
-		this.completeSectionAddress();
 		chargeProfile();
 		}
 	
@@ -232,43 +240,6 @@ public class MyProfileActivity extends OmegaFiActivity {
 				if(yearPast!=0){
 					graduationYear.setSelection(year-yearPast+1);
 				}
-	}
-	
-	private void completeSectionPhone(){
-		RowEditTextOmegaFi mainPhone=new RowEditTextOmegaFi(this);
-		mainPhone.setNameInfo("Main");
-		mainPhone.setTextEdit("");
-		mainPhone.setEditable(false);
-		
-		RowEditTextOmegaFi otherPhone=new RowEditTextOmegaFi(this);
-		otherPhone.setNameInfo("Other");
-		otherPhone.setTextEdit("");
-		otherPhone.setEditable(false);
-	}
-	
-	private void completeSectionEmail(){
-		RowEditTextOmegaFi mainEmail=new RowEditTextOmegaFi(this);
-		mainEmail.setNameInfo("Mail");
-		mainEmail.setTextEdit("");
-		mainEmail.setEditable(false);
-		
-		RowEditTextOmegaFi otherEmail=new RowEditTextOmegaFi(this);
-		otherEmail.setNameInfo("Other");
-		otherEmail.setTextEdit("");
-		otherEmail.setEditable(false);
-		
-	}
-	
-	private void completeSectionAddress(){
-		RowInformation homeAddress=new RowInformation(this);
-		homeAddress.setNameInfo("Home");
-		homeAddress.setValueInfo("");
-		homeAddress.setValueInfo2("");
-		
-		RowInformation homeSchool=new RowInformation(this);
-		homeSchool.setNameInfo("School");
-		homeSchool.setValueInfo("");
-		homeSchool.setValueInfo2("");
 	}
 	
 	public void phoneClick(View view){
@@ -523,25 +494,35 @@ public class MyProfileActivity extends OmegaFiActivity {
 	}
 	
 	private void completePhones(PhoneContact[] phones){
-		if(phones[0]!=null)
+		if(phones[0]!=null){
+			labelMainNumber.setText(phones[0].getType()+" Number");
 			editMainNumber.setText(phones[0].getNumber());
-		if(phones[1]!=null)
+			}
+		if(phones[1]!=null){
+			labelSecondaryNumber.setText(phones[1].getType()+" Number");
 			editSecondaryNumber.setText(phones[1].getNumber());
+			}
 	}
 	
 	private void completeEmails(EmailContact[] emails){
-		if(emails[0]!=null)
+		if(emails[0]!=null){
+			labelMainEmail.setText(emails[0].getType()+" Email");
 			editMainEmail.setText(emails[0].getEmail());
-		if(emails[1]!=null)
+			}
+		if(emails[1]!=null){
+			labelSecondaryEmail.setText(emails[1].getType()+" Email");
 			editSecondaryEmail.setText(emails[1].getEmail());
+			}
 	}
 	
 	private void completeAddresses(AddressContact[] addresses){
 		if(addresses[0]!=null){
+			editTopHomeLine1.setNameInfoTop(addresses[0].getType()+" Address");
 			editTopHomeLine1.setValueInfo(addresses[0].getLine1());
 			editTopHomeLine2.setValueInfo(addresses[0].getLine2());
 		}
 		if(addresses[1]!=null){
+			editTopSchoolLine1.setNameInfoTop(addresses[1].getType()+" Address");
 			editTopSchoolLine1.setValueInfo(addresses[1].getLine1());
 			editTopSchoolLine2.setValueInfo(addresses[1].getLine2());
 		}

@@ -18,7 +18,8 @@
 	        android:layout_gravity="center_vertical"
 	        android:textSize="@dimen/text_15sp"
 	        android:textColor="@color/gray_font_row_info"
-	       	android:inputType="textMultiLine"
+	       	android:singleLine="false"
+	       	android:inputType="textNoSuggestions|textMultiLine"
 	        />
 	    <TextView android:id="@+id/subnameInfoEdit"
 	        android:layout_width="fill_parent"
@@ -28,7 +29,8 @@
 	        android:textSize="@dimen/text_15sp"
 	        android:textColor="@color/gray_font_row_info"
 	        android:visibility="gone"
-	        android:inputType="textMultiLine" />
+	        android:singleLine="false"
+	       	android:inputType="textNoSuggestions|textMultiLine" />
 	    
 	 </LinearLayout>
 </RelativeLayout>

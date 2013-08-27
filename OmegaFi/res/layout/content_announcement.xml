@@ -21,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/padding_3dp"
         android:textColor="@android:color/black"
-        android:inputType="textMultiLine"
+        android:singleLine="false"
+	    android:inputType="textNoSuggestions|textMultiLine"
         android:textSize="@dimen/text_content_newevent_title_omegafi"
         />
     <TextView android:id="@+id/textSourceAnnouncement" 
@@ -30,5 +31,7 @@
         android:textStyle="bold"
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/text_content_newevent_title_omegafi"
+        android:singleLine="false"
+	    android:inputType="textNoSuggestions|textMultiLine"
         android:text="Source:"/>
 </LinearLayout>

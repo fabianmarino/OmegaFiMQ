@@ -15,6 +15,8 @@
         <TextView android:id="@+id/textLeftContent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:singleLine="false"
+	       	android:inputType="textNoSuggestions|textMultiLine"
             />
     </LinearLayout>
     <LinearLayout
@@ -27,12 +29,14 @@
             android:textStyle="bold"
             android:textSize="@dimen/text_14sp"
             android:singleLine="false"
+	       	android:inputType="textNoSuggestions|textMultiLine"
             android:layout_height="wrap_content"
             />
         <TextView android:id="@+id/textRightContent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:singleLine="false"
+	       	android:inputType="textNoSuggestions|textMultiLine"
             android:textSize="@dimen/text_14sp"
             android:textColor="@color/gray_font_welcome"
             />
@@ -41,6 +45,9 @@
             android:textStyle="bold"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_12sp_row_info"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="@android:color/darker_gray"
+            android:singleLine="false"
+	       	android:inputType="textNoSuggestions|textMultiLine"
+            />
     </LinearLayout>
 </LinearLayout>

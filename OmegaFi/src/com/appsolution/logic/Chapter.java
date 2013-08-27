@@ -8,6 +8,8 @@ public class Chapter {
 	private int id;
 	private String designation;
 	private String university;
+	private boolean canSeeMembers=false;
+	
 	
 	public Chapter(JSONObject jsonChapter) {
 		try {
@@ -15,6 +17,7 @@ public class Chapter {
 				id=jsonChapter.getInt("chapter_id");	
 				designation=jsonChapter.getString("designation");
 				university=jsonChapter.getString("university_name");
+				canSeeMembers=jsonChapter.getBoolean("can_see_chapter_membership");
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -37,7 +40,9 @@ public class Chapter {
 	public String getDesignUniversity(){
 		return designation+","+university;
 	}
-	
-	
 
+	public boolean isCanSeeMembers() {
+		return canSeeMembers;
+	}
+	
 }

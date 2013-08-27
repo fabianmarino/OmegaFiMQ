@@ -152,19 +152,23 @@
 		                    android:layout_height="wrap_content"
 		                    android:padding="@dimen/padding_10dp"
 		                    android:orientation="vertical">
-		                    <TextView android:layout_width="fill_parent"
+		                    <TextView
+		                        android:id="@+id/labelMainNumber" 
+		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        android:text="Main number"
 		                        android:textColor="@android:color/darker_gray"
 		                        android:textSize="@dimen/text_11sp"/>
 		                    <EditText
+		                        
 		                        android:id="@+id/editMainNumber" 
 		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        android:enabled="false"
 		                        style="@style/EditTextLoginNormal"
 		                        />
-		                    <TextView android:layout_width="fill_parent"
+		                    <TextView android:id="@+id/labelSecondaryNumber" 
+		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        android:text="Secondary Number"
 		                        android:layout_marginTop="@dimen/padding_6dp"
@@ -187,7 +191,9 @@
 		                    android:padding="@dimen/padding_10dp"
 		                    android:visibility="gone"
 		                    android:orientation="vertical">
-		                    <TextView android:layout_width="fill_parent"
+		                    <TextView
+		                        android:id="@+id/labelMainEmail" 
+		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        android:text="Main Email"
 		                        android:textColor="@android:color/darker_gray"
@@ -200,7 +206,8 @@
 		                        android:enabled="false"
 		                        style="@style/EditTextLoginNormal"
 		                        />
-		                    <TextView android:layout_width="fill_parent"
+		                    <TextView android:id="@+id/labelSecondaryEmail" 
+		                        android:layout_width="fill_parent"
 		                        android:layout_height="wrap_content"
 		                        android:text="Secondary Email"
 		                        android:layout_marginTop="@dimen/padding_6dp"

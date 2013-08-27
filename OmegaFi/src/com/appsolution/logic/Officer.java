@@ -3,9 +3,6 @@ package com.appsolution.logic;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import com.appsolution.services.Server;
-import android.os.AsyncTask;
-import android.os.AsyncTask.Status;
 
 public class Officer {
 
@@ -15,11 +12,8 @@ public class Officer {
 	private String officeType;
 	private String telephone;
 	private String email;
-	private String hostPhoto;
+	private String sourcePhoto;
 	private String urlPhoto;
-	
-	AsyncTask<Void, Integer, Boolean> task;
-	
 	
 	public Officer(JSONObject officerJSON) {
 		try {
@@ -44,29 +38,15 @@ public class Officer {
 						telephone=phones.getJSONObject(0).getJSONObject("phone_number").getString("number");
 				}
 			}
-			hostPhoto=null;
+			sourcePhoto=null;
 			if(!individual.isNull("profile_picture")){
-				hostPhoto=individual.getJSONObject("profile_picture").getString("source");
-				if(hostPhoto.equals("OmegaFi")){
-					urlPhoto=Server.HOST+individual.getJSONObject("profile_picture").getString("url");
-				}
-				else{
-					urlPhoto=individual.getJSONObject("profile_picture").getString("url");
-				}
+				sourcePhoto=individual.getJSONObject("profile_picture").getString("source");
+				urlPhoto=individual.getJSONObject("profile_picture").getString("url");
 			}
 		}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-	public void stopChargePhoto(){
-		if(task!=null){
-			if(task.getStatus()==Status.RUNNING){
-				task.cancel(true);
-			}
-			task=null;
 		}
 	}
 	
@@ -117,8 +97,8 @@ public class Officer {
 		return telephone.replace("-", "");
 	}
 
-	public String getHostPhoto() {
-		return hostPhoto;
+	public String sourcePhoto() {
+		return sourcePhoto;
 	}
 	
 	

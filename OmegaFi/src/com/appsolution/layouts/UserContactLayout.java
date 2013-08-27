@@ -7,7 +7,9 @@ import com.appsolution.services.Server;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,8 @@ public class UserContactLayout extends RelativeLayout {
 	private ImageView imageProfile;
 	private ImageView imageArrow;
 	private RelativeLayout contentAll;
+	
+	private AsyncTask<Void, Integer, Boolean> task=null;
 	
 	public UserContactLayout(Context context){
 		super(context);
@@ -94,13 +98,15 @@ public class UserContactLayout extends RelativeLayout {
 		}
 	}
 	
-	public void chargeImageFromUrl(String url){
-		OmegaFiActivity.loadImageFromURL(url, imageProfile);
-	}
-	
 	public void chargeImageFromUrlAsync(String source, String url){
-		if(source!=null){
-			Server.chargeBitmapInImageViewAsync(source, url, imageProfile);
+		if(url!=null){
+			if(url.contains("/"))
+				Server.chargeBitmapInImageViewAsync(source, url, imageProfile);
+			else
+				chargeImageTest();
+		}
+		else{
+			chargeImageTest();
 		}
 	}
 	
@@ -155,6 +161,41 @@ public class UserContactLayout extends RelativeLayout {
 		imageArrow.setImageResource(R.drawable.right_arrow_1);
 	}
 	
-	
+	public void chargeBitmapUserContactAsync(final String source,final String url){
+		Bitmap bitMap=CachingImage.getCachingImage().getBitmapFromMemCache(url);
+		if(bitMap==null){
+			if(url!=null){
+				if(task==null){
+					task=new AsyncTask<Void, Integer, Boolean>() {
+						Bitmap photo=null;
+						@Override
+						protected Boolean doInBackground(Void... params) {
+							photo=Server.getServer().chargeBitmapInImageView(source, url);
+							return true;
+						}
+						
+						@Override
+						protected void onPostExecute(Boolean result) {
+							if(photo!=null){
+								CachingImage.getCachingImage().addBitmapToMemoryCache(url, photo);
+								imageProfile.setImageBitmap(photo);
+								imageProfile.refreshDrawableState();
+							}
+						}
+					};
+					task.execute();
+					}
+				}
+			else{
+				if(task.getStatus()==AsyncTask.Status.FINISHED){
+					task=null;
+				}
+			}
+		}
+		else{
+			imageProfile.setImageBitmap(bitMap);
+			imageProfile.refreshDrawableState();
+		}
+	}
 	
 }

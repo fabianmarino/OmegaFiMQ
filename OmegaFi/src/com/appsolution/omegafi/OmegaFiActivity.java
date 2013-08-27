@@ -11,6 +11,7 @@ import com.appsolution.layouts.DialogInformationOF;
 import com.appsolution.layouts.ItemMenuSliding;
 import com.appsolution.layouts.LayoutActionBar;
 import com.appsolution.layouts.UserContactLayout;
+import com.appsolution.logic.CachingImage;
 import com.appsolution.logic.Profile;
 import com.appsolution.services.Server;
 import com.google.analytics.tracking.android.EasyTracker;
@@ -31,6 +32,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
@@ -191,53 +193,6 @@ public class OmegaFiActivity extends SlidingFragmentActivity {
 			  }
 			  return false;
 	}
-	
-	public static Bitmap loadImageFromURL(String fileUrl ){
-		Bitmap bitmap=null;
-		if(fileUrl!=null){
-			  try {
-				    URL myFileUrl = new URL(fileUrl);
-				    HttpURLConnection conn =
-				      (HttpURLConnection) myFileUrl.openConnection();
-				    conn.setConnectTimeout(Server.TIME_OUT);
-					conn.setReadTimeout(Server.TIME_OUT);
-				    conn.setDoInput(true);
-				    conn.connect();
-				    InputStream is = conn.getInputStream();
-				    bitmap=BitmapFactory.decodeStream(is);
-			  } catch (MalformedURLException e) {
-				    e.printStackTrace();
-				    bitmap=null;
-			  } catch (Exception e) {
-				    e.printStackTrace();
-				    bitmap=null;
-			  }
-	}
-			  return bitmap;
-	}
-	
-	public static boolean loadImageFromURL(String fileUrl, 
-			ImageView iv){
-		if(fileUrl!=null){
-				  try {
-				    URL myFileUrl = new URL (fileUrl);
-				    HttpURLConnection conn =
-				      (HttpURLConnection) myFileUrl.openConnection();
-				   conn.setConnectTimeout(5000);
-				   conn.setReadTimeout(5000);
-				   conn.setDoInput(true);
-				    conn.connect();
-				    InputStream is = conn.getInputStream();
-				    iv.setImageBitmap(BitmapFactory.decodeStream(is));
-				    return true;
-				  } catch (MalformedURLException e) {
-//				    e.printStackTrace();
-				  } catch (Exception e) {
-//				    e.printStackTrace();
-				  }
-			  }
-			  return false;
-			}
 	
 	protected void optionsActionBar(){
 		actionBar.setHomeButtonEnabled(true);

@@ -12,10 +12,7 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.AsyncTask.Status;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,7 +25,6 @@ public class ImageRoosterName extends LinearLayout {
 	private ImageView photoRooster;
 	private TextView nameRooster;
 	private TextView typeRooster;
-	private AsyncTask<Void, Integer, Boolean> taskChargePhoto;
 	private boolean isHostOmegaFi;
 	
 	public ImageRoosterName(Context context) {
@@ -106,15 +102,8 @@ public class ImageRoosterName extends LinearLayout {
 		return photoRooster;
 	}
 	
-	public void chargePhotoOfficer(String url){
-		if(taskChargePhoto==null){
-			this.startChargePhoto(url);
-		}
-		else{
-			if(taskChargePhoto.getStatus()==Status.FINISHED){
-				this.startChargePhoto(url);
-			}
-		}
+	public void chargePhotoOfficer(String source,String url){
+		Server.chargeBitmapInImageViewAsync(source, url, photoRooster);
 	}
 
 	@Override
@@ -125,48 +114,48 @@ public class ImageRoosterName extends LinearLayout {
 		}
 	}
 	
-	private void startChargePhoto(final String url){
-		Bitmap bitPhoto=CachingImage.getCachingImage().getBitmapFromMemCache(url);
-			if(bitPhoto==null){
-				taskChargePhoto=new AsyncTask<Void, Integer, Boolean>(){
-		
-					Bitmap bitPhoto=null;
-					
-					@Override
-					protected Boolean doInBackground(Void... params) {
-							try {
-								if(isHostOmegaFi){
-									bitPhoto = Server.getServer().downloadBitmap(url);
-									Log.d("charging",nameRooster.getText().toString());
-								}
-								else{
-									bitPhoto = OmegaFiActivity.loadImageFromURL(url);
-									Log.d("charging",nameRooster.getText().toString());
-								}
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						return true;
-					}
-					
-					@Override
-					protected void onPostExecute(Boolean result) {
-						if(bitPhoto!=null){
-							CachingImage.getCachingImage().addBitmapToMemoryCache(url, bitPhoto);
-							photoRooster.setImageBitmap(bitPhoto);
-							photoRooster.refreshDrawableState();
-						}
-					}
-					
-				};
-				taskChargePhoto.execute();
-			}
-			else{
-			photoRooster.setImageBitmap(bitPhoto);
-			photoRooster.refreshDrawableState();
-			}
-	}
+//	private void startChargePhoto(final String url){
+//		Bitmap bitPhoto=CachingImage.getCachingImage().getBitmapFromMemCache(url);
+//			if(bitPhoto==null){
+//				taskChargePhoto=new AsyncTask<Void, Integer, Boolean>(){
+//		
+//					Bitmap bitPhoto=null;
+//					
+//					@Override
+//					protected Boolean doInBackground(Void... params) {
+//							try {
+//								if(isHostOmegaFi){
+//									bitPhoto = Server.getServer().downloadBitmap(url);
+//									Log.d("charging",nameRooster.getText().toString());
+//								}
+//								else{
+//									bitPhoto = OmegaFiActivity.loadImageFromURL(url);
+//									Log.d("charging",nameRooster.getText().toString());
+//								}
+//							} catch (IOException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//						return true;
+//					}
+//					
+//					@Override
+//					protected void onPostExecute(Boolean result) {
+//						if(bitPhoto!=null){
+//							CachingImage.getCachingImage().addBitmapToMemoryCache(url, bitPhoto);
+//							photoRooster.setImageBitmap(bitPhoto);
+//							photoRooster.refreshDrawableState();
+//						}
+//					}
+//					
+//				};
+//				taskChargePhoto.execute();
+//			}
+//			else{
+//			photoRooster.setImageBitmap(bitPhoto);
+//			photoRooster.refreshDrawableState();
+//			}
+//	}
 
 	public boolean isHostOmegaFi() {
 		return isHostOmegaFi;

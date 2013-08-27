@@ -52,14 +52,8 @@ public class ImageAdapter extends BaseAdapter {
 			rooster.setNameRooster(listOfficers.get(position).getShortName());
 			rooster.setTypeRooster(listOfficers.get(position).getOfficeType());
 	//		rooster.setImageResource(listImages[position]);
-			if(listOfficers.get(position).getHostPhoto()!=null){
-				if(listOfficers.get(position).getHostPhoto().equals("OmegaFi")){
-					rooster.setHostOmegaFi(true);
-				}
-				else{
-					rooster.setHostOmegaFi(false);
-				}
-				rooster.chargePhotoOfficer(listOfficers.get(position).getUrlPhoto());
+			if(listOfficers.get(position).sourcePhoto()!=null){
+				rooster.chargePhotoOfficer(listOfficers.get(position).sourcePhoto(),listOfficers.get(position).getUrlPhoto());
 			}
 		}
 		return convertView;

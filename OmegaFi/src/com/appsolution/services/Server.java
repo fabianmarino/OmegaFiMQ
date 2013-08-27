@@ -9,6 +9,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -64,6 +67,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class Server {
@@ -443,22 +447,24 @@ public class Server {
 	
 	public Bitmap downloadBitmap(String url) throws IOException {
 		Bitmap bitmap=null;
-		if(url!=null){
-	        HttpUriRequest request = new HttpGet(url.toString());
-	        HttpClient httpClient = new DefaultHttpClient();
-	        HttpResponse response = httpClient.execute(request,contextHttp);
-	        StatusLine statusLine = response.getStatusLine();
-	        int statusCode = statusLine.getStatusCode();
-	        if (statusCode == 200) {
-	            HttpEntity entity = response.getEntity();
-	            byte[] bytes = EntityUtils.toByteArray(entity);
-	            BitmapFactory.Options opt = new BitmapFactory.Options();
-	            opt.inPurgeable = true;
-	            bitmap = BitmapFactory.decodeByteArray(bytes, 0,
-	                    bytes.length,opt);
-	        } else {
-	            throw new IOException("Download failed, HTTP response code "
-	                    + statusCode + " - " + statusLine.getReasonPhrase());
+		if(url!=null&&bitmap==null){
+			if(url.contains("/")){
+		        HttpUriRequest request = new HttpGet(url);
+		        HttpClient httpClient = new DefaultHttpClient();
+		        HttpResponse response = httpClient.execute(request,contextHttp);
+		        StatusLine statusLine = response.getStatusLine();
+		        int statusCode = statusLine.getStatusCode();
+		        if (statusCode == 200) {
+		            HttpEntity entity = response.getEntity();
+		            byte[] bytes = EntityUtils.toByteArray(entity);
+		            BitmapFactory.Options opt = new BitmapFactory.Options();
+		            opt.inPurgeable = true;
+		            bitmap = BitmapFactory.decodeByteArray(bytes, 0,
+		                    bytes.length,opt);
+		        } else {
+		            throw new IOException("Download failed, HTTP response code "
+		                    +"43"+ url+"43" + " - " + statusLine.getReasonPhrase());
+		        }
 	        }
         }
 		return bitmap;
@@ -541,7 +547,6 @@ public class Server {
 	public String downloadFile(String url, String nameFile) throws IOException {
 		String pathFile=null;
 		if(url!=null){
-			Log.d("download bitmap", url);
 	        HttpUriRequest request = new HttpGet(url.toString());
 	        HttpClient httpClient = new DefaultHttpClient();
 	        HttpResponse response = httpClient.execute(request,contextHttp);
@@ -562,39 +567,39 @@ public class Server {
     }
 	
 	public static void chargeBitmapInImageViewAsync(final String source,final String url, final ImageView image){
-		Bitmap bitPhoto=CachingImage.getCachingImage().getBitmapFromMemCache(url);
-		if(bitPhoto==null){
-			AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
-				Bitmap imagePhoto=null;
-				@Override
-				protected Boolean doInBackground(Void... params) {
-					Log.d("Calling photo", url);
-					imagePhoto=chargeBitmapInImageView(source, url);
-					return true;
+		Bitmap bitMap=CachingImage.getCachingImage().getBitmapFromMemCache(url);
+		if(bitMap==null){
+			if(url!=null){
+					AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>() {
+						Bitmap imagePhoto=null;
+						@Override
+						protected Boolean doInBackground(Void... params) {
+							imagePhoto=chargeBitmapInImageView(source, url);
+							return true;
+						}
+						
+						@Override
+						protected void onPostExecute(Boolean result) {
+							if(imagePhoto!=null){
+								CachingImage.getCachingImage().addBitmapToMemoryCache(url, imagePhoto);
+								image.setImageBitmap(imagePhoto);
+								image.refreshDrawableState();
+							}
+						}
+					};
+					task.execute();
 				}
-				
-				@Override
-				protected void onPostExecute(Boolean result) {
-					if(imagePhoto!=null){
-						CachingImage.getCachingImage().addBitmapToMemoryCache(url, imagePhoto);
-						image.setImageBitmap(imagePhoto);
-						image.refreshDrawableState();
-					}
-				}
-			};
-			task.execute();
 		}
 		else{
-			image.setImageBitmap(bitPhoto);
+			image.setImageBitmap(bitMap);
 			image.refreshDrawableState();
 		}
-		
 	}
 	
 	public static Bitmap chargeBitmapInImageView(final String source,final String url){
 		Bitmap imagePhoto=null;
 				if(source!=null){
-					if(source.equalsIgnoreCase("omegafi")){
+					if(source.equalsIgnoreCase("OmegaFi")){
 						try {
 							imagePhoto=Server.getServer().downloadBitmap(Server.HOST+url);
 						} catch (IOException e) {
@@ -602,10 +607,34 @@ public class Server {
 						}
 					}
 					else{
-						imagePhoto=OmegaFiActivity.loadImageFromURL(url);
+						imagePhoto=Server.loadImageFromURL(url);
 					}
 				}	
 		return imagePhoto;
+	}
+	
+	public static Bitmap loadImageFromURL(String fileUrl ){
+		Bitmap bitmap=null;
+		if(fileUrl!=null){
+			if(fileUrl.contains("/")){
+				  try {
+					    URL myFileUrl = new URL(fileUrl);
+					    HttpURLConnection conn =
+					      (HttpURLConnection) myFileUrl.openConnection();
+					    conn.setConnectTimeout(Server.TIME_OUT);
+						conn.setReadTimeout(Server.TIME_OUT);
+					    conn.setDoInput(true);
+					    conn.connect();
+					    InputStream is = conn.getInputStream();
+					    bitmap=BitmapFactory.decodeStream(is);
+				  } catch (MalformedURLException e) {
+					    e.printStackTrace();
+				  } catch (Exception e) {
+					    e.printStackTrace();
+				  }
+			  }
+	}
+			  return bitmap;
 	}
 	
 	

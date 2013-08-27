@@ -105,7 +105,7 @@ public class Profile {
 		for (int i = 0; i < phones.length(); i++) {
 			try {
 				JSONObject jsonPhone=phones.getJSONObject(i).getJSONObject("phone_number");
-				PhoneContact phone=new PhoneContact(jsonPhone);
+				PhoneContact phone=new PhoneContact(jsonPhone,ContactForm.TYPE_PROFILE);
 				if(phone.isPrimary())
 					this.phones[0]=phone;
 				else if(this.phones[1]==null)
@@ -121,7 +121,7 @@ public class Profile {
 		for (int i = 0; i < emails.length(); i++) {
 			try {
 				JSONObject jsonEmail=emails.getJSONObject(i).getJSONObject("email");
-				EmailContact email=new EmailContact(jsonEmail);
+				EmailContact email=new EmailContact(jsonEmail,ContactForm.TYPE_PROFILE);
 				if(email.isPrimary())
 					this.emails[0]=email;
 				else if(this.emails[1]==null)

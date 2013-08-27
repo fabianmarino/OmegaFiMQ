@@ -76,14 +76,5 @@ public class OfficersService extends ServerContext {
 	public boolean isEmpty(){
 		return listOfficers.isEmpty();
 	}
-	
-	public void stopChargeOfficers(){
-		for (Officer officer:listOfficers) {
-			officer.stopChargePhoto();
-		}
-	}
-	
-	
-	
 
 }

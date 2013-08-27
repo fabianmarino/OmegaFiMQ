@@ -1,6 +1,7 @@
 package com.appsolution.logic;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.util.LruCache;
 
 public class CachingImage {
@@ -24,16 +25,21 @@ public class CachingImage {
 	}
 	
 	public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
-	    if (getBitmapFromMemCache(key) == null) {
-	       memoryCache.put(key, bitmap);
+		if(key!=null){
+		    if (getBitmapFromMemCache(key) == null&&key.contains("/")&&bitmap!=null) {
+		    	memoryCache.put(key, bitmap);
+		    }
 	    }
 	}
 
 	public Bitmap getBitmapFromMemCache(String key) {
+		Bitmap bitmapCache=null;
 		if(key!=null)
-			return memoryCache.get(key);
-		else
-			return null;
+			if(key.contains("/")){
+				Log.d("Obtain from cache", key);
+				bitmapCache= memoryCache.get(key);
+				}
+		return bitmapCache;
 	}
 	
 	public static CachingImage getCachingImage(){

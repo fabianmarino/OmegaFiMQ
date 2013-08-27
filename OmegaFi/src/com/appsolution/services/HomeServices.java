@@ -60,7 +60,6 @@ public class HomeServices extends ServerContext{
 	}
 	
 	public void clearHomeServices(){
-		officers.stopChargeOfficers();
 		profile=new ProfileService(server);
 		accounts=new AccountsService(server);
 		chapters=new ChaptersService(server);

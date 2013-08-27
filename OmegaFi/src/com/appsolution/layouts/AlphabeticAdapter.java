@@ -81,18 +81,20 @@ public class AlphabeticAdapter extends ArrayAdapter<String> implements SectionIn
 	    
 	    @Override
 	    public View getView(int position, View convertView, ViewGroup parent) {
+	    	UserContactLayout userMember=null;
+	    	Log.d("position", position+"");
 	    	if(convertView==null){
-	    		Log.d("position", position+"");
 		    	LayoutInflater inflate = activity.getLayoutInflater();  
 		        convertView = (View) inflate.inflate(R.layout.list_view_member, null);  
-	    		UserContactLayout userMember = (UserContactLayout) convertView.findViewById(R.id.userMemberLayout);
-		        userMember.chargeImageTest();
+	    		userMember = (UserContactLayout) convertView.findViewById(R.id.userMemberLayout);
+	    	}
+	    	else{
+	    		userMember = (UserContactLayout) convertView.findViewById(R.id.userMemberLayout);
+	    	}
 		        userMember.setBackgroundColor(Color.WHITE);
 		        userMember.setFontColor(Color.BLACK);
 		        userMember.setBlackArrow();
-				final String[] memberString=getItem(position).split("¿");
-				Log.d("itemc", getItem(position));
-				Log.d("item", memberString[0]);
+				final String[] memberString=getItem(position).split("ï¿½");
 				LinearLayout header = (LinearLayout) convertView.findViewById(R.id.section);  
 		        String label=memberString[0];
 		        char firstChar = label.toUpperCase().charAt(0);  
@@ -100,10 +102,9 @@ public class AlphabeticAdapter extends ArrayAdapter<String> implements SectionIn
 		        	header.setVisibility(View.VISIBLE);
 		            setSection(header, label);  
 		        } else {
-		        	String[] memberStrAnt=getItem(position-1).split("¿");
+		        	String[] memberStrAnt=getItem(position-1).split("ï¿½");
 		            String preLabel = memberStrAnt[0];
 		            char preFirstChar = preLabel.toUpperCase().charAt(0);
-		            Log.d("char prechar", firstChar+", "+preFirstChar);
 		            if (firstChar != preFirstChar) {
 		            	header.setVisibility(View.VISIBLE);
 		                setSection(header, label);  
@@ -121,52 +122,10 @@ public class AlphabeticAdapter extends ArrayAdapter<String> implements SectionIn
 						activity.startActivity(memberDetail);
 					}
 				});
+				Log.d("Member: "+memberString[0], memberString[2]+"-"+ memberString[3]);
 		       userMember.setNameUserProfile(memberString[0]);
 		       userMember.setSubTitleProfile(memberString[1]);
-		       userMember.chargeImageFromUrlAsync(memberString[2], memberString[3]);
-		        
-	    	}
-	    	else{
-	    		UserContactLayout userMember = (UserContactLayout) convertView.findViewById(R.id.userMemberLayout);
-		        userMember.chargeImageTest();
-		        userMember.setBackgroundColor(Color.WHITE);
-		        userMember.setFontColor(Color.BLACK);
-		        userMember.setBlackArrow();
-		        final String[] memberString=getItem(position).split("¿");
-		        Log.d("itemc", getItem(position));
-		        Log.d("item", memberString[0]);
-				LinearLayout header = (LinearLayout) convertView.findViewById(R.id.section);  
-		        String label = memberString[0];
-		        char firstChar = label.toUpperCase().charAt(0);  
-		        if (position == 0) {  
-		        	header.setVisibility(View.VISIBLE);
-		            setSection(header, label);  
-		        } else {  
-		        	String[] memberStrAnt=getItem(position-1).split("¿");
-		            String preLabel = memberStrAnt[0];
-		            char preFirstChar = preLabel.toUpperCase().charAt(0);
-		            Log.d("char prechar", firstChar+", "+preFirstChar);
-		            if (firstChar != preFirstChar) {
-		            	header.setVisibility(View.VISIBLE);
-		                setSection(header, label);  
-		            } else {  
-		                header.setVisibility(View.GONE);  
-		            }  
-		        }
-				userMember.setOnClickListener(new View.OnClickListener() {
-					
-					@Override
-					public void onClick(View member) {
-						Intent memberDetail=new Intent(activity, OfficerMemberDetailActivity.class);
-						memberDetail.putExtra("idc", idChapter);
-						memberDetail.putExtra("idm", Integer.parseInt(memberString[4]));
-						activity.startActivity(memberDetail);
-					}
-				});
-					userMember.setNameUserProfile(memberString[0]);
-			       userMember.setSubTitleProfile(memberString[1]);
-			       userMember.chargeImageFromUrlAsync(memberString[2], memberString[3]);
-	    	}
+		       userMember.chargeBitmapUserContactAsync(memberString[2], memberString[3]);
 	        return convertView;
 	    }
 }

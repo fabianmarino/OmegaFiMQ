@@ -172,5 +172,10 @@ public class SectionOmegaFi extends LinearLayout{
 	public void setPaddingAll(int left, int top, int right, int bottom) {
 		contentAll.setPadding(left, top, right, bottom);
 	}
+	
+	public void contentTitleVisible(boolean visible){
+		int visibleInt=visible?View.VISIBLE:View.GONE;
+		contentTitle.setVisibility(visibleInt);
+	}
 
 }

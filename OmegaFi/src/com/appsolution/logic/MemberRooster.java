@@ -8,9 +8,9 @@ import android.util.Log;
 
 public class MemberRooster extends SimpleMember{
 
-	private String[] phones=new String[2];
-	private String[] emails=new String[2];
-	private String[] adresses=new String[2];
+	private PhoneContact[] phones=new PhoneContact[2];
+	private EmailContact[] emails=new EmailContact[2];
+	private AddressContact[] addresses=new AddressContact[2];
 	private String initiationDate;
 	private String profFacebook;
 	private String profTwitter;
@@ -28,15 +28,14 @@ public class MemberRooster extends SimpleMember{
 				if(!individual.isNull("initiation_date")){
 					initiationDate=individual.getString("initiation_date");
 				}
+				if(individual.has("phone_numbers"))
+					this.completePhones(individual.getJSONArray("phone_numbers"));
+				if(individual.has("emails"))
+					this.completeEmails(individual.getJSONArray("emails"));
+				if(individual.has("addresses"))
+					this.completeAdresses(individual.getJSONArray("addresses"));
+				
 				completeSocialProfiles(individual.getJSONArray("social_profiles"));
-				JSONArray arrayPhones=individual.getJSONArray("phone_numbers");
-				chargePhones(arrayPhones);
-				JSONArray arrayEmails=individual.getJSONArray("emails");
-				chargeEmails(arrayEmails);
-				if(individual.has("addresses")){
-					JSONArray arrayAddresses=individual.getJSONArray("addresses");
-					chargeAddresses(arrayAddresses);
-				}
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -44,21 +43,15 @@ public class MemberRooster extends SimpleMember{
 		}
 	}
 	
-	private void chargePhones(JSONArray arrayPhones){
-		if(arrayPhones.length()>0){
+	private void completePhones(JSONArray phones){
+		for (int i = 0; i < phones.length(); i++) {
 			try {
-				for (int i = 0; i < arrayPhones.length(); i++) {
-						JSONObject jsonPhone=arrayPhones.getJSONObject(i).getJSONObject("phone_number");
-						Log.d("phone", jsonPhone.toString());
-						if(jsonPhone.getBoolean("primary")){
-							phones[0]=jsonPhone.getString("number");
-						}
-						else{
-							if(phones[1]==null)
-								phones[1]=jsonPhone.getString("number");
-						}
-					
-				}
+				JSONObject jsonPhone=phones.getJSONObject(i).getJSONObject("phone_number");
+				PhoneContact phone=new PhoneContact(jsonPhone,ContactForm.TYPE_MEMBER);
+				if(phone.isPrimary())
+					this.phones[0]=phone;
+				else if(this.phones[1]==null)
+					this.phones[1]=phone;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -66,20 +59,15 @@ public class MemberRooster extends SimpleMember{
 		}
 	}
 	
-	private void chargeEmails(JSONArray arrayEmails){
-		if(arrayEmails.length()>0){
+	private void completeEmails(JSONArray emails){
+		for (int i = 0; i < emails.length(); i++) {
 			try {
-				for (int i = 0; i < arrayEmails.length(); i++) {
-						JSONObject jsonEmail=arrayEmails.getJSONObject(i).getJSONObject("email");
-						if(jsonEmail.getBoolean("primary")){
-							emails[0]=jsonEmail.getString("address");
-						}
-						else{
-							if(emails[1]==null)
-								emails[1]=jsonEmail.getString("address");
-						}
-					
-				}
+				JSONObject jsonEmail=emails.getJSONObject(i).getJSONObject("email");
+				EmailContact email=new EmailContact(jsonEmail,ContactForm.TYPE_MEMBER);
+				if(email.isPrimary())
+					this.emails[0]=email;
+				else if(this.emails[1]==null)
+					this.emails[1]=email;
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,46 +75,32 @@ public class MemberRooster extends SimpleMember{
 		}
 	}
 	
-	private void chargeAddresses(JSONArray arrayAddresses){
-		if(arrayAddresses.length()>0){
+	private void completeAdresses(JSONArray addresses){
+		for (int i = 0; i < addresses.length(); i++) {
 			try {
-				for (int i = 0; i < arrayAddresses.length(); i++) {
-						JSONObject jsonEmail=arrayAddresses.getJSONObject(i).getJSONObject("address");
-						if(jsonEmail.getBoolean("primary")){
-							adresses[0]=jsonEmail.getString("line_1")+"¿"+jsonEmail.getString("line_2")+"¿"+jsonEmail.getString("city");
-						}
-						else{
-							if(adresses[1]==null)
-								adresses[1]=jsonEmail.getString("line_1")+"¿"+jsonEmail.getString("line_2")+"¿"+jsonEmail.getString("city");
-						}
-					
-				}
+				JSONObject jsonAddress=addresses.getJSONObject(i).getJSONObject("address");
+				AddressContact address=new AddressContact(jsonAddress);
+				
+				if(address.isPrimary())
+					this.addresses[0]=address;
+				else if(this.addresses[1]==null)
+					this.addresses[1]=address;
+				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public String[] getPhones() {
-		return phones;
-	}
-
-	public String[] getEmails() {
-		return emails;
-	}
-
-	public String[] getAdresses() {
-		return adresses;
 	}
 
 	public String getInitiationDate() {
-		if(initiationDate.length()>=10){
-			return CalendarEvent.getFormatDate(3, initiationDate.substring(0, 10), "yyyy/MM/dd");
+		String initiation=null;
+		if(initiationDate!=null){
+			if(initiationDate.length()>=10){
+				initiation= CalendarEvent.getFormatDate(3, initiationDate.substring(0, 10), "yyyy/MM/dd");
+			}
 		}
-		else{
-			return null;
-		}
+		return initiation;
 	}
 	
 	private void completeSocialProfiles(JSONArray arraySocial){
@@ -160,6 +134,18 @@ public class MemberRooster extends SimpleMember{
 
 	public String getProfLinked() {
 		return profLinked;
+	}
+
+	public PhoneContact[] getPhones() {
+		return phones;
+	}
+
+	public EmailContact[] getEmails() {
+		return emails;
+	}
+
+	public AddressContact[] getAddresses() {
+		return addresses;
 	}
 	
 	

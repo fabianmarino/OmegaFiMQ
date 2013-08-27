@@ -176,7 +176,7 @@ public class HomeActivity extends OmegaFiActivity {
 	
 	
 	private void completeChapterDirectory(){
-		if(!Server.getServer().getHome().getOfficers().isEmpty()){
+		if(!Server.getServer().getHome().getChapters().isEmpty()){
 //		if(true){
 			SectionOmegaFi sectionOfficers=new SectionOmegaFi(this);
 			sectionOfficers.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -255,6 +255,9 @@ public class HomeActivity extends OmegaFiActivity {
 			final ArrayList<String> chapters=Server.getServer().getHome().getChapters().getChapterNames();
 //			chapters.add("Sigma Pi - Beta Nu,Oregon State University");
 			String[] nameSubName=chapters.get(0).split(",");
+			if(!Server.getServer().getHome().getChapters().getChapter(0).isCanSeeMembers()){
+				sectionChapterDirectory.contentTitleVisible(false);
+			}
 			final RowInformation rowChapter=new RowInformation(this);
 			rowChapter.setNameInfo(nameSubName[0]);
 			rowChapter.setNameSubInfo(nameSubName[1]);
@@ -308,7 +311,8 @@ public class HomeActivity extends OmegaFiActivity {
 		}
 	}
 	
-	public void changeListImages(){	
+	public void changeListImages(){
+		sectionChapterDirectory.contentTitleVisible(Server.getServer().getHome().getChapters().getChapter(indexChapter).isCanSeeMembers());
 		AsyncTask<Void, Integer, Boolean> task=new AsyncTask<Void, Integer, Boolean>(){
 
 			@Override
@@ -431,6 +435,7 @@ public class HomeActivity extends OmegaFiActivity {
 			sectionNews.setTitleSection(title);
 			sectionNews.setPaddingAll(0, 0, 0, 0);
 			paginator3=new ViewPager(getApplicationContext());
+			paginator3.requestDisallowInterceptTouchEvent(true);
 			paginator3.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, this.getResources().getDimensionPixelSize
 					(R.dimen.height_new_event_content_2)));
 			adapterPager3=new EventsNewsAdapter(this);

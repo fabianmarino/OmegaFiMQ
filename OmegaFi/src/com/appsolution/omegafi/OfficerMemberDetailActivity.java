@@ -2,8 +2,11 @@ package com.appsolution.omegafi;
 import com.appsolution.layouts.IconLabelVertical;
 import com.appsolution.layouts.LabelInfoVertical;
 import com.appsolution.layouts.RowInformation;
+import com.appsolution.logic.AddressContact;
+import com.appsolution.logic.EmailContact;
 import com.appsolution.logic.MemberRooster;
 import com.appsolution.logic.OfficerRooster;
+import com.appsolution.logic.PhoneContact;
 import com.appsolution.services.Server;
 import com.google.analytics.tracking.android.Log;
 
@@ -229,25 +232,36 @@ public class OfficerMemberDetailActivity extends OmegaFiActivity {
 		infoMemberInitiate.setTitleLabel(member.getStatusName());
 		infoMemberInitiate.setValueLabel(member.getInitiationDate());
 		
-		String[] phones=member.getPhones();
-		String[] emails=member.getEmails();
-		String[] adresses=member.getAdresses();
+		PhoneContact[] phones=member.getPhones();
+		EmailContact[] emails=member.getEmails();
+		AddressContact[] adresses=member.getAddresses();
 		
-		phoneMain.setValueInfo(phones[0]);
-		phoneSecundary.setValueInfo(phones[1]);
-		
-		emailMain.setValueInfo(emails[0]);
-		emailSecundary.setValueInfo(emails[1]);
-		
+		if(phones[0]!=null){
+			phoneMain.setNameInfo(phones[0].getType().toUpperCase());
+			phoneMain.setValueInfo(phones[0].getNumber());
+		}
+		if(phones[1]!=null){
+			phoneSecundary.setNameInfo(phones[1].getType().toUpperCase());
+			phoneSecundary.setValueInfo(phones[1].getNumber());
+		}
+		if(emails[0]!=null){
+			emailMain.setNameInfo(emails[0].getType().toUpperCase());
+			emailMain.setValueInfo(emails[0].getEmail());
+			}
+		if(emails[1]!=null){
+			emailSecundary.setNameInfo(emails[1].getType().toUpperCase());
+			emailSecundary.setValueInfo(emails[1].getEmail());
+			
+		}
 		if(adresses[0]!=null){
-			String[] addressM=adresses[0].split("�");
-			addressMain.setValueInfo(addressM[2]+", "+addressM[0]);
-			addressMain.setValueInfo2(adresses[1]);
+			addressMain.setNameInfo(adresses[0].getType().toUpperCase());
+			addressMain.setValueInfo(adresses[0].getLine1());
+			addressMain.setValueInfo2(adresses[0].getLine2());
 		}
 		if(adresses[1]!=null){
-			String[] addressS=adresses[1].split("�");
-			addressSecundary.setValueInfo(addressS[2]+", "+addressS[0]);
-			addressSecundary.setValueInfo2(addressS[1]);
+			addressSecundary.setNameInfo(adresses[1].getType().toUpperCase());
+			addressSecundary.setValueInfo(adresses[1].getLine1());
+			addressSecundary.setValueInfo2(adresses[1].getLine2());
 		}	
 		configSocialButtons(member);
 	}

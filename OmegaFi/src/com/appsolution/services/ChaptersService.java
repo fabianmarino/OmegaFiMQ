@@ -130,4 +130,12 @@ public class ChaptersService extends ServerContext {
 		statusMember[1]=rooster;
 		return statusMember;
 	}
+	
+	public Chapter getChapter(int index){
+		Chapter chapter=null;
+		if(index<chapters.size()&&index>=0){
+			chapter=chapters.get(index);
+		}
+		return chapter;
+	}
 }

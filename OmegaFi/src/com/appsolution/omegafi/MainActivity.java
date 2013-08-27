@@ -48,8 +48,6 @@ public class MainActivity extends OmegaFiLoginActivity {
 		getUserNameSaved();
 		textForgot=(TextView)findViewById(R.id.text_forgot);
 		textForgot.setTypeface(OmegaFiActivity.getFont(getApplicationContext(), 3));
-		Bitmap bitmap=CachingImage.getCachingImage().getBitmapFromMemCache("image");
-		Log.d("Bitmap cache", bitmap+"");
 	}
 	
 	public void nextHome(View boton){

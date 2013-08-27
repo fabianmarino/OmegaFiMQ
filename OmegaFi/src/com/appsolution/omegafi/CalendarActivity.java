@@ -46,7 +46,6 @@ public class CalendarActivity extends OmegaFiActivity {
 			}
 			else{
 				CalendarDay back=days.get(days.size()-1);
-				Log.d("Result comparate", CalendarEvent.comparateDateOnlyDay(back.getDateDayReal(), event.getBeginDateReal())+"");
 				if(CalendarEvent.comparateDateOnlyDay(back.getDateDayReal(), event.getBeginDateReal())==0){
 					back.addCalendarItem(event);
 				}
